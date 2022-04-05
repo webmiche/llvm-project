@@ -1,0 +1,24 @@
+===-------------------------------------------------------------------------===
+                          ... Statistics Collected ...
+===-------------------------------------------------------------------------===
+
+17 aa             - Number of MayAlias results
+55 assume-queries - Number of Queries into an assume assume bundles
+ 1 build-libcalls - Number of arguments inferred as nocapture
+ 2 build-libcalls - Number of function returns inferred as noundef returns
+ 1 build-libcalls - Number of functions inferred as nounwind
+ 1 build-libcalls - Number of arguments inferred as readonly
+ 4 dse            - Number of stores remaining after DSE
+ 2 early-cse      - Number of instructions CSE'd
+ 3 globalopt      - Number of globals marked unnamed_addr
+ 6 instcombine    - Number of insts combined
+ 9 instcombine    - Number of instruction combining iterations performed
+ 3 mem2reg        - Number of alloca's promoted with a single store
+ 1 sroa           - Maximum number of partitions per alloca
+ 5 sroa           - Maximum number of uses of a partition
+13 sroa           - Number of alloca partition uses rewritten
+ 3 sroa           - Number of alloca partitions formed
+11 sroa           - Number of allocas analyzed for replacement
+19 sroa           - Number of instructions deleted
+ 3 sroa           - Number of allocas promoted to SSA values
+

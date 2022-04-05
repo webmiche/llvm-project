@@ -1,0 +1,1 @@
+./ll_opt.sh -debug-pass-manager examples/mine.ll -disable-output

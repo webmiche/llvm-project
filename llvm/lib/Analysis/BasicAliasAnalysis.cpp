@@ -889,12 +889,31 @@ static bool notDifferentParent(const Value *O1, const Value *O2) {
 }
 #endif
 
+// int numCalls = 0;
+
 AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
                                  const MemoryLocation &LocB,
                                  AAQueryInfo &AAQI) {
   assert(notDifferentParent(LocA.Ptr, LocB.Ptr) &&
          "BasicAliasAnalysis doesn't support interprocedural queries.");
-  return aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI);
+  printf("BasicAliasAnalysis::alias\n");
+  outs() << "BasicAliasAnalysis::alias\n";
+  LocA.Ptr->print(outs(), true);
+  outs() << "\n";
+  outs() << "name: " << LocA.Ptr->getName().str() << "\n";
+
+  LocB.Ptr->print(outs(), true);
+  outs() << "\n";
+  outs() << "name: " << LocB.Ptr->getName().str() << "\n";
+  // LocB.Ptr->dump();
+  // if (numCalls++ < 1000000) {
+  //   return AliasResult::NoAlias;
+  // }
+  AliasResult res = aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI);
+  //AliasResult res = AliasResult::NoAlias;
+  char *names[] = { "NoAlias", "MayAlias", "PartialAlias", "MustAlias" };
+  outs() << "BasicAliasAnalysis::alias res = " << names[res] << "\n";
+  return res;
 }
 
 /// Checks to see if the specified callsite can clobber the specified memory

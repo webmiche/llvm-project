@@ -1,0 +1,248 @@
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %0
+name: 
+i32* %1
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %0
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MustAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %0
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MustAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %0
+name: 
+i32* %1
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0===-------------------------------------------------------------------------===
+                          ... Statistics Collected ...
+===-------------------------------------------------------------------------===
+
+29 aa              - Number of MayAlias results
+ 2 aa              - Number of MustAlias results
+48 assume-queries  - Number of Queries into an assume assume bundles
+ 2 dse             - Number iterations check for reads in getDomMemoryDef
+ 4 dse             - Number of stores remaining after DSE
+ 3 function-attrs  - Number of arguments marked nocapture
+ 1 function-attrs  - Number of functions marked as nofree
+ 1 function-attrs  - Number of functions marked as norecurse
+ 1 function-attrs  - Number of functions marked as nosync
+ 1 function-attrs  - Number of arguments marked readnone
+ 1 function-attrs  - Number of functions marked as willreturn
+ 1 function-attrs  - Number of arguments marked writeonly
+ 2 globalopt       - Number of globals deleted
+ 1 globalopt       - Number of globals marked unnamed_addr
+ 8 instcombine     - Number of instruction combining iterations performed
+ 1 mem2reg         - Number of PHI nodes inserted
+ 5 mem2reg         - Number of alloca's promoted with a single store
+ 1 memory-builtins - Number of arguments with unsolved size and offset
+ 1 simplifycfg     - Number of blocks simplified
+ 1 sroa            - Maximum number of partitions per alloca
+ 5 sroa            - Maximum number of uses of a partition
+23 sroa            - Number of alloca partition uses rewritten
+ 7 sroa            - Number of alloca partitions formed
+ 7 sroa            - Number of allocas analyzed for replacement
+27 sroa            - Number of instructions deleted
+ 7 sroa            - Number of allocas promoted to SSA values
+
+
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias

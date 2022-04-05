@@ -1,0 +1,56 @@
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = NoAlias
+BasicAliasAnalysis::alias
+  %6 = getelementptr inbounds %struct.Point, %struct.Point* %2, i64 0, i32 1
+name: 
+  %5 = getelementptr inbounds %struct.Point, %struct.Point* %2, i64 0, i32 0
+name: 
+BasicAliasAnalysis::alias res = NoAlias
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0===-------------------------------------------------------------------------===
+                          ... Statistics Collected ...
+===-------------------------------------------------------------------------===
+
+ 3 aa             - Number of NoAlias results
+43 assume-queries - Number of Queries into an assume assume bundles
+ 2 dse            - Number of stores remaining after DSE
+ 1 early-cse      - Number of instructions CSE'd
+ 1 function-attrs - Number of arguments marked nocapture
+ 1 function-attrs - Number of functions marked as nofree
+ 1 function-attrs - Number of functions marked as norecurse
+ 1 function-attrs - Number of functions marked as nosync
+ 1 function-attrs - Number of arguments marked readnone
+ 1 function-attrs - Number of functions marked as willreturn
+ 1 function-attrs - Number of functions marked writeonly
+ 2 function-attrs - Number of arguments marked writeonly
+ 2 globalopt      - Number of globals deleted
+ 1 globalopt      - Number of globals marked unnamed_addr
+ 6 instcombine    - Number of insts combined
+ 3 instcombine    - Number of constant folds
+ 5 instcombine    - Number of dead inst eliminated
+ 9 instcombine    - Number of instruction combining iterations performed
+ 2 ir             - Number of renumberings across all blocks
+ 4 local          - Number of unreachable basic blocks removed
+ 3 mem2reg        - Number of PHI nodes inserted
+ 5 mem2reg        - Number of alloca's promoted with a single store
+ 8 simplifycfg    - Number of blocks simplified
+ 1 sroa           - Maximum number of partitions per alloca
+ 6 sroa           - Maximum number of uses of a partition
+30 sroa           - Number of alloca partition uses rewritten
+ 7 sroa           - Number of alloca partitions formed
+ 7 sroa           - Number of allocas analyzed for replacement
+34 sroa           - Number of instructions deleted
+ 7 sroa           - Number of allocas promoted to SSA values
+
+
+name: 
+BasicAliasAnalysis::alias res = NoAlias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
+BasicAliasAnalysis::alias
