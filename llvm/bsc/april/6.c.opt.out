@@ -1,0 +1,46 @@
+ <-> 
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = NoAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0===-------------------------------------------------------------------------===
+                          ... Statistics Collected ...
+===-------------------------------------------------------------------------===
+
+ 1 aa             - Number of MayAlias results
+ 1 aa             - Number of NoAlias results
+19 assume-queries - Number of Queries into an assume assume bundles
+ 2 dse            - Number of stores remaining after DSE
+ 2 function-attrs - Number of arguments marked nocapture
+ 1 function-attrs - Number of functions marked as nofree
+ 1 function-attrs - Number of functions marked as norecurse
+ 1 function-attrs - Number of functions marked as nosync
+ 1 function-attrs - Number of functions marked as willreturn
+ 1 function-attrs - Number of functions marked writeonly
+ 2 function-attrs - Number of arguments marked writeonly
+ 2 globalopt      - Number of globals deleted
+ 1 globalopt      - Number of globals marked unnamed_addr
+ 1 instcombine    - Number of insts combined
+ 1 instcombine    - Number of constant folds
+ 9 instcombine    - Number of instruction combining iterations performed
+ 1 local          - Number of unreachable basic blocks removed
+ 1 mem2reg        - Number of PHI nodes inserted
+ 3 mem2reg        - Number of alloca's promoted with a single store
+ 2 simplifycfg    - Number of blocks simplified
+ 1 sroa           - Maximum number of partitions per alloca
+ 5 sroa           - Maximum number of uses of a partition
+15 sroa           - Number of alloca partition uses rewritten
+ 5 sroa           - Number of alloca partitions formed
+ 5 sroa           - Number of allocas analyzed for replacement
+17 sroa           - Number of instructions deleted
+ 5 sroa           - Number of allocas promoted to SSA values
+
+
+name: 
+BasicAliasAnalysis::alias res = MayAlias

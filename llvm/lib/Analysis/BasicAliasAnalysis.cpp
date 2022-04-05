@@ -889,14 +889,29 @@ static bool notDifferentParent(const Value *O1, const Value *O2) {
 }
 #endif
 
-// int numCalls = 0;
-
+static cl::opt<int> NumNoAlias("numnoalias", cl::Hidden, cl::init(0));
+int numCalls = 0;
+#include <sstream>
+static cl::opt<std::string> NoAliasCustomList("noaliascustom", cl::Hidden, cl::init(""));
 AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
                                  const MemoryLocation &LocB,
                                  AAQueryInfo &AAQI) {
   assert(notDifferentParent(LocA.Ptr, LocB.Ptr) &&
          "BasicAliasAnalysis doesn't support interprocedural queries.");
-  printf("BasicAliasAnalysis::alias\n");
+
+  std::vector<std::pair<std::string, std::string>> v;
+  std::stringstream ss(NoAliasCustomList);
+  while (ss.good()) {
+      std::string ptrId1;
+      getline(ss, ptrId1, ',');
+
+      std::string ptrId2;
+      getline(ss, ptrId2, ',');
+      v.push_back(std::make_pair(ptrId1, ptrId2));
+  }
+  for (size_t i = 0; i < v.size(); i++)
+      outs() << v[i].first << " <-> " << v[i].second << "\n";
+
   outs() << "BasicAliasAnalysis::alias\n";
   LocA.Ptr->print(outs(), true);
   outs() << "\n";
@@ -905,12 +920,14 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
   LocB.Ptr->print(outs(), true);
   outs() << "\n";
   outs() << "name: " << LocB.Ptr->getName().str() << "\n";
-  // LocB.Ptr->dump();
-  // if (numCalls++ < 1000000) {
-  //   return AliasResult::NoAlias;
-  // }
-  AliasResult res = aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI);
-  //AliasResult res = AliasResult::NoAlias;
+
+  AliasResult res = AliasResult::MayAlias;
+  if (++numCalls <= NumNoAlias) {
+    res = AliasResult::NoAlias;
+  } else {
+    res = aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI);
+  }
+
   char *names[] = { "NoAlias", "MayAlias", "PartialAlias", "MustAlias" };
   outs() << "BasicAliasAnalysis::alias res = " << names[res] << "\n";
   return res;
