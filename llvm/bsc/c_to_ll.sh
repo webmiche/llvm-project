@@ -1,1 +1,1 @@
-clang-13  -O1 -Xclang -disable-llvm-optzns -S -emit-llvm "$@"
+clang-14  -O1 -Xclang -disable-llvm-optzns -g -S -emit-llvm "$@"

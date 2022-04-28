@@ -1,0 +1,180 @@
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = NoAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %2
+name: 
+i32* %1
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %2
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %0
+name: 
+i32* %3
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %2
+name: 
+i32* %1
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %2
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %0
+name: 
+i32* %3
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+ <-> 
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0===-------------------------------------------------------------------------===
+                          ... Statistics Collected ...
+===-------------------------------------------------------------------------===
+
+20 aa             - Number of MayAlias results
+ 1 aa             - Number of NoAlias results
+83 assume-queries - Number of Queries into an assume assume bundles
+ 6 dse            - Number of stores remaining after DSE
+ 3 function-attrs - Number of arguments marked nocapture
+ 1 function-attrs - Number of functions marked as nofree
+ 1 function-attrs - Number of functions marked as norecurse
+ 1 function-attrs - Number of functions marked as nosync
+ 1 function-attrs - Number of functions marked as willreturn
+ 2 function-attrs - Number of arguments marked writeonly
+ 3 globalopt      - Number of globals deleted
+ 1 globalopt      - Number of globals marked unnamed_addr
+ 1 instcombine    - Number of insts combined
+ 9 instcombine    - Number of instruction combining iterations performed
+ 2 ir             - Number of renumberings across all blocks
+ 2 mem2reg        - Number of PHI nodes inserted
+ 7 mem2reg        - Number of alloca's promoted with a single store
+ 1 memdep         - Number of uncached non-local ptr responses
+ 1 simplifycfg    - Number of common instruction 'blocks' hoisted up to the begin block
+ 2 simplifycfg    - Number of common instructions hoisted up to the begin block
+ 4 simplifycfg    - Number of blocks simplified
+ 1 sroa           - Maximum number of partitions per alloca
+ 5 sroa           - Maximum number of uses of a partition
+32 sroa           - Number of alloca partition uses rewritten
+ 9 sroa           - Number of alloca partitions formed
+ 9 sroa           - Number of allocas analyzed for replacement
+38 sroa           - Number of instructions deleted
+ 9 sroa           - Number of allocas promoted to SSA values
+
+
+name: 
+BasicAliasAnalysis::alias res = MayAlias

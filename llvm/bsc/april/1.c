@@ -1,6 +1,4 @@
 int foo(int* x, int* a) {
-    //if (x == a) printf("");
-
     *x = 5;
     *a = 10;
     
@@ -10,6 +8,8 @@ int foo(int* x, int* a) {
     if (val == 5) {
         // if val is 5, a and x cannot alias
 
+
+        // TODO: investigate why this is not optimized away
         if (a == x) {
             return -1;
         }

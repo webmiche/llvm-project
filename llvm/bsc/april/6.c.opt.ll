@@ -4,7 +4,7 @@ target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16
 target triple = "x86_64-pc-linux-gnu"
 
 ; Function Attrs: mustprogress nofree norecurse nosync nounwind uwtable willreturn writeonly
-define dso_local i32 @foo(i32* nocapture writeonly %0, i32* nocapture writeonly %1) local_unnamed_addr #0 {
+define dso_local i32 @foo(i32* nocapture writeonly %0, i32* nocapture writeonly %1, i32* nocapture readnone %2, i32* nocapture readnone %3) local_unnamed_addr #0 {
   store i32 5, i32* %0, align 4, !tbaa !3
   store i32 10, i32* %1, align 4, !tbaa !3
   ret i32 2

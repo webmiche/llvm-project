@@ -1,0 +1,231 @@
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+map:
+94569840714512 <-> 94569840714552: 1
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+map:
+94569840714512 <-> 94569840714552: 2
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+map:
+94569840714512 <-> 94569840714552: 3
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+map:
+94569840714512 <-> 94569840714552: 4
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+map:
+94569840714512 <-> 94569840714552: 5
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+map:
+94569840714512 <-> 94569840714552: 6
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+map:
+94569840714512 <-> 94569840714552: 7
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+map:
+94569840714512 <-> 94569840714552: 8
+ <-> 
+BasicAliasAnalysis::alias
+i32* %2
+name: 
+i32* %1
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+map:
+94569840714472 <-> 94569840714512: 1
+94569840714512 <-> 94569840714552: 8
+ <-> 
+BasicAliasAnalysis::alias
+i32* %2
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+map:
+94569840714432 <-> 94569840714512: 1
+94569840714472 <-> 94569840714512: 1
+94569840714512 <-> 94569840714552: 8
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+map:
+94569840714432 <-> 94569840714512: 1
+94569840714472 <-> 94569840714512: 1
+94569840714512 <-> 94569840714552: 9
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %1
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+map:
+94569840714432 <-> 94569840714512: 1
+94569840714472 <-> 94569840714512: 1
+94569840714472 <-> 94569840714552: 1
+94569840714512 <-> 94569840714552: 9
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+map:
+94569840714432 <-> 94569840714512: 1
+94569840714432 <-> 94569840714552: 1
+94569840714472 <-> 94569840714512: 1
+94569840714472 <-> 94569840714552: 1
+94569840714512 <-> 94569840714552: 9
+ <-> 
+BasicAliasAnalysis::alias
+i32* %1
+name: 
+i32* %0
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+map:
+94569840714432 <-> 94569840714472: 1
+94569840714432 <-> 94569840714512: 1
+94569840714432 <-> 94569840714552: 1
+94569840714472 <-> 94569840714512: 1
+94569840714472 <-> 94569840714552: 1
+94569840714512 <-> 94569840714552: 9
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+map:
+94569840714432 <-> 94569840714472: 1
+94569840714432 <-> 94569840714512: 1
+94569840714432 <-> 94569840714552: 1
+94569840714472 <-> 94569840714512: 1
+94569840714472 <-> 94569840714552: 1
+94569840714512 <-> 94569840714552: 10
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+map:
+94569840714432 <-> 94569840714472: 1
+94569840714432 <-> 94569840714512: 1
+94569840714432 <-> 94569840714552: 1
+94569840714472 <-> 94569840714512: 1
+94569840714472 <-> 94569840714552: 1
+94569840714512 <-> 94569840714552: 11
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+map:
+94569840714432 <-> 94569840714472: 1
+94569840714432 <-> 94569840714512: 1
+94569840714432 <-> 94569840714552: 1
+94569840714472 <-> 94569840714512: 1
+94569840714472 <-> 94569840714552: 1
+94569840714512 <-> 94569840714552: 12
+ <-> 
+BasicAliasAnalysis::alias
+i32* %3
+name: 
+i32* %2===-------------------------------------------------------------------------===
+                          ... Statistics Collected ...
+===-------------------------------------------------------------------------===
+
+18 aa             - Number of MayAlias results
+70 assume-queries - Number of Queries into an assume assume bundles
+ 4 dse            - Number of stores remaining after DSE
+ 3 function-attrs - Number of arguments marked nocapture
+ 1 function-attrs - Number of functions marked as nofree
+ 1 function-attrs - Number of functions marked as norecurse
+ 1 function-attrs - Number of functions marked as nosync
+ 1 function-attrs - Number of functions marked as willreturn
+ 3 function-attrs - Number of arguments marked writeonly
+ 3 globalopt      - Number of globals deleted
+ 1 globalopt      - Number of globals marked unnamed_addr
+ 3 instcombine    - Number of insts combined
+ 2 instcombine    - Number of dead inst eliminated
+ 9 instcombine    - Number of instruction combining iterations performed
+ 2 ir             - Number of renumberings across all blocks
+ 2 mem2reg        - Number of PHI nodes inserted
+ 7 mem2reg        - Number of alloca's promoted with a single store
+ 1 simplifycfg    - Number of common instruction 'blocks' hoisted up to the begin block
+ 1 simplifycfg    - Number of common instructions hoisted up to the begin block
+ 4 simplifycfg    - Number of blocks simplified
+ 1 sroa           - Maximum number of partitions per alloca
+ 5 sroa           - Maximum number of uses of a partition
+32 sroa           - Number of alloca partition uses rewritten
+ 9 sroa           - Number of alloca partitions formed
+ 9 sroa           - Number of allocas analyzed for replacement
+38 sroa           - Number of instructions deleted
+ 9 sroa           - Number of allocas promoted to SSA values
+
+
+name: 
+BasicAliasAnalysis::alias res = MayAlias
+map:
+94569840714432 <-> 94569840714472: 1
+94569840714432 <-> 94569840714512: 1
+94569840714432 <-> 94569840714552: 1
+94569840714472 <-> 94569840714512: 1
+94569840714472 <-> 94569840714552: 1
+94569840714512 <-> 94569840714552: 13
