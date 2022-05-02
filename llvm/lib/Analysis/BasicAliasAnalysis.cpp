@@ -889,14 +889,86 @@ static bool notDifferentParent(const Value *O1, const Value *O2) {
 }
 #endif
 
+const Function* findEnclosingFunc(const Value* V) {
+  if (const Argument* Arg = dyn_cast<Argument>(V)) {
+    return Arg->getParent();
+  }
+  if (const Instruction* I = dyn_cast<Instruction>(V)) {
+    return I->getParent()->getParent();
+  }
+  return NULL;
+}
+
+const DILocalVariable* findVar(const Value* V, const Function* F) {
+  // iterate through F's instructions
+  for (auto &BB : *F) {
+    for (auto &Inst : BB) {
+      const Instruction* I = &Inst;
+      if (const DbgDeclareInst* DbgDeclare = dyn_cast<DbgDeclareInst>(I)) {
+        if (DbgDeclare->getAddress() == V) return DbgDeclare->getVariable();
+      } else if (const DbgValueInst* DbgValue = dyn_cast<DbgValueInst>(I)) {
+        // DbgValue->print(outs(), true);
+        auto DbgValueValue = DbgValue->getValue();
+        DbgValueValue->print(outs(), true);
+        outs () << "\n";
+        if (DbgValueValue == V) return DbgValue->getVariable();
+      }
+    }
+  }
+
+  return NULL;
+}
+
+StringRef NotFoundName = "@@@NOTFOUND@@@";
+
+StringRef getOriginalName(const Value* V, const Function* F) {
+  // TODO handle globals as well
+
+  // /*const Function**/ F = findEnclosingFunc(V);
+  // if (!F) return V->getName();
+
+  const DILocalVariable* Var = findVar(V, F);
+  if (!Var) {
+    // outs() << "not found\n";
+    return NotFoundName;
+  }
+  // Var->print(outs());
+
+  return Var->getName();
+}
+
 static cl::opt<int> NumNoAlias("numnoalias", cl::Hidden, cl::init(0));
 int numCalls = 0;
 #include <sstream>
 static cl::opt<std::string> NoAliasCustomList("noaliascustom", cl::Hidden, cl::init(""));
 
+#include <cstdlib>
+
 #include <map>
 // map of (ordered) pairs to number of calls with those arguments
 std::map<std::pair<uint64_t, uint64_t>, int> aa_calls_count;
+
+int numCallsWithFirstName = 0;
+int numCallsWithSecondName = 0;
+int numCallsWithBothNames = 0;
+int numCallsTotal = 0;
+
+void printMapAtExit() {
+  // also print source level mapped calls
+  outs() << "total calls: " << numCallsTotal << "\n";
+  outs() << "both: " << numCallsWithBothNames << "\n";
+  outs() << "first only: " << numCallsWithFirstName << "\n";
+  outs() << "second only: " << numCallsWithSecondName << "\n";
+
+  outs() << "map:" << "\n";
+  for (auto it = aa_calls_count.begin(); it != aa_calls_count.end(); ++it) {
+      outs() << it->first.first << " <-> " << it->first.second << ": " << it->second << "\n";
+  }
+}
+
+bool inProgress = false;
+
+
 
 AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
                                  const MemoryLocation &LocB,
@@ -904,10 +976,76 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
   assert(notDifferentParent(LocA.Ptr, LocB.Ptr) &&
          "BasicAliasAnalysis doesn't support interprocedural queries.");
 
+  outs() << "--- FINDING ORIGINAL NAMES... ---\n";
+  auto NameA = getOriginalName(LocA.Ptr, &F);
+  auto NameB = getOriginalName(LocB.Ptr, &F);
+  outs() << "--- DONE FINDING ORIGINAL NAMES... ---\n";
+
+
   auto firstPtr = LocA.Ptr > LocB.Ptr ? LocB.Ptr : LocA.Ptr;
   auto secondPtr = LocA.Ptr > LocB.Ptr ? LocA.Ptr : LocB.Ptr;
   auto p = std::make_pair((uint64_t) firstPtr, (uint64_t) secondPtr);
-  aa_calls_count[p] += 1;
+  // only increase if we didn't recursively call ourselves
+  bool prevInProgress = inProgress;
+  if (!inProgress) {
+    if (NameA != NotFoundName && NameB != NotFoundName) {
+      ++numCallsWithBothNames;
+    } else if (NameA != NotFoundName) {
+      ++numCallsWithFirstName;
+    } else if (NameB != NotFoundName) {
+      ++numCallsWithSecondName;
+    }
+    numCallsTotal++;
+
+    aa_calls_count[p] += 1;
+  }
+  inProgress = true;
+
+  outs() << "--- getOriginalName ---\n";
+  outs() << "NameA: " << NameA << "\n";
+  outs() << "NameB: " << NameB << "\n";
+
+  if (NameA == NotFoundName || NameB == NotFoundName) {
+    outs() << "NotFoundName\n";
+  }
+  outs() << "--- DONE getOriginalName ---\n";
+  outs() << "A value we are looking for: \n";
+  LocA.Ptr->print(outs(), true);
+  outs() << "\n";
+    outs() << "B value we are looking for: \n";
+  LocB.Ptr->print(outs(), true);
+  outs() << "\n";
+  outs() << "DONE value we are looking for:\n";
+
+/////
+  // outs() << "value we are looking for: ";
+  // LocA.Ptr->print(outs(), true);
+  // outs() << "\n";
+  // outs() << "printing module's instructions etc...\n";
+  // const Module* mod = F.getParent();
+  // // iterate over mod's functions
+  // for (Module::const_iterator it = mod->begin(), end = mod->end(); it != end; ++it) {
+  //   // iterate over function's basic blocks
+  //   for (Function::const_iterator bb = it->begin(), end = it->end(); bb != end; ++bb) {
+  //     // iterate over basic block's instructions
+  //     for (BasicBlock::const_iterator inst = bb->begin(), end = bb->end(); inst != end; ++inst) {
+  //       // iterate over instruction's operands
+  //       outs() << "instruction: ";
+  //       inst->print(outs(), true);
+  //       outs() << "\n";
+  //       for (unsigned i = 0, e = inst->getNumOperands(); i != e; ++i) {
+  //         // if the operand is a pointer
+  //         const Value* op = inst->getOperand(i);
+  //         op->print(outs(), true);
+  //         outs() << "\n";
+  //         outs() << (op == LocA.Ptr ? "true" : "false") << "\n";
+  //       }
+  //     }
+  //   }
+  // }
+  // outs() << "DONE printing module's instructions etc...\n";
+///////
+  // F.getParent()->print(outs(), nullptr);
 
   std::vector<std::pair<std::string, std::string>> v;
   std::stringstream ss(NoAliasCustomList);
@@ -919,33 +1057,43 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
       getline(ss, ptrId2, ',');
       v.push_back(std::make_pair(ptrId1, ptrId2));
   }
-  for (size_t i = 0; i < v.size(); i++)
-      outs() << v[i].first << " <-> " << v[i].second << "\n";
-
+  for (size_t i = 0; i < v.size(); i++){
+      // outs() << v[i].first << " <-> " << v[i].second << "\n";
+  }
   outs() << "BasicAliasAnalysis::alias\n";
   LocA.Ptr->print(outs(), true);
   outs() << "\n";
-  outs() << "name: " << LocA.Ptr->getName().str() << "\n";
+  // outs() << "name: " << LocA.Ptr->getName().str() << "\n";
 
   LocB.Ptr->print(outs(), true);
   outs() << "\n";
-  outs() << "name: " << LocB.Ptr->getName().str() << "\n";
+  // outs() << "name: " << LocB.Ptr->getName().str() << "\n";
 
+  // Print all attached metadata
+  // SmallVector<std::pair<unsigned, MDNode *>, 10> smallvec;
+  // LocA.Ptr->getAllMetadata(smallvec);
 
 
   AliasResult res = AliasResult::MayAlias;
-  if (++numCalls <= NumNoAlias) {
+  if (numCalls == 0) {
+    // first invocation
+    atexit(printMapAtExit);
+  }
+  numCalls++;
+  if (numCalls <= NumNoAlias) {
     res = AliasResult::NoAlias;
   } else {
     res = aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI);
   }
 
   char *names[] = { "NoAlias", "MayAlias", "PartialAlias", "MustAlias" };
-  outs() << "BasicAliasAnalysis::alias res = " << names[res] << "\n";
-  outs() << "map:" << "\n";
-  for (auto it = aa_calls_count.begin(); it != aa_calls_count.end(); ++it) {
-      outs() << it->first.first << " <-> " << it->first.second << ": " << it->second << "\n";
-  }
+  // outs() << "BasicAliasAnalysis::alias res = " << names[res] << "\n";
+
+  // outs() << "map:" << "\n";
+  // for (auto it = aa_calls_count.begin(); it != aa_calls_count.end(); ++it) {
+  //     outs() << it->first.first << " <-> " << it->first.second << ": " << it->second << "\n";
+  // }
+  inProgress = prevInProgress;
   return res;
 }
 

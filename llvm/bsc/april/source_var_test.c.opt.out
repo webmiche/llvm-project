@@ -1,0 +1,157 @@
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %2
+i32* %1
+BasicAliasAnalysis::alias
+i32* %2
+i32* %0
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %1
+BasicAliasAnalysis::alias
+i32* %3
+i32* %0
+BasicAliasAnalysis::alias
+i32* %1
+i32* %0
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %2
+i32* %1
+BasicAliasAnalysis::alias
+i32* %2
+i32* %0
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %1
+BasicAliasAnalysis::alias
+i32* %3
+i32* %0
+BasicAliasAnalysis::alias
+i32* %1
+i32* %0
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2
+BasicAliasAnalysis::alias
+i32* %3
+i32* %2===-------------------------------------------------------------------------===
+                          ... Statistics Collected ...
+===-------------------------------------------------------------------------===
+
+ 36 aa             - Number of MayAlias results
+140 assume-queries - Number of Queries into an assume assume bundles
+  8 dse            - Number of stores remaining after DSE
+  6 function-attrs - Number of arguments marked nocapture
+  2 function-attrs - Number of functions marked as nofree
+  2 function-attrs - Number of functions marked as norecurse
+  2 function-attrs - Number of functions marked as nosync
+  2 function-attrs - Number of functions marked as willreturn
+  6 function-attrs - Number of arguments marked writeonly
+  3 globalopt      - Number of globals deleted
+  2 globalopt      - Number of globals marked unnamed_addr
+  6 instcombine    - Number of insts combined
+  4 instcombine    - Number of dead inst eliminated
+ 18 instcombine    - Number of instruction combining iterations performed
+  4 ir             - Number of renumberings across all blocks
+  4 mem2reg        - Number of PHI nodes inserted
+ 14 mem2reg        - Number of alloca's promoted with a single store
+  2 simplifycfg    - Number of common instruction 'blocks' hoisted up to the begin block
+  2 simplifycfg    - Number of common instructions hoisted up to the begin block
+  8 simplifycfg    - Number of blocks simplified
+  1 sroa           - Maximum number of partitions per alloca
+  5 sroa           - Maximum number of uses of a partition
+ 64 sroa           - Number of alloca partition uses rewritten
+ 18 sroa           - Number of alloca partitions formed
+ 18 sroa           - Number of allocas analyzed for replacement
+ 76 sroa           - Number of instructions deleted
+ 18 sroa           - Number of allocas promoted to SSA values
+
+
+total calls: 36
+both: 36
+first only: 0
+second only: 0
+map:
+94430488562720 <-> 94430488562760: 1
+94430488562720 <-> 94430488562800: 1
+94430488562720 <-> 94430488562840: 1
+94430488562760 <-> 94430488562800: 1
+94430488562760 <-> 94430488562840: 1
+94430488562800 <-> 94430488562840: 13
+94430488616352 <-> 94430488616392: 1
+94430488616352 <-> 94430488616432: 1
+94430488616352 <-> 94430488616472: 1
+94430488616392 <-> 94430488616432: 1
+94430488616392 <-> 94430488616472: 1
+94430488616432 <-> 94430488616472: 13

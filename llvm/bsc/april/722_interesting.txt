@@ -1,0 +1,411 @@
+value we are looking for: i32* %3
+printing module's instructions etc...
+instruction:   call void @llvm.dbg.value(metadata i32* %0, metadata !18, metadata !DIExpression()), !dbg !28
+i32* %0
+false
+!18 = !DILocalVariable(name: "x", arg: 1, scope: !13, file: !3, line: 4, type: !16)
+false
+!DIExpression()
+false
+; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
+declare void @llvm.dbg.value(metadata %0, metadata %1, metadata %2) #1
+
+false
+instruction:   call void @llvm.dbg.value(metadata i32* %1, metadata !19, metadata !DIExpression()), !dbg !28
+i32* %1
+false
+!19 = !DILocalVariable(name: "a", arg: 2, scope: !13, file: !3, line: 4, type: !16)
+false
+!DIExpression()
+false
+; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
+declare void @llvm.dbg.value(metadata %0, metadata %1, metadata %2) #1
+
+false
+instruction:   call void @llvm.dbg.value(metadata i32* %2, metadata !20, metadata !DIExpression()), !dbg !28
+i32* %2
+false
+!20 = !DILocalVariable(name: "n", arg: 3, scope: !13, file: !3, line: 4, type: !16)
+false
+!DIExpression()
+false
+; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
+declare void @llvm.dbg.value(metadata %0, metadata %1, metadata %2) #1
+
+false
+instruction:   call void @llvm.dbg.value(metadata i32* %3, metadata !21, metadata !DIExpression()), !dbg !28
+i32* %3 HERE: not equal
+false
+!21 = !DILocalVariable(name: "m", arg: 4, scope: !13, file: !3, line: 4, type: !16)
+false
+!DIExpression()
+false
+; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
+declare void @llvm.dbg.value(metadata %0, metadata %1, metadata %2) #1
+
+false
+instruction:   store i32 5, i32* %0, align 4, !dbg !29, !tbaa !30
+i32 5
+false
+i32* %0
+false
+instruction:   store i32 10, i32* %1, align 4, !dbg !34, !tbaa !30
+i32 10
+false
+i32* %1
+false
+instruction:   %5 = icmp eq i32* %0, @g, !dbg !35
+i32* %0
+false
+@g = dso_local global i32 0, align 4, !dbg !0
+false
+instruction:   br i1 %5, label %6, label %7, !dbg !37
+  %5 = icmp eq i32* %0, @g, !dbg !35
+false
+
+7:                                                ; preds = %4
+  %8 = load i32, i32* %0, align 4, !dbg !40, !tbaa !30
+  call void @llvm.dbg.value(metadata i32 %8, metadata !22, metadata !DIExpression()), !dbg !28
+  %9 = icmp eq i32 %8, 5, !dbg !41
+  br i1 %9, label %10, label %12, !dbg !42
+
+false
+
+6:                                                ; preds = %4
+  br label %15, !dbg !38
+
+false
+instruction:   br label %15, !dbg !38
+
+15:                                               ; preds = %14, %6
+  %.1 = phi i32 [ 0, %6 ], [ %.0, %14 ], !dbg !28
+  ret i32 %.1, !dbg !52
+
+false
+instruction:   %8 = load i32, i32* %0, align 4, !dbg !40, !tbaa !30
+i32* %0
+false
+instruction:   call void @llvm.dbg.value(metadata i32 %8, metadata !22, metadata !DIExpression()), !dbg !28
+i32 %8
+false
+!22 = !DILocalVariable(name: "val", scope: !13, file: !3, line: 10, type: !5)
+false
+!DIExpression()
+false
+; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
+declare void @llvm.dbg.value(metadata %0, metadata %1, metadata %2) #1
+
+false
+instruction:   %9 = icmp eq i32 %8, 5, !dbg !41
+  %8 = load i32, i32* %0, align 4, !dbg !40, !tbaa !30
+false
+i32 5
+false
+instruction:   br i1 %9, label %10, label %12, !dbg !42
+  %9 = icmp eq i32 %8, 5, !dbg !41
+false
+
+12:                                               ; preds = %7
+  store i32 50, i32* %2, align 4, !dbg !47, !tbaa !30
+  store i32 100, i32* %3, align 4, !dbg !48, !tbaa !30
+  %13 = load i32, i32* %2, align 4, !dbg !49, !tbaa !30
+  call void @llvm.dbg.value(metadata i32 %13, metadata !26, metadata !DIExpression()), !dbg !50
+  br label %14
+
+false
+
+10:                                               ; preds = %7
+  store i32 50, i32* %2, align 4, !dbg !43, !tbaa !30
+  store i32 100, i32* %3, align 4, !dbg !44, !tbaa !30
+  %11 = load i32, i32* %2, align 4, !dbg !45, !tbaa !30
+  call void @llvm.dbg.value(metadata i32 %11, metadata !23, metadata !DIExpression()), !dbg !46
+  br label %14
+
+false
+instruction:   store i32 50, i32* %2, align 4, !dbg !43, !tbaa !30
+i32 50
+false
+i32* %2
+false
+instruction:   store i32 100, i32* %3, align 4, !dbg !44, !tbaa !30
+i32 100
+false
+i32* %3 HERE: equal
+true
+instruction:   %11 = load i32, i32* %2, align 4, !dbg !45, !tbaa !30
+i32* %2
+false
+instruction:   call void @llvm.dbg.value(metadata i32 %11, metadata !23, metadata !DIExpression()), !dbg !46
+i32 %11
+false
+!23 = !DILocalVariable(name: "val2", scope: !24, file: !3, line: 18, type: !5)
+false
+!DIExpression()
+false
+; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
+declare void @llvm.dbg.value(metadata %0, metadata %1, metadata %2) #1
+
+false
+instruction:   br label %14
+
+14:                                               ; preds = %12, %10
+  %.0 = phi i32 [ %11, %10 ], [ %13, %12 ], !dbg !51
+  br label %15
+
+false
+instruction:   store i32 50, i32* %2, align 4, !dbg !47, !tbaa !30
+i32 50
+false
+i32* %2
+false
+instruction:   store i32 100, i32* %3, align 4, !dbg !48, !tbaa !30
+i32 100
+false
+i32* %3 HERE: equal
+true
+instruction:   %13 = load i32, i32* %2, align 4, !dbg !49, !tbaa !30
+i32* %2
+false
+instruction:   call void @llvm.dbg.value(metadata i32 %13, metadata !26, metadata !DIExpression()), !dbg !50
+i32 %13
+false
+!26 = !DILocalVariable(name: "val2", scope: !27, file: !3, line: 24, type: !5)
+false
+!DIExpression()
+false
+; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
+declare void @llvm.dbg.value(metadata %0, metadata %1, metadata %2) #1
+
+false
+instruction:   br label %14
+
+14:                                               ; preds = %12, %10
+  %.0 = phi i32 [ %11, %10 ], [ %13, %12 ], !dbg !51
+  br label %15
+
+false
+instruction:   %.0 = phi i32 [ %11, %10 ], [ %13, %12 ], !dbg !51
+  %11 = load i32, i32* %2, align 4, !dbg !45, !tbaa !30
+false
+  %13 = load i32, i32* %2, align 4, !dbg !49, !tbaa !30
+false
+instruction:   br label %15
+
+15:                                               ; preds = %14, %6
+  %.1 = phi i32 [ 0, %6 ], [ %.0, %14 ], !dbg !28
+  ret i32 %.1, !dbg !52
+
+false
+instruction:   %.1 = phi i32 [ 0, %6 ], [ %.0, %14 ], !dbg !28
+i32 0
+false
+  %.0 = phi i32 [ %11, %10 ], [ %13, %12 ], !dbg !51
+false
+instruction:   ret i32 %.1, !dbg !52
+  %.1 = phi i32 [ 0, %6 ], [ %.0, %14 ], !dbg !28
+false
+instruction:   call void @llvm.dbg.value(metadata i32* %0, metadata !55, metadata !DIExpression()), !dbg !65
+i32* %0
+false
+!55 = !DILocalVariable(name: "x", arg: 1, scope: !53, file: !3, line: 31, type: !16)
+false
+!DIExpression()
+false
+; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
+declare void @llvm.dbg.value(metadata %0, metadata %1, metadata %2) #1
+
+false
+instruction:   call void @llvm.dbg.value(metadata i32* %1, metadata !56, metadata !DIExpression()), !dbg !65
+i32* %1
+false
+!56 = !DILocalVariable(name: "a", arg: 2, scope: !53, file: !3, line: 31, type: !16)
+false
+!DIExpression()
+false
+; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
+declare void @llvm.dbg.value(metadata %0, metadata %1, metadata %2) #1
+
+false
+instruction:   call void @llvm.dbg.value(metadata i32* %2, metadata !57, metadata !DIExpression()), !dbg !65
+i32* %2
+false
+!57 = !DILocalVariable(name: "n", arg: 3, scope: !53, file: !3, line: 31, type: !16)
+false
+!DIExpression()
+false
+; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
+declare void @llvm.dbg.value(metadata %0, metadata %1, metadata %2) #1
+
+false
+instruction:   call void @llvm.dbg.value(metadata i32* %3, metadata !58, metadata !DIExpression()), !dbg !65
+i32* %3
+false
+!58 = !DILocalVariable(name: "m", arg: 4, scope: !53, file: !3, line: 31, type: !16)
+false
+!DIExpression()
+false
+; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
+declare void @llvm.dbg.value(metadata %0, metadata %1, metadata %2) #1
+
+false
+instruction:   store i32 5, i32* %0, align 4, !dbg !29, !tbaa !30
+i32 5
+false
+i32* %0
+false
+instruction:   store i32 10, i32* %1, align 4, !dbg !34, !tbaa !30
+i32 10
+false
+i32* %1
+false
+instruction:   %5 = icmp eq i32* %0, @g, !dbg !35
+i32* %0
+false
+@g = dso_local global i32 0, align 4, !dbg !0
+false
+instruction:   br i1 %5, label %6, label %7, !dbg !37
+  %5 = icmp eq i32* %0, @g, !dbg !35
+false
+
+7:                                                ; preds = %4
+  %8 = load i32, i32* %0, align 4, !dbg !40, !tbaa !30
+  call void @llvm.dbg.value(metadata i32 %8, metadata !22, metadata !DIExpression()), !dbg !28
+  %9 = icmp eq i32 %8, 5, !dbg !41
+  br i1 %9, label %10, label %12, !dbg !42
+
+false
+
+6:                                                ; preds = %4
+  br label %15, !dbg !38
+
+false
+instruction:   br label %15, !dbg !38
+
+15:                                               ; preds = %14, %6
+  %.1 = phi i32 [ 0, %6 ], [ %.0, %14 ], !dbg !28
+  ret i32 %.1, !dbg !52
+
+false
+instruction:   %8 = load i32, i32* %0, align 4, !dbg !40, !tbaa !30
+i32* %0
+false
+instruction:   call void @llvm.dbg.value(metadata i32 %8, metadata !59, metadata !DIExpression()), !dbg !65
+i32 %8
+false
+!59 = !DILocalVariable(name: "val", scope: !53, file: !3, line: 37, type: !5)
+false
+!DIExpression()
+false
+; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
+declare void @llvm.dbg.value(metadata %0, metadata %1, metadata %2) #1
+
+false
+instruction:   %9 = icmp eq i32 %8, 5, !dbg !41
+  %8 = load i32, i32* %0, align 4, !dbg !40, !tbaa !30
+false
+i32 5
+false
+instruction:   br i1 %9, label %10, label %12, !dbg !42
+  %9 = icmp eq i32 %8, 5, !dbg !41
+false
+
+12:                                               ; preds = %7
+  store i32 50, i32* %2, align 4, !dbg !47, !tbaa !30
+  store i32 100, i32* %3, align 4, !dbg !48, !tbaa !30
+  %13 = load i32, i32* %2, align 4, !dbg !49, !tbaa !30
+  call void @llvm.dbg.value(metadata i32 %13, metadata !26, metadata !DIExpression()), !dbg !50
+  br label %14
+
+false
+
+10:                                               ; preds = %7
+  store i32 50, i32* %2, align 4, !dbg !43, !tbaa !30
+  store i32 100, i32* %3, align 4, !dbg !44, !tbaa !30
+  %11 = load i32, i32* %2, align 4, !dbg !45, !tbaa !30
+  call void @llvm.dbg.value(metadata i32 %11, metadata !23, metadata !DIExpression()), !dbg !46
+  br label %14
+
+false
+instruction:   store i32 50, i32* %2, align 4, !dbg !43, !tbaa !30
+i32 50
+false
+i32* %2
+false
+instruction:   store i32 100, i32* %3, align 4, !dbg !44, !tbaa !30
+i32 100
+false
+i32* %3
+false
+instruction:   %11 = load i32, i32* %2, align 4, !dbg !45, !tbaa !30
+i32* %2
+false
+instruction:   call void @llvm.dbg.value(metadata i32 %11, metadata !60, metadata !DIExpression()), !dbg !79
+i32 %11
+false
+!60 = !DILocalVariable(name: "val2", scope: !61, file: !3, line: 45, type: !5)
+false
+!DIExpression()
+false
+; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
+declare void @llvm.dbg.value(metadata %0, metadata %1, metadata %2) #1
+
+false
+instruction:   br label %14
+
+14:                                               ; preds = %12, %10
+  %.0 = phi i32 [ %11, %10 ], [ %13, %12 ], !dbg !51
+  br label %15
+
+false
+instruction:   store i32 50, i32* %2, align 4, !dbg !47, !tbaa !30
+i32 50
+false
+i32* %2
+false
+instruction:   store i32 100, i32* %3, align 4, !dbg !48, !tbaa !30
+i32 100
+false
+i32* %3
+false
+instruction:   %13 = load i32, i32* %2, align 4, !dbg !49, !tbaa !30
+i32* %2
+false
+instruction:   call void @llvm.dbg.value(metadata i32 %13, metadata !63, metadata !DIExpression()), !dbg !83
+i32 %13
+false
+!63 = !DILocalVariable(name: "val2", scope: !64, file: !3, line: 51, type: !5)
+false
+!DIExpression()
+false
+; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
+declare void @llvm.dbg.value(metadata %0, metadata %1, metadata %2) #1
+
+false
+instruction:   br label %14
+
+14:                                               ; preds = %12, %10
+  %.0 = phi i32 [ %11, %10 ], [ %13, %12 ], !dbg !51
+  br label %15
+
+false
+instruction:   %.0 = phi i32 [ %11, %10 ], [ %13, %12 ], !dbg !51
+  %11 = load i32, i32* %2, align 4, !dbg !45, !tbaa !30
+false
+  %13 = load i32, i32* %2, align 4, !dbg !49, !tbaa !30
+false
+instruction:   br label %15
+
+15:                                               ; preds = %14, %6
+  %.1 = phi i32 [ 0, %6 ], [ %.0, %14 ], !dbg !28
+  ret i32 %.1, !dbg !52
+
+false
+instruction:   %.1 = phi i32 [ 0, %6 ], [ %.0, %14 ], !dbg !28
+i32 0
+false
+  %.0 = phi i32 [ %11, %10 ], [ %13, %12 ], !dbg !51
+false
+instruction:   ret i32 %.1, !dbg !52
+  %.1 = phi i32 [ 0, %6 ], [ %.0, %14 ], !dbg !28
+false
+DONE printing module's instructions etc...

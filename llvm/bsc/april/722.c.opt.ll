@@ -27,6 +27,28 @@ define dso_local i32 @foo(i32* noundef writeonly %0, i32* nocapture noundef writ
   ret i32 %.1, !dbg !39
 }
 
+; Function Attrs: mustprogress nofree norecurse nosync nounwind uwtable willreturn
+define dso_local i32 @foo2(i32* noundef writeonly %0, i32* nocapture noundef writeonly %1, i32* nocapture noundef %2, i32* nocapture noundef writeonly %3) local_unnamed_addr #0 !dbg !40 {
+  call void @llvm.dbg.value(metadata i32* %0, metadata !42, metadata !DIExpression()), !dbg !52
+  call void @llvm.dbg.value(metadata i32* %1, metadata !43, metadata !DIExpression()), !dbg !52
+  call void @llvm.dbg.value(metadata i32* %2, metadata !44, metadata !DIExpression()), !dbg !52
+  call void @llvm.dbg.value(metadata i32* %3, metadata !45, metadata !DIExpression()), !dbg !52
+  store i32 5, i32* %0, align 4, !dbg !53, !tbaa !30
+  store i32 10, i32* %1, align 4, !dbg !54, !tbaa !30
+  %5 = icmp eq i32* %0, @g, !dbg !55
+  br i1 %5, label %7, label %6, !dbg !57
+
+6:                                                ; preds = %4
+  store i32 50, i32* %2, align 4, !dbg !58, !tbaa !30
+  store i32 100, i32* %3, align 4, !dbg !58, !tbaa !30
+  %.0 = load i32, i32* %2, align 4, !dbg !58, !tbaa !30
+  br label %7
+
+7:                                                ; preds = %4, %6
+  %.1 = phi i32 [ %.0, %6 ], [ 0, %4 ], !dbg !52
+  ret i32 %.1, !dbg !59
+}
+
 ; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
 declare void @llvm.dbg.value(metadata, metadata, metadata) #1
 
@@ -40,7 +62,7 @@ attributes #1 = { nofree nosync nounwind readnone speculatable willreturn }
 !0 = !DIGlobalVariableExpression(var: !1, expr: !DIExpression())
 !1 = distinct !DIGlobalVariable(name: "g", scope: !2, file: !3, line: 2, type: !5, isLocal: false, isDefinition: true)
 !2 = distinct !DICompileUnit(language: DW_LANG_C99, file: !3, producer: "Ubuntu clang version 14.0.0-++20220316013304+add3ab7f4c8a-1~exp1~20220316133356.105", isOptimized: true, runtimeVersion: 0, emissionKind: FullDebug, globals: !4, splitDebugInlining: false, nameTableKind: None)
-!3 = !DIFile(filename: "april/722.c", directory: "/home/nius/eth/bachelorsthesis/llvm-project/llvm/bsc", checksumkind: CSK_MD5, checksum: "36d3f6ab0507ce6326cefdf5dc492cfa")
+!3 = !DIFile(filename: "april/722.c", directory: "/home/nius/eth/bachelorsthesis/llvm-project/llvm/bsc", checksumkind: CSK_MD5, checksum: "f3dc65871edcec838c5bfa212f2d392f")
 !4 = !{!0}
 !5 = !DIBasicType(name: "int", size: 32, encoding: DW_ATE_signed)
 !6 = !{i32 7, !"Dwarf Version", i32 5}
@@ -77,3 +99,23 @@ attributes #1 = { nofree nosync nounwind readnone speculatable willreturn }
 !37 = !DILocation(line: 8, column: 9, scope: !13)
 !38 = !DILocation(line: 0, scope: !25)
 !39 = !DILocation(line: 29, column: 1, scope: !13)
+!40 = distinct !DISubprogram(name: "foo2", scope: !3, file: !3, line: 31, type: !14, scopeLine: 31, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !2, retainedNodes: !41)
+!41 = !{!42, !43, !44, !45, !46, !47, !50}
+!42 = !DILocalVariable(name: "x", arg: 1, scope: !40, file: !3, line: 31, type: !16)
+!43 = !DILocalVariable(name: "a", arg: 2, scope: !40, file: !3, line: 31, type: !16)
+!44 = !DILocalVariable(name: "n", arg: 3, scope: !40, file: !3, line: 31, type: !16)
+!45 = !DILocalVariable(name: "m", arg: 4, scope: !40, file: !3, line: 31, type: !16)
+!46 = !DILocalVariable(name: "val", scope: !40, file: !3, line: 37, type: !5)
+!47 = !DILocalVariable(name: "val2", scope: !48, file: !3, line: 45, type: !5)
+!48 = distinct !DILexicalBlock(scope: !49, file: !3, line: 39, column: 19)
+!49 = distinct !DILexicalBlock(scope: !40, file: !3, line: 39, column: 9)
+!50 = !DILocalVariable(name: "val2", scope: !51, file: !3, line: 51, type: !5)
+!51 = distinct !DILexicalBlock(scope: !49, file: !3, line: 47, column: 12)
+!52 = !DILocation(line: 0, scope: !40)
+!53 = !DILocation(line: 32, column: 8, scope: !40)
+!54 = !DILocation(line: 33, column: 8, scope: !40)
+!55 = !DILocation(line: 35, column: 11, scope: !56)
+!56 = distinct !DILexicalBlock(scope: !40, file: !3, line: 35, column: 9)
+!57 = !DILocation(line: 35, column: 9, scope: !40)
+!58 = !DILocation(line: 0, scope: !49)
+!59 = !DILocation(line: 56, column: 1, scope: !40)
