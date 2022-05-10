@@ -902,6 +902,7 @@ const Function* findEnclosingFunc(const Value* V) {
 const DILocalVariable* findVar(const Value* V, const Function* F) {
   // iterate through F's instructions
   for (auto &BB : *F) {
+    // outs() << "BB: " << BB.getName() << "\n";
     for (auto &Inst : BB) {
       const Instruction* I = &Inst;
       if (const DbgDeclareInst* DbgDeclare = dyn_cast<DbgDeclareInst>(I)) {
@@ -924,8 +925,8 @@ StringRef NotFoundName = "@@@NOTFOUND@@@";
 StringRef getOriginalName(const Value* V, const Function* F) {
   // TODO handle globals as well
 
-  // /*const Function**/ F = findEnclosingFunc(V);
-  // if (!F) return V->getName();
+  /*const Function**/ F = findEnclosingFunc(V);
+  if (!F) return V->getName();
 
   const DILocalVariable* Var = findVar(V, F);
   if (!Var) {
@@ -968,7 +969,36 @@ void printMapAtExit() {
 
 bool inProgress = false;
 
+void printNameFinding(const Value* V, const Function* F) {
+  if (inProgress) return;
 
+  outs() << "--- RUNNING printNameFinding for: ---\n";
+  V->print(outs(), true);
+  outs() << "\n";
+  outs() << "--- RUNNING... ---\n";
+  // auto NameA = getOriginalName(V, F);
+  auto Name = "_";
+  outs() << "--- DONE FINDING ORIGINAL NAMES ---\n";
+  outs() << " FOUND: " << Name << "\n";
+  
+  // cast to GEP instruction
+  const GEPOperator* GEP = dyn_cast<GEPOperator>(V);
+  if (GEP) {
+    outs() << "--- FOUND GEP ---\n";
+    const Value* Base = GEP->getPointerOperand();
+    outs() << "Base: ";
+    Base->print(outs(), true);
+    outs() << "\n";
+    outs() << "FINDING NAME OF BASE...\n";
+    auto NameBase = getOriginalName(Base, F);
+    outs() << "FOUND: " << NameBase << "\n";
+    outs() << "--- DONE FINDING NAME OF BASE ---\n";
+  }
+  
+  outs() << "--- FINISHED printNameFinding ---\n";
+
+
+}
 
 AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
                                  const MemoryLocation &LocB,
@@ -976,10 +1006,13 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
   assert(notDifferentParent(LocA.Ptr, LocB.Ptr) &&
          "BasicAliasAnalysis doesn't support interprocedural queries.");
 
-  outs() << "--- FINDING ORIGINAL NAMES... ---\n";
-  auto NameA = getOriginalName(LocA.Ptr, &F);
-  auto NameB = getOriginalName(LocB.Ptr, &F);
-  outs() << "--- DONE FINDING ORIGINAL NAMES... ---\n";
+  // outs() << "--- FINDING ORIGINAL NAMES... ---\n";
+  // auto NameA = getOriginalName(LocA.Ptr, &F);
+  // auto NameB = getOriginalName(LocB.Ptr, &F);
+  // outs() << "--- DONE FINDING ORIGINAL NAMES... ---\n";
+
+  printNameFinding(LocA.Ptr, &F);
+  printNameFinding(LocB.Ptr, &F);
 
 
   auto firstPtr = LocA.Ptr > LocB.Ptr ? LocB.Ptr : LocA.Ptr;
@@ -988,34 +1021,34 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
   // only increase if we didn't recursively call ourselves
   bool prevInProgress = inProgress;
   if (!inProgress) {
-    if (NameA != NotFoundName && NameB != NotFoundName) {
-      ++numCallsWithBothNames;
-    } else if (NameA != NotFoundName) {
-      ++numCallsWithFirstName;
-    } else if (NameB != NotFoundName) {
-      ++numCallsWithSecondName;
-    }
-    numCallsTotal++;
+    // if (NameA != NotFoundName && NameB != NotFoundName) {
+    //   ++numCallsWithBothNames;
+    // } else if (NameA != NotFoundName) {
+    //   ++numCallsWithFirstName;
+    // } else if (NameB != NotFoundName) {
+    //   ++numCallsWithSecondName;
+    // }
+    // numCallsTotal++;
 
     aa_calls_count[p] += 1;
   }
   inProgress = true;
 
-  outs() << "--- getOriginalName ---\n";
-  outs() << "NameA: " << NameA << "\n";
-  outs() << "NameB: " << NameB << "\n";
+  // outs() << "--- getOriginalName ---\n";
+  // outs() << "NameA: " << NameA << "\n";
+  // outs() << "NameB: " << NameB << "\n";
 
-  if (NameA == NotFoundName || NameB == NotFoundName) {
-    outs() << "NotFoundName\n";
-  }
-  outs() << "--- DONE getOriginalName ---\n";
-  outs() << "A value we are looking for: \n";
-  LocA.Ptr->print(outs(), true);
-  outs() << "\n";
-    outs() << "B value we are looking for: \n";
-  LocB.Ptr->print(outs(), true);
-  outs() << "\n";
-  outs() << "DONE value we are looking for:\n";
+  // if (NameA == NotFoundName || NameB == NotFoundName) {
+  //   outs() << "NotFoundName\n";
+  // }
+  // outs() << "--- DONE getOriginalName ---\n";
+  // outs() << "A value we are looking for: \n";
+  // LocA.Ptr->print(outs(), true);
+  // outs() << "\n";
+  //   outs() << "B value we are looking for: \n";
+  // LocB.Ptr->print(outs(), true);
+  // outs() << "\n";
+  // outs() << "DONE value we are looking for:\n";
 
 /////
   // outs() << "value we are looking for: ";
@@ -1060,13 +1093,13 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
   for (size_t i = 0; i < v.size(); i++){
       // outs() << v[i].first << " <-> " << v[i].second << "\n";
   }
-  outs() << "BasicAliasAnalysis::alias\n";
-  LocA.Ptr->print(outs(), true);
-  outs() << "\n";
-  // outs() << "name: " << LocA.Ptr->getName().str() << "\n";
+  // outs() << "BasicAliasAnalysis::alias\n";
+  // LocA.Ptr->print(outs(), true);
+  // outs() << "\n";
+  // // outs() << "name: " << LocA.Ptr->getName().str() << "\n";
 
-  LocB.Ptr->print(outs(), true);
-  outs() << "\n";
+  // LocB.Ptr->print(outs(), true);
+  // outs() << "\n";
   // outs() << "name: " << LocB.Ptr->getName().str() << "\n";
 
   // Print all attached metadata
