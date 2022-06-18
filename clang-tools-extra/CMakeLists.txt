@@ -6,6 +6,7 @@ option(CLANG_TIDY_ENABLE_STATIC_ANALYZER
 
 add_subdirectory(clang-apply-replacements)
 add_subdirectory(clang-reorder-fields)
+add_subdirectory(instrumenter)
 add_subdirectory(modularize)
 add_subdirectory(clang-tidy)
 

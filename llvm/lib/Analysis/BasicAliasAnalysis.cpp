@@ -886,9 +886,17 @@ static bool notDifferentParent(const Value *O1, const Value *O2) {
   const Function *F2 = getParent(O2);
 
   return !F1 || !F2 || F1 == F2;
-}
+} 
 #endif
 
+constexpr bool NIELS_DEBUG = false;
+
+raw_ostream& mouts() {
+  // return outs();
+  return nulls();
+}
+
+// https://stackoverflow.com/questions/21410675/getting-the-original-variable-name-for-an-llvm-value
 const Function* findEnclosingFunc(const Value* V) {
   if (const Argument* Arg = dyn_cast<Argument>(V)) {
     return Arg->getParent();
@@ -910,8 +918,8 @@ const DILocalVariable* findVar(const Value* V, const Function* F) {
       } else if (const DbgValueInst* DbgValue = dyn_cast<DbgValueInst>(I)) {
         // DbgValue->print(outs(), true);
         auto DbgValueValue = DbgValue->getValue();
-        DbgValueValue->print(outs(), true);
-        outs () << "\n";
+        // DbgValueValue->print(outs(), true);
+        // outs () << "\n";
         if (DbgValueValue == V) return DbgValue->getVariable();
       }
     }
@@ -922,15 +930,16 @@ const DILocalVariable* findVar(const Value* V, const Function* F) {
 
 StringRef NotFoundName = "@@@NOTFOUND@@@";
 
-StringRef getOriginalName(const Value* V, const Function* F) {
+StringRef getOriginalName(const Value* V, const Function* F, bool *found) {
   // TODO handle globals as well
-
+  *found = true;
   /*const Function**/ F = findEnclosingFunc(V);
   if (!F) return V->getName();
 
   const DILocalVariable* Var = findVar(V, F);
   if (!Var) {
     // outs() << "not found\n";
+    *found = false;
     return NotFoundName;
   }
   // Var->print(outs());
@@ -954,9 +963,15 @@ int numCallsWithSecondName = 0;
 int numCallsWithBothNames = 0;
 int numCallsTotal = 0;
 
+int numCallsFoundName = 0;
+
 void printMapAtExit() {
   // also print source level mapped calls
+  outs() << "found name calls: " << numCallsFoundName << "\n";
   outs() << "total calls: " << numCallsTotal << "\n";
+
+  return;
+
   outs() << "both: " << numCallsWithBothNames << "\n";
   outs() << "first only: " << numCallsWithFirstName << "\n";
   outs() << "second only: " << numCallsWithSecondName << "\n";
@@ -969,35 +984,67 @@ void printMapAtExit() {
 
 bool inProgress = false;
 
-void printNameFinding(const Value* V, const Function* F) {
-  if (inProgress) return;
+void printLnVal(std::string prefix, const Value* V) {
+if(NIELS_DEBUG) {     mouts() << prefix; }
+if(NIELS_DEBUG) {     V->print(mouts(), true); }
+if(NIELS_DEBUG) {     mouts() << "\n"; }
+}
 
-  outs() << "--- RUNNING printNameFinding for: ---\n";
-  V->print(outs(), true);
-  outs() << "\n";
-  outs() << "--- RUNNING... ---\n";
-  // auto NameA = getOriginalName(V, F);
-  auto Name = "_";
-  outs() << "--- DONE FINDING ORIGINAL NAMES ---\n";
-  outs() << " FOUND: " << Name << "\n";
-  
+
+
+// returns if found some Name, only call once per alias query!
+bool printNameFinding(const Value* V, const Function* F, llvm::StringRef& OutName, uint64_t& OutOffset) {
+
+if(NIELS_DEBUG) {   mouts() << "--- RUNNING printNameFinding for: ---\n"; }
+if(NIELS_DEBUG) {   V->print(mouts(), true); }
+if(NIELS_DEBUG) {   mouts() << "\n"; }
+if(NIELS_DEBUG) {   mouts() << "--- RUNNING... ---\n"; }
+  bool found = true;
+  auto Name = getOriginalName(V, F, &found);
+if(NIELS_DEBUG) {   mouts() << "--- DONE FINDING ORIGINAL NAMES ---\n"; }
+
+  if (found) {
+if(NIELS_DEBUG) {     mouts() << " FOUND: " << Name << "\n"; }
+    OutName = Name;
+    return true;
+  }
+
   // cast to GEP instruction
   const GEPOperator* GEP = dyn_cast<GEPOperator>(V);
   if (GEP) {
-    outs() << "--- FOUND GEP ---\n";
+if(NIELS_DEBUG) {     mouts() << "--- FOUND GEP ---\n"; }
     const Value* Base = GEP->getPointerOperand();
-    outs() << "Base: ";
-    Base->print(outs(), true);
-    outs() << "\n";
-    outs() << "FINDING NAME OF BASE...\n";
-    auto NameBase = getOriginalName(Base, F);
-    outs() << "FOUND: " << NameBase << "\n";
-    outs() << "--- DONE FINDING NAME OF BASE ---\n";
+if(NIELS_DEBUG) {     mouts() << "Base: "; }
+if(NIELS_DEBUG) {     Base->print(mouts(), true); }
+if(NIELS_DEBUG) {     mouts() << "\n"; }
+
+    DataLayout dl = F->getParent()->getDataLayout();
+    unsigned int width = dl.getIndexTypeSizeInBits(GEP->getType());
+    APInt offset = APInt(width, 0, false);
+    const Value* valOffset = GEP->stripAndAccumulateConstantOffsets(dl, offset, true, true);
+    printLnVal("offset (ignore): ", valOffset);
+if(NIELS_DEBUG) {     mouts() << "APInt offset: " << offset << "\n"; }
+
+
+
+if(NIELS_DEBUG) {     mouts() << "FINDING NAME OF BASE...\n"; }
+    auto NameBase = getOriginalName(Base, F, &found);
+if(NIELS_DEBUG) {     mouts() << "FOUND: " << NameBase << "\n"; }
+if(NIELS_DEBUG) {     mouts() << "--- DONE FINDING NAME OF BASE ---\n"; }
+    if (found) {
+      OutName = NameBase;
+      OutOffset = *offset.getRawData();
+      return true;
+    }
+  } else if (const BitCastOperator* BC = dyn_cast<BitCastOperator>(V)) {
+if(NIELS_DEBUG) {     mouts() << "--- FOUND BITCAST ---\n"; }
+    return printNameFinding(BC->getOperand(0), F, OutName, OutOffset);
+  } else {
+if(NIELS_DEBUG) {     mouts() << "NOT A GEP OR BITCAST\n"; }
   }
-  
-  outs() << "--- FINISHED printNameFinding ---\n";
+if(NIELS_DEBUG) {   mouts() << "--- FINISHED printNameFinding ---\n"; }
 
-
+  return false;
 }
 
 AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
@@ -1011,9 +1058,9 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
   // auto NameB = getOriginalName(LocB.Ptr, &F);
   // outs() << "--- DONE FINDING ORIGINAL NAMES... ---\n";
 
-  printNameFinding(LocA.Ptr, &F);
-  printNameFinding(LocB.Ptr, &F);
 
+  // printNameFinding(LocA.Ptr, &F, Name);
+  // printNameFinding(LocB.Ptr, &F, Name);
 
   auto firstPtr = LocA.Ptr > LocB.Ptr ? LocB.Ptr : LocA.Ptr;
   auto secondPtr = LocA.Ptr > LocB.Ptr ? LocA.Ptr : LocB.Ptr;
@@ -1028,7 +1075,19 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
     // } else if (NameB != NotFoundName) {
     //   ++numCallsWithSecondName;
     // }
-    // numCallsTotal++;
+    numCallsTotal++;
+    StringRef Name;
+    uint64_t byteOffset;
+    if (printNameFinding(LocA.Ptr, &F, Name, byteOffset)) {
+if(NIELS_DEBUG) {       mouts() << "F:" << F.getName() << ";V:" << Name << "+" << byteOffset << "\n"; }
+      outs() << "F:" << F.getName() << ";V:" << Name << "+" << byteOffset << ";S:" << LocA.Size << "\n";
+      numCallsFoundName++;
+    }
+    if (printNameFinding(LocB.Ptr, &F, Name, byteOffset)) {
+if(NIELS_DEBUG) {       mouts() << "F:" << F.getName() << ";V:" << Name << "+" << byteOffset << "\n"; }
+      outs() << "F:" << F.getName() << ";V:" << Name << "+" << byteOffset << ";S:" << LocB.Size << "\n";
+      numCallsFoundName++;
+    }
 
     aa_calls_count[p] += 1;
   }
