@@ -27,6 +27,7 @@
 #include "llvm/IR/Value.h"
 #include <algorithm>
 #include <string>
+#include <vector>
 
 namespace clang {
 namespace reorder_fields {
@@ -34,53 +35,28 @@ using namespace clang::ast_matchers;
 using llvm::SmallSetVector;
 
 
-static const FunctionDecl *findFunction(StringRef FunctionName,
+/// Finds all declRefExpr with appropriate name inside the given function
+static const std::vector<const DeclRefExpr*> findVariableUses(StringRef FunctionName, StringRef VarName,
                                         ASTContext &Context) {
-  auto Results =
-      match(functionDecl(hasName(FunctionName), isDefinition()).bind("funcDecl"),
-            Context);
-  if (Results.empty()) {
-    llvm::errs() << "Definition of " << FunctionName << "  not found\n";
-    return nullptr;
-  }
-  llvm::errs() << "Found: " << Results.size() << " defs of " << FunctionName << "\n";
-
-
-// TODO: adjust
-  return selectFirst<FunctionDecl>("funcDecl", Results);
-}
-
-/// Finds the definition of a record by name.
-///
-/// \returns nullptr if the name is ambiguous or not found.
-static const VarDecl *findVariable(StringRef FunctionName, StringRef VarName,
-                                        ASTContext &Context) {
-  // auto F = findFunction(FunctionName, Context);
-  
-  // auto Results =
-  //   match(expr(declRefExpr(hasDeclaration(namedDecl(hasName(VarName))), hasParent(functionDecl(hasName(FunctionName), isDefinition()))).bind("declRef")),
-  //         Context); 
- 
-
-
+  std::vector<const DeclRefExpr*> res;
   auto Results =
       match(functionDecl(hasName(FunctionName), isDefinition(), forEachDescendant(expr(declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))).bind("declRef")))),
             Context);
   if (Results.empty()) {
     llvm::errs() << "Definition of " << FunctionName << "  not found\n";
-    return nullptr;
+    return res;
   }
+  
   
   llvm::errs() << "Found: " << Results.size() << " uses of " << VarName << "\n";
   for (const BoundNodes &N : Results) {
     if (const DeclRefExpr *Node = N.getNodeAs<DeclRefExpr>("declRef")) {
       Node->dump();
+      res.push_back(Node);
     }
   }
 
-
-// TODO: adjust
-  return selectFirst<VarDecl>("declRef", Results);
+  return res;
 }
 
 /// Finds the definition of a record by name.
@@ -89,7 +65,7 @@ static const VarDecl *findVariable(StringRef FunctionName, StringRef VarName,
 static const RecordDecl *findDefinition(StringRef RecordName,
                                         ASTContext &Context) {
 
-  findVariable("is_attacked", "sq", Context);
+  findVariableUses("is_attacked", "sq", Context);
 
   auto Results =
       match(recordDecl(hasName(RecordName), isDefinition()).bind("recordDecl"),
