@@ -19,6 +19,8 @@
 #include "clang/AST/Decl.h"
 #include "clang/AST/RecursiveASTVisitor.h"
 #include "clang/ASTMatchers/ASTMatchFinder.h"
+#include <clang/ASTMatchers/ASTMatchers.h>
+#include <clang/ASTMatchers/ASTMatchersMacros.h>
 #include <clang/Tooling/Transformer/MatchConsumer.h>
 #include <clang/Tooling/Transformer/RewriteRule.h>
 #include "clang/Lex/Lexer.h"
@@ -33,6 +35,10 @@ namespace clang {
 namespace reorder_fields {
 using namespace clang::ast_matchers;
 using llvm::SmallSetVector;
+
+using namespace clang::tooling;
+using namespace clang::transformer;
+using namespace clang::transformer::detail;
 
 
 /// Finds all declRefExpr with appropriate name inside the given function
@@ -339,6 +345,67 @@ std::unique_ptr<ASTConsumer> ReorderFieldsAction::newASTConsumer() {
   return std::make_unique<ReorderingConsumer>(RecordName, DesiredFieldsOrder,
                                                Replacements);
 }
+
+void ReorderFieldsAction::registerMatchers(clang::ast_matchers::MatchFinder &Finder) {
+  StringRef FunctionName = "is_attacked";
+  StringRef VarName = "sq";
+// TODO: iterate here over all <func, var> pairs and emplace_back them
+
+  // This puts the "printf" right before the variable use, i.e. for "a = a + sq;" it produces "a = a + printf()\nsq;", even though I'd want
+  // it to be "printf();\n a = a + sq;".
+  Rules.emplace_back(
+      makeRule(functionDecl(
+                   hasName(FunctionName), isDefinition(),
+                   forEachDescendant(expr(
+                       declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))
+                           .bind("declRef"),
+                       hasParent(stmt().bind("stmt"))))),
+               insertBefore(node("stmt"), cat("printf();\n"))),
+      Replacements);
+  for (auto &Rule : Rules)
+    Rule.registerMatchers(Finder);
+}
+
+void RuleActionCallback::run(
+    const clang::ast_matchers::MatchFinder::MatchResult &Result) {
+    if (Result.Context->getDiagnostics().hasErrorOccurred())
+        return;
+    Expected<SmallVector<transformer::Edit, 1>> Edits =
+         clang::transformer::detail::findSelectedCase(Result, Rule).Edits(Result);
+    if (!Edits) {
+        llvm::errs() << "Rewrite failed: " << llvm::toString(Edits.takeError())
+                     << "\n";
+        return;
+    }
+    auto SM = Result.SourceManager;
+    for (const auto &T : *Edits) {
+        assert(T.Kind == transformer::EditKind::Range);
+        auto R = tooling::Replacement(*SM, T.Range, T.Replacement);
+        auto &Replacements = FileToReplacements[std::string(R.getFilePath())];
+        auto Err = Replacements.add(R);
+        if (Err) {
+            auto NewOffset = Replacements.getShiftedCodePosition(R.getOffset());
+            auto NewLength = Replacements.getShiftedCodePosition(
+                                 R.getOffset() + R.getLength()) -
+                             NewOffset;
+            if (NewLength == R.getLength()) {
+                R = clang::tooling::Replacement(R.getFilePath(), NewOffset, NewLength,
+                                R.getReplacementText());
+                Replacements = Replacements.merge(tooling::Replacements(R));
+            } else {
+                llvm_unreachable(llvm::toString(std::move(Err)).c_str());
+            }
+        }
+    }
+}
+
+void RuleActionCallback::registerMatchers(
+    clang::ast_matchers::MatchFinder &Finder) {
+      
+    for (auto &Matcher : clang::transformer::detail::buildMatchers(Rule))
+        Finder.addDynamicMatcher(Matcher, this);
+}
+
 
 } // namespace reorder_fields
 } // namespace clang

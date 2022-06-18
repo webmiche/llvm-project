@@ -21,6 +21,7 @@
 #include "clang/Rewrite/Core/Rewriter.h"
 #include "clang/Tooling/CommonOptionsParser.h"
 #include "clang/Tooling/Refactoring.h"
+#include "clang/ASTMatchers/ASTMatchFinder.h"
 #include "clang/Tooling/Tooling.h"
 #include "llvm/ADT/IntrusiveRefCntPtr.h"
 #include "llvm/Support/CommandLine.h"
@@ -29,8 +30,11 @@
 #include <string>
 #include <system_error>
 
+
 using namespace llvm;
 using namespace clang;
+using namespace clang::tooling;
+
 
 cl::OptionCategory ClangReorderFieldsCategory("clang-reorder-fields options");
 
@@ -65,7 +69,12 @@ int main(int argc, const char **argv) {
   reorder_fields::ReorderFieldsAction Action(RecordName, FieldsOrder,
                                              Tool.getReplacements());
 
-  auto Factory = tooling::newFrontendActionFactory(&Action);
+  clang::ast_matchers::MatchFinder Finder;
+  Action.registerMatchers(Finder);
+  auto Factory =
+      tooling::newFrontendActionFactory(&Finder);
+
+  auto FactoryOld = tooling::newFrontendActionFactory(&Action);
 
   if (Inplace)
     return Tool.runAndSave(Factory.get());
