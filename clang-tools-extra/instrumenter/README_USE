@@ -1,0 +1,2 @@
+# the -- at the end is needed, otherwise complaint about compilation database https://eli.thegreenplace.net/2014/05/21/compilation-databases-for-clang-based-tools
+./build/bin/clang-aa-instrumenter ~/eth/bachelorsthesis/llvm-project/llvm/bsc/specbuilder/src/631/attacks.cpp --record-name="helloo" --fields-order=a,b,c --
