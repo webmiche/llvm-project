@@ -17,6 +17,7 @@
 #include "clang/AST/ASTConsumer.h"
 #include "clang/AST/ASTContext.h"
 #include "clang/AST/Decl.h"
+#include <clang/AST/Stmt.h>
 #include "clang/AST/RecursiveASTVisitor.h"
 #include "clang/ASTMatchers/ASTMatchFinder.h"
 #include <clang/ASTMatchers/ASTMatchers.h>
@@ -37,6 +38,7 @@ using namespace clang::ast_matchers;
 using llvm::SmallSetVector;
 
 using namespace clang::tooling;
+using namespace clang::ast_matchers;
 using namespace clang::transformer;
 using namespace clang::transformer::detail;
 
@@ -346,6 +348,89 @@ std::unique_ptr<ASTConsumer> ReorderFieldsAction::newASTConsumer() {
                                                Replacements);
 }
 
+AST_MATCHER(DeclRefExpr, surroundingStmt) {
+    (void)Builder;
+    auto Parents = Finder->getASTContext().getParentMapContext().getParents(Node);
+    llvm::errs() << "Node:\n";
+    Node.dump();
+    llvm::errs() << "\n";
+    llvm::outs() << "Parents: " << Parents.size() << "\n";
+    for (auto Parent : Parents) {
+        llvm::outs() << "Parent: " << Parent.getSourceRange().getBegin().printToString(Finder->getASTContext().getSourceManager()) << "\n";
+    }
+  return true;
+
+}
+
+/* 
+Notes:
+[[[ <-these classify the matched bit-> ]]]
+Checking for "(Node is ValueStmt) AND (Parent is not)" leads to incorrect matches at e.g. if statements and return statements:
+    if ([[[color == WHITE]]]) {
+        if ([[[BlackPawns & PawnAttacksWhite[sq]]]]) 
+            return [[[bpawn]]];
+    }
+    -- No match is correct in above example
+    -- want:
+    [[[if (color == WHITE) {
+        [[[if (BlackPawns & PawnAttacksWhite[sq]) 
+            [[[return bpawn;]]]
+        ]]]
+    }]]]
+
+
+Checking for "(Node is not ValueStmt) AND (First child of Node is ValueStmt)" fixes the above issues, but introduces others, e.g.:
+    void is_attacked(int a) {
+        int sq;
+        [[[if (true) [[[{
+            a = a + sq;
+            is_attacked(sq);
+        }]]]]]]
+    }
+    -- Here only the [[[if.. match is correct, the [[[{ (compoundStmt) is not (it is introduced because `a = a + sq;` is a ValueStmt), and
+    -- the two innermost statements were missed and should have been matched.
+    -- want:
+    void is_attacked(int a) {
+        int sq;
+        [[[if (true) {
+            [[[a = a + sq;]]]
+            [[[is_attacked(sq);]]]
+        }]]]
+    }
+
+*/
+AST_MATCHER(Stmt, fineGrainedStmt) {
+    (void)Builder;
+    auto Parents = Finder->getASTContext().getParentMapContext().getParents(Node);
+    auto Parent = Parents[0];
+    auto ParentStmt = Parent.get<Stmt>();
+
+
+    
+    if (isa<ValueStmt>(Node)) {
+      return false;
+    }
+
+    // Go over children
+    for (auto Child : Node.children()) {
+      if (isa<ValueStmt>(Child)) {
+        return true;
+      }
+      // Breaking for multi-child statements like compound or if - we only want e.g. the if statement's expression to be considered
+      break;
+    }
+
+    llvm::errs() << "Node:\n";
+    Node.dump();
+    llvm::errs() << "\n";
+    // llvm::errs() << "ParentStmt:\n";
+    // ParentStmt->dump();
+    // llvm::errs() << "\n";
+
+    // return (!ParentStmt || !isa<ValueStmt>(ParentStmt)) && isa<ValueStmt>(Node);
+    return false;
+}
+
 void ReorderFieldsAction::registerMatchers(clang::ast_matchers::MatchFinder &Finder) {
   StringRef FunctionName = "is_attacked";
   StringRef VarName = "sq";
@@ -353,14 +438,25 @@ void ReorderFieldsAction::registerMatchers(clang::ast_matchers::MatchFinder &Fin
 
   // This puts the "printf" right before the variable use, i.e. for "a = a + sq;" it produces "a = a + printf()\nsq;", even though I'd want
   // it to be "printf();\n a = a + sq;".
+  // Rules.emplace_back(
+  //     makeRule(functionDecl(
+  //                  hasName(FunctionName), isDefinition(),
+  //                  forEachDescendant(expr(
+  //                      declRefExpr(hasDeclaration(namedDecl(hasName(VarName))), surroundingStmt())
+  //                          .bind("declRef"),
+  //                      hasParent(stmt().bind("stmt"))))),
+  //              insertBefore(node("stmt"), cat("printf();\n"))),
+  //     Replacements);
+
+  auto Edits = SmallVector<ASTEdit, 1>();
+  Edits.push_back(insertBefore(node("stmt"), cat("[[[")));
+  Edits.push_back(insertAfter(node("stmt"), cat("]]]")));
+
   Rules.emplace_back(
       makeRule(functionDecl(
                    hasName(FunctionName), isDefinition(),
-                   forEachDescendant(expr(
-                       declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))
-                           .bind("declRef"),
-                       hasParent(stmt().bind("stmt"))))),
-               insertBefore(node("stmt"), cat("printf();\n"))),
+                   forEachDescendant(stmt(fineGrainedStmt()).bind("stmt"))),
+              Edits),
       Replacements);
   for (auto &Rule : Rules)
     Rule.registerMatchers(Finder);
