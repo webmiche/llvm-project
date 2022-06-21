@@ -11,7 +11,7 @@
 ///
 //===----------------------------------------------------------------------===//
 
-#include "../ReorderFieldsAction.h"
+#include "../AAInstrumenter.h"
 #include "clang/Basic/Diagnostic.h"
 #include "clang/Basic/DiagnosticOptions.h"
 #include "clang/Basic/FileManager.h"
@@ -36,26 +36,21 @@ using namespace clang;
 using namespace clang::tooling;
 
 
-cl::OptionCategory ClangReorderFieldsCategory("clang-reorder-fields options");
+cl::OptionCategory ClangAAInstrumenterCategory("clang-aa-instrumenter options");
 
-static cl::opt<std::string>
-    RecordName("record-name", cl::Required,
-               cl::desc("The name of the struct/class."),
-               cl::cat(ClangReorderFieldsCategory));
-
-static cl::list<std::string> FieldsOrder("fields-order", cl::CommaSeparated,
+static cl::list<std::string> FuncsAndVars("funcs-and-vars", cl::CommaSeparated,
                                          cl::OneOrMore,
-                                         cl::desc("The desired fields order."),
-                                         cl::cat(ClangReorderFieldsCategory));
+                                         cl::desc("The desired variables. Provide as `func1-name:var1-name,func2-name:var2-name`"),
+                                         cl::cat(ClangAAInstrumenterCategory));
 
 static cl::opt<bool> Inplace("i", cl::desc("Overwrite edited files."),
-                             cl::cat(ClangReorderFieldsCategory));
+                             cl::cat(ClangAAInstrumenterCategory));
 
-const char Usage[] = "A tool to reorder fields in C/C++ structs/classes.\n";
+const char Usage[] = "A tool to instrument variable accesses in C/C++.\n";
 
 int main(int argc, const char **argv) {
   auto ExpectedParser = tooling::CommonOptionsParser::create(
-      argc, argv, ClangReorderFieldsCategory, cl::OneOrMore, Usage);
+      argc, argv, ClangAAInstrumenterCategory, cl::OneOrMore, Usage);
   if (!ExpectedParser) {
     llvm::errs() << ExpectedParser.takeError();
     return 1;
@@ -66,15 +61,12 @@ int main(int argc, const char **argv) {
   auto Files = OP.getSourcePathList();
   tooling::RefactoringTool Tool(OP.getCompilations(), Files);
 
-  reorder_fields::ReorderFieldsAction Action(RecordName, FieldsOrder,
+  aa_instrumenter::AAInstrumenter Action(FuncsAndVars,
                                              Tool.getReplacements());
 
   clang::ast_matchers::MatchFinder Finder;
   Action.registerMatchers(Finder);
-  auto Factory =
-      tooling::newFrontendActionFactory(&Finder);
-
-  auto FactoryOld = tooling::newFrontendActionFactory(&Action);
+  auto Factory = tooling::newFrontendActionFactory(&Finder);
 
   if (Inplace)
     return Tool.runAndSave(Factory.get());

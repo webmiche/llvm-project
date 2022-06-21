@@ -1,4 +1,4 @@
-//===-- tools/extra/clang-reorder-fields/ReorderFieldsAction.h -*- C++ -*-===//
+//===-- tools/extra/clang-reorder-fields/AAInstrumenter.h -*- C++ -*-===//
 //
 // Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
 // See https://llvm.org/LICENSE.txt for license information.
@@ -7,7 +7,7 @@
 //===----------------------------------------------------------------------===//
 ///
 /// \file
-/// This file contains the declarations of the ReorderFieldsAction class and
+/// This file contains the declarations of the AAInstrumenter class and
 /// the FieldPosition struct.
 ///
 //===----------------------------------------------------------------------===//
@@ -25,9 +25,7 @@
 
 
 namespace clang {
-class ASTConsumer;
-
-namespace reorder_fields {
+namespace aa_instrumenter {
 
   class RuleActionCallback
     : public clang::ast_matchers::MatchFinder::MatchCallback {
@@ -45,27 +43,24 @@ namespace reorder_fields {
     std::map<std::string, clang::tooling::Replacements> &FileToReplacements;
 };
 
-class ReorderFieldsAction {
-  llvm::StringRef RecordName;
-  llvm::ArrayRef<std::string> DesiredFieldsOrder;
+class AAInstrumenter {
+  llvm::ArrayRef<std::string> FuncsAndVars;
   std::map<std::string, tooling::Replacements> &Replacements;
       std::vector<RuleActionCallback> Rules;
 
 public:
-  ReorderFieldsAction(
-      llvm::StringRef RecordName,
-      llvm::ArrayRef<std::string> DesiredFieldsOrder,
+  AAInstrumenter(
+      llvm::ArrayRef<std::string> FuncsAndVars,
       std::map<std::string, tooling::Replacements> &Replacements)
-      : RecordName(RecordName), DesiredFieldsOrder(DesiredFieldsOrder),
+      : FuncsAndVars(FuncsAndVars),
         Replacements(Replacements) {}
 
-  ReorderFieldsAction(const ReorderFieldsAction &) = delete;
-  ReorderFieldsAction &operator=(const ReorderFieldsAction &) = delete;
+  AAInstrumenter(const AAInstrumenter &) = delete;
+  AAInstrumenter &operator=(const AAInstrumenter &) = delete;
 
-  std::unique_ptr<ASTConsumer> newASTConsumer();
   void registerMatchers(clang::ast_matchers::MatchFinder &Finder);
 };
-} // namespace reorder_fields
+} // namespace aa_instrumenter
 } // namespace clang
 
 #endif // LLVM_CLANG_TOOLS_EXTRA_CLANG_REORDER_FIELDS_ACTION_H

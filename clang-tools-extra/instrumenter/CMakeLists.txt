@@ -4,7 +4,8 @@ set(LLVM_LINK_COMPONENTS
 )
 
 add_clang_library(clangAAInstrumenter
-  ReorderFieldsAction.cpp
+  AAInstrumenter.cpp
+  AAInstrumenter.h
 
   DEPENDS
   omp_gen

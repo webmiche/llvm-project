@@ -1,5 +1,5 @@
 add_clang_tool(clang-aa-instrumenter
-  ClangReorderFields.cpp
+  ClangAAInstrumenter.cpp
   )
 
 clang_target_link_libraries(clang-aa-instrumenter
