@@ -68,11 +68,17 @@ findVariableUses(StringRef FunctionName, StringRef VarName,
   return res;
 }
 
-auto matchDeclRefRelevant(StringRef VarName) {
-  auto declRefDescendant = hasDescendant(declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))));
+auto matchDeclRefRelevant(std::string VarName) {
+  // auto declRefDescendant = hasDescendant(declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))));
+  // cannot have local matchers like above apparently, lead to segfault
   return anyOf(
-    allOf(unless(ifStmt), declRefDescendant),
-    ifStmt(hasCondition(declRefDescendant))
+    allOf(unless(ifStmt()), anyOf(hasDescendant(declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))), declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))))),
+    ifStmt(hasCondition(anyOf(
+      // has descendant is not reflexive
+        hasDescendant(declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
+        declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))
+      ))
+    )
   );
 }
 
@@ -244,8 +250,8 @@ auto instrumentIf(std::string FuncName, std::string VarName) {
 
   llvm::errs() << "Handling <if> " << FuncName << ":" << VarName << "\n";
 
-  auto matcherWithVar = hasDescendant(declRefExpr(hasDeclaration(
-                                       namedDecl(hasName(VarName)))));
+  // auto matcherWithVar = hasDescendant(declRefExpr(hasDeclaration(
+  //                                      namedDecl(hasName(VarName)))));
 
   return makeRule(
       traverse(
@@ -253,11 +259,25 @@ auto instrumentIf(std::string FuncName, std::string VarName) {
           functionDecl(hasName(FuncName), isDefinition(),
                        forEachDescendant(ifStmt(
                            optionally(hasElse(
-                               anyOf(compoundStmt(matcherWithVar).bind("celse"),
-                                     stmt(matcherWithVar, hasParent(ifStmt())).bind("else")))),
-                           hasThen(anyOf(compoundStmt(matcherWithVar).bind("cthen"),
-                                         stmt(matcherWithVar).bind("then"))))))),
+                               anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("celse"),
+                                     stmt(matchDeclRefRelevant(VarName)/*, hasParent(ifStmt())*/).bind("else")))),
+                           hasThen(anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("cthen"),
+                                         stmt(matchDeclRefRelevant(VarName)).bind("then"))))
+                        ))),
       actions);
+
+
+  // return makeRule(
+  //     traverse(
+  //         TK_IgnoreUnlessSpelledInSource,
+  //         functionDecl(hasName(FuncName), isDefinition(),
+  //                      forEachDescendant(ifStmt(
+  //                          optionally(hasElse(
+  //                              anyOf(compoundStmt(matcherWithVar).bind("celse"),
+  //                                    stmt(matcherWithVar, hasParent(ifStmt())).bind("else")))),
+  //                          hasThen(anyOf(compoundStmt(matcherWithVar).bind("cthen"),
+  //                                        stmt(matcherWithVar).bind("then"))))))),
+  //     actions);
 }
 
 
@@ -273,13 +293,11 @@ auto instrumentSimpleCompound(std::string FuncName, std::string VarName) {
 
   llvm::errs() << "Handling " << FuncName << ":" << VarName << "\n";
 
-  // flattenV
-
   return makeRule(traverse(TK_IgnoreUnlessSpelledInSource,
       functionDecl(hasName(FuncName), isDefinition(),
                    forEachDescendant(stmt(hasParent(compoundStmt()),
-                                          hasDescendant(declRefExpr(hasDeclaration(
-                                              namedDecl(hasName(VarName))))))
+                                          matchDeclRefRelevant(VarName)
+                                          )
                                          .bind("stmt")))),
       Edits);
 }
