@@ -24,13 +24,13 @@ void is_attacked(int a) {
         else 
             a = a + sq;// Note: I don't know why these nested ifs work - there are two edits, }}, generated after this semicolon.
     else
-        // hmm this is broken now, wasn't before
+        // hmm this doesn't get instrumented now, worked before
         a = sq;
 
     if (false)
         a = a;
     else
-        // doesn't work without surrounding braces:
+        // doesn't get instrumented without surrounding braces (didn't work before either):
         if (sq)
             a = a + sq;
         else 
