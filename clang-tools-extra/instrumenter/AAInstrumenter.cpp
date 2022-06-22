@@ -69,17 +69,21 @@ findVariableUses(StringRef FunctionName, StringRef VarName,
 }
 
 auto matchDeclRefRelevant(std::string VarName) {
+  // "simple match helper:"
+  // return hasDescendant(declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))));
+  
   // auto declRefDescendant = hasDescendant(declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))));
   // cannot have local matchers like above apparently, lead to segfault
   return anyOf(
-    allOf(unless(ifStmt()), anyOf(hasDescendant(declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))), declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))))),
-    ifStmt(hasCondition(anyOf(
-      // has descendant is not reflexive
-        hasDescendant(declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
-        declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))
-      ))
-    )
-  );
+      allOf(unless(ifStmt()),
+            anyOf(hasDescendant(
+                      declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
+                  declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))))),
+      ifStmt(hasCondition(anyOf(
+          // has descendant is not reflexive
+          hasDescendant(
+              declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
+          declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))))));
 }
 
 AST_MATCHER(DeclRefExpr, surroundingStmt) {
@@ -234,6 +238,59 @@ EditGenerator InstrumentNonCStmt(std::string id, std::string VarName) {
          });
 }
 
+auto instrumentIfElseBranch(std::string FuncName, std::string VarName) {
+  //   auto customMatcher = functionDecl(
+  //                    hasName(FunctionName), isDefinition(),
+  //                    forEachDescendant(stmt(fineGrainedStmt()).bind("stmt")));
+
+  auto actions =
+        flattenVector({
+          // ifBound("cthen", InstrumentCStmt("cthen")),
+          // ifBound("celse", InstrumentCStmt("celse")),
+          ifBound("then", InstrumentNonCStmt("then", VarName), noEdits()),
+          ifBound("else", InstrumentNonCStmt("else", VarName), noEdits())
+
+        });
+
+  llvm::errs() << "Handling <if> " << FuncName << ":" << VarName << "\n";
+
+  // auto matcherWithVar = hasDescendant(declRefExpr(hasDeclaration(
+  //                                      namedDecl(hasName(VarName)))));
+
+  /* 
+  // Alternative that doesn't work:
+    auto ifThen = ifStmt(
+      hasThen(anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("cthen"),
+                    stmt(matchDeclRefRelevant(VarName)).bind("then"))));
+
+  auto ifElse = ifStmt(hasElse(
+      anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("celse"),
+            stmt(matchDeclRefRelevant(VarName))
+                .bind("else"))));
+
+  return makeRule(traverse(TK_IgnoreUnlessSpelledInSource,
+                           functionDecl(hasName(FuncName), isDefinition(),
+                                        anyOf(forEachDescendant(ifThen),
+                                              forEachDescendant(ifElse)))),
+                  actions);
+  
+  */
+
+ // I think the problem is that in the ifStmt it only goes down one branch, either then or else, and ignores the other one.
+ 
+  return makeRule(
+      traverse(
+          TK_IgnoreUnlessSpelledInSource,
+          functionDecl(hasName(FuncName), isDefinition(),
+                       forEachDescendant(ifStmt(
+                           hasElse(
+                               anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("celse"),
+                                     stmt(matchDeclRefRelevant(VarName)/*, hasParent(ifStmt())*/).bind("else"))))
+                        ))),
+      actions);
+
+}
+
 auto instrumentIf(std::string FuncName, std::string VarName) {
   //   auto customMatcher = functionDecl(
   //                    hasName(FunctionName), isDefinition(),
@@ -253,14 +310,32 @@ auto instrumentIf(std::string FuncName, std::string VarName) {
   // auto matcherWithVar = hasDescendant(declRefExpr(hasDeclaration(
   //                                      namedDecl(hasName(VarName)))));
 
+  /* 
+  // Alternative that doesn't work:
+    auto ifThen = ifStmt(
+      hasThen(anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("cthen"),
+                    stmt(matchDeclRefRelevant(VarName)).bind("then"))));
+
+  auto ifElse = ifStmt(hasElse(
+      anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("celse"),
+            stmt(matchDeclRefRelevant(VarName))
+                .bind("else"))));
+
+  return makeRule(traverse(TK_IgnoreUnlessSpelledInSource,
+                           functionDecl(hasName(FuncName), isDefinition(),
+                                        anyOf(forEachDescendant(ifThen),
+                                              forEachDescendant(ifElse)))),
+                  actions);
+  
+  */
+
+ // I think the problem is that in the ifStmt it only goes down one branch, either then or else, and ignores the other one.
+
   return makeRule(
       traverse(
           TK_IgnoreUnlessSpelledInSource,
           functionDecl(hasName(FuncName), isDefinition(),
                        forEachDescendant(ifStmt(
-                           optionally(hasElse(
-                               anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("celse"),
-                                     stmt(matchDeclRefRelevant(VarName)/*, hasParent(ifStmt())*/).bind("else")))),
                            hasThen(anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("cthen"),
                                          stmt(matchDeclRefRelevant(VarName)).bind("then"))))
                         ))),
@@ -285,6 +360,7 @@ auto instrumentIf(std::string FuncName, std::string VarName) {
 auto instrumentSimpleCompound(std::string FuncName, std::string VarName) {
   auto Edits = SmallVector<ASTEdit, 1>();
   Edits.push_back(insertBefore(node("stmt"), cat(genPrintf(VarName))));
+  // Edits.push_back(insertBefore(node("stmt"), cat("[[[")));
   // Edits.push_back(insertAfter(node("stmt"), cat("]]]")));
 
   //   auto customMatcher = functionDecl(
@@ -313,6 +389,9 @@ void AAInstrumenter::registerMatchers(
     Rules.emplace_back(
         instrumentIf(FuncAndVar.first, FuncAndVar.second),
         Replacements);
+    Rules.emplace_back(
+      instrumentIfElseBranch(FuncAndVar.first, FuncAndVar.second),
+      Replacements);
   }
 
   // This puts the "printf" right before the variable use, i.e. for "a = a +
