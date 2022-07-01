@@ -75,15 +75,66 @@ auto matchDeclRefRelevant(std::string VarName) {
   // auto declRefDescendant = hasDescendant(declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))));
   // cannot have local matchers like above apparently, lead to segfault
   return anyOf(
-      allOf(unless(ifStmt()),
+      allOf(unless(anyOf(ifStmt(), forStmt(), whileStmt(), doStmt(), cxxForRangeStmt(), switchStmt(), switchCase())),
             anyOf(hasDescendant(
                       declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
                   declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))))),
-      ifStmt(hasCondition(anyOf(
+      mapAnyOf(ifStmt, doStmt, whileStmt).with(hasCondition(anyOf(
           // has descendant is not reflexive
           hasDescendant(
               declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
-          declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))))));
+          declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))))),
+      // ifStmt(hasCondition(anyOf(
+      //     // has descendant is not reflexive
+      //     hasDescendant(
+      //         declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
+      //     declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))))),
+      forStmt(
+          anyOf(
+            hasCondition(anyOf(
+                hasDescendant(
+                    declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
+                declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))))),
+            hasLoopInit(anyOf(
+                hasDescendant(
+                    declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
+                declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))))),
+            hasIncrement(anyOf(
+                hasDescendant(
+                    declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
+                declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))))
+          )
+      ),  
+      cxxForRangeStmt(
+          anyOf(
+            hasRangeInit(anyOf(
+                hasDescendant(
+                    declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
+                declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))))),
+            hasInitStatement(anyOf(
+                hasDescendant(
+                    declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
+                declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))))
+          )
+      ),
+      switchStmt(
+          anyOf(
+            hasCondition(anyOf(
+                hasDescendant(
+                    declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
+                declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))))),
+            hasInitStatement(anyOf(
+                hasDescendant(
+                    declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
+                declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))))),
+            switchCase(anyOf(
+                hasDescendant(
+                    declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
+                declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))))
+          )
+      )    
+      );
+
 }
 
 AST_MATCHER(DeclRefExpr, surroundingStmt) {
@@ -102,44 +153,6 @@ AST_MATCHER(DeclRefExpr, surroundingStmt) {
   return true;
 }
 
-/*
-Notes:
-[[[ <-these classify the matched bit-> ]]]
-Checking for "(Node is ValueStmt) AND (Parent is not)" leads to incorrect
-matches at e.g. if statements and return statements: if ([[[color == WHITE]]]) {
-        if ([[[BlackPawns & PawnAttacksWhite[sq]]]])
-            return [[[bpawn]]];
-    }
-    -- No match is correct in above example
-    -- want:
-    [[[if (color == WHITE) {
-        [[[if (BlackPawns & PawnAttacksWhite[sq])
-            [[[return bpawn;]]]
-        ]]]
-    }]]]
-
-
-Checking for "(Node is not ValueStmt) AND (First child of Node is ValueStmt)"
-fixes the above issues, but introduces others, e.g.: void is_attacked(int a) {
-        int sq;
-        [[[if (true) [[[{
-            a = a + sq;
-            is_attacked(sq);
-        }]]]]]]
-    }
-    -- Here only the [[[if.. match is correct, the [[[{ (compoundStmt) is not
-(it is introduced because `a = a + sq;` is a ValueStmt), and
-    -- the two innermost statements were missed and should have been matched.
-    -- want:
-    void is_attacked(int a) {
-        int sq;
-        [[[if (true) {
-            [[[a = a + sq;]]]
-            [[[is_attacked(sq);]]]
-        }]]]
-    }
-
-*/
 AST_MATCHER(Stmt, fineGrainedStmt) {
   (void)Builder;
   auto Parents = Finder->getASTContext().getParentMapContext().getParents(Node);
@@ -238,45 +251,16 @@ EditGenerator InstrumentNonCStmt(std::string id, std::string VarName) {
          });
 }
 
+// These instrumentations handle non-compound variants of statements with blocks.
 auto instrumentIfElseBranch(std::string FuncName, std::string VarName) {
-  //   auto customMatcher = functionDecl(
-  //                    hasName(FunctionName), isDefinition(),
-  //                    forEachDescendant(stmt(fineGrainedStmt()).bind("stmt")));
-
   auto actions =
         flattenVector({
-          // ifBound("cthen", InstrumentCStmt("cthen")),
-          // ifBound("celse", InstrumentCStmt("celse")),
           ifBound("then", InstrumentNonCStmt("then", VarName), noEdits()),
           ifBound("else", InstrumentNonCStmt("else", VarName), noEdits())
 
         });
 
-  llvm::errs() << "Handling <if> " << FuncName << ":" << VarName << "\n";
-
-  // auto matcherWithVar = hasDescendant(declRefExpr(hasDeclaration(
-  //                                      namedDecl(hasName(VarName)))));
-
-  /* 
-  // Alternative that doesn't work:
-    auto ifThen = ifStmt(
-      hasThen(anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("cthen"),
-                    stmt(matchDeclRefRelevant(VarName)).bind("then"))));
-
-  auto ifElse = ifStmt(hasElse(
-      anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("celse"),
-            stmt(matchDeclRefRelevant(VarName))
-                .bind("else"))));
-
-  return makeRule(traverse(TK_IgnoreUnlessSpelledInSource,
-                           functionDecl(hasName(FuncName), isDefinition(),
-                                        anyOf(forEachDescendant(ifThen),
-                                              forEachDescendant(ifElse)))),
-                  actions);
-  
-  */
-
- // I think the problem is that in the ifStmt it only goes down one branch, either then or else, and ignores the other one.
+  llvm::errs() << "Handling <else> " << FuncName << ":" << VarName << "\n";
  
   return makeRule(
       traverse(
@@ -355,7 +339,100 @@ auto instrumentIf(std::string FuncName, std::string VarName) {
   //     actions);
 }
 
+auto instrumentDo(std::string FuncName, std::string VarName) {
+  auto actions =
+        flattenVector({
+          ifBound("doInner", InstrumentNonCStmt("doInner", VarName), noEdits()),
+        });
 
+  llvm::errs() << "Handling <do> " << FuncName << ":" << VarName << "\n";
+ 
+  return makeRule(
+      traverse(
+          TK_IgnoreUnlessSpelledInSource,
+          functionDecl(hasName(FuncName), isDefinition(),
+                       forEachDescendant(doStmt(
+                           hasBody(
+                               anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("cdoInner"),
+                                     stmt(matchDeclRefRelevant(VarName)).bind("doInner"))))
+                        ))),
+      actions);
+}
+
+auto instrumentWhile(std::string FuncName, std::string VarName) {
+  auto actions =
+        flattenVector({
+          ifBound("while", InstrumentNonCStmt("while", VarName), noEdits()),
+        });
+
+  llvm::errs() << "Handling <while> " << FuncName << ":" << VarName << "\n";
+ 
+  return makeRule(
+      traverse(
+          TK_IgnoreUnlessSpelledInSource,
+          functionDecl(hasName(FuncName), isDefinition(),
+                       forEachDescendant(whileStmt(
+                           hasBody(
+                               anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("c"),
+                                     stmt(matchDeclRefRelevant(VarName)).bind("while"))))
+                        ))),
+      actions);
+}
+
+auto instrumentFor(std::string FuncName, std::string VarName) {
+  auto actions =
+        flattenVector({
+          ifBound("for", InstrumentNonCStmt("for", VarName), noEdits()),
+        });
+
+  llvm::errs() << "Handling <for> " << FuncName << ":" << VarName << "\n";
+ 
+  return makeRule(
+      traverse(
+          TK_IgnoreUnlessSpelledInSource,
+          functionDecl(hasName(FuncName), isDefinition(),
+                       forEachDescendant(forStmt(
+                           hasBody(
+                               anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("c"),
+                                     stmt(matchDeclRefRelevant(VarName)).bind("for"))))
+                        ))),
+      actions);
+}
+
+auto instrumentCXXFor(std::string FuncName, std::string VarName) {
+  auto actions =
+        flattenVector({
+          ifBound("cxxfor", InstrumentNonCStmt("cxxfor", VarName), noEdits()),
+        });
+
+  llvm::errs() << "Handling <cxx for> " << FuncName << ":" << VarName << "\n";
+ 
+  return makeRule(
+      traverse(
+          TK_IgnoreUnlessSpelledInSource,
+          functionDecl(hasName(FuncName), isDefinition(),
+                       forEachDescendant(cxxForRangeStmt(
+                           hasBody(
+                               anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("c"),
+                                     stmt(matchDeclRefRelevant(VarName)).bind("cxxfor"))))
+                        ))),
+      actions);
+}
+
+auto instrumentSwitchCaseContent(std::string FuncName, std::string VarName) {
+  auto Edits = SmallVector<ASTEdit, 1>();
+  Edits.push_back(insertBefore(node("stmt"), cat(genPrintf(VarName))));
+
+  llvm::errs() << "Handling <switch case content> " << FuncName << ":" << VarName << "\n";
+
+  return makeRule(traverse(TK_IgnoreUnlessSpelledInSource,
+      functionDecl(hasName(FuncName), isDefinition(),
+                   forEachDescendant(switchCase(hasDescendant(stmt(
+                                          matchDeclRefRelevant(VarName)
+                                          )
+                                         .bind("stmt")))))),
+      Edits);
+}
 
 auto instrumentSimpleCompound(std::string FuncName, std::string VarName) {
   auto Edits = SmallVector<ASTEdit, 1>();
@@ -391,6 +468,21 @@ void AAInstrumenter::registerMatchers(
         Replacements);
     Rules.emplace_back(
       instrumentIfElseBranch(FuncAndVar.first, FuncAndVar.second),
+      Replacements);
+    Rules.emplace_back(
+      instrumentDo(FuncAndVar.first, FuncAndVar.second),
+      Replacements);
+    Rules.emplace_back(
+      instrumentWhile(FuncAndVar.first, FuncAndVar.second),
+      Replacements);
+    Rules.emplace_back(
+      instrumentFor(FuncAndVar.first, FuncAndVar.second),
+      Replacements);
+    Rules.emplace_back(
+      instrumentCXXFor(FuncAndVar.first, FuncAndVar.second),
+      Replacements);
+    Rules.emplace_back(
+      instrumentSwitchCaseContent(FuncAndVar.first, FuncAndVar.second),
       Replacements);
   }
 

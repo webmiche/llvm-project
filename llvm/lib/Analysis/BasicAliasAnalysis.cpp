@@ -892,8 +892,8 @@ static bool notDifferentParent(const Value *O1, const Value *O2) {
 constexpr bool NIELS_DEBUG = false;
 
 raw_ostream& mouts() {
-  // return outs();
-  return nulls();
+  return outs();
+  // return nulls();
 }
 
 // https://stackoverflow.com/questions/21410675/getting-the-original-variable-name-for-an-llvm-value
@@ -930,7 +930,7 @@ const DILocalVariable* findVar(const Value* V, const Function* F) {
 
 StringRef NotFoundName = "@@@NOTFOUND@@@";
 
-StringRef getOriginalName(const Value* V, const Function* F, bool *found) {
+StringRef getOriginalName(const Value* V, const Function* F, bool *found, uint64_t offset = 0) {
   // TODO handle globals as well
   *found = true;
   /*const Function**/ F = findEnclosingFunc(V);
@@ -944,6 +944,39 @@ StringRef getOriginalName(const Value* V, const Function* F, bool *found) {
   }
   // Var->print(outs());
 
+  // todo: refactor
+  DIType* dit=Var->getType();
+  if (!dit) return Var->getName(); 
+  // mouts() << "DIType: " << dit->getName() << "\n";
+  DIDerivedType* didt=static_cast<DIDerivedType*>(dit);
+  if (!didt) return Var->getName(); 
+  // mouts() << "DIDerivedType: " << didt->getName() << "\n";
+  DICompositeType* dict=static_cast<DICompositeType*>(didt->getBaseType());
+  if (!dict) return Var->getName(); 
+  // mouts() << "DICompositeType: " << dict->getName() << "\n";
+  DINodeArray dia=dict->getElements();
+  if (!dia) return Var->getName(); 
+
+  for (DINode *di : dia) {
+    // try cast to DIDerivedType and check if offset equals given offset
+    DIDerivedType* didt = dyn_cast<DIDerivedType>(di);
+    if (!didt) continue;
+    if (didt->getOffsetInBits() != offset * 8) continue;
+    mouts() << "Variable name is " << Var->getName() << "\n";
+    return didt->getName();
+  }
+
+/*ignore
+  assert(offset<dia.size());
+  DIType* field=static_cast<DIType*>(dia[offset]);
+  if (!field) return Var->getName(); 
+
+  mouts()<<"Field name at offset " << offset << " is " << field->getName() << "\n";
+  mouts() << "Variable name is " << Var->getName() << "\n";
+*/
+
+
+  // return field->getName();
   return Var->getName();
 }
 
@@ -1028,7 +1061,7 @@ if(NIELS_DEBUG) {     mouts() << "APInt offset: " << offset << "\n"; }
 
 
 if(NIELS_DEBUG) {     mouts() << "FINDING NAME OF BASE...\n"; }
-    auto NameBase = getOriginalName(Base, F, &found);
+    auto NameBase = getOriginalName(Base, F, &found, offset.getRawData() ? *offset.getRawData() : 0);
 if(NIELS_DEBUG) {     mouts() << "FOUND: " << NameBase << "\n"; }
 if(NIELS_DEBUG) {     mouts() << "--- DONE FINDING NAME OF BASE ---\n"; }
     if (found) {

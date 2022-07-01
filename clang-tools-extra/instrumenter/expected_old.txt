@@ -1,0 +1,79 @@
+void is_attacked(int a) {
+    int sq;
+    if (true) {
+        printf("sq:%p\n", (void*)&sq);a = a + sq;
+        a = a + a;
+
+        is_attacked(a + 1);
+        printf("sq:%p\n", (void*)&sq);is_attacked(sq);
+        printf("sq:%p\n", (void*)&sq);if (sq) {
+            return;
+        }
+    }
+
+    if (true) 
+        {printf("sq:%p\n", (void*)&sq);is_attacked(sq);}
+    else 
+        {printf("sq:%p\n", (void*)&sq);is_attacked(sq);}
+    if (true || true)
+        if (true)
+            {printf("sq:%p\n", (void*)&sq);a = a + sq;} 
+        else 
+            {printf("sq:%p\n", (void*)&sq);a = a + sq;}
+    else
+        {printf("sq:%p\n", (void*)&sq);a = sq;}
+
+    if (false)
+        a = a;
+    else
+        {printf("sq:%p\n", (void*)&sq);if (sq)
+            {printf("sq:%p\n", (void*)&sq);a = a + sq;}
+        else 
+            {printf("sq:%p\n", (void*)&sq);a = a + sq;}}
+
+    printf("sq:%p\n", (void*)&sq);do 
+        a = a + sq;
+    while (sq);
+
+    printf("sq:%p\n", (void*)&sq);do {
+        printf("sq:%p\n", (void*)&sq);a = a + sq;
+    } while (sq);
+    
+    printf("sq:%p\n", (void*)&sq);while (sq) {
+        printf("sq:%p\n", (void*)&sq);a = a + sq;
+    }
+
+    printf("sq:%p\n", (void*)&sq);while (sq)
+        a = a + sq;
+
+    printf("sq:%p\n", (void*)&sq);for (int i = 0; i < 10; i++) {
+        printf("sq:%p\n", (void*)&sq);a = a + sq;
+    }
+
+    printf("sq:%p\n", (void*)&sq);for (int i = 0; i < 10; i++)
+        a = a + sq;
+
+    int coll[] = {1,2,3};
+
+    printf("sq:%p\n", (void*)&sq);for (auto i : coll) {
+        printf("sq:%p\n", (void*)&sq);a = a + sq;
+    }
+
+    printf("sq:%p\n", (void*)&sq);for (auto i : coll)
+        a = a + sq;
+
+    
+
+    // Not handled yet:
+    printf("sq:%p\n", (void*)&sq);switch(0) {
+        printf("sq:%p\n", (void*)&sq);case 2: 
+            is_attacked(sq);
+            break;
+        printf("sq:%p\n", (void*)&sq);case 3:
+            is_attacked(sq);
+            break;
+        printf("sq:%p\n", (void*)&sq);default:
+            is_attacked(sq);
+            break;
+    }
+}
