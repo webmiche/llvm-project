@@ -24,6 +24,7 @@
 #include "clang/Tooling/Refactoring.h"
 #include "llvm/ADT/SetVector.h"
 #include "llvm/IR/Value.h"
+#include "llvm/Support/raw_ostream.h"
 #include <algorithm>
 #include <clang/AST/Stmt.h>
 #include <clang/ASTMatchers/ASTMatchers.h>
@@ -188,15 +189,34 @@ AST_MATCHER(Stmt, fineGrainedStmt) {
   return false;
 }
 
+
 // AST_MATCHER_P(FunctionDecl, hasMangledName, std::string, WantMangledName) {
 //   (void)Builder;
 //   Node.getName();
-//   auto ctx = MangleContext(Finder->getASTContext(), nullptr, MangleContext::MK_Itanium);
+//   auto astCtx = Node.getASTContext();
+
+//   auto abi = CreateItaniumCXXABI(astCtx);
+
+//   auto ctx = abi.getMangleContext();
 //   std::string mangledName = ctx.mangleName(&Node);
 
 
 //   return mangledName == WantMangledName;
 // }
+
+AST_MATCHER_P(FunctionDecl, hasMangledName, std::string, WantMangledName) {
+  (void)Builder;
+  Node.getName();
+  auto Mangler = ItaniumMangleContext::create(Finder->getASTContext(), Finder->getASTContext().getDiagnostics());
+  GlobalDecl gd(&Node);
+  Mangler->mangleName(gd, llvm::outs());
+
+  std::string mangledName;
+  llvm::raw_string_ostream ostr(mangledName);
+  Mangler->mangleName(gd, ostr);
+
+  return mangledName == WantMangledName;
+}
 
 std::string genPrintf(std::string VarName) {
   return "printf(\"" + VarName + ":%p\\n\", (void*)&" + VarName + ");";
@@ -265,7 +285,7 @@ auto instrumentIfElseBranch(std::string FuncName, std::string VarName) {
   return makeRule(
       traverse(
           TK_IgnoreUnlessSpelledInSource,
-          functionDecl(hasName(FuncName), isDefinition(),
+          functionDecl(hasMangledName(FuncName), isDefinition(),
                        forEachDescendant(ifStmt(
                            hasElse(
                                anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("celse"),
@@ -318,7 +338,7 @@ auto instrumentIf(std::string FuncName, std::string VarName) {
   return makeRule(
       traverse(
           TK_IgnoreUnlessSpelledInSource,
-          functionDecl(hasName(FuncName), isDefinition(),
+          functionDecl(hasMangledName(FuncName), isDefinition(),
                        forEachDescendant(ifStmt(
                            hasThen(anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("cthen"),
                                          stmt(matchDeclRefRelevant(VarName)).bind("then"))))
@@ -350,7 +370,7 @@ auto instrumentDo(std::string FuncName, std::string VarName) {
   return makeRule(
       traverse(
           TK_IgnoreUnlessSpelledInSource,
-          functionDecl(hasName(FuncName), isDefinition(),
+          functionDecl(hasMangledName(FuncName), isDefinition(),
                        forEachDescendant(doStmt(
                            hasBody(
                                anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("cdoInner"),
@@ -370,7 +390,7 @@ auto instrumentWhile(std::string FuncName, std::string VarName) {
   return makeRule(
       traverse(
           TK_IgnoreUnlessSpelledInSource,
-          functionDecl(hasName(FuncName), isDefinition(),
+          functionDecl(hasMangledName(FuncName), isDefinition(),
                        forEachDescendant(whileStmt(
                            hasBody(
                                anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("c"),
@@ -390,7 +410,7 @@ auto instrumentFor(std::string FuncName, std::string VarName) {
   return makeRule(
       traverse(
           TK_IgnoreUnlessSpelledInSource,
-          functionDecl(hasName(FuncName), isDefinition(),
+          functionDecl(hasMangledName(FuncName), isDefinition(),
                        forEachDescendant(forStmt(
                            hasBody(
                                anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("c"),
@@ -410,7 +430,7 @@ auto instrumentCXXFor(std::string FuncName, std::string VarName) {
   return makeRule(
       traverse(
           TK_IgnoreUnlessSpelledInSource,
-          functionDecl(hasName(FuncName), isDefinition(),
+          functionDecl(hasMangledName(FuncName), isDefinition(),
                        forEachDescendant(cxxForRangeStmt(
                            hasBody(
                                anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("c"),
@@ -426,7 +446,7 @@ auto instrumentSwitchCaseContent(std::string FuncName, std::string VarName) {
   llvm::errs() << "Handling <switch case content> " << FuncName << ":" << VarName << "\n";
 
   return makeRule(traverse(TK_IgnoreUnlessSpelledInSource,
-      functionDecl(hasName(FuncName), isDefinition(),
+      functionDecl(hasMangledName(FuncName), isDefinition(),
                    forEachDescendant(switchCase(hasDescendant(stmt(
                                           matchDeclRefRelevant(VarName)
                                           )
@@ -447,7 +467,7 @@ auto instrumentSimpleCompound(std::string FuncName, std::string VarName) {
   llvm::errs() << "Handling " << FuncName << ":" << VarName << "\n";
 
   return makeRule(traverse(TK_IgnoreUnlessSpelledInSource,
-      functionDecl(hasName(FuncName), isDefinition(),
+      functionDecl(hasMangledName(FuncName), isDefinition(),
                    forEachDescendant(stmt(hasParent(compoundStmt()),
                                           matchDeclRefRelevant(VarName)
                                           )
@@ -459,6 +479,7 @@ void AAInstrumenter::registerMatchers(
     clang::ast_matchers::MatchFinder &Finder) {
   // iterate here over all <func, var> pairs of FuncsAndVars and emplace_back to
   // Rules
+
   for (auto FuncAndVar : mapFunctionVariableNames(FuncsAndVars)) {
     Rules.emplace_back(
         instrumentSimpleCompound(FuncAndVar.first, FuncAndVar.second),

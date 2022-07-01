@@ -76,4 +76,9 @@ void is_attacked(int a) {
             is_attacked(sq);
             break;
     }
+
+    switch(sq) {
+        default:
+        break;
+    }
 }
