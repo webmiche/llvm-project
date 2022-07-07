@@ -962,7 +962,7 @@ StringRef getOriginalName(const Value* V, const Function* F, bool *found, uint64
     DIDerivedType* didt = dyn_cast<DIDerivedType>(di);
     if (!didt) continue;
     if (didt->getOffsetInBits() != offset * 8) continue;
-    mouts() << "Variable name is " << Var->getName() << "\n";
+    // mouts() << "Variable name is " << Var->getName() << "\n";
     return didt->getName();
   }
 
@@ -988,6 +988,7 @@ static cl::opt<std::string> NoAliasCustomList("noaliascustom", cl::Hidden, cl::i
 #include <cstdlib>
 
 #include <map>
+#include <set>
 // map of (ordered) pairs to number of calls with those arguments
 std::map<std::pair<uint64_t, uint64_t>, int> aa_calls_count;
 
@@ -998,10 +999,18 @@ int numCallsTotal = 0;
 
 int numCallsFoundName = 0;
 
+std::set<std::string> foundFuncAndVarNames;
+
 void printMapAtExit() {
   // also print source level mapped calls
-  outs() << "found name calls: " << numCallsFoundName << "\n";
-  outs() << "total calls: " << numCallsTotal << "\n";
+  // outs() << "found name calls: " << numCallsFoundName << "\n";
+  // outs() << "total calls: " << numCallsTotal << "\n";
+  
+  // print all found names
+  outs() << "found names: " << foundFuncAndVarNames.size() << "\n";
+  for (auto &name : foundFuncAndVarNames) {
+    outs() << name << "\n";
+  }
 
   return;
 
@@ -1113,12 +1122,14 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
     uint64_t byteOffset;
     if (printNameFinding(LocA.Ptr, &F, Name, byteOffset)) {
 if(NIELS_DEBUG) {       mouts() << "F:" << F.getName() << ";V:" << Name << "+" << byteOffset << "\n"; }
-      outs() << "F:" << F.getName() << ";V:" << Name << "+" << byteOffset << ";S:" << LocA.Size << "\n";
+     if(NIELS_DEBUG) { outs() << "F:" << F.getName() << ";V:" << Name << "+" << byteOffset << ";S:" << LocA.Size << "\n";}
+      foundFuncAndVarNames.insert(std::string(F.getName().str() + ":" + Name.str()));
       numCallsFoundName++;
     }
     if (printNameFinding(LocB.Ptr, &F, Name, byteOffset)) {
 if(NIELS_DEBUG) {       mouts() << "F:" << F.getName() << ";V:" << Name << "+" << byteOffset << "\n"; }
-      outs() << "F:" << F.getName() << ";V:" << Name << "+" << byteOffset << ";S:" << LocB.Size << "\n";
+      if(NIELS_DEBUG) {outs() << "F:" << F.getName() << ";V:" << Name << "+" << byteOffset << ";S:" << LocB.Size << "\n";}
+      foundFuncAndVarNames.insert(std::string(F.getName().str() + ":" + Name.str()));
       numCallsFoundName++;
     }
 
