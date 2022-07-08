@@ -91,11 +91,7 @@ auto matchDeclRefRelevant(std::string VarName) {
       allOf(unless(anyOf(ifStmt(), forStmt(), whileStmt(), doStmt(), cxxForRangeStmt(), switchStmt(), switchCase())),
             varLikeExpr(VarName)
             ),
-      mapAnyOf(ifStmt, doStmt, whileStmt).with(hasCondition(anyOf(
-          // has descendant is not reflexive
-          hasDescendant(
-              declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
-          declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))))
+      mapAnyOf(ifStmt, doStmt, whileStmt).with(hasCondition(varLikeExpr(VarName)
           )),
       // ifStmt(hasCondition(anyOf(
       //     // has descendant is not reflexive
@@ -104,46 +100,22 @@ auto matchDeclRefRelevant(std::string VarName) {
       //     declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))))),
       forStmt(
           anyOf(
-            hasCondition(anyOf(
-                hasDescendant(
-                    declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
-                declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))))),
-            hasLoopInit(anyOf(
-                hasDescendant(
-                    declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
-                declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))))),
-            hasIncrement(anyOf(
-                hasDescendant(
-                    declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
-                declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))))
+            hasCondition(varLikeExpr(VarName)),
+            hasLoopInit(varLikeExpr(VarName)),
+            hasIncrement(varLikeExpr(VarName))
           )
       ),  
       cxxForRangeStmt(
           anyOf(
-            hasRangeInit(anyOf(
-                hasDescendant(
-                    declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
-                declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))))),
-            hasInitStatement(anyOf(
-                hasDescendant(
-                    declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
-                declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))))
+            hasRangeInit(varLikeExpr(VarName)),
+            hasInitStatement(varLikeExpr(VarName))
           )
       ),
       switchStmt(
           anyOf(
-            hasCondition(anyOf(
-                hasDescendant(
-                    declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
-                declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))))),
-            hasInitStatement(anyOf(
-                hasDescendant(
-                    declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
-                declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))))),
-            switchCase(anyOf(
-                hasDescendant(
-                    declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
-                declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))))
+            hasCondition(varLikeExpr(VarName)),
+            hasInitStatement(varLikeExpr(VarName)),
+            switchCase(varLikeExpr(VarName))
           )
       )    
       );
@@ -491,7 +463,7 @@ auto instrumentSimpleCompound(std::string FuncName, std::string VarName) {
   llvm::errs() << "Handling " << FuncName << ":" << VarName << "\n";
 
   return makeRule(traverse(TK_IgnoreUnlessSpelledInSource,
-      functionDecl(namedDecl(hasName("TimeControl"), hasMangledName(FuncName)), isDefinition(),
+      functionDecl(namedDecl(hasMangledName(FuncName)), isDefinition(),
                    forEachDescendant(stmt(hasParent(compoundStmt()),
                                           matchDeclRefRelevant(VarName)
                                           )
