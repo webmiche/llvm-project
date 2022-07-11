@@ -464,7 +464,7 @@ auto instrumentSimpleCompound(std::string FuncName, std::string VarName) {
 
   return makeRule(traverse(TK_IgnoreUnlessSpelledInSource,
       functionDecl(namedDecl(hasMangledName(FuncName)), isDefinition(),
-                   forEachDescendant(stmt(hasParent(compoundStmt()),
+                   forEachDescendant(stmt(hasParent(compoundStmt()), unless(compoundStmt()),
                                           matchDeclRefRelevant(VarName)
                                           )
                                          .bind("stmt")))),
@@ -547,6 +547,7 @@ void RuleActionCallback::run(
         R = clang::tooling::Replacement(R.getFilePath(), NewOffset, NewLength,
                                         R.getReplacementText());
         Replacements = Replacements.merge(tooling::Replacements(R));
+        llvm::toString( std::move(Err));
       } else {
         llvm_unreachable(llvm::toString(std::move(Err)).c_str());
       }
