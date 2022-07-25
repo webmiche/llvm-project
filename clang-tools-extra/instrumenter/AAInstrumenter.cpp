@@ -69,6 +69,8 @@ findVariableUses(StringRef FunctionName, StringRef VarName,
   return res;
 }
 
+bool file_is_c = false;
+
 auto varLikeExpr(std::string VarName) {
   return anyOf(
             hasDescendant(
@@ -188,6 +190,10 @@ AST_MATCHER(Stmt, fineGrainedStmt) {
 //   return mangledName == WantMangledName;
 // }
 
+#include "llvm/Support/CommandLine.h"
+llvm::cl::opt<bool> print_mangled_names("print-mangled-names",
+                                        llvm::cl::desc("Print mangled names"));
+
 // AST_MATCHER_P(FunctionDecl, hasMangledName, std::string, WantMangledName) {
 AST_MATCHER_P(NamedDecl, hasMangledName, std::string, WantMangledName) {
   (void)Builder;
@@ -195,6 +201,10 @@ AST_MATCHER_P(NamedDecl, hasMangledName, std::string, WantMangledName) {
   // // Node.getKind()
   // Node.getName();
   // llvm::outs() << Node.getNameAsString() << "\n";
+
+  if (file_is_c) {
+    return Node.getNameAsString() == WantMangledName;
+  }
 
   if (isa<CXXConstructorDecl>(&Node) || isa<CXXDestructorDecl>(&Node) || Node.hasAttr<CUDAGlobalAttr>()){
     return false;
@@ -205,7 +215,8 @@ AST_MATCHER_P(NamedDecl, hasMangledName, std::string, WantMangledName) {
   auto Mangler = ItaniumMangleContext::create(Finder->getASTContext(), Finder->getASTContext().getDiagnostics());
   GlobalDecl gd(&Node);
   // delete this:
-  Mangler->mangleName(gd, llvm::outs());
+  if (print_mangled_names)
+    Mangler->mangleName(gd, llvm::outs());
 
   std::string mangledName;
   llvm::raw_string_ostream ostr(mangledName);
@@ -471,10 +482,13 @@ auto instrumentSimpleCompound(std::string FuncName, std::string VarName) {
       Edits);
 }
 
+
 void AAInstrumenter::registerMatchers(
     clang::ast_matchers::MatchFinder &Finder) {
   // iterate here over all <func, var> pairs of FuncsAndVars and emplace_back to
   // Rules
+
+  file_is_c = this->is_c;
 
   for (auto FuncAndVar : mapFunctionVariableNames(FuncsAndVars)) {
     Rules.emplace_back(

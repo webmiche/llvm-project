@@ -945,15 +945,22 @@ StringRef getOriginalName(const Value* V, const Function* F, bool *found, uint64
   // Var->print(outs());
 
   // todo: refactor
+  // from https://stackoverflow.com/questions/19946743/how-to-get-the-field-name-from-llvms-metadata
+  // vvv needed because otherwise the internal getOperand() fails.
+  if (Var->getNumOperands() <= 3) return Var->getName();
   DIType* dit=Var->getType();
   if (!dit) return Var->getName(); 
   // mouts() << "DIType: " << dit->getName() << "\n";
   DIDerivedType* didt=static_cast<DIDerivedType*>(dit);
   if (!didt) return Var->getName(); 
   // mouts() << "DIDerivedType: " << didt->getName() << "\n";
+  // vvv needed because otherwise the internal getOperand() fails.
+  if (didt->getNumOperands() <= 3) return Var->getName();
   DICompositeType* dict=static_cast<DICompositeType*>(didt->getBaseType());
   if (!dict) return Var->getName(); 
   // mouts() << "DICompositeType: " << dict->getName() << "\n";
+  // vvv needed because otherwise the internal getOperand() fails.
+  if (dict->getNumOperands() <= 4) return Var->getName();
   DINodeArray dia=dict->getElements();
   if (!dia) return Var->getName(); 
 
@@ -1007,7 +1014,7 @@ void printMapAtExit() {
   // outs() << "total calls: " << numCallsTotal << "\n";
   
   // print all found names
-  outs() << "found names: " << foundFuncAndVarNames.size() << "\n";
+  // outs() << "found names: " << foundFuncAndVarNames.size() << "\n";
   for (auto &name : foundFuncAndVarNames) {
     outs() << name << "\n";
   }

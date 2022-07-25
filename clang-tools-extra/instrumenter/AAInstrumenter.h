@@ -49,6 +49,8 @@ class AAInstrumenter {
       std::vector<RuleActionCallback> Rules;
 
 public:
+  bool is_c = false;
+
   AAInstrumenter(
       llvm::ArrayRef<std::string> FuncsAndVars,
       std::map<std::string, tooling::Replacements> &Replacements)

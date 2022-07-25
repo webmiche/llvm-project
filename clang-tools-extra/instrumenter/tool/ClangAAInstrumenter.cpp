@@ -59,10 +59,16 @@ int main(int argc, const char **argv) {
   tooling::CommonOptionsParser &OP = ExpectedParser.get();
 
   auto Files = OP.getSourcePathList();
+  auto F = Files[0];
+  llvm::outs() << F << "\n";
   tooling::RefactoringTool Tool(OP.getCompilations(), Files);
 
   aa_instrumenter::AAInstrumenter Action(FuncsAndVars,
                                              Tool.getReplacements());
+
+  // check suffix of F for ".c"
+  Action.is_c = F.find(".c", F.size() - 3) != std::string::npos;
+  llvm::outs() << "is_c: " << Action.is_c << "\n";
 
   clang::ast_matchers::MatchFinder Finder;
   Action.registerMatchers(Finder);
