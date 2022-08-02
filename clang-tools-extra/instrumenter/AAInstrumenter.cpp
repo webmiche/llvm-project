@@ -279,6 +279,29 @@ EditGenerator InstrumentNonCStmt(std::string id, std::string VarName) {
          });
 }
 
+Expected<DynTypedNode> getNode(const ast_matchers::BoundNodes &Nodes,
+                               StringRef ID) {
+    auto &NodesMap = Nodes.getMap();
+    auto It = NodesMap.find(ID);
+    if (It == NodesMap.end())
+        return llvm::make_error<llvm::StringError>(llvm::errc::invalid_argument,
+                                                   ID + "not bound");
+    return It->second;
+}
+
+RangeSelector RightParen(std::string ID) {
+    return [ID](const clang::ast_matchers::MatchFinder::MatchResult &Result)
+               -> Expected<CharSourceRange> {
+        Expected<DynTypedNode> Node = getNode(Result.Nodes, ID);
+        if (!Node) {
+            llvm::outs() << "ERROR";
+            return Node.takeError();
+        }
+        const auto &SM = *Result.SourceManager;
+        return SM.getExpansionRange(Node->get<Expr>()->IgnoreParenImpCasts()->getSourceRange());
+    };
+}
+
 // These instrumentations handle non-compound variants of statements with blocks.
 auto instrumentIfElseBranch(std::string FuncName, std::string VarName) {
   auto actions =
@@ -464,7 +487,7 @@ auto instrumentSwitchCaseContent(std::string FuncName, std::string VarName) {
 
 auto instrumentSimpleCompound(std::string FuncName, std::string VarName) {
   auto Edits = SmallVector<ASTEdit, 1>();
-  Edits.push_back(insertBefore(node("stmt"), cat(genPrintf(VarName))));
+  Edits.push_back(insertBefore(RightParen("stmt"), cat(genPrintf(VarName))));
   // Edits.push_back(insertBefore(node("stmt"), cat("[[[")));
   // Edits.push_back(insertAfter(node("stmt"), cat("]]]")));
 
