@@ -43,6 +43,11 @@ static cl::list<std::string> FuncsAndVars("funcs-and-vars", cl::CommaSeparated,
                                          cl::desc("The desired variables. Provide as `func1-name:var1-name,func2-name:var2-name`"),
                                          cl::cat(ClangAAInstrumenterCategory));
 
+
+static cl::list<std::string> DisabledPasses("disable-passes", cl::CommaSeparated,
+                                            cl::desc("The passes to disable. Provide as `pass1-name,pass2-name`, e.g. `if,else,for`"),
+                                            cl::cat(ClangAAInstrumenterCategory));
+
 static cl::opt<bool> Inplace("i", cl::desc("Overwrite edited files."),
                              cl::cat(ClangAAInstrumenterCategory));
 
@@ -68,6 +73,7 @@ int main(int argc, const char **argv) {
 
   // check suffix of F for ".c"
   Action.is_c = F.find(".c", F.size() - 3) != std::string::npos;
+  Action.DisabledPasses = DisabledPasses;
   llvm::outs() << "is_c: " << Action.is_c << "\n";
 
   clang::ast_matchers::MatchFinder Finder;

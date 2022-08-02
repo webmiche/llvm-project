@@ -51,6 +51,8 @@ class AAInstrumenter {
 public:
   bool is_c = false;
 
+  std::vector<std::string> DisabledPasses;
+
   AAInstrumenter(
       llvm::ArrayRef<std::string> FuncsAndVars,
       std::map<std::string, tooling::Replacements> &Replacements)

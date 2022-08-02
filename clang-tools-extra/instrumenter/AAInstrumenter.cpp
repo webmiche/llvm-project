@@ -33,6 +33,7 @@
 #include <clang/Tooling/Transformer/RewriteRule.h>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 namespace clang {
 namespace aa_instrumenter {
@@ -226,7 +227,7 @@ AST_MATCHER_P(NamedDecl, hasMangledName, std::string, WantMangledName) {
 }
 
 std::string genPrintf(std::string VarName) {
-  return "printf(\"" + VarName + ":%p\\n\", (void*)&" + VarName + ");";
+  return "printf(\"$$$BSC_INST$$$" + VarName + ":%p\\n\", (void*)&" + VarName + ");\n";
 }
 
 // Takes func-name:var-name string and returns a pair of function name and
@@ -287,7 +288,7 @@ auto instrumentIfElseBranch(std::string FuncName, std::string VarName) {
 
         });
 
-  llvm::errs() << "Handling <else> " << FuncName << ":" << VarName << "\n";
+  // llvm::errs() << "Handling <else> " << FuncName << ":" << VarName << "\n";
  
   return makeRule(
       traverse(
@@ -316,7 +317,7 @@ auto instrumentIf(std::string FuncName, std::string VarName) {
 
         });
 
-  llvm::errs() << "Handling <if> " << FuncName << ":" << VarName << "\n";
+  // llvm::errs() << "Handling <if> " << FuncName << ":" << VarName << "\n";
 
   // auto matcherWithVar = hasDescendant(declRefExpr(hasDeclaration(
   //                                      namedDecl(hasName(VarName)))));
@@ -372,7 +373,7 @@ auto instrumentDo(std::string FuncName, std::string VarName) {
           ifBound("doInner", InstrumentNonCStmt("doInner", VarName), noEdits()),
         });
 
-  llvm::errs() << "Handling <do> " << FuncName << ":" << VarName << "\n";
+  // llvm::errs() << "Handling <do> " << FuncName << ":" << VarName << "\n";
  
   return makeRule(
       traverse(
@@ -392,7 +393,7 @@ auto instrumentWhile(std::string FuncName, std::string VarName) {
           ifBound("while", InstrumentNonCStmt("while", VarName), noEdits()),
         });
 
-  llvm::errs() << "Handling <while> " << FuncName << ":" << VarName << "\n";
+  // llvm::errs() << "Handling <while> " << FuncName << ":" << VarName << "\n";
  
   return makeRule(
       traverse(
@@ -412,7 +413,7 @@ auto instrumentFor(std::string FuncName, std::string VarName) {
           ifBound("for", InstrumentNonCStmt("for", VarName), noEdits()),
         });
 
-  llvm::errs() << "Handling <for> " << FuncName << ":" << VarName << "\n";
+  // llvm::errs() << "Handling <for> " << FuncName << ":" << VarName << "\n";
  
   return makeRule(
       traverse(
@@ -432,7 +433,7 @@ auto instrumentCXXFor(std::string FuncName, std::string VarName) {
           ifBound("cxxfor", InstrumentNonCStmt("cxxfor", VarName), noEdits()),
         });
 
-  llvm::errs() << "Handling <cxx for> " << FuncName << ":" << VarName << "\n";
+  // llvm::errs() << "Handling <cxx for> " << FuncName << ":" << VarName << "\n";
  
   return makeRule(
       traverse(
@@ -450,7 +451,7 @@ auto instrumentSwitchCaseContent(std::string FuncName, std::string VarName) {
   auto Edits = SmallVector<ASTEdit, 1>();
   Edits.push_back(insertBefore(node("stmt"), cat(genPrintf(VarName))));
 
-  llvm::errs() << "Handling <switch case content> " << FuncName << ":" << VarName << "\n";
+  // llvm::errs() << "Handling <switch case content> " << FuncName << ":" << VarName << "\n";
 
   return makeRule(traverse(TK_IgnoreUnlessSpelledInSource,
       functionDecl(namedDecl(hasMangledName(FuncName)), isDefinition(),
@@ -471,7 +472,7 @@ auto instrumentSimpleCompound(std::string FuncName, std::string VarName) {
   //                    hasName(FunctionName), isDefinition(),
   //                    forEachDescendant(stmt(fineGrainedStmt()).bind("stmt")));
 
-  llvm::errs() << "Handling " << FuncName << ":" << VarName << "\n";
+  // llvm::errs() << "Handling " << FuncName << ":" << VarName << "\n";
 
   return makeRule(traverse(TK_IgnoreUnlessSpelledInSource,
       functionDecl(namedDecl(hasMangledName(FuncName)), isDefinition(),
@@ -482,6 +483,9 @@ auto instrumentSimpleCompound(std::string FuncName, std::string VarName) {
       Edits);
 }
 
+bool contains(std::vector<std::string>& v, std::string s) {
+  return std::find(v.begin(), v.end(), s) != v.end();
+}
 
 void AAInstrumenter::registerMatchers(
     clang::ast_matchers::MatchFinder &Finder) {
@@ -491,30 +495,46 @@ void AAInstrumenter::registerMatchers(
   file_is_c = this->is_c;
 
   for (auto FuncAndVar : mapFunctionVariableNames(FuncsAndVars)) {
-    Rules.emplace_back(
+    if (!contains(this->DisabledPasses, "compound")) {
+      Rules.emplace_back(
         instrumentSimpleCompound(FuncAndVar.first, FuncAndVar.second),
         Replacements);
+    }
+    if (!contains(this->DisabledPasses, "if")) {
     Rules.emplace_back(
         instrumentIf(FuncAndVar.first, FuncAndVar.second),
         Replacements);
+    }
+    if (!contains(this->DisabledPasses, "else")) {
     Rules.emplace_back(
       instrumentIfElseBranch(FuncAndVar.first, FuncAndVar.second),
       Replacements);
+    }
+    if (!contains(this->DisabledPasses, "do")) {
     Rules.emplace_back(
       instrumentDo(FuncAndVar.first, FuncAndVar.second),
       Replacements);
+    }
+    if (!contains(this->DisabledPasses, "while")) {
     Rules.emplace_back(
       instrumentWhile(FuncAndVar.first, FuncAndVar.second),
       Replacements);
+    }
+    if (!contains(this->DisabledPasses, "for")) {
     Rules.emplace_back(
       instrumentFor(FuncAndVar.first, FuncAndVar.second),
       Replacements);
+    }
+    if (!contains(this->DisabledPasses, "cxxfor")) {
     Rules.emplace_back(
       instrumentCXXFor(FuncAndVar.first, FuncAndVar.second),
       Replacements);
+    }
+    if (!contains(this->DisabledPasses, "switch")) {
     Rules.emplace_back(
       instrumentSwitchCaseContent(FuncAndVar.first, FuncAndVar.second),
       Replacements);
+    }
   }
 
   // This puts the "printf" right before the variable use, i.e. for "a = a +
