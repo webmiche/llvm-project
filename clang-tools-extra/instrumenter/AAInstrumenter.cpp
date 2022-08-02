@@ -79,8 +79,8 @@ auto varLikeExpr(std::string VarName) {
             // dRD,
             declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))),
             // dR,
-            hasDescendant(memberExpr(member(hasName(VarName)))),
-            memberExpr(member(hasName(VarName)))
+            hasDescendant(memberExpr(hasObjectExpression(cxxThisExpr()), member(hasName(VarName)))),
+            memberExpr(hasObjectExpression(cxxThisExpr()), member(hasName(VarName)))
             );
 } 
 
