@@ -298,7 +298,15 @@ RangeSelector RightParen(std::string ID) {
             return Node.takeError();
         }
         const auto &SM = *Result.SourceManager;
-        return SM.getExpansionRange(Node->get<Expr>()->IgnoreParenImpCasts()->getSourceRange());
+        if(auto *E = Node->get<Expr>()){
+            const auto Parents = Result.Context->getParents(*E);
+            if (Parents.size() == 1)
+                if(const auto * ParenE = Parents.begin()->get<ParenExpr>())
+                    return SM.getExpansionRange(ParenE->getSourceRange());
+        }
+
+
+        return SM.getExpansionRange(Node->getSourceRange());
     };
 }
 
