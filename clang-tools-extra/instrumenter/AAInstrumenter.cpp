@@ -289,6 +289,19 @@ Expected<DynTypedNode> getNode(const ast_matchers::BoundNodes &Nodes,
     return It->second;
 }
 
+void getOutermostParenRange(const clang::ast_matchers::MatchFinder::MatchResult &Result, const clang::Expr* E, clang::SourceRange &Range) {
+    // Get parents and recurse if it is a parenexpr
+    const auto Parents = Result.Context->getParents(*E);
+    if (Parents.size() == 1) {
+        if(const auto * ParenE = Parents.begin()->get<ParenExpr>()) {
+            Range = ParenE->getSourceRange();
+            getOutermostParenRange(Result, ParenE, Range);
+        }
+    }
+
+    return;
+}
+
 RangeSelector RightParen(std::string ID) {
     return [ID](const clang::ast_matchers::MatchFinder::MatchResult &Result)
                -> Expected<CharSourceRange> {
@@ -298,15 +311,13 @@ RangeSelector RightParen(std::string ID) {
             return Node.takeError();
         }
         const auto &SM = *Result.SourceManager;
+        auto Range = Node->getSourceRange();
         if(auto *E = Node->get<Expr>()){
-            const auto Parents = Result.Context->getParents(*E);
-            if (Parents.size() == 1)
-                if(const auto * ParenE = Parents.begin()->get<ParenExpr>())
-                    return SM.getExpansionRange(ParenE->getSourceRange());
+            getOutermostParenRange(Result, E, Range);
         }
 
 
-        return SM.getExpansionRange(Node->getSourceRange());
+        return SM.getExpansionRange(Range);
     };
 }
 
