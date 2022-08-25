@@ -928,19 +928,18 @@ const DILocalVariable* findVar(const Value* V, const Function* F, uint64_t &Name
           return DbgDeclare->getVariable();
         }
       } else if (const DbgValueInst* DbgValue = dyn_cast<DbgValueInst>(I)) {
-        // DbgValue->print(outs(), true);
         auto DbgValueValue = DbgValue->getValue();
-        // DbgValueValue->print(outs(), true);
-        // outs () << "\n";
 
-        DIExpression* DbgValueExpr = DbgValue->getExpression();
-        if(auto fragmentInfo = DbgValueExpr->getFragmentInfo()) {
-          if (NIELS_DEBUG) {
-            outs() << "DIExpression offset (dbgvalue): " << fragmentInfo->OffsetInBits << ", size: " << fragmentInfo->SizeInBits << "\n";
+        if (DbgValueValue == V) {
+          DIExpression* DbgValueExpr = DbgValue->getExpression();
+          if(auto fragmentInfo = DbgValueExpr->getFragmentInfo()) {
+            if (NIELS_DEBUG) {
+              outs() << "DIExpression offset (dbgvalue): " << fragmentInfo->OffsetInBits << ", size: " << fragmentInfo->SizeInBits << "\n";
+            }
+            NameOffset = fragmentInfo->OffsetInBits / 8;
           }
-          NameOffset = fragmentInfo->OffsetInBits / 8;
+          return DbgValue->getVariable();
         }
-        if (DbgValueValue == V) return DbgValue->getVariable();
       }
     }
   }
@@ -1201,20 +1200,28 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
          "BasicAliasAnalysis doesn't support interprocedural queries.");
 
   bool prevInProgress = inProgress;
+  if (numCalls == 0) {
+    // first invocation
+    populateObservedAddresses();
+    atexit(printMapAtExit);
+  }
+  numCalls++;
 
+  AliasResult res = AliasResult::MayAlias;
+  inProgress = true;
+  res = aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI);
+  inProgress = prevInProgress;
 
-  // outs() << "--- FINDING ORIGINAL NAMES... ---\n";
-  // auto NameA = getOriginalName(LocA.Ptr, &F);
-  // auto NameB = getOriginalName(LocB.Ptr, &F);
-  // outs() << "--- DONE FINDING ORIGINAL NAMES... ---\n";
+  if (res == AliasResult::MustAlias) {
+    return res;
+  }
+  if (res == AliasResult::NoAlias) {
+    return res;
+  }
 
+  // MayAlias, so we can try to use our instrumentation
 
-  // printNameFinding(LocA.Ptr, &F, Name);
-  // printNameFinding(LocB.Ptr, &F, Name);
-
-  auto firstPtr = LocA.Ptr > LocB.Ptr ? LocB.Ptr : LocA.Ptr;
-  auto secondPtr = LocA.Ptr > LocB.Ptr ? LocA.Ptr : LocB.Ptr;
-  auto p = std::make_pair((uint64_t) firstPtr, (uint64_t) secondPtr);
+  
   // only increase if we didn't recursively call ourselves
   if (!inProgress) {
     // if (NameA != NotFoundName && NameB != NotFoundName) {
@@ -1224,6 +1231,10 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
     // } else if (NameB != NotFoundName) {
     //   ++numCallsWithSecondName;
     // }
+    auto firstPtr = LocA.Ptr > LocB.Ptr ? LocB.Ptr : LocA.Ptr;
+    auto secondPtr = LocA.Ptr > LocB.Ptr ? LocA.Ptr : LocB.Ptr;
+    auto p = std::make_pair((uint64_t) firstPtr, (uint64_t) secondPtr);
+
     std::string AFuncVarOffset;
     std::string BFuncVarOffset;
     numCallsTotal++;
@@ -1276,102 +1287,8 @@ if(NIELS_DEBUG) {       mouts() << "F:" << F.getName() << ";V:(" << Name << "+" 
 
     aa_calls_count[p] += 1;
   }
-  inProgress = true;
-
-  // outs() << "--- getOriginalName ---\n";
-  // outs() << "NameA: " << NameA << "\n";
-  // outs() << "NameB: " << NameB << "\n";
-
-  // if (NameA == NotFoundName || NameB == NotFoundName) {
-  //   outs() << "NotFoundName\n";
-  // }
-  // outs() << "--- DONE getOriginalName ---\n";
-  // outs() << "A value we are looking for: \n";
-  // LocA.Ptr->print(outs(), true);
-  // outs() << "\n";
-  //   outs() << "B value we are looking for: \n";
-  // LocB.Ptr->print(outs(), true);
-  // outs() << "\n";
-  // outs() << "DONE value we are looking for:\n";
-
-/////
-  // outs() << "value we are looking for: ";
-  // LocA.Ptr->print(outs(), true);
-  // outs() << "\n";
-  // outs() << "printing module's instructions etc...\n";
-  // const Module* mod = F.getParent();
-  // // iterate over mod's functions
-  // for (Module::const_iterator it = mod->begin(), end = mod->end(); it != end; ++it) {
-  //   // iterate over function's basic blocks
-  //   for (Function::const_iterator bb = it->begin(), end = it->end(); bb != end; ++bb) {
-  //     // iterate over basic block's instructions
-  //     for (BasicBlock::const_iterator inst = bb->begin(), end = bb->end(); inst != end; ++inst) {
-  //       // iterate over instruction's operands
-  //       outs() << "instruction: ";
-  //       inst->print(outs(), true);
-  //       outs() << "\n";
-  //       for (unsigned i = 0, e = inst->getNumOperands(); i != e; ++i) {
-  //         // if the operand is a pointer
-  //         const Value* op = inst->getOperand(i);
-  //         op->print(outs(), true);
-  //         outs() << "\n";
-  //         outs() << (op == LocA.Ptr ? "true" : "false") << "\n";
-  //       }
-  //     }
-  //   }
-  // }
-  // outs() << "DONE printing module's instructions etc...\n";
-///////
-  // F.getParent()->print(outs(), nullptr);
-
-  std::vector<std::pair<std::string, std::string>> v;
-  std::stringstream ss(NoAliasCustomList);
-  while (ss.good()) {
-      std::string ptrId1;
-      getline(ss, ptrId1, ',');
-
-      std::string ptrId2;
-      getline(ss, ptrId2, ',');
-      v.push_back(std::make_pair(ptrId1, ptrId2));
-  }
-  for (size_t i = 0; i < v.size(); i++){
-      // outs() << v[i].first << " <-> " << v[i].second << "\n";
-  }
-  // outs() << "BasicAliasAnalysis::alias\n";
-  // LocA.Ptr->print(outs(), true);
-  // outs() << "\n";
-  // // outs() << "name: " << LocA.Ptr->getName().str() << "\n";
-
-  // LocB.Ptr->print(outs(), true);
-  // outs() << "\n";
-  // outs() << "name: " << LocB.Ptr->getName().str() << "\n";
-
-  // Print all attached metadata
-  // SmallVector<std::pair<unsigned, MDNode *>, 10> smallvec;
-  // LocA.Ptr->getAllMetadata(smallvec);
 
 
-  AliasResult res = AliasResult::MayAlias;
-  if (numCalls == 0) {
-    // first invocation
-    populateObservedAddresses();
-    atexit(printMapAtExit);
-  }
-  numCalls++;
-  if (numCalls <= NumNoAlias) {
-    res = AliasResult::NoAlias;
-  } else {
-    res = aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI);
-  }
-
-  char *names[] = { "NoAlias", "MayAlias", "PartialAlias", "MustAlias" };
-  // outs() << "BasicAliasAnalysis::alias res = " << names[res] << "\n";
-
-  // outs() << "map:" << "\n";
-  // for (auto it = aa_calls_count.begin(); it != aa_calls_count.end(); ++it) {
-  //     outs() << it->first.first << " <-> " << it->first.second << ": " << it->second << "\n";
-  // }
-  inProgress = prevInProgress;
   return res;
 }
 

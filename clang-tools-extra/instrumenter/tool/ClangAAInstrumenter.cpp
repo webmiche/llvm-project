@@ -72,7 +72,8 @@ int main(int argc, const char **argv) {
                                              Tool.getReplacements());
 
   // check suffix of F for ".c"
-  Action.is_c = F.find(".c", F.size() - 3) != std::string::npos;
+  int filenamesize = F.size();
+  Action.is_c = F[filenamesize-2] == '.' && F[filenamesize-1] == 'c';
   Action.DisabledPasses = DisabledPasses;
   llvm::outs() << "is_c: " << Action.is_c << "\n";
 

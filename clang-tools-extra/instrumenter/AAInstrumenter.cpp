@@ -229,7 +229,7 @@ AST_MATCHER_P(NamedDecl, hasMangledName, std::string, WantMangledName) {
 }
 
 std::string genPrintf(funcvar FuncVar) {
-  return "\nprintf(\"\\n$$$BSC_INST$$$"+FuncVar.func+":"+FuncVar.var+":"+FuncVar.nameOffset+":"+FuncVar.gepOffset+":%p\\n\", "+
+  return "\n__builtin_printf(\"\\n$$$BSC_INST$$$"+FuncVar.func+":"+FuncVar.var+":"+FuncVar.nameOffset+":"+FuncVar.gepOffset+":%p\\n\", "+
    "BSC_INST_OFFSET_READ("+FuncVar.var+","+FuncVar.nameOffset+")"+"+"+FuncVar.gepOffset+");\n";
 }
 
