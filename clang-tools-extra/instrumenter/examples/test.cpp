@@ -1,3 +1,4 @@
+// _Z11is_attackedi
 void is_attacked(int a) {
     int sq;
     if (true) {

@@ -1,0 +1,2 @@
+ulimit -s 65536
+ulimit -n 10000

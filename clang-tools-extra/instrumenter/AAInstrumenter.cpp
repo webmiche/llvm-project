@@ -33,7 +33,9 @@
 #include <clang/Tooling/Transformer/RewriteRule.h>
 #include <string>
 #include <vector>
-#include <algorithm>
+// clang/ARCMigrate/Transforms. included using include_directories in
+// CMakeLists.txt
+#include <Transforms.h>
 
 namespace clang {
 namespace aa_instrumenter {
@@ -42,6 +44,8 @@ using namespace clang::tooling;
 using namespace clang::ast_matchers;
 using namespace clang::transformer;
 using namespace clang::transformer::detail;
+using namespace clang::arcmt::trans;
+
 
 /// Finds all declRefExpr with appropriate name inside the given function
 static const std::vector<const DeclRefExpr *>
@@ -72,57 +76,57 @@ findVariableUses(StringRef FunctionName, StringRef VarName,
 
 bool file_is_c = false;
 
+typedef struct funcvar {
+  std::string func;
+  std::string var;
+  std::string nameOffset;
+  std::string gepOffset;
+} funcvar;
+
+// AST_MATCHER_P(FunctionDecl, hasMangledName, std::string, WantMangledName) {
+AST_MATCHER(VarDecl, notRegister) {
+  (void)Builder;
+  // Node.dump();
+  // // Node.getKind()
+  // Node.getName();
+  // llvm::outs() << Node.getNameAsString() << "\n";
+
+  // if (file_is_c) {
+  //   return true;
+  // }
+
+  if (Node.getStorageClass() == SC_Register) {
+    return false;
+  }
+  return true;
+}
+
 auto varLikeExpr(std::string VarName) {
   return anyOf(
-            hasDescendant(
-                declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
-            // dRD,
-            declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))),
-            // dR,
-            hasDescendant(memberExpr(hasObjectExpression(cxxThisExpr()), member(hasName(VarName)))),
-            memberExpr(hasObjectExpression(cxxThisExpr()), member(hasName(VarName)))
-            );
-} 
+      hasDescendant(declRefExpr(hasDeclaration(namedDecl(hasName(VarName), varDecl(notRegister()))))),
+      // dRD,
+      declRefExpr(hasDeclaration(namedDecl(hasName(VarName), varDecl(notRegister())))),
+      // dR,
+      hasDescendant(memberExpr(hasObjectExpression(cxxThisExpr()),
+                               member(hasName(VarName)))),
+      memberExpr(hasObjectExpression(cxxThisExpr()), member(hasName(VarName))));
+}
 
 auto matchDeclRefRelevant(std::string VarName) {
-  // "simple match helper:"
-  // return hasDescendant(declRefExpr(hasDeclaration(namedDecl(hasName(VarName)))));
-  // auto dR = declRefExpr(hasDeclaration(namedDecl(hasName(VarName))));
-  // auto dRD = hasDescendant(dR);
-  // cannot have local matchers like above apparently, lead to segfault
   return anyOf(
-      allOf(unless(anyOf(ifStmt(), forStmt(), whileStmt(), doStmt(), cxxForRangeStmt(), switchStmt(), switchCase())),
-            varLikeExpr(VarName)
-            ),
-      mapAnyOf(ifStmt, doStmt, whileStmt).with(hasCondition(varLikeExpr(VarName)
-          )),
-      // ifStmt(hasCondition(anyOf(
-      //     // has descendant is not reflexive
-      //     hasDescendant(
-      //         declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))),
-      //     declRefExpr(hasDeclaration(namedDecl(hasName(VarName))))))),
-      forStmt(
-          anyOf(
-            hasCondition(varLikeExpr(VarName)),
-            hasLoopInit(varLikeExpr(VarName)),
-            hasIncrement(varLikeExpr(VarName))
-          )
-      ),  
-      cxxForRangeStmt(
-          anyOf(
-            hasRangeInit(varLikeExpr(VarName)),
-            hasInitStatement(varLikeExpr(VarName))
-          )
-      ),
-      switchStmt(
-          anyOf(
-            hasCondition(varLikeExpr(VarName)),
-            hasInitStatement(varLikeExpr(VarName)),
-            switchCase(varLikeExpr(VarName))
-          )
-      )    
-      );
-
+      allOf(unless(anyOf(ifStmt(), forStmt(), whileStmt(), doStmt(),
+                         cxxForRangeStmt(), switchStmt(), switchCase(), labelStmt())),
+            varLikeExpr(VarName)),
+      mapAnyOf(ifStmt, doStmt, whileStmt)
+          .with(hasCondition(varLikeExpr(VarName))),
+      /*forStmt(anyOf(hasCondition(varLikeExpr(VarName)),
+                    hasLoopInit(varLikeExpr(VarName)),
+                    hasIncrement(varLikeExpr(VarName)))),
+      cxxForRangeStmt(anyOf(hasRangeInit(varLikeExpr(VarName)),
+                            hasInitStatement(varLikeExpr(VarName)))),*/
+      switchStmt(anyOf(hasCondition(varLikeExpr(VarName)),
+                       hasInitStatement(varLikeExpr(VarName)),
+                       switchCase(varLikeExpr(VarName)))));
 }
 
 AST_MATCHER(DeclRefExpr, surroundingStmt) {
@@ -176,7 +180,6 @@ AST_MATCHER(Stmt, fineGrainedStmt) {
   return false;
 }
 
-
 // AST_MATCHER_P(FunctionDecl, hasMangledName, std::string, WantMangledName) {
 //   (void)Builder;
 //   Node.getName();
@@ -186,7 +189,6 @@ AST_MATCHER(Stmt, fineGrainedStmt) {
 
 //   auto ctx = abi.getMangleContext();
 //   std::string mangledName = ctx.mangleName(&Node);
-
 
 //   return mangledName == WantMangledName;
 // }
@@ -207,13 +209,13 @@ AST_MATCHER_P(NamedDecl, hasMangledName, std::string, WantMangledName) {
     return Node.getNameAsString() == WantMangledName;
   }
 
-  if (isa<CXXConstructorDecl>(&Node) || isa<CXXDestructorDecl>(&Node) || Node.hasAttr<CUDAGlobalAttr>()){
+  if (isa<CXXConstructorDecl>(&Node) || isa<CXXDestructorDecl>(&Node) ||
+      Node.hasAttr<CUDAGlobalAttr>()) {
     return false;
   }
 
-  
-
-  auto Mangler = ItaniumMangleContext::create(Finder->getASTContext(), Finder->getASTContext().getDiagnostics());
+  auto Mangler = ItaniumMangleContext::create(
+      Finder->getASTContext(), Finder->getASTContext().getDiagnostics());
   GlobalDecl gd(&Node);
   // delete this:
   if (print_mangled_names)
@@ -226,29 +228,46 @@ AST_MATCHER_P(NamedDecl, hasMangledName, std::string, WantMangledName) {
   return mangledName == WantMangledName;
 }
 
-std::string genPrintf(std::string VarName) {
-  return "printf(\"$$$BSC_INST$$$" + VarName + ":%p\\n\", (void*)&" + VarName + ");\n";
+std::string genPrintf(funcvar FuncVar) {
+  return "\nprintf(\"\\n$$$BSC_INST$$$"+FuncVar.func+":"+FuncVar.var+":"+FuncVar.nameOffset+":"+FuncVar.gepOffset+":%p\\n\", "+
+   "BSC_INST_OFFSET_READ("+FuncVar.var+","+FuncVar.nameOffset+")"+"+"+FuncVar.gepOffset+");\n";
 }
 
-// Takes func-name:var-name string and returns a pair of function name and
-// variable name
-static std::pair<std::string, std::string>
+// Takes func-name:var-name:name-offset:gep-offset string and returns a funcvar
+static funcvar
 parseFunctionVariableName(std::string Name) {
-  std::pair<std::string, std::string> res;
+  funcvar res = {};
   std::size_t pos = Name.find(':');
   if (pos == std::string::npos) {
     llvm::errs() << "Invalid function variable name: " << Name << "\n";
+    exit(1);
     return res;
   }
-  res.first = Name.substr(0, pos);
-  res.second = Name.substr(pos + 1);
+  res.func = Name.substr(0, pos);
+  Name = Name.substr(pos + 1);
+  pos = Name.find(':');
+  if (pos == std::string::npos) {
+    llvm::errs() << "Invalid function variable name: " << Name << "\n";
+    exit(1);
+    return res;
+  }
+  res.var = Name.substr(0, pos);
+  Name = Name.substr(pos + 1);
+  pos = Name.find(':');
+  if (pos == std::string::npos) {
+    llvm::errs() << "Invalid function variable name: " << Name << "\n";
+    exit(1);
+    return res;
+  }
+  res.nameOffset = Name.substr(0, pos);
+  res.gepOffset = Name.substr(pos + 1);
   return res;
 }
 
 // Maps a vector of names to a vector of function variable pairs
-static std::vector<std::pair<std::string, std::string>>
+static std::vector<funcvar>
 mapFunctionVariableNames(llvm::ArrayRef<std::string> &Names) {
-  std::vector<std::pair<std::string, std::string>> res;
+  std::vector<funcvar> res;
   for (auto Name : Names) {
     res.push_back(parseFunctionVariableName(Name));
   }
@@ -257,114 +276,125 @@ mapFunctionVariableNames(llvm::ArrayRef<std::string> &Names) {
 
 ASTEdit addMarker(ASTEdit Edit) {
   return Edit;
-    // return withMetadata(
-    //     Edit,
-    //     [](const clang::ast_matchers::MatchFinder::MatchResult &)
-    //         -> EditMetadataKind { return EditMetadataKind::MarkerCall; });
+  // return withMetadata(
+  //     Edit,
+  //     [](const clang::ast_matchers::MatchFinder::MatchResult &)
+  //         -> EditMetadataKind { return EditMetadataKind::MarkerCall; });
 }
 
 auto InstrumentCStmt(std::string id) {
-    return addMarker(insertBefore(statements(id), cat("")));
-}
-
-// Unnecessary helper function at the moment
-EditGenerator InstrumentNonCStmt(std::string id, std::string VarName) {
-    return flattenVector(
-        {
-          // edit(addMarker(
-          //    insertBefore(statement(id), cat("{")))),
-          edit(insertBefore(statement(id), cat("{" + genPrintf(VarName)))),
-         edit(insertAfter(statement(id), cat("}")))
-        //  edit(insertAfter(statement(id), cat("\n}")))
-         });
+  return addMarker(insertBefore(statements(id), cat("")));
 }
 
 Expected<DynTypedNode> getNode(const ast_matchers::BoundNodes &Nodes,
                                StringRef ID) {
-    auto &NodesMap = Nodes.getMap();
-    auto It = NodesMap.find(ID);
-    if (It == NodesMap.end())
-        return llvm::make_error<llvm::StringError>(llvm::errc::invalid_argument,
-                                                   ID + "not bound");
-    return It->second;
+  auto &NodesMap = Nodes.getMap();
+  auto It = NodesMap.find(ID);
+  if (It == NodesMap.end())
+    return llvm::make_error<llvm::StringError>(llvm::errc::invalid_argument,
+                                               ID + "not bound");
+  return It->second;
 }
 
-void getOutermostParenRange(const clang::ast_matchers::MatchFinder::MatchResult &Result, const clang::Expr* E, clang::SourceRange &Range) {
-    // Get parents and recurse if it is a parenexpr
-    const auto Parents = Result.Context->getParents(*E);
-    if (Parents.size() == 1) {
-        if(const auto * ParenE = Parents.begin()->get<ParenExpr>()) {
-            Range = ParenE->getSourceRange();
-            getOutermostParenRange(Result, ParenE, Range);
-        }
+void getOutermostParenRange(
+    const clang::ast_matchers::MatchFinder::MatchResult &Result,
+    const clang::Expr *E, clang::SourceRange &Range) {
+  // Get parents and recurse if it is a parenexpr
+  const auto Parents = Result.Context->getParents(*E);
+  if (Parents.size() == 1) {
+    if (const auto *ParenE = Parents.begin()->get<ParenExpr>()) {
+      Range = ParenE->getSourceRange();
+      getOutermostParenRange(Result, ParenE, Range);
+    }
+  }
+
+  return;
+}
+
+// This actually selects the whole range of the outermost parens, not just the
+// right one.
+RangeSelector RightParen(std::string ID) {
+  return [ID](const clang::ast_matchers::MatchFinder::MatchResult &Result)
+             -> Expected<CharSourceRange> {
+    Expected<DynTypedNode> Node = getNode(Result.Nodes, ID);
+    if (!Node) {
+      llvm::outs() << "ERROR";
+      return Node.takeError();
+    }
+    const auto &SM = *Result.SourceManager;
+    auto Range = Node->getSourceRange();
+    if (auto *E = Node->get<Expr>()) {
+      getOutermostParenRange(Result, E, Range);
     }
 
-    return;
+    SourceLocation newEnd =
+        findSemiAfterLocation(Range.getEnd(), *Result.Context);
+    if (newEnd.isValid()) {
+      Range.setEnd(newEnd);
+    }
+
+    return SM.getExpansionRange(Range);
+  };
 }
 
-RangeSelector RightParen(std::string ID) {
-    return [ID](const clang::ast_matchers::MatchFinder::MatchResult &Result)
-               -> Expected<CharSourceRange> {
-        Expected<DynTypedNode> Node = getNode(Result.Nodes, ID);
-        if (!Node) {
-            llvm::outs() << "ERROR";
-            return Node.takeError();
-        }
-        const auto &SM = *Result.SourceManager;
-        auto Range = Node->getSourceRange();
-        if(auto *E = Node->get<Expr>()){
-            getOutermostParenRange(Result, E, Range);
-        }
-
-
-        return SM.getExpansionRange(Range);
-    };
+// Unnecessary helper function at the moment
+EditGenerator InstrumentNonCStmt(std::string id, funcvar FuncVar) {
+  return flattenVector({
+      // edit(addMarker(
+      //    insertBefore(statement(id), cat("{")))),
+      edit(insertBefore(RightParen(id), cat("{" + genPrintf(FuncVar)))),
+      // TODO: add LeftParen?
+      edit(insertAfter(RightParen(id), cat("}")))
+      //  edit(insertAfter(statement(id), cat("\n}")))
+  });
 }
 
-// These instrumentations handle non-compound variants of statements with blocks.
-auto instrumentIfElseBranch(std::string FuncName, std::string VarName) {
-  auto actions =
-        flattenVector({
-          ifBound("then", InstrumentNonCStmt("then", VarName), noEdits()),
-          ifBound("else", InstrumentNonCStmt("else", VarName), noEdits())
+// These instrumentations handle non-compound variants of statements with
+// blocks.
+auto instrumentIfElseBranch(funcvar FuncVar) {
+  auto FuncName = FuncVar.func;
+  auto VarName = FuncVar.var;
+  auto actions = flattenVector(
+      {ifBound("then", InstrumentNonCStmt("then", FuncVar), noEdits()),
+       ifBound("else", InstrumentNonCStmt("else", FuncVar), noEdits())
 
-        });
+      });
 
   // llvm::errs() << "Handling <else> " << FuncName << ":" << VarName << "\n";
- 
+
   return makeRule(
       traverse(
           TK_IgnoreUnlessSpelledInSource,
-          functionDecl(namedDecl(hasMangledName(FuncName)), isDefinition(),
-                       forEachDescendant(ifStmt(
-                           hasElse(
-                               anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("celse"),
-                                     stmt(matchDeclRefRelevant(VarName)/*, hasParent(ifStmt())*/).bind("else"))))
-                        ))),
+          functionDecl(
+              namedDecl(hasMangledName(FuncName)), isDefinition(),
+              forEachDescendant(ifStmt(hasElse(anyOf(
+                  compoundStmt(matchDeclRefRelevant(VarName)).bind("celse"),
+                  stmt(matchDeclRefRelevant(VarName) /*, hasParent(ifStmt())*/)
+                      .bind("else"))))))),
       actions);
-
 }
 
-auto instrumentIf(std::string FuncName, std::string VarName) {
+auto instrumentIf(funcvar FuncVar) {
+  auto FuncName = FuncVar.func;
+  auto VarName = FuncVar.var;
   //   auto customMatcher = functionDecl(
   //                    hasName(FunctionName), isDefinition(),
   //                    forEachDescendant(stmt(fineGrainedStmt()).bind("stmt")));
 
-  auto actions =
-        flattenVector({
-          // ifBound("cthen", InstrumentCStmt("cthen")),
-          // ifBound("celse", InstrumentCStmt("celse")),
-          ifBound("then", InstrumentNonCStmt("then", VarName), noEdits()),
-          ifBound("else", InstrumentNonCStmt("else", VarName), noEdits())
+  auto actions = flattenVector(
+      {// ifBound("cthen", InstrumentCStmt("cthen")),
+       // ifBound("celse", InstrumentCStmt("celse")),
+       ifBound("then", InstrumentNonCStmt("then", FuncVar), noEdits()),
+       ifBound("else", InstrumentNonCStmt("else", FuncVar), noEdits())
 
-        });
+      });
 
   // llvm::errs() << "Handling <if> " << FuncName << ":" << VarName << "\n";
 
   // auto matcherWithVar = hasDescendant(declRefExpr(hasDeclaration(
   //                                      namedDecl(hasName(VarName)))));
 
-  /* 
+  /*
   // Alternative that doesn't work:
     auto ifThen = ifStmt(
       hasThen(anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("cthen"),
@@ -380,21 +410,21 @@ auto instrumentIf(std::string FuncName, std::string VarName) {
                                         anyOf(forEachDescendant(ifThen),
                                               forEachDescendant(ifElse)))),
                   actions);
-  
+
   */
 
- // I think the problem is that in the ifStmt it only goes down one branch, either then or else, and ignores the other one.
+  // I think the problem is that in the ifStmt it only goes down one branch,
+  // either then or else, and ignores the other one.
 
   return makeRule(
       traverse(
           TK_IgnoreUnlessSpelledInSource,
-          functionDecl(namedDecl(hasMangledName(FuncName)), isDefinition(),
-                       forEachDescendant(ifStmt(
-                           hasThen(anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("cthen"),
-                                         stmt(matchDeclRefRelevant(VarName)).bind("then"))))
-                        ))),
+          functionDecl(
+              namedDecl(hasMangledName(FuncName)), isDefinition(),
+              forEachDescendant(ifStmt(hasThen(anyOf(
+                  compoundStmt(matchDeclRefRelevant(VarName)).bind("cthen"),
+                  stmt(matchDeclRefRelevant(VarName)).bind("then"))))))),
       actions);
-
 
   // return makeRule(
   //     traverse(
@@ -403,110 +433,116 @@ auto instrumentIf(std::string FuncName, std::string VarName) {
   //                      forEachDescendant(ifStmt(
   //                          optionally(hasElse(
   //                              anyOf(compoundStmt(matcherWithVar).bind("celse"),
-  //                                    stmt(matcherWithVar, hasParent(ifStmt())).bind("else")))),
+  //                                    stmt(matcherWithVar,
+  //                                    hasParent(ifStmt())).bind("else")))),
   //                          hasThen(anyOf(compoundStmt(matcherWithVar).bind("cthen"),
   //                                        stmt(matcherWithVar).bind("then"))))))),
   //     actions);
 }
 
-auto instrumentDo(std::string FuncName, std::string VarName) {
-  auto actions =
-        flattenVector({
-          ifBound("doInner", InstrumentNonCStmt("doInner", VarName), noEdits()),
-        });
+auto instrumentDo(funcvar FuncVar) {
+  auto FuncName = FuncVar.func;
+  auto VarName = FuncVar.var;
+  auto actions = flattenVector({
+      ifBound("doInner", InstrumentNonCStmt("doInner", FuncVar), noEdits()),
+  });
 
   // llvm::errs() << "Handling <do> " << FuncName << ":" << VarName << "\n";
- 
+
   return makeRule(
       traverse(
           TK_IgnoreUnlessSpelledInSource,
-          functionDecl(namedDecl(hasMangledName(FuncName)), isDefinition(),
-                       forEachDescendant(doStmt(
-                           hasBody(
-                               anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("cdoInner"),
-                                     stmt(matchDeclRefRelevant(VarName)).bind("doInner"))))
-                        ))),
+          functionDecl(
+              namedDecl(hasMangledName(FuncName)), isDefinition(),
+              forEachDescendant(doStmt(hasBody(anyOf(
+                  compoundStmt(matchDeclRefRelevant(VarName)).bind("cdoInner"),
+                  stmt(matchDeclRefRelevant(VarName)).bind("doInner"))))))),
       actions);
 }
 
-auto instrumentWhile(std::string FuncName, std::string VarName) {
-  auto actions =
-        flattenVector({
-          ifBound("while", InstrumentNonCStmt("while", VarName), noEdits()),
-        });
+auto instrumentWhile(funcvar FuncVar) {
+  auto FuncName = FuncVar.func;
+  auto VarName = FuncVar.var;
+  auto actions = flattenVector({
+      ifBound("while", InstrumentNonCStmt("while", FuncVar), noEdits()),
+  });
 
   // llvm::errs() << "Handling <while> " << FuncName << ":" << VarName << "\n";
- 
+
   return makeRule(
-      traverse(
-          TK_IgnoreUnlessSpelledInSource,
-          functionDecl(namedDecl(hasMangledName(FuncName)), isDefinition(),
-                       forEachDescendant(whileStmt(
-                           hasBody(
-                               anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("c"),
-                                     stmt(matchDeclRefRelevant(VarName)).bind("while"))))
-                        ))),
+      traverse(TK_IgnoreUnlessSpelledInSource,
+               functionDecl(
+                   namedDecl(hasMangledName(FuncName)), isDefinition(),
+                   forEachDescendant(whileStmt(hasBody(anyOf(
+                       compoundStmt(matchDeclRefRelevant(VarName)).bind("c"),
+                       stmt(matchDeclRefRelevant(VarName)).bind("while"))))))),
       actions);
 }
 
-auto instrumentFor(std::string FuncName, std::string VarName) {
-  auto actions =
-        flattenVector({
-          ifBound("for", InstrumentNonCStmt("for", VarName), noEdits()),
-        });
+auto instrumentFor(funcvar FuncVar) {
+  auto FuncName = FuncVar.func;
+  auto VarName = FuncVar.var;
+  auto actions = flattenVector({
+      ifBound("for", InstrumentNonCStmt("for", FuncVar), noEdits()),
+  });
 
   // llvm::errs() << "Handling <for> " << FuncName << ":" << VarName << "\n";
- 
+
   return makeRule(
-      traverse(
-          TK_IgnoreUnlessSpelledInSource,
-          functionDecl(namedDecl(hasMangledName(FuncName)), isDefinition(),
-                       forEachDescendant(forStmt(
-                           hasBody(
-                               anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("c"),
-                                     stmt(matchDeclRefRelevant(VarName)).bind("for"))))
-                        ))),
+      traverse(TK_IgnoreUnlessSpelledInSource,
+               functionDecl(
+                   namedDecl(hasMangledName(FuncName)), isDefinition(),
+                   forEachDescendant(forStmt(hasBody(anyOf(
+                       compoundStmt(matchDeclRefRelevant(VarName)).bind("c"),
+                       stmt(matchDeclRefRelevant(VarName)).bind("for"))))))),
       actions);
 }
 
-auto instrumentCXXFor(std::string FuncName, std::string VarName) {
-  auto actions =
-        flattenVector({
-          ifBound("cxxfor", InstrumentNonCStmt("cxxfor", VarName), noEdits()),
-        });
+auto instrumentCXXFor(funcvar FuncVar) {
+  auto FuncName = FuncVar.func;
+  auto VarName = FuncVar.var;
+  auto actions = flattenVector({
+      ifBound("cxxfor", InstrumentNonCStmt("cxxfor", FuncVar), noEdits()),
+  });
 
-  // llvm::errs() << "Handling <cxx for> " << FuncName << ":" << VarName << "\n";
- 
+  // llvm::errs() << "Handling <cxx for> " << FuncName << ":" << VarName <<
+  // "\n";
+
   return makeRule(
-      traverse(
-          TK_IgnoreUnlessSpelledInSource,
-          functionDecl(namedDecl(hasMangledName(FuncName)), isDefinition(),
-                       forEachDescendant(cxxForRangeStmt(
-                           hasBody(
-                               anyOf(compoundStmt(matchDeclRefRelevant(VarName)).bind("c"),
-                                     stmt(matchDeclRefRelevant(VarName)).bind("cxxfor"))))
-                        ))),
+      traverse(TK_IgnoreUnlessSpelledInSource,
+               functionDecl(
+                   namedDecl(hasMangledName(FuncName)), isDefinition(),
+                   forEachDescendant(cxxForRangeStmt(hasBody(anyOf(
+                       compoundStmt(matchDeclRefRelevant(VarName)).bind("c"),
+                       stmt(matchDeclRefRelevant(VarName)).bind("cxxfor"))))))),
       actions);
 }
 
-auto instrumentSwitchCaseContent(std::string FuncName, std::string VarName) {
+auto instrumentSwitchCaseContent(funcvar FuncVar) {
+  auto FuncName = FuncVar.func;
+  auto VarName = FuncVar.var;
   auto Edits = SmallVector<ASTEdit, 1>();
-  Edits.push_back(insertBefore(node("stmt"), cat(genPrintf(VarName))));
+  Edits.push_back(insertBefore(RightParen("stmt"), cat(genPrintf(FuncVar))));
 
-  // llvm::errs() << "Handling <switch case content> " << FuncName << ":" << VarName << "\n";
+  // llvm::errs() << "Handling <switch case content> " << FuncName << ":" <<
+  // VarName << "\n";
 
-  return makeRule(traverse(TK_IgnoreUnlessSpelledInSource,
-      functionDecl(namedDecl(hasMangledName(FuncName)), isDefinition(),
-                   forEachDescendant(switchCase(hasDescendant(stmt(
-                                          matchDeclRefRelevant(VarName)
-                                          )
-                                         .bind("stmt")))))),
+  return makeRule(
+      traverse(TK_IgnoreUnlessSpelledInSource,
+               functionDecl(namedDecl(hasMangledName(FuncName)), isDefinition(),
+                            forEachDescendant(switchCase(hasDescendant(
+                                stmt(hasParent(switchCase()), unless(compoundStmt()),
+                                     matchDeclRefRelevant(VarName))
+                                    .bind("stmt")))))),
       Edits);
 }
 
-auto instrumentSimpleCompound(std::string FuncName, std::string VarName) {
+auto instrumentSimpleCompound(funcvar FuncVar) {
+  auto FuncName = FuncVar.func;
+  auto VarName = FuncVar.var;
   auto Edits = SmallVector<ASTEdit, 1>();
-  Edits.push_back(insertBefore(RightParen("stmt"), cat(genPrintf(VarName))));
+  // TODO: This was changed from insertBefore.
+  Edits.push_back(insertBefore(RightParen("stmt"), cat(genPrintf(FuncVar))));
   // Edits.push_back(insertBefore(node("stmt"), cat("[[[")));
   // Edits.push_back(insertAfter(node("stmt"), cat("]]]")));
 
@@ -516,16 +552,19 @@ auto instrumentSimpleCompound(std::string FuncName, std::string VarName) {
 
   // llvm::errs() << "Handling " << FuncName << ":" << VarName << "\n";
 
-  return makeRule(traverse(TK_IgnoreUnlessSpelledInSource,
-      functionDecl(namedDecl(hasMangledName(FuncName)), isDefinition(),
-                   forEachDescendant(stmt(hasParent(compoundStmt()), unless(compoundStmt()),
-                                          matchDeclRefRelevant(VarName)
-                                          )
-                                         .bind("stmt")))),
+  return makeRule(
+      traverse(
+          TK_IgnoreUnlessSpelledInSource,
+          functionDecl(namedDecl(hasMangledName(FuncName)), isDefinition(),
+                       forEachDescendant(stmt(hasParent(compoundStmt()),
+                                              unless(compoundStmt()),
+                                              unless(hasDescendant(namedDecl(hasName(VarName)))),
+                                              matchDeclRefRelevant(VarName))
+                                             .bind("stmt")))),
       Edits);
 }
 
-bool contains(std::vector<std::string>& v, std::string s) {
+bool contains(std::vector<std::string> &v, std::string s) {
   return std::find(v.begin(), v.end(), s) != v.end();
 }
 
@@ -536,46 +575,41 @@ void AAInstrumenter::registerMatchers(
 
   file_is_c = this->is_c;
 
-  for (auto FuncAndVar : mapFunctionVariableNames(FuncsAndVars)) {
-    if (!contains(this->DisabledPasses, "compound")) {
-      Rules.emplace_back(
-        instrumentSimpleCompound(FuncAndVar.first, FuncAndVar.second),
-        Replacements);
-    }
+  for (auto FuncVar : mapFunctionVariableNames(FuncsAndVars)) {
     if (!contains(this->DisabledPasses, "if")) {
-    Rules.emplace_back(
-        instrumentIf(FuncAndVar.first, FuncAndVar.second),
-        Replacements);
+      Rules.emplace_back(instrumentIf(FuncVar),
+                         Replacements);
     }
     if (!contains(this->DisabledPasses, "else")) {
-    Rules.emplace_back(
-      instrumentIfElseBranch(FuncAndVar.first, FuncAndVar.second),
-      Replacements);
+      Rules.emplace_back(
+          instrumentIfElseBranch(FuncVar),
+          Replacements);
     }
     if (!contains(this->DisabledPasses, "do")) {
-    Rules.emplace_back(
-      instrumentDo(FuncAndVar.first, FuncAndVar.second),
-      Replacements);
+      Rules.emplace_back(instrumentDo(FuncVar),
+                         Replacements);
     }
     if (!contains(this->DisabledPasses, "while")) {
-    Rules.emplace_back(
-      instrumentWhile(FuncAndVar.first, FuncAndVar.second),
-      Replacements);
+      Rules.emplace_back(instrumentWhile(FuncVar),
+                         Replacements);
     }
     if (!contains(this->DisabledPasses, "for")) {
-    Rules.emplace_back(
-      instrumentFor(FuncAndVar.first, FuncAndVar.second),
-      Replacements);
+      Rules.emplace_back(instrumentFor(FuncVar),
+                         Replacements);
     }
     if (!contains(this->DisabledPasses, "cxxfor")) {
-    Rules.emplace_back(
-      instrumentCXXFor(FuncAndVar.first, FuncAndVar.second),
-      Replacements);
+      Rules.emplace_back(instrumentCXXFor(FuncVar),
+                         Replacements);
     }
     if (!contains(this->DisabledPasses, "switch")) {
-    Rules.emplace_back(
-      instrumentSwitchCaseContent(FuncAndVar.first, FuncAndVar.second),
-      Replacements);
+      Rules.emplace_back(
+          instrumentSwitchCaseContent(FuncVar),
+          Replacements);
+    }
+    if (!contains(this->DisabledPasses, "compound")) {
+      Rules.emplace_back(
+          instrumentSimpleCompound(FuncVar),
+          Replacements);
     }
   }
 
@@ -623,7 +657,7 @@ void RuleActionCallback::run(
         R = clang::tooling::Replacement(R.getFilePath(), NewOffset, NewLength,
                                         R.getReplacementText());
         Replacements = Replacements.merge(tooling::Replacements(R));
-        llvm::toString( std::move(Err));
+        llvm::toString(std::move(Err));
       } else {
         llvm_unreachable(llvm::toString(std::move(Err)).c_str());
       }

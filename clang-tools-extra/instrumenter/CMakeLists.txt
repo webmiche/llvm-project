@@ -27,6 +27,9 @@ clang_target_link_libraries(clangAAInstrumenter
   clangFrontend
   clangSema
   clangTooling
+  clangARCMigrate
   )
 
 add_subdirectory(tool)
+
+include_directories(../../clang/lib/ARCMigrate)

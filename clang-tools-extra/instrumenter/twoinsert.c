@@ -1,9 +1,0 @@
-void foo() {
-	int a;
-	int b;
-	int c = a + b;
-}
-
-int bar(int i) {
-	return i + 2;
-}
