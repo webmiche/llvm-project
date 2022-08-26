@@ -146,7 +146,7 @@ def main():
     # preprocessed_source_dir = Path(PREFIX + "final_preprocessed_clang14")
     PREPROCESSED_DIR = "src"
     # AAVARS_DIR = "aavars"
-    AAVARS_DIR = "aavars_with_offsets_2"
+    AAVARS_DIR = "aavars_with_offsets_onlyargs"
     aa_vars_dir = Path(PREFIX + AAVARS_DIR)
     i = 0
     curr_path = Path.cwd()

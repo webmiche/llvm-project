@@ -889,25 +889,18 @@ static bool notDifferentParent(const Value *O1, const Value *O2) {
 } 
 #endif
 
-constexpr bool NIELS_DEBUG = false;
-constexpr bool NIELS_DEBUG_2 = false;
-constexpr bool NIELS_DEBUG_PATH = false;
+// constexpr bool NIELS_DEBUG = false;
+// constexpr bool NIELS_DEBUG_2 = false;
+// constexpr bool NIELS_DEBUG_PATH = false;
 
-raw_ostream& mouts() {
-  return outs();
-  // return nulls();
-}
+// #define NIELS_DEBUG(e) e;
+#define NIELS_DEBUG(e) ;
 
-// https://stackoverflow.com/questions/21410675/getting-the-original-variable-name-for-an-llvm-value
-const Function* findEnclosingFunc(const Value* V) {
-  if (const Argument* Arg = dyn_cast<Argument>(V)) {
-    return Arg->getParent();
-  }
-  if (const Instruction* I = dyn_cast<Instruction>(V)) {
-    return I->getParent()->getParent();
-  }
-  return NULL;
-}
+// #define NIELS_DEBUG_2(e) e;
+#define NIELS_DEBUG_2(e) ;
+
+// #define NIELS_DEBUG_PATH(e) e;
+#define NIELS_DEBUG_PATH(e) ;
 
 const DILocalVariable* findVar(const Value* V, const Function* F, uint64_t &NameOffset) {
   // iterate through F's instructions
@@ -919,9 +912,7 @@ const DILocalVariable* findVar(const Value* V, const Function* F, uint64_t &Name
         if (DbgDeclare->getAddress() == V) {
           if (auto diexpr = DbgDeclare->getExpression()) {
             if(auto fragmentInfo = diexpr->getFragmentInfo()) {
-              if (NIELS_DEBUG) {
-                outs() << "DIExpression offset (dbgdeclare): " << fragmentInfo->OffsetInBits << ", size: " << fragmentInfo->SizeInBits << "\n";
-              }
+              NIELS_DEBUG(outs() << "DIExpression offset (dbgdeclare): " << fragmentInfo->OffsetInBits << ", size: " << fragmentInfo->SizeInBits << "\n")
               NameOffset = fragmentInfo->OffsetInBits / 8;
             }
           }
@@ -933,9 +924,7 @@ const DILocalVariable* findVar(const Value* V, const Function* F, uint64_t &Name
         if (DbgValueValue == V) {
           DIExpression* DbgValueExpr = DbgValue->getExpression();
           if(auto fragmentInfo = DbgValueExpr->getFragmentInfo()) {
-            if (NIELS_DEBUG) {
-              outs() << "DIExpression offset (dbgvalue): " << fragmentInfo->OffsetInBits << ", size: " << fragmentInfo->SizeInBits << "\n";
-            }
+            NIELS_DEBUG(outs() << "DIExpression offset (dbgvalue): " << fragmentInfo->OffsetInBits << ", size: " << fragmentInfo->SizeInBits << "\n");
             NameOffset = fragmentInfo->OffsetInBits / 8;
           }
           return DbgValue->getVariable();
@@ -952,29 +941,25 @@ StringRef NotFoundName = "@@@NOTFOUND@@@";
 StringRef getOriginalName(const Value* V, const Function* F, bool *found, uint64_t &NameOffset, uint64_t foundOffset = 0) {
   // TODO handle globals as well
   *found = true;
-  // /*const Function**/ F = findEnclosingFunc(V);
-  // if (!F) return V->getName();
 
   const DILocalVariable* Var = findVar(V, F, NameOffset);
-  
-  // Check if V is a parameter of F with the byval attribute
-  if (auto Arg = dyn_cast<Argument>(V)) {
-    if (Arg->hasByValAttr()) {
-      if (NIELS_DEBUG_2) {
-        outs() << "Argument " << Arg->getName() << " is byval\n";
-      }
-      *found = false;
-      return NotFoundName;
-    }
-  }
-
   if (!Var || "" == Var->getName()) {
-    // outs() << "not found\n";
     *found = false;
     return NotFoundName;
   }
-  // Var->print(outs());
 
+  // Check if V is a parameter of F with the byval attribute
+  auto Arg = dyn_cast<Argument>(V);
+  if (!Arg) {
+    // At the moment we're only instrumenting arguments, because only for arguments we can know whether C values were translated to pointers/stackslots or values.
+    *found = false;
+    return NotFoundName;
+  }
+  if (Arg->hasByValAttr()) {
+    NIELS_DEBUG_2(outs() << "Argument " << Arg->getName() << " is byval\n");
+    *found = false;
+    return NotFoundName;
+  }
 
   return Var->getName(); // read below
   // the following handles classes/structs and their members.
@@ -986,15 +971,15 @@ StringRef getOriginalName(const Value* V, const Function* F, bool *found, uint64
   if (Var->getNumOperands() <= 3) return Var->getName();
   DIType* dit=Var->getType();
   if (!dit) return Var->getName(); 
-  // mouts() << "DIType: " << dit->getName() << "\n";
+  // outs() << "DIType: " << dit->getName() << "\n";
   DIDerivedType* didt=static_cast<DIDerivedType*>(dit);
   if (!didt) return Var->getName(); 
-  // mouts() << "DIDerivedType: " << didt->getName() << "\n";
+  // outs() << "DIDerivedType: " << didt->getName() << "\n";
   // vvv needed because otherwise the internal getOperand() fails.
   if (didt->getNumOperands() <= 3) return Var->getName();
   DICompositeType* dict=static_cast<DICompositeType*>(didt->getBaseType());
   if (!dict) return Var->getName(); 
-  // mouts() << "DICompositeType: " << dict->getName() << "\n";
+  // outs() << "DICompositeType: " << dict->getName() << "\n";
   // vvv needed because otherwise the internal getOperand() fails.
   if (dict->getNumOperands() <= 4) return Var->getName();
   DINodeArray dia=dict->getElements();
@@ -1005,7 +990,7 @@ StringRef getOriginalName(const Value* V, const Function* F, bool *found, uint64
     DIDerivedType* didt = dyn_cast<DIDerivedType>(di);
     if (!didt) continue;
     if (didt->getOffsetInBits() != foundOffset * 8) continue;
-    // mouts() << "Variable name is " << Var->getName() << "\n";
+    // outs() << "Variable name is " << Var->getName() << "\n";
     return didt->getName();
   }
 
@@ -1014,8 +999,8 @@ StringRef getOriginalName(const Value* V, const Function* F, bool *found, uint64
   DIType* field=static_cast<DIType*>(dia[offset]);
   if (!field) return Var->getName(); 
 
-  mouts()<<"Field name at offset " << offset << " is " << field->getName() << "\n";
-  mouts() << "Variable name is " << Var->getName() << "\n";
+  outs()<<"Field name at offset " << offset << " is " << field->getName() << "\n";
+  outs() << "Variable name is " << Var->getName() << "\n";
 */
 
 
@@ -1107,9 +1092,9 @@ void printMapAtExit() {
 bool inProgress = false;
 
 void printLnVal(std::string prefix, const Value* V) {
-if(NIELS_DEBUG) {     mouts() << prefix; }
-if(NIELS_DEBUG) {     V->print(mouts(), true); }
-if(NIELS_DEBUG) {     mouts() << "\n"; }
+  NIELS_DEBUG(outs() << prefix)
+  NIELS_DEBUG(V->print(outs(), true))
+  NIELS_DEBUG(outs() << "\n")
 }
 
 std::vector<std::string> path;
@@ -1117,71 +1102,71 @@ std::vector<std::string> path;
 // returns if found some Name, only call once per alias query!
 bool printNameFinding(const Value* V, const Function* F, llvm::StringRef& OutName, uint64_t& OutNameOffset, uint64_t& OutOffset) {
 
-  if(NIELS_DEBUG) {   mouts() << "--- RUNNING printNameFinding for: ---\n"; }
-  if(NIELS_DEBUG) {   V->print(mouts(), true); }
-  if(NIELS_DEBUG) {   mouts() << "\n"; }
-  if(NIELS_DEBUG) {   mouts() << "--- RUNNING... ---\n"; }
+  NIELS_DEBUG(outs() << "--- RUNNING printNameFinding for: ---\n")
+  NIELS_DEBUG(V->print(outs(), true))
+  NIELS_DEBUG(outs() << "\n")
+  NIELS_DEBUG(outs() << "--- RUNNING... ---\n")
   bool found = true;
   auto Name = getOriginalName(V, F, &found, OutNameOffset);
-  if(NIELS_DEBUG) {   mouts() << "--- DONE FINDING ORIGINAL NAMES ---\n"; }
+  NIELS_DEBUG(outs() << "--- DONE FINDING ORIGINAL NAMES ---\n")
 
   if (found) {
-    if(NIELS_DEBUG) {     mouts() << " FOUND: " << Name << "\n"; }
+    NIELS_DEBUG(outs() << " FOUND: " << Name << "\n")
     OutName = Name;
-    if (NIELS_DEBUG_PATH) {
+    NIELS_DEBUG_PATH(
       path.push_back("Name:"+Name.str()+",Offset:"+std::to_string(OutNameOffset));
-    }
+    )
     return true;
   }
 
   // cast to GEP instruction
   const GEPOperator* GEP = dyn_cast<GEPOperator>(V);
   if (GEP) {
-if(NIELS_DEBUG) {     mouts() << "--- FOUND GEP ---\n"; }
+    NIELS_DEBUG(outs() << "--- FOUND GEP ---\n")
     const Value* Base = GEP->getPointerOperand();
-if(NIELS_DEBUG) {     mouts() << "Base: "; }
-if(NIELS_DEBUG) {     Base->print(mouts(), true); }
-if(NIELS_DEBUG) {     mouts() << "\n"; }
+    NIELS_DEBUG(outs() << "Base: ")
+    NIELS_DEBUG(Base->print(outs(), true))
+    NIELS_DEBUG(outs() << "\n")
 
     DataLayout dl = F->getParent()->getDataLayout();
     unsigned int width = dl.getIndexTypeSizeInBits(GEP->getType());
     APInt offset = APInt(width, 0, false);
     const Value* valOffset = GEP->stripAndAccumulateConstantOffsets(dl, offset, true, true);
     printLnVal("offset (ignore): ", valOffset);
-if(NIELS_DEBUG) {     mouts() << "APInt offset: " << offset << "\n"; }
+    NIELS_DEBUG(outs() << "APInt offset: " << offset << "\n")
 
-    if (NIELS_DEBUG_PATH){
+    NIELS_DEBUG_PATH(
       path.push_back("GEP,offset:" + std::to_string(*offset.getRawData()));
-    }
+    )
 
 
-if(NIELS_DEBUG) {     mouts() << "FINDING NAME OF BASE...\n"; }
+    NIELS_DEBUG(outs() << "FINDING NAME OF BASE...\n")
     // auto NameBase = getOriginalName(Base, F, &found, OutOffset, offset.getRawData() ? *offset.getRawData() : 0);
     llvm::StringRef NameBase = "";
     uint64_t OffsetBase = 0;
     found = printNameFinding(Base, F, NameBase, OutNameOffset, OffsetBase);
-if(NIELS_DEBUG) {     mouts() << "MAYBE FOUND: " << NameBase << "\n"; }
-if(NIELS_DEBUG) {     mouts() << "--- DONE FINDING NAME OF BASE ---\n"; }
+    NIELS_DEBUG(outs() << "MAYBE FOUND: " << NameBase << "\n")
+    NIELS_DEBUG(outs() << "--- DONE FINDING NAME OF BASE ---\n")
     if (found) {
       OutName = NameBase;
-      if (NIELS_DEBUG) {
+      NIELS_DEBUG(
         outs() << "GEP offset: " << *offset.getRawData() <<  "\n";
         outs() << "Base offset: " << OffsetBase <<  "\n";
-      }
+      )
       // Only this GEP's offset, since all other GEPs will have been accumulated.
       OutOffset = *offset.getRawData(); // + OffsetBase;
       return true;
     }
   } else if (const BitCastOperator* BC = dyn_cast<BitCastOperator>(V)) {
-if(NIELS_DEBUG) {     mouts() << "--- FOUND BITCAST ---\n"; }
-    if (NIELS_DEBUG_PATH){
+    NIELS_DEBUG(outs() << "--- FOUND BITCAST ---\n")
+    NIELS_DEBUG_PATH(
       path.push_back("BitCast");
-    }
+    )
     return printNameFinding(BC->getOperand(0), F, OutName, OutNameOffset, OutOffset);
   } else {
-if(NIELS_DEBUG) {     mouts() << "NOT A GEP OR BITCAST\n"; }
+    NIELS_DEBUG(outs() << "NOT A GEP OR BITCAST\n")
   }
-if(NIELS_DEBUG) {   mouts() << "--- FINISHED printNameFinding ---\n"; }
+  NIELS_DEBUG(outs() << "--- FINISHED printNameFinding ---\n")
 
   return false;
 }
@@ -1243,11 +1228,10 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
     uint64_t NameOffset = 0;
     path.clear();
     if (printNameFinding(LocA.Ptr, &F, Name, NameOffset, GEPOffset)) {
-if(NIELS_DEBUG) {       mouts() << "F:" << F.getName() << ";V:(" << Name << "+" << NameOffset << ")+" << GEPOffset << "\n"; }
-    //  if(NIELS_DEBUG) { outs() << "F:" << F.getName() << ";V:" << Name << "+" << GEPOffset << ";S:" << LocA.Size << "\n";}
+      NIELS_DEBUG(outs() << "F:" << F.getName() << ";V:(" << Name << "+" << NameOffset << ")+" << GEPOffset << "\n")
       AFuncVarOffset = std::string(F.getName().str() + ":" + Name.str() + ":" + std::to_string(NameOffset) + ":" + std::to_string(GEPOffset));
       foundFuncAndVarNames.insert(AFuncVarOffset);
-      if (NIELS_DEBUG) {printPath();}
+      NIELS_DEBUG(printPath())
       numCallsFoundName++;
     }
     GEPOffset = 0;
@@ -1255,11 +1239,10 @@ if(NIELS_DEBUG) {       mouts() << "F:" << F.getName() << ";V:(" << Name << "+" 
     Name = "";
     path.clear();
     if (printNameFinding(LocB.Ptr, &F, Name, NameOffset, GEPOffset)) {
-if(NIELS_DEBUG) {       mouts() << "F:" << F.getName() << ";V:(" << Name << "+" << NameOffset << ")+" << GEPOffset << "\n"; }
-      // if(NIELS_DEBUG) {outs() << "F:" << F.getName() << ";V:" << Name << "+" << GEPOffset << ";S:" << LocB.Size << "\n";}
+      NIELS_DEBUG(outs() << "F:" << F.getName() << ";V:(" << Name << "+" << NameOffset << ")+" << GEPOffset << "\n")
       BFuncVarOffset = std::string(F.getName().str() + ":" + Name.str() + ":" + std::to_string(NameOffset) + ":" + std::to_string(GEPOffset));
       foundFuncAndVarNames.insert(BFuncVarOffset);
-      if (NIELS_DEBUG) {printPath();}
+      NIELS_DEBUG(printPath())
       numCallsFoundName++;
     }
 
