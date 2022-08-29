@@ -1013,6 +1013,8 @@ static cl::opt<std::string> InstrumentedAAFile("aainstfile", cl::init(""));
 int numCalls = 0;
 #include <sstream>
 static cl::opt<std::string> NoAliasCustomList("noaliascustom", cl::Hidden, cl::init(""));
+static cl::opt<bool> AAPrintStats("aaprintstats", cl::Hidden, cl::init(false));
+static cl::opt<bool> AAPrintVars("aaprintvars", cl::Hidden, cl::init(true));
 
 #include <cstdlib>
 
@@ -1028,6 +1030,9 @@ int numCallsTotal = 0;
 
 int numCallsFoundName = 0;
 
+int numQueriesMayAlias = 0;
+int numQueriesMayAliasWithInst = 0;
+
 std::set<std::string> foundFuncAndVarNames;
 
 // after running instrumentation, this is the result:
@@ -1035,6 +1040,8 @@ std::map<std::string, std::set<uint64_t>> observedAddresses;
 #include <fstream>
 void populateObservedAddresses() {
   // should only be called once
+
+  
   if (InstrumentedAAFile == "") {
     return;
   }
@@ -1058,7 +1065,17 @@ void populateObservedAddresses() {
     std::stringstream ss(addrs);
     std::string addr;
     while (std::getline(ss, addr, ',')) {
-      addrs_set.insert(std::stoull(addr));
+      if (addr.size() > 16) {
+        // TODO: hack for incorrect instrumentation, delete
+        // addrs_set.insert(std::stoull(addr));
+        outs() << "WARNING: skipping address " << addr << "\n";
+        continue;
+      }
+      addrs_set.insert(std::stoull(addr,0,16));
+      // try {  } catch (const std::exception&) { 
+        // outs() << "Too big address: " << addr << "\n";
+      //  }
+      
     }
 
     // insert into observedAddresses funcvaroffset => addrs_set
@@ -1073,9 +1090,17 @@ void printMapAtExit() {
   
   // print all found names
   // outs() << "found names: " << foundFuncAndVarNames.size() << "\n";
-  for (auto &name : foundFuncAndVarNames) {
-    outs() << name << "\n";
+
+  if (AAPrintVars) {
+    for (auto &name : foundFuncAndVarNames) {
+      outs() << name << "\n";
+    }
+  } else if (AAPrintStats) { // else-if because AAPrintVars takes precedence
+    outs() << "numQueriesMayAlias:" << numQueriesMayAlias << "\n";
+    outs() << "numQueriesMayAliasWithInst:" << numQueriesMayAliasWithInst << "\n";
+    outs() << "numQueriesImproved:" << (numQueriesMayAlias - numQueriesMayAliasWithInst) << "\n";
   }
+
 
   return;
 
@@ -1208,7 +1233,10 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
 
   
   // only increase if we didn't recursively call ourselves
-  if (!inProgress) {
+  // if (!inProgress) {
+
+    numQueriesMayAlias++;
+
     // if (NameA != NotFoundName && NameB != NotFoundName) {
     //   ++numCallsWithBothNames;
     // } else if (NameA != NotFoundName) {
@@ -1222,6 +1250,8 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
 
     std::string AFuncVarOffset;
     std::string BFuncVarOffset;
+    uint64_t AGEPOffset = 0;
+    uint64_t BGEPOffset = 0;
     numCallsTotal++;
     StringRef Name = "";
     uint64_t GEPOffset = 0;
@@ -1229,8 +1259,12 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
     path.clear();
     if (printNameFinding(LocA.Ptr, &F, Name, NameOffset, GEPOffset)) {
       NIELS_DEBUG(outs() << "F:" << F.getName() << ";V:(" << Name << "+" << NameOffset << ")+" << GEPOffset << "\n")
-      AFuncVarOffset = std::string(F.getName().str() + ":" + Name.str() + ":" + std::to_string(NameOffset) + ":" + std::to_string(GEPOffset));
-      foundFuncAndVarNames.insert(AFuncVarOffset);
+      AGEPOffset = GEPOffset;
+      AFuncVarOffset = std::string(F.getName().str() + ":" + Name.str() + ":" + std::to_string(NameOffset)); //+ ":" + std::to_string(GEPOffset));
+      if (!inProgress) {
+        // We only care about the root alias query.
+        foundFuncAndVarNames.insert(AFuncVarOffset);
+      }
       NIELS_DEBUG(printPath())
       numCallsFoundName++;
     }
@@ -1240,16 +1274,32 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
     path.clear();
     if (printNameFinding(LocB.Ptr, &F, Name, NameOffset, GEPOffset)) {
       NIELS_DEBUG(outs() << "F:" << F.getName() << ";V:(" << Name << "+" << NameOffset << ")+" << GEPOffset << "\n")
-      BFuncVarOffset = std::string(F.getName().str() + ":" + Name.str() + ":" + std::to_string(NameOffset) + ":" + std::to_string(GEPOffset));
-      foundFuncAndVarNames.insert(BFuncVarOffset);
+      BGEPOffset = GEPOffset;
+      BFuncVarOffset = std::string(F.getName().str() + ":" + Name.str() + ":" + std::to_string(NameOffset)); //+ ":" + std::to_string(GEPOffset));
+            if (!inProgress) {
+        // We only care about the root alias query.
+        foundFuncAndVarNames.insert(BFuncVarOffset);
+      }
       NIELS_DEBUG(printPath())
       numCallsFoundName++;
     }
 
     if (AFuncVarOffset != "" && BFuncVarOffset != "") {
       // outs() << "alias requested for two locations with known names: " << AFuncVarOffset << " and " << BFuncVarOffset << "\n";
-      std::set<uint64_t>& addrsA = observedAddresses[AFuncVarOffset];
-      auto&& addrsB = observedAddresses[BFuncVarOffset];
+      std::set<uint64_t>& addrsABase = observedAddresses[AFuncVarOffset];
+      // Map addrsA by adding AGEPOffset to every address
+      std::set<uint64_t> addrsA;
+      for (auto addr : addrsABase) {
+        addrsA.insert(addr + AGEPOffset);
+      }
+      std::set<uint64_t>& addrsBBase = observedAddresses[BFuncVarOffset];
+      // Map addrsB by adding BGEPOffset to every address
+      std::set<uint64_t> addrsB;
+      for (auto addr : addrsBBase) {
+        addrsB.insert(addr + BGEPOffset);
+      }
+
+
 
       // Check set intersection of addrsA and addrsB
       std::set<uint64_t> intersect;
@@ -1267,9 +1317,9 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
       // Otherwise we don't know
       
     }
-
+    numQueriesMayAliasWithInst++;
     aa_calls_count[p] += 1;
-  }
+  // }
 
 
   return res;

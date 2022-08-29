@@ -75,12 +75,13 @@ findVariableUses(StringRef FunctionName, StringRef VarName,
 }
 
 bool file_is_c = false;
+std::string filename_global = "";
 
 typedef struct funcvar {
   std::string func;
   std::string var;
   std::string nameOffset;
-  std::string gepOffset;
+  // std::string gepOffset;
 } funcvar;
 
 // AST_MATCHER_P(FunctionDecl, hasMangledName, std::string, WantMangledName) {
@@ -229,8 +230,8 @@ AST_MATCHER_P(NamedDecl, hasMangledName, std::string, WantMangledName) {
 }
 
 std::string genPrintf(funcvar FuncVar) {
-  return "\n__builtin_printf(\"\\n$$$BSC_INST$$$"+FuncVar.func+":"+FuncVar.var+":"+FuncVar.nameOffset+":"+FuncVar.gepOffset+":%p\\n\", "+
-   "BSC_INST_OFFSET_READ("+FuncVar.var+","+FuncVar.nameOffset+")"+"+"+FuncVar.gepOffset+");\n";
+  return "\n__builtin_printf(\"\\n$$$BSC_INST$$$"+filename_global+"|"+FuncVar.func+":"+FuncVar.var+":"+FuncVar.nameOffset/*+":"+FuncVar.gepOffset*/+":%p\\n\", "+
+   "BSC_INST_OFFSET_READ("+FuncVar.var+","+FuncVar.nameOffset+")"/*+"+"+FuncVar.gepOffset*/+");\n";
 }
 
 // Takes func-name:var-name:name-offset:gep-offset string and returns a funcvar
@@ -252,15 +253,16 @@ parseFunctionVariableName(std::string Name) {
     return res;
   }
   res.var = Name.substr(0, pos);
-  Name = Name.substr(pos + 1);
-  pos = Name.find(':');
-  if (pos == std::string::npos) {
-    llvm::errs() << "Invalid function variable name: " << Name << "\n";
-    exit(1);
-    return res;
-  }
-  res.nameOffset = Name.substr(0, pos);
-  res.gepOffset = Name.substr(pos + 1);
+  res.nameOffset = Name.substr(pos+1);
+  // Name = Name.substr(pos + 1);
+  // pos = Name.find(':');
+  // if (pos == std::string::npos) {
+  //   llvm::errs() << "Invalid function variable name: " << Name << "\n";
+  //   exit(1);
+  //   return res;
+  // }
+  // res.nameOffset = Name.substr(0, pos);
+  // res.gepOffset = Name.substr(pos + 1);
   return res;
 }
 
@@ -574,6 +576,7 @@ void AAInstrumenter::registerMatchers(
   // Rules
 
   file_is_c = this->is_c;
+  filename_global = this->filename;
 
   for (auto FuncVar : mapFunctionVariableNames(FuncsAndVars)) {
     if (!contains(this->DisabledPasses, "if")) {

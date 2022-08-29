@@ -51,6 +51,9 @@ static cl::list<std::string> DisabledPasses("disable-passes", cl::CommaSeparated
 static cl::opt<bool> Inplace("i", cl::desc("Overwrite edited files."),
                              cl::cat(ClangAAInstrumenterCategory));
 
+static cl::opt<bool> ForceFileName("forcefilename", cl::desc("Ignore non-standard file names"),
+                             cl::cat(ClangAAInstrumenterCategory));
+
 const char Usage[] = "A tool to instrument variable accesses in C/C++.\n";
 
 int main(int argc, const char **argv) {
@@ -73,6 +76,13 @@ int main(int argc, const char **argv) {
 
   // check suffix of F for ".c"
   int filenamesize = F.size();
+  std::string instprefix = "/home/nius/thesis/specbuilder/src/";
+  if (filenamesize >= instprefix.size() + 4 && F.substr(0, instprefix.size()) == instprefix) {
+    Action.filename = F.substr(instprefix.size()+4);
+    llvm::outs() << "filename: " << Action.filename << "\n";
+  } else if (!ForceFileName) {
+    llvm::errs() << "Unexpected filename: " << F << "\n";
+  }
   Action.is_c = F[filenamesize-2] == '.' && F[filenamesize-1] == 'c';
   Action.DisabledPasses = DisabledPasses;
   llvm::outs() << "is_c: " << Action.is_c << "\n";

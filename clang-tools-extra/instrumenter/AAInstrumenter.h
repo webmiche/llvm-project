@@ -50,6 +50,7 @@ class AAInstrumenter {
 
 public:
   bool is_c = false;
+  std::string filename = "bsc_default_file";
 
   std::vector<std::string> DisabledPasses;
 
