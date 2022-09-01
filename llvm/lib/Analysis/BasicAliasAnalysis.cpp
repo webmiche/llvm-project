@@ -1036,7 +1036,7 @@ int numQueriesMayAliasWithInst = 0;
 std::set<std::string> foundFuncAndVarNames;
 
 // after running instrumentation, this is the result:
-std::map<std::string, std::set<uint64_t>> observedAddresses;
+std::map<std::string, std::vector<uint64_t>> observedAddresses;
 #include <fstream>
 void populateObservedAddresses() {
   // should only be called once
@@ -1061,21 +1061,11 @@ void populateObservedAddresses() {
     std::string funcvaroffset = line.substr(0, pos);
     std::string addrs = line.substr(pos + 1);
     // split addrs by , into hashset of uint64_t
-    std::set<uint64_t> addrs_set;
+    std::vector<uint64_t> addrs_set;
     std::stringstream ss(addrs);
     std::string addr;
     while (std::getline(ss, addr, ',')) {
-      if (addr.size() > 16) {
-        // TODO: hack for incorrect instrumentation, delete
-        // addrs_set.insert(std::stoull(addr));
-        outs() << "WARNING: skipping address " << addr << "\n";
-        continue;
-      }
-      addrs_set.insert(std::stoull(addr,0,16));
-      // try {  } catch (const std::exception&) { 
-        // outs() << "Too big address: " << addr << "\n";
-      //  }
-      
+      addrs_set.push_back(std::stoull(addr,0,16));
     }
 
     // insert into observedAddresses funcvaroffset => addrs_set
@@ -1112,6 +1102,25 @@ void printMapAtExit() {
   for (auto it = aa_calls_count.begin(); it != aa_calls_count.end(); ++it) {
       outs() << it->first.first << " <-> " << it->first.second << ": " << it->second << "\n";
   }
+}
+
+  // both a and b are sorted
+bool emptyIntersection(std::vector<uint64_t>& a, std::vector<uint64_t>& b, uint64_t aoffset, uint64_t boffset) {
+  auto ait = a.begin();
+  auto bit = b.begin();
+  while (ait != a.end() && bit != b.end()) {
+    auto aval = *ait + aoffset;
+    auto bval = *bit + boffset;
+    if (aval == bval) {
+      return false;
+    } else if (aval < bval) {
+      ++ait;
+    } else {
+      ++bit;
+    }
+  }
+
+  return true;
 }
 
 bool inProgress = false;
@@ -1286,34 +1295,37 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
 
     if (AFuncVarOffset != "" && BFuncVarOffset != "") {
       // outs() << "alias requested for two locations with known names: " << AFuncVarOffset << " and " << BFuncVarOffset << "\n";
-      std::set<uint64_t>& addrsABase = observedAddresses[AFuncVarOffset];
-      // Map addrsA by adding AGEPOffset to every address
-      std::set<uint64_t> addrsA;
-      for (auto addr : addrsABase) {
-        addrsA.insert(addr + AGEPOffset);
-      }
-      std::set<uint64_t>& addrsBBase = observedAddresses[BFuncVarOffset];
-      // Map addrsB by adding BGEPOffset to every address
-      std::set<uint64_t> addrsB;
-      for (auto addr : addrsBBase) {
-        addrsB.insert(addr + BGEPOffset);
-      }
+      std::vector<uint64_t>& addrsABase = observedAddresses[AFuncVarOffset];
+      // // Map addrsA by adding AGEPOffset to every address
+      // std::set<uint64_t> addrsA;
+      // for (auto addr : addrsABase) {
+      //   addrsA.insert(addr + AGEPOffset);
+      // }
+      std::vector<uint64_t>& addrsBBase = observedAddresses[BFuncVarOffset];
+      // // Map addrsB by adding BGEPOffset to every address
+      // std::set<uint64_t> addrsB;
+      // for (auto addr : addrsBBase) {
+      //   addrsB.insert(addr + BGEPOffset);
+      // }
 
 
 
       // Check set intersection of addrsA and addrsB
-      std::set<uint64_t> intersect;
-      std::set_intersection(addrsA.begin(), addrsA.end(), addrsB.begin(), addrsB.end(),
-                 std::inserter(intersect, intersect.begin()));
+      // std::set<uint64_t> intersect;
+      // std::set_intersection(addrsA.begin(), addrsA.end(), addrsB.begin(), addrsB.end(),
+      //            std::inserter(intersect, intersect.begin()));
+
+      // if addrsA and addrsB both contain one element, and that element is the same, they MustAlias
+      // if (addrsABase.size() == 1 && addrsBBase.size() == 1 && *addrsABase.begin() + AGEPOffset == *addrsBBase.begin() + BGEPOffset) {
+      //   return AliasResult::MustAlias;
+      // }
 
       // If intersection is empty, they cannot alias (only if they were actually instrumented, hence the non-empty checks)
-      if (intersect.empty() && addrsA.size() > 0 && addrsB.size() > 0) {
+      // if (intersect.empty() && addrsA.size() > 0 && addrsB.size() > 0) {
+      if (emptyIntersection(addrsABase, addrsBBase, AGEPOffset, BGEPOffset) && addrsABase.size() > 0 && addrsBBase.size() > 0) {
         return AliasResult::NoAlias;
       }
-      // if addrsA and addrsB both contain one element, and that element is the same, they MustAlias
-      if (addrsA.size() == 1 && addrsB.size() == 1 && *addrsA.begin() == *addrsB.begin()) {
-        return AliasResult::MustAlias;
-      }
+
       // Otherwise we don't know
       
     }
