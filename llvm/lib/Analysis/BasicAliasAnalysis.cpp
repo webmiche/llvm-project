@@ -1231,10 +1231,13 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
   res = aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI);
   inProgress = prevInProgress;
 
-  if (res == AliasResult::MustAlias) {
-    return res;
-  }
-  if (res == AliasResult::NoAlias) {
+  // if (res == AliasResult::MustAlias) {
+  //   return res;
+  // }
+  // if (res == AliasResult::NoAlias) {
+  //   return res;
+  // }
+  if (res != AliasResult::MayAlias) {
     return res;
   }
 
