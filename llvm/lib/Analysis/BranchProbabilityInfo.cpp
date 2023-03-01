@@ -1094,6 +1094,7 @@ isEdgeHot(const BasicBlock *Src, const BasicBlock *Dst) const {
 BranchProbability
 BranchProbabilityInfo::getEdgeProbability(const BasicBlock *Src,
                                           unsigned IndexInSuccessors) const {
+  outs() << "BranchProbability\n";
   auto I = Probs.find(std::make_pair(Src, IndexInSuccessors));
   assert((Probs.end() == Probs.find(std::make_pair(Src, 0))) ==
              (Probs.end() == I) &&

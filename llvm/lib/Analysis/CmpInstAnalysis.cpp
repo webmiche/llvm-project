@@ -63,6 +63,7 @@ bool llvm::predicatesFoldable(ICmpInst::Predicate P1, ICmpInst::Predicate P2) {
 
 Constant *llvm::getPredForFCmpCode(unsigned Code, Type *OpTy,
                                    CmpInst::Predicate &Pred) {
+  outs() << "CmpInstAnalysis\n";
   Pred = static_cast<FCmpInst::Predicate>(Code);
   assert(FCmpInst::FCMP_FALSE <= Pred && Pred <= FCmpInst::FCMP_TRUE &&
          "Unexpected FCmp predicate!");

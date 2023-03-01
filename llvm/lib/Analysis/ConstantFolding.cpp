@@ -295,6 +295,7 @@ Constant *FoldBitCast(Constant *C, Type *DestTy, const DataLayout &DL) {
 bool llvm::IsConstantOffsetFromGlobal(Constant *C, GlobalValue *&GV,
                                       APInt &Offset, const DataLayout &DL,
                                       DSOLocalEquivalent **DSOEquiv) {
+  outs() << "ConstantFoldGlobals\n";
   if (DSOEquiv)
     *DSOEquiv = nullptr;
 
@@ -778,6 +779,7 @@ namespace {
 /// otherwise DL is null.
 Constant *SymbolicallyEvaluateBinop(unsigned Opc, Constant *Op0, Constant *Op1,
                                     const DataLayout &DL) {
+  outs() << "SymbolicEval\n";
   // SROA
 
   // Fold (and 0xffffffff00000000, (shl x, 32)) -> shl.
@@ -1025,6 +1027,7 @@ Constant *ConstantFoldInstOperandsImpl(const Value *InstOrCE, unsigned Opcode,
                                        ArrayRef<Constant *> Ops,
                                        const DataLayout &DL,
                                        const TargetLibraryInfo *TLI) {
+  outs() << "ConstFoldInstOperands\n";
   Type *DestTy = InstOrCE->getType();
 
   if (Instruction::isUnaryOp(Opcode))

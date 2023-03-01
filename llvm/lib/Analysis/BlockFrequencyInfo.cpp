@@ -185,6 +185,7 @@ bool BlockFrequencyInfo::invalidate(Function &F, const PreservedAnalyses &PA,
 void BlockFrequencyInfo::calculate(const Function &F,
                                    const BranchProbabilityInfo &BPI,
                                    const LoopInfo &LI) {
+  outs() << "BlockFreq\n";
   if (!BFI)
     BFI.reset(new ImplType);
   BFI->calculate(F, BPI, LI);

@@ -213,6 +213,7 @@ namespace {
 /// counts as capturing it or not.
 bool llvm::PointerMayBeCaptured(const Value *V, bool ReturnCaptures,
                                 bool StoreCaptures, unsigned MaxUsesToExplore) {
+  outs() << "CaptureTracking\n";
   SmallPtrSet<const Value *, 1> Empty;
   return PointerMayBeCaptured(V, ReturnCaptures, StoreCaptures, Empty,
                               MaxUsesToExplore);

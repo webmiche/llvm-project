@@ -111,6 +111,9 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
 AliasResult AAResults::alias(const MemoryLocation &LocA,
                              const MemoryLocation &LocB, AAQueryInfo &AAQI,
                              const Instruction *CtxI) {
+  outs() << "AliasAnalysis: " << "\n";
+  //LocA.print(outs());
+  //LocB.print(outs());
   AliasResult Result = AliasResult::MayAlias;
 
   if (EnableAATrace) {

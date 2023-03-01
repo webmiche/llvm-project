@@ -58,10 +58,14 @@ AnalysisManager<IRUnitT, ExtraArgTs...>::getResultImpl(
   std::tie(RI, Inserted) = AnalysisResults.insert(std::make_pair(
       std::make_pair(ID, &IR), typename AnalysisResultListT::iterator()));
 
+  // IR == llvm:module, llvm::lazycallgraph::scc, llvm::loop, llvm::function
+
   // If we don't have a cached result for this function, look up the pass and
   // run it to produce a result, which we then add to the cache.
+  auto &P = this->lookUpPass(ID);
   if (Inserted) {
-    auto &P = this->lookUpPass(ID);
+    errs() << "Cached: ";
+    errs() << std::string_view(P.name().data()) << "\n";
 
     PassInstrumentation PI;
     if (ID != PassInstrumentationAnalysis::ID()) {
@@ -80,6 +84,9 @@ AnalysisManager<IRUnitT, ExtraArgTs...>::getResultImpl(
     assert(RI != AnalysisResults.end() && "we just inserted it!");
 
     RI->second = std::prev(ResultList.end());
+  } else {
+    errs() << "Missed: ";
+    errs() << std::string_view(P.name().data()) << "\n";
   }
 
   return *RI->second->second;
