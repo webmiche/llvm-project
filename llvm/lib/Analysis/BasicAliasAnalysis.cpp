@@ -130,8 +130,7 @@ static bool isEscapeSource(const Value *V) {
 
 /// Returns the size of the object specified by V or UnknownSize if unknown.
 static uint64_t getObjectSize(const Value *V, const DataLayout &DL,
-                              const TargetLibraryInfo &TLI,
-                              bool NullIsValidLoc,
+                              const TargetLibraryInfo &TLI, bool NullIsValidLoc,
                               bool RoundToAlign = false) {
   uint64_t Size;
   ObjectSizeOpts Opts;
@@ -198,7 +197,7 @@ static uint64_t getMinimalExtentFrom(const Value &V,
   // access after free would be undefined behavior.
   bool CanBeNull, CanBeFreed;
   uint64_t DerefBytes =
-    V.getPointerDereferenceableBytes(DL, CanBeNull, CanBeFreed);
+      V.getPointerDereferenceableBytes(DL, CanBeNull, CanBeFreed);
   DerefBytes = (CanBeNull && NullIsValidLoc) ? 0 : DerefBytes;
   // If queried with a precise location size, we assume that location size to be
   // accessed, thus valid.
@@ -312,18 +311,24 @@ struct CastedValue {
   APInt evaluateWith(APInt N) const {
     assert(N.getBitWidth() == V->getType()->getPrimitiveSizeInBits() &&
            "Incompatible bit width");
-    if (TruncBits) N = N.trunc(N.getBitWidth() - TruncBits);
-    if (SExtBits) N = N.sext(N.getBitWidth() + SExtBits);
-    if (ZExtBits) N = N.zext(N.getBitWidth() + ZExtBits);
+    if (TruncBits)
+      N = N.trunc(N.getBitWidth() - TruncBits);
+    if (SExtBits)
+      N = N.sext(N.getBitWidth() + SExtBits);
+    if (ZExtBits)
+      N = N.zext(N.getBitWidth() + ZExtBits);
     return N;
   }
 
   ConstantRange evaluateWith(ConstantRange N) const {
     assert(N.getBitWidth() == V->getType()->getPrimitiveSizeInBits() &&
            "Incompatible bit width");
-    if (TruncBits) N = N.truncate(N.getBitWidth() - TruncBits);
-    if (SExtBits) N = N.signExtend(N.getBitWidth() + SExtBits);
-    if (ZExtBits) N = N.zeroExtend(N.getBitWidth() + ZExtBits);
+    if (TruncBits)
+      N = N.truncate(N.getBitWidth() - TruncBits);
+    if (SExtBits)
+      N = N.signExtend(N.getBitWidth() + SExtBits);
+    if (ZExtBits)
+      N = N.zeroExtend(N.getBitWidth() + ZExtBits);
     return N;
   }
 
@@ -366,13 +371,14 @@ struct LinearExpression {
     return LinearExpression(Val, Scale * Other, Offset * Other, NSW);
   }
 };
-}
+} // namespace
 
 /// Analyzes the specified value as a linear expression: "A*V + B", where A and
 /// B are constant integers.
-static LinearExpression GetLinearExpression(
-    const CastedValue &Val,  const DataLayout &DL, unsigned Depth,
-    AssumptionCache *AC, DominatorTree *DT) {
+static LinearExpression GetLinearExpression(const CastedValue &Val,
+                                            const DataLayout &DL,
+                                            unsigned Depth, AssumptionCache *AC,
+                                            DominatorTree *DT) {
   // Limit our recursion depth.
   if (Depth == 6)
     return Val;
@@ -454,13 +460,13 @@ static LinearExpression GetLinearExpression(
 
   if (isa<ZExtInst>(Val.V))
     return GetLinearExpression(
-        Val.withZExtOfValue(cast<CastInst>(Val.V)->getOperand(0)),
-        DL, Depth + 1, AC, DT);
+        Val.withZExtOfValue(cast<CastInst>(Val.V)->getOperand(0)), DL,
+        Depth + 1, AC, DT);
 
   if (isa<SExtInst>(Val.V))
     return GetLinearExpression(
-        Val.withSExtOfValue(cast<CastInst>(Val.V)->getOperand(0)),
-        DL, Depth + 1, AC, DT);
+        Val.withSExtOfValue(cast<CastInst>(Val.V)->getOperand(0)), DL,
+        Depth + 1, AC, DT);
 
   return Val;
 }
@@ -494,14 +500,12 @@ struct VariableGEPIndex {
     dbgs() << "\n";
   }
   void print(raw_ostream &OS) const {
-    OS << "(V=" << Val.V->getName()
-       << ", zextbits=" << Val.ZExtBits
-       << ", sextbits=" << Val.SExtBits
-       << ", truncbits=" << Val.TruncBits
+    OS << "(V=" << Val.V->getName() << ", zextbits=" << Val.ZExtBits
+       << ", sextbits=" << Val.SExtBits << ", truncbits=" << Val.TruncBits
        << ", scale=" << Scale << ")";
   }
 };
-}
+} // namespace
 
 // Represents the internal structure of a GEP, decomposed into a base pointer,
 // constant offsets, and variable scaled indices.
@@ -521,8 +525,7 @@ struct BasicAAResult::DecomposedGEP {
     dbgs() << "\n";
   }
   void print(raw_ostream &OS) const {
-    OS << "(DecomposedGEP Base=" << Base->getName()
-       << ", Offset=" << Offset
+    OS << "(DecomposedGEP Base=" << Base->getName() << ", Offset=" << Offset
        << ", VarIndices=[";
     for (size_t i = 0; i < VarIndices.size(); i++) {
       if (i != 0)
@@ -532,7 +535,6 @@ struct BasicAAResult::DecomposedGEP {
     OS << "])";
   }
 };
-
 
 /// If V is a symbolic pointer expression, decompose it into a base pointer
 /// with a constant offset and a number of scaled symbolic offsets.
@@ -886,7 +888,7 @@ static bool notDifferentParent(const Value *O1, const Value *O2) {
   const Function *F2 = getParent(O2);
 
   return !F1 || !F2 || F1 == F2;
-} 
+}
 #endif
 
 // constexpr bool NIELS_DEBUG = false;
@@ -902,29 +904,34 @@ static bool notDifferentParent(const Value *O1, const Value *O2) {
 // #define NIELS_DEBUG_PATH(e) e;
 #define NIELS_DEBUG_PATH(e) ;
 
-const DILocalVariable* findVar(const Value* V, const Function* F, uint64_t &NameOffset) {
+const DILocalVariable *findVar(const Value *V, const Function *F,
+                               uint64_t &NameOffset) {
   // iterate through F's instructions
   for (auto &BB : *F) {
     // outs() << "BB: " << BB.getName() << "\n";
     for (auto &Inst : BB) {
-      const Instruction* I = &Inst;
-      if (const DbgDeclareInst* DbgDeclare = dyn_cast<DbgDeclareInst>(I)) {
+      const Instruction *I = &Inst;
+      if (const DbgDeclareInst *DbgDeclare = dyn_cast<DbgDeclareInst>(I)) {
         if (DbgDeclare->getAddress() == V) {
           if (auto diexpr = DbgDeclare->getExpression()) {
-            if(auto fragmentInfo = diexpr->getFragmentInfo()) {
-              NIELS_DEBUG(outs() << "DIExpression offset (dbgdeclare): " << fragmentInfo->OffsetInBits << ", size: " << fragmentInfo->SizeInBits << "\n")
+            if (auto fragmentInfo = diexpr->getFragmentInfo()) {
+              NIELS_DEBUG(outs() << "DIExpression offset (dbgdeclare): "
+                                 << fragmentInfo->OffsetInBits << ", size: "
+                                 << fragmentInfo->SizeInBits << "\n")
               NameOffset = fragmentInfo->OffsetInBits / 8;
             }
           }
           return DbgDeclare->getVariable();
         }
-      } else if (const DbgValueInst* DbgValue = dyn_cast<DbgValueInst>(I)) {
+      } else if (const DbgValueInst *DbgValue = dyn_cast<DbgValueInst>(I)) {
         auto DbgValueValue = DbgValue->getValue();
 
         if (DbgValueValue == V) {
-          DIExpression* DbgValueExpr = DbgValue->getExpression();
-          if(auto fragmentInfo = DbgValueExpr->getFragmentInfo()) {
-            NIELS_DEBUG(outs() << "DIExpression offset (dbgvalue): " << fragmentInfo->OffsetInBits << ", size: " << fragmentInfo->SizeInBits << "\n");
+          DIExpression *DbgValueExpr = DbgValue->getExpression();
+          if (auto fragmentInfo = DbgValueExpr->getFragmentInfo()) {
+            NIELS_DEBUG(outs() << "DIExpression offset (dbgvalue): "
+                               << fragmentInfo->OffsetInBits << ", size: "
+                               << fragmentInfo->SizeInBits << "\n");
             NameOffset = fragmentInfo->OffsetInBits / 8;
           }
           return DbgValue->getVariable();
@@ -938,11 +945,12 @@ const DILocalVariable* findVar(const Value* V, const Function* F, uint64_t &Name
 
 StringRef NotFoundName = "@@@NOTFOUND@@@";
 
-StringRef getOriginalName(const Value* V, const Function* F, bool *found, uint64_t &NameOffset, uint64_t foundOffset = 0) {
+StringRef getOriginalName(const Value *V, const Function *F, bool *found,
+                          uint64_t &NameOffset, uint64_t foundOffset = 0) {
   // TODO handle globals as well
   *found = true;
 
-  const DILocalVariable* Var = findVar(V, F, NameOffset);
+  const DILocalVariable *Var = findVar(V, F, NameOffset);
   if (!Var || "" == Var->getName()) {
     *found = false;
     return NotFoundName;
@@ -951,7 +959,9 @@ StringRef getOriginalName(const Value* V, const Function* F, bool *found, uint64
   // Check if V is a parameter of F with the byval attribute
   auto Arg = dyn_cast<Argument>(V);
   if (!Arg) {
-    // At the moment we're only instrumenting arguments, because only for arguments we can know whether C values were translated to pointers/stackslots or values.
+    // At the moment we're only instrumenting arguments, because only for
+    // arguments we can know whether C values were translated to
+    // pointers/stackslots or values.
     *found = false;
     return NotFoundName;
   }
@@ -963,46 +973,56 @@ StringRef getOriginalName(const Value* V, const Function* F, bool *found, uint64
 
   return Var->getName(); // read below
   // the following handles classes/structs and their members.
-  // disabled at the moment because we need a way to find "s" in e.g. "s.x" and return that. at the moment we return x.
+  // disabled at the moment because we need a way to find "s" in e.g. "s.x" and
+  // return that. at the moment we return x.
 
   // todo: refactor
-  // from https://stackoverflow.com/questions/19946743/how-to-get-the-field-name-from-llvms-metadata
+  // from
+  // https://stackoverflow.com/questions/19946743/how-to-get-the-field-name-from-llvms-metadata
   // vvv needed because otherwise the internal getOperand() fails.
-  if (Var->getNumOperands() <= 3) return Var->getName();
-  DIType* dit=Var->getType();
-  if (!dit) return Var->getName(); 
+  if (Var->getNumOperands() <= 3)
+    return Var->getName();
+  DIType *dit = Var->getType();
+  if (!dit)
+    return Var->getName();
   // outs() << "DIType: " << dit->getName() << "\n";
-  DIDerivedType* didt=static_cast<DIDerivedType*>(dit);
-  if (!didt) return Var->getName(); 
+  DIDerivedType *didt = static_cast<DIDerivedType *>(dit);
+  if (!didt)
+    return Var->getName();
   // outs() << "DIDerivedType: " << didt->getName() << "\n";
   // vvv needed because otherwise the internal getOperand() fails.
-  if (didt->getNumOperands() <= 3) return Var->getName();
-  DICompositeType* dict=static_cast<DICompositeType*>(didt->getBaseType());
-  if (!dict) return Var->getName(); 
+  if (didt->getNumOperands() <= 3)
+    return Var->getName();
+  DICompositeType *dict = static_cast<DICompositeType *>(didt->getBaseType());
+  if (!dict)
+    return Var->getName();
   // outs() << "DICompositeType: " << dict->getName() << "\n";
   // vvv needed because otherwise the internal getOperand() fails.
-  if (dict->getNumOperands() <= 4) return Var->getName();
-  DINodeArray dia=dict->getElements();
-  if (!dia) return Var->getName(); 
+  if (dict->getNumOperands() <= 4)
+    return Var->getName();
+  DINodeArray dia = dict->getElements();
+  if (!dia)
+    return Var->getName();
 
   for (DINode *di : dia) {
     // try cast to DIDerivedType and check if offset equals given offset
-    DIDerivedType* didt = dyn_cast<DIDerivedType>(di);
-    if (!didt) continue;
-    if (didt->getOffsetInBits() != foundOffset * 8) continue;
+    DIDerivedType *didt = dyn_cast<DIDerivedType>(di);
+    if (!didt)
+      continue;
+    if (didt->getOffsetInBits() != foundOffset * 8)
+      continue;
     // outs() << "Variable name is " << Var->getName() << "\n";
     return didt->getName();
   }
 
-/*ignore
-  assert(offset<dia.size());
-  DIType* field=static_cast<DIType*>(dia[offset]);
-  if (!field) return Var->getName(); 
+  /*ignore
+    assert(offset<dia.size());
+    DIType* field=static_cast<DIType*>(dia[offset]);
+    if (!field) return Var->getName();
 
-  outs()<<"Field name at offset " << offset << " is " << field->getName() << "\n";
-  outs() << "Variable name is " << Var->getName() << "\n";
-*/
-
+    outs()<<"Field name at offset " << offset << " is " << field->getName() <<
+    "\n"; outs() << "Variable name is " << Var->getName() << "\n";
+  */
 
   // return field->getName();
   return Var->getName();
@@ -1012,7 +1032,8 @@ static cl::opt<int> NumNoAlias("numnoalias", cl::Hidden, cl::init(0));
 static cl::opt<std::string> InstrumentedAAFile("aainstfile", cl::init(""));
 int numCalls = 0;
 #include <sstream>
-static cl::opt<std::string> NoAliasCustomList("noaliascustom", cl::Hidden, cl::init(""));
+static cl::opt<std::string> NoAliasCustomList("noaliascustom", cl::Hidden,
+                                              cl::init(""));
 static cl::opt<bool> AAPrintStats("aaprintstats", cl::Hidden, cl::init(false));
 static cl::opt<bool> AAPrintVars("aaprintvars", cl::Hidden, cl::init(true));
 
@@ -1041,7 +1062,6 @@ std::map<std::string, std::vector<uint64_t>> observedAddresses;
 void populateObservedAddresses() {
   // should only be called once
 
-  
   if (InstrumentedAAFile == "") {
     return;
   }
@@ -1065,9 +1085,11 @@ void populateObservedAddresses() {
     std::stringstream ss(addrs);
     std::string addr;
     while (std::getline(ss, addr, ',')) {
-      addrs_set.push_back(std::stoull(addr,0,16));
+      addrs_set.push_back(std::stoull(addr, 0, 16));
     }
 
+    errs() << "addr: " << addr << "\n";
+    errs() << "funcvaroffset: " << funcvaroffset << "\n";
     // insert into observedAddresses funcvaroffset => addrs_set
     observedAddresses[funcvaroffset] = addrs_set;
   }
@@ -1077,7 +1099,7 @@ void printMapAtExit() {
   // also print source level mapped calls
   // outs() << "found name calls: " << numCallsFoundName << "\n";
   // outs() << "total calls: " << numCallsTotal << "\n";
-  
+
   // print all found names
   // outs() << "found names: " << foundFuncAndVarNames.size() << "\n";
 
@@ -1087,10 +1109,11 @@ void printMapAtExit() {
     }
   } else if (AAPrintStats) { // else-if because AAPrintVars takes precedence
     outs() << "numQueriesMayAlias:" << numQueriesMayAlias << "\n";
-    outs() << "numQueriesMayAliasWithInst:" << numQueriesMayAliasWithInst << "\n";
-    outs() << "numQueriesImproved:" << (numQueriesMayAlias - numQueriesMayAliasWithInst) << "\n";
+    outs() << "numQueriesMayAliasWithInst:" << numQueriesMayAliasWithInst
+           << "\n";
+    outs() << "numQueriesImproved:"
+           << (numQueriesMayAlias - numQueriesMayAliasWithInst) << "\n";
   }
-
 
   return;
 
@@ -1098,14 +1121,17 @@ void printMapAtExit() {
   outs() << "first only: " << numCallsWithFirstName << "\n";
   outs() << "second only: " << numCallsWithSecondName << "\n";
 
-  outs() << "map:" << "\n";
+  outs() << "map:"
+         << "\n";
   for (auto it = aa_calls_count.begin(); it != aa_calls_count.end(); ++it) {
-      outs() << it->first.first << " <-> " << it->first.second << ": " << it->second << "\n";
+    outs() << it->first.first << " <-> " << it->first.second << ": "
+           << it->second << "\n";
   }
 }
 
-  // both a and b are sorted
-bool emptyIntersection(std::vector<uint64_t>& a, std::vector<uint64_t>& b, uint64_t aoffset, uint64_t boffset) {
+// both a and b are sorted
+bool emptyIntersection(std::vector<uint64_t> &a, std::vector<uint64_t> &b,
+                       uint64_t aoffset, uint64_t boffset) {
   auto ait = a.begin();
   auto bit = b.begin();
   while (ait != a.end() && bit != b.end()) {
@@ -1125,16 +1151,16 @@ bool emptyIntersection(std::vector<uint64_t>& a, std::vector<uint64_t>& b, uint6
 
 bool inProgress = false;
 
-void printLnVal(std::string prefix, const Value* V) {
-  NIELS_DEBUG(outs() << prefix)
-  NIELS_DEBUG(V->print(outs(), true))
-  NIELS_DEBUG(outs() << "\n")
-}
+void printLnVal(std::string prefix, const Value *V){
+    NIELS_DEBUG(outs() << prefix) NIELS_DEBUG(V->print(outs(), true))
+        NIELS_DEBUG(outs() << "\n")}
 
 std::vector<std::string> path;
 
 // returns if found some Name, only call once per alias query!
-bool printNameFinding(const Value* V, const Function* F, llvm::StringRef& OutName, uint64_t& OutNameOffset, uint64_t& OutOffset) {
+bool printNameFinding(const Value *V, const Function *F,
+                      llvm::StringRef &OutName, uint64_t &OutNameOffset,
+                      uint64_t &OutOffset) {
 
   NIELS_DEBUG(outs() << "--- RUNNING printNameFinding for: ---\n")
   NIELS_DEBUG(V->print(outs(), true))
@@ -1147,17 +1173,16 @@ bool printNameFinding(const Value* V, const Function* F, llvm::StringRef& OutNam
   if (found) {
     NIELS_DEBUG(outs() << " FOUND: " << Name << "\n")
     OutName = Name;
-    NIELS_DEBUG_PATH(
-      path.push_back("Name:"+Name.str()+",Offset:"+std::to_string(OutNameOffset));
-    )
+    NIELS_DEBUG_PATH(path.push_back(
+        "Name:" + Name.str() + ",Offset:" + std::to_string(OutNameOffset));)
     return true;
   }
 
   // cast to GEP instruction
-  const GEPOperator* GEP = dyn_cast<GEPOperator>(V);
+  const GEPOperator *GEP = dyn_cast<GEPOperator>(V);
   if (GEP) {
     NIELS_DEBUG(outs() << "--- FOUND GEP ---\n")
-    const Value* Base = GEP->getPointerOperand();
+    const Value *Base = GEP->getPointerOperand();
     NIELS_DEBUG(outs() << "Base: ")
     NIELS_DEBUG(Base->print(outs(), true))
     NIELS_DEBUG(outs() << "\n")
@@ -1165,17 +1190,17 @@ bool printNameFinding(const Value* V, const Function* F, llvm::StringRef& OutNam
     DataLayout dl = F->getParent()->getDataLayout();
     unsigned int width = dl.getIndexTypeSizeInBits(GEP->getType());
     APInt offset = APInt(width, 0, false);
-    const Value* valOffset = GEP->stripAndAccumulateConstantOffsets(dl, offset, true, true);
+    const Value *valOffset =
+        GEP->stripAndAccumulateConstantOffsets(dl, offset, true, true);
     printLnVal("offset (ignore): ", valOffset);
     NIELS_DEBUG(outs() << "APInt offset: " << offset << "\n")
 
     NIELS_DEBUG_PATH(
-      path.push_back("GEP,offset:" + std::to_string(*offset.getRawData()));
-    )
-
+        path.push_back("GEP,offset:" + std::to_string(*offset.getRawData()));)
 
     NIELS_DEBUG(outs() << "FINDING NAME OF BASE...\n")
-    // auto NameBase = getOriginalName(Base, F, &found, OutOffset, offset.getRawData() ? *offset.getRawData() : 0);
+    // auto NameBase = getOriginalName(Base, F, &found, OutOffset,
+    // offset.getRawData() ? *offset.getRawData() : 0);
     llvm::StringRef NameBase = "";
     uint64_t OffsetBase = 0;
     found = printNameFinding(Base, F, NameBase, OutNameOffset, OffsetBase);
@@ -1183,20 +1208,18 @@ bool printNameFinding(const Value* V, const Function* F, llvm::StringRef& OutNam
     NIELS_DEBUG(outs() << "--- DONE FINDING NAME OF BASE ---\n")
     if (found) {
       OutName = NameBase;
-      NIELS_DEBUG(
-        outs() << "GEP offset: " << *offset.getRawData() <<  "\n";
-        outs() << "Base offset: " << OffsetBase <<  "\n";
-      )
-      // Only this GEP's offset, since all other GEPs will have been accumulated.
+      NIELS_DEBUG(outs() << "GEP offset: " << *offset.getRawData() << "\n";
+                  outs() << "Base offset: " << OffsetBase << "\n";)
+      // Only this GEP's offset, since all other GEPs will have been
+      // accumulated.
       OutOffset = *offset.getRawData(); // + OffsetBase;
       return true;
     }
-  } else if (const BitCastOperator* BC = dyn_cast<BitCastOperator>(V)) {
+  } else if (const BitCastOperator *BC = dyn_cast<BitCastOperator>(V)) {
     NIELS_DEBUG(outs() << "--- FOUND BITCAST ---\n")
-    NIELS_DEBUG_PATH(
-      path.push_back("BitCast");
-    )
-    return printNameFinding(BC->getOperand(0), F, OutName, OutNameOffset, OutOffset);
+    NIELS_DEBUG_PATH(path.push_back("BitCast");)
+    return printNameFinding(BC->getOperand(0), F, OutName, OutNameOffset,
+                            OutOffset);
   } else {
     NIELS_DEBUG(outs() << "NOT A GEP OR BITCAST\n")
   }
@@ -1217,6 +1240,8 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
                                  AAQueryInfo &AAQI) {
   assert(notDifferentParent(LocA.Ptr, LocB.Ptr) &&
          "BasicAliasAnalysis doesn't support interprocedural queries.");
+
+  errs() << "Hello there!\n";
 
   bool prevInProgress = inProgress;
   if (numCalls == 0) {
@@ -1243,99 +1268,117 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
 
   // MayAlias, so we can try to use our instrumentation
 
-  
   // only increase if we didn't recursively call ourselves
   // if (!inProgress) {
 
-    numQueriesMayAlias++;
+  numQueriesMayAlias++;
 
-    // if (NameA != NotFoundName && NameB != NotFoundName) {
-    //   ++numCallsWithBothNames;
-    // } else if (NameA != NotFoundName) {
-    //   ++numCallsWithFirstName;
-    // } else if (NameB != NotFoundName) {
-    //   ++numCallsWithSecondName;
-    // }
-    auto firstPtr = LocA.Ptr > LocB.Ptr ? LocB.Ptr : LocA.Ptr;
-    auto secondPtr = LocA.Ptr > LocB.Ptr ? LocA.Ptr : LocB.Ptr;
-    auto p = std::make_pair((uint64_t) firstPtr, (uint64_t) secondPtr);
-
-    std::string AFuncVarOffset;
-    std::string BFuncVarOffset;
-    uint64_t AGEPOffset = 0;
-    uint64_t BGEPOffset = 0;
-    numCallsTotal++;
-    StringRef Name = "";
-    uint64_t GEPOffset = 0;
-    uint64_t NameOffset = 0;
-    path.clear();
-    if (printNameFinding(LocA.Ptr, &F, Name, NameOffset, GEPOffset)) {
-      NIELS_DEBUG(outs() << "F:" << F.getName() << ";V:(" << Name << "+" << NameOffset << ")+" << GEPOffset << "\n")
-      AGEPOffset = GEPOffset;
-      AFuncVarOffset = std::string(F.getName().str() + ":" + Name.str() + ":" + std::to_string(NameOffset)); //+ ":" + std::to_string(GEPOffset));
-      if (!inProgress) {
-        // We only care about the root alias query.
-        foundFuncAndVarNames.insert(AFuncVarOffset);
-      }
-      NIELS_DEBUG(printPath())
-      numCallsFoundName++;
-    }
-    GEPOffset = 0;
-    NameOffset = 0;
-    Name = "";
-    path.clear();
-    if (printNameFinding(LocB.Ptr, &F, Name, NameOffset, GEPOffset)) {
-      NIELS_DEBUG(outs() << "F:" << F.getName() << ";V:(" << Name << "+" << NameOffset << ")+" << GEPOffset << "\n")
-      BGEPOffset = GEPOffset;
-      BFuncVarOffset = std::string(F.getName().str() + ":" + Name.str() + ":" + std::to_string(NameOffset)); //+ ":" + std::to_string(GEPOffset));
-            if (!inProgress) {
-        // We only care about the root alias query.
-        foundFuncAndVarNames.insert(BFuncVarOffset);
-      }
-      NIELS_DEBUG(printPath())
-      numCallsFoundName++;
-    }
-
-    if (AFuncVarOffset != "" && BFuncVarOffset != "") {
-      // outs() << "alias requested for two locations with known names: " << AFuncVarOffset << " and " << BFuncVarOffset << "\n";
-      std::vector<uint64_t>& addrsABase = observedAddresses[AFuncVarOffset];
-      // // Map addrsA by adding AGEPOffset to every address
-      // std::set<uint64_t> addrsA;
-      // for (auto addr : addrsABase) {
-      //   addrsA.insert(addr + AGEPOffset);
-      // }
-      std::vector<uint64_t>& addrsBBase = observedAddresses[BFuncVarOffset];
-      // // Map addrsB by adding BGEPOffset to every address
-      // std::set<uint64_t> addrsB;
-      // for (auto addr : addrsBBase) {
-      //   addrsB.insert(addr + BGEPOffset);
-      // }
-
-
-
-      // Check set intersection of addrsA and addrsB
-      // std::set<uint64_t> intersect;
-      // std::set_intersection(addrsA.begin(), addrsA.end(), addrsB.begin(), addrsB.end(),
-      //            std::inserter(intersect, intersect.begin()));
-
-      // if addrsA and addrsB both contain one element, and that element is the same, they MustAlias
-      // if (addrsABase.size() == 1 && addrsBBase.size() == 1 && *addrsABase.begin() + AGEPOffset == *addrsBBase.begin() + BGEPOffset) {
-      //   return AliasResult::MustAlias;
-      // }
-
-      // If intersection is empty, they cannot alias (only if they were actually instrumented, hence the non-empty checks)
-      // if (intersect.empty() && addrsA.size() > 0 && addrsB.size() > 0) {
-      if (emptyIntersection(addrsABase, addrsBBase, AGEPOffset, BGEPOffset) && addrsABase.size() > 0 && addrsBBase.size() > 0) {
-        return AliasResult::NoAlias;
-      }
-
-      // Otherwise we don't know
-      
-    }
-    numQueriesMayAliasWithInst++;
-    aa_calls_count[p] += 1;
+  // if (NameA != NotFoundName && NameB != NotFoundName) {
+  //   ++numCallsWithBothNames;
+  // } else if (NameA != NotFoundName) {
+  //   ++numCallsWithFirstName;
+  // } else if (NameB != NotFoundName) {
+  //   ++numCallsWithSecondName;
   // }
+  auto firstPtr = LocA.Ptr > LocB.Ptr ? LocB.Ptr : LocA.Ptr;
+  auto secondPtr = LocA.Ptr > LocB.Ptr ? LocA.Ptr : LocB.Ptr;
+  auto p = std::make_pair((uint64_t)firstPtr, (uint64_t)secondPtr);
 
+  std::string AFuncVarOffset;
+  std::string BFuncVarOffset;
+  uint64_t AGEPOffset = 0;
+  uint64_t BGEPOffset = 0;
+  numCallsTotal++;
+  StringRef Name = "";
+  uint64_t GEPOffset = 0;
+  uint64_t NameOffset = 0;
+  path.clear();
+  if (printNameFinding(LocA.Ptr, &F, Name, NameOffset, GEPOffset)) {
+    NIELS_DEBUG(outs() << "F:" << F.getName() << ";V:(" << Name << "+"
+                       << NameOffset << ")+" << GEPOffset << "\n")
+    AGEPOffset = GEPOffset;
+    AFuncVarOffset = std::string(
+        F.getName().str() + ":" + Name.str() + ":" +
+        std::to_string(NameOffset)); //+ ":" + std::to_string(GEPOffset));
+    if (!inProgress) {
+      // We only care about the root alias query.
+      foundFuncAndVarNames.insert(AFuncVarOffset);
+    }
+    NIELS_DEBUG(printPath())
+    numCallsFoundName++;
+  }
+  GEPOffset = 0;
+  NameOffset = 0;
+  Name = "";
+  path.clear();
+  if (printNameFinding(LocB.Ptr, &F, Name, NameOffset, GEPOffset)) {
+    NIELS_DEBUG(outs() << "F:" << F.getName() << ";V:(" << Name << "+"
+                       << NameOffset << ")+" << GEPOffset << "\n")
+    BGEPOffset = GEPOffset;
+    BFuncVarOffset = std::string(
+        F.getName().str() + ":" + Name.str() + ":" +
+        std::to_string(NameOffset)); //+ ":" + std::to_string(GEPOffset));
+    if (!inProgress) {
+      // We only care about the root alias query.
+      foundFuncAndVarNames.insert(BFuncVarOffset);
+    }
+    NIELS_DEBUG(printPath())
+    numCallsFoundName++;
+  }
+
+  errs() << "A: " << AFuncVarOffset << "\n";
+  errs() << "B: " << BFuncVarOffset << "\n";
+  if (AFuncVarOffset != "" && BFuncVarOffset != "") {
+    // outs() << "alias requested for two locations with known names: " <<
+    // AFuncVarOffset << " and " << BFuncVarOffset << "\n";
+    std::vector<uint64_t> &addrsABase = observedAddresses[AFuncVarOffset];
+    // // Map addrsA by adding AGEPOffset to every address
+    // std::set<uint64_t> addrsA;
+    // for (auto addr : addrsABase) {
+    //   addrsA.insert(addr + AGEPOffset);
+    // }
+    std::vector<uint64_t> &addrsBBase = observedAddresses[BFuncVarOffset];
+    // // Map addrsB by adding BGEPOffset to every address
+    // std::set<uint64_t> addrsB;
+    // for (auto addr : addrsBBase) {
+    //   addrsB.insert(addr + BGEPOffset);
+    // }
+
+    // Check set intersection of addrsA and addrsB
+    // std::set<uint64_t> intersect;
+    // std::set_intersection(addrsA.begin(), addrsA.end(), addrsB.begin(),
+    // addrsB.end(),
+    //            std::inserter(intersect, intersect.begin()));
+
+    // if addrsA and addrsB both contain one element, and that element is the
+    // same, they MustAlias if (addrsABase.size() == 1 && addrsBBase.size() == 1
+    // && *addrsABase.begin() + AGEPOffset == *addrsBBase.begin() + BGEPOffset)
+    // {
+    //   return AliasResult::MustAlias;
+    // }
+
+    errs() << "A-set:\n";
+    for (auto i : addrsABase) {
+      errs() << i << "\n";
+    }
+    errs() << "B-set:\n";
+    for (auto i : addrsBBase) {
+      errs() << i << "\n";
+    }
+    // If intersection is empty, they cannot alias (only if they were actually
+    // instrumented, hence the non-empty checks) if (intersect.empty() &&
+    // addrsA.size() > 0 && addrsB.size() > 0) {
+    if (emptyIntersection(addrsABase, addrsBBase, AGEPOffset, BGEPOffset) &&
+        addrsABase.size() > 0 && addrsBBase.size() > 0) {
+      errs() << "NoAlias!\n";
+      return AliasResult::NoAlias;
+    }
+
+    // Otherwise we don't know
+  }
+  numQueriesMayAliasWithInst++;
+  aa_calls_count[p] += 1;
+  // }
 
   return res;
 }
@@ -1563,10 +1606,12 @@ static bool isBaseOfObject(const Value *V) {
 /// We know that V1 is a GEP, but we don't know anything about V2.
 /// UnderlyingV1 is getUnderlyingObject(GEP1), UnderlyingV2 is the same for
 /// V2.
-AliasResult BasicAAResult::aliasGEP(
-    const GEPOperator *GEP1, LocationSize V1Size,
-    const Value *V2, LocationSize V2Size,
-    const Value *UnderlyingV1, const Value *UnderlyingV2, AAQueryInfo &AAQI) {
+AliasResult BasicAAResult::aliasGEP(const GEPOperator *GEP1,
+                                    LocationSize V1Size, const Value *V2,
+                                    LocationSize V2Size,
+                                    const Value *UnderlyingV1,
+                                    const Value *UnderlyingV2,
+                                    AAQueryInfo &AAQI) {
   if (!V1Size.hasValue() && !V2Size.hasValue()) {
     // TODO: This limitation exists for compile-time reasons. Relax it if we
     // can avoid exponential pathological cases.
@@ -1686,8 +1731,8 @@ AliasResult BasicAAResult::aliasGEP(
     const APInt &Scale = Index.Scale;
     APInt ScaleForGCD = Scale;
     if (!Index.IsNSW)
-      ScaleForGCD = APInt::getOneBitSet(Scale.getBitWidth(),
-                                        Scale.countTrailingZeros());
+      ScaleForGCD =
+          APInt::getOneBitSet(Scale.getBitWidth(), Scale.countTrailingZeros());
 
     if (i == 0)
       GCD = ScaleForGCD.abs();
@@ -1696,11 +1741,10 @@ AliasResult BasicAAResult::aliasGEP(
 
     ConstantRange CR = computeConstantRange(Index.Val.V, /* ForSigned */ false,
                                             true, &AC, Index.CxtI);
-    KnownBits Known =
-        computeKnownBits(Index.Val.V, DL, 0, &AC, Index.CxtI, DT);
-    CR = CR.intersectWith(
-        ConstantRange::fromKnownBits(Known, /* Signed */ true),
-        ConstantRange::Signed);
+    KnownBits Known = computeKnownBits(Index.Val.V, DL, 0, &AC, Index.CxtI, DT);
+    CR =
+        CR.intersectWith(ConstantRange::fromKnownBits(Known, /* Signed */ true),
+                         ConstantRange::Signed);
     CR = Index.Val.evaluateWith(CR).sextOrTrunc(OffsetRange.getBitWidth());
 
     assert(OffsetRange.getBitWidth() == Scale.getBitWidth() &&
@@ -1792,10 +1836,9 @@ static AliasResult MergeAliasResults(AliasResult A, AliasResult B) {
 
 /// Provides a bunch of ad-hoc rules to disambiguate a Select instruction
 /// against another.
-AliasResult
-BasicAAResult::aliasSelect(const SelectInst *SI, LocationSize SISize,
-                           const Value *V2, LocationSize V2Size,
-                           AAQueryInfo &AAQI) {
+AliasResult BasicAAResult::aliasSelect(const SelectInst *SI,
+                                       LocationSize SISize, const Value *V2,
+                                       LocationSize V2Size, AAQueryInfo &AAQI) {
   // If the values are Selects with the same condition, we can do a more precise
   // check: just check for aliases between the values on corresponding arms.
   if (const SelectInst *SI2 = dyn_cast<SelectInst>(V2))
@@ -1814,14 +1857,14 @@ BasicAAResult::aliasSelect(const SelectInst *SI, LocationSize SISize,
   // If both arms of the Select node NoAlias or MustAlias V2, then returns
   // NoAlias / MustAlias. Otherwise, returns MayAlias.
   AliasResult Alias = getBestAAResults().alias(
-      MemoryLocation(V2, V2Size),
-      MemoryLocation(SI->getTrueValue(), SISize), AAQI);
+      MemoryLocation(V2, V2Size), MemoryLocation(SI->getTrueValue(), SISize),
+      AAQI);
   if (Alias == AliasResult::MayAlias)
     return AliasResult::MayAlias;
 
   AliasResult ThisAlias = getBestAAResults().alias(
-      MemoryLocation(V2, V2Size),
-      MemoryLocation(SI->getFalseValue(), SISize), AAQI);
+      MemoryLocation(V2, V2Size), MemoryLocation(SI->getFalseValue(), SISize),
+      AAQI);
   return MergeAliasResults(ThisAlias, Alias);
 }
 
@@ -1943,8 +1986,7 @@ AliasResult BasicAAResult::aliasPHI(const PHINode *PN, LocationSize PNSize,
   AAQueryInfo *UseAAQI = BlockInserted ? &NewAAQI : &AAQI;
 
   AliasResult Alias = getBestAAResults().alias(
-      MemoryLocation(V2, V2Size),
-      MemoryLocation(V1Srcs[0], PNSize), *UseAAQI);
+      MemoryLocation(V2, V2Size), MemoryLocation(V1Srcs[0], PNSize), *UseAAQI);
 
   // Early exit if the check of the first PHI source against V2 is MayAlias.
   // Other results are not possible.
@@ -2136,8 +2178,7 @@ AliasResult BasicAAResult::aliasCheck(const Value *V1, LocationSize V1Size,
 }
 
 AliasResult BasicAAResult::aliasCheckRecursive(
-    const Value *V1, LocationSize V1Size,
-    const Value *V2, LocationSize V2Size,
+    const Value *V1, LocationSize V1Size, const Value *V2, LocationSize V2Size,
     AAQueryInfo &AAQI, const Value *O1, const Value *O2) {
   if (const GEPOperator *GV1 = dyn_cast<GEPOperator>(V1)) {
     AliasResult Result = aliasGEP(GV1, V1Size, V2, V2Size, O1, O2, AAQI);
@@ -2251,9 +2292,11 @@ void BasicAAResult::subtractDecomposedGEPs(DecomposedGEP &DestGEP,
   }
 }
 
-bool BasicAAResult::constantOffsetHeuristic(
-    const DecomposedGEP &GEP, LocationSize MaybeV1Size,
-    LocationSize MaybeV2Size, AssumptionCache *AC, DominatorTree *DT) {
+bool BasicAAResult::constantOffsetHeuristic(const DecomposedGEP &GEP,
+                                            LocationSize MaybeV1Size,
+                                            LocationSize MaybeV2Size,
+                                            AssumptionCache *AC,
+                                            DominatorTree *DT) {
   if (GEP.VarIndices.size() != 2 || !MaybeV1Size.hasValue() ||
       !MaybeV2Size.hasValue())
     return false;
@@ -2290,7 +2333,7 @@ bool BasicAAResult::constantOffsetHeuristic(
   APInt MinDiff = E0.Offset - E1.Offset, Wrapped = -MinDiff;
   MinDiff = APIntOps::umin(MinDiff, Wrapped);
   APInt MinDiffBytes =
-    MinDiff.zextOrTrunc(Var0.Scale.getBitWidth()) * Var0.Scale.abs();
+      MinDiff.zextOrTrunc(Var0.Scale.getBitWidth()) * Var0.Scale.abs();
 
   // We can't definitely say whether GEP1 is before or after V2 due to wrapping
   // arithmetic (i.e. for some values of GEP1 and V2 GEP1 < V2, and for other

@@ -46,7 +46,6 @@ using namespace clang::transformer;
 using namespace clang::transformer::detail;
 using namespace clang::arcmt::trans;
 
-
 /// Finds all declRefExpr with appropriate name inside the given function
 static const std::vector<const DeclRefExpr *>
 findVariableUses(StringRef FunctionName, StringRef VarName,
@@ -104,9 +103,11 @@ AST_MATCHER(VarDecl, notRegister) {
 
 auto varLikeExpr(std::string VarName) {
   return anyOf(
-      hasDescendant(declRefExpr(hasDeclaration(namedDecl(hasName(VarName), varDecl(notRegister()))))),
+      hasDescendant(declRefExpr(
+          hasDeclaration(namedDecl(hasName(VarName), varDecl(notRegister()))))),
       // dRD,
-      declRefExpr(hasDeclaration(namedDecl(hasName(VarName), varDecl(notRegister())))),
+      declRefExpr(
+          hasDeclaration(namedDecl(hasName(VarName), varDecl(notRegister())))),
       // dR,
       hasDescendant(memberExpr(hasObjectExpression(cxxThisExpr()),
                                member(hasName(VarName)))),
@@ -114,20 +115,20 @@ auto varLikeExpr(std::string VarName) {
 }
 
 auto matchDeclRefRelevant(std::string VarName) {
-  return anyOf(
-      allOf(unless(anyOf(ifStmt(), forStmt(), whileStmt(), doStmt(),
-                         cxxForRangeStmt(), switchStmt(), switchCase(), labelStmt())),
-            varLikeExpr(VarName)),
-      mapAnyOf(ifStmt, doStmt, whileStmt)
-          .with(hasCondition(varLikeExpr(VarName))),
-      /*forStmt(anyOf(hasCondition(varLikeExpr(VarName)),
-                    hasLoopInit(varLikeExpr(VarName)),
-                    hasIncrement(varLikeExpr(VarName)))),
-      cxxForRangeStmt(anyOf(hasRangeInit(varLikeExpr(VarName)),
-                            hasInitStatement(varLikeExpr(VarName)))),*/
-      switchStmt(anyOf(hasCondition(varLikeExpr(VarName)),
-                       hasInitStatement(varLikeExpr(VarName)),
-                       switchCase(varLikeExpr(VarName)))));
+  return anyOf(allOf(unless(anyOf(ifStmt(), forStmt(), whileStmt(), doStmt(),
+                                  cxxForRangeStmt(), switchStmt(), switchCase(),
+                                  labelStmt())),
+                     varLikeExpr(VarName)),
+               mapAnyOf(ifStmt, doStmt, whileStmt)
+                   .with(hasCondition(varLikeExpr(VarName))),
+               /*forStmt(anyOf(hasCondition(varLikeExpr(VarName)),
+                             hasLoopInit(varLikeExpr(VarName)),
+                             hasIncrement(varLikeExpr(VarName)))),
+               cxxForRangeStmt(anyOf(hasRangeInit(varLikeExpr(VarName)),
+                                     hasInitStatement(varLikeExpr(VarName)))),*/
+               switchStmt(anyOf(hasCondition(varLikeExpr(VarName)),
+                                hasInitStatement(varLikeExpr(VarName)),
+                                switchCase(varLikeExpr(VarName)))));
 }
 
 AST_MATCHER(DeclRefExpr, surroundingStmt) {
@@ -230,17 +231,19 @@ AST_MATCHER_P(NamedDecl, hasMangledName, std::string, WantMangledName) {
 }
 
 std::string genPrintf(funcvar FuncVar) {
-  return "\n__builtin_printf(\"\\n$$$BSC_INST$$$"+filename_global+"|"+FuncVar.func+":"+FuncVar.var+":"+FuncVar.nameOffset/*+":"+FuncVar.gepOffset*/+":%p\\n\", "+
-   "BSC_INST_OFFSET_READ("+FuncVar.var+","+FuncVar.nameOffset+")"/*+"+"+FuncVar.gepOffset*/+");\n";
+  return "\n__builtin_printf(\"\\n$$$BSC_INST$$$" + filename_global + "|" +
+         FuncVar.func + ":" + FuncVar.var + ":" +
+         FuncVar.nameOffset /*+":"+FuncVar.gepOffset*/ + ":%p\\n\", " +
+         "BSC_INST_OFFSET_READ(" + FuncVar.var + "," + FuncVar.nameOffset +
+         ")" /*+"+"+FuncVar.gepOffset*/ + ");\n";
 }
 
 // Takes func-name:var-name:name-offset:gep-offset string and returns a funcvar
-static funcvar
-parseFunctionVariableName(std::string Name) {
+static funcvar parseFunctionVariableName(std::string Name) {
   funcvar res = {};
   std::size_t pos = Name.find(':');
   if (pos == std::string::npos) {
-    llvm::errs() << "Invalid function variable name: " << Name << "\n";
+    llvm::errs() << "Invalid function variable name1: " << Name << "\n";
     exit(1);
     return res;
   }
@@ -248,21 +251,21 @@ parseFunctionVariableName(std::string Name) {
   Name = Name.substr(pos + 1);
   pos = Name.find(':');
   if (pos == std::string::npos) {
-    llvm::errs() << "Invalid function variable name: " << Name << "\n";
+    llvm::errs() << "Invalid function variable name2: " << Name << "\n";
     exit(1);
     return res;
   }
   res.var = Name.substr(0, pos);
-  res.nameOffset = Name.substr(pos+1);
-  // Name = Name.substr(pos + 1);
-  // pos = Name.find(':');
-  // if (pos == std::string::npos) {
-  //   llvm::errs() << "Invalid function variable name: " << Name << "\n";
-  //   exit(1);
-  //   return res;
-  // }
-  // res.nameOffset = Name.substr(0, pos);
-  // res.gepOffset = Name.substr(pos + 1);
+  res.nameOffset = Name.substr(pos + 1);
+  //  Name = Name.substr(pos + 1);
+  //  pos = Name.find(':');
+  //  if (pos == std::string::npos) {
+  //    llvm::errs() << "Invalid function variable name: " << Name << "\n";
+  //    exit(1);
+  //    return res;
+  //  }
+  //  res.nameOffset = Name.substr(0, pos);
+  //  res.gepOffset = Name.substr(pos + 1);
   return res;
 }
 
@@ -530,12 +533,13 @@ auto instrumentSwitchCaseContent(funcvar FuncVar) {
   // VarName << "\n";
 
   return makeRule(
-      traverse(TK_IgnoreUnlessSpelledInSource,
-               functionDecl(namedDecl(hasMangledName(FuncName)), isDefinition(),
-                            forEachDescendant(switchCase(hasDescendant(
-                                stmt(hasParent(switchCase()), unless(compoundStmt()),
-                                     matchDeclRefRelevant(VarName))
-                                    .bind("stmt")))))),
+      traverse(
+          TK_IgnoreUnlessSpelledInSource,
+          functionDecl(namedDecl(hasMangledName(FuncName)), isDefinition(),
+                       forEachDescendant(switchCase(hasDescendant(
+                           stmt(hasParent(switchCase()), unless(compoundStmt()),
+                                matchDeclRefRelevant(VarName))
+                               .bind("stmt")))))),
       Edits);
 }
 
@@ -555,14 +559,14 @@ auto instrumentSimpleCompound(funcvar FuncVar) {
   // llvm::errs() << "Handling " << FuncName << ":" << VarName << "\n";
 
   return makeRule(
-      traverse(
-          TK_IgnoreUnlessSpelledInSource,
-          functionDecl(namedDecl(hasMangledName(FuncName)), isDefinition(),
-                       forEachDescendant(stmt(hasParent(compoundStmt()),
-                                              unless(compoundStmt()),
-                                              unless(hasDescendant(namedDecl(hasName(VarName)))),
-                                              matchDeclRefRelevant(VarName))
-                                             .bind("stmt")))),
+      traverse(TK_IgnoreUnlessSpelledInSource,
+               functionDecl(
+                   namedDecl(hasMangledName(FuncName)), isDefinition(),
+                   forEachDescendant(
+                       stmt(hasParent(compoundStmt()), unless(compoundStmt()),
+                            unless(hasDescendant(namedDecl(hasName(VarName)))),
+                            matchDeclRefRelevant(VarName))
+                           .bind("stmt")))),
       Edits);
 }
 
@@ -580,39 +584,28 @@ void AAInstrumenter::registerMatchers(
 
   for (auto FuncVar : mapFunctionVariableNames(FuncsAndVars)) {
     if (!contains(this->DisabledPasses, "if")) {
-      Rules.emplace_back(instrumentIf(FuncVar),
-                         Replacements);
+      Rules.emplace_back(instrumentIf(FuncVar), Replacements);
     }
     if (!contains(this->DisabledPasses, "else")) {
-      Rules.emplace_back(
-          instrumentIfElseBranch(FuncVar),
-          Replacements);
+      Rules.emplace_back(instrumentIfElseBranch(FuncVar), Replacements);
     }
     if (!contains(this->DisabledPasses, "do")) {
-      Rules.emplace_back(instrumentDo(FuncVar),
-                         Replacements);
+      Rules.emplace_back(instrumentDo(FuncVar), Replacements);
     }
     if (!contains(this->DisabledPasses, "while")) {
-      Rules.emplace_back(instrumentWhile(FuncVar),
-                         Replacements);
+      Rules.emplace_back(instrumentWhile(FuncVar), Replacements);
     }
     if (!contains(this->DisabledPasses, "for")) {
-      Rules.emplace_back(instrumentFor(FuncVar),
-                         Replacements);
+      Rules.emplace_back(instrumentFor(FuncVar), Replacements);
     }
     if (!contains(this->DisabledPasses, "cxxfor")) {
-      Rules.emplace_back(instrumentCXXFor(FuncVar),
-                         Replacements);
+      Rules.emplace_back(instrumentCXXFor(FuncVar), Replacements);
     }
     if (!contains(this->DisabledPasses, "switch")) {
-      Rules.emplace_back(
-          instrumentSwitchCaseContent(FuncVar),
-          Replacements);
+      Rules.emplace_back(instrumentSwitchCaseContent(FuncVar), Replacements);
     }
     if (!contains(this->DisabledPasses, "compound")) {
-      Rules.emplace_back(
-          instrumentSimpleCompound(FuncVar),
-          Replacements);
+      Rules.emplace_back(instrumentSimpleCompound(FuncVar), Replacements);
     }
   }
 

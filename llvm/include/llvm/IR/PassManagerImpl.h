@@ -60,8 +60,9 @@ AnalysisManager<IRUnitT, ExtraArgTs...>::getResultImpl(
 
   // If we don't have a cached result for this function, look up the pass and
   // run it to produce a result, which we then add to the cache.
+  auto &P = this->lookUpPass(ID);
+  // errs() << P.name().data() << "\n";
   if (Inserted) {
-    auto &P = this->lookUpPass(ID);
 
     PassInstrumentation PI;
     if (ID != PassInstrumentationAnalysis::ID()) {

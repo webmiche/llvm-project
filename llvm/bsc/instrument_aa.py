@@ -10,7 +10,7 @@ from multiprocessing import Process
 from multiprocessing import Semaphore
 
 ignored = [
-#         "/home/nius/thesis/specbuilder/src/623/ASCIIRangeFactory.cpp",
+#        "/home/nius/thesis/specbuilder/src/623/ASCIIRangeFactory.cpp",
 #         "/home/nius/thesis/specbuilder/src/623/AbstractNumericFacetValidator.cpp",
 # "/home/nius/thesis/specbuilder/src/623/AbstractNumericValidator.cpp",
 # "/home/nius/thesis/specbuilder/src/623/AllContentModel.cpp",
@@ -116,7 +116,7 @@ ignored = [
 
 
 # "/home/nius/thesis/specbuilder/src/638/magick/prepress.c",
-"/home/nius/thesis/specbuilder/src/638/magick/quantize.c",
+"/home/michel/ETH/AST/specbuilder/src/638/magick/quantize.c",
 
 
 # "/home/nius/thesis/specbuilder/src/641/Random.cpp",
@@ -127,7 +127,7 @@ ignored = [
     ]
 
 def do_one(cmd, sema, target_source):
-    
+
     # if str(target_source) in ignored or str(target_source).startswith("/home/nius/thesis/specbuilder/src/623/"):
     if str(target_source) in ignored:
         print("$$$BSC_IGNORE: " + str(target_source))
@@ -142,7 +142,7 @@ def do_one(cmd, sema, target_source):
     sema.release()
 
 def main():
-    PREFIX = "/home/nius/thesis/specbuilder/"
+    PREFIX = "/home/michel/ETH/AST/specbuilder/"
     # preprocessed_source_dir = Path(PREFIX + "final_preprocessed_clang14")
     PREPROCESSED_DIR = "src"
     # AAVARS_DIR = "aavars"
@@ -154,6 +154,7 @@ def main():
     processes=[]
     cores=100
     sema = Semaphore(cores)
+    print(aa_vars_dir)
     for aa_var_file in aa_vars_dir.glob("**/*.aavars"):
         i = i + 1
         if i % 10 == 0:
@@ -170,13 +171,13 @@ def main():
         if not target_source.exists():
             print("Could not find source file for " + aa_var_file.__str__())
             continue
-        
+
         # print(without_ll)
         # print(target_source)
 
         # if not str(target_source).__contains__("619/lbm.c"):
         #     continue
-        
+
         args = []
         with open(aa_var_file, "r") as f:
             for line in f:
@@ -187,7 +188,7 @@ def main():
                     continue
                 if not line.split(":")[1]:
                     continue
-                    
+
                 args.append(line)
         if args.__len__() == 0:
             print("No arguments found for " + aa_var_file.__str__())
