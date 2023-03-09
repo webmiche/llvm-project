@@ -57,6 +57,7 @@
 #include <cassert>
 #include <cstdint>
 #include <cstdlib>
+#include <iostream>
 #include <optional>
 #include <utility>
 
@@ -830,7 +831,36 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
                                  const Instruction *CtxI) {
   assert(notDifferentParent(LocA.Ptr, LocB.Ptr) &&
          "BasicAliasAnalysis doesn't support interprocedural queries.");
-  return aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI, CtxI);
+  AliasResult res =
+      aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI, CtxI);
+  if (res == AliasResult::NoAlias) {
+    outs() << "It was NoAlias! ";
+  }
+  if (res == AliasResult::MustAlias) {
+    outs() << "It was MustAlias! ";
+  }
+  if (res == AliasResult::PartialAlias) {
+    outs() << "It was PartialAlias! ";
+  }
+  if (res == AliasResult::MayAlias) {
+    outs() << "It was MayAlias! ";
+  }
+  int x;
+  outs() << "What should it be now? (0 for NoAlias, 1 for MustAlias, 2 for "
+            "PartialAlias, 3 for MayAlias): \n";
+  outs().flush();
+  std::cin >> x;
+  if (x == 0)
+    return AliasResult::NoAlias;
+  if (x == 1)
+    return AliasResult::MustAlias;
+  if (x == 2)
+    return AliasResult::PartialAlias;
+  if (x == 3)
+    return AliasResult::MayAlias;
+  outs() << "Failed error, wiuwiuwiuwiu, received: " << x << "\n";
+  outs().flush();
+  return res;
 }
 
 /// Checks to see if the specified callsite can clobber the specified memory
