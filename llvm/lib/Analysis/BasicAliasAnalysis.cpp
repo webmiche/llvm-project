@@ -830,7 +830,7 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
                                  const Instruction *CtxI) {
   assert(notDifferentParent(LocA.Ptr, LocB.Ptr) &&
          "BasicAliasAnalysis doesn't support interprocedural queries.");
-  return aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI, CtxI);
+  return AliasResult::MayAlias;
 }
 
 /// Checks to see if the specified callsite can clobber the specified memory
