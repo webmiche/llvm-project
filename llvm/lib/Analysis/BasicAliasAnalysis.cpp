@@ -60,6 +60,7 @@
 #include <iostream>
 #include <optional>
 #include <utility>
+#include <zmq.h>
 
 #define DEBUG_TYPE "basicaa"
 
@@ -103,8 +104,7 @@ bool BasicAAResult::invalidate(Function &Fn, const PreservedAnalyses &PA,
 
 /// Returns the size of the object specified by V or UnknownSize if unknown.
 static uint64_t getObjectSize(const Value *V, const DataLayout &DL,
-                              const TargetLibraryInfo &TLI,
-                              bool NullIsValidLoc,
+                              const TargetLibraryInfo &TLI, bool NullIsValidLoc,
                               bool RoundToAlign = false) {
   uint64_t Size;
   ObjectSizeOpts Opts;
@@ -171,7 +171,7 @@ static uint64_t getMinimalExtentFrom(const Value &V,
   // access after free would be undefined behavior.
   bool CanBeNull, CanBeFreed;
   uint64_t DerefBytes =
-    V.getPointerDereferenceableBytes(DL, CanBeNull, CanBeFreed);
+      V.getPointerDereferenceableBytes(DL, CanBeNull, CanBeFreed);
   DerefBytes = (CanBeNull && NullIsValidLoc) ? 0 : DerefBytes;
   // If queried with a precise location size, we assume that location size to be
   // accessed, thus valid.
@@ -285,18 +285,24 @@ struct CastedValue {
   APInt evaluateWith(APInt N) const {
     assert(N.getBitWidth() == V->getType()->getPrimitiveSizeInBits() &&
            "Incompatible bit width");
-    if (TruncBits) N = N.trunc(N.getBitWidth() - TruncBits);
-    if (SExtBits) N = N.sext(N.getBitWidth() + SExtBits);
-    if (ZExtBits) N = N.zext(N.getBitWidth() + ZExtBits);
+    if (TruncBits)
+      N = N.trunc(N.getBitWidth() - TruncBits);
+    if (SExtBits)
+      N = N.sext(N.getBitWidth() + SExtBits);
+    if (ZExtBits)
+      N = N.zext(N.getBitWidth() + ZExtBits);
     return N;
   }
 
   ConstantRange evaluateWith(ConstantRange N) const {
     assert(N.getBitWidth() == V->getType()->getPrimitiveSizeInBits() &&
            "Incompatible bit width");
-    if (TruncBits) N = N.truncate(N.getBitWidth() - TruncBits);
-    if (SExtBits) N = N.signExtend(N.getBitWidth() + SExtBits);
-    if (ZExtBits) N = N.zeroExtend(N.getBitWidth() + ZExtBits);
+    if (TruncBits)
+      N = N.truncate(N.getBitWidth() - TruncBits);
+    if (SExtBits)
+      N = N.signExtend(N.getBitWidth() + SExtBits);
+    if (ZExtBits)
+      N = N.zeroExtend(N.getBitWidth() + ZExtBits);
     return N;
   }
 
@@ -339,13 +345,14 @@ struct LinearExpression {
     return LinearExpression(Val, Scale * Other, Offset * Other, NSW);
   }
 };
-}
+} // namespace
 
 /// Analyzes the specified value as a linear expression: "A*V + B", where A and
 /// B are constant integers.
-static LinearExpression GetLinearExpression(
-    const CastedValue &Val,  const DataLayout &DL, unsigned Depth,
-    AssumptionCache *AC, DominatorTree *DT) {
+static LinearExpression GetLinearExpression(const CastedValue &Val,
+                                            const DataLayout &DL,
+                                            unsigned Depth, AssumptionCache *AC,
+                                            DominatorTree *DT) {
   // Limit our recursion depth.
   if (Depth == 6)
     return Val;
@@ -427,13 +434,13 @@ static LinearExpression GetLinearExpression(
 
   if (isa<ZExtInst>(Val.V))
     return GetLinearExpression(
-        Val.withZExtOfValue(cast<CastInst>(Val.V)->getOperand(0)),
-        DL, Depth + 1, AC, DT);
+        Val.withZExtOfValue(cast<CastInst>(Val.V)->getOperand(0)), DL,
+        Depth + 1, AC, DT);
 
   if (isa<SExtInst>(Val.V))
     return GetLinearExpression(
-        Val.withSExtOfValue(cast<CastInst>(Val.V)->getOperand(0)),
-        DL, Depth + 1, AC, DT);
+        Val.withSExtOfValue(cast<CastInst>(Val.V)->getOperand(0)), DL,
+        Depth + 1, AC, DT);
 
   return Val;
 }
@@ -467,14 +474,12 @@ struct VariableGEPIndex {
     dbgs() << "\n";
   }
   void print(raw_ostream &OS) const {
-    OS << "(V=" << Val.V->getName()
-       << ", zextbits=" << Val.ZExtBits
-       << ", sextbits=" << Val.SExtBits
-       << ", truncbits=" << Val.TruncBits
+    OS << "(V=" << Val.V->getName() << ", zextbits=" << Val.ZExtBits
+       << ", sextbits=" << Val.SExtBits << ", truncbits=" << Val.TruncBits
        << ", scale=" << Scale << ")";
   }
 };
-}
+} // namespace
 
 // Represents the internal structure of a GEP, decomposed into a base pointer,
 // constant offsets, and variable scaled indices.
@@ -494,8 +499,7 @@ struct BasicAAResult::DecomposedGEP {
     dbgs() << "\n";
   }
   void print(raw_ostream &OS) const {
-    OS << "(DecomposedGEP Base=" << Base->getName()
-       << ", Offset=" << Offset
+    OS << "(DecomposedGEP Base=" << Base->getName() << ", Offset=" << Offset
        << ", VarIndices=[";
     for (size_t i = 0; i < VarIndices.size(); i++) {
       if (i != 0)
@@ -505,7 +509,6 @@ struct BasicAAResult::DecomposedGEP {
     OS << "])";
   }
 };
-
 
 /// If V is a symbolic pointer expression, decompose it into a base pointer
 /// with a constant offset and a number of scaled symbolic offsets.
@@ -826,6 +829,9 @@ static bool notDifferentParent(const Value *O1, const Value *O2) {
 }
 #endif
 
+int first = 0;
+void *requester;
+void *context;
 AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
                                  const MemoryLocation &LocB, AAQueryInfo &AAQI,
                                  const Instruction *CtxI) {
@@ -833,34 +839,41 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
          "BasicAliasAnalysis doesn't support interprocedural queries.");
   AliasResult res =
       aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI, CtxI);
+
+  if (first == 0) {
+    first = 1;
+    context = zmq_ctx_new();
+    requester = zmq_socket(context, ZMQ_REQ);
+    zmq_connect(requester, "tcp://localhost:5555");
+  }
+
+  char answer;
   if (res == AliasResult::NoAlias) {
-    outs() << "It was NoAlias! ";
+    answer = 0;
+  } else if (res == AliasResult::MustAlias) {
+    answer = 1;
+  } else if (res == AliasResult::PartialAlias) {
+    answer = 2;
+  } else if (res == AliasResult::MayAlias) {
+    answer = 3;
   }
-  if (res == AliasResult::MustAlias) {
-    outs() << "It was MustAlias! ";
-  }
-  if (res == AliasResult::PartialAlias) {
-    outs() << "It was PartialAlias! ";
-  }
-  if (res == AliasResult::MayAlias) {
-    outs() << "It was MayAlias! ";
-  }
-  int x;
-  outs() << "What should it be now? (0 for NoAlias, 1 for MustAlias, 2 for "
-            "PartialAlias, 3 for MayAlias): \n";
-  outs().flush();
-  std::cin >> x;
-  if (x == 0)
+  zmq_send(requester, &answer, 1, 0);
+
+  char buffer[1];
+  zmq_recv(requester, buffer, 1, 0);
+
+  if (buffer[0] == '0')
     return AliasResult::NoAlias;
-  if (x == 1)
+  if (buffer[0] == '1')
     return AliasResult::MustAlias;
-  if (x == 2)
+  if (buffer[0] == '2')
     return AliasResult::PartialAlias;
-  if (x == 3)
+  if (buffer[0] == '3')
     return AliasResult::MayAlias;
-  outs() << "Failed error, wiuwiuwiuwiu, received: " << x << "\n";
-  outs().flush();
   return res;
+
+  // zmq_close(requester);
+  // zmq_ctx_destroy(context);
 }
 
 /// Checks to see if the specified callsite can clobber the specified memory
@@ -1042,10 +1055,12 @@ static bool isBaseOfObject(const Value *V) {
 /// We know that V1 is a GEP, but we don't know anything about V2.
 /// UnderlyingV1 is getUnderlyingObject(GEP1), UnderlyingV2 is the same for
 /// V2.
-AliasResult BasicAAResult::aliasGEP(
-    const GEPOperator *GEP1, LocationSize V1Size,
-    const Value *V2, LocationSize V2Size,
-    const Value *UnderlyingV1, const Value *UnderlyingV2, AAQueryInfo &AAQI) {
+AliasResult BasicAAResult::aliasGEP(const GEPOperator *GEP1,
+                                    LocationSize V1Size, const Value *V2,
+                                    LocationSize V2Size,
+                                    const Value *UnderlyingV1,
+                                    const Value *UnderlyingV2,
+                                    AAQueryInfo &AAQI) {
   if (!V1Size.hasValue() && !V2Size.hasValue()) {
     // TODO: This limitation exists for compile-time reasons. Relax it if we
     // can avoid exponential pathological cases.
@@ -1174,11 +1189,10 @@ AliasResult BasicAAResult::aliasGEP(
 
     ConstantRange CR = computeConstantRange(Index.Val.V, /* ForSigned */ false,
                                             true, &AC, Index.CxtI);
-    KnownBits Known =
-        computeKnownBits(Index.Val.V, DL, 0, &AC, Index.CxtI, DT);
-    CR = CR.intersectWith(
-        ConstantRange::fromKnownBits(Known, /* Signed */ true),
-        ConstantRange::Signed);
+    KnownBits Known = computeKnownBits(Index.Val.V, DL, 0, &AC, Index.CxtI, DT);
+    CR =
+        CR.intersectWith(ConstantRange::fromKnownBits(Known, /* Signed */ true),
+                         ConstantRange::Signed);
     CR = Index.Val.evaluateWith(CR).sextOrTrunc(OffsetRange.getBitWidth());
 
     assert(OffsetRange.getBitWidth() == Scale.getBitWidth() &&
@@ -1293,10 +1307,9 @@ static AliasResult MergeAliasResults(AliasResult A, AliasResult B) {
 
 /// Provides a bunch of ad-hoc rules to disambiguate a Select instruction
 /// against another.
-AliasResult
-BasicAAResult::aliasSelect(const SelectInst *SI, LocationSize SISize,
-                           const Value *V2, LocationSize V2Size,
-                           AAQueryInfo &AAQI) {
+AliasResult BasicAAResult::aliasSelect(const SelectInst *SI,
+                                       LocationSize SISize, const Value *V2,
+                                       LocationSize V2Size, AAQueryInfo &AAQI) {
   // If the values are Selects with the same condition, we can do a more precise
   // check: just check for aliases between the values on corresponding arms.
   if (const SelectInst *SI2 = dyn_cast<SelectInst>(V2))
@@ -1434,8 +1447,8 @@ AliasResult BasicAAResult::aliasPHI(const PHINode *PN, LocationSize PNSize,
   for (unsigned i = 1, e = V1Srcs.size(); i != e; ++i) {
     Value *V = V1Srcs[i];
 
-    AliasResult ThisAlias = AAQI.AAR.alias(
-        MemoryLocation(V, PNSize), MemoryLocation(V2, V2Size), AAQI);
+    AliasResult ThisAlias = AAQI.AAR.alias(MemoryLocation(V, PNSize),
+                                           MemoryLocation(V2, V2Size), AAQI);
     Alias = MergeAliasResults(ThisAlias, Alias);
     if (Alias == AliasResult::MayAlias)
       break;
@@ -1639,8 +1652,7 @@ AliasResult BasicAAResult::aliasCheck(const Value *V1, LocationSize V1Size,
 }
 
 AliasResult BasicAAResult::aliasCheckRecursive(
-    const Value *V1, LocationSize V1Size,
-    const Value *V2, LocationSize V2Size,
+    const Value *V1, LocationSize V1Size, const Value *V2, LocationSize V2Size,
     AAQueryInfo &AAQI, const Value *O1, const Value *O2) {
   if (const GEPOperator *GV1 = dyn_cast<GEPOperator>(V1)) {
     AliasResult Result = aliasGEP(GV1, V1Size, V2, V2Size, O1, O2, AAQI);
@@ -1794,7 +1806,7 @@ bool BasicAAResult::constantOffsetHeuristic(const DecomposedGEP &GEP,
   APInt MinDiff = E0.Offset - E1.Offset, Wrapped = -MinDiff;
   MinDiff = APIntOps::umin(MinDiff, Wrapped);
   APInt MinDiffBytes =
-    MinDiff.zextOrTrunc(Var0.Scale.getBitWidth()) * Var0.Scale.abs();
+      MinDiff.zextOrTrunc(Var0.Scale.getBitWidth()) * Var0.Scale.abs();
 
   // We can't definitely say whether GEP1 is before or after V2 due to wrapping
   // arithmetic (i.e. for some values of GEP1 and V2 GEP1 < V2, and for other
