@@ -863,13 +863,13 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
   zmq_recv(requester, buffer, 1, 0);
 
   if (buffer[0] == '0')
-    return AliasResult::NoAlias;
+    return res;
   if (buffer[0] == '1')
-    return AliasResult::MustAlias;
+    return res;
   if (buffer[0] == '2')
-    return AliasResult::PartialAlias;
+    return res;
   if (buffer[0] == '3')
-    return AliasResult::MayAlias;
+    return res;
   return res;
 
   // zmq_close(requester);
