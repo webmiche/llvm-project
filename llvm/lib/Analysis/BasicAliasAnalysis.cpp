@@ -844,7 +844,7 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
     first = 1;
     context = zmq_ctx_new();
     requester = zmq_socket(context, ZMQ_REQ);
-    zmq_connect(requester, "tcp://localhost:5555");
+    zmq_connect(requester, "ipc:///tmp/0");
   }
 
   char answer;
