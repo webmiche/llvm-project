@@ -855,7 +855,7 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
   } else if (res == AliasResult::PartialAlias) {
     answer = 2;
   } else if (res == AliasResult::MayAlias) {
-    answer = 3;
+    return res;
   }
   zmq_send(requester, &answer, 1, 0);
 
@@ -870,6 +870,7 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
     return AliasResult::PartialAlias;
   if (buffer[0] == '3')
     return AliasResult::MayAlias;
+  assert(false);
   return res;
 
   // zmq_close(requester);
