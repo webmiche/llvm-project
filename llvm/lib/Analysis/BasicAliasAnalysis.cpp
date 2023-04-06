@@ -57,6 +57,8 @@
 #include <cassert>
 #include <cstdint>
 #include <cstdlib>
+#include <fstream>
+#include <iostream>
 #include <optional>
 #include <utility>
 
@@ -825,11 +827,21 @@ static bool notDifferentParent(const Value *O1, const Value *O2) {
 }
 #endif
 
+static cl::opt<std::string> AliasResultFile("arfile", cl::init(""));
+static cl::opt<std::string> FunctionName("funcName", cl::init(""));
+
 AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
                                  const MemoryLocation &LocB, AAQueryInfo &AAQI,
                                  const Instruction *CtxI) {
   assert(notDifferentParent(LocA.Ptr, LocB.Ptr) &&
          "BasicAliasAnalysis doesn't support interprocedural queries.");
+  std::ifstream f(AliasResultFile);
+
+  if (f.is_open())
+    std::cout << f.rdbuf();
+  else {
+    assert(false);
+  }
   return aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI, CtxI);
 }
 
