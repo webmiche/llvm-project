@@ -57,6 +57,8 @@
 #include <cassert>
 #include <cstdint>
 #include <cstdlib>
+#include <fstream>
+#include <iostream>
 #include <optional>
 #include <utility>
 
@@ -825,12 +827,38 @@ static bool notDifferentParent(const Value *O1, const Value *O2) {
 }
 #endif
 
+static cl::opt<std::string> OutputFile("ofile", cl::init(""));
+
 AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
                                  const MemoryLocation &LocB, AAQueryInfo &AAQI,
                                  const Instruction *CtxI) {
   assert(notDifferentParent(LocA.Ptr, LocB.Ptr) &&
          "BasicAliasAnalysis doesn't support interprocedural queries.");
-  return aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI, CtxI);
+  auto res = aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI, CtxI);
+
+  const Function *F1 = getParent(LocA.Ptr);
+
+  if (!F1)
+    return res;
+
+  std::ofstream f;
+  f.open(OutputFile, std::ios_base::app);
+
+  if (f.is_open()) {
+    if (res == AliasResult::NoAlias) {
+      f << F1->getName().str() << " NoAlias\n";
+    } else if (res == AliasResult::PartialAlias) {
+      f << F1->getName().str() << " PartialAlias\n";
+    } else if (res == AliasResult::MustAlias) {
+      f << F1->getName().str() << " MustAlias\n";
+    }
+    f.flush();
+  } else {
+    assert(false);
+  }
+  f.close();
+
+  return res;
 }
 
 /// Checks to see if the specified callsite can clobber the specified memory
