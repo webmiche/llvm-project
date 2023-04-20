@@ -830,19 +830,49 @@ static bool notDifferentParent(const Value *O1, const Value *O2) {
 static cl::opt<std::string> AliasResultFile("arfile", cl::init(""));
 static cl::opt<std::string> FunctionName("funcName", cl::init(""));
 
+static size_t instrument_index = -1;
+
+static size_t *change_indeces;
+
+static size_t change_indeces_len = 0;
+
 AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
                                  const MemoryLocation &LocB, AAQueryInfo &AAQI,
                                  const Instruction *CtxI) {
   assert(notDifferentParent(LocA.Ptr, LocB.Ptr) &&
          "BasicAliasAnalysis doesn't support interprocedural queries.");
-  std::ifstream f(AliasResultFile);
 
-  if (f.is_open())
-    std::cout << f.rdbuf();
-  else {
-    assert(false);
+  auto res = aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI, CtxI);
+
+  const Function *F1 = getParent(LocA.Ptr);
+
+  if (!F1)
+    return res;
+
+  if (F1->getName() != FunctionName) {
+    instrument_index++;
+    if (instrument_index == 0) {
+      std::ifstream f(AliasResultFile);
+
+      if (f.is_open()) {
+        // parse and store change_indeces
+        f >> change_indeces_len;
+        change_indeces = new size_t[change_indeces_len];
+        for (size_t i = 0; i < change_indeces_len; i++) {
+          f >> change_indeces[i];
+        }
+      } else {
+        assert(false);
+      }
+    }
+    for (size_t i = 0; i < change_indeces_len; i++) {
+      if (change_indeces[i] == instrument_index) {
+        return AliasResult::MayAlias;
+      }
+    }
   }
-  return aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI, CtxI);
+
+  return res;
 }
 
 /// Checks to see if the specified callsite can clobber the specified memory
