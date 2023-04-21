@@ -829,6 +829,8 @@ static bool notDifferentParent(const Value *O1, const Value *O2) {
 
 static cl::opt<std::string> OutputFile("ofile", cl::init(""));
 
+static int first = -1;
+
 AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
                                  const MemoryLocation &LocB, AAQueryInfo &AAQI,
                                  const Instruction *CtxI) {
@@ -842,7 +844,12 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
     return res;
 
   std::ofstream f;
-  f.open(OutputFile, std::ios_base::app);
+  if (first == -1) {
+    f.open(OutputFile, std::ios_base::out);
+    first = 0;
+  } else {
+    f.open(OutputFile, std::ios_base::app);
+  }
 
   if (f.is_open()) {
     if (res == AliasResult::NoAlias) {
