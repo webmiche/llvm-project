@@ -832,9 +832,9 @@ static bool notDifferentParent(const Value *O1, const Value *O2) {
 static cl::opt<std::string> AliasResultFile("arfile", cl::init(""));
 static cl::opt<std::string> FunctionName("funcName", cl::init(""));
 
-static size_t instrument_index = -1;
+static uint64_t instrument_index = -1;
 
-static size_t *change_indeces;
+static uint64_t *change_indeces;
 
 static size_t change_indeces_len = 0;
 
@@ -859,9 +859,11 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
       if (f.is_open()) {
         // parse and store change_indeces
         f >> change_indeces_len;
-        change_indeces = malloc(sizeof(size_t) * change_indeces_len);
+        change_indeces = (size_t *)malloc(sizeof(int64_t) * change_indeces_len);
         for (size_t i = 0; i < change_indeces_len; i++) {
-          f >> stoi(change_indeces[i]);
+          std::string input;
+          f >> input;
+          change_indeces[i] = stoi(input);
         }
       } else {
         assert(false);
@@ -869,6 +871,9 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
     }
     for (size_t i = 0; i < change_indeces_len; i++) {
       if (change_indeces[i] == instrument_index) {
+        if (i == change_indeces_len - 1) {
+          free(change_indeces);
+        }
         return AliasResult::MayAlias;
       }
     }
