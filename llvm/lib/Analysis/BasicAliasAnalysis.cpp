@@ -838,6 +838,8 @@ static uint64_t *change_indeces;
 
 static size_t change_indeces_len = 0;
 
+static uint64_t freed = 0;
+
 AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
                                  const MemoryLocation &LocB, AAQueryInfo &AAQI,
                                  const Instruction *CtxI) {
@@ -869,12 +871,15 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
         assert(false);
       }
     }
-    for (size_t i = 0; i < change_indeces_len; i++) {
-      if (change_indeces[i] == instrument_index) {
-        if (i == change_indeces_len - 1) {
-          free(change_indeces);
+    if (!freed) {
+      for (size_t i = 0; i < change_indeces_len; i++) {
+        if (change_indeces[i] == instrument_index) {
+          if (i == change_indeces_len - 1) {
+            free(change_indeces);
+            freed = 1;
+          }
+          return AliasResult::MayAlias;
         }
-        return AliasResult::MayAlias;
       }
     }
   }
