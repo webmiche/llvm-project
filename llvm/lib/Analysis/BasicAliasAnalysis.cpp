@@ -853,7 +853,7 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
   if (!F1)
     return res;
 
-  if (F1->getName() == FunctionName) {
+  if (res != AliasResult::MayAlias and F1->getName() == FunctionName) {
     instrument_index++;
     if (instrument_index == 0) {
       std::ifstream f(AliasResultFile);
@@ -878,11 +878,10 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
             free(change_indeces);
             freed = 1;
           }
-          return res;
+          return AliasResult::MayAlias;
         }
       }
     }
-    return AliasResult::MayAlias;
   }
 
   return res;
