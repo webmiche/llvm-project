@@ -878,10 +878,11 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
             free(change_indeces);
             freed = 1;
           }
-          return AliasResult::MayAlias;
+          return res;
         }
       }
     }
+    return AliasResult::MayAlias;
   }
 
   return res;
