@@ -60,6 +60,7 @@
 #include <fstream>
 #include <iostream>
 #include <optional>
+#include <unordered_map>
 #include <utility>
 
 #define DEBUG_TYPE "basicaa"
@@ -830,15 +831,16 @@ static bool notDifferentParent(const Value *O1, const Value *O2) {
 #endif
 
 static cl::opt<std::string> AliasResultFile("arfile", cl::init(""));
-static cl::opt<std::string> FunctionName("funcName", cl::init(""));
 
-static uint64_t instrument_index = -1;
+static size_t num_funcs = 0;
 
-static uint64_t *change_indeces;
+// Status of aa instrumentation. -1 means not alloced, 0 means running, 1 means
+// freed.
+static int64_t status = -1;
 
-static size_t change_indeces_len = 0;
-
-static uint64_t freed = 0;
+static std::unordered_map<std::string, uint64_t *> *change_indeces_map;
+static std::unordered_map<std::string, uint64_t> *current_indeces_map;
+static std::unordered_map<std::string, uint64_t> *indeces_len_map;
 
 AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
                                  const MemoryLocation &LocB, AAQueryInfo &AAQI,
@@ -853,38 +855,56 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
   if (!F1)
     return res;
 
-  if (res != AliasResult::MayAlias and F1->getName() == FunctionName) {
-    instrument_index++;
-    if (instrument_index == 0) {
+  if (res != AliasResult::MayAlias and status != 1) {
+    auto func_name = F1->getName().str();
+    if (status == -1) {
+      // Allocate map, parse file
+      status = 0;
       std::ifstream f(AliasResultFile);
+      change_indeces_map = new std::unordered_map<std::string, uint64_t *>();
+      current_indeces_map = new std::unordered_map<std::string, uint64_t>();
+      indeces_len_map = new std::unordered_map<std::string, uint64_t>();
 
       if (f.is_open()) {
         // parse and store change_indeces
-        f >> change_indeces_len;
-        change_indeces = (size_t *)malloc(sizeof(int64_t) * change_indeces_len);
-        for (size_t i = 0; i < change_indeces_len; i++) {
-          std::string input;
-          f >> input;
-          change_indeces[i] = stoi(input);
+        f >> num_funcs;
+        for (size_t i = 0; i < num_funcs; i++) {
+          std::string curr_func_name;
+          f >> curr_func_name;
+          size_t curr_func_change_indeces_len;
+          f >> curr_func_change_indeces_len;
+          uint64_t *curr_array = (uint64_t *)malloc(
+              sizeof(uint64_t) * curr_func_change_indeces_len);
+          std::pair<std::string, uint64_t> curr_pair =
+              std::make_pair(curr_func_name, curr_func_change_indeces_len);
+          indeces_len_map->insert(curr_pair);
+          for (size_t j = 0; j < curr_func_change_indeces_len; j++) {
+            std::string input;
+            f >> input;
+            curr_array[j] = stoi(input);
+          }
+          current_indeces_map->insert({curr_func_name, 0});
+          change_indeces_map->insert({curr_func_name, curr_array});
         }
       } else {
         assert(false);
       }
     }
-    if (!freed) {
-      for (size_t i = 0; i < change_indeces_len; i++) {
-        if (change_indeces[i] == instrument_index) {
-          if (i == change_indeces_len - 1) {
-            free(change_indeces);
-            freed = 1;
-          }
-          return AliasResult::MayAlias;
+
+    if (change_indeces_map->find(func_name) != change_indeces_map->end()) {
+      auto len = indeces_len_map->at(func_name);
+      auto curr_index = current_indeces_map->at(func_name);
+      auto curr_array = change_indeces_map->at(func_name);
+      for (size_t i = 0; i < len; i++) {
+        if (curr_array[i] == curr_index) {
+          return res;
         }
       }
+      current_indeces_map->insert_or_assign(func_name, curr_index + 1);
     }
   }
 
-  return res;
+  return AliasResult::MayAlias;
 }
 
 /// Checks to see if the specified callsite can clobber the specified memory
