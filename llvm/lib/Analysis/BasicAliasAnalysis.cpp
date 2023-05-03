@@ -856,7 +856,7 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
     return res;
 
   if (res != AliasResult::MayAlias and status != 1) {
-    auto func_name = F1->getName().str();
+    std::string func_name = F1->getName().str();
     if (status == -1) {
       // Allocate map, parse file
       status = 0;
@@ -895,12 +895,12 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
       auto len = indeces_len_map->at(func_name);
       auto curr_index = current_indeces_map->at(func_name);
       auto curr_array = change_indeces_map->at(func_name);
+      current_indeces_map->at(func_name) = curr_index + 1;
       for (size_t i = 0; i < len; i++) {
         if (curr_array[i] == curr_index) {
           return res;
         }
       }
-      current_indeces_map->insert_or_assign(func_name, curr_index + 1);
     }
   }
 
