@@ -898,13 +898,13 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
       current_indeces_map->at(func_name) = curr_index + 1;
       for (size_t i = 0; i < len; i++) {
         if (curr_array[i] == curr_index) {
-          return res;
+          return AliasResult::MayAlias;
         }
       }
     }
   }
 
-  return AliasResult::MayAlias;
+  return res;
 }
 
 /// Checks to see if the specified callsite can clobber the specified memory
