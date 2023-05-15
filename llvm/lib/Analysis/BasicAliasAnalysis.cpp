@@ -842,6 +842,10 @@ static std::unordered_map<std::string, uint64_t *> *change_indeces_map;
 static std::unordered_map<std::string, uint64_t> *current_indeces_map;
 static std::unordered_map<std::string, uint64_t> *indeces_len_map;
 
+static cl::opt<bool> take_may("take_may", cl::init(false));
+static cl::opt<std::string> OutputFile("ofile", cl::init(""));
+static int first = -1;
+
 AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
                                  const MemoryLocation &LocB, AAQueryInfo &AAQI,
                                  const Instruction *CtxI) {
@@ -854,6 +858,40 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
 
   if (!F1)
     return res;
+
+  AliasResult default_res = res;
+  AliasResult other_res = AliasResult::MayAlias;
+
+  if (take_may) {
+    other_res = default_res;
+    default_res = AliasResult::MayAlias;
+  }
+
+  if (OutputFile != "") {
+    std::ofstream f;
+    if (first == -1) {
+      f.open(OutputFile, std::ios_base::out);
+      first = 0;
+    } else {
+      f.open(OutputFile, std::ios_base::app);
+    }
+
+    if (f.is_open()) {
+      if (res == AliasResult::NoAlias) {
+        f << F1->getName().str() << " NoAlias\n";
+      } else if (res == AliasResult::PartialAlias) {
+        f << F1->getName().str() << " PartialAlias\n";
+      } else if (res == AliasResult::MustAlias) {
+        f << F1->getName().str() << " MustAlias\n";
+      }
+      f.flush();
+    } else {
+      assert(false);
+    }
+    f.close();
+
+    return default_res;
+  }
 
   if (res != AliasResult::MayAlias and status != 1) {
     std::string func_name = F1->getName().str();
@@ -898,13 +936,13 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
       current_indeces_map->at(func_name) = curr_index + 1;
       for (size_t i = 0; i < len; i++) {
         if (curr_array[i] == curr_index) {
-          return res;
+          return other_res;
         }
       }
     }
   }
 
-  return AliasResult::MayAlias;
+  return default_res;
 }
 
 /// Checks to see if the specified callsite can clobber the specified memory
