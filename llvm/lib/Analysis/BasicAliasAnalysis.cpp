@@ -59,8 +59,8 @@
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <map>
 #include <optional>
-#include <unordered_map>
 #include <utility>
 
 #define DEBUG_TYPE "basicaa"
@@ -838,13 +838,20 @@ static size_t num_funcs = 0;
 // freed.
 static int64_t status = -1;
 
-static std::unordered_map<std::string, uint64_t *> *change_indeces_map;
-static std::unordered_map<std::string, uint64_t> *current_indeces_map;
-static std::unordered_map<std::string, uint64_t> *indeces_len_map;
+static std::map<std::string, uint64_t *> *change_indeces_map;
+static std::map<std::string, uint64_t> *current_indeces_map;
+static std::map<std::string, uint64_t> *indeces_len_map;
+
+// Query cache. If the entry is true, return default.
+static std::map<std::pair<const llvm::Value *, const llvm::Value *>, bool>
+    decisionCache;
 
 static cl::opt<bool> take_may("take_may", cl::init(false));
 static cl::opt<std::string> OutputFile("ofile", cl::init(""));
 static int first = -1;
+
+STATISTIC(NumberOfAACacheHits, "Number of AA cache hits");
+STATISTIC(NumberOfAAQueries, "Number of AA queries");
 
 AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
                                  const MemoryLocation &LocB, AAQueryInfo &AAQI,
@@ -853,6 +860,7 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
          "BasicAliasAnalysis doesn't support interprocedural queries.");
 
   auto res = aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI, CtxI);
+  NumberOfAAQueries++;
 
   const Function *F1 = getParent(LocA.Ptr);
 
@@ -865,6 +873,15 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
   if (take_may) {
     other_res = default_res;
     default_res = AliasResult::MayAlias;
+  }
+
+  std::pair<const llvm::Value *, const llvm::Value *> pr(LocA.Ptr, LocB.Ptr);
+  if (decisionCache.find(pr) != decisionCache.end()) {
+    NumberOfAACacheHits++;
+    if (decisionCache[pr]) {
+      return default_res;
+    }
+    return other_res;
   }
 
   if (OutputFile != "") {
@@ -890,6 +907,7 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
     }
     f.close();
 
+    decisionCache[pr] = true;
     return default_res;
   }
 
@@ -899,9 +917,9 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
       // Allocate map, parse file
       status = 0;
       std::ifstream f(AliasResultFile);
-      change_indeces_map = new std::unordered_map<std::string, uint64_t *>();
-      current_indeces_map = new std::unordered_map<std::string, uint64_t>();
-      indeces_len_map = new std::unordered_map<std::string, uint64_t>();
+      change_indeces_map = new std::map<std::string, uint64_t *>();
+      current_indeces_map = new std::map<std::string, uint64_t>();
+      indeces_len_map = new std::map<std::string, uint64_t>();
 
       if (f.is_open()) {
         // parse and store change_indeces
@@ -936,12 +954,14 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
       current_indeces_map->at(func_name) = curr_index + 1;
       for (size_t i = 0; i < len; i++) {
         if (curr_array[i] == curr_index) {
+          decisionCache[pr] = false;
           return other_res;
         }
       }
     }
   }
 
+  decisionCache[pr] = true;
   return default_res;
 }
 
