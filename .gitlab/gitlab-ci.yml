@@ -1,0 +1,4 @@
+build_a:
+  stage: build
+  script:
+    - echo "This job builds something."

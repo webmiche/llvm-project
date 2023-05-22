@@ -843,7 +843,7 @@ static std::map<std::string, uint64_t> *current_indeces_map;
 static std::map<std::string, uint64_t> *indeces_len_map;
 
 // Query cache. If the entry is true, return default.
-static std::map<std::pair<const llvm::Value *, const llvm::Value *>, bool>
+static std::map<std::pair<const llvm::Value *const, const llvm::Value *const>, bool>
     decisionCache;
 
 static cl::opt<bool> take_may("take_may", cl::init(false));
@@ -862,6 +862,10 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
   auto res = aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI, CtxI);
   NumberOfAAQueries++;
 
+  if (res == AliasResult::MayAlias) {
+    return res;
+  }
+
   const Function *F1 = getParent(LocA.Ptr);
 
   if (!F1)
@@ -875,7 +879,7 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
     default_res = AliasResult::MayAlias;
   }
 
-  std::pair<const llvm::Value *, const llvm::Value *> pr(LocA.Ptr, LocB.Ptr);
+  std::pair<const llvm::Value *const, const llvm::Value *const> pr(LocA.Ptr, LocB.Ptr);
   if (decisionCache.find(pr) != decisionCache.end()) {
     NumberOfAACacheHits++;
     if (decisionCache[pr]) {
@@ -911,7 +915,7 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
     return default_res;
   }
 
-  if (res != AliasResult::MayAlias and status != 1) {
+  if (AliasResultFile != "" and res != AliasResult::MayAlias and status != 1) {
     std::string func_name = F1->getName().str();
     if (status == -1) {
       // Allocate map, parse file
@@ -959,9 +963,10 @@ AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
         }
       }
     }
+    decisionCache[pr] = true;
+    return default_res;
   }
 
-  decisionCache[pr] = true;
   return default_res;
 }
 

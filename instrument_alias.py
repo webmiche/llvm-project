@@ -157,6 +157,7 @@ class InstrumentAlias:
         function_name: str,
         count: int,
         take_may: bool,
+        take_min: bool,
     ):
         os.makedirs(str(self.instr_dir.joinpath(file_name).parent), exist_ok=True)
         curr_list: list = []
@@ -234,9 +235,13 @@ class InstrumentAlias:
             if min_count >= prev_count:
                 break
 
-            print(min_count)
-            min_index = counts.index(min_count)
-            curr_list = lists[min_index].copy()
+            if take_min:
+                min_index = counts.index(min_count)
+                curr_list = lists[min_index].copy()
+            else:
+                first_index = next(i for i,v in enumerate(L) if v < min_count)
+                curr_list = lists[first_index].copy()
+
             print(curr_list)
 
         return curr_list, min_count
@@ -318,19 +323,17 @@ class InstrumentAlias:
                         file_name,
                         function,
                         count,
-                        # curr_path,
                         take_may,
                     )
-                else:
+                elif count < 2000:
                     curr_results[function] = self.greedy_exploration(
                         file_name,
                         function,
                         count,
-                        # curr_path,
                         take_may,
+                        True, # take_min
                     )
 
-                # print(curr_results[function])
 
             results[file_name] = curr_results
 
@@ -351,34 +354,6 @@ class InstrumentAlias:
     def exploration_driver(
         self,
     ):
-        if not os.path.exists(self.exec_root.joinpath(self.groundtruth_dir)):
-            # generate groundtruth
-            run(["./spec", "cmake"], cwd=self.specbuild_dir)
-            run(["mkdir", "-p", str(self.groundtruth_dir)], cwd=self.specbuild_dir)
-            run(
-                [
-                    "cmake",
-                    "-G",
-                    "Ninja",
-                    "-DCMAKE_C_COMPILER=" + str(self.clang_dir),
-                    "-DCMAKE_CXX_COMPILER=" + str(self.clang_dir) + "++",
-                    '-DCMAKE_CXX_FLAGS="-Os"',
-                    '-DCMAKE_C_FLAGS="-Os"',
-                    "..",
-                ],
-                cwd=self.specbuild_dir.joinpath(self.groundtruth_dir),
-            )
-            run("ninja", cwd=self.specbuild_dir.joinpath(self.groundtruth_dir))
-            run(
-                [
-                    "cp",
-                    "-r",
-                    str(self.groundtruth_dir),
-                    str(self.exec_root.joinpath(self.groundtruth_dir)),
-                ],
-                cwd=self.specbuild_dir,
-            )
-
         run(
             [
                 "./spec",
@@ -408,10 +383,38 @@ class InstrumentAlias:
             for f in filenames
         ]
 
+        # compute baseline
+        for f in files:
+            os.makedirs(
+                self.exec_root.joinpath(groundtruth_dir, f.parent), exist_ok=True
+            )
+            cmd = [
+                str(self.instr_opt),
+                "-Os",
+                "-S",
+                "-o",
+                str(self.groundtruth_dir.joinpath(f)),
+                str(self.initial_dir.joinpath(f)),
+            ]
+            run(cmd, cwd=self.exec_root)
+            self.assemble_and_measure_file(self.groundtruth_dir.joinpath(f))
+
+        cmd = (
+            [
+                str(self.clang_dir),
+                "-no-pie",
+                "-o",
+                Path("baseline/").joinpath(self.benchmark, str(self.benchmark)),
+            ]
+            + ["-l" + link for link in linked_libraries.get(str(self.benchmark), [])]
+            + [str(self.groundtruth_dir.joinpath(f.with_suffix(".o"))) for f in files]
+        )
+        run(cmd, cwd=self.exec_root)
+
         dirs = [x[0] for x in os.walk(self.initial_dir)]
 
         required_empty_paths = [
-            Path("aafiles/"),
+            self.instr_dir,
             Path("res/"),
             Path("alias_queries/"),
             Path("final_res/"),
@@ -468,59 +471,24 @@ class InstrumentAlias:
             os.makedirs(
                 self.exec_root.joinpath("final_res/", output_name.parent), exist_ok=True
             )
-            if may_size <= std_size:
-                print("may wins")
-                cmd = [
-                    "cp",
-                    str(self.exec_root.joinpath("res/may/", output_name)),
-                    str(self.exec_root.joinpath("final_res/", output_name)),
-                ]
-                run(cmd, cwd=self.exec_root)
-            else:
-                print("std wins")
-                cmd = [
-                    "cp",
-                    str(self.exec_root.joinpath("res/std/", output_name)),
-                    str(self.exec_root.joinpath("final_res/", output_name)),
-                ]
-                run(cmd, cwd=self.exec_root)
+            sizes = [may_size, std_size, true_may_size, true_std_size]
+            curr_files = [
+                self.exec_root.joinpath("res/may/", output_name),
+                self.exec_root.joinpath("res/std/", output_name),
+                self.default_may_truth.joinpath("may/", output_name),
+                self.default_may_truth.joinpath("std/", output_name),
+            ]
+
+            cmd = [
+                "cp",
+                str(curr_files[sizes.index(min(sizes))]),
+                str(self.exec_root.joinpath("final_res/", output_name)),
+            ]
+            run(cmd, cwd=self.exec_root)
 
         # linking:
-
         cmd = (
-            [
-                "/usr/bin/ld",
-                "--hash-style=gnu",
-                "--eh-frame-hdr",
-                "-m",
-                "elf_x86_64",
-                "-dynamic-linker",
-                "/lib64/ld-linux-x86-64.so.2",
-                "-o",
-                "final_res/linked.out",
-                "/usr/lib64/gcc/x86_64-pc-linux-gnu/12.2.1/../../../../lib64/Scrt1.o",
-                "/usr/lib64/gcc/x86_64-pc-linux-gnu/12.2.1/../../../../lib64/crti.o",
-                "/usr/lib64/gcc/x86_64-pc-linux-gnu/12.2.1/crtbeginS.o",
-                "-L/usr/lib64/gcc/x86_64-pc-linux-gnu/12.2.1",
-                "-L/usr/lib64/gcc/x86_64-pc-linux-gnu/12.2.1/../../../../lib64",
-                "-L/lib/../lib64",
-                "-L/usr/lib/../lib64",
-                "-L/lib",
-                "-L/usr/lib",
-                "-lgcc",
-                "--as-needed",
-                "-lgcc_s",
-                "--no-as-needed",
-                "-lc",
-                "-lgcc",
-                "--as-needed",
-                "-lgcc_s",
-                "--no-as-needed",
-                "/usr/lib64/gcc/x86_64-pc-linux-gnu/12.2.1/crtendS.o",
-                "/usr/lib64/gcc/x86_64-pc-linux-gnu/12.2.1/../../../../lib64/crtn.o",
-                "-no-pie",
-                "-O2",
-            ]
+            [str(self.clang_dir), "-no-pie", "-o", "final_res/linked.out"]
             + ["-l" + link for link in linked_libraries.get(str(self.benchmark), [])]
             + ["final_res/" + str(f.with_suffix(".o")) for f in files]
         )
@@ -531,7 +499,7 @@ class InstrumentAlias:
             self.exec_root.joinpath("final_res/linked.out")
         )
         true_size = self.measure_outputsize(
-            self.groundtruth_dir.joinpath(str(self.benchmark))
+            self.groundtruth_dir.joinpath(self.benchmark, str(self.benchmark))
         )
 
         print("result: " + str(res_size) + " vs " + str(true_size))
