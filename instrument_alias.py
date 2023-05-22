@@ -30,7 +30,7 @@ class InstrumentAlias:
     instr_dir: Path
 
     def measure_outputsize(self, file: Path) -> int:
-        cmd = ["llvm-size", str(file)]
+        cmd = [str(self.instr_path.joinpath("llvm-size")), str(file)]
         p = run(cmd, stdout=PIPE, stderr=PIPE, text=True)
         if p.stderr != "":
             return 300000000
