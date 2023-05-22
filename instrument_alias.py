@@ -315,20 +315,20 @@ class InstrumentAlias:
                 if not os.path.exists(curr_path):
                     os.makedirs(curr_path, exist_ok=True)
                 count = count_per_file[file_name][function]
-                if count < 3:
+                if count < 10:
                     curr_results[function] = self.exhaustive_exploration(
                         file_name,
                         function,
                         count,
                         take_may,
                     )
-                elif count < 10:
+                else:
                     curr_results[function] = self.greedy_exploration(
                         file_name,
                         function,
                         count,
                         take_may,
-                        True, # take_min
+                        False, # take_min
                     )
 
 
