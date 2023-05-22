@@ -20,9 +20,7 @@ linked_libraries = {
 
 @dataclass
 class InstrumentAlias:
-    clang_dir: Path
-    clang_opt: Path
-    instr_opt: Path
+    instr_path: Path
     exec_root: Path
     specbuild_dir: Path
     benchmark: Path
@@ -30,7 +28,6 @@ class InstrumentAlias:
     groundtruth_dir: Path
     default_may_truth: Path
     instr_dir: Path
-    llc_path: Path
 
     def measure_outputsize(self, file: Path) -> int:
         cmd = ["llvm-size", str(file)]
@@ -55,7 +52,7 @@ class InstrumentAlias:
         obj_file_name = file_name.with_suffix(".o")
         run(
             [
-                str(self.llc_path),
+                str(self.instr_path.joinpath("llc")),
                 "-O2",
                 str(file_name),
                 "-o",
@@ -78,7 +75,7 @@ class InstrumentAlias:
         ar_name: Path = self.instr_dir.joinpath(str(index) + ".txt")
 
         cmd = [
-            str(self.instr_opt),
+            str(self.instr_path.joinpath("opt")),
             str(self.initial_dir.joinpath(file_name)),
             "-o",
             str(
@@ -255,7 +252,7 @@ class InstrumentAlias:
         )
         print(f)
         cmd = [
-            str(self.instr_opt),
+            str(self.instr_path.joinpath("opt")),
             str(self.initial_dir.joinpath(f)),
             "-o",
             str(self.default_may_truth.joinpath(description, f)),
@@ -318,14 +315,14 @@ class InstrumentAlias:
                 if not os.path.exists(curr_path):
                     os.makedirs(curr_path, exist_ok=True)
                 count = count_per_file[file_name][function]
-                if count < 10:
+                if count < 3:
                     curr_results[function] = self.exhaustive_exploration(
                         file_name,
                         function,
                         count,
                         take_may,
                     )
-                elif count < 2000:
+                elif count < 10:
                     curr_results[function] = self.greedy_exploration(
                         file_name,
                         function,
@@ -360,7 +357,7 @@ class InstrumentAlias:
                 "build",
                 str(self.initial_dir),
                 str(self.benchmark),
-                str(self.clang_dir),
+                str(self.instr_path.joinpath("clang")),
                 "-L",
             ],
             cwd=self.specbuild_dir,
@@ -389,7 +386,7 @@ class InstrumentAlias:
                 self.exec_root.joinpath(groundtruth_dir, f.parent), exist_ok=True
             )
             cmd = [
-                str(self.instr_opt),
+                str(self.instr_path.joinpath("opt")),
                 "-Os",
                 "-S",
                 "-o",
@@ -401,7 +398,7 @@ class InstrumentAlias:
 
         cmd = (
             [
-                str(self.clang_dir),
+                str(self.instr_path.joinpath("clang")),
                 "-no-pie",
                 "-o",
                 Path("baseline/").joinpath(self.benchmark, str(self.benchmark)),
@@ -488,7 +485,7 @@ class InstrumentAlias:
 
         # linking:
         cmd = (
-            [str(self.clang_dir), "-no-pie", "-o", "final_res/linked.out"]
+            [str(self.instr_path.joinpath("clang")), "-no-pie", "-o", "final_res/linked.out"]
             + ["-l" + link for link in linked_libraries.get(str(self.benchmark), [])]
             + ["final_res/" + str(f.with_suffix(".o")) for f in files]
         )
@@ -550,7 +547,7 @@ class InstrumentAlias:
     ):
         os.makedirs(compose_dir.joinpath(file_name).parent, exist_ok=True)
         cmd = [
-            str(self.instr_opt),
+            str(self.instr_path.joinpath("opt")),
             str(self.initial_dir.joinpath(file_name)),
             "-o",
             str(compose_dir.joinpath(file_name)),
@@ -573,27 +570,11 @@ if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser()
 
     arg_parser.add_argument(
-        "--clang_path",
+        "--instr_path",
         type=str,
         nargs="?",
-        help="path to clang executable",
-        default="/home/michel/ETH/AST/llvm-project/build_clang17/bin/clang",
-    )
-
-    arg_parser.add_argument(
-        "--clang_opt",
-        type=str,
-        nargs="?",
-        help="path to clangs opt",
-        default="/home/michel/ETH/AST/llvm-project/build_clang17/bin/opt",
-    )
-
-    arg_parser.add_argument(
-        "--instr_opt",
-        type=str,
-        nargs="?",
-        help="path to instrumented opt",
-        default="/home/michel/ETH/AST/llvm-project/build_instr/bin/opt",
+        help="path to instrumentation directory with llc, clang and opt",
+        default="/home/michel/ETH/AST/llvm-project/build_instr/bin",
     )
 
     arg_parser.add_argument(
@@ -612,8 +593,6 @@ if __name__ == "__main__":
         default="/home/michel/ETH/AST/specbuilder/",
     )
 
-    llc_path = "/home/michel/ETH/AST/llvm-project/build_clang17/bin/llc"
-
     args = arg_parser.parse_args()
 
     initial_dir = "naive_start/"
@@ -622,9 +601,7 @@ if __name__ == "__main__":
     instr_dir = "aafiles/"
 
     InstrumentAlias(
-        Path(args.clang_path),
-        Path(args.clang_opt),
-        Path(args.instr_opt),
+        Path(args.instr_path),
         Path(args.exec_root),
         Path(args.specbuild_dir),
         Path("605"),
@@ -632,5 +609,4 @@ if __name__ == "__main__":
         Path(groundtruth_dir),
         Path(default_may_truth),
         Path(instr_dir),
-        Path(llc_path),
     ).exploration_driver()
