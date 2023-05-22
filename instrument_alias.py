@@ -594,6 +594,7 @@ if __name__ == "__main__":
     )
 
     args = arg_parser.parse_args()
+    run(["git", "rev-parse", "HEAD"], cwd=args.exec_root)
 
     initial_dir = "naive_start/"
     groundtruth_dir = "baseline/"
