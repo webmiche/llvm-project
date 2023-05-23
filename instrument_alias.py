@@ -262,6 +262,22 @@ class InstrumentAlias:
         ] + (["--take_may"] if take_may else [])
         run(cmd, cwd=self.exec_root)
 
+    def get_count(self, file_name: Path) -> dict[str, int]:
+        try:
+            f = open(file_name, "r")
+        except FileNotFoundError:
+            return {}
+        counts: dict[str, int] = {}
+
+        for line in [l.strip() for l in f.readlines()]:
+            curr_line = line.split(" ")[0]
+            if curr_line in counts:
+                counts[curr_line] = counts[curr_line] + 1
+            else:
+                counts[curr_line] = 1
+
+        return counts
+
     def exploration(
         self,
         files: list[Path],
@@ -275,29 +291,13 @@ class InstrumentAlias:
         with Pool() as p:
             p.starmap(self.oneexplore, [(f, take_may, description) for f in files])
 
-        def get_count(file_name: Path) -> dict[str, int]:
-            try:
-                f = open(file_name, "r")
-            except FileNotFoundError:
-                return {}
-            counts: dict[str, int] = {}
-
-            for line in [l.strip() for l in f.readlines()]:
-                curr_line = line.split(" ")[0]
-                if curr_line in counts:
-                    counts[curr_line] = counts[curr_line] + 1
-                else:
-                    counts[curr_line] = 1
-
-            return counts
-
         count_per_file = {}
 
         for f in files:
             filename = self.exec_root.joinpath(
                 Path("alias_queries/"), description, f.with_suffix(".txt")
             )
-            curr_counts = get_count(filename)
+            curr_counts = self.get_count(filename)
             count_per_file[f] = curr_counts
 
         print(count_per_file)
@@ -569,6 +569,35 @@ class InstrumentAlias:
         )
 
 
+@dataclass
+class AAChecker:
+    file_path: Path
+    aa_files_dir: Path
+    function_name: str
+
+    aa_instr: InstrumentAlias
+
+    def is_valid(self):
+        init_size = self.aa_instr.assemble_and_measure_file(self.file_path)
+        os.makedirs(self.aa_files_dir.joinpath(self.file_path), exist_ok=True)
+
+        take_may = False
+        cmd = [
+            str(self.aa_instr.instr_path.joinpath("opt")),
+            str(self.file_path),
+            "--ofile",
+            str(self.aa_files_dir.joinpath(self.file_path.with_suffix(".txt"))),
+            "-Os",
+        ] + (["--take_may"] if take_may else [])
+        print(" ".join(cmd))
+        run(cmd, cwd=self.aa_instr.exec_root)
+
+        counts = self.aa_instr.get_count(
+            self.aa_files_dir.joinpath(self.file_path.with_suffix(".txt"))
+        )
+        print(counts)
+
+
 if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser()
 
@@ -604,6 +633,13 @@ if __name__ == "__main__":
         default="605",
     )
 
+    arg_parser.add_argument(
+        "--check_file",
+        type=str,
+        nargs="?",
+        help="check if the file is valid",
+    )
+
     args = arg_parser.parse_args()
     run(["git", "rev-parse", "HEAD"], cwd=args.exec_root)
 
@@ -612,13 +648,49 @@ if __name__ == "__main__":
     default_may_truth = "naive_truth/"
     instr_dir = "aafiles/"
 
-    InstrumentAlias(
-        Path(args.instr_path),
-        Path(args.exec_root),
-        Path(args.specbuild_dir),
-        Path(args.benchmark),
-        Path(initial_dir),
-        Path(groundtruth_dir),
-        Path(default_may_truth),
-        Path(instr_dir),
-    ).exploration_driver()
+    if args.check_file:
+        print("=============== checking file " + args.check_file + " ===============")
+        if not AAChecker(
+            Path(args.check_file),
+            Path(instr_dir),
+            "price_out_impl",
+            InstrumentAlias(
+                Path(args.instr_path),
+                Path(args.exec_root),
+                Path(args.specbuild_dir),
+                Path(args.benchmark),
+                Path(initial_dir),
+                Path(groundtruth_dir),
+                Path(default_may_truth),
+                Path(instr_dir),
+            ),
+        ).is_valid():
+            exit(1)
+        exit(0)
+
+    allowed_benchmarks = ["605", "619"]
+    if args.benchmark == "all":
+        for i in allowed_benchmarks:
+            print("=============== running benchmark " + i + " ===============")
+            args.benchmark = i
+            InstrumentAlias(
+                Path(args.instr_path),
+                Path(args.exec_root),
+                Path(args.specbuild_dir),
+                Path(args.benchmark),
+                Path(initial_dir),
+                Path(groundtruth_dir),
+                Path(default_may_truth),
+                Path(instr_dir),
+            ).exploration_driver()
+    else:
+        InstrumentAlias(
+            Path(args.instr_path),
+            Path(args.exec_root),
+            Path(args.specbuild_dir),
+            Path(args.benchmark),
+            Path(initial_dir),
+            Path(groundtruth_dir),
+            Path(default_may_truth),
+            Path(instr_dir),
+        ).exploration_driver()
