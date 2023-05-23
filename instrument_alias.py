@@ -236,7 +236,7 @@ class InstrumentAlias:
                 min_index = counts.index(min_count)
                 curr_list = lists[min_index].copy()
             else:
-                first_index = next(i for i,v in enumerate(L) if v < min_count)
+                first_index = next(i for i,v in enumerate(counts) if v < min_count)
                 curr_list = lists[first_index].copy()
 
             print(curr_list)
