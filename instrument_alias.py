@@ -225,7 +225,7 @@ class InstrumentAlias:
 
             print(list(set(counts)))
 
-            index_list = [(i,v) for i,v in enumerate(counts) if v < min_count]
+            index_list = [(i, v) for i, v in enumerate(counts) if v < min_count]
 
             # No reduction occured, hence we are done
             if index_list == []:
@@ -329,9 +329,8 @@ class InstrumentAlias:
                         function,
                         count,
                         take_may,
-                        False, # take_min
+                        False,  # take_min
                     )
-
 
             results[file_name] = curr_results
 
@@ -368,7 +367,7 @@ class InstrumentAlias:
                 "cp",
                 "-r",
                 str(self.initial_dir),
-                str(self.exec_root.joinpath(self.initial_dir)),
+                str(self.exec_root),
             ],
             cwd=self.specbuild_dir,
         )
@@ -486,7 +485,12 @@ class InstrumentAlias:
 
         # linking:
         cmd = (
-            [str(self.instr_path.joinpath("clang")), "-no-pie", "-o", "final_res/linked.out"]
+            [
+                str(self.instr_path.joinpath("clang")),
+                "-no-pie",
+                "-o",
+                "final_res/linked.out",
+            ]
             + ["-l" + link for link in linked_libraries.get(str(self.benchmark), [])]
             + ["final_res/" + str(f.with_suffix(".o")) for f in files]
         )
