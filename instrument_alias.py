@@ -80,7 +80,7 @@ class InstrumentAlias:
             "-o",
             str(
                 self.instr_dir.joinpath(
-                    file_name.parent, str(index) + str(file_name.stem) + ".ll"
+                    file_name.parent, str(index) + str(file_name.stem) + ".bc"
                 )
             ),
             "-S",
@@ -138,7 +138,7 @@ class InstrumentAlias:
             counts.append(
                 self.assemble_and_measure_file(
                     self.instr_dir.joinpath(
-                        file_name.parent, str(i) + str(file_name.stem) + ".ll"
+                        file_name.parent, str(i) + str(file_name.stem) + ".bc"
                     )
                 )
             )
@@ -178,7 +178,7 @@ class InstrumentAlias:
         )
         min_count = self.assemble_and_measure_file(
             self.instr_dir.joinpath(
-                file_name.parent, str(0) + str(file_name.stem) + ".ll"
+                file_name.parent, str(0) + str(file_name.stem) + ".bc"
             )
         )
 
@@ -218,7 +218,7 @@ class InstrumentAlias:
                 counts.append(
                     self.assemble_and_measure_file(
                         self.instr_dir.joinpath(
-                            file_name.parent, str(i) + str(file_name.stem) + ".ll"
+                            file_name.parent, str(i) + str(file_name.stem) + ".bc"
                         )
                     )
                 )
@@ -358,7 +358,9 @@ class InstrumentAlias:
                 str(self.initial_dir),
                 str(self.benchmark),
                 str(self.instr_path.joinpath("clang")),
-                "-L",
+                "-bc",
+                "--opt_level",
+                "Os",
             ],
             cwd=self.specbuild_dir,
         )
