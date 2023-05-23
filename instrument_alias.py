@@ -159,8 +159,6 @@ class InstrumentAlias:
         os.makedirs(str(self.instr_dir.joinpath(file_name).parent), exist_ok=True)
         curr_list: list = []
 
-        prev_count = -2
-
         # generate empty file
 
         ar_name: Path = self.instr_dir.joinpath(str(0) + ".txt")
@@ -226,19 +224,22 @@ class InstrumentAlias:
                 )
 
             print(list(set(counts)))
-            prev_count = min_count
-            min_count = min(counts)
+
+            index_list = [(i,v) for i,v in enumerate(counts) if v < min_count]
+
             # No reduction occured, hence we are done
-            if min_count >= prev_count:
+            if index_list == []:
                 break
 
             if take_min:
+                min_count = min(counts)
                 min_index = counts.index(min_count)
                 curr_list = lists[min_index].copy()
             else:
-                first_index = next(i for i,v in enumerate(counts) if v < min_count)
-                curr_list = lists[first_index].copy()
+                min_count = index_list[0][1]
+                curr_list = lists[index_list[0][0]].copy()
 
+            print(min_count)
             print(curr_list)
 
         return curr_list, min_count
