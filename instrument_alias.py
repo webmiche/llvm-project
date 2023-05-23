@@ -6,6 +6,7 @@ import argparse
 from pathlib import Path
 from dataclasses import dataclass
 from multiprocessing import Pool
+import sys
 
 # from specbuilder --> spec.py
 linked_libraries = {
@@ -668,9 +669,24 @@ if __name__ == "__main__":
             exit(1)
         exit(0)
 
+    benchmarks = [
+        "600",
+        "602",
+        "605",
+        "619",
+        "620",
+        "623",
+        "625",
+        "631",
+        "638",
+        "641",
+        "644",
+        "657",
+    ]
     allowed_benchmarks = ["605", "619"]
     if args.benchmark == "all":
-        for i in allowed_benchmarks:
+        for i in benchmarks:
+            sys.stdout = open("gen_res_" + i + "_first_strat.txt", "w")
             print("=============== running benchmark " + i + " ===============")
             args.benchmark = i
             InstrumentAlias(
