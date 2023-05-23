@@ -83,10 +83,9 @@ class InstrumentAlias:
                     file_name.parent, str(index) + str(file_name.stem) + ".bc"
                 )
             ),
-            "-S",
+            "-Os",
             "--arfile",
             str(ar_name),
-            "-Os",
         ] + (["--take_may"] if take_may else [])
         run(
             cmd,
@@ -257,7 +256,6 @@ class InstrumentAlias:
             str(self.initial_dir.joinpath(f)),
             "-o",
             str(self.default_may_truth.joinpath(description, f)),
-            "-S",
             "--ofile",
             str(Path("alias_queries/").joinpath(description, f.with_suffix(".txt"))),
             "-Os",
@@ -390,7 +388,6 @@ class InstrumentAlias:
             cmd = [
                 str(self.instr_path.joinpath("opt")),
                 "-Os",
-                "-S",
                 "-o",
                 str(self.groundtruth_dir.joinpath(f)),
                 str(self.initial_dir.joinpath(f)),
@@ -558,7 +555,6 @@ class InstrumentAlias:
             str(self.initial_dir.joinpath(file_name)),
             "-o",
             str(compose_dir.joinpath(file_name)),
-            "-S",
             "--arfile",
             str(
                 Path("composed_files/").joinpath(
@@ -600,6 +596,14 @@ if __name__ == "__main__":
         default="/home/michel/ETH/AST/specbuilder/",
     )
 
+    arg_parser.add_argument(
+        "--benchmark",
+        type=str,
+        nargs="?",
+        help="benchmark to run",
+        default="605",
+    )
+
     args = arg_parser.parse_args()
     run(["git", "rev-parse", "HEAD"], cwd=args.exec_root)
 
@@ -612,7 +616,7 @@ if __name__ == "__main__":
         Path(args.instr_path),
         Path(args.exec_root),
         Path(args.specbuild_dir),
-        Path("605"),
+        Path(args.benchmark),
         Path(initial_dir),
         Path(groundtruth_dir),
         Path(default_may_truth),
