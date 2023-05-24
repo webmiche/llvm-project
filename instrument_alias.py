@@ -648,7 +648,7 @@ if __name__ == "__main__":
     )
 
     args = arg_parser.parse_args()
-    run(["git", "rev-parse", "HEAD"], cwd=args.exec_root)
+    p = run(["git", "rev-parse", "HEAD"], cwd=args.exec_root, stdout=PIPE)
 
     initial_dir = "naive_start/"
     groundtruth_dir = "baseline/"
@@ -694,6 +694,7 @@ if __name__ == "__main__":
         for i in allowed_benchmarks:
             sys.stdout = open("gen_res_" + i + "_first_strat.txt", "w")
             print("=============== running benchmark " + i + " ===============")
+            print(p.stdout.decode("utf-8"))
             args.benchmark = i
             InstrumentAlias(
                 Path(args.instr_path),
