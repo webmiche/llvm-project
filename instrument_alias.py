@@ -1,3 +1,4 @@
+from __future__ import annotations
 from subprocess import Popen, PIPE, run
 import os
 from itertools import combinations

@@ -1,0 +1,1338 @@
+=============== running benchmark 600 ===============
+Track AA Queries may
+600/perlapi.bc
+600/reentr.bc
+600/caretx.bc
+600/deb.bc
+600/run.bc
+600/locale.bc
+600/ext/XS-Typemap/stdio.bc
+600/DynaLoader.bc
+600/perlmain.bc
+600/globals.bc
+600/ext/Sys-Hostname/Hostname.bc
+600/ext/re/re.bc
+600/taint.bc
+600/dist/IO/poll.bc
+600/specrand/specrand.bc
+600/ext/Tie-Hash-NamedCapture/NamedCapture.bc
+600/ext/PerlIO-scalar/scalar.bc
+600/ext/attributes/attributes.bc
+600/dist/IO/IO.bc
+600/dist/PathTools/Cwd.bc
+600/cpan/Time-HiRes/HiRes.bc
+600/ext/Hash-Util-FieldHash/FieldHash.bc
+600/ext/Hash-Util/Util.bc
+600/ext/File-Glob/Glob.bc
+600/ext/PerlIO-via/via.bc
+600/ext/Devel-Peek/Peek.bc
+600/cpan/MIME-Base64/Base64.bc
+600/ext/arybase/arybase.bc
+600/ext/File-Glob/bsd_glob.bc
+600/av.bc
+600/Opcode.bc
+600/ext/mro/mro.bc
+600/mathoms.bc
+600/numeric.bc
+600/scope.bc
+600/perly.bc
+600/keywords.bc
+600/cpan/Digest-MD5/MD5.bc
+600/mro_core.bc
+600/doio.bc
+600/universal.bc
+600/doop.bc
+600/pp_sort.bc
+600/pad.bc
+600/dist/Data-Dumper/Dumper.bc
+600/perlio.bc
+600/utf8.bc
+600/util.bc
+600/mg.bc
+600/hv.bc
+600/cpan/Scalar-List-Utils/ListUtil.bc
+600/perl.bc
+600/dump.bc
+600/gv.bc
+600/pp_sys.bc
+600/cpan/Digest-SHA/SHA.bc
+600/pp_hot.bc
+600/cpan/HTML-Parser/Parser.bc
+600/dist/Storable/Storable.bc
+600/pp_pack.bc
+600/pp_ctl.bc
+600/pp.bc
+600/sv.bc
+600/ext/re/re_exec.bc
+600/regexec.bc
+600/op.bc
+600/toke.bc
+600/regcomp.bc
+600/ext/re/re_comp.bc
+{PosixPath('600/universal.bc'): {'XS_re_regexp_pattern': 31, 'S_isa_lookup': 6, 'Perl_sv_derived_from_pvn': 3, 'Perl_sv_derived_from_sv': 9, 'Perl_sv_does_sv': 16, 'S_CvGV': 1, 'Perl_croak_xs_usage': 6, 'XS_UNIVERSAL_isa': 4, 'XS_UNIVERSAL_can': 17, 'XS_UNIVERSAL_DOES': 1, 'XS_utf8_is_utf8': 2, 'XS_utf8_valid': 15, 'XS_utf8_encode': 1, 'XS_utf8_decode': 1, 'XS_utf8_upgrade': 2, 'XS_utf8_downgrade': 2, 'XS_utf8_native_to_unicode': 1, 'XS_utf8_unicode_to_native': 1, 'XS_Internals_SvREADONLY': 14, 'XS_constant__make_const': 13, 'XS_Internals_SvREFCNT': 5, 'XS_Internals_hv_clear_placehold': 1, 'S_av_top_index': 1, 'XS_PerlIO_get_layers': 43, 'XS_re_regnames_count': 4, 'XS_re_regname': 11, 'XS_re_regnames': 7, 'get_regex_charset_name': 1, 'XS_universal_version': 13, 'XS_version_new': 30, 'XS_version_vcmp': 3, 'XS_version_qv': 30, 'optimize_out_native_convert_function': 2, 'Perl_boot_core_UNIVERSAL': 2}, PosixPath('600/perlio.bc'): {'PerlIO_intmode2str': 1, 'PerlIO_allocate': 1, 'PerlIO_modestr': 1, 'PerlIO_pop': 3, 'PerlIO_push': 4, 'PerlIOBase_dup': 3, 'PerlIOBase_close': 3, 'Perl_PerlIO_close': 1, 'PerlIO_list_free': 3, 'PerlIO_list_push': 3, 'PerlIO_clone_list': 2, 'PerlIO_destruct': 1, 'PerlIO_get_layers': 10, 'PerlIO_find_layer': 11, 'XS_PerlIO__Layer__NoWarnings': 1, 'XS_PerlIO__Layer__find': 18, 'PerlIO_parse_layers': 6, 'PerlIOBuf_get_cnt': 2, 'PerlIOBuf_get_ptr': 1, 'PerlIOBuf_bufsiz': 2, 'PerlIOBuf_get_base': 3, 'Perl_PerlIO_clearerr': 2, 'PerlIOBase_clearerr': 1, 'PerlIO_fast_gets': 1, 'Perl_PerlIO_error': 1, 'Perl_PerlIO_eof': 1, 'PerlIOBase_read': 1, 'PerlIOBuf_fill': 5, 'PerlIOBuf_flush': 4, 'PerlIOBuf_tell': 1, 'PerlIOBuf_write': 5, 'PerlIOBase_binmode': 1, 'PerlIOBase_pushed': 3, 'PerlIOPending_pushed': 1, 'PerlIOBuf_unread': 2, 'PerlIO_layer_fetch': 1, 'PerlIOCrlf_set_ptrcnt': 1, 'PerlIOCrlf_get_cnt': 9, 'PerlIOCrlf_write': 5, 'PerlIOCrlf_unread': 4, 'PerlIOBuf_pushed': 1, 'S_inherit_utf8_flag': 1, 'PerlIOStdio_get_cnt': 1, 'PerlIOStdio_get_bufsiz': 1, 'S_perlio_async_run': 7, 'PerlIOStdio_fill': 2, 'PerlIOStdio_flush': 1, 'PerlIOUnix_refcnt_dec': 1, 'PerlIOStdio_write': 1, 'PerlIO_has_cntptr': 1, 'PerlIOStdio_unread': 2, 'PerlIOStdio_read': 1, 'S_more_refcounted_fds': 1, 'PerlIOUnix_refcnt_inc': 2, 'PerlIOStdio_dup': 1, 'PerlIOStdio_mode': 1, 'PerlIOStdio_open': 46, 'PerlIOStdio_pushed': 5, 'PerlIORaw_pushed': 1, 'PerlIOUnix_close': 1, 'PerlIOUnix_seek': 1, 'PerlIOUnix_write': 3, 'PerlIOUnix_read': 4, 'PerlIOUnix_setfd': 1, 'PerlIOUnix_dup': 1, 'PerlIOUnix_oflags': 3, 'PerlIOUnix_open': 17, 'PerlIOUnix_pushed': 2, 'PerlIO_default_layers': 1, 'PerlIO_default_layer': 1, 'PerlIOBuf_open': 3, 'PerlIOCrlf_pushed': 4, 'PerlIOBase_open': 2, 'Perl_PerlIO_context_layers': 2, 'PerlIO_apply_layera': 3, 'PerlIO_openn': 15, 'PerlIO_resolve_layers': 1, 'Perl_PerlIO_setlinebuf': 1, 'PerlIOUnix_refcnt': 1, 'PerlIO_exportFILE': 2, 'PerlIO_findFILE': 1, 'PerlIO_releaseFILE': 3, 'PerlIO_vprintf': 4, 'PerlIO_setpos': 7}, PosixPath('600/gv.bc'): {'Perl_amagic_call': 274, 'Perl_gv_add_by_type': 2, 'S_perl_hash_one_at_a_time_hard': 1, 'Perl_newGP': 3, 'CvNAME_HEK': 1, 'Perl_cvgv_set': 6, 'Perl_cvstash_set': 1, 'Perl_gv_init_pvn': 15, 'Perl_gv_fetchfile_flags': 8, 'Perl_gv_const_sv': 2, 'Perl_cvgv_from_hek': 9, 'Perl_gv_init_sv': 9, 'S_parse_gv_stash_name': 20, 'S_gv_is_in_main': 1, 'S_gv_init_svtype': 1, 'S_CvGV': 1, 'S_gv_magicalize_isa': 1, 'core_xsub': 1, 'S_maybe_add_coresub': 7, 'Perl_gv_fetchmethod_pvn_flags': 25, 'S_gv_stashsvpvn_cached': 20, 'Perl_gv_fetchpvn_flags': 290, 'S_gv_fetchmeth_internal': 79, 'Perl_gv_autoload_pvn': 21, 'Perl_gv_fetchmeth_sv': 3, 'Perl_gv_fetchmeth_sv_autoload': 9, 'Perl_gv_fetchmethod_sv_flags': 9, 'Perl_gv_autoload_sv': 9, 'Perl_gv_fetchsv': 8, 'Perl_gv_fullname4': 12, 'Perl_gv_efullname4': 1, 'Perl_gv_check': 57, 'Perl_gp_ref': 1, 'Perl_gp_free': 19, 'Perl_magic_freeovrld': 1, 'Perl_Gv_AMupdate': 150, 'Perl_gv_handler': 24, 'Perl_amagic_is_enabled': 9, 'Perl_try_amagic_un': 3, 'Perl_try_amagic_bin': 18, 'Perl_amagic_deref_call': 6, 'Perl_gv_try_downgrade': 42, 'Perl_gv_override': 9}, PosixPath('600/locale.bc'): {'Perl__is_in_locale_category': 1}, PosixPath('600/Opcode.bc'): {'XS_Opcode_opset': 12, 'XS_Opcode_permit_only': 15, 'XS_Opcode_define_optag': 10, 'verify_opset': 3, 'new_opset': 2, 'put_op_bitspec': 1, 'op_names_init': 20, 'XS_Opcode_opmask': 6, 'XS_Opcode_opcodes': 2, 'opmask_add': 13, 'XS_Opcode_empty_opset': 2, 'get_op_bitspec': 2, 'XS_Opcode_opdesc': 25, 'set_opset_bits': 18, 'XS_Opcode_opset_to_ops': 13, 'XS_Opcode_invert_opset': 8, 'XS_Opcode_verify_opset': 5, 'XS_Opcode__safe_call_sv': 15, 'XS_Opcode__safe_pkg_prep': 4, 'boot_Opcode': 22}, PosixPath('600/mathoms.bc'): {'Perl_sv_iv': 1, 'Perl_sv_uv': 1, 'Perl_sv_nv': 1, 'Perl_sv_pvn': 1, 'Perl_sv_pvn_nomg': 1, 'Perl_sv_pv': 1, 'Perl_sv_pvbyte': 1, 'Perl_sv_pvbyten': 1, 'Perl_sv_pvutf8': 1, 'Perl_sv_pvutf8n': 1, 'Perl_save_list': 1, 'Perl_isIDFIRST_lazy': 1, 'Perl_isALNUM_lazy': 1, 'Perl_is_utf8_alnum': 1, 'Perl_is_utf8_alnumc': 1, 'Perl_is_utf8_alpha': 1, 'Perl_is_utf8_blank': 1, 'Perl_is_utf8_space': 1, 'Perl_is_utf8_upper': 1, 'Perl_is_utf8_lower': 1, 'Perl_is_utf8_cntrl': 1, 'Perl_is_utf8_graph': 1, 'Perl_is_utf8_print': 1, 'Perl_is_utf8_punct': 1, 'Perl_is_utf8_xdigit': 1, 'Perl_is_utf8_char': 3, 'Perl_is_utf8_char_buf': 2}, PosixPath('600/perlmain.bc'): {'main': 21}, PosixPath('600/dump.bc'): {'Perl_pv_escape': 17, 'Perl_pv_pretty': 6, 'S_CvGV': 1, 'Perl_sv_peek': 25, 'S_sequence_num': 10, 'S_append_flags': 1, 'S_pm_description': 22, 'Perl_do_op_dump': 66, 'Perl_do_pmop_dump': 47, 'Perl_dump_sub_perl': 8, 'Perl_dump_packsubs_perl': 23, 'Perl_gv_dump': 6, 'Perl_do_hv_dump': 15, 'S_av_top_index': 1, 'CvNAME_HEK': 1, 'Perl_do_gvgv_dump': 16, 'Perl_do_gv_dump': 1, 'Perl_do_magic_dump': 56, 'Perl_do_sv_dump': 410, 'S_deb_curcv': 6, 'S_deb_padvar': 1, 'S_append_padvar': 1, 'Perl_multideref_stringify': 8, 'Perl_debop': 3, 'S_debprof': 2, 'Perl_runops_debug': 4}, PosixPath('600/globals.bc'): {}, PosixPath('600/pp_sort.bc'): {'S_qsortsv': 5, 'Perl_pp_sort': 249, 'S_qsortsvu': 238, 'dynprep': 13, 'S_mergesortsv': 96, 'Perl_sortsv_flags': 103, 'S_CvGV': 1, 'S_amagic_cmp': 5, 'S_sv_ncmp': 2, 'S_amagic_ncmp': 5, 'S_sv_i_ncmp': 2, 'S_amagic_i_ncmp': 5, 'S_sortcv_xsub': 6, 'S_sortcv': 6, 'S_sortcv_stacked': 17}, PosixPath('600/DynaLoader.bc'): {'XS_DynaLoader_dl_error': 2}, PosixPath('600/doop.bc'): {'S_do_trans_simple_utf8': 21, 'S_do_trans_count_utf8': 13, 'S_do_trans_count': 17, 'S_do_trans_complex_utf8': 23, 'S_do_trans_complex': 33, 'S_do_trans_simple': 24, 'Perl_do_trans': 142, 'Perl_do_join': 79, 'Perl_do_sprintf': 36, 'Perl_do_vecget': 15, 'Perl_do_vecset': 21, 'Perl_do_vop': 209, 'Perl_do_kv': 11}, PosixPath('600/reentr.bc'): {}, PosixPath('600/sv.bc'): {'Perl_more_bodies': 5, 'Perl_newSVuv': 7, 'Perl_sv_pvn_force_flags': 19, 'Perl_sv_recode_to_utf8': 83, 'Perl_sv_kill_backrefs': 32, 'Perl_sv_replace': 12, 'S_curse': 96, 'S_sv_pos_u2b_cached': 18, 'Perl_sv_pos_u2b': 4, 'Perl_newSViv': 7, 'Perl_newRV_noinc': 11, 'Perl_sv_vcatpvfn_flags': 750, 'Perl_init_constants': 73, 'S_sv_add_arena': 5, 'S_visit': 2, 'S_more_sv': 9, 'Perl_sv_del_backref': 6, 'Perl_sv_clear': 408, 'S_sv_unmagicext_flags': 5, 'Perl_sv_free2': 7, 'do_clean_named_io_objs': 6, 'do_curse': 5, 'do_clean_named_objs': 7, 'do_clean_objs': 1, 'Perl_sv_clean_objs': 4, 'do_clean_all': 1, 'Perl_sv_free_arenas': 5, 'Perl_sv_2mortal': 4, 'Perl_sv_unref_flags': 1, 'Perl_sv_backoff': 2, 'Perl_sv_newmortal': 12, 'S_new_body': 3, 'Perl_sv_tainted': 1, 'S_infnan_2pv': 2, 'S_find_array_subscript': 1, 'S_append_utf8_from_native_byte': 1, 'S_expect_number': 3, 'S_sv_setnv': 2, 'S_sv_2iuv_non_preserve': 4, 'Perl_sv_isobject': 2, 'S_sv_pos_u2b_midway': 1, 'S_sv_pos_u2b_forwards': 1, 'S_hextract': 1, 'Perl_sv_setpvn': 6, 'Perl_sv_force_normal_flags': 26, 'S_sv_uncow': 4, 'Perl_sv_grow': 5, 'Perl_sv_upgrade': 37, 'Perl_sv_reftype': 2, 'Perl_sv_ref': 4, 'Perl_sv_setpv': 6, 'Perl_sv_sethek': 9, 'Perl_sv_setsv_flags': 44, 'Perl_gv_setref': 102, 'Perl_vnewSVpvf': 6, 'S_glob_assign_glob': 36, 'Perl_sv_magic': 7, 'Perl_sv_pos_b2u_flags': 36, 'Perl_sv_2pv_flags': 40, 'Perl_report_uninit': 6, 'S_find_uninit_var': 235, 'Perl_varname': 11, 'Perl_sv_setuv': 1, 'Perl_sv_setiv': 4, 'Perl_sv_2uv_flags': 15, 'S_sv_or_pv_pos_u2b': 2, 'Perl_sv_pos_u2b_flags': 10, 'S_utf8_mg_pos_cache_update': 11, 'Perl_sv_len_utf8_nomg': 29, 'S_utf8_mg_len_cache_update': 1, 'Perl_sv_2num': 6, 'Perl_sv_2iv_flags': 15, 'S_sv_2iuv_common': 16, 'Perl_sv_2nv_flags': 21, 'S_sv_display': 3, 'Perl_newSVpvn_flags': 9, 'Perl_sv_catsv_flags': 16, 'Perl_sv_catpvn_flags': 28, 'Perl_sv_utf8_upgrade_flags_grow': 29, 'Perl_newSV': 6, 'Perl_sv_insert_flags': 25, 'Perl_sv_chop': 8, 'S_find_hash_subscript': 4, 'Perl_newSVhek': 20, 'Perl_newSVpvn': 6, 'Perl_sv_usepvn_flags': 7, 'Perl_newSVsv': 8, 'Perl_sv_mortalcopy_flags': 9, 'Perl_sv_add_backref': 6, 'Perl_newSV_type': 6, 'Perl_sv_magicext': 4, 'Perl_sv_rvweaken': 1, 'Perl_sv_setnv': 5, 'Perl_looks_like_number': 7, 'Perl_sv_copypv_flags': 8, 'Perl_sv_utf8_downgrade': 10, 'Perl_sv_2pvbyte': 3, 'Perl_sv_2pvutf8': 2, 'Perl_sv_2bool_flags': 6, 'Perl_sv_utf8_decode': 5, 'Perl_sv_setsv_cow': 22, 'Perl_sv_catpv': 21, 'Perl_sv_magicext_mglob': 1, 'Perl_sv_get_backrefs': 1, 'S_anonymise_cv_maybe': 7, 'Perl_sv_len': 5, 'Perl_sv_eq_flags': 93, 'Perl_sv_cmp_flags': 76, 'S_sv_gets_read_record': 3, 'Perl_sv_gets': 57, 'Perl_sv_inc_nomg': 12, 'Perl_sv_dec_nomg': 4, 'Perl_newSVpv': 6, 'S_perl_hash_one_at_a_time_hard': 1, 'Perl_newSVpvn_share': 26, 'Perl_newSVnv': 6, 'Perl_sv_resetpvn': 27, 'Perl_sv_2io': 5, 'Perl_sv_2cv': 9, 'Perl_sv_true': 1, 'Perl_sv_isa': 7, 'Perl_sv_bless': 4, 'Perl_newSVrv': 21, 'Perl_newSVavdefelem': 1, 'Perl_sv_untaint': 1, 'Perl_ptr_table_new': 2, 'S_ptr_table_find': 2, 'Perl_ptr_table_fetch': 2, 'Perl_ptr_table_split': 5, 'Perl_ptr_table_store': 7, 'Perl_ptr_table_clear': 1, 'Perl_ptr_table_free': 1, 'Perl_sv_cat_decode': 23}, PosixPath('600/regcomp.bc'): {'Perl_re_op_compile': 2010, 'S_compile_runtime_code': 88, 'S_construct_ahocorasick_from_trie': 67, 'S_study_chunk': 1787, 'S_re_croak2': 18, 'S_regatom': 577, 'S_regclass': 1512, 'S_grok_bslash_x': 21, 'S_alloc_maybe_populate_EXACT': 80, 'Perl__new_invlist_C_array': 3, 'Perl__new_invlist': 2, 'S__invlist_len': 1, 'S_invlist_array': 1, 'S_invlist_max': 1, 'S__invlist_array_init': 1, 'S_invlist_extend': 1, 'S__append_range_to_invlist': 6, 'S_invlist_clone': 3, 'Perl__invlist_invert': 2, 'Perl__invlist_union_maybe_complement_2nd': 13, 'Perl__add_range_to_invlist': 16, 'S_append_utf8_from_native_byte': 1, 'S_pat_upgrade_to_utf8': 2, 'S_concat_pat': 82, 'S_has_runtime_code': 4, 'Perl_save_re_context': 2, 'S_regnode_guts': 1, 'S_reganode': 1, 'S_add_data': 2, 'S_reg_node': 1, 'S_reg_skipcomment': 1, 'S_regpatws': 5, 'S_nextchar': 4, 'S_reg_scan_name': 8, 'S_reg2Lanode': 2, 'Perl_regnext': 5, 'S_regtail': 2, 'S_regpposixcc': 5, 'S_regcurly': 4, 'Perl__invlist_search': 4, 'S_grok_bslash_o': 15, 'S_grok_bslash_c': 3, 'S_form_short_octal_warning': 1, 'S_reg_recode': 7, 'Perl__invlist_intersection_maybe_complement_2nd': 11, 'S_av_top_index': 1, 'S_invlist_highest': 3, 'Perl__load_PL_utf8_foldclosures': 1, 'S_invlist_iternext': 3, 'S_add_above_Latin1_folds': 1, 'S_populate_ANYOF_from_invlist': 29, 'S_reginsert': 11, 'S_could_it_be_a_POSIX_class': 3, 'S_parse_lparen_question_flags': 47, 'S_regbranch': 602, 'S_reg': 308, 'S_handle_regex_sets': 196, 'S_grok_bslash_N': 59, 'get_regex_charset_name': 1, 'S_ssc_init': 1, 'S_join_exact': 20, 'S_scan_commit': 4, 'S_get_ANYOF_cp_list_for_ssc': 51, 'S_ssc_or': 6, 'S_ssc_is_anything': 16, 'S_ssc_is_cp_posixl_init': 18, 'S_ssc_and': 24, 'S_make_trie': 319, 'S_ssc_clear_locale': 1, 'S__make_exactf_invlist': 236, 'S_setup_longest': 3, 'S_is_ssc_worth_it': 24, 'S_ssc_finalize': 4, 'Perl_reg_named_buff_nextkey': 5, 'Perl_reg_named_buff_fetch': 5, 'Perl_reg_named_buff_exists': 1, 'Perl_reg_named_buff_all': 5, 'Perl_reg_named_buff_scalar': 3, 'Perl_reg_numbered_buff_length': 9, 'Perl_reg_numbered_buff_fetch': 29, 'Perl_regfree_internal': 7, 'Perl_re_intuit_string': 1, 'Perl_current_re_engine': 5, 'Perl__invlist_populate_swatch': 6, 'Perl__setup_canned_invlist': 1, 'Perl__invlist_contents': 6, 'Perl__invlist_dump': 12, 'Perl__get_regclass_nonbitmap_data': 31, 'Perl_pregfree2': 4, 'Perl_reg_temp_copy': 10}, PosixPath('600/deb.bc'): {'Perl_debstack': 1}, PosixPath('600/numeric.bc'): {'Perl_scan_bin': 12, 'Perl_scan_oct': 12, 'Perl_scan_hex': 12, 'Perl_grok_infnan': 41, 'Perl_my_atof2': 124, 'Perl_grok_bin': 3, 'Perl_grok_hex': 5, 'Perl_grok_oct': 4, 'Perl_grok_number_flags': 28, 'Perl_grok_atoUV': 3, 'S_my_atof_infnan': 5, 'Perl_my_atof': 1, 'Perl_isinfnansv': 12}, PosixPath('600/perlapi.bc'): {}, PosixPath('600/doio.bc'): {'Perl_nextargv': 62, 'S_openn_setup': 7, 'S_openn_cleanup': 11, 'Perl_do_open_raw': 38, 'Perl_do_open6': 288, 'S_av_top_index': 1, 'Perl_io_close': 6, 'Perl_do_close': 4, 'Perl_do_eof': 4, 'Perl_do_tell': 1, 'Perl_do_seek': 1, 'Perl_do_sysseek': 1, 'Perl_do_print': 21, 'Perl_my_stat_flags': 36, 'Perl_my_lstat_flags': 20, 'S_exec_failed': 2, 'Perl_do_aexec5': 11, 'Perl_do_exec3': 34, 'Perl_apply': 51, 'Perl_start_glob': 10}, PosixPath('600/perl.bc'): {'perl_construct': 2, 'Perl_init_stacks': 4, 'perl_destruct': 688, 'Perl_call_list': 148, 'perl_parse': 201, 'S_init_postdump_symbols': 6, 'perl_run': 140, 'Perl_call_sv': 256, 'Perl_eval_sv': 114, 'Perl_require_pv': 18, 'Perl_moreswitches': 141, 'Perl_init_debugger': 8, 'Perl_init_dbargs': 2, 'Perl_init_argv_symbols': 8, 'S_open_script': 19, 'S_init_predump_symbols': 6, 'perl_alloc': 1, 'S_av_top_index': 1, 'S_my_exit_jump': 11, 'S_nuke_stacks': 6, 'S_init_main_stash': 23, 'S_incpush_if_exists': 6, 'S_incpush': 6, 'S_find_beginning': 4, 'Perl_populate_isa': 13, 'read_e_script': 1, 'S_Internals_V': 2, 'S_parse_body': 137, 'S_run_body': 9, 'Perl_get_cvn_flags': 3, 'Perl_call_argv': 4, 'Perl_eval_pv': 5, 'Perl_doing_taint': 1}, PosixPath('600/mg.bc'): {'Perl_magic_get': 53, 'Perl_magic_methcall': 79, 'Perl_magic_getsubstr': 51, 'Perl_magic_setsubstr': 51, 'Perl_magic_set': 281, 'Perl_sighandler': 110, 'Perl_mg_magical': 4, 'S_restore_magic': 6, 'S_save_magic_flags': 1, 'Perl_magic_setutf8': 1, 'Perl_mg_get': 15, 'Perl_mg_set': 18, 'Perl_mg_length': 11, 'Perl_mg_size': 2, 'Perl_mg_clear': 1, 'S_mg_findext_flags': 2, 'Perl_mg_find': 1, 'Perl_mg_findext': 1, 'Perl_vivify_defelem': 6, 'Perl_mg_find_mglob': 5, 'Perl_mg_copy': 1, 'Perl_mg_localize': 6, 'S_mg_free_struct': 1, 'Perl_mg_free': 1, 'Perl_mg_free_type': 3, 'Perl_magic_regdata_cnt': 2, 'Perl_magic_regdatum_get': 3, 'Perl_emulate_cop_io': 1, 'Perl__get_encoding': 3, 'S_fixup_errno_string': 2, 'Perl_magic_getuvar': 1, 'Perl_magic_setenv': 33, 'Perl_magic_clearenv': 2, 'Perl_magic_set_all_env': 1, 'Perl_magic_getsig': 20, 'Perl_magic_setsig': 99, 'Perl_despatch_signals': 1, 'Perl_magic_clearisa': 9, 'Perl_magic_getnkeys': 3, 'Perl_magic_setnkeys': 2, 'S_magic_methcall1': 1, 'Perl_magic_getpack': 1, 'Perl_magic_setpack': 1, 'Perl_magic_sizepack': 1, 'Perl_magic_scalarpack': 1, 'Perl_magic_setdbline': 3, 'Perl_magic_getarylen': 1, 'Perl_magic_setarylen': 1, 'Perl_magic_freearylen_p': 1, 'Perl_magic_getpos': 4, 'Perl_magic_setpos': 32, 'S_sv_or_pv_pos_u2b': 2, 'Perl_magic_gettaint': 1, 'Perl_magic_settaint': 1, 'Perl_magic_getvec': 1, 'Perl_defelem_target': 8, 'Perl_magic_setdefelem': 1, 'Perl_magic_setuvar': 1, 'Perl_magic_setlvref': 16, 'Perl_whichsig_sv': 7, 'CvNAME_HEK': 1, 'S_CvGV': 1, 'Perl_magic_sethint': 1, 'Perl_magic_clearhint': 1, 'Perl_magic_copycallchecker': 4, 'Perl_magic_setdebugvar': 1}, PosixPath('600/toke.bc'): {'Perl_lex_start': 32, 'Perl_lex_grow_linestr': 9, 'Perl_lex_discard_to': 16, 'Perl_lex_next_chunk': 90, 'Perl_lex_read_space': 15, 'Perl_yyunlex': 14, 'S_force_next': 3, 'Perl_filter_add': 20, 'Perl_yylex': 3448, 'S_pending_ident': 94, 'S_sublex_push': 45, 'S_sublex_done': 50, 'S_scan_const': 380, 'S_scan_formline': 112, 'S_postderef': 13, 'S_scan_str': 343, 'S_scan_heredoc': 337, 'S_scan_inputsymbol': 95, 'S_sublex_start': 19, 'S_scan_pat': 57, 'S_intuit_method': 85, 'S_lop': 11, 'S_scan_subst': 59, 'S_scan_trans': 14, 'S_new_constant': 79, 'Perl_start_subparse': 11, 'Perl_yyerror_pvn': 47, 'Perl_parse_label': 35, 'S_parse_opt_lexvar': 61, 'S_lex_token_boundary': 1, 'S_grok_bslash_x': 18, 'S_add_utf16_textfilter': 11, 'S_parse_recdescent': 6, 'Perl_feature_is_enabled': 6, 'Perl_parser_free': 8, 'Perl_parser_free_nexttoke_ops': 3, 'Perl_lex_bufutf8': 5, 'Perl_lex_stuff_pvn': 32, 'Perl_lex_stuff_sv': 7, 'Perl_lex_unstuff': 4, 'Perl_lex_read_to': 15, 'Perl_filter_read': 15, 'S_filter_gets': 1, 'S_update_debugger_info': 11, 'Perl_lex_peek_unichar': 14, 'Perl_lex_read_unichar': 13, 'S_incline': 36, 'Perl_validate_proto': 10, 'Perl_str_to_version': 13, 'Perl_filter_del': 1, 'S_force_ident': 21, 'S_regcurly': 4, 'S_skipspace_flags': 7, 'S_parse_ident': 11, 'S_check_uni': 65, 'S_intuit_more': 105, 'S_scan_ident': 317, 'S_tokeq': 4, 'S_form_short_octal_warning': 1, 'S_grok_bslash_o': 15, 'S_get_and_check_backslash_N_name': 131, 'S_grok_bslash_c': 3, 'S_utf16_textfilter': 22, 'S_swallow_bom': 4, 'S_scan_word': 29, 'S_newSV_maybe_utf8': 4, 'S_force_word': 22, 'S_ao': 1, 'S_force_ident_maybe_lex': 3, 'S_missingterm': 11, 'S_no_op': 92, 'S_check_scalar_slice': 58, 'S_pmflag': 21, 'Perl_scan_vstring': 12, 'Perl_scan_num': 91, 'S_word_takes_any_delimeter': 1, 'S_strip_spaces': 1, 'S_find_in_my_stash': 20, 'S_force_version': 12, 'S_tokenize_use': 8, 'S_checkcomma': 108, 'S_force_strict_version': 8, 'S_parse_recdescent_for_op': 5, 'Perl_parse_subsignature': 5}, PosixPath('600/pp_ctl.bc'): {'Perl_pp_regcomp': 90, 'Perl_pp_grepstart': 27, 'Perl_pp_return': 125, 'Perl_pp_goto': 396, 'S_run_user_filter': 73, 'S_docatch': 21, 'Perl_pp_entergiven': 22, 'S_check_type_and_open': 18, 'S_try_yyparse': 9, 'Perl_caller_cx': 13, 'Perl_pp_wantarray': 7, 'S_rxres_restore': 3, 'S_rxres_free': 1, 'S_sv_only_taint_gmagic': 1, 'Perl_rxres_save': 6, 'Perl_pp_substcont': 71, 'S_doparseform': 35, 'Perl_pp_formline': 272, 'Perl_block_gimme': 1, 'Perl_pp_mapwhile': 47, 'Perl_pp_range': 9, 'Perl_pp_flip': 56, 'Perl_pp_flop': 122, 'Perl_is_lvalue_sub': 2, 'Perl_was_lvalue_sub': 2, 'Perl_dounwind': 57, 'Perl_qerror': 1, 'Perl_die_unwind': 68, 'Perl_pp_xor': 3, 'Perl_pp_caller': 56, 'Perl_pp_reset': 17, 'Perl_pp_dbstate': 44, 'Perl_pp_enter': 10, 'S_leave_common': 10, 'Perl_pp_leave': 20, 'S_outside_integer': 1, 'Perl_pp_enteriter': 37, 'Perl_pp_enterloop': 9, 'Perl_pp_leaveloop': 11, 'S_return_lvalues': 77, 'Perl_pp_leavesublv': 29, 'S_dopoptoloop': 6, 'S_dopoptolabel': 20, 'S_unwind_loop': 78, 'Perl_pp_last': 32, 'Perl_pp_next': 11, 'Perl_pp_redo': 43, 'S_CvGV': 1, 'S_dofindlabel': 20, 'Perl_pp_exit': 5, 'Perl_find_runcv_where': 17, 'S_av_top_index': 1, 'S_path_is_searchable': 1, 'S_doopen_pm': 12, 'S_doeval': 89, 'Perl_pp_require': 148, 'Perl_pp_hintseval': 1, 'S_save_lines': 1, 'Perl_pp_entereval': 80, 'Perl_pp_leaveeval': 24, 'Perl_delete_eval_scope': 6, 'Perl_create_eval_scope': 14, 'Perl_pp_entertry': 3, 'Perl_pp_leavetry': 10, 'Perl_pp_leavegiven': 6, 'S_make_matcher': 1, 'S_matcher_matches_sv': 2, 'S_do_smartmatch': 81, 'Perl_pp_enterwhen': 20, 'Perl_pp_leavewhen': 28, 'Perl_pp_continue': 15, 'Perl_pp_break': 14}, PosixPath('600/caretx.bc'): {'Perl_set_caret_X': 1}, PosixPath('600/pp_hot.bc'): {'Perl_pp_const': 1, 'Perl_pp_gv': 4, 'Perl_pp_pushre': 1, 'Perl_pp_qr': 19, 'Perl_pp_nextstate': 11, 'Perl_pp_gvsv': 5, 'Perl_pp_stringify': 1, 'Perl_pp_and': 13, 'Perl_pp_sassign': 17, 'Perl_pp_cond_expr': 6, 'Perl_pp_unstack': 18, 'Perl_pp_concat': 80, 'S_pushav': 4, 'Perl_pp_padrange': 51, 'Perl_vivify_ref': 3, 'Perl_pp_padsv': 3, 'S_av_top_index': 1, 'Perl_do_readline': 108, 'Perl_pp_readline': 36, 'Perl_pp_eq': 4, 'Perl_pp_preinc': 5, 'Perl_pp_or': 7, 'Perl_pp_defined': 13, 'Perl_pp_add': 13, 'Perl_pp_aelemfast': 11, 'Perl_pp_print': 57, 'Perl_pp_rv2av': 109, 'S_do_oddball': 1, 'Perl_pp_aassign': 82, 'S_sv_or_pv_pos_u2b': 2, 'S_MgBYTEPOS': 6, 'S_sv_only_taint_gmagic': 1, 'Perl_pp_match': 296, 'Perl_pp_helem': 14, 'S_softref2xv_lite': 1, 'Perl_pp_multideref': 205, 'Perl_pp_iter': 46, 'Perl_pp_subst': 236, 'Perl_pp_grepwhile': 46, 'Perl_pp_leavesub': 52, 'S_CvGV': 1, 'Perl_pp_entersub': 239, 'Perl_pp_aelem': 12, 'S_opmethod_stash': 22, 'Perl_pp_method': 2, 'Perl_pp_method_named': 20, 'Perl_pp_method_super': 21, 'Perl_pp_method_redir': 21, 'Perl_pp_method_redir_super': 21}, PosixPath('600/pp.bc'): {'Perl_pp_srand': 22, 'Perl_pp_substr': 186, 'Perl_pp_ucfirst': 99, 'Perl_pp_uc': 88, 'Perl_pp_lc': 76, 'Perl_pp_fc': 57, 'S_do_delete_local': 37, 'Perl_pp_lvref': 14, 'Perl_pp_stub': 3, 'Perl_pp_padav': 22, 'Perl_pp_padhv': 17, 'Perl_pp_padcv': 2, 'Perl_pp_introcv': 2, 'Perl_pp_clonecv': 5, 'S_rv2gv': 30, 'Perl_pp_rv2gv': 2, 'Perl_softref2xv': 3, 'Perl_pp_rv2sv': 41, 'Perl_pp_av2arylen': 3, 'Perl_pp_pos': 9, 'Perl_pp_rv2cv': 10, 'Perl_pp_prototype': 12, 'Perl_pp_anoncode': 3, 'S_refto': 5, 'Perl_pp_refgen': 9, 'Perl_pp_ref': 4, 'Perl_pp_bless': 18, 'Perl_pp_gelem': 20, 'Perl_pp_study': 8, 'Perl_pp_trans': 22, 'S_do_chomp': 109, 'Perl_pp_schop': 1, 'Perl_pp_chop': 8, 'CvNAME_HEK': 1, 'S_CvGV': 1, 'Perl_pp_undef': 18, 'Perl_pp_postinc': 4, 'Perl_pp_pow': 9, 'Perl_pp_multiply': 8, 'Perl_pp_divide': 8, 'Perl_pp_modulo': 8, 'Perl_pp_repeat': 103, 'Perl_pp_subtract': 13, 'Perl_pp_left_shift': 12, 'Perl_pp_right_shift': 12, 'Perl_do_ncmp': 4, 'Perl_pp_lt': 4, 'Perl_pp_gt': 4, 'Perl_pp_le': 4, 'Perl_pp_ge': 4, 'Perl_pp_ne': 4, 'Perl_pp_ncmp': 2, 'Perl_pp_sle': 2, 'Perl_pp_seq': 2, 'Perl_pp_sne': 2, 'Perl_pp_scmp': 2, 'Perl_pp_bit_and': 14, 'Perl_pp_nbit_and': 10, 'Perl_pp_sbit_and': 8, 'Perl_pp_bit_or': 16, 'Perl_pp_nbit_or': 12, 'Perl_pp_sbit_or': 10, 'S_negate_string': 13, 'Perl_pp_negate': 3, 'Perl_pp_not': 8, 'S_scomplement': 13, 'Perl_pp_complement': 5, 'Perl_pp_ncomplement': 5, 'Perl_pp_scomplement': 3, 'Perl_pp_i_multiply': 6, 'Perl_pp_i_divide': 6, 'Perl_pp_i_modulo': 6, 'Perl_pp_i_add': 13, 'Perl_pp_i_subtract': 13, 'Perl_pp_i_lt': 4, 'Perl_pp_i_gt': 4, 'Perl_pp_i_le': 4, 'Perl_pp_i_ge': 4, 'Perl_pp_i_eq': 4, 'Perl_pp_i_ne': 4, 'Perl_pp_i_ncmp': 4, 'Perl_pp_i_negate': 1, 'Perl_pp_atan2': 4, 'Perl_pp_sin': 3, 'Perl_pp_rand': 9, 'Perl_pp_int': 3, 'Perl_pp_abs': 3, 'Perl_pp_oct': 51, 'Perl_pp_length': 12, 'S_sv_or_pv_pos_u2b': 2, 'Perl_pp_vec': 23, 'Perl_pp_index': 155, 'Perl_pp_sprintf': 3, 'Perl_pp_ord': 32, 'Perl_pp_chr': 20, 'Perl_pp_quotemeta': 45, 'Perl_pp_aslice': 31, 'Perl_pp_kvaslice': 15, 'S_av_top_index': 1, 'Perl_pp_akeys': 3, 'Perl_pp_each': 3, 'Perl_pp_aeach': 7, 'Perl_pp_rkeys': 6, 'Perl_pp_delete': 60, 'Perl_pp_exists': 18, 'Perl_pp_hslice': 28, 'Perl_pp_kvhslice': 13, 'Perl_pp_list': 3, 'Perl_pp_lslice': 7, 'Perl_pp_anonlist': 1, 'Perl_pp_anonhash': 2, 'S_deref_plain_array': 2, 'Perl_pp_splice': 146, 'Perl_pp_push': 13, 'Perl_pp_shift': 6, 'Perl_pp_unshift': 4, 'Perl_pp_reverse': 54, 'Perl_pp_split': 334, 'Perl_pp_once': 3, 'Perl_pp_coreargs': 129, 'Perl_pp_runcv': 3, 'S_localise_aelem_lval': 1, 'Perl_pp_refassign': 39, 'Perl_pp_lvrefslice': 12, 'Perl_pp_lvavref': 2}, PosixPath('600/utf8.bc'): {'Perl_bytes_to_utf8': 4, 'Perl__core_swash_init': 77, 'Perl__swash_to_invlist': 98, 'S_swash_scan_list_line': 21, 'Perl_is_invariant_string': 2, 'Perl_uvoffuni_to_utf8_flags': 1, 'Perl_utf8n_to_uvchr': 5, 'Perl_is_utf8_string': 3, 'Perl_is_utf8_string_loclen': 3, 'Perl_valid_utf8_to_uvchr': 2, 'Perl_utf8_length': 2, 'Perl_utf8_hop': 1, 'Perl_bytes_cmp_utf8': 3, 'Perl_utf8_to_bytes': 3, 'Perl_bytes_from_utf8': 3, 'S_append_utf8_from_native_byte': 1, 'Perl_utf16_to_utf8': 4, 'Perl_utf16_to_utf8_reversed': 3, 'S__invlist_len': 1, 'S_swatch_get': 96, 'Perl_swash_fetch': 33, 'S_is_utf8_common': 9, 'Perl__is_utf8_FOO': 1, 'Perl__is_uni_FOO': 3, 'Perl__to_upper_title_latin1': 1, 'Perl_to_utf8_case': 21, 'S_to_lower_latin1': 1, 'Perl_to_uni_lower': 1, 'Perl__to_fold_latin1': 1, 'S_check_locale_boundary_crossing': 1, 'Perl__to_utf8_fold_flags': 4, 'Perl__to_uni_fold_flags': 1, 'Perl__to_utf8_upper_flags': 2, 'Perl__to_utf8_title_flags': 2, 'Perl__to_utf8_lower_flags': 2, 'S_av_top_index': 1, 'Perl__swash_inversion_hash': 40, 'Perl__get_swash_invlist': 1, 'Perl_check_utf8_print': 7, 'Perl_pv_uni_display': 8, 'Perl_sv_uni_display': 1, 'Perl_foldEQ_utf8_flags': 51}, PosixPath('600/perly.bc'): {'Perl_yyparse': 263, 'S_clear_yystack': 41}, PosixPath('600/util.bc'): {'S_invoke_exception_hook': 47, 'Perl_croak_no_mem': 1, 'Perl_safesysmalloc': 1, 'Perl_safesysrealloc': 1, 'Perl_closest_cop': 2, 'Perl_croak_popstack': 1, 'Perl_safesyscalloc': 2, 'S_mess_alloc': 1, 'Perl_mess_sv': 76, 'Perl_vcroak': 1, 'Perl_delimcpy': 2, 'Perl_ninstr': 7, 'Perl_rninstr': 2, 'Perl_fbm_compile': 27, 'Perl_fbm_instr': 30, 'Perl_foldEQ': 4, 'Perl_foldEQ_latin1': 4, 'Perl_foldEQ_locale': 4, 'Perl_savepvn': 2, 'Perl_savesharedpvn': 2, 'Perl_savesvpv': 8, 'Perl_savesharedsvpv': 7, 'Perl_write_to_stderr': 8, 'Perl_vwarner': 2, 'Perl_ck_warner_d': 1, 'Perl_ckwarn': 1, 'Perl_ck_warner': 3, 'Perl_new_warnings_bitfield': 4, 'Perl_my_setenv': 13, 'Perl_my_popen_list': 24, 'Perl_my_popen': 30, 'Perl_my_pclose': 2, 'Perl_repeatcpy': 4, 'Perl_same_dirent': 13, 'Perl_find_script': 12, 'Perl_report_wrongway_fh': 2, 'Perl_report_evil_fh': 33, 'Perl_mini_mktime': 1, 'Perl_getcwd_sv': 1, 'Perl_prescan_version': 14, 'Perl_scan_version': 56, 'Perl_upg_version': 22, 'Perl_new_version': 4, 'Perl_vverify': 2, 'Perl_vnumify': 4, 'Perl_vnormal': 3, 'Perl_vcmp': 4, 'Perl_parse_unicode_opts': 6, 'S_xs_version_bootcheck': 1, 'Perl_xs_handshake': 41, 'S_CvGV': 1, 'S_gv_has_usable_name': 4, 'Perl_get_db_sub': 13, 'Perl_get_re_arg': 2}, PosixPath('600/pp_pack.bc'): {'S_need_utf8': 1, 'S_group_end': 2, 'S_get_num': 4, 'S_next_symbol': 26, 'S_measure_struct': 24, 'utf8_to_byte': 2, 'S_utf8_to_bytes': 2, 'S_reverse_copy': 2, 'S_mul128': 13, 'S_unpack_rec': 469, 'Perl_unpackstring': 25, 'Perl_pp_unpack': 29, 'marked_upgrade': 14, 'S_sv_exp_grow': 2, 'S_sv_check_infnan': 5, 'S_append_utf8_from_native_byte': 1, 'S_my_bytes_to_utf8': 5, 'S_is_an_int': 1, 'S_div128': 13, 'doencodes': 18, 'S_pack_rec': 497, 'Perl_packlist': 37, 'Perl_pp_pack': 13}, PosixPath('600/pad.bc'): {'Perl_cv_undef_flags': 60, 'Perl_newPADNAMEpvn': 1, 'S_cv_clone_pad': 1, 'Perl_newPADNAMELIST': 1, 'Perl_padname_free': 2, 'Perl_padnamelist_store': 1, 'Perl_pad_new': 11, 'CvNAME_HEK': 1, 'Perl_padnamelist_free': 2, 'Perl_cv_forget_slab': 1, 'S_pad_check_dup': 14, 'Perl_pad_alloc': 17, 'S_pad_alloc_name': 6, 'Perl_pad_add_name_pvn': 16, 'Perl_pad_add_name_sv': 7, 'Perl_pad_add_anon': 2, 'Perl_pad_add_weakref': 1, 'PadnameIN_SCOPE': 1, 'S_unavailable': 1, 'Perl_newPADNAMEouter': 2, 'S_pad_findlex': 43, 'Perl_pad_findmy_pvn': 6, 'Perl_pad_findmy_sv': 7, 'Perl_find_rundefsv': 6, 'Perl_find_rundefsv2': 6, 'Perl_intro_my': 11, 'Perl_pad_leavemy': 25, 'Perl_pad_swipe': 11, 'Perl_pad_tidy': 46, 'Perl_pad_free': 3, 'Perl_do_dump_pad': 3, 'S_CvGV': 1, 'S_perl_hash_one_at_a_time_hard': 1, 'S_cv_clone': 218, 'Perl_cv_name': 7, 'Perl_pad_fixup_inner_anons': 11, 'Perl_padlist_store': 1, 'Perl_pad_push': 5, 'Perl_padnamelist_fetch': 1}, PosixPath('600/scope.bc'): {'Perl_cxinc': 5, 'Perl_new_stackinfo': 1, 'CvNAME_HEK': 1, 'S_CvGV': 1, 'Perl_leave_scope': 462, 'Perl_free_tmps': 5, 'Perl_save_pushptrptr': 1, 'S_save_scalar_at': 1, 'Perl_save_scalar': 4, 'Perl_save_set_svflags': 1, 'Perl_save_gp': 6, 'Perl_save_ary': 1, 'Perl_save_hash': 1, 'Perl_save_bool': 1, 'Perl_save_pushi32ptr': 1, 'Perl_save_int': 1, 'Perl_save_I8': 1, 'Perl_save_I16': 1, 'Perl_save_I32': 4, 'Perl_save_strlen': 1, 'Perl_save_padsv_and_mortalize': 2, 'Perl_save_pushptr': 1, 'Perl_save_clearsv': 3, 'S_save_pushptri32ptr': 1, 'Perl_save_hdelete': 12, 'Perl_save_adelete': 1, 'Perl_save_destructor': 1, 'Perl_save_destructor_x': 1, 'Perl_save_aelem_flags': 3, 'Perl_save_helem_flags': 5, 'Perl_save_aliased_sv': 3}, PosixPath('600/hv.bc'): {'Perl_hv_common': 302, 'S_share_hek_flags': 10, 'S_save_hek_flags': 1, 'Perl_hv_name_set': 5, 'S_hv_auxinit': 16, 'Perl_hv_ename_add': 5, 'Perl_refcounted_he_new_pvn': 39, 'Perl_free_tied_hv_pool': 1, 'S_hv_magic_check': 3, 'S_perl_hash_one_at_a_time_hard': 1, 'S_unshare_hek_or_pvn': 23, 'S_hv_free_ent_ret': 3, 'S_hv_auxinit_internal': 1, 'S_hsplit': 14, 'S_clear_placeholders': 5, 'Perl_hv_fill': 6, 'Perl_hv_ksplit': 1, 'Perl_hv_iterinit': 3, 'Perl_hv_iternext_flags': 21, 'Perl_hv_iterval': 1, 'Perl_hv_riter_set': 1, 'Perl_hv_eiter_set': 1, 'Perl_newHVhv': 13, 'Perl_hv_copy_hints_hv': 6, 'Perl_hv_delayfree_ent': 1, 'Perl_hfree_next_entry': 30, 'S_hfreeentries': 2, 'Perl_hv_clear': 8, 'Perl_share_hek': 2, 'Perl_hv_undef_flags': 35, 'Perl_hv_riter_p': 1, 'Perl_hv_eiter_p': 1, 'Perl_hv_rand_set': 1, 'hek_eq_pvn_flags': 1, 'Perl_hv_ename_delete': 8, 'Perl_hv_backreferences_p': 1, 'Perl_hv_kill_backrefs': 2, 'Perl_hv_iterkey': 11, 'S_refcounted_he_value': 4, 'Perl_refcounted_he_chain_2hv': 17, 'Perl_refcounted_he_fetch_pvn': 5, 'Perl_refcounted_he_fetch_sv': 12, 'Perl_refcounted_he_new_sv': 12, 'Perl_refcounted_he_free': 2, 'Perl_cop_fetch_label': 3}, PosixPath('600/run.bc'): {'Perl_runops_standard': 1}, PosixPath('600/op.bc'): {'Perl_Slab_Alloc': 38, 'Perl_op_null': 2, 'S_gen_constant_list': 17, 'Perl_my_attrs': 12, 'S_my_kid': 11, 'Perl_newPROG': 18, 'Perl_localize': 14, 'S_fold_constants': 151, 'Perl_newATTRSUB_x': 863, 'Perl_newWHILEOP': 60, 'Perl_newMYSUB': 435, 'S_process_special_blocks': 21, 'Perl_ck_sort': 72, 'Perl_Slab_Free': 3, 'S_forget_pmop': 8, 'S_find_and_forget_pmops': 1, 'S_cop_free': 1, 'S_op_clear_gv': 3, 'Perl_custom_op_get_field': 24, 'S_op_varname': 3, 'S_op_pretty': 2, 'Perl_op_sibling_splice': 5, 'S_op_integerize': 2, 'Perl_op_linklist': 3, 'Perl_op_free': 8, 'Perl_op_clear': 3, 'S_inplace_aassign': 6, 'Perl_scalar': 22, 'Perl_scalarvoid': 72, 'S_scalarkids': 1, 'Perl_newSVOP': 9, 'Perl_newOP': 8, 'Perl_newLISTOP': 9, 'S_force_list': 1, 'S_op_std_init': 1, 'Perl_newUNOP': 8, 'Perl_newSVREF': 1, 'Perl_newDEFSVOP': 2, 'Perl_ck_ftst': 4, 'Perl_opslab_force_free': 6, 'Perl_allocmy': 16, 'S_alloc_LOGOP': 2, 'S_prune_chain_head': 2, 'Perl_list': 11, 'S_listkids': 1, 'S_check_hash_fields_and_hekify': 34, 'S_scalar_slice_warning': 27, 'S_finalize_op': 6, 'Perl_doref': 2, 'S_mark_padname_lvalue': 3, 'S_lvref': 19, 'Perl_op_lvalue_flags': 53, 'S_modkids': 1, 'Perl_op_append_elem': 1, 'Perl_op_prepend_elem': 1, 'S_newMETHOP_internal': 4, 'Perl_op_convert_list': 7, 'Perl_newSTATEOP': 22, 'S_move_proto_attr': 74, 'S_strip_spaces': 1, 'CvNAME_HEK': 1, 'Perl_cv_ckproto_len_flags': 47, 'S_scalarseq': 5, 'S_op_const_sv': 6, 'Perl_cv_const_sv': 2, 'S_CvGV': 1, 'Perl_report_redefined_cv': 33, 'S_already_defined': 22, 'Perl_newXS_len_flags': 15, 'const_sv_xsub': 2, 'const_av_xsub': 11, 'Perl_newCONSTSUB_flags': 14, 'S_perl_hash_one_at_a_time_hard': 1, 'S_dup_attrlist': 2, 'S_clear_special_blocks': 3, 'S_enable_feature_bundle': 1, 'Perl_vload_module': 1, 'Perl_utilize': 6, 'S_apply_attrs': 2, 'Perl_apply_attrs_string': 3, 'S_cant_declare': 10, 'S_apply_attrs_my': 2, 'Perl_op_append_list': 3, 'Perl_newBINOP': 8, 'Perl_newPMOP': 31, 'uvcompare': 1, 'S_pmtrans': 126, 'PadnameIN_SCOPE': 1, 'S_set_haseval': 15, 'Perl_pmruntime': 198, 'Perl_bind_match': 4, 'Perl_op_scope': 4, 'Perl_op_unscope': 2, 'S_av_top_index': 1, 'Perl_block_start': 10, 'Perl_block_end': 44, 'Perl_newUNOP_AUX': 5, 'Perl_newPVOP': 9, 'Perl_package': 2, 'S_scalarboolean': 3, 'S_search_const': 2, 'S_new_logop': 33, 'Perl_newLOGOP': 3, 'S_assignment_type': 5, 'Perl_newASSIGNOP': 35, 'Perl_newCONDOP': 16, 'Perl_newRANGE': 8, 'Perl_newLOOPOP': 54, 'Perl_newFOROP': 17, 'Perl_newLOOPEX': 15, 'S_ref_array_or_hash': 1, 'S_newGIVWHENOP': 2, 'S_looks_like_bool': 1, 'Perl_cv_const_sv_or_av': 2, 'Perl_newSTUB': 14, 'Perl_newFORM': 9, 'Perl_oopsAV': 1, 'Perl_oopsHV': 1, 'Perl_newAVREF': 1, 'Perl_newHVREF': 1, 'Perl_newCVREF': 1, 'Perl_ck_anoncode': 1, 'Perl_ck_backtick': 2, 'Perl_ck_bitop': 4, 'is_dollar_bracket': 2, 'Perl_ck_cmp': 2, 'Perl_ck_concat': 2, 'Perl_ck_fun': 71, 'Perl_ck_spair': 4, 'Perl_ck_delete': 3, 'Perl_ck_eof': 6, 'Perl_ck_eval': 11, 'Perl_ck_exists': 2, 'Perl_ck_rvconst': 6, 'Perl_ck_glob': 5, 'Perl_ck_grep': 4, 'Perl_ck_index': 8, 'S_refkids': 1, 'Perl_ck_rfun': 1, 'Perl_ck_defined': 1, 'Perl_ck_readline': 3, 'Perl_ck_listiob': 4, 'Perl_ck_smartmatch': 3, 'S_maybe_targlex': 2, 'Perl_ck_sassign': 7, 'Perl_ck_match': 3, 'Perl_ck_method': 2, 'Perl_ck_open': 5, 'Perl_ck_refassign': 32, 'Perl_ck_repeat': 1, 'Perl_ck_require': 23, 'Perl_ck_return': 2, 'Perl_ck_select': 2, 'Perl_ck_shift': 6, 'S_simplify_sort': 35, 'Perl_ck_split': 7, 'Perl_ck_stringify': 1, 'Perl_ck_join': 5, 'Perl_find_lexical_cv': 2, 'Perl_rv2cv_op_cv': 10, 'Perl_ck_entersub_args_list': 2, 'Perl_ck_entersub_args_proto': 22, 'Perl_ck_entersub_args_core': 13, 'S_cv_get_call_checker': 1, 'Perl_cv_set_call_checker_flags': 2, 'S_entersub_alloc_targ': 1, 'Perl_ck_subr': 29, 'Perl_ck_svconst': 3, 'Perl_ck_trunc': 4, 'Perl_ck_substr': 2, 'Perl_ck_tell': 4, 'Perl_ck_each': 6, 'Perl_ck_length': 1, 'S_maybe_multideref': 22, 'S_aassign_common_vars': 48, 'S_aassign_common_vars_aliases_only': 3, 'Perl_rpeep': 560, 'Perl_core_prototype': 26, 'Perl_coresub_op': 1}, PosixPath('600/taint.bc'): {'Perl_taint_env': 49}, PosixPath('600/mro_core.bc'): {'S_mro_gather_and_rename': 453, 'Perl_mro_get_private_data': 1, 'Perl_mro_set_private_data': 2, 'Perl_mro_register': 1, 'Perl_mro_meta_init': 2, 'S_mro_get_linear_isa_dfs': 33, 'Perl_mro_get_linear_isa': 28, 'S_mro_clean_isarev': 19, 'Perl_mro_isa_changed_in': 87, 'Perl_mro_package_moved': 14, 'Perl_mro_method_changed_in': 25, 'Perl_mro_set_mro': 1}, PosixPath('600/keywords.bc'): {'Perl_keyword': 2}, PosixPath('600/regexec.bc'): {'Perl_regexec_flags': 663, 'S_find_byclass': 660, 'S_reg_set_capture_string': 10, 'S_push_slab': 2, 'S_setup_eval_state': 50, 'S_regmatch': 1891, 'S_setup_EXACTISH_ST_c1_c2': 63, 'S_sv_or_pv_pos_u2b': 2, 'S_MgBYTEPOS': 6, 'S_to_utf8_substr': 3, 'S_to_byte_substr': 3, 'S_reghop3': 4, 'S_reghopmaybe3': 4, 'S_reghop4': 4, 'S_append_utf8_from_native_byte': 1, 'S_reginclass': 27, 'S_backup_one_SB': 4, 'S_advance_one_SB': 4, 'S_isSB': 9, 'S_backup_one_WB': 4, 'S_advance_one_WB': 4, 'S_isWB': 7, 'S_reg_check_named_buff_matched': 3, 'S_regcppush': 6, 'S_sv_only_taint_gmagic': 1, 'S_regcppop': 10, 'S_av_top_index': 1, 'S_isFOO_utf8_lc': 7, 'S_regrepeat': 94, 'S_regtry': 9, 'Perl_re_intuit_start': 162, 'S_cleanup_regmatch_info_aux': 7}, PosixPath('600/av.bc'): {'Perl_av_make': 2, 'Perl_av_undef': 3, 'Perl_av_reify': 4, 'Perl_av_extend_guts': 3, 'Perl_av_extend': 1, 'S_adjust_index': 6, 'Perl_av_store': 62, 'Perl_av_fetch': 20, 'Perl_av_clear': 9, 'Perl_av_fill': 4, 'Perl_av_push': 2, 'Perl_av_create_and_push': 1, 'Perl_av_pop': 2, 'Perl_av_unshift': 9, 'Perl_av_create_and_unshift_one': 1, 'Perl_av_shift': 6, 'S_av_top_index': 1, 'Perl_av_len': 1, 'Perl_av_delete': 20, 'Perl_av_exists': 12, 'Perl_av_iter_p': 1}, PosixPath('600/pp_sys.bc'): {'Perl_tied_method': 68, 'Perl_pp_tie': 87, 'Perl_pp_leavewrite': 127, 'Perl_pp_syswrite': 96, 'Perl_pp_mkdir': 24, 'Perl_pp_backtick': 21, 'S_av_top_index': 1, 'Perl_pp_glob': 36, 'Perl_pp_warn': 31, 'Perl_pp_die': 19, 'Perl_pp_open': 23, 'Perl_pp_close': 4, 'Perl_pp_fileno': 4, 'Perl_pp_umask': 6, 'Perl_pp_binmode': 21, 'Perl_pp_untie': 16, 'Perl_pp_tied': 5, 'Perl_pp_dbmopen': 7, 'Perl_pp_sselect': 48, 'Perl_setdefout': 2, 'Perl_pp_select': 22, 'Perl_pp_getc': 21, 'S_doform': 18, 'Perl_pp_enterwrite': 13, 'Perl_pp_prtf': 17, 'Perl_pp_sysopen': 15, 'Perl_pp_sysread': 72, 'Perl_pp_eof': 36, 'Perl_pp_tell': 8, 'Perl_pp_sysseek': 11, 'Perl_pp_truncate': 22, 'Perl_pp_ioctl': 42, 'Perl_pp_stat': 115, 'S_ft_return_true': 6, 'S_ft_return_false': 6, 'S_try_amagic_ftest': 5, 'Perl_pp_ftrread': 6, 'Perl_pp_ftis': 5, 'Perl_pp_ftrowned': 4, 'Perl_pp_ftlink': 1, 'Perl_pp_fttty': 34, 'Perl_pp_fttext': 61, 'Perl_pp_chdir': 28, 'Perl_pp_chown': 3, 'Perl_pp_rename': 7, 'Perl_pp_rmdir': 14, 'Perl_pp_fork': 3, 'Perl_pp_wait': 7, 'Perl_pp_waitpid': 13, 'Perl_pp_system': 48, 'Perl_pp_exec': 10, 'Perl_pp_time': 2, 'S_copy_little_tm_to_big_TM': 2, 'S_gmtime64_r': 7, 'S_timegm64': 17, 'S_localtime64_r': 178, 'Perl_pp_gmtime': 371, 'Perl_pp_sleep': 10, 'Perl_pp_shostent': 1, 'Perl_pp_ehostent': 2}, PosixPath('600/dist/Storable/Storable.bc'): {'XS_Storable_mstore': 6, 'do_store': 8, 'magic_write': 2, 'store': 30, 'store_blessed': 678, 'store_hook': 2, 'store_ref': 9, 'store_scalar': 529, 'store_array': 65, 'store_hash': 308, 'store_tied': 4, 'store_tied_item': 55, 'store_code': 193, 'store_other': 113, 'do_retrieve': 72, 'storable_free': 2, 'init_perinterp': 4, 'XS_Storable_last_op_in_netorder': 4, 'reset_context': 1, 'clean_retrieve_context': 1, 'clean_store_context': 2, 'clean_context': 1, 'allocate_context': 2, 'init_store_context': 1, 'sv_type': 1, 'pkg_fetchmeth': 5, 'pkg_can': 8, 'array_call': 3, 'pkg_hide': 4, 'mbuf2sv': 1, 'free_context': 1, 'retrieve_other': 1, 'SvAMAGIC_on': 1, 'retrieve': 78, 'retrieve_tied_scalar': 7, 'retrieve_tied_hash': 7, 'retrieve_tied_array': 7, 'retrieve_scalar': 12, 'retrieve_netint': 14, 'retrieve_byte': 7, 'retrieve_double': 14, 'retrieve_integer': 14, 'retrieve_undef': 7, 'retrieve_ref': 8, 'old_retrieve_hash': 45, 'old_retrieve_array': 17, 'retrieve_lscalar': 29, 'retrieve_svundef_elem': 6, 'retrieve_lvstring': 13, 'retrieve_vstring': 10, 'retrieve_overloaded': 18, 'retrieve_code': 59, 'retrieve_flag_hash': 48, 'retrieve_tied_idx': 16, 'retrieve_tied_key': 7, 'scalar_call': 11, 'pkg_uncache': 4, 'retrieve_hook': 128, 'retrieve_idx_blessed': 16, 'retrieve_blessed': 27, 'retrieve_sv_no': 7, 'retrieve_sv_yes': 7, 'retrieve_sv_undef': 7, 'retrieve_hash': 40, 'retrieve_array': 16, 'magic_check': 41, 'init_retrieve_context': 1, 'dclone': 2, 'XS_Storable_dclone': 2, 'XS_Storable_pstore': 2}, PosixPath('600/dist/Data-Dumper/Dumper.bc'): {'DD_dump': 553, 'XS_Data__Dumper__vstring': 1, 'sv_x': 4, 'safe_decimal_number': 1, 'esc_q_utf8': 6, 'num_q': 1, 'esc_q': 1, 'globname_needs_quote': 2, 'XS_Data__Dumper_Dumpxs': 42}, PosixPath('600/dist/PathTools/Cwd.bc'): {'THX_unix_canonpath': 15, 'XS_File__Spec__Unix__fn_catfile': 5, 'THX_invocant_is_unix': 1, 'XS_File__Spec__Unix_catfile': 22, 'XS_File__Spec__Unix_catdir': 5, 'bsd_realpath': 19, 'XS_Cwd_abs_path': 55, 'XS_Cwd_getcwd': 5}, PosixPath('600/dist/IO/poll.bc'): {'Perl_my_poll': 40}, PosixPath('600/dist/IO/IO.bc'): {'io_ck_lineseq': 2, 'XS_IO__Handle__create_getline_subs': 1, 'XS_IO__Handle_setbuf': 1, 'XS_IO__Handle_untaint': 3, 'XS_IO__Handle_clearerr': 7, 'XS_IO__Handle_error': 7, 'XS_IO__Handle_ungetc': 12, 'XS_IO__Handle_blocking': 4, 'XS_IO__Poll__poll': 9, 'XS_IO__File_new_tmpfile': 4, 'XS_IO__Seekable_setpos': 1, 'XS_IO__Seekable_getpos': 1}, PosixPath('600/specrand/specrand.bc'): {'spec_init_genrand': 5, 'spec_srand': 1, 'spec_genrand_int32': 29, 'spec_init_by_array': 12}, PosixPath('600/cpan/MIME-Base64/Base64.bc'): {'XS_MIME__Base64_encode_base64': 37, 'XS_MIME__Base64_decode_base64': 68, 'XS_MIME__QuotedPrint_encode_qp': 41, 'XS_MIME__QuotedPrint_decode_qp': 51, 'XS_MIME__Base64_decoded_base64_length': 26, 'XS_MIME__Base64_encoded_base64_length': 6}, PosixPath('600/cpan/Time-HiRes/HiRes.bc'): {'hrt_usleep': 1, 'XS_Time__HiRes_stat': 40, 'XS_Time__HiRes_clock': 2, 'XS_Time__HiRes_clock_nanosleep': 2, 'XS_Time__HiRes_clock_getres': 4, 'XS_Time__HiRes_clock_gettime': 4, 'XS_Time__HiRes_time': 15, 'XS_Time__HiRes_gettimeofday': 13, 'XS_Time__HiRes_alarm': 7, 'XS_Time__HiRes_ualarm': 7, 'XS_Time__HiRes_sleep': 40, 'XS_Time__HiRes_nanosleep': 4, 'XS_Time__HiRes_usleep': 42, 'XS_Time__HiRes_constant': 23}, PosixPath('600/cpan/HTML-Parser/Parser.bc'): {'XS_HTML__Entities__probably_utf8_chunk': 7, 'parse': 114, 'report_event': 483, 'decode_entities': 66, 'XS_HTML__Entities_UNICODE_SUPPORT': 4, 'has_hibit': 1, 'probably_utf8_chunk': 3, 'grow_gap': 4, 'XS_HTML__Entities__decode_entities': 4, 'XS_HTML__Entities_decode_entities': 6, 'get_pstate_hv': 1, 'argspec_compile': 65, 'check_handler': 3, 'XS_HTML__Parser_handler': 100, 'XS_HTML__Parser_ignore_tags': 7, 'XS_HTML__Parser_boolean_attribute_value': 3, 'XS_HTML__Parser_strict_comment': 8, 'sv_lower': 9, 'flush_pending_text': 2, 'marked_section_update': 11, 'tokens_grow': 2, 'parse_start': 226, 'skip_until_gt': 1, 'parse_end': 25, 'parse_comment': 38, 'parse_marked_section': 15, 'strnEQx': 2, 'parse_decl': 176, 'parse_process': 12, 'parse_buf': 706, 'XS_HTML__Parser_eof': 1, 'XS_HTML__Parser_parse': 89, 'free_pstate': 1, 'magic_free_pstate': 1, 'XS_HTML__Parser__alloc_pstate': 1}, PosixPath('600/cpan/Digest-MD5/MD5.bc'): {'MD5Init': 1, 'MD5Transform': 2, 'MD5Update': 1, 'u2s': 1, 'MD5Final': 2, 'hex_16': 4, 'base64_16': 20, 'make_mortal_sv': 37, 'XS_Digest__MD5_md5': 104, 'get_md5_ctx': 1, 'XS_Digest__MD5_context': 181, 'XS_Digest__MD5_digest': 12, 'XS_Digest__MD5_addfile': 6, 'XS_Digest__MD5_add': 8, 'XS_Digest__MD5_new': 15}, PosixPath('600/cpan/Digest-SHA/SHA.bc'): {'XS_Digest__SHA__putstate': 35, 'sharewind': 15, 'encbase64': 60, 'getSHA': 1, 'shadirect': 1, 'shabytes': 2, 'shabits': 2, 'shawrite': 2, 'XS_Digest__SHA__addfileuniv': 9, 'XS_Digest__SHA__addfilebin': 6, 'memw32': 1, 'statecpy': 4, 'w32mem': 1, 'digcpy': 3, 'XS_Digest__SHA__getstate': 143, 'shafinish': 2, 'shahex': 9, 'shabase64': 4, 'sha512': 59, 'sha256': 350, 'sha1': 378, 'XS_Digest__SHA_digest': 1, 'XS_Digest__SHA_add': 8, 'XS_Digest__SHA_hashsize': 6, 'hmacinit': 4, 'XS_Digest__SHA_hmac_sha1': 63, 'XS_Digest__SHA_sha1': 22, 'XS_Digest__SHA_newSHA': 4, 'XS_Digest__SHA_shawrite': 8, 'XS_Digest__SHA_shainit': 7}, PosixPath('600/cpan/Scalar-List-Utils/ListUtil.bc'): {'XS_List__Util_reduce': 136, 'XS_List__Util_first': 235, 'XS_List__Util_any': 244, 'XS_List__Util_pairfirst': 227, 'XS_List__Util_pairgrep': 170, 'XS_List__Util_pairmap': 116, 'S_CvGV': 1, 'XS_Sub__Util_subname': 14, 'XS_Sub__Util_set_subname': 58, 'XS_Sub__Util_set_prototype': 5, 'XS_Scalar__Util_openhandle': 12, 'XS_Scalar__Util_looks_like_number': 3, 'XS_Scalar__Util_isvstring': 2, 'XS_Scalar__Util_tainted': 6, 'XS_Scalar__Util_readonly': 6, 'XS_Scalar__Util_unweaken': 4, 'XS_Scalar__Util_refaddr': 8, 'XS_Scalar__Util_reftype': 7, 'XS_Scalar__Util_blessed': 9, 'XS_Scalar__Util_isdual': 2, 'XS_Scalar__Util_dualvar': 15, 'XS_List__Util_shuffle': 1, 'XS_List__Util_minstr': 1, 'accum_type': 2, 'XS_List__Util_sum': 51, 'XS_List__Util_min': 40, 'boot_List__Util': 2}, PosixPath('600/ext/re/re.bc'): {'XS_re_regmust': 16}, PosixPath('600/ext/re/re_exec.bc'): {'S_find_byclass': 657, 'my_regexec': 665, 'S_reg_set_capture_string': 10, 'S_push_slab': 2, 'S_setup_eval_state': 50, 'S_regmatch': 1887, 'S_setup_EXACTISH_ST_c1_c2': 63, 'S_to_utf8_substr': 3, 'S_to_byte_substr': 3, 'S_reghop3': 3, 'S_reghopmaybe3': 3, 'S_reghop4': 3, 'S_append_utf8_from_native_byte': 1, 'S_reginclass': 27, 'S_backup_one_SB': 4, 'S_advance_one_SB': 4, 'S_isSB': 9, 'S_backup_one_WB': 4, 'S_advance_one_WB': 4, 'S_isWB': 7, 'S_reg_check_named_buff_matched': 3, 'S_regcppush': 6, 'S_sv_only_taint_gmagic': 1, 'S_regcppop': 10, 'S_av_top_index': 1, 'S_isFOO_utf8_lc': 7, 'S_regrepeat': 94, 'S_regtry': 9, 'my_re_intuit_start': 145, 'S_sv_or_pv_pos_u2b': 2, 'S_MgBYTEPOS': 6, 'S_cleanup_regmatch_info_aux': 7}, PosixPath('600/ext/re/re_comp.bc'): {'my_re_op_compile': 1785, 'S_compile_runtime_code': 119, 'S_construct_ahocorasick_from_trie': 85, 'S_study_chunk': 1294, 'S_re_croak2': 18, 'S_regatom': 716, 'S_regclass': 1289, 'S_grok_bslash_x': 23, 'S_alloc_maybe_populate_EXACT': 80, 'S_append_utf8_from_native_byte': 1, 'S_pat_upgrade_to_utf8': 8, 'S_ReANY': 1, 'S_concat_pat': 78, 'S_has_runtime_code': 4, 'S_regnode_guts': 43, 'S_reganode': 1, 'S_add_data': 2, 'S_reg_node': 1, 'S_reg_skipcomment': 1, 'S_regpatws': 3, 'S_nextchar': 5, 'S_reg_scan_name': 8, 'S_reg2Lanode': 1, 'S_get_invlist_offset_addr': 1, 'S__invlist_len': 2, 'S_get_invlist_iter_addr': 1, 'S_invlist_array': 1, 'S_put_code_point': 1, 'S_put_range': 1, 'S_put_charclass_bitmap_innards': 21, 'my_regprop': 78, 'S_regtail': 21, 'S_regpposixcc': 6, 'S_regcurly': 4, 'S_grok_bslash_o': 18, 'S_grok_bslash_c': 3, 'S_form_short_octal_warning': 2, 'S_reg_recode': 7, 'S_av_top_index': 2, 'S_add_above_Latin1_folds': 1, 'S_populate_ANYOF_from_invlist': 13, 'S_reginsert': 47, 'S_could_it_be_a_POSIX_class': 4, 'S_parse_lparen_question_flags': 47, 'S_regtail_study': 26, 'S_regbranch': 91, 'S_reg': 433, 'S_handle_regex_sets': 132, 'S_grok_bslash_N': 77, 'get_regex_charset_name': 1, 'S_invlist_max': 2, 'S_invlist_set_len': 3, 'S_invlist_extend': 2, 'S__append_range_to_invlist': 3, 'S_ssc_anything': 5, 'S_ssc_init': 1, 'S_join_exact': 59, 'S_scan_commit': 26, 'S_invlist_clone': 1, 'S_get_ANYOF_cp_list_for_ssc': 48, 'S_ssc_add_range': 1, 'S_ssc_union': 1, 'S_ssc_or': 5, 'S_ssc_is_anything': 11, 'S_ssc_intersection': 1, 'S_ssc_is_cp_posixl_init': 10, 'S_ssc_and': 23, 'S_dump_trie_interim_list': 15, 'S_dump_trie_interim_table': 15, 'S_dump_trie': 18, 'S_make_trie': 970, 'S_ssc_cp_and': 1, 'S_ssc_clear_locale': 1, 'S__make_exactf_invlist': 231, 'S_setup_longest': 3, 'S_is_ssc_worth_it': 13, 'S_ssc_finalize': 8, 'S_dumpuntil': 45, 'my_regdump': 55, 'my_reg_named_buff_fetch': 5, 'my_reg_named_buff_all': 5, 'my_reg_named_buff_nextkey': 11, 'my_reg_numbered_buff_fetch': 31, 'my_reg_numbered_buff_length': 4, 'my_re_intuit_string': 26, 'my_regfree': 25}, PosixPath('600/ext/Sys-Hostname/Hostname.bc'): {}, PosixPath('600/ext/attributes/attributes.bc'): {'XS_attributes_reftype': 7, 'S_CvGV': 1, 'XS_attributes__guess_stash': 34, 'XS_attributes__fetch_attrs': 7, 'CvNAME_HEK': 1, 'modify_SV_attributes': 30, 'XS_attributes__modify_attrs': 35}, PosixPath('600/ext/PerlIO-via/via.bc'): {'PerlIOVia_method': 48, 'PerlIOVia_pushed': 20, 'PerlIOVia_open': 2, 'PerlIOVia_popped': 1, 'PerlIOVia_close': 2, 'PerlIOVia_fileno': 1, 'PerlIOVia_binmode': 1, 'PerlIOVia_seek': 1, 'PerlIOVia_tell': 1, 'PerlIOVia_unread': 1, 'PerlIOVia_read': 2, 'PerlIOVia_write': 1, 'PerlIOVia_fill': 14, 'PerlIOVia_flush': 2, 'PerlIOVia_get_base': 1, 'PerlIOVia_get_ptr': 2, 'PerlIOVia_get_cnt': 1, 'PerlIOVia_bufsiz': 1, 'PerlIOVia_error': 1, 'PerlIOVia_eof': 1}, PosixPath('600/ext/Devel-Peek/Peek.bc'): {'S_do_dump': 2, 'S_pp_dump': 1, 'S_ck_dump': 4, 'XS_Devel__Peek_runops_debug': 5, 'S_CvGV': 1, 'XS_Devel__Peek_CvGV': 4, 'DeadCode': 13, 'XS_Devel__Peek_DeadCode': 13, 'XS_Devel__Peek_SvREFCNT': 9, 'XS_Devel__Peek_DumpArray': 4, 'XS_Devel__Peek_Dump': 2, 'XS_Devel__Peek_mstat': 1}, PosixPath('600/ext/XS-Typemap/stdio.bc'): {}, PosixPath('600/ext/mro/mro.bc'): {'S_av_top_index': 1, 'S_mro_get_linear_isa_c3': 15, 'S_CvGV': 1, 'XS_mro__nextcan': 40, 'XS_mro_get_pkg_gen': 1, 'XS_mro_is_universal': 12, 'XS_mro_get_mro': 2, 'XS_mro_set_mro': 3}, PosixPath('600/ext/Hash-Util/Util.bc'): {'XS_Hash__Util_bucket_array': 22, 'XS_Hash__Util_bucket_info': 18, 'XS_Hash__Util_hash_traversal_mask': 8, 'S_perl_hash_one_at_a_time_hard': 2, 'XS_Hash__Util_hash_value': 25, 'XS_Hash__Util_hash_seed': 1, 'XS_Hash__Util_hv_store': 5, 'S_CvGV': 1, 'XS_Hash__Util_hidden_ref_keys': 6, 'XS_Hash__Util_all_keys': 12}, PosixPath('600/ext/Hash-Util-FieldHash/FieldHash.bc'): {'HUF_get_ob_reg': 7, 'HUF_obj_id': 2, 'HUF_add_uvar_magic': 3, 'HUF_destroy_obj': 1, 'HUF_new_trigger': 11, 'HUF_mark_field': 1, 'HUF_get_status': 1, 'HUF_fix_trigger': 6, 'S_av_top_index': 1, 'HUF_fix_objects': 3, 'HUF_inc_var': 1, 'XS_Hash__Util__FieldHash__test_uvar_get': 16, 'XS_Hash__Util__FieldHash_CLONE': 3, 'XS_Hash__Util__FieldHash_register': 3, 'XS_Hash__Util__FieldHash_id': 2, 'XS_Hash__Util__FieldHash__fieldhash': 19}, PosixPath('600/ext/arybase/arybase.bc'): {'ptable_new': 1, 'ptable_map_store': 22, 'tie': 1, 'S_CvGV': 1, 'current_base': 1, 'ptable_find': 2, 'ptable_fetch': 2, 'ptable_split': 7, 'ab_map_store_locked': 4, 'ab_map_store': 4, 'ab_map_fetch': 1, 'ab_pp_basearg': 16, 'ab_pp_av2arylen': 8, 'ab_pp_keys': 9, 'ab_pp_each': 10, 'ab_pp_index': 8, 'ab_ck_base': 11, 'ab_op_is_dollar_bracket': 9, 'ab_process_assignment': 11, 'ab_ck_aassign': 3, 'ab_ck_sassign': 2, 'XS_arybase__mg_STORE': 22, 'XS_arybase__mg_FETCH': 20, 'XS_arybase_STORE': 8, 'XS_arybase_FETCH': 1, 'boot_arybase': 14}, PosixPath('600/ext/Tie-Hash-NamedCapture/NamedCapture.bc'): {'S_CvGV': 1, 'tie_it': 1, 'XS_Tie__Hash__NamedCapture_FIRSTKEY': 12, 'XS_Tie__Hash__NamedCapture_FETCH': 13, 'XS_Tie__Hash__NamedCapture_TIEHASH': 13, 'boot_Tie__Hash__NamedCapture': 1, 'XS_Tie__Hash__NamedCapture_flags': 1}, PosixPath('600/ext/PerlIO-scalar/scalar.bc'): {'PerlIOScalar_pushed': 8, 'PerlIOScalar_seek': 7, 'PerlIOScalar_read': 14, 'PerlIOScalar_write': 8, 'PerlIOScalar_get_base': 3, 'PerlIOScalar_get_cnt': 9, 'PerlIOScalar_bufsiz': 2, 'PerlIOScalar_set_ptrcnt': 7, 'PerlIOScalar_dup': 1}, PosixPath('600/ext/File-Glob/bsd_glob.bc'): {'globtilde': 2, 'g_strchr': 1, 'g_lstat': 8, 'g_stat': 8, 'globextend': 6, 'g_opendir': 7, 'match': 7, 'glob2': 31, 'glob1': 1, 'ci_compare': 3, 'glob0': 42, 'globexp1': 14, 'bsd_glob': 15, 'bsd_globfree': 3}, PosixPath('600/ext/File-Glob/Glob.bc'): {'constant_add_symbol': 1, 'glob_ophook': 7, 'iterate': 38, 'doglob': 10, 'csh_glob': 39, 'XS_File__Glob_AUTOLOAD': 2, 'doglob_iter_wrapper': 7, 'XS_File__Glob_bsd_glob_override': 1, 'XS_File__Glob_csh_glob': 1, 'XS_File__Glob_bsd_glob': 11, 'XS_File__Glob_GLOB_ERROR': 7, 'boot_File__Glob': 2}}
+Start Exploration
+600/universal.bc
+XS_re_regexp_pattern
+[19241]
+S_isa_lookup
+[19241, 19247]
+Perl_sv_derived_from_pvn
+[19241, 19247]
+Perl_sv_derived_from_sv
+[19241, 19244]
+Perl_sv_does_sv
+[19241, 19244]
+S_CvGV
+[19241]
+Perl_croak_xs_usage
+[19232, 19241, 19240, 19231]
+XS_UNIVERSAL_isa
+[19241, 19244]
+XS_UNIVERSAL_can
+[19241]
+XS_UNIVERSAL_DOES
+[19241]
+XS_utf8_is_utf8
+[19241, 19246]
+XS_utf8_valid
+[19241, 19246]
+XS_utf8_encode
+[19241]
+XS_utf8_decode
+[19241]
+XS_utf8_upgrade
+[19241]
+XS_utf8_downgrade
+[19241]
+XS_utf8_native_to_unicode
+[19241]
+XS_utf8_unicode_to_native
+[19241]
+XS_Internals_SvREADONLY
+[19241]
+XS_constant__make_const
+[19241, 19244]
+XS_Internals_SvREFCNT
+[19241]
+XS_Internals_hv_clear_placehold
+[19241]
+S_av_top_index
+[19241]
+XS_PerlIO_get_layers
+[19241, 19244]
+XS_re_regnames_count
+[19241]
+XS_re_regname
+[19241]
+XS_re_regnames
+[19241]
+get_regex_charset_name
+[19241]
+XS_universal_version
+[19241]
+XS_version_new
+[19232, 19234, 19235, 19241, 19244, 19245, 19228, 19231]
+19232
+[9]
+[19232, 19222, 19226, 19227, 19228, 19229]
+19222
+[9, 14]
+[19212, 19216, 19217, 19218, 19221, 19222]
+19221
+[9, 14, 15]
+[19211, 19215, 19216, 19217, 19221]
+19217
+[9, 14, 15, 17]
+[19200, 19207, 19211, 19213, 19217]
+19200
+[9, 14, 15, 17, 18]
+[19200, 19204, 19190, 19195, 19196]
+19196
+[9, 14, 15, 17, 18, 19]
+[19200, 19182, 19186, 19192, 19196]
+19182
+[9, 14, 15, 17, 18, 19, 20]
+[19186, 19181, 19182]
+19181
+[9, 14, 15, 17, 18, 19, 20, 21]
+[19185, 19181]
+XS_version_vcmp
+[19241]
+XS_version_qv
+[19235, 19236, 19237, 19241, 19244, 19250, 19228]
+19235
+[8]
+[19235, 19222, 19226, 19227, 19228, 19229, 19230]
+19230
+[8, 13]
+[19213, 19217, 19219, 19221, 19222, 19223, 19229, 19230]
+19229
+[8, 13, 14]
+[19212, 19216, 19218, 19220, 19221, 19222, 19229]
+19222
+[8, 13, 14, 16]
+[19201, 19208, 19212, 19214, 19216, 19218, 19222, 19231]
+19201
+[8, 13, 14, 16, 17]
+[19201, 19210, 19191, 19195, 19196, 19197]
+19195
+[8, 13, 14, 16, 17, 18]
+[19204, 19181, 19185, 19191, 19195]
+19181
+[8, 13, 14, 16, 17, 18, 19]
+[19180, 19181, 19190]
+19180
+[8, 13, 14, 16, 17, 18, 19, 20]
+[19180, 19189]
+optimize_out_native_convert_function
+[19241, 19243]
+Perl_boot_core_UNIVERSAL
+[19241]
+600/perlio.bc
+PerlIO_intmode2str
+[29307]
+PerlIO_allocate
+[29307]
+PerlIO_modestr
+[29307]
+PerlIO_pop
+[29307]
+PerlIO_push
+[29307]
+PerlIOBase_dup
+[29307]
+PerlIOBase_close
+[29307]
+Perl_PerlIO_close
+[29307]
+PerlIO_list_free
+[29312, 29314, 29307, 29309]
+PerlIO_list_push
+[29307]
+PerlIO_clone_list
+[29307]
+PerlIO_destruct
+[29307]
+PerlIO_get_layers
+[29307, 29310, 29295]
+29295
+[0]
+[29298, 29295]
+PerlIO_find_layer
+[29307]
+XS_PerlIO__Layer__NoWarnings
+[29307]
+XS_PerlIO__Layer__find
+[29307]
+PerlIO_parse_layers
+[29307]
+PerlIOBuf_get_cnt
+[29307]
+PerlIOBuf_get_ptr
+[29307]
+PerlIOBuf_bufsiz
+[29312, 29307]
+PerlIOBuf_get_base
+[29307, 29299, 29303]
+Perl_PerlIO_clearerr
+[29307]
+PerlIOBase_clearerr
+[29307]
+PerlIO_fast_gets
+[29307]
+Perl_PerlIO_error
+[29307]
+Perl_PerlIO_eof
+[29307]
+PerlIOBase_read
+[29307]
+PerlIOBuf_fill
+[29307, 29309]
+PerlIOBuf_flush
+[29307, 29310]
+PerlIOBuf_tell
+[29307]
+PerlIOBuf_write
+[29319, 29320, 29323, 29332, 29335, 29307]
+PerlIOBase_binmode
+[29307]
+PerlIOBase_pushed
+[29307, 29310]
+PerlIOPending_pushed
+[29307]
+PerlIOBuf_unread
+[29307]
+PerlIO_layer_fetch
+[29307]
+PerlIOCrlf_set_ptrcnt
+[29307]
+PerlIOCrlf_get_cnt
+[29313, 29302, 29305, 29307, 29308, 29310]
+PerlIOCrlf_write
+[29307, 29316, 29310]
+PerlIOCrlf_unread
+[29307]
+PerlIOBuf_pushed
+[29307]
+S_inherit_utf8_flag
+[29307]
+PerlIOStdio_get_cnt
+[29307]
+PerlIOStdio_get_bufsiz
+[29307]
+S_perlio_async_run
+[29307]
+PerlIOStdio_fill
+[29307]
+PerlIOStdio_flush
+[29307]
+PerlIOUnix_refcnt_dec
+[29307, 29309]
+PerlIOStdio_write
+[29307]
+PerlIO_has_cntptr
+[29307]
+PerlIOStdio_unread
+[29307]
+PerlIOStdio_read
+[29307]
+S_more_refcounted_fds
+[29307]
+PerlIOUnix_refcnt_inc
+[29307]
+PerlIOStdio_dup
+[29307]
+PerlIOStdio_mode
+[29307]
+PerlIOStdio_open
+[29305, 29307, 29260]
+29305
+[21]
+[29305, 29275]
+29275
+[21, 34]
+[29275]
+PerlIOStdio_pushed
+[29307]
+PerlIORaw_pushed
+[29307]
+PerlIOUnix_close
+[29307]
+PerlIOUnix_seek
+[29307]
+PerlIOUnix_write
+[29306, 29307]
+PerlIOUnix_read
+[29306, 29307]
+PerlIOUnix_setfd
+[29307]
+PerlIOUnix_dup
+[29307]
+PerlIOUnix_oflags
+[29307, 29310]
+PerlIOUnix_open
+[29307, 29309]
+PerlIOUnix_pushed
+[29304, 29307]
+PerlIO_default_layers
+[29307]
+PerlIO_default_layer
+[29307]
+PerlIOBuf_open
+[29307]
+PerlIOCrlf_pushed
+[29312, 29290, 29295, 29299, 29304, 29307]
+PerlIOBase_open
+[29307]
+Perl_PerlIO_context_layers
+[29307]
+PerlIO_apply_layera
+[29307]
+PerlIO_openn
+[29304, 29289, 29307]
+29289
+[0]
+[29289, 29287]
+29287
+[0, 5]
+[29291, 29287]
+PerlIO_resolve_layers
+[29307]
+Perl_PerlIO_setlinebuf
+[29307]
+PerlIOUnix_refcnt
+[29307, 29309]
+PerlIO_exportFILE
+[29307]
+PerlIO_findFILE
+[29307]
+PerlIO_releaseFILE
+[29307, 29310]
+PerlIO_vprintf
+[29307]
+PerlIO_setpos
+[29307, 29308]
+600/gv.bc
+Perl_amagic_call
+[36388, 36392, 36553, 36300, 36468]
+36300
+[0]
+[36296, 36315, 36300, 36309]
+36296
+[0, 214]
+[36280, 36292, 36296]
+36280
+[0, 214, 215]
+[36280, 36276]
+36276
+[0, 214, 215, 221]
+[36276, 36255]
+36255
+[0, 214, 215, 221, 222]
+[36255]
+Perl_gv_add_by_type
+[36392]
+S_perl_hash_one_at_a_time_hard
+[36392]
+Perl_newGP
+[36392, 36389]
+CvNAME_HEK
+[36392]
+Perl_cvgv_set
+[36392, 36380, 36405]
+Perl_cvstash_set
+[36392]
+Perl_gv_init_pvn
+[36392, 36393, 36390, 36398]
+36390
+[13]
+[36391]
+Perl_gv_fetchfile_flags
+[36392, 36388]
+Perl_gv_const_sv
+[36392]
+Perl_cvgv_from_hek
+[36392]
+Perl_gv_init_sv
+[36392, 36397]
+S_parse_gv_stash_name
+[36392]
+S_gv_is_in_main
+[36392]
+S_gv_init_svtype
+[36392]
+S_CvGV
+[36392]
+S_gv_magicalize_isa
+[36392]
+core_xsub
+[36392]
+S_maybe_add_coresub
+[36392]
+Perl_gv_fetchmethod_pvn_flags
+[36386, 36388, 36389, 36392, 36382]
+36389
+[8]
+[36377, 36379, 36389, 36383]
+36379
+[8, 13]
+[36369, 36373, 36375, 36378, 36379]
+36378
+[8, 13, 14]
+[36368, 36378, 36372, 36366]
+36366
+[8, 13, 14, 16]
+[36368, 36364, 36333, 36366]
+36333
+[8, 13, 14, 16, 17]
+[36333]
+S_gv_stashsvpvn_cached
+[36392, 36388, 36399, 36391]
+36391
+[0]
+[36387, 36399, 36391]
+36387
+[0, 5]
+[36387, 36391]
+Perl_gv_fetchpvn_flags
+[36391, 36392, 36394, 36405, 36411]
+36391
+[203]
+[36393, 36390, 36391]
+36390
+[203, 221]
+[36392, 36390]
+S_gv_fetchmeth_internal
+[36385, 36386, 36388, 36392, 36401, 36378, 36379, 36381, 36382]
+36381
+[11]
+[36384, 36385, 36386, 36387, 36389, 36368, 36371, 36374, 36375, 36381]
+36371
+[11, 22]
+[36357, 36358, 36364, 36365, 36370, 36371, 36374, 36375, 36376, 36377, 36379]
+36370
+[11, 22, 23]
+[36357, 36363, 36364, 36370, 36373, 36374, 36375, 36376, 36378]
+36364
+[11, 22, 23, 54]
+[36355, 36357, 36358, 36364, 36373, 36351]
+36355
+[11, 22, 23, 54, 55]
+[36355, 36360, 36342, 36348, 36349]
+36349
+[11, 22, 23, 54, 55, 59]
+[36354, 36339, 36343, 36345, 36349]
+36339
+[11, 22, 23, 54, 55, 59, 65]
+[36333, 36335, 36338, 36339, 36344]
+36338
+[11, 22, 23, 54, 55, 59, 65, 66]
+[36338, 36332, 36334, 36343]
+36334
+[11, 22, 23, 54, 55, 59, 65, 66, 68]
+[36334, 36339, 36326]
+36326
+[11, 22, 23, 54, 55, 59, 65, 66, 68, 69]
+[36331, 36325, 36326]
+36325
+[11, 22, 23, 54, 55, 59, 65, 66, 68, 69, 70]
+[36330, 36325]
+Perl_gv_autoload_pvn
+[36387, 36388, 36391, 36392, 36474]
+36388
+[4]
+[36387, 36388, 36470, 36383]
+36383
+[4, 10]
+[36383]
+Perl_gv_fetchmeth_sv
+[36392]
+Perl_gv_fetchmeth_sv_autoload
+[36392, 36397]
+Perl_gv_fetchmethod_sv_flags
+[36392, 36395]
+Perl_gv_autoload_sv
+[36392, 36395]
+Perl_gv_fetchsv
+[36392, 36395]
+Perl_gv_fullname4
+[36386, 36388, 36390, 36392, 36382, 36383]
+36386
+[0]
+[36376, 36368, 36386, 36384]
+36376
+[0, 5]
+[36359, 36366, 36374, 36375, 36376]
+36375
+[0, 5, 6]
+[36365, 36373, 36358, 36375]
+36373
+[0, 5, 6, 8]
+[36329, 36365, 36361]
+36329
+[0, 5, 6, 8, 9]
+[36320, 36329]
+36320
+[0, 5, 6, 8, 9, 10]
+[36320]
+Perl_gv_efullname4
+[36392]
+Perl_gv_check
+[36392, 36395, 36398]
+Perl_gp_ref
+[36392]
+Perl_gp_free
+[36392]
+Perl_magic_freeovrld
+[36392]
+Perl_Gv_AMupdate
+[36392, 36368, 36371]
+36368
+[65]
+[36368, 36347, 36300, 36335]
+36300
+[65, 66]
+[36300, 36283, 36284]
+36284
+[65, 66, 67]
+[36266, 36284]
+36266
+[65, 66, 67, 69]
+[36266]
+Perl_gv_handler
+[36392]
+Perl_amagic_is_enabled
+[36392, 36390]
+Perl_try_amagic_un
+[36392, 36398]
+Perl_try_amagic_bin
+[36392]
+Perl_amagic_deref_call
+[36392]
+Perl_gv_try_downgrade
+[36392, 36389, 36390]
+36390
+[0]
+[36390]
+Perl_gv_override
+[36392]
+600/locale.bc
+Perl__is_in_locale_category
+[401]
+600/Opcode.bc
+XS_Opcode_opset
+[9240]
+XS_Opcode_permit_only
+[9240]
+XS_Opcode_define_optag
+[9240]
+verify_opset
+[9240]
+new_opset
+[9240]
+put_op_bitspec
+[9240]
+op_names_init
+[9240]
+XS_Opcode_opmask
+[9240]
+XS_Opcode_opcodes
+[9240]
+opmask_add
+[9240]
+XS_Opcode_empty_opset
+[9240]
+get_op_bitspec
+[9240, 9242, 9243, 9245]
+XS_Opcode_opdesc
+[9240]
+set_opset_bits
+[9240, 9244, 9237]
+9237
+[0]
+[9241, 9234, 9237]
+9234
+[0, 1]
+[9234, 9230, 9238]
+9230
+[0, 1, 2]
+[9234, 9230]
+XS_Opcode_opset_to_ops
+[9240]
+XS_Opcode_invert_opset
+[9240]
+XS_Opcode_verify_opset
+[9240]
+XS_Opcode__safe_call_sv
+[9240]
+XS_Opcode__safe_pkg_prep
+[9240, 9236, 9229, 9230]
+boot_Opcode
+[9240]
+600/mathoms.bc
+Perl_sv_iv
+[9725]
+Perl_sv_uv
+[9725]
+Perl_sv_nv
+[9725]
+Perl_sv_pvn
+[9725]
+Perl_sv_pvn_nomg
+[9725]
+Perl_sv_pv
+[9725]
+Perl_sv_pvbyte
+[9725]
+Perl_sv_pvbyten
+[9725]
+Perl_sv_pvutf8
+[9725]
+Perl_sv_pvutf8n
+[9725]
+Perl_save_list
+[9725]
+Perl_isIDFIRST_lazy
+[9725]
+Perl_isALNUM_lazy
+[9725]
+Perl_is_utf8_alnum
+[9725]
+Perl_is_utf8_alnumc
+[9725]
+Perl_is_utf8_alpha
+[9725]
+Perl_is_utf8_blank
+[9725]
+Perl_is_utf8_space
+[9725]
+Perl_is_utf8_upper
+[9725]
+Perl_is_utf8_lower
+[9725]
+Perl_is_utf8_cntrl
+[9725]
+Perl_is_utf8_graph
+[9725]
+Perl_is_utf8_print
+[9725]
+Perl_is_utf8_punct
+[9725]
+Perl_is_utf8_xdigit
+[9725]
+Perl_is_utf8_char
+[9725]
+Perl_is_utf8_char_buf
+[9725]
+600/perlmain.bc
+main
+[1503]
+600/dump.bc
+Perl_pv_escape
+[34146]
+Perl_pv_pretty
+[34146]
+S_CvGV
+[34146]
+Perl_sv_peek
+[34146]
+S_sequence_num
+[34146]
+S_append_flags
+[34146]
+S_pm_description
+[34146]
+Perl_do_op_dump
+[34146, 34147, 34148, 34152, 34165, 34135, 34138, 34140, 34142]
+34138
+[39]
+[34144, 34115, 34126, 34132, 34134, 34138, 34139, 34140]
+34132
+[39, 45]
+[34120, 34122, 34123, 34126, 34128, 34132, 34138, 34109]
+34120
+[39, 45, 47]
+[34113, 34116, 34120, 34126, 34141, 34110, 34111]
+34110
+[39, 45, 47, 49]
+[34116, 34100, 34101, 34106, 34109, 34110]
+34109
+[39, 45, 47, 49, 50]
+[34115, 34099, 34100, 34105, 34109]
+34099
+[39, 45, 47, 49, 50, 51]
+[34090, 34095, 34098, 34099, 34105]
+34098
+[39, 45, 47, 49, 50, 51, 52]
+[34104, 34089, 34098, 34094]
+34094
+[39, 45, 47, 49, 50, 51, 52, 53]
+[34088, 34100, 34094]
+34088
+[39, 45, 47, 49, 50, 51, 52, 53, 54]
+[34088, 34094]
+Perl_do_pmop_dump
+[34146]
+Perl_dump_sub_perl
+[34146]
+Perl_dump_packsubs_perl
+[34146, 34150, 34151]
+Perl_gv_dump
+[34146]
+Perl_do_hv_dump
+[34146, 34132, 34136, 34138, 34140, 34142]
+34140
+[0]
+[34126, 34130, 34131, 34134, 34140, 34143]
+34130
+[0, 5]
+[34116, 34120, 34121, 34129, 34130]
+34129
+[0, 5, 6]
+[34115, 34119, 34120, 34128, 34129]
+34115
+[0, 5, 6, 8]
+[34114, 34115, 34118, 34105, 34106]
+34114
+[0, 5, 6, 8, 9]
+[34104, 34105, 34114, 34117]
+34104
+[0, 5, 6, 8, 9, 12]
+[34104, 34096]
+34096
+[0, 5, 6, 8, 9, 12, 14]
+[]
+S_av_top_index
+[34146]
+CvNAME_HEK
+[34146]
+Perl_do_gvgv_dump
+[34146, 34132, 34135, 34136, 34137, 34140, 34142]
+34135
+[0]
+[34120, 34125, 34126, 34129, 34131, 34135, 34111]
+34125
+[0, 5]
+[34115, 34119, 34121, 34124, 34125, 34101, 34110]
+34124
+[0, 5, 6]
+[34114, 34118, 34120, 34124, 34100, 34109]
+34109
+[0, 5, 6, 8]
+[34099, 34100, 34103, 34105, 34043]
+34043
+[0, 5, 6, 8, 9]
+[34035, 34043]
+34035
+[0, 5, 6, 8, 9, 10]
+[34035]
+Perl_do_gv_dump
+[34146]
+Perl_do_magic_dump
+[34146, 34142, 34151]
+34142
+[50]
+[34147, 34142]
+Perl_do_sv_dump
+[34113, 34146, 34121, 34154, 34155, 34136, 34138, 34141, 34142]
+34142
+[2]
+[34117, 34053, 34151, 34150, 34132, 34134, 34137, 34142]
+34053
+[2, 19]
+[34053, 34070]
+S_deb_curcv
+[34146]
+S_deb_padvar
+[34146]
+S_append_padvar
+[34146]
+Perl_multideref_stringify
+[34146]
+Perl_debop
+[34146]
+S_debprof
+[34146]
+Perl_runops_debug
+[34146]
+600/globals.bc
+600/pp_sort.bc
+S_qsortsv
+[10693]
+Perl_pp_sort
+[10689, 10690, 10693, 10665, 10680, 10683]
+10689
+[0]
+[10689, 10661, 10676, 10679, 10686]
+10686
+[0, 21]
+[10673, 10658, 10676, 10686]
+10673
+[0, 21, 48]
+[10673, 10713, 10686, 10671]
+10671
+[0, 21, 48, 73]
+[10671]
+S_qsortsvu
+[10693]
+dynprep
+[10693]
+S_mergesortsv
+[10693]
+Perl_sortsv_flags
+[10693]
+S_CvGV
+[10693]
+S_amagic_cmp
+[10693]
+S_sv_ncmp
+[10693]
+S_amagic_ncmp
+[10693]
+S_sv_i_ncmp
+[10693]
+S_amagic_i_ncmp
+[10693]
+S_sortcv_xsub
+[10693]
+S_sortcv
+[10693]
+S_sortcv_stacked
+[10683, 10693]
+10683
+[0]
+[10683, 10679]
+10679
+[0, 1]
+[10679]
+600/DynaLoader.bc
+XS_DynaLoader_dl_error
+[608]
+600/doop.bc
+S_do_trans_simple_utf8
+[11760, 11784]
+S_do_trans_count_utf8
+[11760, 11768]
+S_do_trans_count
+[11760]
+S_do_trans_complex_utf8
+[11760, 11763, 11748]
+11748
+[18]
+[11748]
+S_do_trans_complex
+[11760]
+S_do_trans_simple
+[11760, 11755]
+11755
+[13]
+[11755]
+Perl_do_trans
+[11760, 11700]
+11700
+[46]
+[11760, 11700]
+Perl_do_join
+[11760, 11756]
+11756
+[44]
+[11756, 11750]
+11750
+[44, 48]
+[11760, 11750]
+Perl_do_sprintf
+[11760]
+Perl_do_vecget
+[11760]
+Perl_do_vecset
+[11760, 11767]
+Perl_do_vop
+[11760, 11756, 11781]
+11756
+[70]
+[11756]
+Perl_do_kv
+[11760]
+600/reentr.bc
+600/sv.bc
+Perl_more_bodies
+[82133]
+Perl_newSVuv
+[82133]
+Perl_sv_pvn_force_flags
+[82136, 82129, 82140, 82133]
+82129
+[0]
+[82136, 82129, 82132]
+Perl_sv_recode_to_utf8
+[82136, 82129, 82138, 82133]
+82129
+[0]
+[82129, 82132, 82134]
+Perl_sv_kill_backrefs
+[82137, 82133]
+Perl_sv_replace
+[82133]
+S_curse
+[82130, 82133]
+82130
+[1]
+[82130]
+S_sv_pos_u2b_cached
+[82133]
+Perl_sv_pos_u2b
+[82133]
+Perl_newSViv
+[82133]
+Perl_newRV_noinc
+[82133]
+Perl_sv_vcatpvfn_flags
+[82180, 82182, 81931, 82576, 81951, 82113, 82116, 82121, 82131, 82132, 82133, 82134, 82135, 82138, 82139, 82146, 81893, 82155, 82160]
+82132
+[7]
+[82112, 82145, 82115, 81892, 82181, 81928, 82120, 82154, 82159, 82575, 82130, 82131, 82132, 82133, 82134, 82137, 82138, 81950]
+81928
+[7, 9]
+[81923, 81926, 81927, 81928, 81929, 82186, 81931, 81930, 81933, 81966, 81934, 81941, 81942, 81945, 81916, 82143]
+81927
+[7, 9, 14]
+[81922, 81955, 81925, 81927, 81928, 82185, 81930, 81929, 81932, 81933, 81940, 81941, 81944, 81915, 81949, 82142]
+81925
+[7, 9, 14, 27]
+[81920, 81953, 81925, 81926, 82183, 81928, 81927, 81930, 81931, 81938, 81939, 81941, 81942, 81913, 82140]
+81920
+[7, 9, 14, 27, 304]
+[81920, 81926, 81932, 82189, 81908]
+81908
+[7, 9, 14, 27, 304, 678]
+[81920, 81908]
+Perl_init_constants
+[82128, 82130, 82133]
+82130
+[1]
+[82130, 82125, 82127]
+82127
+[1, 3]
+[82122, 82124, 82127]
+82122
+[1, 3, 4]
+[82122, 82119]
+82119
+[1, 3, 4, 6]
+[82119]
+S_sv_add_arena
+[82133]
+S_visit
+[82133]
+S_more_sv
+[82133]
+Perl_sv_del_backref
+[82127, 82129, 82130, 82132, 82133, 82135]
+Perl_sv_clear
+[82141, 82130, 82133]
+82130
+[22]
+[82138, 82130]
+S_sv_unmagicext_flags
+[82133]
+Perl_sv_free2
+[82133]
+do_clean_named_io_objs
+[82129, 82122, 82133]
+do_curse
+[82133]
+do_clean_named_objs
+[82131, 82133]
+do_clean_objs
+[82133]
+Perl_sv_clean_objs
+[82133]
+do_clean_all
+[82133]
+Perl_sv_free_arenas
+[82133]
+Perl_sv_2mortal
+[82141, 82133]
+Perl_sv_unref_flags
+[82133]
+Perl_sv_backoff
+[82133]
+Perl_sv_newmortal
+[82133]
+S_new_body
+[82133]
+Perl_sv_tainted
+[82133]
+S_infnan_2pv
+[82133]
+S_find_array_subscript
+[82133]
+S_append_utf8_from_native_byte
+[82133]
+S_expect_number
+[82133]
+S_sv_setnv
+[82133]
+S_sv_2iuv_non_preserve
+[82133]
+Perl_sv_isobject
+[82139, 82133]
+S_sv_pos_u2b_midway
+[82133]
+S_sv_pos_u2b_forwards
+[82133]
+S_hextract
+[82133]
+Perl_sv_setpvn
+[82138, 82133]
+Perl_sv_force_normal_flags
+[82137, 82131, 82132, 82133]
+82132
+[0]
+[82136, 82130, 82132]
+82130
+[0, 16]
+[82130]
+S_sv_uncow
+[82129, 82133]
+Perl_sv_grow
+[82136, 82133]
+Perl_sv_upgrade
+[82124, 82133]
+82124
+[9]
+[82124]
+Perl_sv_reftype
+[82131, 82133, 82119]
+Perl_sv_ref
+[82132, 82133]
+Perl_sv_setpv
+[82138, 82133]
+Perl_sv_sethek
+[82144, 82129, 82133, 82136, 82137, 82140]
+Perl_sv_setsv_flags
+[82177, 82181, 82129, 82133, 82138, 82205, 82175]
+82129
+[21]
+[82129, 82125]
+82125
+[21, 31]
+[82164, 82125]
+Perl_gv_setref
+[82129, 82130, 82132, 82133]
+82130
+[4]
+[82129, 82130, 82126]
+82129
+[4, 25]
+[82129, 82137]
+Perl_vnewSVpvf
+[82133]
+S_glob_assign_glob
+[82127, 82130, 82133, 82137, 82138]
+82130
+[1]
+[82130, 82124, 82134]
+82124
+[1, 7]
+[82124]
+Perl_sv_magic
+[82148, 82133]
+Perl_sv_pos_b2u_flags
+[82133]
+Perl_sv_2pv_flags
+[82132, 82133, 82134, 82135, 82138]
+82132
+[0]
+[82137, 82132, 82133, 82135]
+Perl_report_uninit
+[82133]
+S_find_uninit_var
+[82138, 82133, 82135]
+Perl_varname
+[82129, 82133]
+82129
+[0]
+[82129, 82127]
+82127
+[0, 1]
+[82127]
+Perl_sv_setuv
+[82133]
+Perl_sv_setiv
+[82133, 82134]
+Perl_sv_2uv_flags
+[82114, 82123, 82124, 82133, 82138]
+82114
+[6]
+[82120, 82114, 82115, 82119]
+S_sv_or_pv_pos_u2b
+[82133]
+Perl_sv_pos_u2b_flags
+[82133]
+S_utf8_mg_pos_cache_update
+[82130, 82133]
+82130
+[0]
+[82130]
+Perl_sv_len_utf8_nomg
+[82137, 82131, 82133, 82150]
+82131
+[13]
+[82131]
+S_utf8_mg_len_cache_update
+[82128, 82133]
+Perl_sv_2num
+[82120, 82133, 82127]
+Perl_sv_2iv_flags
+[82114, 82125, 82130, 82133, 82140]
+82114
+[6]
+[82120, 82121, 82114]
+S_sv_2iuv_common
+[82141, 82165, 82137, 82133]
+Perl_sv_2nv_flags
+[82136, 82130, 82133, 82135]
+82130
+[6]
+[82130, 82132]
+S_sv_display
+[82133]
+Perl_newSVpvn_flags
+[82133]
+Perl_sv_catsv_flags
+[82133]
+Perl_sv_catpvn_flags
+[82131, 82133, 82140, 82141, 82142]
+82131
+[6]
+[82136, 82144, 82138, 82131]
+Perl_sv_utf8_upgrade_flags_grow
+[82130, 82118, 82133, 82134]
+82130
+[1]
+[82115, 82147, 82150, 82126, 82130, 82136, 82137, 82141]
+82126
+[1, 4]
+[82111, 82146, 82126, 82133, 82137, 82143]
+82111
+[1, 4, 11]
+[82130, 82114, 82127, 82111]
+Perl_newSV
+[82133]
+Perl_sv_insert_flags
+[82136, 82137, 82130, 82133]
+82130
+[9]
+[82130]
+Perl_sv_chop
+[82136, 82140, 82133, 82143]
+S_find_hash_subscript
+[82133]
+Perl_newSVhek
+[82133, 82126]
+82126
+[2]
+[82126]
+Perl_newSVpvn
+[82133]
+Perl_sv_usepvn_flags
+[82145, 82146, 82149, 82153, 82129, 82133, 82136, 82137, 82140, 82141, 82142]
+Perl_newSVsv
+[82133]
+Perl_sv_mortalcopy_flags
+[82133]
+Perl_sv_add_backref
+[82133]
+Perl_newSV_type
+[82133]
+Perl_sv_magicext
+[82133]
+Perl_sv_rvweaken
+[82133]
+Perl_sv_setnv
+[82133, 82134]
+Perl_looks_like_number
+[82133]
+Perl_sv_copypv_flags
+[82133]
+Perl_sv_utf8_downgrade
+[82136, 82149, 82133]
+Perl_sv_2pvbyte
+[82136, 82133]
+Perl_sv_2pvutf8
+[82133]
+Perl_sv_2bool_flags
+[82133, 82126]
+Perl_sv_utf8_decode
+[82133]
+Perl_sv_setsv_cow
+[82141, 82133]
+Perl_sv_catpv
+[82136, 82157, 82133]
+Perl_sv_magicext_mglob
+[82133]
+Perl_sv_get_backrefs
+[82133]
+S_anonymise_cv_maybe
+[82133, 82151]
+Perl_sv_len
+[82133]
+Perl_sv_eq_flags
+[82130, 82133, 82135, 82136, 82137]
+82130
+[20]
+[82130, 82133]
+Perl_sv_cmp_flags
+[82132, 82133]
+82132
+[61]
+[82132]
+S_sv_gets_read_record
+[82133]
+Perl_sv_gets
+[82144, 82135, 82133, 82136]
+Perl_sv_inc_nomg
+[82128, 82133, 82134, 82169, 82142]
+82128
+[8]
+[82128]
+Perl_sv_dec_nomg
+[82119, 82124, 82126, 82129, 82133]
+Perl_newSVpv
+[82133]
+S_perl_hash_one_at_a_time_hard
+[82133]
+Perl_newSVpvn_share
+[82133]
+Perl_newSVnv
+[82133]
+Perl_sv_resetpvn
+[82137, 82133]
+Perl_sv_2io
+[82133, 82143]
+Perl_sv_2cv
+[82149, 82146, 82133]
+Perl_sv_true
+[82133]
+Perl_sv_isa
+[82122, 82123, 82128, 82129, 82133, 82135, 82139]
+Perl_sv_bless
+[82141, 82139, 82133, 82135]
+Perl_newSVrv
+[82133, 82134]
+Perl_newSVavdefelem
+[82133]
+Perl_sv_untaint
+[82133]
+Perl_ptr_table_new
+[82133]
+S_ptr_table_find
+[82133]
+Perl_ptr_table_fetch
+[82133]
+Perl_ptr_table_split
+[82133]
+Perl_ptr_table_store
+[82129, 82123, 82133, 82127]
+Perl_ptr_table_clear
+[82133]
+Perl_ptr_table_free
+[82133]
+Perl_sv_cat_decode
+[82133]
+600/regcomp.bc
+Perl_re_op_compile
+[131010, 131012, 131013, 131003, 131015, 131017, 131018, 131019, 130960, 131060, 130939, 131038]
+131010
+[2]
+[131008, 131010, 131012, 131013, 131014, 130955, 131055, 130934, 130998, 131033, 131007]
+130955
+[2, 141]
+[130952, 130955, 130957, 130958, 130959, 130962, 130911, 130943, 131001, 130970, 130971, 131007]
+130952
+[2, 141, 142]
+[130949, 130952, 130940, 130954, 130955, 130956, 130959, 130931, 130998, 130967, 130968, 130908, 131007]
+130908
+[2, 141, 142, 754]
+[130952, 130923, 130909, 130896, 130931, 130905, 131001, 130908, 131007, 130911]
+130905
+[2, 141, 142, 754, 1078]
+[130952, 130893, 130928, 130905, 130908, 131007]
+130893
+[2, 141, 142, 754, 1078, 1223]
+[130952, 130893, 130896, 130992, 130905, 131007]
+S_compile_runtime_code
+[131012, 131015, 131017, 130939, 131038]
+131012
+[0]
+[130936, 131035, 131012, 131014]
+130936
+[0, 77]
+[130936, 131038]
+S_construct_ahocorasick_from_trie
+[131015]
+S_study_chunk
+[131202, 131093, 130968, 131099, 131129, 131008, 131010, 131011, 131012, 131013, 131015, 130887, 131017, 131021, 131152, 131025, 131026, 130771, 130902]
+131010
+[5]
