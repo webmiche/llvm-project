@@ -48,10 +48,9 @@ class InstrumentAlias:
         with open(file_name, "r") as f:
             return len(f.readlines())
 
-    def assemble_and_measure_file(self, file_name: Path) -> int:
-        """Measure a given file by compiling to an object file."""
+    def assemble_file(self, file_name: Path, obj_file_name: Path):
+        """Assemble the file."""
 
-        obj_file_name = file_name.with_suffix(".o")
         run(
             [
                 str(self.instr_path.joinpath("llc")),
@@ -62,6 +61,12 @@ class InstrumentAlias:
                 "-filetype=obj",
             ],
         )
+
+    def assemble_and_measure_file(self, file_name: Path) -> int:
+        """Measure a given file by compiling to an object file."""
+
+        obj_file_name = file_name.with_suffix(".o")
+        self.assemble_file(file_name, obj_file_name)
 
         return self.measure_outputsize(obj_file_name)
 
@@ -432,7 +437,7 @@ class InstrumentAlias:
 
         self.exploration(
             files,
-            False,
+            True,
         )
 
         self.exploration(
