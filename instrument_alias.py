@@ -432,7 +432,7 @@ class InstrumentAlias:
 
         self.exploration(
             files,
-            True,
+            False,
         )
 
         self.exploration(
@@ -686,7 +686,7 @@ if __name__ == "__main__":
     ]
     allowed_benchmarks = ["605", "619"]
     if args.benchmark == "all":
-        for i in benchmarks:
+        for i in allowed_benchmarks:
             sys.stdout = open("gen_res_" + i + "_first_strat.txt", "w")
             print("=============== running benchmark " + i + " ===============")
             args.benchmark = i
