@@ -1,0 +1,98 @@
+bd7d1e5ebb83477a275ea3139e2f491c6c395d66
+Track AA Queries may
+619/main.bc
+619/lbm.bc
+{PosixPath('619/main.bc'): {'MAIN_parseCommandLine': 14, 'MAIN_printInfo': 14, 'MAIN_initialize': 3, 'MAIN_finalize': 2, 'main': 7}, PosixPath('619/lbm.bc'): {'LBM_allocateGrid': 1, 'LBM_initializeGrid': 1, 'LBM_initializeSpecialCellsForLDC': 2, 'LBM_initializeSpecialCellsForChannel': 1, 'LBM_performStreamCollideBGK': 2, 'LBM_performStreamCollideTRT': 2, 'LBM_handleInOutFlow': 1, 'LBM_showGridStatistics': 1, 'LBM_storeVelocityField': 36, 'LBM_compareVelocityField': 5}}
+Start Exploration
+619/main.bc
+MAIN_parseCommandLine
+[1748]
+MAIN_printInfo
+[1748]
+MAIN_initialize
+[1748]
+MAIN_finalize
+[1748]
+main
+[1748]
+619/lbm.bc
+LBM_allocateGrid
+[12191]
+LBM_initializeGrid
+[12191]
+LBM_initializeSpecialCellsForLDC
+[12191]
+LBM_initializeSpecialCellsForChannel
+[12191]
+LBM_performStreamCollideBGK
+[12191]
+LBM_performStreamCollideTRT
+[12191]
+LBM_handleInOutFlow
+[12191]
+LBM_showGridStatistics
+[12191]
+LBM_storeVelocityField
+[12189, 12191]
+12189
+[29]
+[12189]
+LBM_compareVelocityField
+[12191]
+{PosixPath('619/main.bc'): {'MAIN_parseCommandLine': ([], 1748), 'MAIN_printInfo': ([], 1748), 'MAIN_initialize': ((), 1748), 'MAIN_finalize': ((), 1748), 'main': ((), 1748)}, PosixPath('619/lbm.bc'): {'LBM_allocateGrid': ((), 12191), 'LBM_initializeGrid': ((), 12191), 'LBM_initializeSpecialCellsForLDC': ((), 12191), 'LBM_initializeSpecialCellsForChannel': ((), 12191), 'LBM_performStreamCollideBGK': ((), 12191), 'LBM_performStreamCollideTRT': ((), 12191), 'LBM_handleInOutFlow': ((), 12191), 'LBM_showGridStatistics': ((), 12191), 'LBM_storeVelocityField': ([29], 12189), 'LBM_compareVelocityField': ((), 12191)}}
+Track AA Queries std
+619/main.bc
+{PosixPath('619/main.bc'): {'MAIN_parseCommandLine': 29, 'MAIN_printInfo': 27, 'MAIN_initialize': 4, 'MAIN_finalize': 4, 'main': 7}, PosixPath('619/lbm.bc'): {'LBM_allocateGrid': 1, 'LBM_initializeGrid': 191, 'LBM_initializeSpecialCellsForLDC': 2, 'LBM_initializeSpecialCellsForChannel': 1, 'LBM_performStreamCollideBGK': 279, 'LBM_performStreamCollideTRT': 264, 'LBM_handleInOutFlow': 1533, 'LBM_showGridStatistics': 191, 'LBM_storeVelocityField': 267, 'LBM_compareVelocityField': 175}}
+Start Exploration
+619/main.bc
+MAIN_parseCommandLine
+[1748]
+MAIN_printInfo
+[1748]
+MAIN_initialize
+[1748]
+MAIN_finalize
+[1748]
+main
+[1748]
+619/lbm.bc
+LBM_allocateGrid
+[11939]
+LBM_initializeGrid
+[11939, 11916, 11893, 11943]
+11893
+[1]
+[11944, 11893, 11911]
+LBM_initializeSpecialCellsForLDC
+[11939]
+LBM_initializeSpecialCellsForChannel
+[11939]
+LBM_performStreamCollideBGK
+[11939]
+LBM_performStreamCollideTRT
+[11939]
+LBM_handleInOutFlow
+[11840, 11936, 11939, 11972, 11879, 11912, 11887, 11889, 11891, 11956, 11961, 11930, 11899, 12189, 11902]
+11902
+[1121]
+[11972, 11973, 11942, 11881, 11946, 11979, 11950, 11924, 11893, 11927, 11961, 11933, 11902, 11903]
+11893
+[1121, 1127]
+[11938, 11906, 11910, 11882, 11916, 11920, 11953, 11954, 11890, 11956, 11893, 11930]
+11882
+[1121, 1127, 1292]
+[11937, 11882, 11919, 11890, 11927, 11897]
+LBM_showGridStatistics
+[11939]
+LBM_storeVelocityField
+[11938, 11939, 11935]
+11935
+[26]
+[11937, 11935]
+LBM_compareVelocityField
+[11939]
+{PosixPath('619/main.bc'): {'MAIN_parseCommandLine': ([], 1748), 'MAIN_printInfo': ([], 1748), 'MAIN_initialize': ((), 1748), 'MAIN_finalize': ((), 1748), 'main': ((), 1748)}, PosixPath('619/lbm.bc'): {'LBM_allocateGrid': ((), 11939), 'LBM_initializeGrid': ([1], 11893), 'LBM_initializeSpecialCellsForLDC': ((), 11939), 'LBM_initializeSpecialCellsForChannel': ((), 11939), 'LBM_performStreamCollideBGK': ([], 11939), 'LBM_performStreamCollideTRT': ([], 11939), 'LBM_handleInOutFlow': ([1121, 1127, 1292], 11882), 'LBM_showGridStatistics': ([], 11939), 'LBM_storeVelocityField': ([26], 11935), 'LBM_compareVelocityField': ([], 11939)}}
+619/main.bc: 1748 vs 1748 and 1748 vs 1748
+619/lbm.bc: 12189 vs 12191 and 11832 vs 11939
+result: 15669 vs 15760
+meaning a 0.5774111675126903% improvement

@@ -1,0 +1,244 @@
+Track AA Queries may
+605/pflowup.ll
+605/mcf.ll
+605/output.ll
+605/pbla.ll
+605/pstart.ll
+605/treeup.ll
+605/psimplex.ll
+605/pbeampp.ll
+605/readmin.ll
+605/mcfutil.ll
+605/spec_qsort/spec_qsort.ll
+605/implicit.ll
+{PosixPath('605/implicit.ll'): {'resize_prob': 83, 'insert_new_arc': 262, 'replace_weaker_arc': 295, 'price_out_impl': 1350, 'suspend_impl': 339, 'refreshArcPointers': 23, 'refreshPositions': 11, 'marc_arcs': 192, 'calculate_max_redcost': 5, 'switch_arcs': 45, 'arc_compare': 2}, PosixPath('605/treeup.ll'): {'update_tree': 323}, PosixPath('605/readmin.ll'): {'read_min': 1203}, PosixPath('605/output.ll'): {'write_circulations': 5}, PosixPath('605/pbeampp.ll'): {'set_static_vars': 1, 'cost_compare': 2, 'primal_bea_mpp': 89}, PosixPath('605/mcfutil.ll'): {'refresh_neighbour_lists': 23, 'flow_cost': 55, 'getArcPosition': 5, 'flow_org_cost': 55, 'primal_feasible': 14, 'dual_feasible': 20, 'getfree': 6}, PosixPath('605/pstart.ll'): {'primal_start_artificial': 217}, PosixPath('605/psimplex.ll'): {'markBaskets': 87, 'worker': 79, 'master': 311, 'primal_net_simplex': 4}, PosixPath('605/pflowup.ll'): {'primal_update_flow': 30}, PosixPath('605/mcf.ll'): {'main': 4}, PosixPath('605/pbla.ll'): {'primal_iminus': 30}, PosixPath('605/spec_qsort/spec_qsort.ll'): {'swapfunc': 12, 'spec_qsort': 205}}
+Start Exploration
+605/implicit.ll
+resize_prob
+[5307]
+insert_new_arc
+[5307]
+replace_weaker_arc
+[5307]
+price_out_impl
+[300000000, 5255, 5455, 5435, 5427, 5302, 5307, 5245]
+5245
+[1329]
+[5307, 5245]
+suspend_impl
+[5307, 5318, 5303]
+5303
+[93]
+[5295, 5303]
+5295
+[93, 128]
+[5295]
+refreshArcPointers
+[5307]
+refreshPositions
+[5307]
+marc_arcs
+[5304, 5307, 5300, 5295]
+5295
+[131]
+[5307, 5300, 5295]
+calculate_max_redcost
+[5307]
+switch_arcs
+[5312, 5307]
+arc_compare
+[5307]
+605/treeup.ll
+update_tree
+[560]
+605/readmin.ll
+read_min
+[300000000, 1873, 1878]
+1873
+[2]
+[1873, 1868, 1878]
+1868
+[2, 8]
+[1873, 1868]
+605/output.ll
+write_circulations
+[541]
+605/pbeampp.ll
+set_static_vars
+[770]
+cost_compare
+[770]
+primal_bea_mpp
+[770, 773]
+605/mcfutil.ll
+refresh_neighbour_lists
+[1663]
+flow_cost
+[1663]
+getArcPosition
+[1663]
+flow_org_cost
+[1663]
+primal_feasible
+[1663]
+dual_feasible
+[1663]
+getfree
+[1663]
+605/pstart.ll
+primal_start_artificial
+[286]
+605/psimplex.ll
+markBaskets
+[300000000, 1770]
+worker
+[300000000, 1770, 1763]
+1763
+[22]
+[1770, 1763]
+master
+[300000000, 1770, 1763]
+1763
+[14]
+[1763, 1756]
+1756
+[14, 94]
+[1756]
+primal_net_simplex
+[1770]
+605/pflowup.ll
+primal_update_flow
+[95]
+605/mcf.ll
+main
+[1227]
+605/pbla.ll
+primal_iminus
+[195]
+605/spec_qsort/spec_qsort.ll
+swapfunc
+[2866]
+spec_qsort
+[2866]
+{PosixPath('605/implicit.ll'): {'resize_prob': ([], 5307), 'insert_new_arc': ([], 5307), 'replace_weaker_arc': ([], 5307), 'price_out_impl': ([1329], 5245), 'suspend_impl': ([93, 128], 5295), 'refreshArcPointers': ([], 5307), 'refreshPositions': ([], 5307), 'marc_arcs': ([131], 5295), 'calculate_max_redcost': ((), 5307), 'switch_arcs': ([], 5307), 'arc_compare': ((), 5307)}, PosixPath('605/treeup.ll'): {'update_tree': ([], 560)}, PosixPath('605/readmin.ll'): {'read_min': ([2, 8], 1868)}, PosixPath('605/output.ll'): {'write_circulations': ((), 541)}, PosixPath('605/pbeampp.ll'): {'set_static_vars': ((), 770), 'cost_compare': ((), 770), 'primal_bea_mpp': ([], 770)}, PosixPath('605/mcfutil.ll'): {'refresh_neighbour_lists': ([], 1663), 'flow_cost': ([], 1663), 'getArcPosition': ((), 1663), 'flow_org_cost': ([], 1663), 'primal_feasible': ([], 1663), 'dual_feasible': ([], 1663), 'getfree': ((), 1663)}, PosixPath('605/pstart.ll'): {'primal_start_artificial': ([], 286)}, PosixPath('605/psimplex.ll'): {'markBaskets': ([], 1770), 'worker': ([22], 1763), 'master': ([14, 94], 1756), 'primal_net_simplex': ((), 1770)}, PosixPath('605/pflowup.ll'): {'primal_update_flow': ([], 95)}, PosixPath('605/mcf.ll'): {'main': ((), 1227)}, PosixPath('605/pbla.ll'): {'primal_iminus': ([], 195)}, PosixPath('605/spec_qsort/spec_qsort.ll'): {'swapfunc': ([], 2866), 'spec_qsort': ([], 2866)}}
+Track AA Queries std
+605/pflowup.ll
+605/mcf.ll
+605/output.ll
+605/pbla.ll
+605/pstart.ll
+605/pbeampp.ll
+605/treeup.ll
+605/mcfutil.ll
+605/readmin.ll
+605/psimplex.ll
+605/spec_qsort/spec_qsort.ll
+{PosixPath('605/implicit.ll'): {'resize_prob': 165, 'insert_new_arc': 359, 'replace_weaker_arc': 444, 'price_out_impl': 2165, 'suspend_impl': 853, 'refreshArcPointers': 35, 'refreshPositions': 18, 'marc_arcs': 175, 'calculate_max_redcost': 5, 'switch_arcs': 86, 'arc_compare': 4}, PosixPath('605/treeup.ll'): {'update_tree': 548}, PosixPath('605/readmin.ll'): {'read_min': 1760}, PosixPath('605/output.ll'): {'write_circulations': 10}, PosixPath('605/pbeampp.ll'): {'set_static_vars': 2, 'cost_compare': 4, 'primal_bea_mpp': 104}, PosixPath('605/mcfutil.ll'): {'refresh_neighbour_lists': 48, 'flow_cost': 75, 'getArcPosition': 10, 'flow_org_cost': 75, 'primal_feasible': 26, 'dual_feasible': 30, 'getfree': 12}, PosixPath('605/pstart.ll'): {'primal_start_artificial': 385}, PosixPath('605/psimplex.ll'): {'markBaskets': 124, 'worker': 130, 'master': 533, 'primal_net_simplex': 4}, PosixPath('605/pflowup.ll'): {'primal_update_flow': 40}, PosixPath('605/mcf.ll'): {'main': 6}, PosixPath('605/pbla.ll'): {'primal_iminus': 56}, PosixPath('605/spec_qsort/spec_qsort.ll'): {'swapfunc': 15, 'spec_qsort': 597}}
+Start Exploration
+605/implicit.ll
+resize_prob
+[5628]
+insert_new_arc
+[5628]
+replace_weaker_arc
+[5628]
+price_out_impl
+[300000000, 5307, 5628, 5557]
+5307
+[473]
+[300000000, 5307, 5628, 5557]
+suspend_impl
+[5634, 5611, 5628, 5630]
+5611
+[159]
+[5619, 5611, 5623]
+refreshArcPointers
+[5628]
+refreshPositions
+[5628]
+marc_arcs
+[5628, 5630]
+calculate_max_redcost
+[5628]
+switch_arcs
+[5633, 5628, 5623]
+5623
+[24]
+[5628, 5623]
+arc_compare
+[5628]
+605/treeup.ll
+update_tree
+[560]
+605/readmin.ll
+read_min
+[300000000, 1868, 1837, 1845, 1847, 1852]
+1837
+[656]
+[300000000, 1845, 1837]
+605/output.ll
+write_circulations
+[541]
+605/pbeampp.ll
+set_static_vars
+[762]
+cost_compare
+[762]
+primal_bea_mpp
+[762]
+605/mcfutil.ll
+refresh_neighbour_lists
+[1663]
+flow_cost
+[1663]
+getArcPosition
+[1663]
+flow_org_cost
+[1663]
+primal_feasible
+[1663]
+dual_feasible
+[1663]
+getfree
+[1663]
+605/pstart.ll
+primal_start_artificial
+[286]
+605/psimplex.ll
+markBaskets
+[1770, 1763, 1756, 1742]
+worker
+[1742]
+master
+[300000000, 1742]
+primal_net_simplex
+[1742]
+605/pflowup.ll
+primal_update_flow
+[300000000, 95]
+605/mcf.ll
+main
+[1227]
+605/pbla.ll
+primal_iminus
+[195]
+605/spec_qsort/spec_qsort.ll
+swapfunc
+[2866]
+spec_qsort
+[2866]
+{PosixPath('605/implicit.ll'): {'resize_prob': ([], 5628), 'insert_new_arc': ([], 5628), 'replace_weaker_arc': ([], 5628), 'price_out_impl': ([473], 5307), 'suspend_impl': ([159], 5611), 'refreshArcPointers': ([], 5628), 'refreshPositions': ([], 5628), 'marc_arcs': ([], 5628), 'calculate_max_redcost': ((), 5628), 'switch_arcs': ([24], 5623), 'arc_compare': ((), 5628)}, PosixPath('605/treeup.ll'): {'update_tree': ([], 560)}, PosixPath('605/readmin.ll'): {'read_min': ([656], 1837)}, PosixPath('605/output.ll'): {'write_circulations': ([], 541)}, PosixPath('605/pbeampp.ll'): {'set_static_vars': ((), 762), 'cost_compare': ((), 762), 'primal_bea_mpp': ([], 762)}, PosixPath('605/mcfutil.ll'): {'refresh_neighbour_lists': ([], 1663), 'flow_cost': ([], 1663), 'getArcPosition': ([], 1663), 'flow_org_cost': ([], 1663), 'primal_feasible': ([], 1663), 'dual_feasible': ([], 1663), 'getfree': ([], 1663)}, PosixPath('605/pstart.ll'): {'primal_start_artificial': ([], 286)}, PosixPath('605/psimplex.ll'): {'markBaskets': ([], 1742), 'worker': ([], 1742), 'master': ([], 1742), 'primal_net_simplex': ((), 1742)}, PosixPath('605/pflowup.ll'): {'primal_update_flow': ([], 95)}, PosixPath('605/mcf.ll'): {'main': ((), 1227)}, PosixPath('605/pbla.ll'): {'primal_iminus': ([], 195)}, PosixPath('605/spec_qsort/spec_qsort.ll'): {'swapfunc': ([], 2866), 'spec_qsort': ([], 2866)}}
+605/implicit.ll: 300000000 vs 5307 and 300000000 vs 5628
+605/treeup.ll: 560 vs 560 and 560 vs 560
+605/readmin.ll: 1868 vs 1878 and 1837 vs 1845
+605/output.ll: 541 vs 541 and 541 vs 541
+605/pbeampp.ll: 770 vs 770 and 762 vs 762
+605/mcfutil.ll: 1663 vs 1663 and 1663 vs 1663
+605/pstart.ll: 286 vs 286 and 286 vs 286
+605/psimplex.ll: 1749 vs 1770 and 1742 vs 1742
+605/pflowup.ll: 95 vs 95 and 95 vs 95
+605/mcf.ll: 1227 vs 1227 and 1227 vs 1227
+605/pbla.ll: 195 vs 195 and 195 vs 195
+605/spec_qsort/spec_qsort.ll: 2866 vs 2866 and 2866 vs 2866
+result: 19579 vs 19919
+meaning a 1.7069129976404438% improvement
