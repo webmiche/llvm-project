@@ -720,7 +720,7 @@ if __name__ == "__main__":
         "644",
         "657",
     ]
-    allowed_benchmarks = ["605", "619", "631"]
+    allowed_benchmarks = ["605", "619", "631", "641"]
     if args.benchmark == "all":
         for i in allowed_benchmarks:
             sys.stdout = open("gen_res_" + i + "_first_strat.txt", "w")
