@@ -8,6 +8,7 @@ from pathlib import Path
 from dataclasses import dataclass
 from multiprocessing import Pool
 import sys
+import time
 
 # from specbuilder --> spec.py
 linked_libraries = {
@@ -30,6 +31,7 @@ class InstrumentAlias:
     groundtruth_dir: Path
     default_may_truth: Path
     instr_dir: Path
+    start_time: float
 
     def measure_outputsize(self, file: Path) -> int:
         cmd = [str(self.instr_path.joinpath("llvm-size")), str(file)]
@@ -127,6 +129,11 @@ class InstrumentAlias:
                 for k in curr_list:
                     f.write(f"{k}\n")
 
+        print(
+            "exhaustive search, time after file generation: "
+            + str(time.time() - self.start_time)
+        )
+
         # compile and measure
         with Pool() as p:
             p.starmap(
@@ -136,6 +143,11 @@ class InstrumentAlias:
                     for i in range(len(list_combinations))
                 ],
             )
+
+        print(
+            "exhaustive search, time after compilation: "
+            + str(time.time() - self.start_time)
+        )
 
         counts = []
         lists = []
@@ -155,6 +167,11 @@ class InstrumentAlias:
                 ],
             )
 
+        print(
+            "exhaustive search, time after assembly: "
+            + str(time.time() - self.start_time)
+        )
+
         for i in range(len(list_combinations)):
             counts.append(
                 self.measure_outputsize(
@@ -165,7 +182,7 @@ class InstrumentAlias:
             )
             lists.append(list_combinations[i])
 
-        print("exhaustive search condidates: " + list(set(counts)))
+        print("exhaustive search candidates: " + str(list(set(counts))))
         # take best
         return lists[counts.index(min(counts))], min(counts)
 
@@ -203,6 +220,8 @@ class InstrumentAlias:
             )
         )
 
+        iteration_count = 0
+
         while True:
             counts = []
             lists = []
@@ -226,6 +245,13 @@ class InstrumentAlias:
 
                 lists.append(next_list)
 
+            print(
+                "greedy search, time after file generation in step "
+                + str(iteration_count)
+                + " : "
+                + str(time.time() - self.start_time)
+            )
+
             with Pool() as p:
                 p.starmap(
                     self.run_step,
@@ -234,6 +260,13 @@ class InstrumentAlias:
                         for i in range(lower_bound, upper_bound)
                     ],
                 )
+
+            print(
+                "greedy search, time after compilation in step "
+                + str(iteration_count)
+                + " : "
+                + str(time.time() - self.start_time)
+            )
 
             with Pool() as p:
                 p.starmap(
@@ -251,6 +284,13 @@ class InstrumentAlias:
                     ],
                 )
 
+            print(
+                "greedy search, time after assembly in step "
+                + str(iteration_count)
+                + " : "
+                + str(time.time() - self.start_time)
+            )
+
             for i in range(lower_bound, upper_bound):
                 counts.append(
                     self.measure_outputsize(
@@ -260,7 +300,7 @@ class InstrumentAlias:
                     )
                 )
 
-            print("greedy search candidates: " + list(set(counts)))
+            print("greedy search candidates: " + str(list(set(counts))))
 
             index_list = [(i, v) for i, v in enumerate(counts) if v < min_count]
 
@@ -276,8 +316,15 @@ class InstrumentAlias:
                 min_count = index_list[0][1]
                 curr_list = lists[index_list[0][0]].copy()
 
-            print("greedy search, new min: " + min_count)
-            print("greedy search, current list: " + curr_list)
+            print("greedy search, new min: " + str(min_count))
+            print("greedy search, current list: " + str(curr_list))
+            print(
+                "greedy search, time after step "
+                + str(iteration_count)
+                + " :"
+                + str(time.time() - self.start_time)
+            )
+            iteration_count += 1
 
         return curr_list, min_count
 
@@ -337,13 +384,14 @@ class InstrumentAlias:
             curr_counts = self.get_count(filename)
             count_per_file[f] = curr_counts
 
-        print("counts per function per file: " + count_per_file)
+        print("counts per function per file: " + str(count_per_file))
+        print("Time after AA Query measurement: " + str(time.time() - self.start_time))
 
         results = {}
 
         print("Start Exploration")
         for file_name in count_per_file.keys():
-            print("***** Next file: " + file_name)
+            print("***** Next file: " + str(file_name))
             curr_results = {}
             for function in count_per_file[file_name].keys():
                 print("==== Next function: " + function)
@@ -366,10 +414,23 @@ class InstrumentAlias:
                         take_may,
                         False,  # take_min
                     )
+                print(
+                    "Time after exploration of "
+                    + function
+                    + ": "
+                    + str(time.time() - self.start_time)
+                )
 
             results[file_name] = curr_results
+            print(
+                "Time after exploration of "
+                + str(file_name)
+                + ": "
+                + str(time.time() - self.start_time)
+            )
 
-        print("found results: " results)
+        print("found results: " + str(results))
+        print("time after exploration: " + str(time.time() - self.start_time))
 
         self.generate_composed_files(results)
 
@@ -445,6 +506,8 @@ class InstrumentAlias:
         )
         run(cmd, cwd=self.exec_root)
 
+        print("Time after baseline: " + str(time.time() - self.start_time))
+
         dirs = [x[0] for x in os.walk(self.initial_dir)]
 
         required_empty_paths = [
@@ -470,11 +533,13 @@ class InstrumentAlias:
             files,
             True,
         )
+        print("Time after may exploration: " + str(time.time() - self.start_time))
 
         self.exploration(
             files,
             False,
         )
+        print("Time after std exploration: " + str(time.time() - self.start_time))
 
         for file_name in files:
             output_name = file_name.with_suffix(".o")
@@ -533,6 +598,8 @@ class InstrumentAlias:
             + ["final_res/" + str(f.with_suffix(".o")) for f in files]
         )
         run(cmd, cwd=self.exec_root)
+
+        print("Time after after composition: " + str(time.time() - self.start_time))
 
         # measure linked file
         res_size = self.measure_outputsize(
@@ -702,6 +769,7 @@ if __name__ == "__main__":
                 Path(groundtruth_dir),
                 Path(default_may_truth),
                 Path(instr_dir),
+                time.time(),
             ),
         ).is_valid():
             exit(1)
@@ -737,6 +805,7 @@ if __name__ == "__main__":
                 Path(groundtruth_dir),
                 Path(default_may_truth),
                 Path(instr_dir),
+                time.time(),
             ).exploration_driver()
     else:
         InstrumentAlias(
@@ -748,4 +817,5 @@ if __name__ == "__main__":
             Path(groundtruth_dir),
             Path(default_may_truth),
             Path(instr_dir),
+            time.time(),
         ).exploration_driver()
