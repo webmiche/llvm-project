@@ -139,12 +139,27 @@ class InstrumentAlias:
 
         counts = []
         lists = []
+        with Pool() as p:
+            p.starmap(
+                self.assemble_file,
+                [
+                    (
+                        self.instr_dir.joinpath(
+                            file_name.parent, str(i) + str(file_name.stem) + ".bc"
+                        ),
+                        self.instr_dir.joinpath(
+                            file_name.parent, str(i) + str(file_name.stem) + ".o"
+                        ),
+                    )
+                    for i in range(len(list_combinations))
+                ],
+            )
+
         for i in range(len(list_combinations)):
-            ar_name = self.instr_dir.joinpath(str(i) + ".txt")
             counts.append(
-                self.assemble_and_measure_file(
+                self.measure_outputsize(
                     self.instr_dir.joinpath(
-                        file_name.parent, str(i) + str(file_name.stem) + ".bc"
+                        file_name.parent, str(i) + str(file_name.stem) + ".o"
                     )
                 )
             )
@@ -191,7 +206,9 @@ class InstrumentAlias:
         while True:
             counts = []
             lists = []
-            for i in range(curr_list[-1] + 1 if len(curr_list) else 0, count):
+            lower_bound = curr_list[-1] + 1 if len(curr_list) else 0
+            upper_bound = count
+            for i in range(lower_bound, upper_bound):
                 next_list = curr_list + [i]
 
                 # generate appropriate file
@@ -214,17 +231,31 @@ class InstrumentAlias:
                     self.run_step,
                     [
                         (file_name, i, function_name, take_may)
-                        for i in range(
-                            curr_list[-1] + 1 if len(curr_list) else 0, count
-                        )
+                        for i in range(lower_bound, upper_bound)
                     ],
                 )
 
-            for i in range(curr_list[-1] + 1 if len(curr_list) else 0, count):
+            with Pool() as p:
+                p.starmap(
+                    self.assemble_file,
+                    [
+                        (
+                            self.instr_dir.joinpath(
+                                file_name.parent, str(i) + str(file_name.stem) + ".bc"
+                            ),
+                            self.instr_dir.joinpath(
+                                file_name.parent, str(i) + str(file_name.stem) + ".o"
+                            ),
+                        )
+                        for i in range(lower_bound, upper_bound)
+                    ],
+                )
+
+            for i in range(lower_bound, upper_bound):
                 counts.append(
-                    self.assemble_and_measure_file(
+                    self.measure_outputsize(
                         self.instr_dir.joinpath(
-                            file_name.parent, str(i) + str(file_name.stem) + ".bc"
+                            file_name.parent, str(i) + str(file_name.stem) + ".o"
                         )
                     )
                 )
