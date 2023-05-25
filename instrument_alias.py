@@ -165,7 +165,7 @@ class InstrumentAlias:
             )
             lists.append(list_combinations[i])
 
-        print(list(set(counts)))
+        print("exhaustive search condidates: " + list(set(counts)))
         # take best
         return lists[counts.index(min(counts))], min(counts)
 
@@ -260,7 +260,7 @@ class InstrumentAlias:
                     )
                 )
 
-            print(list(set(counts)))
+            print("greedy search candidates: " + list(set(counts)))
 
             index_list = [(i, v) for i, v in enumerate(counts) if v < min_count]
 
@@ -276,8 +276,8 @@ class InstrumentAlias:
                 min_count = index_list[0][1]
                 curr_list = lists[index_list[0][0]].copy()
 
-            print(min_count)
-            print(curr_list)
+            print("greedy search, new min: " + min_count)
+            print("greedy search, current list: " + curr_list)
 
         return curr_list, min_count
 
@@ -288,7 +288,6 @@ class InstrumentAlias:
         os.makedirs(
             Path("alias_queries/").joinpath(description, f).parent, exist_ok=True
         )
-        print(f)
         cmd = [
             str(self.instr_path.joinpath("opt")),
             str(self.initial_dir.joinpath(f)),
@@ -338,16 +337,16 @@ class InstrumentAlias:
             curr_counts = self.get_count(filename)
             count_per_file[f] = curr_counts
 
-        print(count_per_file)
+        print("counts per function per file: " + count_per_file)
 
         results = {}
 
         print("Start Exploration")
         for file_name in count_per_file.keys():
-            print(file_name)
+            print("***** Next file: " + file_name)
             curr_results = {}
             for function in count_per_file[file_name].keys():
-                print(function)
+                print("==== Next function: " + function)
                 curr_path: Path = self.instr_dir.joinpath(Path(function))
                 if not os.path.exists(curr_path):
                     os.makedirs(curr_path, exist_ok=True)
@@ -370,7 +369,7 @@ class InstrumentAlias:
 
             results[file_name] = curr_results
 
-        print(results)
+        print("found results: " results)
 
         self.generate_composed_files(results)
 
