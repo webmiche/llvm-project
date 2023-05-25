@@ -437,6 +437,7 @@ class InstrumentAlias:
             [
                 str(self.instr_path.joinpath("clang")),
                 "-no-pie",
+                "-lstdc++",
                 "-o",
                 Path("baseline/").joinpath(self.benchmark, str(self.benchmark)),
             ]
@@ -525,6 +526,7 @@ class InstrumentAlias:
             [
                 str(self.instr_path.joinpath("clang")),
                 "-no-pie",
+                "-lstdc++",
                 "-o",
                 "final_res/linked.out",
             ]
@@ -722,7 +724,7 @@ if __name__ == "__main__":
     ]
     allowed_benchmarks = ["605", "619", "631", "641"]
     if args.benchmark == "all":
-        for i in allowed_benchmarks:
+        for i in benchmarks:
             sys.stdout = open("gen_res_" + i + "_first_strat.txt", "w")
             print("=============== running benchmark " + i + " ===============")
             print(p.stdout.decode("utf-8"))
