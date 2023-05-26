@@ -229,10 +229,20 @@ class InstrumentAlias:
 
         iteration_count = 0
 
+        proc_count = 256
+        curr_fixed = 0
         while True:
             counts = []
-            lower_bound = curr_list[-1] + 1 if len(curr_list) else 0
-            upper_bound = count
+            lower_bound = curr_fixed
+            upper_bound = min(count, curr_fixed + proc_count)
+            print(
+                "greedy search, currently checking "
+                + str(lower_bound)
+                + " to "
+                + str(upper_bound)
+                + " out of "
+                + str(count)
+            )
             with Pool() as p:
                 p.starmap(
                     self.write_one_file,
@@ -302,7 +312,10 @@ class InstrumentAlias:
             index_list = [(i, v) for i, v in enumerate(counts) if v < min_count]
 
             # No reduction occured, hence we are done
-            if index_list == []:
+            if index_list == [] and curr_fixed + proc_count < count:
+                curr_fixed += proc_count
+                continue
+            elif index_list == []:
                 break
 
             if take_min:
@@ -323,6 +336,7 @@ class InstrumentAlias:
                 + str(time.time() - self.start_time)
             )
             iteration_count += 1
+            curr_fixed = lower_bound + min_index
 
         return curr_list, min_count
 
@@ -568,7 +582,7 @@ class InstrumentAlias:
             os.makedirs(
                 self.exec_root.joinpath("final_res/", output_name.parent), exist_ok=True
             )
-            sizes = [may_size, std_size, true_may_size, true_std_size]
+            # sizes = [may_size, std_size, true_may_size, true_std_size]
             sizes = [std_size, true_std_size]
             curr_files = [
                 # self.exec_root.joinpath("res/may/", output_name),
