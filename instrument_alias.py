@@ -130,7 +130,7 @@ class InstrumentAlias:
                     f.write(f"{k}\n")
 
         print(
-            "exhaustive search, time after filegeneration: "
+            "exhaustive search, time after filegeneration : "
             + str(time.time() - self.start_time)
         )
 
@@ -145,7 +145,7 @@ class InstrumentAlias:
             )
 
         print(
-            "exhaustive search, time after compilation: "
+            "exhaustive search, time after compilation : "
             + str(time.time() - self.start_time)
         )
 
@@ -168,7 +168,7 @@ class InstrumentAlias:
             )
 
         print(
-            "exhaustive search, time after assembly: "
+            "exhaustive search, time after assembly : "
             + str(time.time() - self.start_time)
         )
 
@@ -182,7 +182,7 @@ class InstrumentAlias:
             )
             lists.append(list_combinations[i])
 
-        print("exhaustive search candidates: " + str(list(set(counts))))
+        print("exhaustive search candidates : " + str(list(set(counts))))
         # take best
         return lists[counts.index(min(counts))], min(counts)
 
@@ -246,7 +246,7 @@ class InstrumentAlias:
                 lists.append(next_list)
 
             print(
-                "greedy search, time after file generation in step "
+                "greedy search, time after filegeneration in step "
                 + str(iteration_count)
                 + " : "
                 + str(time.time() - self.start_time)

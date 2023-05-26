@@ -50,3 +50,21 @@ with open(f, "r") as file:
             curr_strategy = line.split(" ")[-1].strip()
 
 print(strategy_dict)
+
+# compute time per step
+time_per_step = {}
+for strategy in strategy_dict:
+    for f in strategy_dict[strategy]:
+        for func in strategy_dict[strategy][f]:
+            for step in strategy_dict[strategy][f][func]:
+                curr_step = step.split(" ")[0]
+                print(step)
+                if curr_step in time_per_step:
+                    time_per_step[curr_step] = (
+                        time_per_step[curr_step]
+                        + strategy_dict[strategy][f][func][step]
+                    )
+                else:
+                    time_per_step[curr_step] = strategy_dict[strategy][f][func][step]
+
+print(time_per_step)
