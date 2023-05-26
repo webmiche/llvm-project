@@ -476,13 +476,8 @@ class InstrumentAlias:
             [
                 "cp",
                 "-r",
-                str(self.initial_dir),
-                str(self.exec_root),
-            ],
-            cwd=self.specbuild_dir,
-        )
+                str(self.initial_dir)
 
-        files = [
             Path(os.path.join(dirpath.removeprefix(str(self.initial_dir) + "/"), f))
             for (dirpath, dirnames, filenames) in os.walk(
                 self.initial_dir.joinpath(self.benchmark)
@@ -790,22 +785,22 @@ if __name__ == "__main__":
         exit(0)
 
     benchmarks = [
-        "600",
-        "602",
-        "605",
         "619",
-        "620",
-        "623",
-        "625",
+        "605",
         "631",
-        "638",
         "641",
         "644",
+        "623",
         "657",
+        "625",
+        "620",
+        "600",
+        "638",
+        "602",
     ]
     allowed_benchmarks = ["605", "619", "631", "641"]
     if args.benchmark == "all":
-        for i in allowed_benchmarks:
+        for i in benchmarks:
             sys.stdout = open("gen_res_" + i + "_first_strat.txt", "w")
             print("=============== running benchmark " + i + " ===============")
             print(p.stdout.decode("utf-8"))
