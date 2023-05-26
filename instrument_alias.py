@@ -130,7 +130,7 @@ class InstrumentAlias:
                     f.write(f"{k}\n")
 
         print(
-            "exhaustive search, time after file generation: "
+            "exhaustive search, time after filegeneration: "
             + str(time.time() - self.start_time)
         )
 
@@ -321,7 +321,7 @@ class InstrumentAlias:
             print(
                 "greedy search, time after step "
                 + str(iteration_count)
-                + " :"
+                + " : "
                 + str(time.time() - self.start_time)
             )
             iteration_count += 1
