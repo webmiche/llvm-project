@@ -101,6 +101,16 @@ class InstrumentAlias:
             cwd=self.exec_root,
         )
 
+    def write_one_file(self, instr_dir: Path, i: int, curr_list, function_name: str):
+        ar_file_name: Path = instr_dir.joinpath(str(i) + ".txt")
+
+        with open(ar_file_name, "w") as f:
+            f.write((str(1) + "\n"))
+            f.write(function_name + "\n")
+            f.write(str(len(curr_list)) + "\n")
+            for k in curr_list:
+                f.write(f"{k}\n")
+
     def exhaustive_exploration(
         self,
         file_name: Path,
@@ -117,17 +127,14 @@ class InstrumentAlias:
         for n in range(len(sample_list) + 1):
             list_combinations += list(combinations(sample_list, n))
 
-        for curr_list, i in zip(list_combinations, range(len(list_combinations))):
-            # generate appropriate file
-
-            ar_file_name: Path = self.instr_dir.joinpath(str(i) + ".txt")
-
-            with open(ar_file_name, "w") as f:
-                f.write((str(1) + "\n"))
-                f.write(function_name + "\n")
-                f.write(str(len(curr_list)) + "\n")
-                for k in curr_list:
-                    f.write(f"{k}\n")
+        with Pool() as p:
+            p.starmap(
+                self.write_one_file,
+                [
+                    (self.instr_dir, i, curr_list, function_name)
+                    for i, curr_list in enumerate(list_combinations)
+                ],
+            )
 
         print(
             "exhaustive search, time after filegeneration : "
@@ -224,26 +231,16 @@ class InstrumentAlias:
 
         while True:
             counts = []
-            lists = []
             lower_bound = curr_list[-1] + 1 if len(curr_list) else 0
             upper_bound = count
-            for i in range(lower_bound, upper_bound):
-                next_list = curr_list + [i]
-
-                # generate appropriate file
-
-                ar_name = self.instr_dir.joinpath(str(i) + ".txt")
-
-                with open(ar_name, "w") as f:
-                    f.write((str(1) + "\n"))
-                    f.write(function_name + "\n")
-                    f.write(str(len(next_list)) + "\n")
-                    for k in next_list:
-                        f.write(f"{k}\n")
-
-                # compile and count
-
-                lists.append(next_list)
+            with Pool() as p:
+                p.starmap(
+                    self.write_one_file,
+                    [
+                        (self.instr_dir, i, curr_list + [i], function_name)
+                        for i in range(lower_bound, upper_bound)
+                    ],
+                )
 
             print(
                 "greedy search, time after filegeneration in step "
@@ -311,10 +308,11 @@ class InstrumentAlias:
             if take_min:
                 min_count = min(counts)
                 min_index = counts.index(min_count)
-                curr_list = lists[min_index].copy()
+                curr_list.append(lower_bound + min_index)
             else:
                 min_count = index_list[0][1]
-                curr_list = lists[index_list[0][0]].copy()
+                min_index = index_list[0][0]
+                curr_list.append(lower_bound + min_index)
 
             print("greedy search, new min: " + str(min_count))
             print("greedy search, current list: " + str(curr_list))
@@ -529,11 +527,11 @@ class InstrumentAlias:
             os.makedirs(self.default_may_truth.joinpath("may", d), exist_ok=True)
             os.makedirs(self.default_may_truth.joinpath("std", d), exist_ok=True)
 
-        self.exploration(
-            files,
-            True,
-        )
-        print("Time after may exploration: " + str(time.time() - self.start_time))
+        # self.exploration(
+        #    files,
+        #    True,
+        # )
+        # print("Time after may exploration: " + str(time.time() - self.start_time))
 
         self.exploration(
             files,
@@ -543,26 +541,26 @@ class InstrumentAlias:
 
         for file_name in files:
             output_name = file_name.with_suffix(".o")
-            may_size = self.measure_outputsize(
-                self.exec_root.joinpath("res/may/", output_name)
-            )
+            # may_size = self.measure_outputsize(
+            #    self.exec_root.joinpath("res/may/", output_name)
+            # )
             std_size = self.measure_outputsize(
                 self.exec_root.joinpath("res/std/", output_name)
             )
 
-            true_may_size = self.assemble_and_measure_file(
-                self.default_may_truth.joinpath("may/", file_name)
-            )
+            # true_may_size = self.assemble_and_measure_file(
+            #    self.default_may_truth.joinpath("may/", file_name)
+            # )
             true_std_size = self.assemble_and_measure_file(
                 self.default_may_truth.joinpath("std/", file_name)
             )
             print(
                 str(file_name)
                 + ": "
-                + str(may_size)
-                + " vs "
-                + str(true_may_size)
-                + " and "
+                # + str(may_size)
+                # + " vs "
+                # + str(true_may_size)
+                # + " and "
                 + str(std_size)
                 + " vs "
                 + str(true_std_size)
@@ -571,10 +569,11 @@ class InstrumentAlias:
                 self.exec_root.joinpath("final_res/", output_name.parent), exist_ok=True
             )
             sizes = [may_size, std_size, true_may_size, true_std_size]
+            sizes = [std_size, true_std_size]
             curr_files = [
-                self.exec_root.joinpath("res/may/", output_name),
+                # self.exec_root.joinpath("res/may/", output_name),
                 self.exec_root.joinpath("res/std/", output_name),
-                self.default_may_truth.joinpath("may/", output_name),
+                # self.default_may_truth.joinpath("may/", output_name),
                 self.default_may_truth.joinpath("std/", output_name),
             ]
 

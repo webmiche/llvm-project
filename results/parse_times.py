@@ -1,7 +1,7 @@
 from pathlib import Path
 
 
-def parse_file(file: Path):
+def parse_file(f: Path):
     # time per step per function per file per strategy
     strategy_dict = {}
     with open(f, "r") as file:
@@ -70,6 +70,7 @@ def compute_time_per_step(strategy_dict):
             for func in strategy_dict[strategy][f]:
                 for step in strategy_dict[strategy][f][func]:
                     curr_step = step.split(" ")[0]
+                    # curr_step = step
                     total += strategy_dict[strategy][f][func][step]
                     if curr_step in time_per_step:
                         time_per_step[curr_step] = (
@@ -89,6 +90,6 @@ benchmarks = ["605", "619", "631", "641"]
 if __name__ == "__main__":
     curr_folder = Path("results/epyc/3/")
     files = ["gen_res_" + benchmark + "_first_strat.txt" for benchmark in benchmarks]
-    for f in [curr_folder.joinpath(curr_f) for curr_f in files]:
-        strategy_dict = parse_file(f)
-        compute_time_per_step(strategy_dict)
+    # for f in [curr_folder.joinpath(curr_f) for curr_f in files]:
+    strategy_dict = parse_file("tmp2.txt")
+    compute_time_per_step(strategy_dict)
