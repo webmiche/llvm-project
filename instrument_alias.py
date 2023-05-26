@@ -789,7 +789,7 @@ if __name__ == "__main__":
             exit(1)
         exit(0)
 
-   benchmarks = [
+    benchmarks = [
         "619",
         "605",
         "631",
