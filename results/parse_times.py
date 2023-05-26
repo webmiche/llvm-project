@@ -1,5 +1,5 @@
-# f = "results/epyc/1/gen_res_605_first_strat.txt"
-f = "tmp.txt"
+f = "results/epyc/2/gen_res_631_first_strat.txt"
+# f = "tmp.txt"
 
 # time per step per function per file per strategy
 strategy_dict = {}
@@ -49,16 +49,20 @@ with open(f, "r") as file:
             file_dict = {}
             curr_strategy = line.split(" ")[-1].strip()
 
+    function_dict[curr_func] = step_dict
+    file_dict[curr_file] = function_dict
+    strategy_dict[curr_strategy] = file_dict
 print(strategy_dict)
 
 # compute time per step
+total = 0.0
 time_per_step = {}
 for strategy in strategy_dict:
     for f in strategy_dict[strategy]:
         for func in strategy_dict[strategy][f]:
             for step in strategy_dict[strategy][f][func]:
                 curr_step = step.split(" ")[0]
-                print(step)
+                total += strategy_dict[strategy][f][func][step]
                 if curr_step in time_per_step:
                     time_per_step[curr_step] = (
                         time_per_step[curr_step]
@@ -67,4 +71,5 @@ for strategy in strategy_dict:
                 else:
                     time_per_step[curr_step] = strategy_dict[strategy][f][func][step]
 
+print(total)
 print(time_per_step)

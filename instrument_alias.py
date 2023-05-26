@@ -615,6 +615,7 @@ class InstrumentAlias:
             + str(((true_size - res_size) / true_size) * 100)
             + "% improvement"
         )
+        print("Total Time: " + str(time.time() - self.start_time))
 
         ## sanity check for correctness
         # cmd = ["./final_res/linked.out", "run/605_run/inp.in", "1>&2"]
