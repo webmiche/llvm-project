@@ -411,7 +411,7 @@ class InstrumentAlias:
                 if not os.path.exists(curr_path):
                     os.makedirs(curr_path, exist_ok=True)
                 count = count_per_file[file_name][function]
-                if count < 0:
+                if count < 10:
                     curr_results[function] = self.exhaustive_exploration(
                         file_name,
                         function,
@@ -476,8 +476,13 @@ class InstrumentAlias:
             [
                 "cp",
                 "-r",
-                str(self.initial_dir)
+                str(self.initial_dir),
+                str(self.exec_root),
+            ],
+            cwd=self.specbuild_dir,
+        )
 
+        files = [
             Path(os.path.join(dirpath.removeprefix(str(self.initial_dir) + "/"), f))
             for (dirpath, dirnames, filenames) in os.walk(
                 self.initial_dir.joinpath(self.benchmark)
@@ -784,7 +789,7 @@ if __name__ == "__main__":
             exit(1)
         exit(0)
 
-    benchmarks = [
+   benchmarks = [
         "619",
         "605",
         "631",
