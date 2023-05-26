@@ -1,0 +1,622 @@
+=============== running benchmark 605 ===============
+d241890bcf8e5ffa403ca04d37b3a6368cf8a8b1
+
+Time after baseline: 1.4513030052185059
+Track AA Queries may
+counts per function per file: {PosixPath('605/pflowup.bc'): {'primal_update_flow': 3}, PosixPath('605/treeup.bc'): {'update_tree': 25}, PosixPath('605/pbeampp.bc'): {'set_static_vars': 1, 'cost_compare': 2, 'primal_bea_mpp': 24}, PosixPath('605/pbla.bc'): {'primal_iminus': 3}, PosixPath('605/mcf.bc'): {'main': 4}, PosixPath('605/psimplex.bc'): {'markBaskets': 15, 'worker': 29, 'master': 95, 'primal_net_simplex': 4}, PosixPath('605/readmin.bc'): {'read_min': 186}, PosixPath('605/mcfutil.bc'): {'refresh_neighbour_lists': 5, 'flow_cost': 4, 'getArcPosition': 1, 'flow_org_cost': 4, 'primal_feasible': 3, 'dual_feasible': 10, 'getfree': 1}, PosixPath('605/output.bc'): {'write_circulations': 3}, PosixPath('605/implicit.bc'): {'resize_prob': 8, 'insert_new_arc': 6, 'replace_weaker_arc': 6, 'price_out_impl': 288, 'suspend_impl': 15, 'refreshArcPointers': 4, 'refreshPositions': 3, 'marc_arcs': 42, 'calculate_max_redcost': 1, 'switch_arcs': 5, 'arc_compare': 2}, PosixPath('605/pstart.bc'): {'primal_start_artificial': 4}, PosixPath('605/spec_qsort/spec_qsort.bc'): {'swapfunc': 5, 'spec_qsort': 74}}
+Time after AA Query measurement: 2.2730255126953125
+Start Exploration
+***** Next file: 605/pflowup.bc
+==== Next function: primal_update_flow
+exhaustive search, time after filegeneration: 2.273850440979004
+exhaustive search, time after compilation: 2.451592206954956
+exhaustive search, time after assembly: 2.6274919509887695
+exhaustive search candidates: [95]
+Time after exploration of primal_update_flow: 2.6573643684387207
+Time after exploration of 605/pflowup.bc: 2.657381296157837
+***** Next file: 605/treeup.bc
+==== Next function: update_tree
+greedy search, time after file generation in step 0 : 2.7210896015167236
+greedy search, time after compilation in step 0 : 2.92048716545105
+greedy search, time after assembly in step 0 : 3.1102192401885986
+greedy search candidates: [560]
+Time after exploration of update_tree: 3.1924514770507812
+Time after exploration of 605/treeup.bc: 3.192472457885742
+***** Next file: 605/pbeampp.bc
+==== Next function: set_static_vars
+exhaustive search, time after filegeneration: 3.1929876804351807
+exhaustive search, time after compilation: 3.3671727180480957
+exhaustive search, time after assembly: 3.567986011505127
+exhaustive search candidates: [770]
+Time after exploration of set_static_vars: 3.5788214206695557
+==== Next function: cost_compare
+exhaustive search, time after filegeneration: 3.5795581340789795
+exhaustive search, time after compilation: 3.7810192108154297
+exhaustive search, time after assembly: 3.977771520614624
+exhaustive search candidates: [770]
+Time after exploration of cost_compare: 3.9981167316436768
+==== Next function: primal_bea_mpp
+greedy search, time after file generation in step 0 : 4.084505319595337
+greedy search, time after compilation in step 0 : 4.2904980182647705
+greedy search, time after assembly in step 0 : 4.503118515014648
+greedy search candidates: [762, 770]
+greedy search, new min: 762
+greedy search, current list: [0]
+greedy search, time after step 0 : 4.59356164932251
+greedy search, time after file generation in step 1 : 4.595697641372681
+greedy search, time after compilation in step 1 : 4.810027122497559
+greedy search, time after assembly in step 1 : 4.981929063796997
+greedy search candidates: [762]
+Time after exploration of primal_bea_mpp: 5.062798738479614
+Time after exploration of 605/pbeampp.bc: 5.0628180503845215
+***** Next file: 605/pbla.bc
+==== Next function: primal_iminus
+exhaustive search, time after filegeneration: 5.063862323760986
+exhaustive search, time after compilation: 5.248129606246948
+exhaustive search, time after assembly: 5.434718608856201
+exhaustive search candidates: [195]
+Time after exploration of primal_iminus: 5.465849876403809
+Time after exploration of 605/pbla.bc: 5.465874433517456
+***** Next file: 605/mcf.bc
+==== Next function: main
+exhaustive search, time after filegeneration: 5.4677956104278564
+exhaustive search, time after compilation: 5.6552557945251465
+exhaustive search, time after assembly: 5.82695460319519
+exhaustive search candidates: [1227]
+Time after exploration of main: 5.885316848754883
+Time after exploration of 605/mcf.bc: 5.88533878326416
+***** Next file: 605/psimplex.bc
+==== Next function: markBaskets
+greedy search, time after file generation in step 0 : 5.985060930252075
+greedy search, time after compilation in step 0 : 6.1978535652160645
+greedy search, time after assembly in step 0 : 6.412118911743164
+greedy search candidates: [1771]
+Time after exploration of markBaskets: 6.467972993850708
+==== Next function: worker
+greedy search, time after file generation in step 0 : 6.550153732299805
+greedy search, time after compilation in step 0 : 6.784916877746582
+greedy search, time after assembly in step 0 : 7.0230488777160645
+greedy search candidates: [1771, 1764]
+greedy search, new min: 1764
+greedy search, current list: [10]
+greedy search, time after step 0 : 7.150604963302612
+greedy search, time after file generation in step 1 : 7.151709079742432
+greedy search, time after compilation in step 1 : 7.360291242599487
+greedy search, time after assembly in step 1 : 7.582875967025757
+greedy search candidates: [1764]
+Time after exploration of worker: 7.651592493057251
+==== Next function: master
+greedy search, time after file generation in step 0 : 7.73882794380188
+greedy search, time after compilation in step 0 : 7.991946458816528
+greedy search, time after assembly in step 0 : 8.234658241271973
+greedy search candidates: [1771, 1764]
+greedy search, new min: 1764
+greedy search, current list: [11]
+greedy search, time after step 0 : 8.60344123840332
+greedy search, time after file generation in step 1 : 8.6114182472229
+greedy search, time after compilation in step 1 : 8.888491868972778
+greedy search, time after assembly in step 1 : 9.156988859176636
+greedy search candidates: [1764, 1757]
+greedy search, new min: 1757
+greedy search, current list: [11, 44]
+greedy search, time after step 1 : 9.527148485183716
+greedy search, time after file generation in step 2 : 9.531031608581543
+greedy search, time after compilation in step 2 : 9.767235517501831
+greedy search, time after assembly in step 2 : 10.014371395111084
+greedy search candidates: [1757]
+Time after exploration of master: 10.245136976242065
+==== Next function: primal_net_simplex
+exhaustive search, time after filegeneration: 10.246686458587646
+exhaustive search, time after compilation: 10.476787567138672
+exhaustive search, time after assembly: 10.696699380874634
+exhaustive search candidates: [1771]
+Time after exploration of primal_net_simplex: 10.771331071853638
+Time after exploration of 605/psimplex.bc: 10.771355390548706
+***** Next file: 605/readmin.bc
+==== Next function: read_min
+greedy search, time after file generation in step 0 : 10.889228820800781
+greedy search, time after compilation in step 0 : 11.250438213348389
+greedy search, time after assembly in step 0 : 11.573606967926025
+greedy search candidates: [1873, 1878]
+greedy search, new min: 1873
+greedy search, current list: [1]
+greedy search, time after step 0 : 12.393394231796265
+greedy search, time after file generation in step 1 : 12.407628059387207
+greedy search, time after compilation in step 1 : 12.747076749801636
+greedy search, time after assembly in step 1 : 13.075002193450928
+greedy search candidates: [1873, 1868]
+greedy search, new min: 1868
+greedy search, current list: [1, 3]
+greedy search, time after step 1 : 13.847944498062134
+greedy search, time after file generation in step 2 : 13.86182951927185
+greedy search, time after compilation in step 2 : 14.20859146118164
+greedy search, time after assembly in step 2 : 14.542359352111816
+greedy search candidates: [1868]
+Time after exploration of read_min: 15.306142091751099
+Time after exploration of 605/readmin.bc: 15.306166172027588
+***** Next file: 605/mcfutil.bc
+==== Next function: refresh_neighbour_lists
+exhaustive search, time after filegeneration: 15.308845281600952
+exhaustive search, time after compilation: 15.544968366622925
+exhaustive search, time after assembly: 15.772815942764282
+exhaustive search candidates: [1663]
+Time after exploration of refresh_neighbour_lists: 15.903753519058228
+==== Next function: flow_cost
+exhaustive search, time after filegeneration: 15.90525770187378
+exhaustive search, time after compilation: 16.145578861236572
+exhaustive search, time after assembly: 16.377830505371094
+exhaustive search candidates: [1663]
+Time after exploration of flow_cost: 16.439740896224976
+==== Next function: getArcPosition
+exhaustive search, time after filegeneration: 16.44029474258423
+exhaustive search, time after compilation: 16.669202089309692
+exhaustive search, time after assembly: 16.886300325393677
+exhaustive search candidates: [1663]
+Time after exploration of getArcPosition: 16.89758539199829
+==== Next function: flow_org_cost
+exhaustive search, time after filegeneration: 16.899534225463867
+exhaustive search, time after compilation: 17.136433839797974
+exhaustive search, time after assembly: 17.386501789093018
+exhaustive search candidates: [1663]
+Time after exploration of flow_org_cost: 17.459429264068604
+==== Next function: primal_feasible
+exhaustive search, time after filegeneration: 17.460479974746704
+exhaustive search, time after compilation: 17.705676555633545
+exhaustive search, time after assembly: 17.913501739501953
+exhaustive search candidates: [1663]
+Time after exploration of primal_feasible: 17.941327810287476
+==== Next function: dual_feasible
+greedy search, time after file generation in step 0 : 18.037374019622803
+greedy search, time after compilation in step 0 : 18.26819109916687
+greedy search, time after assembly in step 0 : 18.496885299682617
+greedy search candidates: [1663]
+Time after exploration of dual_feasible: 18.54103374481201
+==== Next function: getfree
+exhaustive search, time after filegeneration: 18.54163694381714
+exhaustive search, time after compilation: 18.76560616493225
+exhaustive search, time after assembly: 18.990440607070923
+exhaustive search candidates: [1663]
+Time after exploration of getfree: 18.999929666519165
+Time after exploration of 605/mcfutil.bc: 18.999947547912598
+***** Next file: 605/output.bc
+==== Next function: write_circulations
+exhaustive search, time after filegeneration: 19.000942707061768
+exhaustive search, time after compilation: 19.1661434173584
+exhaustive search, time after assembly: 19.331923007965088
+exhaustive search candidates: [541]
+Time after exploration of write_circulations: 19.369547843933105
+Time after exploration of 605/output.bc: 19.36957097053528
+***** Next file: 605/implicit.bc
+==== Next function: resize_prob
+exhaustive search, time after filegeneration: 19.3867084980011
+exhaustive search, time after compilation: 20.20869207382202
+exhaustive search, time after assembly: 20.88192105293274
+exhaustive search candidates: [5307]
+Time after exploration of resize_prob: 21.959425926208496
+==== Next function: insert_new_arc
+exhaustive search, time after filegeneration: 21.969045400619507
+exhaustive search, time after compilation: 22.358250617980957
+exhaustive search, time after assembly: 22.672302961349487
+exhaustive search candidates: [5307]
+Time after exploration of insert_new_arc: 22.96142339706421
+==== Next function: replace_weaker_arc
+exhaustive search, time after filegeneration: 22.967685222625732
+exhaustive search, time after compilation: 23.32470726966858
+exhaustive search, time after assembly: 23.642277240753174
+exhaustive search candidates: [5307]
+Time after exploration of replace_weaker_arc: 23.899197578430176
+==== Next function: price_out_impl
+greedy search, time after file generation in step 0 : 24.165058135986328
+greedy search, time after compilation in step 0 : 25.053513765335083
+greedy search, time after assembly in step 0 : 25.75596809387207
+greedy search candidates: [5427, 5307, 5302, 5255]
+greedy search, new min: 5302
+greedy search, current list: [0]
+greedy search, time after step 0 : 26.915319204330444
+greedy search, time after file generation in step 1 : 26.934874773025513
+greedy search, time after compilation in step 1 : 27.81513524055481
+greedy search, time after assembly in step 1 : 28.504014492034912
+greedy search candidates: [5422, 5250, 5302]
+greedy search, new min: 5250
+greedy search, current list: [0, 2]
+greedy search, time after step 1 : 29.597780466079712
+greedy search, time after file generation in step 2 : 29.61861515045166
+greedy search, time after compilation in step 2 : 30.519961833953857
+greedy search, time after assembly in step 2 : 31.245087385177612
+greedy search candidates: [5305, 5250, 5455]
+Time after exploration of price_out_impl: 32.397181272506714
+==== Next function: suspend_impl
+greedy search, time after file generation in step 0 : 32.67347073554993
+greedy search, time after compilation in step 0 : 33.016059160232544
+greedy search, time after assembly in step 0 : 33.30742025375366
+greedy search candidates: [5307, 5318]
+Time after exploration of suspend_impl: 33.37044048309326
+==== Next function: refreshArcPointers
+exhaustive search, time after filegeneration: 33.37236928939819
+exhaustive search, time after compilation: 33.70544195175171
+exhaustive search, time after assembly: 34.00075340270996
+exhaustive search candidates: [5307]
+Time after exploration of refreshArcPointers: 34.059884548187256
+==== Next function: refreshPositions
+exhaustive search, time after filegeneration: 34.060935974121094
+exhaustive search, time after compilation: 34.39380931854248
+exhaustive search, time after assembly: 34.67836236953735
+exhaustive search candidates: [5307]
+Time after exploration of refreshPositions: 34.71872901916504
+==== Next function: marc_arcs
+greedy search, time after file generation in step 0 : 34.98000645637512
+greedy search, time after compilation in step 0 : 35.323490381240845
+greedy search, time after assembly in step 0 : 35.623820543289185
+greedy search candidates: [5304, 5307, 5300]
+greedy search, new min: 5300
+greedy search, current list: [0]
+greedy search, time after step 0 : 35.7915575504303
+greedy search, time after file generation in step 1 : 35.79464793205261
+greedy search, time after compilation in step 1 : 36.12352132797241
+greedy search, time after assembly in step 1 : 36.43668007850647
+greedy search candidates: [5304, 5300]
+Time after exploration of marc_arcs: 36.62808179855347
+==== Next function: calculate_max_redcost
+exhaustive search, time after filegeneration: 36.62867188453674
+exhaustive search, time after compilation: 36.96160387992859
+exhaustive search, time after assembly: 37.25516366958618
+exhaustive search candidates: [5307]
+Time after exploration of calculate_max_redcost: 37.26602077484131
+==== Next function: switch_arcs
+exhaustive search, time after filegeneration: 37.26888847351074
+exhaustive search, time after compilation: 37.62597846984863
+exhaustive search, time after assembly: 37.929718255996704
+exhaustive search candidates: [5312, 5307]
+Time after exploration of switch_arcs: 38.07587766647339
+==== Next function: arc_compare
+exhaustive search, time after filegeneration: 38.07666754722595
+exhaustive search, time after compilation: 38.415345668792725
+exhaustive search, time after assembly: 38.700031042099
+exhaustive search candidates: [5307]
+Time after exploration of arc_compare: 38.72001361846924
+Time after exploration of 605/implicit.bc: 38.72003746032715
+***** Next file: 605/pstart.bc
+==== Next function: primal_start_artificial
+exhaustive search, time after filegeneration: 38.72162985801697
+exhaustive search, time after compilation: 38.9197940826416
+exhaustive search, time after assembly: 39.119322538375854
+exhaustive search candidates: [286]
+Time after exploration of primal_start_artificial: 39.19444561004639
+Time after exploration of 605/pstart.bc: 39.19447088241577
+***** Next file: 605/spec_qsort/spec_qsort.bc
+==== Next function: swapfunc
+exhaustive search, time after filegeneration: 39.19715332984924
+exhaustive search, time after compilation: 39.505961656570435
+exhaustive search, time after assembly: 39.77331519126892
+exhaustive search candidates: [2866]
+Time after exploration of swapfunc: 39.91946887969971
+==== Next function: spec_qsort
+greedy search, time after file generation in step 0 : 40.14518713951111
+greedy search, time after compilation in step 0 : 40.52377367019653
+greedy search, time after assembly in step 0 : 40.850966453552246
+greedy search candidates: [2866]
+Time after exploration of spec_qsort: 41.16286563873291
+Time after exploration of 605/spec_qsort/spec_qsort.bc: 41.16288876533508
+found results: {PosixPath('605/pflowup.bc'): {'primal_update_flow': ((), 95)}, PosixPath('605/treeup.bc'): {'update_tree': ([], 560)}, PosixPath('605/pbeampp.bc'): {'set_static_vars': ((), 770), 'cost_compare': ((), 770), 'primal_bea_mpp': ([0], 762)}, PosixPath('605/pbla.bc'): {'primal_iminus': ((), 195)}, PosixPath('605/mcf.bc'): {'main': ((), 1227)}, PosixPath('605/psimplex.bc'): {'markBaskets': ([], 1771), 'worker': ([10], 1764), 'master': ([11, 44], 1757), 'primal_net_simplex': ((), 1771)}, PosixPath('605/readmin.bc'): {'read_min': ([1, 3], 1868)}, PosixPath('605/mcfutil.bc'): {'refresh_neighbour_lists': ((), 1663), 'flow_cost': ((), 1663), 'getArcPosition': ((), 1663), 'flow_org_cost': ((), 1663), 'primal_feasible': ((), 1663), 'dual_feasible': ([], 1663), 'getfree': ((), 1663)}, PosixPath('605/output.bc'): {'write_circulations': ((), 541)}, PosixPath('605/implicit.bc'): {'resize_prob': ((), 5307), 'insert_new_arc': ((), 5307), 'replace_weaker_arc': ((), 5307), 'price_out_impl': ([0, 2], 5250), 'suspend_impl': ([], 5307), 'refreshArcPointers': ((), 5307), 'refreshPositions': ((), 5307), 'marc_arcs': ([0], 5300), 'calculate_max_redcost': ((), 5307), 'switch_arcs': ((), 5307), 'arc_compare': ((), 5307)}, PosixPath('605/pstart.bc'): {'primal_start_artificial': ((), 286)}, PosixPath('605/spec_qsort/spec_qsort.bc'): {'swapfunc': ((), 2866), 'spec_qsort': ([], 2866)}}
+time after exploration: 41.1629855632782
+Time after may exploration: 42.39948558807373
+Track AA Queries std
+counts per function per file: {PosixPath('605/pflowup.bc'): {'primal_update_flow': 9}, PosixPath('605/treeup.bc'): {'update_tree': 115}, PosixPath('605/pbeampp.bc'): {'set_static_vars': 2, 'cost_compare': 4, 'primal_bea_mpp': 43}, PosixPath('605/pbla.bc'): {'primal_iminus': 29}, PosixPath('605/mcf.bc'): {'main': 5}, PosixPath('605/psimplex.bc'): {'markBaskets': 21, 'worker': 48, 'master': 154, 'primal_net_simplex': 4}, PosixPath('605/readmin.bc'): {'read_min': 445}, PosixPath('605/mcfutil.bc'): {'refresh_neighbour_lists': 18, 'flow_cost': 29, 'getArcPosition': 6, 'flow_org_cost': 29, 'primal_feasible': 15, 'dual_feasible': 20, 'getfree': 7}, PosixPath('605/output.bc'): {'write_circulations': 8}, PosixPath('605/implicit.bc'): {'resize_prob': 41, 'insert_new_arc': 90, 'replace_weaker_arc': 74, 'price_out_impl': 529, 'suspend_impl': 157, 'refreshArcPointers': 9, 'refreshPositions': 7, 'marc_arcs': 54, 'calculate_max_redcost': 1, 'switch_arcs': 27, 'arc_compare': 4}, PosixPath('605/pstart.bc'): {'primal_start_artificial': 163}, PosixPath('605/spec_qsort/spec_qsort.bc'): {'swapfunc': 8, 'spec_qsort': 150}}
+Time after AA Query measurement: 42.73249578475952
+Start Exploration
+***** Next file: 605/pflowup.bc
+==== Next function: primal_update_flow
+exhaustive search, time after filegeneration: 42.77686810493469
+exhaustive search, time after compilation: 43.1555438041687
+exhaustive search, time after assembly: 43.63447904586792
+exhaustive search candidates: [95]
+Time after exploration of primal_update_flow: 45.91864323616028
+Time after exploration of 605/pflowup.bc: 45.918665647506714
+***** Next file: 605/treeup.bc
+==== Next function: update_tree
+greedy search, time after file generation in step 0 : 45.99618077278137
+greedy search, time after compilation in step 0 : 46.25765419006348
+greedy search, time after assembly in step 0 : 46.51767110824585
+greedy search candidates: [560]
+Time after exploration of update_tree: 47.02895998954773
+Time after exploration of 605/treeup.bc: 47.028985261917114
+***** Next file: 605/pbeampp.bc
+==== Next function: set_static_vars
+exhaustive search, time after filegeneration: 47.02957367897034
+exhaustive search, time after compilation: 47.23699998855591
+exhaustive search, time after assembly: 47.443769693374634
+exhaustive search candidates: [762]
+Time after exploration of set_static_vars: 47.46387219429016
+==== Next function: cost_compare
+exhaustive search, time after filegeneration: 47.465434074401855
+exhaustive search, time after compilation: 47.67716860771179
+exhaustive search, time after assembly: 47.88742208480835
+exhaustive search candidates: [762]
+Time after exploration of cost_compare: 47.952858448028564
+==== Next function: primal_bea_mpp
+greedy search, time after file generation in step 0 : 48.0354859828949
+greedy search, time after compilation in step 0 : 48.25695776939392
+greedy search, time after assembly in step 0 : 48.476675510406494
+greedy search candidates: [770, 762]
+Time after exploration of primal_bea_mpp: 48.67193102836609
+Time after exploration of 605/pbeampp.bc: 48.67195510864258
+***** Next file: 605/pbla.bc
+==== Next function: primal_iminus
+greedy search, time after file generation in step 0 : 48.72674226760864
+greedy search, time after compilation in step 0 : 48.92113995552063
+greedy search, time after assembly in step 0 : 49.11900973320007
+greedy search candidates: [195]
+Time after exploration of primal_iminus: 49.25387954711914
+Time after exploration of 605/pbla.bc: 49.25390291213989
+***** Next file: 605/mcf.bc
+==== Next function: main
+exhaustive search, time after filegeneration: 49.256497859954834
+exhaustive search, time after compilation: 49.45500326156616
+exhaustive search, time after assembly: 49.63055467605591
+exhaustive search candidates: [1227]
+Time after exploration of main: 49.777464389801025
+Time after exploration of 605/mcf.bc: 49.777488708496094
+***** Next file: 605/psimplex.bc
+==== Next function: markBaskets
+greedy search, time after file generation in step 0 : 49.882171630859375
+greedy search, time after compilation in step 0 : 50.10394835472107
+greedy search, time after assembly in step 0 : 50.32722496986389
+greedy search candidates: [1750, 1743]
+Time after exploration of markBaskets: 50.425832748413086
+==== Next function: worker
+greedy search, time after file generation in step 0 : 50.53642821311951
+greedy search, time after compilation in step 0 : 50.76383399963379
+greedy search, time after assembly in step 0 : 51.0005407333374
+greedy search candidates: [1743]
+Time after exploration of worker: 51.22063446044922
+==== Next function: master
+greedy search, time after file generation in step 0 : 51.336668968200684
+greedy search, time after compilation in step 0 : 51.674328565597534
+greedy search, time after assembly in step 0 : 51.9913055896759
+greedy search candidates: [1750, 1743]
+Time after exploration of master: 52.68651103973389
+==== Next function: primal_net_simplex
+exhaustive search, time after filegeneration: 52.68801140785217
+exhaustive search, time after compilation: 52.92701697349548
+exhaustive search, time after assembly: 53.157094955444336
+exhaustive search candidates: [1743]
+Time after exploration of primal_net_simplex: 53.23198962211609
+Time after exploration of 605/psimplex.bc: 53.232017517089844
+***** Next file: 605/readmin.bc
+==== Next function: read_min
+greedy search, time after file generation in step 0 : 53.376598834991455
+greedy search, time after compilation in step 0 : 53.96680402755737
+greedy search, time after assembly in step 0 : 54.503706216812134
+greedy search candidates: [1857, 1837, 1845, 1846, 1847, 1850, 1852]
+greedy search, new min: 1837
+greedy search, current list: [37]
+greedy search, time after step 0 : 56.392019748687744
+greedy search, time after file generation in step 1 : 56.42295503616333
+greedy search, time after compilation in step 1 : 56.97448444366455
+greedy search, time after assembly in step 1 : 57.48364496231079
+greedy search candidates: [1837, 1838, 1839, 1842, 1844, 1845]
+Time after exploration of read_min: 59.243932247161865
+Time after exploration of 605/readmin.bc: 59.243956327438354
+***** Next file: 605/mcfutil.bc
+==== Next function: refresh_neighbour_lists
+greedy search, time after file generation in step 0 : 59.35359311103821
+greedy search, time after compilation in step 0 : 59.580634355545044
+greedy search, time after assembly in step 0 : 59.80566477775574
+greedy search candidates: [1663]
+Time after exploration of refresh_neighbour_lists: 59.88819074630737
+==== Next function: flow_cost
+greedy search, time after file generation in step 0 : 60.0003297328949
+greedy search, time after compilation in step 0 : 60.241790771484375
+greedy search, time after assembly in step 0 : 60.47759675979614
+greedy search candidates: [1663]
+Time after exploration of flow_cost: 60.60505938529968
+==== Next function: getArcPosition
+exhaustive search, time after filegeneration: 60.61118507385254
+exhaustive search, time after compilation: 60.85876536369324
+exhaustive search, time after assembly: 61.114471197128296
+exhaustive search candidates: [1663]
+Time after exploration of getArcPosition: 61.39573669433594
+==== Next function: flow_org_cost
+greedy search, time after file generation in step 0 : 61.52706456184387
+greedy search, time after compilation in step 0 : 61.7639741897583
+greedy search, time after assembly in step 0 : 61.99289870262146
+greedy search candidates: [1663]
+Time after exploration of flow_org_cost: 62.12510943412781
+==== Next function: primal_feasible
+greedy search, time after file generation in step 0 : 62.25901675224304
+greedy search, time after compilation in step 0 : 62.49791717529297
+greedy search, time after assembly in step 0 : 62.732200384140015
+greedy search candidates: [1663]
+Time after exploration of primal_feasible: 62.797510385513306
+==== Next function: dual_feasible
+greedy search, time after file generation in step 0 : 62.90770721435547
+greedy search, time after compilation in step 0 : 63.16698956489563
+greedy search, time after assembly in step 0 : 63.40866160392761
+greedy search candidates: [1663]
+Time after exploration of dual_feasible: 63.493566274642944
+==== Next function: getfree
+exhaustive search, time after filegeneration: 63.50453209877014
+exhaustive search, time after compilation: 63.827234745025635
+exhaustive search, time after assembly: 64.13004660606384
+exhaustive search candidates: [1663]
+Time after exploration of getfree: 64.68937969207764
+Time after exploration of 605/mcfutil.bc: 64.68940591812134
+***** Next file: 605/output.bc
+==== Next function: write_circulations
+exhaustive search, time after filegeneration: 64.71246576309204
+exhaustive search, time after compilation: 65.01790142059326
+exhaustive search, time after assembly: 65.34955072402954
+exhaustive search candidates: [541]
+Time after exploration of write_circulations: 66.48966336250305
+Time after exploration of 605/output.bc: 66.48968720436096
+***** Next file: 605/implicit.bc
+==== Next function: resize_prob
+greedy search, time after file generation in step 0 : 66.7689688205719
+greedy search, time after compilation in step 0 : 67.12111306190491
+greedy search, time after assembly in step 0 : 67.43593335151672
+greedy search candidates: [5628]
+Time after exploration of resize_prob: 67.62645101547241
+==== Next function: insert_new_arc
+greedy search, time after file generation in step 0 : 67.92532467842102
+greedy search, time after compilation in step 0 : 68.40890383720398
+greedy search, time after assembly in step 0 : 68.81441807746887
+greedy search candidates: [5628]
+Time after exploration of insert_new_arc: 69.23462796211243
+==== Next function: replace_weaker_arc
+greedy search, time after file generation in step 0 : 69.52281665802002
+greedy search, time after compilation in step 0 : 69.98692035675049
+greedy search, time after assembly in step 0 : 70.38120913505554
+greedy search candidates: [5628]
+Time after exploration of replace_weaker_arc: 70.69901180267334
+==== Next function: price_out_impl
+greedy search, time after file generation in step 0 : 71.03716921806335
+greedy search, time after compilation in step 0 : 72.6399655342102
+greedy search, time after assembly in step 0 : 73.87122535705566
+greedy search candidates: [5632, 5634, 5604, 5636, 5638, 5578, 5548, 5393, 5557, 5558, 5622, 5493, 5627, 5628, 5630]
+greedy search, new min: 5558
+greedy search, current list: [5]
+greedy search, time after step 0 : 76.07937932014465
+greedy search, time after file generation in step 1 : 76.1138277053833
+greedy search, time after compilation in step 1 : 77.68481278419495
+greedy search, time after assembly in step 1 : 78.87892198562622
+greedy search candidates: [5568, 5537, 5540, 5480, 5483, 5328, 5555, 5493, 5558, 5557, 5528]
+greedy search, new min: 5537
+greedy search, current list: [5, 6]
+greedy search, time after step 1 : 80.99051237106323
+greedy search, time after file generation in step 2 : 81.0296573638916
+greedy search, time after compilation in step 2 : 82.56719398498535
+greedy search, time after assembly in step 2 : 83.78179979324341
+greedy search candidates: [5536, 5537, 5568, 5505, 5476, 5546, 5427, 5332, 5531, 5533]
+greedy search, new min: 5332
+greedy search, current list: [5, 6, 7]
+greedy search, time after step 2 : 85.8014702796936
+greedy search, time after file generation in step 3 : 85.83372163772583
+greedy search, time after compilation in step 3 : 87.31275606155396
+greedy search, time after assembly in step 3 : 88.45818543434143
+greedy search candidates: [5353, 5291, 5228, 5323, 5294, 5328, 5331, 5332, 5336]
+greedy search, new min: 5228
+greedy search, current list: [5, 6, 7, 8]
+greedy search, time after step 3 : 90.60253119468689
+greedy search, time after file generation in step 4 : 90.63965630531311
+greedy search, time after compilation in step 4 : 92.19040417671204
+greedy search, time after assembly in step 4 : 93.34397172927856
+greedy search candidates: [5251, 5224, 5225, 5227, 5228, 5294, 5169, 5234]
+greedy search, new min: 5169
+greedy search, current list: [5, 6, 7, 8, 16]
+greedy search, time after step 4 : 95.6007752418518
+greedy search, time after file generation in step 5 : 95.63772940635681
+greedy search, time after compilation in step 5 : 97.05858707427979
+greedy search, time after assembly in step 5 : 98.15335369110107
+greedy search candidates: [5165, 5166, 5168, 5169, 5181, 5215]
+greedy search, new min: 5165
+greedy search, current list: [5, 6, 7, 8, 16, 32]
+greedy search, time after step 5 : 100.33255863189697
+greedy search, time after file generation in step 6 : 100.38081574440002
+greedy search, time after compilation in step 6 : 101.8166995048523
+greedy search, time after assembly in step 6 : 102.89765906333923
+greedy search candidates: [5162, 5212, 5165]
+greedy search, new min: 5162
+greedy search, current list: [5, 6, 7, 8, 16, 32, 69]
+greedy search, time after step 6 : 105.15892314910889
+greedy search, time after file generation in step 7 : 105.20610451698303
+greedy search, time after compilation in step 7 : 106.53245425224304
+greedy search, time after assembly in step 7 : 107.5443468093872
+greedy search candidates: [5162, 5206]
+Time after exploration of price_out_impl: 109.65085864067078
+==== Next function: suspend_impl
+greedy search, time after file generation in step 0 : 109.94474697113037
+greedy search, time after compilation in step 0 : 110.53758001327515
+greedy search, time after assembly in step 0 : 111.06222796440125
+greedy search candidates: [5634, 5611, 5628]
+greedy search, new min: 5611
+greedy search, current list: [39]
+greedy search, time after step 0 : 111.66688299179077
+greedy search, time after file generation in step 1 : 111.67510485649109
+greedy search, time after compilation in step 1 : 112.23937153816223
+greedy search, time after assembly in step 1 : 112.68799591064453
+greedy search candidates: [5611, 5628, 5623]
+Time after exploration of suspend_impl: 113.14735198020935
+==== Next function: refreshArcPointers
+exhaustive search, time after filegeneration: 113.18609380722046
+exhaustive search, time after compilation: 114.64033937454224
+exhaustive search, time after assembly: 115.77082109451294
+exhaustive search candidates: [5628]
+Time after exploration of refreshArcPointers: 117.78153133392334
+==== Next function: refreshPositions
+exhaustive search, time after filegeneration: 117.79736423492432
+exhaustive search, time after compilation: 118.3509795665741
+exhaustive search, time after assembly: 118.81885385513306
+exhaustive search candidates: [5628]
+Time after exploration of refreshPositions: 119.35767436027527
+==== Next function: marc_arcs
+greedy search, time after file generation in step 0 : 119.64323353767395
+greedy search, time after compilation in step 0 : 120.05537939071655
+greedy search, time after assembly in step 0 : 120.39313983917236
+greedy search candidates: [5721, 5628, 5725, 5630]
+Time after exploration of marc_arcs: 120.6235020160675
+==== Next function: calculate_max_redcost
+exhaustive search, time after filegeneration: 120.62395691871643
+exhaustive search, time after compilation: 120.95206546783447
+exhaustive search, time after assembly: 121.22491216659546
+exhaustive search candidates: [5628]
+Time after exploration of calculate_max_redcost: 121.23590302467346
+==== Next function: switch_arcs
+greedy search, time after file generation in step 0 : 121.52067470550537
+greedy search, time after compilation in step 0 : 121.86830139160156
+greedy search, time after assembly in step 0 : 122.17973303794861
+greedy search candidates: [5633, 5628, 5623]
+greedy search, new min: 5623
+greedy search, current list: [9]
+greedy search, time after step 0 : 122.28847408294678
+greedy search, time after file generation in step 1 : 122.2899022102356
+greedy search, time after compilation in step 1 : 122.63805365562439
+greedy search, time after assembly in step 1 : 122.9376220703125
+greedy search candidates: [5628, 5623]
+Time after exploration of switch_arcs: 123.01280450820923
+==== Next function: arc_compare
+exhaustive search, time after filegeneration: 123.01431179046631
+exhaustive search, time after compilation: 123.35787510871887
+exhaustive search, time after assembly: 123.66164970397949
+exhaustive search candidates: [5628]
+Time after exploration of arc_compare: 123.72026014328003
+Time after exploration of 605/implicit.bc: 123.72027707099915
+***** Next file: 605/pstart.bc
+==== Next function: primal_start_artificial
+greedy search, time after file generation in step 0 : 123.78077483177185
+greedy search, time after compilation in step 0 : 124.0605902671814
+greedy search, time after assembly in step 0 : 124.34236645698547
+greedy search candidates: [286]
+Time after exploration of primal_start_artificial: 125.04871535301208
+Time after exploration of 605/pstart.bc: 125.04873991012573
+***** Next file: 605/spec_qsort/spec_qsort.bc
+==== Next function: swapfunc
+exhaustive search, time after filegeneration: 125.06712937355042
+exhaustive search, time after compilation: 125.7607798576355
+exhaustive search, time after assembly: 126.32187581062317
+exhaustive search candidates: [2866]
+Time after exploration of swapfunc: 127.29521489143372
+==== Next function: spec_qsort
+greedy search, time after file generation in step 0 : 127.46825909614563
+greedy search, time after compilation in step 0 : 128.0023844242096
+greedy search, time after assembly in step 0 : 128.42975449562073
+greedy search candidates: [2866]
+Time after exploration of spec_qsort: 129.02769780158997
+Time after exploration of 605/spec_qsort/spec_qsort.bc: 129.02771997451782
+found results: {PosixPath('605/pflowup.bc'): {'primal_update_flow': ((), 95)}, PosixPath('605/treeup.bc'): {'update_tree': ([], 560)}, PosixPath('605/pbeampp.bc'): {'set_static_vars': ((), 762), 'cost_compare': ((), 762), 'primal_bea_mpp': ([], 762)}, PosixPath('605/pbla.bc'): {'primal_iminus': ([], 195)}, PosixPath('605/mcf.bc'): {'main': ((), 1227)}, PosixPath('605/psimplex.bc'): {'markBaskets': ([], 1743), 'worker': ([], 1743), 'master': ([], 1743), 'primal_net_simplex': ((), 1743)}, PosixPath('605/readmin.bc'): {'read_min': ([37], 1837)}, PosixPath('605/mcfutil.bc'): {'refresh_neighbour_lists': ([], 1663), 'flow_cost': ([], 1663), 'getArcPosition': ((), 1663), 'flow_org_cost': ([], 1663), 'primal_feasible': ([], 1663), 'dual_feasible': ([], 1663), 'getfree': ((), 1663)}, PosixPath('605/output.bc'): {'write_circulations': ((), 541)}, PosixPath('605/implicit.bc'): {'resize_prob': ([], 5628), 'insert_new_arc': ([], 5628), 'replace_weaker_arc': ([], 5628), 'price_out_impl': ([5, 6, 7, 8, 16, 32, 69], 5162), 'suspend_impl': ([39], 5611), 'refreshArcPointers': ((), 5628), 'refreshPositions': ((), 5628), 'marc_arcs': ([], 5628), 'calculate_max_redcost': ((), 5628), 'switch_arcs': ([9], 5623), 'arc_compare': ((), 5628)}, PosixPath('605/pstart.bc'): {'primal_start_artificial': ([], 286)}, PosixPath('605/spec_qsort/spec_qsort.bc'): {'swapfunc': ((), 2866), 'spec_qsort': ([], 2866)}}
+time after exploration: 129.02782344818115
+Time after std exploration: 130.14943051338196
+605/pflowup.bc: 95 vs 95 and 95 vs 95
+605/treeup.bc: 560 vs 560 and 560 vs 560
+605/pbeampp.bc: 762 vs 770 and 762 vs 762
+605/pbla.bc: 195 vs 195 and 195 vs 195
+605/mcf.bc: 1227 vs 1227 and 1227 vs 1227
+605/psimplex.bc: 1750 vs 1771 and 1743 vs 1743
+605/readmin.bc: 1868 vs 1878 and 1837 vs 1845
+605/mcfutil.bc: 1663 vs 1663 and 1663 vs 1663
+605/output.bc: 541 vs 541 and 541 vs 541
+605/implicit.bc: 5243 vs 5307 and 5140 vs 5628
+605/pstart.bc: 286 vs 286 and 286 vs 286
+605/spec_qsort/spec_qsort.bc: 2866 vs 2866 and 2866 vs 2866
+Time after after composition: 131.31887197494507
+result: 19461 vs 19960
+meaning a 2.5% improvement
