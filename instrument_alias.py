@@ -791,7 +791,7 @@ if __name__ == "__main__":
     ]
     allowed_benchmarks = ["605", "619", "631", "641"]
     if args.benchmark == "all":
-        for i in benchmarks:
+        for i in allowed_benchmarks:
             sys.stdout = open("gen_res_" + i + "_first_strat.txt", "w")
             print("=============== running benchmark " + i + " ===============")
             print(p.stdout.decode("utf-8"))
