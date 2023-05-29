@@ -86,10 +86,23 @@ def compute_time_per_step(strategy_dict):
     print(time_per_step)
 
 
-benchmarks = ["605", "619", "631", "641"]
+benchmarks = [
+    "619",
+    "605",
+    "631",
+    "641",
+    "644",
+    "623",
+    "657",
+    "625",
+    "620",
+    "600",
+    "638",
+    "602",
+]
 if __name__ == "__main__":
-    curr_folder = Path("results/epyc/3/")
+    curr_folder = Path("results/epyc/5/")
     files = ["gen_res_" + benchmark + "_first_strat.txt" for benchmark in benchmarks]
-    # for f in [curr_folder.joinpath(curr_f) for curr_f in files]:
-    strategy_dict = parse_file("tmp2.txt")
-    compute_time_per_step(strategy_dict)
+    for f in [curr_folder.joinpath(curr_f) for curr_f in files]:
+        strategy_dict = parse_file(f)
+        compute_time_per_step(strategy_dict)

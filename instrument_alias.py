@@ -32,6 +32,8 @@ class InstrumentAlias:
     default_may_truth: Path
     instr_dir: Path
     start_time: float
+    function_encoding: dict[str, str]
+    func_count: int = 0
 
     def measure_outputsize(self, file: Path) -> int:
         cmd = [str(self.instr_path.joinpath("llvm-size")), str(file)]
@@ -131,7 +133,12 @@ class InstrumentAlias:
             p.starmap(
                 self.write_one_file,
                 [
-                    (self.instr_dir, i, curr_list, function_name)
+                    (
+                        self.instr_dir,
+                        i,
+                        curr_list,
+                        function_name,
+                    )
                     for i, curr_list in enumerate(list_combinations)
                 ],
             )
@@ -146,7 +153,7 @@ class InstrumentAlias:
             p.starmap(
                 self.run_step,
                 [
-                    (file_name, i, function_name, take_may)
+                    (file_name, i, self.function_encoding[function_name], take_may)
                     for i in range(len(list_combinations))
                 ],
             )
@@ -218,7 +225,7 @@ class InstrumentAlias:
         self.run_step(
             file_name,
             0,
-            function_name,
+            self.function_encoding[function_name],
             take_may,
         )
         min_count = self.assemble_and_measure_file(
@@ -247,7 +254,12 @@ class InstrumentAlias:
                 p.starmap(
                     self.write_one_file,
                     [
-                        (self.instr_dir, i, curr_list + [i], function_name)
+                        (
+                            self.instr_dir,
+                            i,
+                            curr_list + [i],
+                            function_name,
+                        )
                         for i in range(lower_bound, upper_bound)
                     ],
                 )
@@ -263,7 +275,7 @@ class InstrumentAlias:
                 p.starmap(
                     self.run_step,
                     [
-                        (file_name, i, function_name, take_may)
+                        (file_name, i, self.function_encoding[function_name], take_may)
                         for i in range(lower_bound, upper_bound)
                     ],
                 )
@@ -407,11 +419,15 @@ class InstrumentAlias:
             curr_results = {}
             for function in count_per_file[file_name].keys():
                 print("==== Next function: " + function)
-                curr_path: Path = self.instr_dir.joinpath(Path(function))
+                self.function_encoding[function] = str(self.func_count)
+                self.func_count += 1
+                curr_path: Path = self.instr_dir.joinpath(
+                    Path(str(self.function_encoding[function]))
+                )
                 if not os.path.exists(curr_path):
                     os.makedirs(curr_path, exist_ok=True)
                 count = count_per_file[file_name][function]
-                if count < 10:
+                if count < 0:
                     curr_results[function] = self.exhaustive_exploration(
                         file_name,
                         function,
@@ -510,6 +526,7 @@ class InstrumentAlias:
                 str(self.instr_path.joinpath("clang")),
                 "-no-pie",
                 "-lstdc++",
+                "-lm",
                 "-o",
                 Path("baseline/").joinpath(self.benchmark, str(self.benchmark)),
             ]
@@ -604,6 +621,7 @@ class InstrumentAlias:
                 str(self.instr_path.joinpath("clang")),
                 "-no-pie",
                 "-lstdc++",
+                "-lm",
                 "-o",
                 "final_res/linked.out",
             ]
@@ -784,6 +802,7 @@ if __name__ == "__main__":
                 Path(default_may_truth),
                 Path(instr_dir),
                 time.time(),
+                {},
             ),
         ).is_valid():
             exit(1)
@@ -820,6 +839,7 @@ if __name__ == "__main__":
                 Path(default_may_truth),
                 Path(instr_dir),
                 time.time(),
+                {},
             ).exploration_driver()
     else:
         InstrumentAlias(
@@ -832,4 +852,5 @@ if __name__ == "__main__":
             Path(default_may_truth),
             Path(instr_dir),
             time.time(),
+            {},
         ).exploration_driver()
