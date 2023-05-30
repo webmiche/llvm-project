@@ -1,4 +1,5 @@
 from pathlib import Path
+import ast
 
 
 def parse_file(f: Path):
@@ -86,6 +87,43 @@ def compute_time_per_step(strategy_dict):
     print(time_per_step)
 
 
+def parse_nested_dict(string: str):
+    res_dict = {}
+    key = ""
+    for substring in string.split("{"):
+        for substring in substring.split("}"):
+            if key == "":
+                key = substring.split(":")[0].strip()
+                if key.startswith(","):
+                    key = key.split(",")[1].strip()
+                continue
+            res_dict[key] = ast.literal_eval("{" + substring + "}")
+            key = ""
+    return res_dict
+
+
+def parse_res_queries(file_name: Path):
+    with open(file_name, "r") as f:
+        for line in f.readlines():
+            if line.startswith("found results: "):
+                dict_line = line.split("found results: ")[1].strip()
+                return parse_nested_dict(dict_line)
+
+
+def parse_counts_per_file(file_name: Path):
+    with open(file_name, "r") as f:
+        for line in f.readlines():
+            if line.startswith("counts per function per file: "):
+                dict_line = line.split("counts per function per file: ")[1].strip()
+                return parse_nested_dict(dict_line)
+
+
+def parse_stats(f: Path):
+    query_dict = parse_res_queries(f)
+    counts_dict = parse_counts_per_file(f)
+    return query_dict, counts_dict
+
+
 benchmarks = [
     "619",
     "605",
@@ -101,8 +139,18 @@ benchmarks = [
     "602",
 ]
 if __name__ == "__main__":
-    curr_folder = Path("results/epyc/5/")
-    files = ["gen_res_" + benchmark + "_first_strat.txt" for benchmark in benchmarks]
-    for f in [curr_folder.joinpath(curr_f) for curr_f in files]:
-        strategy_dict = parse_file(f)
-        compute_time_per_step(strategy_dict)
+    curr_folder = Path("results/epyc-traces/5/")
+    stat_folder = Path("results/stats/")
+    for benchmark in benchmarks:
+        initial_file = curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
+        stat_file = stat_folder.joinpath("stats_" + benchmark + ".txt")
+        try:
+            query_dict, counts_dict = parse_stats(initial_file)
+            with open(stat_file, "w") as f:
+                f.write("counts per function per file: " + str(counts_dict) + "\n")
+                f.write("found results: " + str(query_dict) + "\n")
+
+        except Exception as e:
+            print("failed: " + str(f))
+            print(e)
+            continue

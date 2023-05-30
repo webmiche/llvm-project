@@ -1,0 +1,140 @@
+from parse_stats import parse_stats
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+light_gray = "#cacaca"
+dark_gray = "#827b7b"
+light_blue = "#a6cee3"
+dark_blue = "#1f78b4"
+light_green = "#b2df8a"
+dark_green = "#33a02c"
+light_red = "#fb9a99"
+dark_red = "#e31a1c"
+black = "#000000"
+white = "#ffffff"
+
+
+def filter_non_changes(res_dict):
+    filtered_dict = {}
+    for f in res_dict:
+        filtered_dict[f] = {}
+        for func in res_dict[f]:
+            if res_dict[f][func][0]:
+                filtered_dict[f][func] = res_dict[f][func]
+
+    return filtered_dict
+
+
+def zip_dicts(query_dict, counts_dict):
+    res_dict = {}
+    for f in query_dict:
+        curr_counts = counts_dict[f]
+        for func in query_dict[f]:
+            curr_count = curr_counts[func]
+            if not f in res_dict:
+                res_dict[f] = {}
+            res_dict[f][func] = (query_dict[f][func][0], curr_count)
+
+    return res_dict
+
+
+def flatten_dict(res_dict):
+    final_dict = {}
+    count = 0
+    for f in res_dict:
+        for func in res_dict[f]:
+            final_dict[count] = res_dict[f][func]
+            count += 1
+
+    return final_dict
+
+
+def plot_comparison(res_dict):
+    values = list(res_dict.values())
+    values = [x for x in values if len(x[0])]
+    relevant_query_counts = [len(x[0]) for x in values]
+    total_query_counts = [x[1] for x in values]
+
+    x = np.arange(len((values)))
+
+    width = 0.7  # the width of the bars
+    fig, ax = plt.subplots()
+    rects1 = ax.bar(
+        x,
+        total_query_counts,
+        width,
+        facecolor=white,
+        edgecolor=black,
+        linestyle="dashed",
+    )
+    rects2 = ax.bar(x, relevant_query_counts, width, color=light_blue)
+
+    ax.set_yscale("log")
+
+    return plt
+
+
+def print_relevant_stats(benchmark: str):
+    query_dict, counts_dict = parse_stats("results/stats/stats_" + benchmark + ".txt")
+    res_dict = zip_dicts(query_dict, counts_dict)
+    flat_dict = flatten_dict(res_dict)
+    values = list(flat_dict.values())
+    total_queries = sum([x[1] for x in values])
+    total_relevant_queries = sum([len(x[0]) for x in values])
+    print(
+        "Total queries: "
+        + str(total_queries)
+        + " Relevant queries: "
+        + str(total_relevant_queries)
+        + " Ratio: "
+        + str(total_relevant_queries / total_queries)
+    )
+
+    relevant_values = [x for x in values if len(x[0])]
+    print(
+        "Filtered functions: "
+        + str(len(values) - len(relevant_values))
+        + " of "
+        + str(len(values))
+        + " Ratio: "
+        + str((len(values) - len(relevant_values)) / len(values))
+    )
+
+    # relevant_query_counts = [len(x[0]) for x in relevant_values]
+    # total_query_counts = [x[1] for x in relevant_values]
+
+    # for rel, tot in zip(relevant_query_counts, total_query_counts):
+    #    print(
+    #        "Relevant: "
+    #        + str(rel)
+    #        + " Total: "
+    #        + str(tot)
+    #        + " Ratio: "
+    #        + str(rel / tot)
+    #    )
+
+
+benchmarks = [
+    "619",
+    "605",
+    "631",
+    "641",
+    "644",
+    "623",
+    "657",
+    "625",
+    "620",
+    "600",
+    "638",
+    "602",
+]
+if __name__ == "__main__":
+    for benchmark in benchmarks:
+        print(benchmark)
+        try:
+            print_relevant_stats(benchmark)
+        except Exception as e:
+            print(e)
+            continue
