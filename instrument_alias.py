@@ -828,18 +828,22 @@ if __name__ == "__main__":
             print("=============== running benchmark " + i + " ===============")
             print(p.stdout.decode("utf-8"))
             args.benchmark = i
-            InstrumentAlias(
-                Path(args.instr_path),
-                Path(args.exec_root),
-                Path(args.specbuild_dir),
-                Path(args.benchmark),
-                Path(initial_dir),
-                Path(groundtruth_dir),
-                Path(default_may_truth),
-                Path(instr_dir),
-                time.time(),
-                {},
-            ).exploration_driver()
+            try:
+                InstrumentAlias(
+                    Path(args.instr_path),
+                    Path(args.exec_root),
+                    Path(args.specbuild_dir),
+                    Path(args.benchmark),
+                    Path(initial_dir),
+                    Path(groundtruth_dir),
+                    Path(default_may_truth),
+                    Path(instr_dir),
+                    time.time(),
+                    {},
+                ).exploration_driver()
+            except Exception as e:
+                print(e)
+                continue
     else:
         InstrumentAlias(
             Path(args.instr_path),
