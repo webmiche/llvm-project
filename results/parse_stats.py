@@ -156,14 +156,15 @@ benchmarks = [
     "631",
     "641",
     "644",
-    "623",
     "657",
     "625",
+    "638",
     "620",
     "600",
-    "638",
+    "623",
     "602",
 ]
+
 if __name__ == "__main__":
     curr_folder = Path("results/epyc-traces/5/")
     stat_folder = Path("results/stats/")

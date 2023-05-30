@@ -158,8 +158,8 @@ def print_relevant_size_stats(benchmark: str):
         if difference_dict[f]:
             relevant_size_dict[f] = difference_dict[f]
 
-    for f in sorted(relevant_size_dict, key=lambda x: relevant_size_dict[x]):
-        print(f + ": " + str(relevant_size_dict[f]))
+    # for f in sorted(relevant_size_dict, key=lambda x: relevant_size_dict[x]):
+    #    print(f + ": " + str(relevant_size_dict[f]))
 
 
 benchmarks = [
@@ -168,12 +168,12 @@ benchmarks = [
     "631",
     "641",
     "644",
-    "623",
     "657",
     "625",
+    "638",
     "620",
     "600",
-    "638",
+    "623",
     "602",
 ]
 if __name__ == "__main__":
