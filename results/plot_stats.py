@@ -2,6 +2,7 @@ from parse_stats import parse_stats
 
 import matplotlib.pyplot as plt
 import numpy as np
+import ast
 
 
 light_gray = "#cacaca"
@@ -76,7 +77,7 @@ def plot_comparison(res_dict):
     return plt
 
 
-def print_relevant_stats(benchmark: str):
+def print_relevant_query_stats(benchmark: str):
     query_dict, counts_dict = parse_stats("results/stats/stats_" + benchmark + ".txt")
     res_dict = zip_dicts(query_dict, counts_dict)
     flat_dict = flatten_dict(res_dict)
@@ -116,6 +117,51 @@ def print_relevant_stats(benchmark: str):
     #    )
 
 
+def parse_sizes(file_name: str):
+    with open(file_name, "r") as f:
+        for line in f.readlines():
+            if line.startswith("sizes per file: "):
+                dict_line = line.split("sizes per file: ")[1].strip()
+                return ast.literal_eval(dict_line)
+
+
+def parse_total_sizes(file_name: str):
+    with open(file_name, "r") as f:
+        for line in f.readlines():
+            if line.startswith("result: "):
+                size_line = line.split("result: ")[1].strip()
+                return int(size_line.split(" ")[0].strip()), int(
+                    size_line.split(" ")[2].strip()
+                )
+
+
+def print_relevant_size_stats(benchmark: str):
+    size_dict = parse_sizes("results/stats/stats_" + benchmark + ".txt")
+    new_size, old_size = parse_total_sizes("results/stats/stats_" + benchmark + ".txt")
+    print(
+        "New size: "
+        + str(new_size)
+        + " Old size: "
+        + str(old_size)
+        + " Difference: "
+        + str(old_size - new_size)
+        + " Ratio: "
+        + str((old_size - new_size) / old_size)
+    )
+
+    difference_dict = {}
+    for f in size_dict:
+        difference_dict[f] = size_dict[f][1] - size_dict[f][0]
+
+    relevant_size_dict = {}
+    for f in difference_dict:
+        if difference_dict[f]:
+            relevant_size_dict[f] = difference_dict[f]
+
+    for f in sorted(relevant_size_dict, key=lambda x: relevant_size_dict[x]):
+        print(f + ": " + str(relevant_size_dict[f]))
+
+
 benchmarks = [
     "619",
     "605",
@@ -134,7 +180,8 @@ if __name__ == "__main__":
     for benchmark in benchmarks:
         print(benchmark)
         try:
-            print_relevant_stats(benchmark)
+            print_relevant_size_stats(benchmark)
+            print_relevant_query_stats(benchmark)
         except Exception as e:
             print(e)
             continue

@@ -124,6 +124,32 @@ def parse_stats(f: Path):
     return query_dict, counts_dict
 
 
+def parse_sizes(f: Path):
+    file_dict = {}
+    with open(f, "r") as file:
+        for l in file.readlines():
+            if l.__contains__("vs") and not l.startswith("result"):
+                file_dict[l.split(" ")[0].strip()] = (
+                    int(l.split(" ")[-3].strip()),
+                    int(l.split(" ")[-1].strip()),
+                )
+
+    return file_dict
+
+
+def parse_size_improvement(f: Path):
+    old_size = 0
+    new_size = 0
+    with open(f, "r") as file:
+        for l in file.readlines():
+            if l.startswith("result:"):
+                new_size = int(l.split(" ")[-1].strip())
+                old_size = int(l.split(" ")[-3].strip())
+                continue
+
+    return old_size, new_size
+
+
 benchmarks = [
     "619",
     "605",
@@ -140,29 +166,33 @@ benchmarks = [
 ]
 if __name__ == "__main__":
     curr_folder = Path("results/epyc-traces/5/")
-    # stat_folder = Path("results/stats/")
-    # for benchmark in benchmarks:
-    #    initial_file = curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
-    #    stat_file = stat_folder.joinpath("stats_" + benchmark + ".txt")
-    #    try:
-    #        query_dict, counts_dict = parse_stats(initial_file)
-    #        with open(stat_file, "w") as f:
-    #            f.write("counts per function per file: " + str(counts_dict) + "\n")
-    #            f.write("found results: " + str(query_dict) + "\n")
-
-    #    except Exception as e:
-    #        print("failed: " + str(f))
-    #        print(e)
-    #        continue
-
+    stat_folder = Path("results/stats/")
     for benchmark in benchmarks:
-        print(benchmark)
+        initial_file = curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
+        stat_file = stat_folder.joinpath("stats_" + benchmark + ".txt")
         try:
-            strategy_dict = parse_file(
-                curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
-            )
-            compute_time_per_step(strategy_dict)
+            query_dict, counts_dict = parse_stats(initial_file)
+            file_dict = parse_sizes(initial_file)
+            old_size, new_size = parse_size_improvement(initial_file)
+            with open(stat_file, "w") as f:
+                f.write("counts per function per file: " + str(counts_dict) + "\n")
+                f.write("found results: " + str(query_dict) + "\n")
+                f.write("sizes per file: " + str(file_dict) + "\n")
+                f.write("result: " + str(old_size) + " vs " + str(new_size) + "\n")
+
         except Exception as e:
-            print("failed: " + str(benchmark))
+            print("failed: " + str(f))
             print(e)
             continue
+
+    # for benchmark in benchmarks:
+    #    print(benchmark)
+    #    try:
+    #        strategy_dict = parse_file(
+    #            curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
+    #        )
+    #        compute_time_per_step(strategy_dict)
+    #    except Exception as e:
+    #        print("failed: " + str(benchmark))
+    #        print(e)
+    #        continue
