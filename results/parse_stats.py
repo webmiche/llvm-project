@@ -140,17 +140,29 @@ benchmarks = [
 ]
 if __name__ == "__main__":
     curr_folder = Path("results/epyc-traces/5/")
-    stat_folder = Path("results/stats/")
-    for benchmark in benchmarks:
-        initial_file = curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
-        stat_file = stat_folder.joinpath("stats_" + benchmark + ".txt")
-        try:
-            query_dict, counts_dict = parse_stats(initial_file)
-            with open(stat_file, "w") as f:
-                f.write("counts per function per file: " + str(counts_dict) + "\n")
-                f.write("found results: " + str(query_dict) + "\n")
+    # stat_folder = Path("results/stats/")
+    # for benchmark in benchmarks:
+    #    initial_file = curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
+    #    stat_file = stat_folder.joinpath("stats_" + benchmark + ".txt")
+    #    try:
+    #        query_dict, counts_dict = parse_stats(initial_file)
+    #        with open(stat_file, "w") as f:
+    #            f.write("counts per function per file: " + str(counts_dict) + "\n")
+    #            f.write("found results: " + str(query_dict) + "\n")
 
+    #    except Exception as e:
+    #        print("failed: " + str(f))
+    #        print(e)
+    #        continue
+
+    for benchmark in benchmarks:
+        print(benchmark)
+        try:
+            strategy_dict = parse_file(
+                curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
+            )
+            compute_time_per_step(strategy_dict)
         except Exception as e:
-            print("failed: " + str(f))
+            print("failed: " + str(benchmark))
             print(e)
             continue

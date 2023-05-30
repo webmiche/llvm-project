@@ -105,13 +105,12 @@ class InstrumentAlias:
 
     def write_one_file(self, instr_dir: Path, i: int, curr_list, function_name: str):
         ar_file_name: Path = instr_dir.joinpath(str(i) + ".txt")
+        string_list = [str(1), function_name, str(len(curr_list))]
+        for k in curr_list:
+            string_list.append(str(k))
 
         with open(ar_file_name, "w") as f:
-            f.write((str(1) + "\n"))
-            f.write(function_name + "\n")
-            f.write(str(len(curr_list)) + "\n")
-            for k in curr_list:
-                f.write(f"{k}\n")
+            f.write("\n".join(string_list))
 
     def exhaustive_exploration(
         self,
