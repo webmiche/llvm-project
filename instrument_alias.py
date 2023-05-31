@@ -527,9 +527,12 @@ class InstrumentAlias:
                 "-lstdc++",
                 "-lm",
                 "-o",
-                Path("baseline/").joinpath(self.benchmark, str(self.benchmark)),
+                str(Path("baseline/").joinpath(self.benchmark, str(self.benchmark))),
             ]
-            + ["-l" + link for link in linked_libraries.get(str(self.benchmark), [])]
+            + [
+                ("-l" + link) if not link.startswith("-") else link
+                for link in linked_libraries.get(str(self.benchmark), [])
+            ]
             + [str(self.groundtruth_dir.joinpath(f.with_suffix(".o"))) for f in files]
         )
         run(cmd, cwd=self.exec_root)
@@ -624,7 +627,10 @@ class InstrumentAlias:
                 "-o",
                 "final_res/linked.out",
             ]
-            + ["-l" + link for link in linked_libraries.get(str(self.benchmark), [])]
+            + [
+                ("-l" + link) if not link.startswith("-") else link
+                for link in linked_libraries.get(str(self.benchmark), [])
+            ]
             + ["final_res/" + str(f.with_suffix(".o")) for f in files]
         )
         run(cmd, cwd=self.exec_root)

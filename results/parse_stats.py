@@ -128,7 +128,7 @@ def parse_sizes(f: Path):
     file_dict = {}
     with open(f, "r") as file:
         for l in file.readlines():
-            if l.__contains__("vs") and not l.startswith("result"):
+            if l.__contains__(" vs ") and not l.startswith("result"):
                 file_dict[l.split(" ")[0].strip()] = (
                     int(l.split(" ")[-3].strip()),
                     int(l.split(" ")[-1].strip()),
@@ -186,14 +186,14 @@ if __name__ == "__main__":
             print(e)
             continue
 
-    # for benchmark in benchmarks:
-    #    print(benchmark)
-    #    try:
-    #        strategy_dict = parse_file(
-    #            curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
-    #        )
-    #        compute_time_per_step(strategy_dict)
-    #    except Exception as e:
-    #        print("failed: " + str(benchmark))
-    #        print(e)
-    #        continue
+    for benchmark in benchmarks:
+        print(benchmark)
+        try:
+            strategy_dict = parse_file(
+                curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
+            )
+            compute_time_per_step(strategy_dict)
+        except Exception as e:
+            print("failed: " + str(benchmark))
+            print(e)
+            continue

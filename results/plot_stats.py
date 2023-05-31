@@ -149,14 +149,14 @@ def print_relevant_size_stats(benchmark: str):
         + str((old_size - new_size) / old_size)
     )
 
-    difference_dict = {}
-    for f in size_dict:
-        difference_dict[f] = size_dict[f][1] - size_dict[f][0]
+    # difference_dict = {}
+    # for f in size_dict:
+    #    difference_dict[f] = size_dict[f][1] - size_dict[f][0]
 
-    relevant_size_dict = {}
-    for f in difference_dict:
-        if difference_dict[f]:
-            relevant_size_dict[f] = difference_dict[f]
+    # relevant_size_dict = {}
+    # for f in difference_dict:
+    #    if difference_dict[f]:
+    #        relevant_size_dict[f] = difference_dict[f]
 
     # for f in sorted(relevant_size_dict, key=lambda x: relevant_size_dict[x]):
     #    print(f + ": " + str(relevant_size_dict[f]))
