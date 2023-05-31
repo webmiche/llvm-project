@@ -105,13 +105,12 @@ class InstrumentAlias:
 
     def write_one_file(self, instr_dir: Path, i: int, curr_list, function_name: str):
         ar_file_name: Path = instr_dir.joinpath(str(i) + ".txt")
+        string_list = [str(1), function_name, str(len(curr_list))]
+        for k in curr_list:
+            string_list.append(str(k))
 
         with open(ar_file_name, "w") as f:
-            f.write((str(1) + "\n"))
-            f.write(function_name + "\n")
-            f.write(str(len(curr_list)) + "\n")
-            for k in curr_list:
-                f.write(f"{k}\n")
+            f.write("\n".join(string_list))
 
     def exhaustive_exploration(
         self,
@@ -814,12 +813,12 @@ if __name__ == "__main__":
         "631",
         "641",
         "644",
-        "623",
         "657",
         "625",
+        "638",
         "620",
         "600",
-        "638",
+        "623",
         "602",
     ]
     allowed_benchmarks = ["605", "619", "631", "641"]
@@ -829,18 +828,22 @@ if __name__ == "__main__":
             print("=============== running benchmark " + i + " ===============")
             print(p.stdout.decode("utf-8"))
             args.benchmark = i
-            InstrumentAlias(
-                Path(args.instr_path),
-                Path(args.exec_root),
-                Path(args.specbuild_dir),
-                Path(args.benchmark),
-                Path(initial_dir),
-                Path(groundtruth_dir),
-                Path(default_may_truth),
-                Path(instr_dir),
-                time.time(),
-                {},
-            ).exploration_driver()
+            try:
+                InstrumentAlias(
+                    Path(args.instr_path),
+                    Path(args.exec_root),
+                    Path(args.specbuild_dir),
+                    Path(args.benchmark),
+                    Path(initial_dir),
+                    Path(groundtruth_dir),
+                    Path(default_may_truth),
+                    Path(instr_dir),
+                    time.time(),
+                    {},
+                ).exploration_driver()
+            except Exception as e:
+                print(e)
+                continue
     else:
         InstrumentAlias(
             Path(args.instr_path),
