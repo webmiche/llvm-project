@@ -166,7 +166,7 @@ benchmarks = [
 ]
 
 if __name__ == "__main__":
-    curr_folder = Path("results/epyc-traces/5/")
+    curr_folder = Path("results/epyc-traces/6/")
     stat_folder = Path("results/stats/")
     for benchmark in benchmarks:
         initial_file = curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
