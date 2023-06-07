@@ -74,6 +74,37 @@ class InstrumentAlias:
 
         return self.measure_outputsize(obj_file_name)
 
+    def run_step_single_func(
+        self,
+        file_name: Path,
+        index: int,
+        index_list: list[int],
+        function_name: str,
+        take_may: bool,
+    ):
+        """Run the step with the given file name for the given function name."""
+
+        cmd = [
+            str(self.instr_path.joinpath("opt")),
+            str(self.initial_dir.joinpath(file_name)),
+            "-o",
+            str(
+                self.instr_dir.joinpath(
+                    file_name.parent, str(index) + str(file_name.stem) + ".bc"
+                )
+            ),
+            "-Os",
+            "--aafunc=" + function_name,
+            "--aasequence="
+            + str(len(index_list))
+            + "-"
+            + "-".join([str(i) for i in index_list]),
+        ] + (["--take_may"] if take_may else [])
+        run(
+            cmd,
+            cwd=self.exec_root,
+        )
+
     def run_step(
         self,
         file_name: Path,
@@ -128,32 +159,13 @@ class InstrumentAlias:
         for n in range(len(sample_list) + 1):
             list_combinations += list(combinations(sample_list, n))
 
-        with Pool() as p:
-            p.starmap(
-                self.write_one_file,
-                [
-                    (
-                        self.instr_dir,
-                        i,
-                        curr_list,
-                        function_name,
-                    )
-                    for i, curr_list in enumerate(list_combinations)
-                ],
-            )
-
-        print(
-            "exhaustive search, time after filegeneration : "
-            + str(time.time() - self.start_time)
-        )
-
         # compile and measure
         with Pool() as p:
             p.starmap(
-                self.run_step,
+                self.run_step_single_func,
                 [
-                    (file_name, i, self.function_encoding[function_name], take_may)
-                    for i in range(len(list_combinations))
+                    (file_name, i, curr_list, function_name, take_may)
+                    for i, curr_list in enumerate(list_combinations)
                 ],
             )
 
@@ -212,19 +224,13 @@ class InstrumentAlias:
 
         # generate empty file
 
-        ar_name: Path = self.instr_dir.joinpath(str(0) + ".txt")
-
-        with open(ar_name, "w") as f:
-            f.write((str(1) + "\n"))
-            f.write(function_name + "\n")
-            f.write(str(len(curr_list)) + "\n")
-
         # compile and count
 
-        self.run_step(
+        self.run_step_single_func(
             file_name,
             0,
-            self.function_encoding[function_name],
+            [],
+            function_name,
             take_may,
         )
         min_count = self.assemble_and_measure_file(
@@ -249,32 +255,12 @@ class InstrumentAlias:
                 + " out of "
                 + str(count)
             )
-            with Pool() as p:
-                p.starmap(
-                    self.write_one_file,
-                    [
-                        (
-                            self.instr_dir,
-                            i,
-                            curr_list + [i],
-                            function_name,
-                        )
-                        for i in range(lower_bound, upper_bound)
-                    ],
-                )
-
-            print(
-                "greedy search, time after filegeneration in step "
-                + str(iteration_count)
-                + " : "
-                + str(time.time() - self.start_time)
-            )
 
             with Pool() as p:
                 p.starmap(
-                    self.run_step,
+                    self.run_step_single_func,
                     [
-                        (file_name, i, self.function_encoding[function_name], take_may)
+                        (file_name, i, curr_list + [i], function_name, take_may)
                         for i in range(lower_bound, upper_bound)
                     ],
                 )
