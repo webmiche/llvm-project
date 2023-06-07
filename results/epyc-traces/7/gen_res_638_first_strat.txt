@@ -1,0 +1,2481 @@
+=============== running benchmark 638 ===============
+8d22cf838be67253812f4def44d1aa1e1fcfa1c3
+
+Time after baseline: 72.2242956161499
+Track AA Queries std
+counts per function per file: {PosixPath('638/wand/magick-property.bc'): {'MagickDeleteImageArtifact': 4, 'MagickDeleteImageProperty': 4, 'MagickDeleteOption': 2, 'MagickGetAntialias': 2, 'MagickGetColorspace': 2, 'MagickGetCompression': 2, 'MagickGetCompressionQuality': 2, 'MagickGetFilename': 2, 'MagickGetFont': 2, 'MagickGetFormat': 2, 'MagickGetGravity': 2, 'MagickGetImageArtifact': 4, 'MagickGetImageArtifacts': 4, 'MagickGetImageProfile': 4, 'MagickGetImageProfiles': 4, 'MagickGetImageProperty': 4, 'MagickGetImageProperties': 4, 'MagickGetInterlaceScheme': 2, 'MagickGetInterpolateMethod': 2, 'MagickGetOption': 2, 'MagickGetOptions': 4, 'MagickGetOrientation': 2, 'MagickGetPage': 14, 'MagickGetPointsize': 2, 'MagickGetResolution': 11, 'MagickGetSamplingFactors': 9, 'MagickGetSize': 4, 'MagickGetSizeOffset': 2, 'MagickGetType': 2, 'MagickProfileImage': 5, 'MagickRemoveImageProfile': 4, 'MagickSetAntialias': 2, 'MagickSetBackgroundColor': 2, 'MagickSetColorspace': 2, 'MagickSetCompression': 2, 'MagickSetCompressionQuality': 2, 'MagickSetDepth': 2, 'MagickSetExtract': 2, 'MagickSetFilename': 2, 'MagickSetFont': 2, 'MagickSetFormat': 3, 'MagickSetGravity': 2, 'MagickSetImageArtifact': 5, 'MagickSetImageProfile': 5, 'MagickSetImageProperty': 5, 'MagickSetInterlaceScheme': 2, 'MagickSetInterpolateMethod': 2, 'MagickSetOption': 2, 'MagickSetOrientation': 2, 'MagickSetPage': 2, 'MagickSetPassphrase': 2, 'MagickSetPointsize': 2, 'MagickSetProgressMonitor': 2, 'MagickSetResolution': 2, 'MagickSetSamplingFactors': 7, 'MagickSetSize': 2, 'MagickSetSizeOffset': 2, 'MagickSetType': 2}, PosixPath('638/wand/magick-image.bc'): {'MagickFrameImage': 36, 'GetImageFromMagickWand': 4, 'MagickAdaptiveBlurImageChannel': 6, 'MagickAdaptiveResizeImage': 6, 'MagickAdaptiveSharpenImageChannel': 6, 'MagickAdaptiveThresholdImage': 6, 'InsertImageInWand': 5, 'MagickAddImage': 6, 'MagickAddNoiseImageChannel': 6, 'MagickAffineTransformImage': 5, 'MagickAnnotateImage': 16, 'MagickAnimateImages': 4, 'CloneMagickWandFromImages': 6, 'MagickAppendImages': 4, 'MagickAutoGammaImageChannel': 5, 'MagickAutoLevelImageChannel': 5, 'MagickBlackThresholdImage': 9, 'MagickBlueShiftImage': 6, 'MagickBlurImageChannel': 6, 'MagickBorderImage': 21, 'MagickBrightnessContrastImageChannel': 5, 'MagickCharcoalImage': 6, 'MagickChopImage': 23, 'MagickClampImageChannel': 5, 'MagickClipImage': 5, 'MagickClipImagePath': 5, 'MagickClutImageChannel': 5, 'MagickCoalesceImages': 4, 'MagickColorDecisionListImage': 5, 'MagickColorizeImage': 15, 'MagickColorMatrixImage': 6, 'MagickCombineImages': 4, 'MagickCommentImage': 5, 'MagickCompareImageChannels': 4, 'MagickCompareImageLayers': 4, 'MagickCompareImages': 4, 'MagickCompositeImageChannel': 5, 'MagickCompositeLayers': 4, 'MagickContrastImage': 5, 'MagickContrastStretchImageChannel': 5, 'MagickConvolveImageChannel': 6, 'MagickCropImage': 23, 'MagickCycleColormapImage': 5, 'MagickConstituteImage': 5, 'MagickDecipherImage': 4, 'MagickDeconstructImages': 4, 'MagickDeskewImage': 6, 'MagickDespeckleImage': 6, 'MagickDisplayImage': 6, 'MagickDisplayImages': 4, 'MagickDistortImage': 6, 'MagickDrawImage': 5, 'MagickEdgeImage': 6, 'MagickEmbossImage': 6, 'MagickEncipherImage': 4, 'MagickEnhanceImage': 6, 'MagickEqualizeImageChannel': 5, 'MagickEvaluateImage': 5, 'MagickEvaluateImages': 4, 'MagickEvaluateImageChannel': 4, 'MagickExportImagePixels': 7, 'MagickExtentImage': 23, 'MagickFilterImageChannel': 6, 'MagickFlipImage': 6, 'MagickFloodfillPaintImage': 15, 'MagickFlopImage': 6, 'MagickForwardFourierTransformImage': 6, 'MagickFunctionImage': 5, 'MagickFunctionImageChannel': 4, 'MagickFxImageChannel': 4, 'MagickGammaImageChannel': 5, 'MagickGaussianBlurImageChannel': 6, 'MagickGetImage': 6, 'MagickGetImageAlphaChannel': 4, 'MagickGetImageClipMask': 6, 'MagickGetImageBackgroundColor': 4, 'MagickGetImageBlob': 9, 'MagickGetImagesBlob': 6, 'MagickGetImageBluePrimary': 4, 'MagickGetImageBorderColor': 4, 'MagickGetImageChannelDepth': 6, 'MagickGetImageChannelDistortion': 4, 'MagickGetImageChannelDistortions': 4, 'MagickGetImageChannelFeatures': 6, 'MagickGetImageChannelKurtosis': 6, 'MagickGetImageChannelMean': 6, 'MagickGetImageChannelRange': 6, 'MagickGetImageChannelStatistics': 6, 'MagickGetImageColormapColor': 8, 'MagickGetImageColors': 6, 'MagickGetImageColorspace': 4, 'MagickGetImageCompose': 4, 'MagickGetImageCompression': 4, 'MagickGetImageCompressionQuality': 4, 'MagickGetImageDelay': 4, 'MagickGetImageDepth': 4, 'MagickGetImageDistortion': 4, 'MagickGetImageDispose': 4, 'MagickGetImageEndian': 4, 'MagickGetImageFilename': 4, 'MagickGetImageFormat': 4, 'MagickGetImageFuzz': 4, 'MagickGetImageGamma': 4, 'MagickGetImageGravity': 4, 'MagickGetImageGreenPrimary': 4, 'MagickGetImageHeight': 4, 'MagickGetImageHistogram': 6, 'MagickGetImageInterlaceScheme': 4, 'MagickGetImageInterpolateMethod': 4, 'MagickGetImageIterations': 4, 'MagickGetImageLength': 4, 'MagickGetImageMatteColor': 4, 'MagickGetImageOrientation': 4, 'MagickGetImagePage': 4, 'MagickGetImagePixelColor': 6, 'MagickGetImageRange': 6, 'MagickGetImageRedPrimary': 4, 'MagickGetImageRegion': 20, 'MagickGetImageRenderingIntent': 4, 'MagickGetImageResolution': 4, 'MagickGetImageScene': 4, 'MagickGetImageSignature': 6, 'MagickGetImageTicksPerSecond': 4, 'MagickGetImageType': 6, 'MagickGetImageUnits': 4, 'MagickGetImageVirtualPixelMethod': 4, 'MagickGetImageWhitePoint': 4, 'MagickGetImageWidth': 4, 'MagickGetNumberImages': 2, 'MagickGetImageTotalInkDensity': 4, 'MagickHaldClutImageChannel': 5, 'MagickHasNextImage': 4, 'MagickHasPreviousImage': 4, 'MagickIdentifyImage': 9, 'MagickImplodeImage': 6, 'MagickImportImagePixels': 5, 'MagickInverseFourierTransformImage': 6, 'MagickLabelImage': 5, 'MagickLevelImageChannel': 5, 'MagickLinearStretchImage': 5, 'MagickLiquidRescaleImage': 6, 'MagickMagnifyImage': 6, 'MagickMergeImageLayers': 4, 'MagickMinifyImage': 6, 'MagickModulateImage': 9, 'MagickMontageImage': 12, 'MagickMorphImages': 4, 'MagickMorphologyImageChannel': 6, 'MagickMotionBlurImageChannel': 6, 'MagickNegateImageChannel': 5, 'MagickNewImage': 6, 'MagickNextImage': 9, 'MagickNormalizeImageChannel': 5, 'MagickOilPaintImage': 6, 'MagickOpaquePaintImageChannel': 13, 'MagickOptimizeImageLayers': 4, 'MagickOptimizeImageTransparency': 4, 'MagickOrderedPosterizeImageChannel': 6, 'MagickPingImage': 5, 'MagickPingImageBlob': 5, 'MagickPingImageFile': 5, 'MagickPolaroidImage': 5, 'MagickPosterizeImage': 5, 'MagickPreviewImages': 4, 'MagickPreviousImage': 7, 'MagickQuantizeImage': 16, 'MagickQuantizeImages': 16, 'MagickRaiseImage': 18, 'MagickRandomThresholdImageChannel': 10, 'MagickReadImage': 5, 'MagickReadImageBlob': 7, 'MagickReadImageFile': 5, 'MagickRemapImage': 9, 'MagickRemoveImage': 4, 'MagickResampleImage': 6, 'MagickResetImagePage': 4, 'MagickResizeImage': 6, 'MagickRollImage': 6, 'MagickRotateImage': 5, 'MagickRotationalBlurImageChannel': 6, 'MagickSampleImage': 6, 'MagickScaleImage': 6, 'MagickSegmentImage': 5, 'MagickSelectiveBlurImageChannel': 6, 'MagickSeparateImageChannel': 5, 'MagickSepiaToneImage': 6, 'MagickSetImage': 3, 'MagickSetImageAlphaChannel': 4, 'MagickSetImageBackgroundColor': 4, 'MagickSetImageBias': 4, 'MagickSetImageBluePrimary': 6, 'MagickSetImageBorderColor': 4, 'MagickSetImageChannelDepth': 4, 'MagickSetImageClipMask': 5, 'MagickSetImageColor': 4, 'MagickSetImageColormapColor': 8, 'MagickSetImageColorspace': 4, 'MagickSetImageCompose': 4, 'MagickSetImageCompression': 4, 'MagickSetImageCompressionQuality': 4, 'MagickSetImageDelay': 4, 'MagickSetImageDepth': 4, 'MagickSetImageDispose': 4, 'MagickSetImageEndian': 4, 'MagickSetImageExtent': 4, 'MagickSetImageFilename': 4, 'MagickSetImageFormat': 6, 'MagickSetImageFuzz': 4, 'MagickSetImageGamma': 4, 'MagickSetImageGravity': 4, 'MagickSetImageGreenPrimary': 6, 'MagickSetImageInterlaceScheme': 4, 'MagickSetImageInterpolateMethod': 4, 'MagickSetImageIterations': 4, 'MagickSetImageMatte': 5, 'MagickSetImageMatteColor': 4, 'MagickSetImageOpacity': 5, 'MagickSetImageOrientation': 4, 'MagickSetImagePage': 11, 'MagickSetImageProgressMonitor': 4, 'MagickSetImageRedPrimary': 6, 'MagickSetImageRenderingIntent': 4, 'MagickSetImageResolution': 6, 'MagickSetImageScene': 4, 'MagickSetImageTicksPerSecond': 4, 'MagickSetImageType': 4, 'MagickSetImageUnits': 4, 'MagickSetImageVirtualPixelMethod': 2, 'MagickSetImageWhitePoint': 6, 'MagickShadeImage': 6, 'MagickShadowImage': 6, 'MagickSharpenImageChannel': 6, 'MagickShaveImage': 20, 'MagickShearImage': 5, 'MagickSigmoidalContrastImageChannel': 5, 'MagickSimilarityImage': 4, 'MagickSketchImage': 6, 'MagickSmushImages': 4, 'MagickSolarizeImageChannel': 6, 'MagickSparseColorImage': 6, 'MagickSpliceImage': 23, 'MagickSpreadImage': 6, 'MagickStatisticImageChannel': 6, 'MagickSteganoImage': 6, 'MagickStereoImage': 6, 'MagickStripImage': 5, 'MagickSwirlImage': 6, 'MagickTextureImage': 6, 'MagickThresholdImageChannel': 5, 'MagickThumbnailImage': 6, 'MagickTintImage': 15, 'MagickTransformImage': 9, 'MagickTransformImageColorspace': 4, 'MagickTransparentPaintImage': 9, 'MagickTransposeImage': 6, 'MagickTransverseImage': 6, 'MagickTrimImage': 6, 'MagickUniqueImageColors': 6, 'MagickUnsharpMaskImageChannel': 6, 'MagickVignetteImage': 6, 'MagickWaveImage': 6, 'MagickWhiteThresholdImage': 9, 'MagickWriteImage': 7, 'MagickWriteImageFile': 6, 'MagickWriteImages': 8, 'MagickWriteImagesFile': 8}, PosixPath('638/wand/wand.bc'): {}, PosixPath('638/wand/pixel-iterator.bc'): {'ClearPixelIterator': 8, 'ClonePixelIterator': 24, 'DestroyPixelIterator': 14, 'NewPixelIterator': 14, 'PixelClearIteratorException': 2, 'NewPixelRegionIterator': 15, 'PixelGetCurrentIteratorRow': 34, 'PixelGetIteratorException': 9, 'PixelGetIteratorExceptionType': 2, 'PixelGetIteratorRow': 2, 'PixelSetIteratorRow': 3, 'PixelGetNextIteratorRow': 31, 'PixelGetPreviousIteratorRow': 31, 'PixelGetPreviousRow': 1, 'PixelResetIterator': 2, 'PixelSetFirstIteratorRow': 4, 'PixelSetLastIteratorRow': 4, 'PixelSyncIterator': 22}, PosixPath('638/wand/pixel-wand.bc'): {'ClearPixelWand': 2, 'ClonePixelWand': 6, 'DestroyPixelWand': 5, 'DestroyPixelWands': 1, 'NewPixelWand': 5, 'PixelClearException': 2, 'PixelGetAlpha': 2, 'PixelGetAlphaQuantum': 2, 'PixelGetBlack': 2, 'PixelGetBlackQuantum': 2, 'PixelGetBlue': 2, 'PixelGetBlueQuantum': 2, 'PixelGetColorAsString': 3, 'PixelGetColorAsNormalizedString': 20, 'PixelGetColorCount': 2, 'PixelGetCyan': 2, 'PixelGetCyanQuantum': 2, 'PixelGetException': 9, 'PixelGetExceptionType': 2, 'PixelGetFuzz': 2, 'PixelGetGreen': 2, 'PixelGetGreenQuantum': 2, 'PixelGetHSL': 7, 'PixelGetIndex': 2, 'PixelGetMagenta': 2, 'PixelGetMagentaQuantum': 2, 'PixelGetOpacity': 2, 'PixelGetOpacityQuantum': 2, 'PixelGetQuantumColor': 46, 'PixelGetRed': 2, 'PixelGetRedQuantum': 2, 'PixelGetYellow': 2, 'PixelGetYellowQuantum': 2, 'PixelSetColor': 5, 'PixelSetHSL': 20, 'PixelSetOpacity': 2, 'PixelSetQuantumColor': 18}, PosixPath('638/wand/convert.bc'): {'ConvertImageCommand': 3256, 'ConvertUsage': 20, 'ConcatenateImages': 2}, PosixPath('638/wand/magick-wand.bc'): {'ClearMagickWand': 16, 'CloneMagickWand': 12, 'DestroyMagickWand': 12, 'MagickClearException': 2, 'MagickGetException': 7, 'MagickGetExceptionType': 2, 'MagickGetIteratorIndex': 4, 'MagickQueryFontMetrics': 156, 'MagickQueryMultilineFontMetrics': 156, 'MagickResetIterator': 5, 'MagickSetFirstIterator': 5, 'MagickSetIteratorIndex': 6, 'MagickSetLastIterator': 5, 'NewMagickWand': 11}, PosixPath('638/wand/drawing-wand.bc'): {'ClearDrawingWand': 21, 'CloneDrawingWand': 84, 'DestroyDrawingWand': 24, 'AdjustAffine': 98, 'MvgPrintf': 94, 'DrawAffine': 16, 'NewDrawingWand': 15, 'DrawAllocateWand': 5, 'MvgAutoWrapPrintf': 5, 'MvgAppendPointsCommand': 2, 'DrawClearException': 2, 'DrawComposite': 13, 'DrawGetBorderColor': 4, 'DrawGetClipPath': 4, 'DrawGetClipRule': 4, 'DrawGetClipUnits': 4, 'DrawGetException': 9, 'DrawGetExceptionType': 2, 'DrawGetFillColor': 4, 'DrawGetFillOpacity': 4, 'DrawGetFillRule': 4, 'DrawGetFont': 4, 'DrawGetFontFamily': 4, 'DrawGetFontResolution': 15, 'DrawGetFontSize': 4, 'DrawGetFontStretch': 4, 'DrawGetFontStyle': 4, 'DrawGetFontWeight': 4, 'DrawGetGravity': 4, 'DrawGetOpacity': 4, 'DrawGetStrokeAntialias': 4, 'DrawGetStrokeColor': 4, 'DrawGetStrokeDashArray': 9, 'DrawGetStrokeDashOffset': 4, 'DrawGetStrokeLineCap': 4, 'DrawGetStrokeLineJoin': 4, 'DrawGetStrokeMiterLimit': 4, 'DrawGetStrokeOpacity': 4, 'DrawGetStrokeWidth': 4, 'DrawGetTextAlignment': 4, 'DrawGetTextAntialias': 4, 'DrawGetTextDecoration': 4, 'DrawGetTextDirection': 4, 'DrawGetTextEncoding': 4, 'DrawGetTextKerning': 4, 'DrawGetTextInterlineSpacing': 4, 'DrawGetTextInterwordSpacing': 4, 'SetMagickPixelPacket': 14, 'DrawGetVectorGraphics': 179, 'DrawGetTextUnderColor': 4, 'DrawPathClose': 2, 'DrawPathCurveTo': 5, 'DrawPathCurveToQuadraticBezier': 5, 'DrawPathCurveToQuadraticBezierSmooth': 5, 'DrawPathCurveToSmooth': 5, 'DrawPathEllipticArc': 5, 'DrawPathFinish': 2, 'DrawPathLineTo': 5, 'DrawPathLineToHorizontal': 5, 'DrawPathLineToVertical': 5, 'DrawPathMoveTo': 5, 'DrawPathStart': 2, 'DrawPopClipPath': 2, 'DrawPopDefs': 2, 'DrawPopPattern': 44, 'DrawPushPattern': 24, 'DrawRender': 27, 'DrawResetVectorGraphics': 3, 'IsColorEqual': 14, 'MvgAppendColor': 67, 'DrawSetBorderColor': 20, 'DrawSetClipPath': 13, 'DrawSetClipRule': 21, 'DrawSetClipUnits': 56, 'DrawSetFillColor': 20, 'DrawSetFillOpacity': 21, 'DrawSetFontResolution': 4, 'DrawSetOpacity': 20, 'DrawSetFillPatternURL': 22, 'DrawSetFillRule': 21, 'DrawSetFont': 15, 'DrawSetFontFamily': 15, 'DrawSetFontSize': 21, 'DrawSetFontStretch': 21, 'DrawSetFontStyle': 21, 'DrawSetFontWeight': 21, 'DrawSetGravity': 21, 'DrawSetStrokeColor': 20, 'DrawSetStrokePatternURL': 22, 'DrawSetStrokeAntialias': 21, 'DrawSetStrokeDashArray': 19, 'DrawSetStrokeDashOffset': 21, 'DrawSetStrokeLineCap': 20, 'DrawSetStrokeLineJoin': 21, 'DrawSetStrokeMiterLimit': 4, 'DrawSetStrokeOpacity': 21, 'DrawSetStrokeWidth': 21, 'DrawSetTextAlignment': 21, 'DrawSetTextAntialias': 21, 'DrawSetTextDecoration': 21, 'DrawSetTextDirection': 21, 'DrawSetTextEncoding': 15, 'DrawSetTextKerning': 7, 'DrawSetTextInterlineSpacing': 7, 'DrawSetTextInterwordSpacing': 7, 'DrawSetTextUnderColor': 69, 'IsPoint': 1, 'DrawSetVectorGraphics': 64, 'PeekDrawingWand': 4, 'PopDrawingWand': 10, 'PushDrawingWand': 6}, PosixPath('638/wand/mogrify.bc'): {'MogrifyImage': 531, 'MogrifyImageCommand': 3559, 'MogrifyImageList': 120, 'MagickCommandGenesis': 1, 'SetMagickPixelPacket': 14, 'MogrifyImageInfo': 25, 'SparseColorOption': 52, 'MogrifyUsage': 20, 'SetImageProgress': 4, 'MogrifyImages': 5}, PosixPath('638/filters/analyze.bc'): {'analyzeImage': 28}, PosixPath('638/utilities/convert.bc'): {}, PosixPath('638/magick/composite.bc'): {'SetImageProgress': 4, 'SetPixelPacket': 20, 'CompositeClear': 11, 'MagickPixelCompositeOver': 29, 'CompositeIn': 24, 'CompositeOut': 24, 'CompositeAtop': 38, 'CompositeXor': 38, 'MagickPixelCompositePlus': 29, 'CompositePlus': 73, 'CompositeMinus': 73, 'CompositeModulusAdd': 73, 'CompositeModulusSubtract': 73, 'CompositeDifference': 73, 'CompositeExclusion': 71, 'CompositeMultiply': 73, 'CompositeScreen': 73, 'CompositeDivide': 73, 'CompositeDarken': 75, 'CompositeLighten': 75, 'MagickPixelIntensity': 8, 'CompositeDarkenIntensity': 45, 'CompositeLightenIntensity': 45, 'Mathematics': 7, 'CompositeMathematics': 178, 'CompositeColorDodge': 35, 'CompositeColorBurn': 38, 'CompositeLinearDodge': 38, 'CompositeLinearBurn': 38, 'CompositeHardLight': 38, 'CompositeSoftLight': 10, 'CompositeLinearLight': 38, 'CompositePegtopLight': 38, 'CompositeVividLight': 38, 'CompositePinLight': 38, 'CompositeBumpmap': 33, 'MagickPixelCompositeBlend': 37, 'CompositeThreshold': 38, 'MagickPixelIntensityToQuantum': 8, 'ConvertRGBToCMYK': 18, 'CompositeImageChannel': 5185, 'TextureImage': 92}, PosixPath('638/magick/log.bc'): {}, PosixPath('638/magick/monitor.bc'): {'SetImageProgressMonitor': 2, 'SetImageInfoProgressMonitor': 2}, PosixPath('638/magick/transform.bc'): {'CropImageToTiles': 329, 'SetImageProgress': 4, 'FlopImage': 34, 'FlipImage': 34, 'TransposeImage': 41, 'TransverseImage': 50, 'ChopImage': 41, 'ConsolidateCMYKImages': 14, 'CropImage': 82, 'ExcerptImage': 17, 'ExtentImage': 3, 'RollImage': 43, 'ShaveImage': 56, 'SpliceImage': 133, 'TransformImage': 30, 'TransformImages': 12, 'TrimImage': 35}, PosixPath('638/magick/morphology.bc'): {'ParseKernelArray': 174, 'ParseKernelName': 1, 'AcquireKernelBuiltIn': 530, 'CalcKernelMetaData': 45, 'DestroyKernelInfo': 2, 'CloneKernelInfo': 11, 'RotateKernelInfo': 178, 'SameKernelInfo': 26, 'ExpandRotateKernelInfo': 22, 'ScaleKernelInfo': 75, 'AcquireKernelInfo': 54, 'SetMagickPixelPacket': 18, 'SetPixelPacket': 20, 'SetImageProgress': 4, 'MorphologyPrimitiveDirect': 968, 'MorphologyPrimitive': 373, 'MorphologyApply': 717, 'UnityAddKernelInfo': 11, 'ScaleGeometryKernelInfo': 6, 'ShowKernelInfo': 29, 'MorphologyImageChannel': 1, 'ZeroKernelNans': 8}, PosixPath('638/magick/semaphore.bc'): {'AllocateSemaphoreInfo': 5, 'DestroySemaphoreInfo': 2}, PosixPath('638/magick/locale.bc'): {'LoadLocaleCache': 42, 'FormatLocaleStringList': 1, 'FormatLocaleString': 1, 'ChopLocaleComponents': 4, 'DestroyLocaleNode': 4, 'IsLocaleTreeInstantiated': 2, 'GetLocaleInfo_': 2, 'GetLocaleInfoList': 4, 'GetLocaleList': 4, 'GetLocaleMessage': 1, 'InterpretLocaleValue': 6, 'ListLocaleInfo': 13}, PosixPath('638/magick/paint.bc'): {'GradientImage': 109, 'SetMagickPixelPacket': 18, 'GetFillColor': 4, 'ConvertRGBToCMYK': 18, 'FloodfillPaintImage': 563, 'SetImageProgress': 4, 'OilPaintImage': 14, 'IsMagickGray': 7, 'OpaquePaintImageChannel': 175, 'TransparentPaintImage': 117, 'TransparentPaintImageChroma': 172}, PosixPath('638/magick/mime.bc'): {'LoadMimeCache': 36, 'GetMimeInfo': 117, 'MimeInfoCompare': 4, 'GetMimeInfoList': 4, 'GetMimeList': 4, 'ListMimeInfo': 6, 'MagickToMime': 1, 'DestroyMimeElement': 11}, PosixPath('638/magick/resource.bc'): {'GetPathTemplate': 2, 'AcquireUniqueFileResource': 2, 'ListMagickResourceInfo': 10, 'SetMagickResourceLimit': 16}, PosixPath('638/magick/token.bc'): {'GetMagickToken': 23, 'GetNextUTFCode': 15, 'GetUTFCode': 11, 'GetUTFOctets': 11, 'GlobExpression': 2162, 'StoreToken': 3, 'Tokenizer': 15}, PosixPath('638/magick/registry.bc'): {'DestroyRegistryNode': 4, 'SetImageRegistry': 10, 'DefineImageRegistry': 5, 'GetImageRegistry': 6}, PosixPath('638/magick/layer.bc'): {'OptimizeLayerFrames': 556, 'CompositeLayers': 64, 'ClearBounds': 11, 'IsBoundsCleared': 16, 'CoalesceImages': 126, 'DisposeImages': 108, 'SetMagickPixelPacket': 18, 'ComparePixels': 4, 'CompareImageBounds': 615, 'CompareImageLayers': 29, 'OptimizeImageTransparency': 95, 'RemoveDuplicateLayers': 35, 'RemoveZeroDelayLayers': 8, 'CompositeCanvas': 4, 'SetImageProgress': 4, 'MergeImageLayers': 76}, PosixPath('638/magick/segment.bc'): {'GetImageDynamicThreshold': 811, 'SegmentImage': 848, 'Classify': 591, 'InitializeHistogram': 18, 'ScaleSpace': 2, 'DerivativeHistogram': 10, 'ZeroCrossHistogram': 3, 'ConsolidateCrossings': 2, 'InitializeList': 3, 'Stability': 7, 'MeanStability': 7, 'InitializeIntervalTree': 71, 'ActiveNodes': 4, 'OptimalTau': 91, 'DefineRegion': 18, 'SetImageProgress': 4}, PosixPath('638/magick/quantize.bc'): {'ReduceImageColors': 34, 'RiemersmaDither': 222, 'GetQuantizeInfo': 16, 'AcquireQuantizeInfo': 2, 'CloneQuantizeInfo': 32, 'SetImageProgress': 4, 'DirectToColormapImage': 37, 'IsSameColor': 14, 'PixelPacketIntensity': 4, 'IntensityCompare': 8, 'SetGrayscaleImage': 65, 'GetNodeInfo': 25, 'GetCubeInfo': 6, 'SetAssociatedAlpha': 2, 'PruneChild': 50, 'PruneLevel': 3, 'AssociateAlphaPixel': 32, 'ColorToNodeId': 7, 'PruneToCubeDepth': 3, 'ClassifyImageColors': 267, 'QuantizeErrorFlatten': 2, 'Reduce': 11, 'DefineImageColormap': 56, 'CacheOffset': 7, 'ClosestColor': 27, 'FloydSteinbergDither': 664, 'DitherImage': 639, 'GetImageQuantizeError': 43, 'GetPixelLuma': 8, 'AssignImageColors': 1030, 'DestroyCubeInfo': 7, 'QuantizeImage': 99, 'CompressImageColormap': 3, 'PosterizeImageChannel': 65, 'QuantizeImages': 12, 'RemapImage': 2, 'RemapImages': 2}, PosixPath('638/magick/attribute.bc'): {'SetMagickPixelPacket': 18, 'GetImageBoundingBox': 480, 'GetImageChannelDepth': 39, 'IsMonochromePixel': 4, 'IsMonochromeImage': 11, 'IsGrayPixel': 4, 'IsGrayImage': 14, 'GetImageType': 4, 'IsOpaqueImage': 5, 'SetImageChannelDepth': 41, 'SetImageType': 16}, PosixPath('638/magick/quantum-import.bc'): {'ImportBGRQuantum': 2088, 'ImportBGRAQuantum': 2709, 'ImportCMYKQuantum': 2560, 'ImportCMYKAQuantum': 4014, 'ImportGrayQuantum': 898, 'ImportGrayAlphaQuantum': 1056, 'ImportIndexAlphaQuantum': 1803, 'ImportRGBQuantum': 2085, 'ImportRGBAQuantum': 2713, 'PushShortPixel': 3, 'PushFloatPixel': 44, 'PushLongPixel': 13, 'PushDoublePixel': 73, 'PushQuantumPixel': 16, 'ImportAlphaQuantum': 219, 'PushQuantumLongPixel': 47, 'ImportBlackQuantum': 235, 'ImportBlueQuantum': 222, 'ImportCbYCrYQuantum': 158, 'ImportGreenQuantum': 219, 'ImportIndexQuantum': 1422, 'ImportRedQuantum': 220, 'ImportQuantumPixels': 15505}, PosixPath('638/magick/enhance.bc'): {'ContrastImage': 76, 'ModulateImage': 1486, 'ModulateHCL': 16, 'ModulateHCLp': 16, 'ModulateHSB': 16, 'ModulateHSI': 16, 'ModulateHSL': 16, 'ModulateHSV': 16, 'ModulateHWB': 16, 'SetImageProgress': 4, 'LevelImageChannel': 62, 'AutoGammaImageChannel': 8, 'BrightnessContrastImageChannel': 3, 'ColorDecisionListImage': 59, 'SetMagickPixelPacket': 18, 'MagickPixelIntensityToQuantum': 8, 'MagickPixelIntensity': 8, 'ClutImageChannel': 281, 'Contrast': 16, 'ContrastStretchImageChannel': 212, 'ContrastStretchImage': 7, 'EnhanceImage': 4401, 'EqualizeImageChannel': 333, 'GammaImageChannel': 88, 'GammaImage': 5, 'GrayscaleImage': 51, 'MagickPixelCompositePlus': 29, 'MagickPixelCompositeAreaBlend': 29, 'HaldClutImageChannel': 314, 'LevelizeImageChannel': 62, 'LevelImage': 11, 'LevelColorsImageChannel': 31, 'LinearStretchImage': 5, 'ModulateLCHab': 18, 'ModulateLCHuv': 18, 'NegateImageChannel': 104, 'NormalizeImageChannel': 2, 'NormalizeImage': 2, 'SigmoidalContrastImageChannel': 49, 'SigmoidalContrastImage': 10}, PosixPath('638/magick/signature.bc'): {'InitializeSignature': 29, 'AcquireSignatureInfo': 40, 'DestroySignatureInfo': 7, 'TransformSignature': 134, 'FinalizeSignature': 41, 'UpdateSignature': 9, 'SignatureImage': 4}, PosixPath('638/magick/splay-tree.bc'): {'AddValueToSplayTree': 37, 'ResetSplayTreeIterator': 6, 'Splay': 21, 'IterateOverSplayTree': 7, 'LinkSplayTreeNodes': 4, 'BalanceSplayTree': 9, 'SplaySplayTree': 20, 'NewSplayTree': 17, 'GetFirstSplayTreeNode': 2, 'CloneSplayTree': 12, 'DeleteNodeByValueFromSplayTree': 39, 'DeleteNodeFromSplayTree': 30, 'DestroySplayTree': 32, 'GetNextKeyInSplayTree': 13, 'GetNextValueInSplayTree': 13, 'GetValueFromSplayTree': 6, 'GetNumberOfNodesInSplayTree': 2, 'RemoveNodeByValueFromSplayTree': 30, 'RemoveNodeFromSplayTree': 23, 'ResetSplayTree': 39}, PosixPath('638/magick/accelerate.bc'): {}, PosixPath('638/magick/color.bc'): {'QueryMagickColorCompliance': 309, 'DestroyColorElement': 4, 'LoadColorCache': 21, 'GetColorCompliance': 75, 'ConcatenateColorComponent': 26, 'GetColorInfoList': 4, 'GetColorList': 4, 'ConcatentateHexColorComponent': 14, 'GetColorTuple': 75, 'IsColorEqual': 8, 'IsColorSimilar': 29, 'SetMagickPixelPacket': 18, 'IsMagickColorEqual': 56, 'IsMagickColorSimilar': 155, 'SetImageProgress': 4, 'IsImageSimilar': 271, 'IsOpacitySimilar': 2, 'ListColorInfo': 16, 'QueryColorCompliance': 52, 'QueryMagickColorname': 48, 'QueryColorname': 34}, PosixPath('638/magick/threshold.bc'): {'BilevelImageChannel': 59, 'OrderedPosterizeImageChannel': 83, 'SetImageProgress': 4, 'AdaptiveThresholdImage': 226, 'IsMagickGray': 7, 'BlackThresholdImageChannel': 167, 'ClampImageChannel': 15, 'DestroyThresholdMap': 4, 'GetThresholdMapFile': 31, 'PerceptibleImageChannel': 69, 'RandomThresholdImageChannel': 321, 'WhiteThresholdImageChannel': 167}, PosixPath('638/magick/annotate.bc'): {'RenderPostscript': 279, 'EscapeParenthesis': 2, 'GetFillColor': 4, 'RenderFreetype': 265, 'RenderType': 28, 'GetTypeMetrics': 114, 'AnnotateImage': 2286, 'GetNextUTFCode': 15, 'GetUTFCode': 11, 'GetUTFOctets': 11, 'FormatMagickCaption': 319, 'GetMultilineTypeMetrics': 25}, PosixPath('638/magick/client.bc'): {}, PosixPath('638/magick/display.bc'): {}, PosixPath('638/magick/distort.bc'): {'DistortImage': 2549, 'GenerateCoefficients': 730, 'AffineArgsToCoefficients': 10, 'InvertAffineCoefficients': 25, 'InvertPerspectiveCoefficients': 51, 'CoefficientsToAffineArgs': 10, 'IsPixelGray': 4, 'SetMagickPixelPacket': 18, 'ConvertRGBToCMYK': 18, 'SetPixelPacket': 20, 'MagickPixelCompositePlus': 29, 'MagickPixelCompositeBlend': 38, 'SetImageProgress': 4, 'DistortResizeImage': 38, 'AffineTransformImage': 60, 'RotateImage': 4, 'SparseColorImage': 594}, PosixPath('638/magick/property.bc'): {'DestroyImageProperties': 2, 'CloneImageProperties': 709, 'DeleteImageProperty': 2, 'SetImageProperty': 31, 'DefineImageProperty': 5, 'ReadPropertyMSBShort': 14, 'ReadPropertyMSBLong': 19, 'TraceSVGClippath': 891, 'TracePSClippath': 889, 'Get8BIMProperty': 785, 'ReadPropertyShort': 3, 'ReadPropertyLong': 13, 'GetEXIFProperty': 588, 'GetIPTCProperty': 3, 'GetXMPProperty': 4, 'GetImageProperty': 40, 'GetMagickPropertyLetter': 93, 'GetMagickProperty': 70, 'GetNextImageProperty': 2, 'ResetImagePropertyIterator': 2, 'InterpretImageProperties': 33, 'RemoveImageProperty': 2}, PosixPath('638/magick/fourier.bc'): {'SetImageProgress': 4, 'ComplexImages': 310}, PosixPath('638/magick/resize.bc'): {'GetResizeFilterSupport': 2, 'GetResizeFilterWeight': 10, 'CubicBC': 10, 'Kaiser': 2, 'J1': 1, 'P1': 1, 'Q1': 1, 'BesselOrderOne': 7, 'Jinc': 7, 'Lagrange': 2, 'AcquireResizeFilter': 161, 'SetPixelPacket': 20, 'SetImageProgress': 4, 'InterpolativeResizeImage': 77, 'MagnifyImage': 121, 'HorizontalFilter': 225, 'VerticalFilter': 228, 'ResizeImage': 31, 'MinifyImage': 4, 'ResampleImage': 13, 'SampleImage': 31, 'ScaleImage': 763, 'ThumbnailImage': 51}, PosixPath('638/magick/delegate.bc'): {}, PosixPath('638/magick/string.bc'): {'AcquireStringInfo': 8, 'AcquireString': 1, 'DestroyStringInfo': 2, 'BlobToStringInfo': 4, 'CloneString': 3, 'CloneStringInfo': 2, 'CompareStringInfo': 4, 'ConcatenateMagickString': 2, 'ConcatenateString': 4, 'SetStringInfoLength': 6, 'ConcatenateStringInfo': 4, 'CopyMagickString': 11, 'ConfigureFileToStringInfo': 2, 'ConstantString': 1, 'DestroyStringList': 2, 'EscapeString': 6, 'FormatMagickTime': 70, 'InterpretSiPrefixValue': 7, 'LocaleLower': 4, 'LocaleUpper': 4, 'PrintStringInfo': 8, 'ResetStringInfo': 2, 'SetStringInfo': 5, 'SetStringInfoDatum': 2, 'SplitStringInfo': 3, 'StringInfoToHexString': 274, 'StringToArgv': 23, 'StringToArrayOfDoubles': 9, 'StringToken': 4, 'StringToList': 19, 'StringToStringInfo': 2, 'StripString': 4, 'SubstituteString': 4}, PosixPath('638/magick/quantum.bc'): {'ResetQuantumState': 9, 'GetQuantumInfo': 31, 'DestroyQuantumPixels': 7, 'AcquireQuantumPixels': 6, 'SetQuantumDepth': 15, 'DestroyQuantumInfo': 2, 'GetQuantumExtent': 2, 'GetQuantumType': 7, 'SetQuantumEndian': 2, 'SetQuantumFormat': 2, 'SetQuantumImageType': 4, 'SetQuantumPad': 2}, PosixPath('638/magick/option.bc'): {'DestroyImageOptions': 2, 'CloneImageOptions': 3, 'DeleteImageOption': 2, 'SetImageOption': 1, 'DefineImageOption': 5, 'GetImageOption': 2, 'GetCommandOptionFlags': 17, 'GetNextImageOption': 2, 'IsCommandOption': 2, 'CommandOptionToMnemonic': 2, 'ListCommandOptions': 2, 'ParseCommandOption': 17, 'ParseChannelOption': 1, 'RemoveImageOption': 2, 'ResetImageOptions': 2, 'ResetImageOptionIterator': 2}, PosixPath('638/magick/utility.bc'): {'AcquireUniqueSymbolicLink': 1, 'IsPathDirectory': 3, 'IsPathAccessible': 3, 'GetPathComponent': 43, 'AppendImageFormat': 4, 'Base64Decode': 5, 'Base64Encode': 88, 'ExpandFilename': 2, 'ListFiles': 1, 'ExpandFilenames': 116, 'GetPathComponents': 7, 'MultilineCensus': 2, 'ShredFile': 2}, PosixPath('638/magick/cache.bc'): {'PersistPixelCache': 46, 'ReferencePixelCache': 2, 'AcquirePixelCacheNexus': 2, 'AcquirePixelCache': 16, 'AcquirePixelCachePixels': 5, 'ClonePixelCache': 2, 'RelinquishPixelCachePixels': 31, 'RelinquishCacheNexusPixels': 8, 'DestroyPixelCacheNexus': 9, 'DestroyPixelCache': 22, 'DestroyImagePixels': 2, 'GetAuthenticIndexQueue': 2, 'AllocatePixelCachePixels': 4, 'IsAuthenticPixelCache': 17, 'AcquireCacheNexusPixels': 5, 'SetPixelCacheNexusPixels': 125, 'OpenPixelCacheOnDisk': 3, 'ReadPixelCachePixels': 118, 'WritePixelCachePixels': 104, 'ReadPixelCacheIndexes': 135, 'WritePixelCacheIndexes': 120, 'ClonePixelCacheRepository': 286, 'SetPixelCacheExtent': 4, 'OpenPixelCache': 184, 'ValidatePixelCacheMorphology': 68, 'GetImagePixelCache': 100, 'QueueAuthenticPixelCacheNexus': 28, 'GetAuthenticPixelQueue': 2, 'GetAuthenticPixels': 2, 'GetPixelCacheNexusExtent': 4, 'GetImageExtent': 8, 'GetOneAuthenticPixel': 2, 'GetVirtualPixelsFromNexus': 396, 'SetMagickPixelPacket': 18, 'GetOneVirtualMagickPixel': 22, 'GetOneVirtualMethodPixel': 4, 'GetOneVirtualPixel': 4, 'GetPixelCacheChannels': 2, 'GetPixelCacheColorspace': 2, 'DestroyImagePixelCache': 2, 'ClipPixelCacheNexus': 34, 'MagickPixelCompositeMask': 29, 'MaskPixelCacheNexus': 320, 'SyncAuthenticPixelCacheNexus': 604, 'GetOneAuthenticPixelFromCache': 2, 'GetOneVirtualPixelFromCache': 2, 'GetVirtualIndexesFromCache': 2, 'GetVirtualPixelsCache': 2, 'GetPixelCacheMethods': 56, 'GetPixelCachePixels': 5, 'GetPixelCacheStorageClass': 2, 'GetPixelCacheTileSize': 3, 'GetVirtualIndexQueue': 4, 'GetVirtualPixelQueue': 4, 'GetVirtualPixels': 5, 'QueueAuthenticPixels': 2, 'SetPixelCacheMethods': 91, 'SetCacheAlphaChannel': 5, 'IsPixelGray': 4, 'SetPixelCacheVirtualMethod': 50, 'SyncAuthenticPixels': 2}, PosixPath('638/magick/colorspace.bc'): {'SetImageColorspace': 83, 'SetMagickPixelPacket': 18, 'ConvertRGBToCMYK': 18, 'SetPixelPacket': 20, 'ConvertXYZToLuv': 1, 'ConvertRGBToLuv': 1, 'SetImageProgress': 4, 'RGBTransformImage': 798, 'ConvertCMYKToRGB': 11, 'TransformRGBImage': 396, 'TransformImageColorspace': 4}, PosixPath('638/magick/draw.bc'): {'DrawImage': 1272, 'ConvertPathToPolygon': 169, 'GetAffineMatrix': 2, 'GetDrawInfo': 87, 'CloneDrawInfo': 527, 'DestroyDrawInfo': 127, 'InverseAffineMatrix': 51, 'AffineEdge': 130, 'SetMagickPixelPacket': 18, 'MagickPixelCompositeOver': 29, 'SetPixelPacket': 20, 'DrawAffineImage': 357, 'TracePoint': 4, 'TraceLine': 39, 'TraceRectangle': 145, 'TraceEllipse': 20, 'TraceRoundRectangle': 22, 'TraceBezier': 30, 'TraceArcPath': 109, 'TracePath': 553, 'IsPixelGray': 4, 'GetFillColor': 4, 'MagickCompositeOver': 15, 'LogPrimitiveInfo': 25, 'LogPathInfo': 5, 'ConvertPrimitiveToPath': 42, 'DestroyPolygonInfo': 3, 'DestroyPolygonThreadSet': 3, 'ReversePoints': 8, 'LogPolygonInfo': 14, 'CompareEdges': 14, 'AcquirePolygonThreadSet': 180, 'GetStrokeColor': 4, 'DestroyEdge': 4, 'GetOpacityPixel': 132, 'DrawPolygonPrimitive': 595, 'TraceSquareLinecap': 11, 'TraceStrokePolygon': 147, 'DrawRoundLinecap': 42, 'DrawStrokePolygon': 174, 'DrawDashPolygon': 59, 'DrawPrimitive': 594, 'SetImageProgress': 4, 'DrawClipPath': 7, 'DrawPatternPath': 2, 'GetStopColorOffset': 15, 'MagickPixelCompositePlus': 29, 'MagickPixelCompositeBlend': 38, 'DrawGradientImage': 1711}, PosixPath('638/magick/deprecate.bc'): {'GetImageAttribute': 4, 'InterpolatePixelColor': 4712, 'ChannelThresholdImage': 6, 'CloneMemory': 1, 'GetFillColor': 4, 'MagickCompositeOver': 15, 'ColorFloodfillImage': 176, 'DeleteImageList': 4, 'DestroyImageAttributes': 2, 'GetSimilarityMetric': 39, 'ExtractSubimageFromImage': 110, 'FormatImageAttributeList': 1, 'FormatImagePropertyList': 1, 'FuzzyColorMatch': 26, 'IdentityAffine': 2, 'SetMagickPixelPacket': 18, 'BicubicInterpolate': 202, 'MagickPixelLuma': 9, 'MeshInterpolate': 2, 'MapImage': 2, 'MapImages': 2, 'MatteFloodfillImage': 80, 'SetImageProgress': 4, 'OpaqueImage': 42, 'RandomChannelThresholdImage': 91, 'ReacquireMemory': 2, 'RecolorImage': 4, 'SetImage': 76, 'SetImageList': 1, 'SetMagickRegistry': 1, 'SpliceImageList': 4, 'ThresholdImage': 21, 'IsMagickGray': 7, 'ThresholdImageChannel': 184, 'TransformHSL': 2, 'TransparentImage': 23, 'ValidateColormapIndex': 2, 'ZoomImage': 4}, PosixPath('638/magick/static.bc'): {}, PosixPath('638/magick/quantum-export.bc'): {'PopShortPixel': 3, 'PopFloatPixel': 57, 'PopLongPixel': 10, 'PopDoublePixel': 160, 'PopQuantumPixel': 5, 'ExportAlphaQuantum': 182, 'PopQuantumLongPixel': 30, 'ExportBGRQuantum': 1436, 'ExportBGRAQuantum': 1675, 'ExportBlackQuantum': 199, 'ExportBlueQuantum': 265, 'ExportCbYCrYQuantum': 234, 'ExportCMYKQuantum': 1392, 'ExportCMYKAQuantum': 1844, 'GetPixelLuma': 8, 'ExportGrayQuantum': 1119, 'ExportGrayAlphaQuantum': 918, 'ExportGreenQuantum': 182, 'ExportIndexQuantum': 266, 'ExportIndexAlphaQuantum': 600, 'ExportOpacityQuantum': 182, 'ExportRedQuantum': 182, 'ExportRGBQuantum': 1422, 'ExportRGBAQuantum': 1656, 'ExportQuantumPixels': 7145}, PosixPath('638/magick/channel.bc'): {'SeparateImageChannel': 69, 'SetImageProgress': 4, 'CombineImages': 18, 'GetImageAlphaChannel': 2, 'SeparateImages': 5, 'SetMagickPixelPacket': 14, 'ConvertRGBToCMYK': 18, 'SetPixelPacket': 20, 'SetImageAlphaChannel': 256}, PosixPath('638/magick/random.bc'): {'GetPseudoRandomValue': 21, 'SetRandomKey': 6, 'GenerateEntropicChaos': 19, 'IncrementRandomNonce': 1, 'AcquireRandomInfo': 32, 'DestroyRandomInfo': 5}, PosixPath('638/magick/colormap.bc'): {'AcquireImageColormap': 12, 'CycleColormapImage': 29, 'PixelPacketIntensity': 4, 'IntensityCompare': 8, 'SortColormapByIntensity': 27}, PosixPath('638/magick/identify.bc'): {'GetLocationStatistics': 162, 'PrintChannelLocations': 5, 'PrintChannelStatistics': 31, 'PrintChannelMoments': 8, 'PrintChannelFeatures': 85, 'SetMagickPixelPacket': 18, 'IdentifyImage': 508}, PosixPath('638/magick/type.bc'): {'DestroyTypeNode': 37, 'LoadTypeCache': 25, 'IsTypeTreeInstantiated': 4, 'GetTypeInfo': 4, 'GetTypeInfoByFamily': 36, 'GetTypeInfoList': 4, 'GetTypeList': 4, 'ListTypeInfo': 24}, PosixPath('638/magick/profile.bc'): {'SyncExifProfile': 1277, 'CloneImageProfiles': 24, 'ReadResourceShort': 1, 'ReadResourceLong': 1, 'WriteResourceLong': 6, 'WriteTo8BimProfile': 71, 'DeleteImageProfile': 2, 'GetImageProfile': 5, 'GetNextImageProfile': 2, 'ResetImageProfileIterator': 2, 'SetImageProfileInternal': 82, 'ProfileImage': 6, 'RemoveImageProfile': 2, 'ReadProfileShort': 3, 'ReadProfileMSBShort': 2, 'ReadProfileLong': 13, 'ReadProfileMSBLong': 7, 'WriteProfileLong': 25, 'WriteProfileShort': 5, 'Sync8BimProfile': 371, 'SyncImageProfiles': 1247}, PosixPath('638/magick/feature.bc'): {'CannyEdgeImage': 150, 'SetImageProgress': 4, 'IsAuthenticPixel': 2, 'TraceEdges': 33, 'GetImageChannelFeatures': 5490, 'HoughLineImage': 59, 'SetMagickPixelPacket': 18, 'MeanShiftImage': 505}, PosixPath('638/magick/blob.bc'): {'DetachBlob': 27, 'CloseBlob': 30, 'ReferenceBlob': 3, 'AttachBlob': 29, 'BlobToImage': 5, 'GetBlobInfo': 6, 'CloneBlobInfo': 171, 'SyncBlob': 4, 'GetBlobSize': 8, 'DestroyBlob': 7, 'ReadBlob': 11, 'ReadBlobStream': 8, 'DiscardBlobBytes': 4, 'EOFBlob': 9, 'FileToBlob': 4, 'WriteBlob': 35, 'TellBlob': 5, 'SeekBlob': 48, 'SetBlobExtent': 13, 'WriteBlobStream': 15, 'FileToImage': 12, 'GetBlobError': 2, 'GetBlobProperties': 2, 'GetBlobStreamHandler': 2, 'ImageToBlob': 4, 'ImageToFile': 16, 'ImagesToBlob': 7, 'InjectImageBlob': 18, 'IsBlobExempt': 2, 'IsBlobSeekable': 2, 'IsBlobTemporary': 2, 'MSBOrderLong': 25, 'MSBOrderShort': 7, 'OpenBlob': 133, 'PingBlob': 2, 'ReadBlobByte': 4, 'ReadBlobLongLong': 91, 'ReadBlobLong': 31, 'ReadBlobShort': 13, 'ReadBlobLSBLong': 17, 'ReadBlobLSBShort': 8, 'ReadBlobMSBLong': 17, 'ReadBlobMSBLongLong': 47, 'ReadBlobMSBShort': 8, 'ReadBlobString': 5, 'SetBlobExempt': 2, 'WriteBlobByte': 26, 'WriteBlobLong': 122, 'WriteBlobShort': 74, 'WriteBlobLSBLong': 63, 'WriteBlobLSBShort': 38, 'WriteBlobMSBLong': 63, 'WriteBlobMSBLongLong': 125, 'WriteBlobMSBShort': 38, 'WriteBlobString': 10}, PosixPath('638/magick/gem.bc'): {'ConvertXYZToLCHuv': 1, 'ConvertRGBToHSB': 3, 'ConvertRGBToHSI': 2, 'ConvertRGBToHSL': 1, 'ConvertRGBToHSV': 1, 'ConvertXYZToLuv': 1, 'ExpandAffine': 7}, PosixPath('638/magick/version.bc'): {'CRC32': 3, 'GetMagickSignature': 10}, PosixPath('638/magick/resample.bc'): {'ResamplePixelColor': 662, 'ScaleResampleFilter': 46, 'SetResampleFilter': 9, 'SetResampleFilterInterpolateMethod': 2, 'SetResampleFilterVirtualPixelMethod': 4, 'AcquireResampleFilter': 18, 'DestroyResampleFilter': 6, 'SetMagickPixelPacket': 18}, PosixPath('638/magick/compare.bc'): {'SimilarityMetricImage': 93, 'SetMagickPixelPacket': 18, 'GetAbsoluteDistortion': 382, 'GetNumberChannels': 2, 'GetFuzzDistortion': 272, 'GetMeanAbsoluteDistortion': 245, 'GetMeanErrorPerPixel': 127, 'GetMeanSquaredDistortion': 266, 'SetImageProgress': 4, 'GetNormalizedCrossCorrelationDistortion': 119, 'GetPeakAbsoluteDistortion': 263, 'GetPeakSignalToNoiseRatio': 27, 'GetPerceptualHashDistortion': 164, 'GetRootMeanSquaredDistortion': 32, 'GetImageChannelDistortion': 10, 'ConvertRGBToCMYK': 18, 'SetPixelPacket': 20, 'CompareImageChannels': 695, 'GetImageChannelDistortions': 9, 'IsImagesEqual': 43, 'GetSimilarityMetric': 4}, PosixPath('638/magick/distribute-cache.bc'): {'AcquireDistributeCacheInfo': 23, 'GetHostname': 14}, PosixPath('638/magick/decorate.bc'): {'IsPixelGray': 4, 'SetMagickPixelPacket': 14, 'ConvertRGBToCMYK': 18, 'SetPixelPacket': 20, 'SetImageProgress': 4, 'FrameImage': 2933, 'BorderImage': 37, 'RaiseImage': 171}, PosixPath('638/magick/module.bc'): {}, PosixPath('638/magick/statistic.bc'): {'GetImageChannelMean': 89, 'GetImageChannelMoments': 12922, 'SetImageProgress': 4, 'EvaluateImageChannel': 35, 'AcquirePixelThreadSet': 1, 'MagickPixelIntensity': 8, 'IntensityCompare': 14, 'EvaluateImages': 168, 'ApplyFunction': 19, 'FunctionImageChannel': 36, 'SetMagickPixelPacket': 18, 'GetImageChannelRange': 125, 'GetImageChannelExtrema': 8, 'GetImageChannelKurtosis': 23, 'GetImageChannelStatistics': 1803, 'PolynomialImageChannel': 81, 'DestroyPixelList': 1, 'ResetPixelList': 3, 'AddNodePixelList': 35, 'InsertPixelList': 38, 'GetMinimumPixelList': 72, 'GetMaximumPixelList': 72, 'GetMeanPixelList': 53, 'GetMedianPixelList': 43, 'GetModePixelList': 55, 'GetNonpeakPixelList': 55, 'GetStandardDeviationPixelList': 52, 'StatisticImageChannel': 1854}, PosixPath('638/magick/memory.bc'): {'RelinquishVirtualMemory': 11, 'AcquireVirtualMemory': 19, 'CopyMagickMemory': 1}, PosixPath('638/magick/geometry.bc'): {'GetGeometry': 37, 'ParseGeometry': 104, 'GetPageGeometry': 3, 'GravityAdjustGeometry': 28, 'IsGeometry': 1, 'ParseAffineGeometry': 67, 'SetGeometry': 4, 'ParseGravityGeometry': 60, 'ParseMetaGeometry': 6, 'ParsePageGeometry': 6}, PosixPath('638/magick/magick.bc'): {'SetMagickInfo': 11, 'DestroyMagickNode': 22, 'IsMagickTreeInstantiated': 18, 'GetMagickInfo': 18, 'GetImageMagick': 1, 'GetMagickInfoList': 4, 'GetMagickList': 4, 'ListMagickInfo': 14, 'RegisterMagickInfo': 8}, PosixPath('638/magick/shear.bc'): {'ShearImage': 41, 'CropToFitImage': 199, 'ShearRotateImage': 37, 'RadonProjection': 3, 'RadonTransform': 55, 'GetImageBackgroundColor': 66, 'DeskewImage': 178, 'SetImageProgress': 4, 'IntegralRotateImage': 185, 'SetMagickPixelPacket': 18, 'ConvertRGBToCMYK': 18, 'MagickPixelCompositePlus': 29, 'MagickPixelCompositeAreaBlend': 29, 'SetPixelPacket': 20, 'XShearImage': 1607, 'YShearImage': 1608}, PosixPath('638/magick/image.bc'): {'AcquireImage': 506, 'GetImageReferenceCount': 3, 'InterpretImageFilename': 30, 'ReferenceImage': 4, 'ResetImagePage': 109, 'SetImageInfo': 94, 'SyncImageSettings': 49, 'GetImageInfo': 17, 'AcquireNextImage': 11, 'CloneImage': 228, 'DestroyImage': 19, 'IsPixelGray': 4, 'SetMagickPixelPacket': 14, 'ConvertRGBToCMYK': 18, 'SetPixelPacket': 20, 'SetImageBackgroundColor': 123, 'SetImageProgress': 4, 'AppendImages': 56, 'DestroyImageInfo': 70, 'SyncImage': 44, 'SetImageClipMask': 10, 'SetImageInfoBlob': 2, 'CloneImageInfo': 367, 'DisassociateImageStream': 2, 'GetImageClipMask': 2, 'GetImageMask': 2, 'GetImageChannels': 2, 'IsTaintImage': 4, 'ModifyImage': 4, 'NewMagickImage': 54, 'SetImageColor': 47, 'SetImageExtent': 2, 'SetImageMask': 10, 'SetImageOpacity': 4, 'SmushYGap': 28, 'SmushXGap': 28, 'SmushImages': 111}, PosixPath('638/magick/effect.bc'): {'EdgeImage': 18, 'BlurImageChannel': 2, 'SetMagickPixelPacketBias': 11, 'SetImageProgress': 4, 'AdaptiveBlurImageChannel': 121, 'AdaptiveSharpenImageChannel': 116, 'ConvolveImageChannel': 14, 'Hull': 24, 'DespeckleImage': 89, 'EmbossImage': 15, 'FilterImageChannel': 213, 'GaussianBlurImageChannel': 2, 'GetMotionBlurKernel': 2, 'MotionBlurImageChannel': 351, 'SharpenImageChannel': 21, 'SetPixelPacket': 20, 'SpreadImage': 74, 'ShadeImage': 36, 'PreviewImage': 68, 'RotationalBlurImageChannel': 293, 'SelectiveBlurImageChannel': 154, 'UnsharpMaskImageChannel': 50}, PosixPath('638/magick/montage.bc'): {'MontageImageList': 1153, 'GetMontageInfo': 26, 'CloneMontageInfo': 73, 'DestroyMontageInfo': 28, 'SetImageProgress': 4, 'GetMontageGeometry': 2}, PosixPath('638/magick/prepress.bc'): {'GetImageTotalInkDensity': 12}, PosixPath('638/magick/timer.bc'): {'StartTimer': 13, 'GetTimerInfo': 16, 'AcquireTimerInfo': 12, 'ContinueTimer': 23, 'StopTimer': 30, 'GetElapsedTime': 2, 'GetUserTime': 2, 'ResetTimer': 2}, PosixPath('638/magick/list.bc'): {'ReverseImageList': 7, 'RemoveImageFromList': 8, 'DestroyImageList': 4, 'GetNextImageInList': 2, 'CloneImages': 52, 'DeleteImages': 34, 'DuplicateImages': 3, 'PrependImageToList': 2, 'RemoveFirstImageFromList': 4, 'RemoveLastImageFromList': 4, 'SpliceImageIntoList': 16, 'SyncImageList': 10, 'SyncNextImageInList': 13}, PosixPath('638/magick/xml-tree.bc'): {'NewXMLTreeTag': 6, 'ParseInternalDoctype': 75, 'InsertTagIntoXMLTree': 32, 'AddChildToXMLTree': 3, 'GetXMLTreeChild': 4, 'GetXMLTreeOrdered': 2, 'AddPathToXMLTree': 13, 'ConvertLatin1ToUTF8': 8, 'CanonicalXMLContent': 29, 'DestroyXMLTreeRoot': 20, 'DestroyXMLTreeAttributes': 4, 'DestroyXMLTree': 39, 'FileToXML': 3, 'GetNextXMLTreeTag': 2, 'GetXMLTreeAttribute': 8, 'GetXMLTreeAttributes': 3, 'GetXMLTreeContent': 2, 'GetXMLTreePath': 13, 'GetXMLTreeProcessingInstructions': 2, 'GetXMLTreeSibling': 2, 'GetXMLTreeTag': 2, 'ConvertUTF16ToUTF8': 21, 'ParseEntities': 38, 'ParseOpenTag': 2, 'ParseCloseTag': 2, 'ValidateEntities': 4, 'ParseProcessingInstructions': 55, 'NewXMLTree': 41, 'PruneTagFromXMLTree': 25, 'SetXMLTreeAttribute': 14, 'SetXMLTreeContent': 2, 'EncodePredefinedEntities': 3, 'XMLTreeTagToXML': 28, 'XMLTreeInfoToXML': 81}, PosixPath('638/magick/matrix.bc'): {'DestroyMatrixInfo': 17, 'MatrixToImage': 38, 'WriteMatrixElements': 2, 'SetMatrixExtent': 2, 'AcquireMatrixInfo': 23, 'AcquireMagickMatrix': 3, 'GaussJordanElimination': 40, 'ReadMatrixElements': 2, 'GetMatrixElement': 23, 'LeastSquaresAddTerms': 3, 'NullMatrix': 23, 'RelinquishMagickMatrix': 1, 'SetMatrixElement': 20}, PosixPath('638/magick/pixel.bc'): {'ImportCharPixel': 190, 'ImportDoublePixel': 219, 'ImportFloatPixel': 219, 'ImportIntegerPixel': 219, 'ImportLongPixel': 219, 'ImportQuantumPixel': 154, 'ImportShortPixel': 154, 'InterpolateMagickPixelPacket': 10778, 'CatromWeights': 7, 'SplineWeights': 8, 'DecodeGamma': 3, 'DecodePixelGamma': 2, 'EncodeGamma': 3, 'EncodePixelGamma': 2, 'GetPixelIntensity': 13, 'ExportCharPixel': 146, 'ExportDoublePixel': 228, 'ExportFloatPixel': 228, 'ExportIntegerPixel': 228, 'ExportLongPixel': 228, 'ExportQuantumPixel': 147, 'ExportShortPixel': 147, 'ExportImagePixels': 721, 'GetMagickPixelPacket': 46, 'ImportImagePixels': 766, 'AlphaBlendMagickPixelPacket': 37, 'SetMagickPixelPacket': 18, 'MagickPixelLuma': 9, 'MeshInterpolate': 2}, PosixPath('638/magick/policy.bc'): {'LoadPolicyCache': 24, 'AcquirePolicyCache': 8, 'IsPolicyCacheInstantiated': 10, 'GetPolicyInfo': 15, 'GetPolicyInfoList': 4, 'GetPolicyList': 4, 'IsRightsAuthorized': 9, 'ListPolicyInfo': 15, 'DestroyPolicyElement': 11}, PosixPath('638/magick/constitute.bc'): {'ReadImage': 205, 'ConstituteImage': 2, 'PingImage': 1, 'PingImages': 13, 'ReadImages': 13, 'ReadInlineImage': 8, 'WriteImage': 7, 'SetImageProgress': 4, 'WriteImages': 5}, PosixPath('638/magick/animate.bc'): {}, PosixPath('638/magick/coder.bc'): {'LoadCoderCache': 21, 'DestroyCoderNode': 7, 'AcquireCoderCache': 17, 'IsCoderTreeInstantiated': 18, 'GetCoderInfo': 18, 'GetCoderInfoList': 4, 'GetCoderList': 4, 'ListCoderInfo': 8}, PosixPath('638/magick/artifact.bc'): {'DestroyImageArtifacts': 2, 'CloneImageArtifacts': 5, 'DeleteImageArtifact': 2, 'SetImageArtifact': 3, 'DefineImageArtifact': 5, 'GetImageArtifact': 3, 'GetNextImageArtifact': 2, 'RemoveImageArtifact': 2, 'ResetImageArtifactIterator': 2}, PosixPath('638/magick/magic.bc'): {'LoadMagicCache': 53, 'AcquireMagicCache': 51, 'IsMagicCacheInstantiated': 55, 'GetMagicInfo': 75, 'GetMagicInfoList': 4, 'GetMagicList': 4, 'ListMagicInfo': 9, 'DestroyMagicElement': 11}, PosixPath('638/magick/configure.bc'): {'DestroyConfigureElement': 7, 'LoadConfigureCache': 21, 'AcquireConfigureCache': 17, 'IsConfigureCacheInstantiated': 19, 'GetConfigureInfo': 23, 'GetConfigureInfoList': 4, 'GetConfigureList': 4, 'ListConfigureInfo': 10}, PosixPath('638/magick/cipher.bc'): {}, PosixPath('638/magick/hashmap.bc'): {'ResetHashmapIterator': 4, 'ResetLinkedListIterator': 3, 'AppendValueToLinkedList': 20, 'ClearLinkedList': 7, 'GetNextValueInLinkedList': 4, 'DestroyLinkedList': 5, 'DestroyHashmap': 18, 'GetLastValueInLinkedList': 3, 'GetNextKeyInHashmap': 21, 'GetNextValueInHashmap': 21, 'GetValueFromHashmap': 8, 'GetValueFromLinkedList': 7, 'InsertValueInLinkedList': 40, 'InsertValueInSortedLinkedList': 16, 'LinkedListToArray': 2, 'NewHashmap': 31, 'NewLinkedList': 3, 'RemoveElementFromLinkedList': 13, 'IncreaseHashmapCapacity': 24, 'PutEntryInHashmap': 75, 'RemoveElementByValueFromLinkedList': 16, 'RemoveEntryFromHashmap': 9, 'RemoveLastElementFromLinkedList': 15}, PosixPath('638/magick/stream.bc'): {'AcquireStreamInfo': 4, 'DestroyStreamInfo': 11, 'RelinquishStreamPixels': 8, 'DestroyPixelStream': 26, 'AcquireStreamPixels': 5, 'QueueAuthenticPixelsStream': 86, 'GetVirtualPixelStream': 45, 'GetAuthenticIndexesFromStream': 2, 'GetAuthenticPixelsFromStream': 2, 'SyncAuthenticPixelsStream': 4, 'GetVirtualPixelsStream': 2, 'GetVirtualIndexesFromStream': 2, 'ReadStream': 93, 'StreamImagePixels': 687, 'WriteStreamImage': 53, 'StreamImage': 2}, PosixPath('638/magick/histogram.bc'): {'MinMaxStretchImage': 11, 'GetNodeInfo': 10, 'SetMagickPixelPacket': 18, 'ColorToNodeId': 7, 'IsMagickColorEqual': 56, 'SetImageProgress': 4, 'ClassifyImageColors': 617, 'DefineImageHistogram': 9, 'DestroyColorCube': 1, 'DestroyCubeInfo': 1, 'GetImageHistogram': 9, 'IsHistogramImage': 536, 'IsPaletteImage': 535, 'HistogramCompare': 14, 'GetNumberColors': 84, 'UniqueColorsToImage': 13, 'UniqueImageColors': 4}, PosixPath('638/magick/cache-view.bc'): {'GetOneCacheViewAuthenticPixel': 11, 'GetOneCacheViewVirtualPixel': 16, 'AcquireVirtualCacheView': 14, 'CloneCacheView': 12, 'DestroyCacheView': 7, 'GetCacheViewChannels': 2, 'GetCacheViewColorspace': 2, 'GetCacheViewException': 2, 'GetCacheViewExtent': 4, 'GetCacheViewStorageClass': 2, 'GetCacheViewAuthenticPixels': 2, 'GetCacheViewVirtualIndexQueue': 2, 'GetCacheViewVirtualPixelQueue': 2, 'GetCacheViewVirtualPixels': 4, 'GetOneCacheViewVirtualMethodPixel': 2, 'QueueCacheViewAuthenticPixels': 2, 'SetCacheViewStorageClass': 2, 'SetCacheViewVirtualPixelMethod': 2, 'SyncCacheViewAuthenticPixels': 4}, PosixPath('638/magick/exception.bc'): {'GetExceptionInfo': 2, 'DestroyExceptionElement': 2, 'ClearMagickException': 6, 'CatchException': 15, 'DestroyExceptionInfo': 18, 'ThrowException': 20, 'InheritException': 6}, PosixPath('638/magick/fx.bc'): {'AddNoiseImageChannel': 28, 'SketchImage': 36, 'AcquireFxInfo': 35, 'SetImageProgress': 4, 'BlueShiftImage': 30, 'IsPixelGray': 4, 'ColorizeImage': 48, 'ColorMatrixImage': 348, 'DestroyFxInfo': 8, 'FxOperatorPrecedence': 9, 'MagickPixelIntensityToQuantum': 8, 'FxChannelStatistics': 49, 'FxEvaluateSubexpression': 33, 'FxGetSymbol': 271, 'FxEvaluateChannelExpression': 2, 'FxEvaluateExpression': 2, 'FxPreprocessExpression': 5, 'AcquireFxThreadSet': 7, 'FxImageChannel': 98, 'SetPixelPacket': 20, 'ImplodeImage': 84, 'MorphImages': 76, 'PlasmaImageProxy': 105, 'WaveImage': 87, 'ShadowImage': 118, 'PolaroidImage': 18, 'SepiaToneImage': 31, 'SolarizeImageChannel': 41, 'SteganoImage': 24, 'StereoAnaglyphImage': 46, 'SwirlImage': 84, 'PixelPacketIntensity': 4, 'TintImage': 45, 'VignetteImage': 10}, PosixPath('638/magick/compress.bc'): {'Ascii85Initialize': 5, 'Ascii85Tuple': 7, 'Ascii85Flush': 7, 'Ascii85Encode': 8, 'SetImageProgress': 4, 'HuffmanDecodeImage': 230, 'HuffmanEncodeImage': 23, 'LZWEncodeImage': 35, 'PackbitsEncodeImage': 29}, PosixPath('638/coders/tga.bc'): {'ReadTGAImage': 903, 'GetPixelLuma': 8, 'SetImageProgress': 4, 'WriteTGAImage': 72, 'RegisterTGAImage': 16}}
+Time after AA Query measurement: 86.13513255119324
+Start Exploration
+***** Next file: 638/wand/magick-property.bc
+==== Next function: MagickDeleteImageArtifact
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 86.75699520111084
+greedy search, time after assembly in step 0 : 87.13855075836182
+greedy search candidates: [11994]
+Time after exploration of MagickDeleteImageArtifact: 87.1567554473877
+==== Next function: MagickDeleteImageProperty
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 87.7975161075592
+greedy search, time after assembly in step 0 : 88.17349004745483
+greedy search candidates: [11994]
+Time after exploration of MagickDeleteImageProperty: 88.19397807121277
+==== Next function: MagickDeleteOption
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 88.86307573318481
+greedy search, time after assembly in step 0 : 89.23729372024536
+greedy search candidates: [11994]
+Time after exploration of MagickDeleteOption: 89.24737095832825
+==== Next function: MagickGetAntialias
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 89.90222430229187
+greedy search, time after assembly in step 0 : 90.2965669631958
+greedy search candidates: [11994]
+Time after exploration of MagickGetAntialias: 90.30747270584106
+==== Next function: MagickGetColorspace
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 90.94142389297485
+greedy search, time after assembly in step 0 : 91.3115222454071
+greedy search candidates: [11994]
+Time after exploration of MagickGetColorspace: 91.32208371162415
+==== Next function: MagickGetCompression
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 91.98637676239014
+greedy search, time after assembly in step 0 : 92.37697434425354
+greedy search candidates: [11994]
+Time after exploration of MagickGetCompression: 92.38723754882812
+==== Next function: MagickGetCompressionQuality
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 93.04876780509949
+greedy search, time after assembly in step 0 : 93.42326855659485
+greedy search candidates: [11994]
+Time after exploration of MagickGetCompressionQuality: 93.43327474594116
+==== Next function: MagickGetFilename
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 94.099853515625
+greedy search, time after assembly in step 0 : 94.46023368835449
+greedy search candidates: [11994]
+Time after exploration of MagickGetFilename: 94.47090744972229
+==== Next function: MagickGetFont
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 95.1104667186737
+greedy search, time after assembly in step 0 : 95.51575684547424
+greedy search candidates: [11994]
+Time after exploration of MagickGetFont: 95.52598547935486
+==== Next function: MagickGetFormat
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 96.18897438049316
+greedy search, time after assembly in step 0 : 96.54712438583374
+greedy search candidates: [11994]
+Time after exploration of MagickGetFormat: 96.5574700832367
+==== Next function: MagickGetGravity
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 97.19084286689758
+greedy search, time after assembly in step 0 : 97.560231924057
+greedy search candidates: [11994]
+Time after exploration of MagickGetGravity: 97.57062983512878
+==== Next function: MagickGetImageArtifact
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 98.20742678642273
+greedy search, time after assembly in step 0 : 98.58154463768005
+greedy search candidates: [11994]
+Time after exploration of MagickGetImageArtifact: 98.6003041267395
+==== Next function: MagickGetImageArtifacts
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 99.21847987174988
+greedy search, time after assembly in step 0 : 99.61942386627197
+greedy search candidates: [11994]
+Time after exploration of MagickGetImageArtifacts: 99.63694524765015
+==== Next function: MagickGetImageProfile
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 100.26599311828613
+greedy search, time after assembly in step 0 : 100.63479900360107
+greedy search candidates: [11994]
+Time after exploration of MagickGetImageProfile: 100.65382361412048
+==== Next function: MagickGetImageProfiles
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 101.28310108184814
+greedy search, time after assembly in step 0 : 101.63574934005737
+greedy search candidates: [11994]
+Time after exploration of MagickGetImageProfiles: 101.65518641471863
+==== Next function: MagickGetImageProperty
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 102.28513026237488
+greedy search, time after assembly in step 0 : 102.64041185379028
+greedy search candidates: [11994]
+Time after exploration of MagickGetImageProperty: 102.65776586532593
+==== Next function: MagickGetImageProperties
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 103.27897524833679
+greedy search, time after assembly in step 0 : 103.67148399353027
+greedy search candidates: [11994]
+Time after exploration of MagickGetImageProperties: 103.68759536743164
+==== Next function: MagickGetInterlaceScheme
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 104.34206771850586
+greedy search, time after assembly in step 0 : 104.71398568153381
+greedy search candidates: [11994]
+Time after exploration of MagickGetInterlaceScheme: 104.72373867034912
+==== Next function: MagickGetInterpolateMethod
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 105.37413358688354
+greedy search, time after assembly in step 0 : 105.73627877235413
+greedy search candidates: [11994]
+Time after exploration of MagickGetInterpolateMethod: 105.74637985229492
+==== Next function: MagickGetOption
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 106.39588785171509
+greedy search, time after assembly in step 0 : 106.79575300216675
+greedy search candidates: [11994]
+Time after exploration of MagickGetOption: 106.80596852302551
+==== Next function: MagickGetOptions
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 107.43667364120483
+greedy search, time after assembly in step 0 : 107.80098700523376
+greedy search candidates: [11994]
+Time after exploration of MagickGetOptions: 107.81891465187073
+==== Next function: MagickGetOrientation
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 108.45928478240967
+greedy search, time after assembly in step 0 : 108.83233833312988
+greedy search candidates: [11994]
+Time after exploration of MagickGetOrientation: 108.84175729751587
+==== Next function: MagickGetPage
+greedy search, currently checking 0 to 14 out of 14
+greedy search, time after compilation in step 0 : 109.47268962860107
+greedy search, time after assembly in step 0 : 109.86409950256348
+greedy search candidates: [11994]
+Time after exploration of MagickGetPage: 109.92724561691284
+==== Next function: MagickGetPointsize
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 110.56111001968384
+greedy search, time after assembly in step 0 : 110.92074680328369
+greedy search candidates: [11994]
+Time after exploration of MagickGetPointsize: 110.93024778366089
+==== Next function: MagickGetResolution
+greedy search, currently checking 0 to 11 out of 11
+greedy search, time after compilation in step 0 : 111.58753323554993
+greedy search, time after assembly in step 0 : 111.96195197105408
+greedy search candidates: [11994]
+Time after exploration of MagickGetResolution: 112.0089795589447
+==== Next function: MagickGetSamplingFactors
+greedy search, currently checking 0 to 9 out of 9
+greedy search, time after compilation in step 0 : 112.65768575668335
+greedy search, time after assembly in step 0 : 113.03118205070496
+greedy search candidates: [11994]
+Time after exploration of MagickGetSamplingFactors: 113.0701265335083
+==== Next function: MagickGetSize
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 113.7074830532074
+greedy search, time after assembly in step 0 : 114.10354685783386
+greedy search candidates: [11994]
+Time after exploration of MagickGetSize: 114.12353873252869
+==== Next function: MagickGetSizeOffset
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 114.75906443595886
+greedy search, time after assembly in step 0 : 115.15412044525146
+greedy search candidates: [11994]
+Time after exploration of MagickGetSizeOffset: 115.16402697563171
+==== Next function: MagickGetType
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 115.79735207557678
+greedy search, time after assembly in step 0 : 116.16143822669983
+greedy search candidates: [11994]
+Time after exploration of MagickGetType: 116.17096829414368
+==== Next function: MagickProfileImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 116.83064007759094
+greedy search, time after assembly in step 0 : 117.19820833206177
+greedy search candidates: [11994]
+Time after exploration of MagickProfileImage: 117.22091031074524
+==== Next function: MagickRemoveImageProfile
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 117.86025524139404
+greedy search, time after assembly in step 0 : 118.25802516937256
+greedy search candidates: [11994]
+Time after exploration of MagickRemoveImageProfile: 118.27540612220764
+==== Next function: MagickSetAntialias
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 118.89585852622986
+greedy search, time after assembly in step 0 : 119.27173066139221
+greedy search candidates: [11994]
+Time after exploration of MagickSetAntialias: 119.28237009048462
+==== Next function: MagickSetBackgroundColor
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 119.9698097705841
+greedy search, time after assembly in step 0 : 120.362065076828
+greedy search candidates: [11994]
+Time after exploration of MagickSetBackgroundColor: 120.37169480323792
+==== Next function: MagickSetColorspace
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 121.00028824806213
+greedy search, time after assembly in step 0 : 121.37131214141846
+greedy search candidates: [11994]
+Time after exploration of MagickSetColorspace: 121.38124632835388
+==== Next function: MagickSetCompression
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 122.01164078712463
+greedy search, time after assembly in step 0 : 122.38277888298035
+greedy search candidates: [11994]
+Time after exploration of MagickSetCompression: 122.39277124404907
+==== Next function: MagickSetCompressionQuality
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 123.01881170272827
+greedy search, time after assembly in step 0 : 123.40195918083191
+greedy search candidates: [11994]
+Time after exploration of MagickSetCompressionQuality: 123.41199350357056
+==== Next function: MagickSetDepth
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 124.04942750930786
+greedy search, time after assembly in step 0 : 124.41817593574524
+greedy search candidates: [11994]
+Time after exploration of MagickSetDepth: 124.42942357063293
+==== Next function: MagickSetExtract
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 125.08827352523804
+greedy search, time after assembly in step 0 : 125.47967743873596
+greedy search candidates: [11994]
+Time after exploration of MagickSetExtract: 125.48991680145264
+==== Next function: MagickSetFilename
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 126.1399462223053
+greedy search, time after assembly in step 0 : 126.49803423881531
+greedy search candidates: [11994]
+Time after exploration of MagickSetFilename: 126.50889301300049
+==== Next function: MagickSetFont
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 127.17688012123108
+greedy search, time after assembly in step 0 : 127.5649676322937
+greedy search candidates: [11994]
+Time after exploration of MagickSetFont: 127.57507514953613
+==== Next function: MagickSetFormat
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 128.20462012290955
+greedy search, time after assembly in step 0 : 128.580952167511
+greedy search candidates: [11994]
+Time after exploration of MagickSetFormat: 128.5961034297943
+==== Next function: MagickSetGravity
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 129.2391517162323
+greedy search, time after assembly in step 0 : 129.6494016647339
+greedy search candidates: [11994]
+Time after exploration of MagickSetGravity: 129.66002702713013
+==== Next function: MagickSetImageArtifact
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 130.32480883598328
+greedy search, time after assembly in step 0 : 130.7023184299469
+greedy search candidates: [11994]
+Time after exploration of MagickSetImageArtifact: 130.72634768486023
+==== Next function: MagickSetImageProfile
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 131.41393184661865
+greedy search, time after assembly in step 0 : 131.78335809707642
+greedy search candidates: [11994]
+Time after exploration of MagickSetImageProfile: 131.80512475967407
+==== Next function: MagickSetImageProperty
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 132.46641325950623
+greedy search, time after assembly in step 0 : 132.8481080532074
+greedy search candidates: [11994]
+Time after exploration of MagickSetImageProperty: 132.87159061431885
+==== Next function: MagickSetInterlaceScheme
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 133.51099348068237
+greedy search, time after assembly in step 0 : 133.89528560638428
+greedy search candidates: [11994]
+Time after exploration of MagickSetInterlaceScheme: 133.9053864479065
+==== Next function: MagickSetInterpolateMethod
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 134.5485315322876
+greedy search, time after assembly in step 0 : 134.94804787635803
+greedy search candidates: [11994]
+Time after exploration of MagickSetInterpolateMethod: 134.95965313911438
+==== Next function: MagickSetOption
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 135.6268892288208
+greedy search, time after assembly in step 0 : 135.9857246875763
+greedy search candidates: [11994]
+Time after exploration of MagickSetOption: 135.99674725532532
+==== Next function: MagickSetOrientation
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 136.65305256843567
+greedy search, time after assembly in step 0 : 137.012127161026
+greedy search candidates: [11994]
+Time after exploration of MagickSetOrientation: 137.02212572097778
+==== Next function: MagickSetPage
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 137.628160238266
+greedy search, time after assembly in step 0 : 137.99764323234558
+greedy search candidates: [11994]
+Time after exploration of MagickSetPage: 138.00789856910706
+==== Next function: MagickSetPassphrase
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 138.6218843460083
+greedy search, time after assembly in step 0 : 138.96757912635803
+greedy search candidates: [11994]
+Time after exploration of MagickSetPassphrase: 138.9773986339569
+==== Next function: MagickSetPointsize
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 139.60442972183228
+greedy search, time after assembly in step 0 : 139.9767484664917
+greedy search candidates: [11994]
+Time after exploration of MagickSetPointsize: 139.98698592185974
+==== Next function: MagickSetProgressMonitor
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 140.64520740509033
+greedy search, time after assembly in step 0 : 141.01900911331177
+greedy search candidates: [11994]
+Time after exploration of MagickSetProgressMonitor: 141.02961421012878
+==== Next function: MagickSetResolution
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 141.67703080177307
+greedy search, time after assembly in step 0 : 142.07164311408997
+greedy search candidates: [11994]
+Time after exploration of MagickSetResolution: 142.08219408988953
+==== Next function: MagickSetSamplingFactors
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 142.71619820594788
+greedy search, time after assembly in step 0 : 143.08659768104553
+greedy search candidates: [11994]
+Time after exploration of MagickSetSamplingFactors: 143.11671471595764
+==== Next function: MagickSetSize
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 143.7437686920166
+greedy search, time after assembly in step 0 : 144.11198043823242
+greedy search candidates: [11994]
+Time after exploration of MagickSetSize: 144.1227707862854
+==== Next function: MagickSetSizeOffset
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 144.77867031097412
+greedy search, time after assembly in step 0 : 145.15158867835999
+greedy search candidates: [11994]
+Time after exploration of MagickSetSizeOffset: 145.16176056861877
+==== Next function: MagickSetType
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 145.83851861953735
+greedy search, time after assembly in step 0 : 146.21201610565186
+greedy search candidates: [11994]
+Time after exploration of MagickSetType: 146.22221112251282
+Time after exploration of 638/wand/magick-property.bc: 146.22223353385925
+***** Next file: 638/wand/magick-image.bc
+==== Next function: MagickFrameImage
+greedy search, currently checking 0 to 36 out of 36
+greedy search, time after compilation in step 0 : 148.46672344207764
+greedy search, time after assembly in step 0 : 149.6622588634491
+greedy search candidates: [66575]
+Time after exploration of MagickFrameImage: 149.82319712638855
+==== Next function: GetImageFromMagickWand
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 152.1316738128662
+greedy search, time after assembly in step 0 : 153.25138974189758
+greedy search candidates: [66575]
+Time after exploration of GetImageFromMagickWand: 153.2708034515381
+==== Next function: MagickAdaptiveBlurImageChannel
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 155.42582511901855
+greedy search, time after assembly in step 0 : 156.48509168624878
+greedy search candidates: [66575]
+Time after exploration of MagickAdaptiveBlurImageChannel: 156.51090121269226
+==== Next function: MagickAdaptiveResizeImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 158.66948437690735
+greedy search, time after assembly in step 0 : 159.7567970752716
+greedy search candidates: [66575]
+Time after exploration of MagickAdaptiveResizeImage: 159.78529405593872
+==== Next function: MagickAdaptiveSharpenImageChannel
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 161.96455454826355
+greedy search, time after assembly in step 0 : 163.09289360046387
+greedy search candidates: [66575]
+Time after exploration of MagickAdaptiveSharpenImageChannel: 163.12078523635864
+==== Next function: MagickAdaptiveThresholdImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 165.2486584186554
+greedy search, time after assembly in step 0 : 166.31308794021606
+greedy search candidates: [66575]
+Time after exploration of MagickAdaptiveThresholdImage: 166.3418288230896
+==== Next function: InsertImageInWand
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 168.58986353874207
+greedy search, time after assembly in step 0 : 169.6494791507721
+greedy search candidates: [66575]
+Time after exploration of InsertImageInWand: 169.66942930221558
+==== Next function: MagickAddImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 171.88400292396545
+greedy search, time after assembly in step 0 : 172.99588990211487
+greedy search candidates: [66575]
+Time after exploration of MagickAddImage: 173.02416253089905
+==== Next function: MagickAddNoiseImageChannel
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 175.25947761535645
+greedy search, time after assembly in step 0 : 176.38022661209106
+greedy search candidates: [66575]
+Time after exploration of MagickAddNoiseImageChannel: 176.40609121322632
+==== Next function: MagickAffineTransformImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 178.60698795318604
+greedy search, time after assembly in step 0 : 179.71306490898132
+greedy search candidates: [66575]
+Time after exploration of MagickAffineTransformImage: 179.73669028282166
+==== Next function: MagickAnnotateImage
+greedy search, currently checking 0 to 16 out of 16
+greedy search, time after compilation in step 0 : 181.99736666679382
+greedy search, time after assembly in step 0 : 183.12661504745483
+greedy search candidates: [66575]
+Time after exploration of MagickAnnotateImage: 183.1969656944275
+==== Next function: MagickAnimateImages
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 185.28611087799072
+greedy search, time after assembly in step 0 : 186.40109372138977
+greedy search candidates: [66575]
+Time after exploration of MagickAnimateImages: 186.4178605079651
+==== Next function: CloneMagickWandFromImages
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 188.60283064842224
+greedy search, time after assembly in step 0 : 189.67746996879578
+greedy search candidates: [66575]
+Time after exploration of CloneMagickWandFromImages: 189.7037696838379
+==== Next function: MagickAppendImages
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 191.86507940292358
+greedy search, time after assembly in step 0 : 192.9859938621521
+greedy search candidates: [66575]
+Time after exploration of MagickAppendImages: 193.0057394504547
+==== Next function: MagickAutoGammaImageChannel
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 195.21783542633057
+greedy search, time after assembly in step 0 : 196.33580088615417
+greedy search candidates: [66575]
+Time after exploration of MagickAutoGammaImageChannel: 196.35575985908508
+==== Next function: MagickAutoLevelImageChannel
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 198.5152485370636
+greedy search, time after assembly in step 0 : 199.62808561325073
+greedy search candidates: [66575]
+Time after exploration of MagickAutoLevelImageChannel: 199.6559510231018
+==== Next function: MagickBlackThresholdImage
+greedy search, currently checking 0 to 9 out of 9
+greedy search, time after compilation in step 0 : 201.86745190620422
+greedy search, time after assembly in step 0 : 202.98449563980103
+greedy search candidates: [66575]
+Time after exploration of MagickBlackThresholdImage: 203.02233624458313
+==== Next function: MagickBlueShiftImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 205.24885630607605
+greedy search, time after assembly in step 0 : 206.37256360054016
+greedy search candidates: [66575]
+Time after exploration of MagickBlueShiftImage: 206.39904689788818
+==== Next function: MagickBlurImageChannel
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 208.60746097564697
+greedy search, time after assembly in step 0 : 209.75418424606323
+greedy search candidates: [66575]
+Time after exploration of MagickBlurImageChannel: 209.78314113616943
+==== Next function: MagickBorderImage
+greedy search, currently checking 0 to 21 out of 21
+greedy search, time after compilation in step 0 : 212.01324820518494
+greedy search, time after assembly in step 0 : 213.12681651115417
+greedy search candidates: [66575]
+Time after exploration of MagickBorderImage: 213.22249007225037
+==== Next function: MagickBrightnessContrastImageChannel
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 215.35703349113464
+greedy search, time after assembly in step 0 : 216.44066286087036
+greedy search candidates: [66575]
+Time after exploration of MagickBrightnessContrastImageChannel: 216.46418070793152
+==== Next function: MagickCharcoalImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 218.66410946846008
+greedy search, time after assembly in step 0 : 219.7511010169983
+greedy search candidates: [66575]
+Time after exploration of MagickCharcoalImage: 219.77787828445435
+==== Next function: MagickChopImage
+greedy search, currently checking 0 to 23 out of 23
+greedy search, time after compilation in step 0 : 222.08084058761597
+greedy search, time after assembly in step 0 : 223.21424317359924
+greedy search candidates: [66575]
+Time after exploration of MagickChopImage: 223.31255221366882
+==== Next function: MagickClampImageChannel
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 225.5025360584259
+greedy search, time after assembly in step 0 : 226.5860676765442
+greedy search candidates: [66575]
+Time after exploration of MagickClampImageChannel: 226.6106674671173
+==== Next function: MagickClipImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 228.7904715538025
+greedy search, time after assembly in step 0 : 229.8732829093933
+greedy search candidates: [66575]
+Time after exploration of MagickClipImage: 229.894615650177
+==== Next function: MagickClipImagePath
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 232.0689127445221
+greedy search, time after assembly in step 0 : 233.11066603660583
+greedy search candidates: [66575]
+Time after exploration of MagickClipImagePath: 233.13487887382507
+==== Next function: MagickClutImageChannel
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 235.36852622032166
+greedy search, time after assembly in step 0 : 236.50988912582397
+greedy search candidates: [66575]
+Time after exploration of MagickClutImageChannel: 236.5334300994873
+==== Next function: MagickCoalesceImages
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 238.70599508285522
+greedy search, time after assembly in step 0 : 239.77863121032715
+greedy search candidates: [66575]
+Time after exploration of MagickCoalesceImages: 239.79723024368286
+==== Next function: MagickColorDecisionListImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 241.93643617630005
+greedy search, time after assembly in step 0 : 243.00629329681396
+greedy search candidates: [66575]
+Time after exploration of MagickColorDecisionListImage: 243.02950286865234
+==== Next function: MagickColorizeImage
+greedy search, currently checking 0 to 15 out of 15
+greedy search, time after compilation in step 0 : 245.254478931427
+greedy search, time after assembly in step 0 : 246.39426398277283
+greedy search candidates: [66575]
+Time after exploration of MagickColorizeImage: 246.4575173854828
+==== Next function: MagickColorMatrixImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 248.69066452980042
+greedy search, time after assembly in step 0 : 249.77287364006042
+greedy search candidates: [66575]
+Time after exploration of MagickColorMatrixImage: 249.79960775375366
+==== Next function: MagickCombineImages
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 252.06235146522522
+greedy search, time after assembly in step 0 : 253.15275931358337
+greedy search candidates: [66575]
+Time after exploration of MagickCombineImages: 253.17174363136292
+==== Next function: MagickCommentImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 255.33547115325928
+greedy search, time after assembly in step 0 : 256.48008942604065
+greedy search candidates: [66575]
+Time after exploration of MagickCommentImage: 256.5032813549042
+==== Next function: MagickCompareImageChannels
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 258.73759961128235
+greedy search, time after assembly in step 0 : 259.87192130088806
+greedy search candidates: [66575]
+Time after exploration of MagickCompareImageChannels: 259.89093542099
+==== Next function: MagickCompareImageLayers
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 262.0923161506653
+greedy search, time after assembly in step 0 : 263.1831135749817
+greedy search candidates: [66575]
+Time after exploration of MagickCompareImageLayers: 263.201278924942
+==== Next function: MagickCompareImages
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 265.35668873786926
+greedy search, time after assembly in step 0 : 266.44811487197876
+greedy search candidates: [66575]
+Time after exploration of MagickCompareImages: 266.46711897850037
+==== Next function: MagickCompositeImageChannel
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 268.6387312412262
+greedy search, time after assembly in step 0 : 269.7088294029236
+greedy search candidates: [66575]
+Time after exploration of MagickCompositeImageChannel: 269.73123812675476
+==== Next function: MagickCompositeLayers
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 271.89790868759155
+greedy search, time after assembly in step 0 : 272.9682698249817
+greedy search candidates: [66575]
+Time after exploration of MagickCompositeLayers: 272.9876797199249
+==== Next function: MagickContrastImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 275.14337682724
+greedy search, time after assembly in step 0 : 276.2890901565552
+greedy search candidates: [66575]
+Time after exploration of MagickContrastImage: 276.31226801872253
+==== Next function: MagickContrastStretchImageChannel
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 278.5126280784607
+greedy search, time after assembly in step 0 : 279.60252380371094
+greedy search candidates: [66575]
+Time after exploration of MagickContrastStretchImageChannel: 279.62338066101074
+==== Next function: MagickConvolveImageChannel
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 281.8039765357971
+greedy search, time after assembly in step 0 : 282.8679575920105
+greedy search candidates: [66575]
+Time after exploration of MagickConvolveImageChannel: 282.89556097984314
+==== Next function: MagickCropImage
+greedy search, currently checking 0 to 23 out of 23
+greedy search, time after compilation in step 0 : 285.10673475265503
+greedy search, time after assembly in step 0 : 286.2301506996155
+greedy search candidates: [66575]
+Time after exploration of MagickCropImage: 286.33383297920227
+==== Next function: MagickCycleColormapImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 288.5034568309784
+greedy search, time after assembly in step 0 : 289.6145553588867
+greedy search candidates: [66575]
+Time after exploration of MagickCycleColormapImage: 289.6372048854828
+==== Next function: MagickConstituteImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 291.77772092819214
+greedy search, time after assembly in step 0 : 292.83974862098694
+greedy search candidates: [66575]
+Time after exploration of MagickConstituteImage: 292.86346793174744
+==== Next function: MagickDecipherImage
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 295.1328320503235
+greedy search, time after assembly in step 0 : 296.24177861213684
+greedy search candidates: [66575]
+Time after exploration of MagickDecipherImage: 296.260315656662
+==== Next function: MagickDeconstructImages
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 298.44722843170166
+greedy search, time after assembly in step 0 : 299.64048767089844
+greedy search candidates: [66575]
+Time after exploration of MagickDeconstructImages: 299.65896129608154
+==== Next function: MagickDeskewImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 301.81733536720276
+greedy search, time after assembly in step 0 : 302.90000891685486
+greedy search candidates: [66575]
+Time after exploration of MagickDeskewImage: 302.92557859420776
+==== Next function: MagickDespeckleImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 305.207062959671
+greedy search, time after assembly in step 0 : 306.3195378780365
+greedy search candidates: [66575]
+Time after exploration of MagickDespeckleImage: 306.34740352630615
+==== Next function: MagickDisplayImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 308.50876116752625
+greedy search, time after assembly in step 0 : 309.5961260795593
+greedy search candidates: [66575]
+Time after exploration of MagickDisplayImage: 309.62404561042786
+==== Next function: MagickDisplayImages
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 311.85545659065247
+greedy search, time after assembly in step 0 : 312.99325489997864
+greedy search candidates: [66575]
+Time after exploration of MagickDisplayImages: 313.0139329433441
+==== Next function: MagickDistortImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 315.23107838630676
+greedy search, time after assembly in step 0 : 316.3507218360901
+greedy search candidates: [66575]
+Time after exploration of MagickDistortImage: 316.37890553474426
+==== Next function: MagickDrawImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 318.5366096496582
+greedy search, time after assembly in step 0 : 319.6290473937988
+greedy search candidates: [66575]
+Time after exploration of MagickDrawImage: 319.65200090408325
+==== Next function: MagickEdgeImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 321.8162670135498
+greedy search, time after assembly in step 0 : 322.90843534469604
+greedy search candidates: [66575]
+Time after exploration of MagickEdgeImage: 322.93131041526794
+==== Next function: MagickEmbossImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 325.0877854824066
+greedy search, time after assembly in step 0 : 326.16957807540894
+greedy search candidates: [66575]
+Time after exploration of MagickEmbossImage: 326.1969084739685
+==== Next function: MagickEncipherImage
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 328.34786200523376
+greedy search, time after assembly in step 0 : 329.43833446502686
+greedy search candidates: [66575]
+Time after exploration of MagickEncipherImage: 329.45791482925415
+==== Next function: MagickEnhanceImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 331.6247866153717
+greedy search, time after assembly in step 0 : 332.75434851646423
+greedy search candidates: [66575]
+Time after exploration of MagickEnhanceImage: 332.78271889686584
+==== Next function: MagickEqualizeImageChannel
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 335.0028796195984
+greedy search, time after assembly in step 0 : 336.1382055282593
+greedy search candidates: [66575]
+Time after exploration of MagickEqualizeImageChannel: 336.1624917984009
+==== Next function: MagickEvaluateImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 338.3593683242798
+greedy search, time after assembly in step 0 : 339.48023438453674
+greedy search candidates: [66575]
+Time after exploration of MagickEvaluateImage: 339.50406074523926
+==== Next function: MagickEvaluateImages
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 341.73703384399414
+greedy search, time after assembly in step 0 : 342.83357310295105
+greedy search candidates: [66575]
+Time after exploration of MagickEvaluateImages: 342.8516914844513
+==== Next function: MagickEvaluateImageChannel
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 345.02143836021423
+greedy search, time after assembly in step 0 : 346.09577798843384
+greedy search candidates: [66575]
+Time after exploration of MagickEvaluateImageChannel: 346.11350417137146
+==== Next function: MagickExportImagePixels
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 348.2964313030243
+greedy search, time after assembly in step 0 : 349.3772060871124
+greedy search candidates: [66575]
+Time after exploration of MagickExportImagePixels: 349.40710163116455
+==== Next function: MagickExtentImage
+greedy search, currently checking 0 to 23 out of 23
+greedy search, time after compilation in step 0 : 351.5898423194885
+greedy search, time after assembly in step 0 : 352.71025919914246
+greedy search candidates: [66575]
+Time after exploration of MagickExtentImage: 352.80603861808777
+==== Next function: MagickFilterImageChannel
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 355.0177938938141
+greedy search, time after assembly in step 0 : 356.12302899360657
+greedy search candidates: [66575]
+Time after exploration of MagickFilterImageChannel: 356.147780418396
+==== Next function: MagickFlipImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 358.30398511886597
+greedy search, time after assembly in step 0 : 359.4192638397217
+greedy search candidates: [66575]
+Time after exploration of MagickFlipImage: 359.4459185600281
+==== Next function: MagickFloodfillPaintImage
+greedy search, currently checking 0 to 15 out of 15
+greedy search, time after compilation in step 0 : 361.61246371269226
+greedy search, time after assembly in step 0 : 362.73634672164917
+greedy search candidates: [66575]
+Time after exploration of MagickFloodfillPaintImage: 362.80509090423584
+==== Next function: MagickFlopImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 365.04097843170166
+greedy search, time after assembly in step 0 : 366.160747051239
+greedy search candidates: [66575]
+Time after exploration of MagickFlopImage: 366.188805103302
+==== Next function: MagickForwardFourierTransformImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 368.33286213874817
+greedy search, time after assembly in step 0 : 369.4970691204071
+greedy search candidates: [66575]
+Time after exploration of MagickForwardFourierTransformImage: 369.5251920223236
+==== Next function: MagickFunctionImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 371.65083527565
+greedy search, time after assembly in step 0 : 372.7391924858093
+greedy search candidates: [66575]
+Time after exploration of MagickFunctionImage: 372.76386165618896
+==== Next function: MagickFunctionImageChannel
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 374.9561667442322
+greedy search, time after assembly in step 0 : 376.0811173915863
+greedy search candidates: [66575]
+Time after exploration of MagickFunctionImageChannel: 376.1008450984955
+==== Next function: MagickFxImageChannel
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 378.23501467704773
+greedy search, time after assembly in step 0 : 379.30953645706177
+greedy search candidates: [66575]
+Time after exploration of MagickFxImageChannel: 379.3279445171356
+==== Next function: MagickGammaImageChannel
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 381.52407789230347
+greedy search, time after assembly in step 0 : 382.6445081233978
+greedy search candidates: [66575]
+Time after exploration of MagickGammaImageChannel: 382.67078161239624
+==== Next function: MagickGaussianBlurImageChannel
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 384.86739897727966
+greedy search, time after assembly in step 0 : 385.96071887016296
+greedy search candidates: [66575]
+Time after exploration of MagickGaussianBlurImageChannel: 385.99068427085876
+==== Next function: MagickGetImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 388.23114919662476
+greedy search, time after assembly in step 0 : 389.3895790576935
+greedy search candidates: [66575]
+Time after exploration of MagickGetImage: 389.4175453186035
+==== Next function: MagickGetImageAlphaChannel
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 391.5365674495697
+greedy search, time after assembly in step 0 : 392.6110279560089
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageAlphaChannel: 392.62909269332886
+==== Next function: MagickGetImageClipMask
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 394.8420572280884
+greedy search, time after assembly in step 0 : 395.9143590927124
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageClipMask: 395.9406716823578
+==== Next function: MagickGetImageBackgroundColor
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 398.11670780181885
+greedy search, time after assembly in step 0 : 399.2225887775421
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageBackgroundColor: 399.23951053619385
+==== Next function: MagickGetImageBlob
+greedy search, currently checking 0 to 9 out of 9
+greedy search, time after compilation in step 0 : 401.4714241027832
+greedy search, time after assembly in step 0 : 402.53358125686646
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageBlob: 402.57148003578186
+==== Next function: MagickGetImagesBlob
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 404.7368004322052
+greedy search, time after assembly in step 0 : 405.7851769924164
+greedy search candidates: [66575]
+Time after exploration of MagickGetImagesBlob: 405.81136298179626
+==== Next function: MagickGetImageBluePrimary
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 407.8761532306671
+greedy search, time after assembly in step 0 : 408.93613028526306
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageBluePrimary: 408.953284740448
+==== Next function: MagickGetImageBorderColor
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 411.08127760887146
+greedy search, time after assembly in step 0 : 412.1504385471344
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageBorderColor: 412.1674745082855
+==== Next function: MagickGetImageChannelDepth
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 414.3466913700104
+greedy search, time after assembly in step 0 : 415.41262578964233
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageChannelDepth: 415.4403429031372
+==== Next function: MagickGetImageChannelDistortion
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 417.60844326019287
+greedy search, time after assembly in step 0 : 418.6689031124115
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageChannelDistortion: 418.6869716644287
+==== Next function: MagickGetImageChannelDistortions
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 420.85673546791077
+greedy search, time after assembly in step 0 : 421.9186930656433
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageChannelDistortions: 421.9365220069885
+==== Next function: MagickGetImageChannelFeatures
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 424.1425349712372
+greedy search, time after assembly in step 0 : 425.21257400512695
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageChannelFeatures: 425.24076533317566
+==== Next function: MagickGetImageChannelKurtosis
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 427.4490911960602
+greedy search, time after assembly in step 0 : 428.5444977283478
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageChannelKurtosis: 428.57042169570923
+==== Next function: MagickGetImageChannelMean
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 430.68993639945984
+greedy search, time after assembly in step 0 : 431.73134660720825
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageChannelMean: 431.7582666873932
+==== Next function: MagickGetImageChannelRange
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 433.86029148101807
+greedy search, time after assembly in step 0 : 434.9617762565613
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageChannelRange: 434.9885952472687
+==== Next function: MagickGetImageChannelStatistics
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 437.1306359767914
+greedy search, time after assembly in step 0 : 438.2125723361969
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageChannelStatistics: 438.24133682250977
+==== Next function: MagickGetImageColormapColor
+greedy search, currently checking 0 to 8 out of 8
+greedy search, time after compilation in step 0 : 440.46834659576416
+greedy search, time after assembly in step 0 : 441.5603942871094
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageColormapColor: 441.5911605358124
+==== Next function: MagickGetImageColors
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 443.8315255641937
+greedy search, time after assembly in step 0 : 444.91157031059265
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageColors: 444.9387876987457
+==== Next function: MagickGetImageColorspace
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 447.17355942726135
+greedy search, time after assembly in step 0 : 448.27301359176636
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageColorspace: 448.2910330295563
+==== Next function: MagickGetImageCompose
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 450.47741889953613
+greedy search, time after assembly in step 0 : 451.5863838195801
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageCompose: 451.6044921875
+==== Next function: MagickGetImageCompression
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 453.78243947029114
+greedy search, time after assembly in step 0 : 454.8995909690857
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageCompression: 454.9186601638794
+==== Next function: MagickGetImageCompressionQuality
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 457.08896708488464
+greedy search, time after assembly in step 0 : 458.18959164619446
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageCompressionQuality: 458.2069103717804
+==== Next function: MagickGetImageDelay
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 460.34817457199097
+greedy search, time after assembly in step 0 : 461.4067084789276
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageDelay: 461.42604970932007
+==== Next function: MagickGetImageDepth
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 463.61918449401855
+greedy search, time after assembly in step 0 : 464.71557688713074
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageDepth: 464.7317748069763
+==== Next function: MagickGetImageDistortion
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 466.8711805343628
+greedy search, time after assembly in step 0 : 467.9642517566681
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageDistortion: 467.98155665397644
+==== Next function: MagickGetImageDispose
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 470.16125440597534
+greedy search, time after assembly in step 0 : 471.2327399253845
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageDispose: 471.24976682662964
+==== Next function: MagickGetImageEndian
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 473.3725266456604
+greedy search, time after assembly in step 0 : 474.4173605442047
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageEndian: 474.4340043067932
+==== Next function: MagickGetImageFilename
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 476.6168475151062
+greedy search, time after assembly in step 0 : 477.66794657707214
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageFilename: 477.69061279296875
+==== Next function: MagickGetImageFormat
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 479.83953166007996
+greedy search, time after assembly in step 0 : 480.9209804534912
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageFormat: 480.9392433166504
+==== Next function: MagickGetImageFuzz
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 483.1271755695343
+greedy search, time after assembly in step 0 : 484.17643308639526
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageFuzz: 484.1941521167755
+==== Next function: MagickGetImageGamma
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 486.3284070491791
+greedy search, time after assembly in step 0 : 487.41841220855713
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageGamma: 487.437805891037
+==== Next function: MagickGetImageGravity
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 489.5606610774994
+greedy search, time after assembly in step 0 : 490.6522078514099
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageGravity: 490.67049074172974
+==== Next function: MagickGetImageGreenPrimary
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 492.8152482509613
+greedy search, time after assembly in step 0 : 493.8684265613556
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageGreenPrimary: 493.8870666027069
+==== Next function: MagickGetImageHeight
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 496.050256729126
+greedy search, time after assembly in step 0 : 497.1327452659607
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageHeight: 497.1528103351593
+==== Next function: MagickGetImageHistogram
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 499.34066462516785
+greedy search, time after assembly in step 0 : 500.4181525707245
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageHistogram: 500.44381618499756
+==== Next function: MagickGetImageInterlaceScheme
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 502.6964371204376
+greedy search, time after assembly in step 0 : 503.7793598175049
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageInterlaceScheme: 503.798216342926
+==== Next function: MagickGetImageInterpolateMethod
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 505.99932742118835
+greedy search, time after assembly in step 0 : 507.0474126338959
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageInterpolateMethod: 507.0669469833374
+==== Next function: MagickGetImageIterations
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 509.2485315799713
+greedy search, time after assembly in step 0 : 510.30130672454834
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageIterations: 510.32032799720764
+==== Next function: MagickGetImageLength
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 512.4478950500488
+greedy search, time after assembly in step 0 : 513.53915143013
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageLength: 513.5587980747223
+==== Next function: MagickGetImageMatteColor
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 515.6887602806091
+greedy search, time after assembly in step 0 : 516.7637505531311
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageMatteColor: 516.7828361988068
+==== Next function: MagickGetImageOrientation
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 518.9884951114655
+greedy search, time after assembly in step 0 : 520.0342996120453
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageOrientation: 520.0515613555908
+==== Next function: MagickGetImagePage
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 522.2291429042816
+greedy search, time after assembly in step 0 : 523.2997267246246
+greedy search candidates: [66575]
+Time after exploration of MagickGetImagePage: 523.319016456604
+==== Next function: MagickGetImagePixelColor
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 525.4742085933685
+greedy search, time after assembly in step 0 : 526.5788004398346
+greedy search candidates: [66575]
+Time after exploration of MagickGetImagePixelColor: 526.6078879833221
+==== Next function: MagickGetImageRange
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 528.733704328537
+greedy search, time after assembly in step 0 : 529.8120272159576
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageRange: 529.8392531871796
+==== Next function: MagickGetImageRedPrimary
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 531.9928991794586
+greedy search, time after assembly in step 0 : 533.0553243160248
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageRedPrimary: 533.0734066963196
+==== Next function: MagickGetImageRegion
+greedy search, currently checking 0 to 20 out of 20
+greedy search, time after compilation in step 0 : 535.309376001358
+greedy search, time after assembly in step 0 : 536.4087162017822
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageRegion: 536.4970097541809
+==== Next function: MagickGetImageRenderingIntent
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 538.6633706092834
+greedy search, time after assembly in step 0 : 539.7115712165833
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageRenderingIntent: 539.7282617092133
+==== Next function: MagickGetImageResolution
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 541.8768656253815
+greedy search, time after assembly in step 0 : 542.9320778846741
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageResolution: 542.9503962993622
+==== Next function: MagickGetImageScene
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 545.1137826442719
+greedy search, time after assembly in step 0 : 546.2218737602234
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageScene: 546.2419111728668
+==== Next function: MagickGetImageSignature
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 548.403071641922
+greedy search, time after assembly in step 0 : 549.5072243213654
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageSignature: 549.5324926376343
+==== Next function: MagickGetImageTicksPerSecond
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 551.7662749290466
+greedy search, time after assembly in step 0 : 552.8843905925751
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageTicksPerSecond: 552.9019875526428
+==== Next function: MagickGetImageType
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 555.1254425048828
+greedy search, time after assembly in step 0 : 556.2523548603058
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageType: 556.2778325080872
+==== Next function: MagickGetImageUnits
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 558.2956893444061
+greedy search, time after assembly in step 0 : 559.392086982727
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageUnits: 559.4081389904022
+==== Next function: MagickGetImageVirtualPixelMethod
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 561.6081483364105
+greedy search, time after assembly in step 0 : 562.6982007026672
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageVirtualPixelMethod: 562.7173535823822
+==== Next function: MagickGetImageWhitePoint
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 564.8219361305237
+greedy search, time after assembly in step 0 : 565.8881614208221
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageWhitePoint: 565.9062628746033
+==== Next function: MagickGetImageWidth
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 568.0939691066742
+greedy search, time after assembly in step 0 : 569.1136710643768
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageWidth: 569.1327667236328
+==== Next function: MagickGetNumberImages
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 571.3387470245361
+greedy search, time after assembly in step 0 : 572.4050576686859
+greedy search candidates: [66575]
+Time after exploration of MagickGetNumberImages: 572.4156625270844
+==== Next function: MagickGetImageTotalInkDensity
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 574.5817470550537
+greedy search, time after assembly in step 0 : 575.6764924526215
+greedy search candidates: [66575]
+Time after exploration of MagickGetImageTotalInkDensity: 575.6948132514954
+==== Next function: MagickHaldClutImageChannel
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 577.8753645420074
+greedy search, time after assembly in step 0 : 578.9327118396759
+greedy search candidates: [66575]
+Time after exploration of MagickHaldClutImageChannel: 578.956554889679
+==== Next function: MagickHasNextImage
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 581.159482717514
+greedy search, time after assembly in step 0 : 582.2182087898254
+greedy search candidates: [66575]
+Time after exploration of MagickHasNextImage: 582.2355544567108
+==== Next function: MagickHasPreviousImage
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 584.4143772125244
+greedy search, time after assembly in step 0 : 585.5538568496704
+greedy search candidates: [66575]
+Time after exploration of MagickHasPreviousImage: 585.5769557952881
+==== Next function: MagickIdentifyImage
+greedy search, currently checking 0 to 9 out of 9
+greedy search, time after compilation in step 0 : 587.8721258640289
+greedy search, time after assembly in step 0 : 589.0480525493622
+greedy search candidates: [66575]
+Time after exploration of MagickIdentifyImage: 589.0912439823151
+==== Next function: MagickImplodeImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 591.1997184753418
+greedy search, time after assembly in step 0 : 592.2326791286469
+greedy search candidates: [66575]
+Time after exploration of MagickImplodeImage: 592.2590651512146
+==== Next function: MagickImportImagePixels
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 594.4256517887115
+greedy search, time after assembly in step 0 : 595.4932253360748
+greedy search candidates: [66575]
+Time after exploration of MagickImportImagePixels: 595.5158603191376
+==== Next function: MagickInverseFourierTransformImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 597.6960451602936
+greedy search, time after assembly in step 0 : 598.790397644043
+greedy search candidates: [66575]
+Time after exploration of MagickInverseFourierTransformImage: 598.8155558109283
+==== Next function: MagickLabelImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 601.0070474147797
+greedy search, time after assembly in step 0 : 602.1164820194244
+greedy search candidates: [66575]
+Time after exploration of MagickLabelImage: 602.1400437355042
+==== Next function: MagickLevelImageChannel
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 604.3509042263031
+greedy search, time after assembly in step 0 : 605.4435570240021
+greedy search candidates: [66575]
+Time after exploration of MagickLevelImageChannel: 605.4661583900452
+==== Next function: MagickLinearStretchImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 607.6132545471191
+greedy search, time after assembly in step 0 : 608.6755902767181
+greedy search candidates: [66575]
+Time after exploration of MagickLinearStretchImage: 608.6983704566956
+==== Next function: MagickLiquidRescaleImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 610.8628234863281
+greedy search, time after assembly in step 0 : 611.9970161914825
+greedy search candidates: [66575]
+Time after exploration of MagickLiquidRescaleImage: 612.0252737998962
+==== Next function: MagickMagnifyImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 614.1733882427216
+greedy search, time after assembly in step 0 : 615.2617466449738
+greedy search candidates: [66575]
+Time after exploration of MagickMagnifyImage: 615.2898993492126
+==== Next function: MagickMergeImageLayers
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 617.4802412986755
+greedy search, time after assembly in step 0 : 618.5672252178192
+greedy search candidates: [66575]
+Time after exploration of MagickMergeImageLayers: 618.5861079692841
+==== Next function: MagickMinifyImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 620.7158336639404
+greedy search, time after assembly in step 0 : 621.8008255958557
+greedy search candidates: [66575]
+Time after exploration of MagickMinifyImage: 621.8254554271698
+==== Next function: MagickModulateImage
+greedy search, currently checking 0 to 9 out of 9
+greedy search, time after compilation in step 0 : 623.9289789199829
+greedy search, time after assembly in step 0 : 625.0419409275055
+greedy search candidates: [66575]
+Time after exploration of MagickModulateImage: 625.0876739025116
+==== Next function: MagickMontageImage
+greedy search, currently checking 0 to 12 out of 12
+greedy search, time after compilation in step 0 : 627.2474250793457
+greedy search, time after assembly in step 0 : 628.34272813797
+greedy search candidates: [66575]
+Time after exploration of MagickMontageImage: 628.3945293426514
+==== Next function: MagickMorphImages
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 630.5312995910645
+greedy search, time after assembly in step 0 : 631.5667984485626
+greedy search candidates: [66575]
+Time after exploration of MagickMorphImages: 631.5905342102051
+==== Next function: MagickMorphologyImageChannel
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 633.7268269062042
+greedy search, time after assembly in step 0 : 634.8078525066376
+greedy search candidates: [66575]
+Time after exploration of MagickMorphologyImageChannel: 634.8315124511719
+==== Next function: MagickMotionBlurImageChannel
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 636.9625992774963
+greedy search, time after assembly in step 0 : 638.0426449775696
+greedy search candidates: [66575]
+Time after exploration of MagickMotionBlurImageChannel: 638.063636302948
+==== Next function: MagickNegateImageChannel
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 640.1576690673828
+greedy search, time after assembly in step 0 : 641.1934225559235
+greedy search candidates: [66575]
+Time after exploration of MagickNegateImageChannel: 641.2141451835632
+==== Next function: MagickNewImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 643.3505725860596
+greedy search, time after assembly in step 0 : 644.4217276573181
+greedy search candidates: [66575]
+Time after exploration of MagickNewImage: 644.4474456310272
+==== Next function: MagickNextImage
+greedy search, currently checking 0 to 9 out of 9
+greedy search, time after compilation in step 0 : 646.5690453052521
+greedy search, time after assembly in step 0 : 647.6372785568237
+greedy search candidates: [66575]
+Time after exploration of MagickNextImage: 647.6761224269867
+==== Next function: MagickNormalizeImageChannel
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 649.7569816112518
+greedy search, time after assembly in step 0 : 650.8117554187775
+greedy search candidates: [66575]
+Time after exploration of MagickNormalizeImageChannel: 650.8333323001862
+==== Next function: MagickOilPaintImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 652.9530553817749
+greedy search, time after assembly in step 0 : 654.0010106563568
+greedy search candidates: [66575]
+Time after exploration of MagickOilPaintImage: 654.0256481170654
+==== Next function: MagickOpaquePaintImageChannel
+greedy search, currently checking 0 to 13 out of 13
+greedy search, time after compilation in step 0 : 656.1664726734161
+greedy search, time after assembly in step 0 : 657.3446440696716
+greedy search candidates: [66575]
+Time after exploration of MagickOpaquePaintImageChannel: 657.4026758670807
+==== Next function: MagickOptimizeImageLayers
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 659.5513913631439
+greedy search, time after assembly in step 0 : 660.6136610507965
+greedy search candidates: [66575]
+Time after exploration of MagickOptimizeImageLayers: 660.6299841403961
+==== Next function: MagickOptimizeImageTransparency
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 662.8225100040436
+greedy search, time after assembly in step 0 : 663.888126373291
+greedy search candidates: [66575]
+Time after exploration of MagickOptimizeImageTransparency: 663.9056503772736
+==== Next function: MagickOrderedPosterizeImageChannel
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 666.0294313430786
+greedy search, time after assembly in step 0 : 667.1714735031128
+greedy search candidates: [66575]
+Time after exploration of MagickOrderedPosterizeImageChannel: 667.1954534053802
+==== Next function: MagickPingImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 669.287412405014
+greedy search, time after assembly in step 0 : 670.374094247818
+greedy search candidates: [66575]
+Time after exploration of MagickPingImage: 670.396511554718
+==== Next function: MagickPingImageBlob
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 672.5495467185974
+greedy search, time after assembly in step 0 : 673.647173166275
+greedy search candidates: [66575]
+Time after exploration of MagickPingImageBlob: 673.6700501441956
+==== Next function: MagickPingImageFile
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 675.8186502456665
+greedy search, time after assembly in step 0 : 676.9025392532349
+greedy search candidates: [66575]
+Time after exploration of MagickPingImageFile: 676.9234404563904
+==== Next function: MagickPolaroidImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 679.0790779590607
+greedy search, time after assembly in step 0 : 680.1598346233368
+greedy search candidates: [66575]
+Time after exploration of MagickPolaroidImage: 680.1829106807709
+==== Next function: MagickPosterizeImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 682.2697465419769
+greedy search, time after assembly in step 0 : 683.3359797000885
+greedy search candidates: [66575]
+Time after exploration of MagickPosterizeImage: 683.3554632663727
+==== Next function: MagickPreviewImages
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 685.5030837059021
+greedy search, time after assembly in step 0 : 686.610990524292
+greedy search candidates: [66575]
+Time after exploration of MagickPreviewImages: 686.6291463375092
+==== Next function: MagickPreviousImage
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 688.7687358856201
+greedy search, time after assembly in step 0 : 689.8546788692474
+greedy search candidates: [66575]
+Time after exploration of MagickPreviousImage: 689.8862721920013
+==== Next function: MagickQuantizeImage
+greedy search, currently checking 0 to 16 out of 16
+greedy search, time after compilation in step 0 : 692.0960073471069
+greedy search, time after assembly in step 0 : 693.2253296375275
+greedy search candidates: [66575]
+Time after exploration of MagickQuantizeImage: 693.2952206134796
+==== Next function: MagickQuantizeImages
+greedy search, currently checking 0 to 16 out of 16
+greedy search, time after compilation in step 0 : 695.4175946712494
+greedy search, time after assembly in step 0 : 696.5709869861603
+greedy search candidates: [66575]
+Time after exploration of MagickQuantizeImages: 696.6396057605743
+==== Next function: MagickRaiseImage
+greedy search, currently checking 0 to 18 out of 18
+greedy search, time after compilation in step 0 : 698.864146232605
+greedy search, time after assembly in step 0 : 699.9643557071686
+greedy search candidates: [66575]
+Time after exploration of MagickRaiseImage: 700.0340559482574
+==== Next function: MagickRandomThresholdImageChannel
+greedy search, currently checking 0 to 10 out of 10
+greedy search, time after compilation in step 0 : 702.213737487793
+greedy search, time after assembly in step 0 : 703.3244605064392
+greedy search candidates: [66575]
+Time after exploration of MagickRandomThresholdImageChannel: 703.3701946735382
+==== Next function: MagickReadImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 705.600857257843
+greedy search, time after assembly in step 0 : 706.7036807537079
+greedy search candidates: [66575]
+Time after exploration of MagickReadImage: 706.7266728878021
+==== Next function: MagickReadImageBlob
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 708.8364658355713
+greedy search, time after assembly in step 0 : 709.9466586112976
+greedy search candidates: [66575]
+Time after exploration of MagickReadImageBlob: 709.9777529239655
+==== Next function: MagickReadImageFile
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 712.1825711727142
+greedy search, time after assembly in step 0 : 713.2503528594971
+greedy search candidates: [66575]
+Time after exploration of MagickReadImageFile: 713.2719438076019
+==== Next function: MagickRemapImage
+greedy search, currently checking 0 to 9 out of 9
+greedy search, time after compilation in step 0 : 715.3959379196167
+greedy search, time after assembly in step 0 : 716.4935262203217
+greedy search candidates: [66575]
+Time after exploration of MagickRemapImage: 716.5334331989288
+==== Next function: MagickRemoveImage
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 718.7510406970978
+greedy search, time after assembly in step 0 : 719.7967069149017
+greedy search candidates: [66575]
+Time after exploration of MagickRemoveImage: 719.8144445419312
+==== Next function: MagickResampleImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 721.9876573085785
+greedy search, time after assembly in step 0 : 723.0790867805481
+greedy search candidates: [66575]
+Time after exploration of MagickResampleImage: 723.1061401367188
+==== Next function: MagickResetImagePage
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 725.3207488059998
+greedy search, time after assembly in step 0 : 726.3857696056366
+greedy search candidates: [66575]
+Time after exploration of MagickResetImagePage: 726.4033074378967
+==== Next function: MagickResizeImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 728.544695854187
+greedy search, time after assembly in step 0 : 729.6825802326202
+greedy search candidates: [66575]
+Time after exploration of MagickResizeImage: 729.709979057312
+==== Next function: MagickRollImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 731.9123413562775
+greedy search, time after assembly in step 0 : 732.9835250377655
+greedy search candidates: [66575]
+Time after exploration of MagickRollImage: 733.0087416172028
+==== Next function: MagickRotateImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 735.2053685188293
+greedy search, time after assembly in step 0 : 736.3174874782562
+greedy search candidates: [66575]
+Time after exploration of MagickRotateImage: 736.3395853042603
+==== Next function: MagickRotationalBlurImageChannel
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 738.5104146003723
+greedy search, time after assembly in step 0 : 739.5935950279236
+greedy search candidates: [66575]
+Time after exploration of MagickRotationalBlurImageChannel: 739.6215028762817
+==== Next function: MagickSampleImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 741.7989947795868
+greedy search, time after assembly in step 0 : 742.8846204280853
+greedy search candidates: [66575]
+Time after exploration of MagickSampleImage: 742.9125838279724
+==== Next function: MagickScaleImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 745.1217131614685
+greedy search, time after assembly in step 0 : 746.2041351795197
+greedy search candidates: [66575]
+Time after exploration of MagickScaleImage: 746.2326059341431
+==== Next function: MagickSegmentImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 748.3865847587585
+greedy search, time after assembly in step 0 : 749.4410471916199
+greedy search candidates: [66575]
+Time after exploration of MagickSegmentImage: 749.4630160331726
+==== Next function: MagickSelectiveBlurImageChannel
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 751.5348737239838
+greedy search, time after assembly in step 0 : 752.6235060691833
+greedy search candidates: [66575]
+Time after exploration of MagickSelectiveBlurImageChannel: 752.6518740653992
+==== Next function: MagickSeparateImageChannel
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 754.7992317676544
+greedy search, time after assembly in step 0 : 755.8971285820007
+greedy search candidates: [66575]
+Time after exploration of MagickSeparateImageChannel: 755.9201483726501
+==== Next function: MagickSepiaToneImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 758.0732204914093
+greedy search, time after assembly in step 0 : 759.1188509464264
+greedy search candidates: [66575]
+Time after exploration of MagickSepiaToneImage: 759.145327091217
+==== Next function: MagickSetImage
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 761.2951183319092
+greedy search, time after assembly in step 0 : 762.4016633033752
+greedy search candidates: [66575]
+Time after exploration of MagickSetImage: 762.416672706604
+==== Next function: MagickSetImageAlphaChannel
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 764.6190524101257
+greedy search, time after assembly in step 0 : 765.7011988162994
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageAlphaChannel: 765.7197921276093
+==== Next function: MagickSetImageBackgroundColor
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 767.8494243621826
+greedy search, time after assembly in step 0 : 768.9369294643402
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageBackgroundColor: 768.9560458660126
+==== Next function: MagickSetImageBias
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 771.1966941356659
+greedy search, time after assembly in step 0 : 772.2843217849731
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageBias: 772.3014454841614
+==== Next function: MagickSetImageBluePrimary
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 774.4465351104736
+greedy search, time after assembly in step 0 : 775.4983625411987
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageBluePrimary: 775.5224058628082
+==== Next function: MagickSetImageBorderColor
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 777.5629444122314
+greedy search, time after assembly in step 0 : 778.6200511455536
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageBorderColor: 778.6382086277008
+==== Next function: MagickSetImageChannelDepth
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 780.804313659668
+greedy search, time after assembly in step 0 : 781.9173567295074
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageChannelDepth: 781.935830116272
+==== Next function: MagickSetImageClipMask
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 784.1041338443756
+greedy search, time after assembly in step 0 : 785.21031665802
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageClipMask: 785.2369337081909
+==== Next function: MagickSetImageColor
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 787.3872485160828
+greedy search, time after assembly in step 0 : 788.4826962947845
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageColor: 788.5014405250549
+==== Next function: MagickSetImageColormapColor
+greedy search, currently checking 0 to 8 out of 8
+greedy search, time after compilation in step 0 : 790.7023448944092
+greedy search, time after assembly in step 0 : 791.8089249134064
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageColormapColor: 791.8445541858673
+==== Next function: MagickSetImageColorspace
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 794.0574333667755
+greedy search, time after assembly in step 0 : 795.1991562843323
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageColorspace: 795.2170453071594
+==== Next function: MagickSetImageCompose
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 797.3647491931915
+greedy search, time after assembly in step 0 : 798.4703884124756
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageCompose: 798.4875247478485
+==== Next function: MagickSetImageCompression
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 800.6764104366302
+greedy search, time after assembly in step 0 : 801.7644906044006
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageCompression: 801.7832024097443
+==== Next function: MagickSetImageCompressionQuality
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 803.9923379421234
+greedy search, time after assembly in step 0 : 805.0428261756897
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageCompressionQuality: 805.0623643398285
+==== Next function: MagickSetImageDelay
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 807.2553627490997
+greedy search, time after assembly in step 0 : 808.3224654197693
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageDelay: 808.3377370834351
+==== Next function: MagickSetImageDepth
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 810.5388114452362
+greedy search, time after assembly in step 0 : 811.6349365711212
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageDepth: 811.6524472236633
+==== Next function: MagickSetImageDispose
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 813.7837080955505
+greedy search, time after assembly in step 0 : 814.8927874565125
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageDispose: 814.9117865562439
+==== Next function: MagickSetImageEndian
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 817.1148571968079
+greedy search, time after assembly in step 0 : 818.1558578014374
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageEndian: 818.1737034320831
+==== Next function: MagickSetImageExtent
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 820.3604664802551
+greedy search, time after assembly in step 0 : 821.4656085968018
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageExtent: 821.4820535182953
+==== Next function: MagickSetImageFilename
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 823.6558289527893
+greedy search, time after assembly in step 0 : 824.7003757953644
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageFilename: 824.719845533371
+==== Next function: MagickSetImageFormat
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 826.8658716678619
+greedy search, time after assembly in step 0 : 827.9362161159515
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageFormat: 827.9626848697662
+==== Next function: MagickSetImageFuzz
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 830.1419250965118
+greedy search, time after assembly in step 0 : 831.2222759723663
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageFuzz: 831.2406139373779
+==== Next function: MagickSetImageGamma
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 833.4048635959625
+greedy search, time after assembly in step 0 : 834.4602320194244
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageGamma: 834.4784507751465
+==== Next function: MagickSetImageGravity
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 836.6239326000214
+greedy search, time after assembly in step 0 : 837.7006757259369
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageGravity: 837.7207148075104
+==== Next function: MagickSetImageGreenPrimary
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 839.8883361816406
+greedy search, time after assembly in step 0 : 841.0021755695343
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageGreenPrimary: 841.0261323451996
+==== Next function: MagickSetImageInterlaceScheme
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 843.2400984764099
+greedy search, time after assembly in step 0 : 844.3314297199249
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageInterlaceScheme: 844.3497080802917
+==== Next function: MagickSetImageInterpolateMethod
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 846.5132179260254
+greedy search, time after assembly in step 0 : 847.6421089172363
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageInterpolateMethod: 847.6578278541565
+==== Next function: MagickSetImageIterations
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 849.8273477554321
+greedy search, time after assembly in step 0 : 850.8910727500916
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageIterations: 850.9101390838623
+==== Next function: MagickSetImageMatte
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 853.0216317176819
+greedy search, time after assembly in step 0 : 854.0955176353455
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageMatte: 854.1166384220123
+==== Next function: MagickSetImageMatteColor
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 856.2641541957855
+greedy search, time after assembly in step 0 : 857.3329918384552
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageMatteColor: 857.3503687381744
+==== Next function: MagickSetImageOpacity
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 859.5212359428406
+greedy search, time after assembly in step 0 : 860.6601204872131
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageOpacity: 860.6833765506744
+==== Next function: MagickSetImageOrientation
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 862.7956039905548
+greedy search, time after assembly in step 0 : 863.8788983821869
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageOrientation: 863.896778345108
+==== Next function: MagickSetImagePage
+greedy search, currently checking 0 to 11 out of 11
+greedy search, time after compilation in step 0 : 866.0155415534973
+greedy search, time after assembly in step 0 : 867.080139875412
+greedy search candidates: [66575]
+Time after exploration of MagickSetImagePage: 867.1347186565399
+==== Next function: MagickSetImageProgressMonitor
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 869.2280280590057
+greedy search, time after assembly in step 0 : 870.3023056983948
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageProgressMonitor: 870.3214724063873
+==== Next function: MagickSetImageRedPrimary
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 872.4843521118164
+greedy search, time after assembly in step 0 : 873.5483183860779
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageRedPrimary: 873.57586145401
+==== Next function: MagickSetImageRenderingIntent
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 875.758838891983
+greedy search, time after assembly in step 0 : 876.8513944149017
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageRenderingIntent: 876.8703272342682
+==== Next function: MagickSetImageResolution
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 879.0603401660919
+greedy search, time after assembly in step 0 : 880.1073894500732
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageResolution: 880.1321442127228
+==== Next function: MagickSetImageScene
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 882.2968726158142
+greedy search, time after assembly in step 0 : 883.4016213417053
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageScene: 883.4188253879547
+==== Next function: MagickSetImageTicksPerSecond
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 885.6672577857971
+greedy search, time after assembly in step 0 : 886.73370885849
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageTicksPerSecond: 886.7521142959595
+==== Next function: MagickSetImageType
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 888.9891004562378
+greedy search, time after assembly in step 0 : 890.113650560379
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageType: 890.1327786445618
+==== Next function: MagickSetImageUnits
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 892.3217220306396
+greedy search, time after assembly in step 0 : 893.3729498386383
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageUnits: 893.3911876678467
+==== Next function: MagickSetImageVirtualPixelMethod
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 895.52343916893
+greedy search, time after assembly in step 0 : 896.6043944358826
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageVirtualPixelMethod: 896.6148974895477
+==== Next function: MagickSetImageWhitePoint
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 898.7416896820068
+greedy search, time after assembly in step 0 : 899.849310874939
+greedy search candidates: [66575]
+Time after exploration of MagickSetImageWhitePoint: 899.8729717731476
+==== Next function: MagickShadeImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 902.0294735431671
+greedy search, time after assembly in step 0 : 903.1490519046783
+greedy search candidates: [66575]
+Time after exploration of MagickShadeImage: 903.177253484726
+==== Next function: MagickShadowImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 905.3285434246063
+greedy search, time after assembly in step 0 : 906.4458961486816
+greedy search candidates: [66575]
+Time after exploration of MagickShadowImage: 906.4720346927643
+==== Next function: MagickSharpenImageChannel
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 908.6494028568268
+greedy search, time after assembly in step 0 : 909.7310338020325
+greedy search candidates: [66575]
+Time after exploration of MagickSharpenImageChannel: 909.7576394081116
+==== Next function: MagickShaveImage
+greedy search, currently checking 0 to 20 out of 20
+greedy search, time after compilation in step 0 : 911.9948077201843
+greedy search, time after assembly in step 0 : 913.1145021915436
+greedy search candidates: [66575]
+Time after exploration of MagickShaveImage: 913.2068300247192
+==== Next function: MagickShearImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 915.4100196361542
+greedy search, time after assembly in step 0 : 916.5271832942963
+greedy search candidates: [66575]
+Time after exploration of MagickShearImage: 916.5509889125824
+==== Next function: MagickSigmoidalContrastImageChannel
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 918.6701188087463
+greedy search, time after assembly in step 0 : 919.8170857429504
+greedy search candidates: [66575]
+Time after exploration of MagickSigmoidalContrastImageChannel: 919.8398780822754
+==== Next function: MagickSimilarityImage
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 922.051429271698
+greedy search, time after assembly in step 0 : 923.1461763381958
+greedy search candidates: [66575]
+Time after exploration of MagickSimilarityImage: 923.1657538414001
+==== Next function: MagickSketchImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 925.4643783569336
+greedy search, time after assembly in step 0 : 926.5569636821747
+greedy search candidates: [66575]
+Time after exploration of MagickSketchImage: 926.5819709300995
+==== Next function: MagickSmushImages
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 928.8058793544769
+greedy search, time after assembly in step 0 : 929.9309895038605
+greedy search candidates: [66575]
+Time after exploration of MagickSmushImages: 929.9508063793182
+==== Next function: MagickSolarizeImageChannel
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 932.1951603889465
+greedy search, time after assembly in step 0 : 933.3377928733826
+greedy search candidates: [66575]
+Time after exploration of MagickSolarizeImageChannel: 933.365110874176
+==== Next function: MagickSparseColorImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 935.6567060947418
+greedy search, time after assembly in step 0 : 936.7572739124298
+greedy search candidates: [66575]
+Time after exploration of MagickSparseColorImage: 936.7837936878204
+==== Next function: MagickSpliceImage
+greedy search, currently checking 0 to 23 out of 23
+greedy search, time after compilation in step 0 : 938.9002733230591
+greedy search, time after assembly in step 0 : 940.0306494235992
+greedy search candidates: [66575]
+Time after exploration of MagickSpliceImage: 940.1410751342773
+==== Next function: MagickSpreadImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 942.3059086799622
+greedy search, time after assembly in step 0 : 943.4133808612823
+greedy search candidates: [66575]
+Time after exploration of MagickSpreadImage: 943.4378437995911
+==== Next function: MagickStatisticImageChannel
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 945.5896534919739
+greedy search, time after assembly in step 0 : 946.670645236969
+greedy search candidates: [66575]
+Time after exploration of MagickStatisticImageChannel: 946.6968395709991
+==== Next function: MagickSteganoImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 948.9368543624878
+greedy search, time after assembly in step 0 : 950.0358011722565
+greedy search candidates: [66575]
+Time after exploration of MagickSteganoImage: 950.062997341156
+==== Next function: MagickStereoImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 952.2523384094238
+greedy search, time after assembly in step 0 : 953.3928682804108
+greedy search candidates: [66575]
+Time after exploration of MagickStereoImage: 953.4204978942871
+==== Next function: MagickStripImage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 955.5788221359253
+greedy search, time after assembly in step 0 : 956.6624958515167
+greedy search candidates: [66575]
+Time after exploration of MagickStripImage: 956.6859395503998
+==== Next function: MagickSwirlImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 958.9356355667114
+greedy search, time after assembly in step 0 : 960.0114867687225
+greedy search candidates: [66575]
+Time after exploration of MagickSwirlImage: 960.0397334098816
+==== Next function: MagickTextureImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 962.2686631679535
+greedy search, time after assembly in step 0 : 963.4295790195465
+greedy search candidates: [66575]
+Time after exploration of MagickTextureImage: 963.4572696685791
+==== Next function: MagickThresholdImageChannel
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 965.6796731948853
+greedy search, time after assembly in step 0 : 966.7969696521759
+greedy search candidates: [66575]
+Time after exploration of MagickThresholdImageChannel: 966.8211297988892
+==== Next function: MagickThumbnailImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 969.0055663585663
+greedy search, time after assembly in step 0 : 970.0959706306458
+greedy search candidates: [66575]
+Time after exploration of MagickThumbnailImage: 970.1164033412933
+==== Next function: MagickTintImage
+greedy search, currently checking 0 to 15 out of 15
+greedy search, time after compilation in step 0 : 972.3162624835968
+greedy search, time after assembly in step 0 : 973.4234538078308
+greedy search candidates: [66575]
+Time after exploration of MagickTintImage: 973.4840590953827
+==== Next function: MagickTransformImage
+greedy search, currently checking 0 to 9 out of 9
+greedy search, time after compilation in step 0 : 975.705126285553
+greedy search, time after assembly in step 0 : 976.8296551704407
+greedy search candidates: [66575]
+Time after exploration of MagickTransformImage: 976.8690295219421
+==== Next function: MagickTransformImageColorspace
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 979.0130054950714
+greedy search, time after assembly in step 0 : 980.1058533191681
+greedy search candidates: [66575]
+Time after exploration of MagickTransformImageColorspace: 980.1242985725403
+==== Next function: MagickTransparentPaintImage
+greedy search, currently checking 0 to 9 out of 9
+greedy search, time after compilation in step 0 : 982.3332765102386
+greedy search, time after assembly in step 0 : 983.4613552093506
+greedy search candidates: [66575]
+Time after exploration of MagickTransparentPaintImage: 983.5017862319946
+==== Next function: MagickTransposeImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 985.7097473144531
+greedy search, time after assembly in step 0 : 986.8340599536896
+greedy search candidates: [66575]
+Time after exploration of MagickTransposeImage: 986.860830783844
+==== Next function: MagickTransverseImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 989.1072196960449
+greedy search, time after assembly in step 0 : 990.2368140220642
+greedy search candidates: [66575]
+Time after exploration of MagickTransverseImage: 990.2639582157135
+==== Next function: MagickTrimImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 992.4747295379639
+greedy search, time after assembly in step 0 : 993.5780169963837
+greedy search candidates: [66575]
+Time after exploration of MagickTrimImage: 993.6071026325226
+==== Next function: MagickUniqueImageColors
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 995.8086731433868
+greedy search, time after assembly in step 0 : 996.9918322563171
+greedy search candidates: [66575]
+Time after exploration of MagickUniqueImageColors: 997.0181725025177
+==== Next function: MagickUnsharpMaskImageChannel
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 999.1305768489838
+greedy search, time after assembly in step 0 : 1000.2519443035126
+greedy search candidates: [66575]
+Time after exploration of MagickUnsharpMaskImageChannel: 1000.2854855060577
+==== Next function: MagickVignetteImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 1002.403317451477
+greedy search, time after assembly in step 0 : 1003.5277349948883
+greedy search candidates: [66575]
+Time after exploration of MagickVignetteImage: 1003.556006193161
+==== Next function: MagickWaveImage
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 1005.7254376411438
+greedy search, time after assembly in step 0 : 1006.8844347000122
+greedy search candidates: [66575]
+Time after exploration of MagickWaveImage: 1006.908664226532
+==== Next function: MagickWhiteThresholdImage
+greedy search, currently checking 0 to 9 out of 9
+greedy search, time after compilation in step 0 : 1009.0979273319244
+greedy search, time after assembly in step 0 : 1010.2726819515228
+greedy search candidates: [66575]
+Time after exploration of MagickWhiteThresholdImage: 1010.3122606277466
+==== Next function: MagickWriteImage
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 1012.5062103271484
+greedy search, time after assembly in step 0 : 1013.6000490188599
+greedy search candidates: [66575]
+Time after exploration of MagickWriteImage: 1013.631649017334
+==== Next function: MagickWriteImageFile
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 1015.8011105060577
+greedy search, time after assembly in step 0 : 1016.9319911003113
+greedy search candidates: [66575]
+Time after exploration of MagickWriteImageFile: 1016.9606826305389
+==== Next function: MagickWriteImages
+greedy search, currently checking 0 to 8 out of 8
+greedy search, time after compilation in step 0 : 1019.2646927833557
+greedy search, time after assembly in step 0 : 1020.4029881954193
+greedy search candidates: [66575]
+Time after exploration of MagickWriteImages: 1020.4401197433472
+==== Next function: MagickWriteImagesFile
+greedy search, currently checking 0 to 8 out of 8
+greedy search, time after compilation in step 0 : 1022.6333584785461
+greedy search, time after assembly in step 0 : 1023.7490477561951
+greedy search candidates: [66575]
+Time after exploration of MagickWriteImagesFile: 1023.7818396091461
+Time after exploration of 638/wand/magick-image.bc: 1023.7818579673767
+***** Next file: 638/wand/wand.bc
+Time after exploration of 638/wand/wand.bc: 1023.7818672657013
+***** Next file: 638/wand/pixel-iterator.bc
+==== Next function: ClearPixelIterator
+greedy search, currently checking 0 to 8 out of 8
+greedy search, time after compilation in step 0 : 1024.2281017303467
+greedy search, time after assembly in step 0 : 1024.5121386051178
+greedy search candidates: [5651]
+Time after exploration of ClearPixelIterator: 1024.5456790924072
+==== Next function: ClonePixelIterator
+greedy search, currently checking 0 to 24 out of 24
+greedy search, time after compilation in step 0 : 1025.0130078792572
+greedy search, time after assembly in step 0 : 1025.318202972412
+greedy search candidates: [5651]
+Time after exploration of ClonePixelIterator: 1025.4325160980225
+==== Next function: DestroyPixelIterator
+greedy search, currently checking 0 to 14 out of 14
+greedy search, time after compilation in step 0 : 1025.920687198639
+greedy search, time after assembly in step 0 : 1026.2108154296875
+greedy search candidates: [5651]
+Time after exploration of DestroyPixelIterator: 1026.2778730392456
+==== Next function: NewPixelIterator
+greedy search, currently checking 0 to 14 out of 14
+greedy search, time after compilation in step 0 : 1026.7322480678558
+greedy search, time after assembly in step 0 : 1027.0263459682465
+greedy search candidates: [5651]
+Time after exploration of NewPixelIterator: 1027.089347600937
+==== Next function: PixelClearIteratorException
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1027.5479967594147
+greedy search, time after assembly in step 0 : 1027.8202271461487
+greedy search candidates: [5651]
+Time after exploration of PixelClearIteratorException: 1027.8300194740295
+==== Next function: NewPixelRegionIterator
+greedy search, currently checking 0 to 15 out of 15
+greedy search, time after compilation in step 0 : 1028.2779746055603
+greedy search, time after assembly in step 0 : 1028.5755746364594
+greedy search candidates: [5651]
+Time after exploration of NewPixelRegionIterator: 1028.64106631279
+==== Next function: PixelGetCurrentIteratorRow
+greedy search, currently checking 0 to 34 out of 34
+greedy search, time after compilation in step 0 : 1029.13760638237
+greedy search, time after assembly in step 0 : 1029.4368634223938
+greedy search candidates: [5651, 5653]
+Time after exploration of PixelGetCurrentIteratorRow: 1029.5810949802399
+==== Next function: PixelGetIteratorException
+greedy search, currently checking 0 to 9 out of 9
+greedy search, time after compilation in step 0 : 1030.0289330482483
+greedy search, time after assembly in step 0 : 1030.3252086639404
+greedy search candidates: [5651]
+Time after exploration of PixelGetIteratorException: 1030.367354631424
+==== Next function: PixelGetIteratorExceptionType
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1030.8240613937378
+greedy search, time after assembly in step 0 : 1031.110882282257
+greedy search candidates: [5651]
+Time after exploration of PixelGetIteratorExceptionType: 1031.1213729381561
+==== Next function: PixelGetIteratorRow
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1031.5823502540588
+greedy search, time after assembly in step 0 : 1031.8812804222107
+greedy search candidates: [5651]
+Time after exploration of PixelGetIteratorRow: 1031.8915758132935
+==== Next function: PixelSetIteratorRow
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 1032.324777841568
+greedy search, time after assembly in step 0 : 1032.6102511882782
+greedy search candidates: [5651]
+Time after exploration of PixelSetIteratorRow: 1032.624751329422
+==== Next function: PixelGetNextIteratorRow
+greedy search, currently checking 0 to 31 out of 31
+greedy search, time after compilation in step 0 : 1033.0924036502838
+greedy search, time after assembly in step 0 : 1033.4007513523102
+greedy search candidates: [5651, 5653]
+Time after exploration of PixelGetNextIteratorRow: 1033.5314865112305
+==== Next function: PixelGetPreviousIteratorRow
+greedy search, currently checking 0 to 31 out of 31
+greedy search, time after compilation in step 0 : 1033.9905829429626
+greedy search, time after assembly in step 0 : 1034.3018679618835
+greedy search candidates: [5651, 5653]
+Time after exploration of PixelGetPreviousIteratorRow: 1034.4417889118195
+==== Next function: PixelGetPreviousRow
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 1034.9234580993652
+greedy search, time after assembly in step 0 : 1035.2268595695496
+greedy search candidates: [5651]
+Time after exploration of PixelGetPreviousRow: 1035.2330086231232
+==== Next function: PixelResetIterator
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1035.7035710811615
+greedy search, time after assembly in step 0 : 1035.982099533081
+greedy search candidates: [5651]
+Time after exploration of PixelResetIterator: 1035.9932312965393
+==== Next function: PixelSetFirstIteratorRow
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 1036.4617273807526
+greedy search, time after assembly in step 0 : 1036.744385957718
+greedy search candidates: [5651]
+Time after exploration of PixelSetFirstIteratorRow: 1036.7605221271515
+==== Next function: PixelSetLastIteratorRow
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 1037.20210313797
+greedy search, time after assembly in step 0 : 1037.5037760734558
+greedy search candidates: [5651]
+Time after exploration of PixelSetLastIteratorRow: 1037.5223858356476
+==== Next function: PixelSyncIterator
+greedy search, currently checking 0 to 22 out of 22
+greedy search, time after compilation in step 0 : 1037.9767110347748
+greedy search, time after assembly in step 0 : 1038.2732009887695
+greedy search candidates: [5651]
+Time after exploration of PixelSyncIterator: 1038.3674628734589
+Time after exploration of 638/wand/pixel-iterator.bc: 1038.3674848079681
+***** Next file: 638/wand/pixel-wand.bc
+==== Next function: ClearPixelWand
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1038.940551996231
+greedy search, time after assembly in step 0 : 1039.3112647533417
+greedy search candidates: [10729]
+Time after exploration of ClearPixelWand: 1039.3221008777618
+==== Next function: ClonePixelWand
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 1039.904197216034
+greedy search, time after assembly in step 0 : 1040.2590503692627
+greedy search candidates: [10729]
+Time after exploration of ClonePixelWand: 1040.2847294807434
+==== Next function: DestroyPixelWand
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 1040.8445858955383
+greedy search, time after assembly in step 0 : 1041.224524974823
+greedy search candidates: [10729]
+Time after exploration of DestroyPixelWand: 1041.2494633197784
+==== Next function: DestroyPixelWands
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 1041.8233284950256
+greedy search, time after assembly in step 0 : 1042.194522857666
+greedy search candidates: [10729]
+Time after exploration of DestroyPixelWands: 1042.2004165649414
+==== Next function: NewPixelWand
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 1042.7830121517181
+greedy search, time after assembly in step 0 : 1043.141865491867
+greedy search candidates: [10729]
+Time after exploration of NewPixelWand: 1043.1651401519775
+==== Next function: PixelClearException
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1043.7213044166565
+greedy search, time after assembly in step 0 : 1044.097003698349
+greedy search candidates: [10729]
+Time after exploration of PixelClearException: 1044.1129760742188
+==== Next function: PixelGetAlpha
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1044.697553396225
+greedy search, time after assembly in step 0 : 1045.0498564243317
+greedy search candidates: [10729]
+Time after exploration of PixelGetAlpha: 1045.0600349903107
+==== Next function: PixelGetAlphaQuantum
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1045.638207435608
+greedy search, time after assembly in step 0 : 1046.0083010196686
+greedy search candidates: [10729]
+Time after exploration of PixelGetAlphaQuantum: 1046.0178625583649
+==== Next function: PixelGetBlack
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1046.5923438072205
+greedy search, time after assembly in step 0 : 1046.9482214450836
+greedy search candidates: [10729]
+Time after exploration of PixelGetBlack: 1046.9589190483093
+==== Next function: PixelGetBlackQuantum
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1047.5428416728973
+greedy search, time after assembly in step 0 : 1047.920994758606
+greedy search candidates: [10729]
+Time after exploration of PixelGetBlackQuantum: 1047.9317104816437
+==== Next function: PixelGetBlue
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1048.5039250850677
+greedy search, time after assembly in step 0 : 1048.8790884017944
+greedy search candidates: [10729]
+Time after exploration of PixelGetBlue: 1048.8899352550507
+==== Next function: PixelGetBlueQuantum
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1049.4670732021332
+greedy search, time after assembly in step 0 : 1049.8328649997711
+greedy search candidates: [10729]
+Time after exploration of PixelGetBlueQuantum: 1049.8423240184784
+==== Next function: PixelGetColorAsString
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 1050.430010318756
+greedy search, time after assembly in step 0 : 1050.770399570465
+greedy search candidates: [10729]
+Time after exploration of PixelGetColorAsString: 1050.7851033210754
+==== Next function: PixelGetColorAsNormalizedString
+greedy search, currently checking 0 to 20 out of 20
+greedy search, time after compilation in step 0 : 1051.3809237480164
+greedy search, time after assembly in step 0 : 1051.7502064704895
+greedy search candidates: [10729]
+Time after exploration of PixelGetColorAsNormalizedString: 1051.836178779602
+==== Next function: PixelGetColorCount
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1052.4526464939117
+greedy search, time after assembly in step 0 : 1052.8165423870087
+greedy search candidates: [10729]
+Time after exploration of PixelGetColorCount: 1052.8269362449646
+==== Next function: PixelGetCyan
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1053.426129579544
+greedy search, time after assembly in step 0 : 1053.8017060756683
+greedy search candidates: [10729]
+Time after exploration of PixelGetCyan: 1053.8121719360352
+==== Next function: PixelGetCyanQuantum
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1054.3991258144379
+greedy search, time after assembly in step 0 : 1054.7738597393036
+greedy search candidates: [10729]
+Time after exploration of PixelGetCyanQuantum: 1054.7835891246796
+==== Next function: PixelGetException
+greedy search, currently checking 0 to 9 out of 9
+greedy search, time after compilation in step 0 : 1055.3822116851807
+greedy search, time after assembly in step 0 : 1055.7616636753082
+greedy search candidates: [10729]
+Time after exploration of PixelGetException: 1055.8039951324463
+==== Next function: PixelGetExceptionType
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1056.362120628357
+greedy search, time after assembly in step 0 : 1056.734271287918
+greedy search candidates: [10729]
+Time after exploration of PixelGetExceptionType: 1056.7440602779388
+==== Next function: PixelGetFuzz
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1057.33971118927
+greedy search, time after assembly in step 0 : 1057.7102859020233
+greedy search candidates: [10729]
+Time after exploration of PixelGetFuzz: 1057.7206904888153
+==== Next function: PixelGetGreen
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1058.294001340866
+greedy search, time after assembly in step 0 : 1058.6514279842377
+greedy search candidates: [10729]
+Time after exploration of PixelGetGreen: 1058.6615495681763
+==== Next function: PixelGetGreenQuantum
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1059.2934703826904
+greedy search, time after assembly in step 0 : 1059.6836466789246
+greedy search candidates: [10729]
+Time after exploration of PixelGetGreenQuantum: 1059.694508075714
+==== Next function: PixelGetHSL
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 1060.2575006484985
+greedy search, time after assembly in step 0 : 1060.6531372070312
+greedy search candidates: [10729]
+Time after exploration of PixelGetHSL: 1060.6867961883545
+==== Next function: PixelGetIndex
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1061.2781369686127
+greedy search, time after assembly in step 0 : 1061.663903951645
+greedy search candidates: [10729]
+Time after exploration of PixelGetIndex: 1061.6749267578125
+==== Next function: PixelGetMagenta
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1062.2529184818268
+greedy search, time after assembly in step 0 : 1062.6115281581879
+greedy search candidates: [10729]
+Time after exploration of PixelGetMagenta: 1062.6220190525055
+==== Next function: PixelGetMagentaQuantum
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1063.1883747577667
+greedy search, time after assembly in step 0 : 1063.5487093925476
+greedy search candidates: [10729]
+Time after exploration of PixelGetMagentaQuantum: 1063.5590710639954
+==== Next function: PixelGetOpacity
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1064.1439542770386
+greedy search, time after assembly in step 0 : 1064.50048995018
+greedy search candidates: [10729]
+Time after exploration of PixelGetOpacity: 1064.5110437870026
+==== Next function: PixelGetOpacityQuantum
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1065.0986218452454
+greedy search, time after assembly in step 0 : 1065.524071931839
+greedy search candidates: [10729]
+Time after exploration of PixelGetOpacityQuantum: 1065.5354218482971
+==== Next function: PixelGetQuantumColor
+greedy search, currently checking 0 to 46 out of 46
+greedy search, time after compilation in step 0 : 1066.15686917305
+greedy search, time after assembly in step 0 : 1066.5465366840363
+greedy search candidates: [10729]
+Time after exploration of PixelGetQuantumColor: 1066.7392604351044
+==== Next function: PixelGetRed
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1067.342928647995
+greedy search, time after assembly in step 0 : 1067.6934595108032
+greedy search candidates: [10729]
+Time after exploration of PixelGetRed: 1067.7057757377625
+==== Next function: PixelGetRedQuantum
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1068.2713594436646
+greedy search, time after assembly in step 0 : 1068.6355900764465
+greedy search candidates: [10729]
+Time after exploration of PixelGetRedQuantum: 1068.6458179950714
+==== Next function: PixelGetYellow
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1069.2446699142456
+greedy search, time after assembly in step 0 : 1069.629807472229
+greedy search candidates: [10729]
+Time after exploration of PixelGetYellow: 1069.6404688358307
+==== Next function: PixelGetYellowQuantum
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1070.226184129715
+greedy search, time after assembly in step 0 : 1070.5980594158173
+greedy search candidates: [10729]
+Time after exploration of PixelGetYellowQuantum: 1070.607946395874
+==== Next function: PixelSetColor
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 1071.166595697403
+greedy search, time after assembly in step 0 : 1071.5467946529388
+greedy search candidates: [10729]
+Time after exploration of PixelSetColor: 1071.568754196167
+==== Next function: PixelSetHSL
+greedy search, currently checking 0 to 20 out of 20
+greedy search, time after compilation in step 0 : 1072.1535110473633
+greedy search, time after assembly in step 0 : 1072.531255722046
+greedy search candidates: [10729]
+Time after exploration of PixelSetHSL: 1072.6145350933075
+==== Next function: PixelSetOpacity
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1073.1940324306488
+greedy search, time after assembly in step 0 : 1073.5690228939056
+greedy search candidates: [10729]
+Time after exploration of PixelSetOpacity: 1073.5786292552948
+==== Next function: PixelSetQuantumColor
+greedy search, currently checking 0 to 18 out of 18
+greedy search, time after compilation in step 0 : 1074.1619877815247
+greedy search, time after assembly in step 0 : 1074.5414831638336
+greedy search candidates: [10729]
+Time after exploration of PixelSetQuantumColor: 1074.611738204956
+Time after exploration of 638/wand/pixel-wand.bc: 1074.6117565631866
+***** Next file: 638/wand/convert.bc
+==== Next function: ConvertImageCommand
+greedy search, currently checking 0 to 256 out of 3256
+greedy search, time after compilation in step 0 : 1107.6498420238495
+greedy search, time after assembly in step 0 : 1123.3060176372528
+greedy search candidates: [149120]
+greedy search, currently checking 256 to 512 out of 3256
+greedy search, time after compilation in step 0 : 1148.710172176361
+greedy search, time after assembly in step 0 : 1164.5107984542847
+greedy search candidates: [149120]
+greedy search, currently checking 512 to 768 out of 3256
+greedy search, time after compilation in step 0 : 1189.3933863639832
+greedy search, time after assembly in step 0 : 1204.7795057296753
+greedy search candidates: [149120]
+greedy search, currently checking 768 to 1024 out of 3256
+greedy search, time after compilation in step 0 : 1229.5169525146484
+greedy search, time after assembly in step 0 : 1245.235486984253
+greedy search candidates: [149120]
+greedy search, currently checking 1024 to 1280 out of 3256
+greedy search, time after compilation in step 0 : 1269.9821333885193
+greedy search, time after assembly in step 0 : 1285.742066860199
+greedy search candidates: [149120]
+greedy search, currently checking 1280 to 1536 out of 3256
+greedy search, time after compilation in step 0 : 1310.3576176166534
+greedy search, time after assembly in step 0 : 1325.9295434951782
+greedy search candidates: [149120]
+greedy search, currently checking 1536 to 1792 out of 3256
+greedy search, time after compilation in step 0 : 1350.8475155830383
+greedy search, time after assembly in step 0 : 1366.34197306633
+greedy search candidates: [149120]
+greedy search, currently checking 1792 to 2048 out of 3256
+greedy search, time after compilation in step 0 : 1390.32248711586
+greedy search, time after assembly in step 0 : 1405.747088432312
+greedy search candidates: [149120]
+greedy search, currently checking 2048 to 2304 out of 3256
+greedy search, time after compilation in step 0 : 1430.2900919914246
+greedy search, time after assembly in step 0 : 1446.0261483192444
+greedy search candidates: [149120]
+greedy search, currently checking 2304 to 2560 out of 3256
+greedy search, time after compilation in step 0 : 1470.4906013011932
+greedy search, time after assembly in step 0 : 1486.2979905605316
+greedy search candidates: [149120]
+greedy search, currently checking 2560 to 2816 out of 3256
+greedy search, time after compilation in step 0 : 1510.8519327640533
+greedy search, time after assembly in step 0 : 1526.66348862648
+greedy search candidates: [149120]
+greedy search, currently checking 2816 to 3072 out of 3256
+greedy search, time after compilation in step 0 : 1551.4188981056213
+greedy search, time after assembly in step 0 : 1566.4928390979767
+greedy search candidates: [149120]
+greedy search, currently checking 3072 to 3256 out of 3256
+greedy search, time after compilation in step 0 : 1585.7134408950806
+greedy search, time after assembly in step 0 : 1597.5590562820435
+greedy search candidates: [149120]
+Time after exploration of ConvertImageCommand: 1598.287445783615
+==== Next function: ConvertUsage
+greedy search, currently checking 0 to 20 out of 20
+greedy search, time after compilation in step 0 : 1614.134612083435
+greedy search, time after assembly in step 0 : 1618.3660271167755
+greedy search candidates: [149120]
+Time after exploration of ConvertUsage: 1618.453871011734
+==== Next function: ConcatenateImages
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1633.082669019699
+greedy search, time after assembly in step 0 : 1636.9410610198975
+greedy search candidates: [149120]
+Time after exploration of ConcatenateImages: 1636.95148563385
+Time after exploration of 638/wand/convert.bc: 1636.9515063762665
+***** Next file: 638/wand/magick-wand.bc
+==== Next function: ClearMagickWand
+greedy search, currently checking 0 to 16 out of 16
+greedy search, time after compilation in step 0 : 1637.3515779972076
+greedy search, time after assembly in step 0 : 1637.6405329704285
+greedy search candidates: [4795]
+Time after exploration of ClearMagickWand: 1637.711042881012
+==== Next function: CloneMagickWand
+greedy search, currently checking 0 to 12 out of 12
+greedy search, time after compilation in step 0 : 1638.1019175052643
+greedy search, time after assembly in step 0 : 1638.378289937973
+greedy search candidates: [4795]
+Time after exploration of CloneMagickWand: 1638.4293365478516
+==== Next function: DestroyMagickWand
+greedy search, currently checking 0 to 12 out of 12
+greedy search, time after compilation in step 0 : 1638.8164737224579
+greedy search, time after assembly in step 0 : 1639.0886776447296
+greedy search candidates: [4795]
+Time after exploration of DestroyMagickWand: 1639.1408290863037
+==== Next function: MagickClearException
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1639.509887933731
+greedy search, time after assembly in step 0 : 1639.7839736938477
+greedy search candidates: [4795]
+Time after exploration of MagickClearException: 1639.7946195602417
+==== Next function: MagickGetException
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 1640.181093454361
+greedy search, time after assembly in step 0 : 1640.4452831745148
+greedy search candidates: [4795]
+Time after exploration of MagickGetException: 1640.4795362949371
+==== Next function: MagickGetExceptionType
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 1640.8402559757233
+greedy search, time after assembly in step 0 : 1641.0992529392242
+greedy search candidates: [4795]
+Time after exploration of MagickGetExceptionType: 1641.1094846725464
+==== Next function: MagickGetIteratorIndex
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 1641.5010569095612
+greedy search, time after assembly in step 0 : 1641.7988572120667
+greedy search candidates: [4795]
+Time after exploration of MagickGetIteratorIndex: 1641.8165032863617
+==== Next function: MagickQueryFontMetrics
+greedy search, currently checking 0 to 156 out of 156
+greedy search, time after compilation in step 0 : 1642.2995147705078
+greedy search, time after assembly in step 0 : 1642.714593887329
+greedy search candidates: [4795]
+Time after exploration of MagickQueryFontMetrics: 1643.3482234477997
+==== Next function: MagickQueryMultilineFontMetrics
+greedy search, currently checking 0 to 156 out of 156
+greedy search, time after compilation in step 0 : 1643.8483736515045
+greedy search, time after assembly in step 0 : 1644.2668521404266
+greedy search candidates: [4795]
+Time after exploration of MagickQueryMultilineFontMetrics: 1644.9582500457764
+==== Next function: MagickResetIterator
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 1645.3480958938599
+greedy search, time after assembly in step 0 : 1645.6159310340881
+greedy search candidates: [4795]
+Time after exploration of MagickResetIterator: 1645.6396622657776
+==== Next function: MagickSetFirstIterator
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 1646.0257062911987
+greedy search, time after assembly in step 0 : 1646.290423631668
+greedy search candidates: [4795]
+Time after exploration of MagickSetFirstIterator: 1646.311164855957
+==== Next function: MagickSetIteratorIndex
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 1646.7034902572632
+greedy search, time after assembly in step 0 : 1646.9619812965393
+greedy search candidates: [4795]
+Time after exploration of MagickSetIteratorIndex: 1646.9909160137177
+==== Next function: MagickSetLastIterator
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 1647.3601043224335
+greedy search, time after assembly in step 0 : 1647.6212904453278
+greedy search candidates: [4795]
+Time after exploration of MagickSetLastIterator: 1647.6450276374817
+==== Next function: NewMagickWand
+greedy search, currently checking 0 to 11 out of 11
+greedy search, time after compilation in step 0 : 1648.023888349533
+greedy search, time after assembly in step 0 : 1648.2903661727905
+greedy search candidates: [4795]
+Time after exploration of NewMagickWand: 1648.3351488113403
+Time after exploration of 638/wand/magick-wand.bc: 1648.3351664543152
+***** Next file: 638/wand/drawing-wand.bc
+==== Next function: ClearDrawingWand
+greedy search, currently checking 0 to 21 out of 21
+greedy search, time after compilation in step 0 : 1649.8324038982391
+greedy search, time after assembly in step 0 : 1650.5394310951233
+greedy search candidates: [37461]
+Time after exploration of ClearDrawingWand: 1650.6304259300232
+==== Next function: CloneDrawingWand
+greedy search, currently checking 0 to 84 out of 84
+greedy search, time after compilation in step 0 : 1652.4460484981537
+greedy search, time after assembly in step 0 : 1653.4945876598358
+greedy search candidates: [37461]
+Time after exploration of CloneDrawingWand: 1653.8560552597046
+==== Next function: DestroyDrawingWand
+greedy search, currently checking 0 to 24 out of 24
+greedy search, time after compilation in step 0 : 1655.4237270355225
+greedy search, time after assembly in step 0 : 1656.143076658249
+greedy search candidates: [37461]
+Time after exploration of DestroyDrawingWand: 1656.2466549873352
+==== Next function: AdjustAffine
+greedy search, currently checking 0 to 98 out of 98
+greedy search, time after compilation in step 0 : 1658.1195571422577
+greedy search, time after assembly in step 0 : 1659.1874301433563
+greedy search candidates: [37461, 37463]
+Time after exploration of AdjustAffine: 1659.6087789535522
+==== Next function: MvgPrintf
+greedy search, currently checking 0 to 94 out of 94
+greedy search, time after compilation in step 0 : 1661.5256247520447
+greedy search, time after assembly in step 0 : 1662.5878989696503
+greedy search candidates: [37456, 37461]
+greedy search, new min: 37456
+greedy search, current list: [3]
+greedy search, time after step 0 : 1662.963495016098
+greedy search, currently checking 3 to 94 out of 94
+greedy search, time after compilation in step 1 : 1663.9424254894257
