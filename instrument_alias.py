@@ -33,6 +33,7 @@ class InstrumentAlias:
     instr_dir: Path
     start_time: float
     function_encoding: dict[str, str]
+    opt_flag: str
     func_count: int = 0
 
     def measure_outputsize(self, file: Path) -> int:
@@ -93,7 +94,7 @@ class InstrumentAlias:
                     file_name.parent, str(index) + str(file_name.stem) + ".bc"
                 )
             ),
-            "-Os",
+            "-" + self.opt_flag,
             "--aafunc=" + function_name,
             "--aasequence="
             + str(len(index_list))
@@ -125,7 +126,7 @@ class InstrumentAlias:
                     file_name.parent, str(index) + str(file_name.stem) + ".bc"
                 )
             ),
-            "-Os",
+            "-" + self.opt_flag,
             "--arfile",
             str(ar_name),
         ] + (["--take_may"] if take_may else [])
@@ -351,7 +352,7 @@ class InstrumentAlias:
             str(self.default_may_truth.joinpath(description, f)),
             "--ofile",
             str(Path("alias_queries/").joinpath(description, f.with_suffix(".txt"))),
-            "-Os",
+            "-" + self.opt_flag,
         ] + (["--take_may"] if take_may else [])
         run(cmd, cwd=self.exec_root)
 
@@ -469,7 +470,7 @@ class InstrumentAlias:
                 str(self.instr_path.joinpath("clang")),
                 "-bc",
                 "--opt_level",
-                "Os",
+                self.opt_flag,
             ],
             cwd=self.specbuild_dir,
         )
@@ -498,7 +499,7 @@ class InstrumentAlias:
             )
             cmd = [
                 str(self.instr_path.joinpath("opt")),
-                "-Os",
+                "-" + self.opt_flag,
                 "-o",
                 str(self.groundtruth_dir.joinpath(f)),
                 str(self.initial_dir.joinpath(f)),
@@ -690,7 +691,7 @@ class InstrumentAlias:
                     str(file_name.with_suffix("")) + "_composed.txt"
                 )
             ),
-            "-Os",
+            "-" + self.opt_flag,
         ] + (["--take_may"] if take_may else [])
         run(
             cmd,
@@ -716,7 +717,7 @@ class AAChecker:
             str(self.file_path),
             "--ofile",
             str(self.aa_files_dir.joinpath(self.file_path.with_suffix(".txt"))),
-            "-Os",
+            "-" + self.opt_flag,
         ] + (["--take_may"] if take_may else [])
         print(" ".join(cmd))
         run(cmd, cwd=self.aa_instr.exec_root)
@@ -794,6 +795,7 @@ if __name__ == "__main__":
                 Path(instr_dir),
                 time.time(),
                 {},
+                "Oz",
             ),
         ).is_valid():
             exit(1)
@@ -832,6 +834,7 @@ if __name__ == "__main__":
                     Path(instr_dir),
                     time.time(),
                     {},
+                    "Oz",
                 ).exploration_driver()
             except Exception as e:
                 print(e)
@@ -848,4 +851,5 @@ if __name__ == "__main__":
             Path(instr_dir),
             time.time(),
             {},
+            "Oz",
         ).exploration_driver()
