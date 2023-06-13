@@ -16,6 +16,8 @@ dark_red = "#e31a1c"
 black = "#000000"
 white = "#ffffff"
 
+opt_flag = "Os"
+
 
 def filter_non_changes(res_dict):
     filtered_dict = {}
@@ -78,7 +80,9 @@ def plot_comparison(res_dict):
 
 
 def print_relevant_query_stats(benchmark: str):
-    query_dict, counts_dict = parse_stats("results/stats/stats_" + benchmark + ".txt")
+    query_dict, counts_dict = parse_stats(
+        "results/stats/" + opt_flag + "/stats_" + benchmark + ".txt"
+    )
     res_dict = zip_dicts(query_dict, counts_dict)
     flat_dict = flatten_dict(res_dict)
     values = list(flat_dict.values())
@@ -136,8 +140,12 @@ def parse_total_sizes(file_name: str):
 
 
 def print_relevant_size_stats(benchmark: str):
-    size_dict = parse_sizes("results/stats/stats_" + benchmark + ".txt")
-    new_size, old_size = parse_total_sizes("results/stats/stats_" + benchmark + ".txt")
+    size_dict = parse_sizes(
+        "results/stats/" + opt_flag + "/stats_" + benchmark + ".txt"
+    )
+    new_size, old_size = parse_total_sizes(
+        "results/stats/" + opt_flag + "/stats_" + benchmark + ".txt"
+    )
     print(
         "New size: "
         + str(new_size)

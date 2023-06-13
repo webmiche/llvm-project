@@ -83,8 +83,7 @@ def compute_time_per_step(strategy_dict):
                             step
                         ]
 
-    print(total)
-    print(time_per_step)
+    return total, time_per_step
 
 
 def parse_nested_dict(string: str):
@@ -165,9 +164,10 @@ benchmarks = [
     "602",
 ]
 
+opt_flag = "Os"
 if __name__ == "__main__":
-    curr_folder = Path("results/epyc-traces/7/")
-    stat_folder = Path("results/stats/")
+    curr_folder = Path("results/epyc-traces/" + opt_flag + "/7/")
+    stat_folder = Path("results/stats/" + opt_flag + "/")
     for benchmark in benchmarks:
         initial_file = curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
         stat_file = stat_folder.joinpath("stats_" + benchmark + ".txt")
@@ -186,14 +186,20 @@ if __name__ == "__main__":
             print(e)
             continue
 
+    summed_time = 0.0
     for benchmark in benchmarks:
         print(benchmark)
         try:
             strategy_dict = parse_file(
                 curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
             )
-            compute_time_per_step(strategy_dict)
+            total_time, time_per_steps = compute_time_per_step(strategy_dict)
+            print("total time: " + str(total_time))
+            print("time per step: " + str(time_per_steps))
+            summed_time += float(total_time)
         except Exception as e:
             print("failed: " + str(benchmark))
             print(e)
             continue
+
+    print("summed time: " + str(summed_time))
