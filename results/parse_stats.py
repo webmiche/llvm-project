@@ -156,6 +156,7 @@ def parse_change_per_query(f: Path, full_sizes: dict):
     curr_size = 0
     curr_file = ""
     curr_func = ""
+    changed_size = -1
     with open(f, "r") as file:
         for l in file.readlines():
             if l.startswith("==== "):
@@ -170,12 +171,20 @@ def parse_change_per_query(f: Path, full_sizes: dict):
 
             if l.startswith("greedy search, new min:"):
                 new_size = int(l.split(" ")[-1].strip())
-                if curr_func in change_per_query:
-                    change_per_query[curr_func].append(curr_size - new_size)
-                    curr_size = new_size
-                    continue
-                change_per_query[curr_func] = [curr_size - new_size]
+                changed_size = curr_size - new_size
                 curr_size = new_size
+                continue
+
+            if l.startswith("greedy search, current list: "):
+                assert changed_size != -1
+                new_element = l.split(" ")[-1].strip()[:-1]
+                if new_element.startswith("["):
+                    new_element = new_element[1:]
+                if curr_func in change_per_query:
+                    change_per_query[curr_func].append((changed_size, new_element))
+                else:
+                    change_per_query[curr_func] = [(changed_size, new_element)]
+                changed_size = -1
                 continue
 
     return change_per_query
