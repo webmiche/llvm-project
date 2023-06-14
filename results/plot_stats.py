@@ -135,7 +135,12 @@ def print_biggest_first_change(benchmark: str):
         "results/stats/" + opt_flag + "/stats_" + benchmark + ".txt"
     )
     changes = [v[0] for v in change_dict.values()]
-    print("biggest change of a first query: " + str(max(changes)))
+    func = ""
+    for f in change_dict:
+        if max(changes) in change_dict[f]:
+            func = f
+            break
+    print("biggest change of a first query: " + str(max(changes)) + " in " + func)
 
 
 def parse_change_dict(file_name: str):
