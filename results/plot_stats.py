@@ -121,6 +121,31 @@ def print_relevant_query_stats(benchmark: str):
     #    )
 
 
+def print_biggest_change(benchmark: str):
+    change_dict = parse_change_dict(
+        "results/stats/" + opt_flag + "/stats_" + benchmark + ".txt"
+    )
+    changes = list(change_dict.values())
+    flat_changes = [item for sublist in changes for item in sublist]
+    print("biggest change of a query: " + str(max(flat_changes)))
+
+
+def print_biggest_first_change(benchmark: str):
+    change_dict = parse_change_dict(
+        "results/stats/" + opt_flag + "/stats_" + benchmark + ".txt"
+    )
+    changes = [v[0] for v in change_dict.values()]
+    print("biggest change of a first query: " + str(max(changes)))
+
+
+def parse_change_dict(file_name: str):
+    with open(file_name, "r") as f:
+        for line in f.readlines():
+            if line.startswith("change per query: "):
+                dict_line = line.split("change per query: ")[1].strip()
+                return ast.literal_eval(dict_line)
+
+
 def parse_sizes(file_name: str):
     with open(file_name, "r") as f:
         for line in f.readlines():
@@ -190,6 +215,8 @@ if __name__ == "__main__":
         try:
             print_relevant_size_stats(benchmark)
             print_relevant_query_stats(benchmark)
+            print_biggest_change(benchmark)
+            print_biggest_first_change(benchmark)
         except Exception as e:
             print(e)
             continue

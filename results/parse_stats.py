@@ -128,7 +128,7 @@ def parse_sizes(f: Path):
     with open(f, "r") as file:
         for l in file.readlines():
             if l.__contains__(" vs ") and not l.startswith("result"):
-                file_dict[l.split(" ")[0].strip()] = (
+                file_dict[l.split(" ")[0].strip()[:-1]] = (
                     int(l.split(" ")[-3].strip()),
                     int(l.split(" ")[-1].strip()),
                 )
@@ -147,6 +147,38 @@ def parse_size_improvement(f: Path):
                 continue
 
     return old_size, new_size
+
+
+def parse_change_per_query(f: Path, full_sizes: dict):
+    file_sizes = dict(zip(full_sizes.keys(), [v[1] for v in full_sizes.values()]))
+
+    change_per_query = {}
+    curr_size = 0
+    curr_file = ""
+    curr_func = ""
+    with open(f, "r") as file:
+        for l in file.readlines():
+            if l.startswith("==== "):
+                curr_func = l.split(" ")[-1].strip()
+                curr_size = file_sizes[curr_file]
+                continue
+
+            if l.startswith("***** "):
+                curr_file = l.split(" ")[-1].strip()
+                curr_size = file_sizes[curr_file]
+                continue
+
+            if l.startswith("greedy search, new min:"):
+                new_size = int(l.split(" ")[-1].strip())
+                if curr_func in change_per_query:
+                    change_per_query[curr_func].append(curr_size - new_size)
+                    curr_size = new_size
+                    continue
+                change_per_query[curr_func] = [curr_size - new_size]
+                curr_size = new_size
+                continue
+
+    return change_per_query
 
 
 benchmarks = [
@@ -175,9 +207,11 @@ if __name__ == "__main__":
             query_dict, counts_dict = parse_stats(initial_file)
             file_dict = parse_sizes(initial_file)
             old_size, new_size = parse_size_improvement(initial_file)
+            change_per_query = parse_change_per_query(initial_file, file_dict)
             with open(stat_file, "w") as f:
                 f.write("counts per function per file: " + str(counts_dict) + "\n")
                 f.write("found results: " + str(query_dict) + "\n")
+                f.write("change per query: " + str(change_per_query) + "\n")
                 f.write("sizes per file: " + str(file_dict) + "\n")
                 f.write("result: " + str(old_size) + " vs " + str(new_size) + "\n")
 
