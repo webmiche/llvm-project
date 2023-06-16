@@ -1,0 +1,2919 @@
+=============== running benchmark 657 ===============
+c6eba2a2aa7313467fcbc5142aa74033611a0bad
+
+Time after baseline: 6.526053190231323
+Track AA Queries std
+counts per function per file: {PosixPath('657/spec.bc'): {'main': 19}, PosixPath('657/pxz.bc'): {}, PosixPath('657/spec_xz.bc'): {'uncompressStream': 16, 'compressStream': 16, 'init_encoder': 3}, PosixPath('657/common/tuklib_progname.bc'): {}, PosixPath('657/common/tuklib_physmem.bc'): {}, PosixPath('657/common/tuklib_cpucores.bc'): {}, PosixPath('657/common/tuklib_mbstr_width.bc'): {}, PosixPath('657/common/tuklib_exit.bc'): {}, PosixPath('657/common/tuklib_open_stdxxx.bc'): {}, PosixPath('657/common/tuklib_mbstr_fw.bc'): {'tuklib_mbstr_fw': 1}, PosixPath('657/liblzma/rangecoder/price_table.bc'): {}, PosixPath('657/liblzma/simple/x86.bc'): {'x86_code': 24, 'x86_coder_init': 2}, PosixPath('657/liblzma/simple/simple_encoder.bc'): {'unaligned_write32le': 7, 'lzma_simple_props_encode': 7}, PosixPath('657/liblzma/simple/ia64.bc'): {'ia64_code': 2}, PosixPath('657/liblzma/simple/arm.bc'): {'arm_code': 9}, PosixPath('657/liblzma/simple/simple_coder.bc'): {'copy_or_code': 3, 'call_filter': 7, 'simple_code': 102, 'lzma_simple_coder_init': 37}, PosixPath('657/liblzma/simple/simple_decoder.bc'): {'unaligned_read32le': 7, 'lzma_simple_props_decode': 7}, PosixPath('657/liblzma/simple/sparc.bc'): {'sparc_code': 9}, PosixPath('657/liblzma/simple/powerpc.bc'): {'powerpc_code': 12}, PosixPath('657/liblzma/simple/armthumb.bc'): {'armthumb_code': 13}, PosixPath('657/liblzma/lz/lz_encoder_mf.bc'): {'mf_avail': 2, 'mf_ptr': 2, 'lzma_mf_find': 14, 'move_pending': 3, 'normalize': 12, 'move_pos': 32, 'hc_find_func': 4, 'lzma_mf_hc3_find': 56, 'lzma_mf_hc3_skip': 55, 'lzma_mf_hc4_find': 68, 'lzma_mf_hc4_skip': 60, 'bt_find_func': 10, 'lzma_mf_bt2_find': 42, 'bt_skip_func': 7, 'lzma_mf_bt2_skip': 89, 'lzma_mf_bt3_find': 70, 'lzma_mf_bt3_skip': 106, 'lzma_mf_bt4_find': 81, 'lzma_mf_bt4_skip': 110}, PosixPath('657/liblzma/lz/lz_decoder.bc'): {'decode_buffer': 70, 'lz_decoder_reset': 7, 'lz_decoder_end': 2, 'lz_decode': 50, 'lzma_lz_decoder_init': 104, 'lzma_lz_decoder_uncompressed': 2}, PosixPath('657/liblzma/lz/lz_encoder.bc'): {'lz_encoder_prepare': 237, 'lzma_lz_encoder_memusage': 4, 'lz_encoder_init': 69, 'lz_encoder_update': 2, 'lz_encoder_end': 2, 'move_window': 19, 'fill_window': 132, 'lz_encode': 232, 'lzma_lz_encoder_init': 145}, PosixPath('657/liblzma/common/common.bc'): {'lzma_code': 309, 'lzma_alloc': 2, 'lzma_free': 2, 'lzma_bufcpy': 6, 'lzma_next_end': 17, 'lzma_next_filter_init': 4, 'lzma_next_filter_update': 4, 'lzma_strm_init': 31, 'lzma_end': 4, 'lzma_get_check': 2, 'lzma_memusage': 8, 'lzma_memlimit_get': 8, 'lzma_memlimit_set': 8}, PosixPath('657/liblzma/common/alone_decoder.bc'): {'alone_decoder_memconfig': 1, 'alone_decode': 253, 'lzma_alone_decoder_init': 64, 'lzma_alone_decoder': 4}, PosixPath('657/liblzma/common/block_header_decoder.bc'): {'unaligned_read32le': 7, 'free_properties': 3, 'lzma_block_header_decode': 34}, PosixPath('657/liblzma/common/stream_buffer_decoder.bc'): {'lzma_stream_buffer_decode': 26}, PosixPath('657/liblzma/common/block_util.bc'): {'lzma_block_unpadded_size': 7, 'lzma_block_compressed_size': 2}, PosixPath('657/liblzma/common/index_encoder.bc'): {'index_encoder_reset': 7, 'index_encode': 81, 'lzma_index_encoder_init': 12, 'lzma_index_encoder': 4, 'lzma_index_buffer_encode': 10}, PosixPath('657/liblzma/common/vli_decoder.bc'): {'lzma_vli_decode': 27}, PosixPath('657/liblzma/common/filter_buffer_decoder.bc'): {'lzma_raw_buffer_decode': 27}, PosixPath('657/liblzma/common/stream_buffer_encoder.bc'): {'lzma_stream_buffer_encode': 29}, PosixPath('657/liblzma/common/easy_buffer_encoder.bc'): {}, PosixPath('657/liblzma/common/filter_common.bc'): {'lzma_raw_coder_init': 59, 'lzma_filters_copy': 28, 'validate_chain': 5, 'lzma_raw_coder_memusage': 5}, PosixPath('657/liblzma/common/easy_preset.bc'): {'lzma_easy_preset': 4}, PosixPath('657/liblzma/common/stream_encoder.bc'): {'stream_encoder_update': 8, 'stream_encode': 252, 'lzma_stream_encoder_init': 114, 'lzma_stream_encoder': 2}, PosixPath('657/liblzma/common/filter_flags_decoder.bc'): {'lzma_filter_flags_decode': 3}, PosixPath('657/liblzma/common/stream_flags_decoder.bc'): {'unaligned_read32le': 7, 'stream_flags_decode': 4, 'lzma_stream_header_decode': 19, 'lzma_stream_footer_decode': 25}, PosixPath('657/liblzma/common/index_decoder.bc'): {'index_decoder_reset': 16, 'index_decoder_memconfig': 1, 'index_decode': 168, 'index_decoder_init': 25, 'lzma_index_decoder': 4, 'lzma_index_buffer_decode': 37}, PosixPath('657/liblzma/common/index_hash.bc'): {'lzma_index_hash_init': 7, 'lzma_index_hash_size': 2, 'hash_append': 25, 'lzma_index_hash_append': 7, 'lzma_index_hash_decode': 189}, PosixPath('657/liblzma/common/stream_flags_common.bc'): {'lzma_stream_flags_compare': 8}, PosixPath('657/liblzma/common/block_decoder.bc'): {'block_decode': 58, 'lzma_block_decoder_init': 53, 'lzma_block_decoder': 4}, PosixPath('657/liblzma/common/auto_decoder.bc'): {'auto_decoder_memconfig': 3, 'auto_decoder_get_check': 2, 'auto_decode': 20, 'auto_decoder_init': 38, 'lzma_auto_decoder': 4}, PosixPath('657/liblzma/common/stream_decoder.bc'): {'stream_decoder_reset': 4, 'stream_decoder_memconfig': 1, 'stream_decode': 360, 'lzma_stream_decoder_init': 73, 'lzma_stream_decoder': 4}, PosixPath('657/liblzma/common/vli_size.bc'): {}, PosixPath('657/liblzma/common/easy_decoder_memusage.bc'): {}, PosixPath('657/liblzma/common/block_buffer_encoder.bc'): {'lzma_block_buffer_encode': 15, 'block_encode_normal': 31, 'block_encode_uncompressed': 28}, PosixPath('657/liblzma/common/block_encoder.bc'): {'block_encode': 62, 'lzma_block_encoder_init': 38, 'lzma_block_encoder': 4}, PosixPath('657/liblzma/common/hardware_physmem.bc'): {}, PosixPath('657/liblzma/common/filter_buffer_encoder.bc'): {'lzma_raw_buffer_encode': 11}, PosixPath('657/liblzma/common/easy_encoder_memusage.bc'): {}, PosixPath('657/liblzma/common/vli_encoder.bc'): {'lzma_vli_encode': 28}, PosixPath('657/liblzma/common/filter_flags_encoder.bc'): {'lzma_filter_flags_encode': 3}, PosixPath('657/liblzma/common/filter_decoder.bc'): {'lzma_raw_decoder': 4, 'lzma_properties_decode': 4}, PosixPath('657/liblzma/common/index.bc'): {'lzma_index_append': 45, 'index_dup_stream': 80, 'index_init_plain': 8, 'index_stream_init': 39, 'index_tree_append': 25, 'lzma_index_init': 26, 'index_tree_node_end': 2, 'lzma_index_memused': 2, 'lzma_index_size': 2, 'lzma_index_stream_size': 4, 'lzma_index_file_size': 12, 'lzma_index_checks': 4, 'lzma_index_padding_size': 2, 'index_cat_helper': 34, 'lzma_index_cat': 264, 'lzma_index_dup': 115, 'lzma_index_iter_init': 2, 'iter_set_info': 164, 'lzma_index_iter_next': 43, 'index_tree_locate': 2, 'lzma_index_iter_locate': 23}, PosixPath('657/liblzma/common/block_buffer_decoder.bc'): {'lzma_block_buffer_decode': 11}, PosixPath('657/liblzma/common/block_header_encoder.bc'): {'lzma_block_header_size': 13, 'unaligned_write32le': 7, 'lzma_block_header_encode': 23}, PosixPath('657/liblzma/common/easy_encoder.bc'): {}, PosixPath('657/liblzma/common/alone_encoder.bc'): {'unaligned_write32le': 7, 'alone_encode': 14, 'alone_encoder_init': 108, 'lzma_alone_encoder': 4}, PosixPath('657/liblzma/common/filter_encoder.bc'): {'lzma_filters_update': 18, 'lzma_raw_encoder': 6, 'lzma_properties_size': 4, 'lzma_properties_encode': 3}, PosixPath('657/liblzma/common/stream_flags_encoder.bc'): {'stream_flags_encode': 2, 'unaligned_write32le': 7, 'lzma_stream_header_encode': 14, 'lzma_stream_footer_encode': 34}, PosixPath('657/liblzma/check/crc64_table.bc'): {}, PosixPath('657/liblzma/check/check.bc'): {}, PosixPath('657/liblzma/check/crc32_fast.bc'): {'lzma_crc32': 36}, PosixPath('657/liblzma/check/sha256.bc'): {'lzma_sha256_init': 2, 'transform': 347, 'process': 467, 'lzma_sha256_update': 2, 'lzma_sha256_finish': 5}, PosixPath('657/liblzma/check/crc32_table.bc'): {}, PosixPath('657/liblzma/check/crc64_fast.bc'): {'lzma_crc64': 12}, PosixPath('657/liblzma/lzma/lzma_encoder_optimum_normal.bc'): {'lzma_lzma_optimum_normal': 1875, 'helper1': 430, 'backward': 89, 'fill_distances_prices': 7, 'fill_align_prices': 1, 'mf_avail': 2, 'mf_ptr': 2, 'get_literal_price': 2, 'make_literal': 2, 'get_short_rep_price': 2, 'make_short_rep': 2, 'get_pure_rep_price': 6, 'get_pos_len_price': 1, 'get_rep_price': 2, 'helper2': 700}, PosixPath('657/liblzma/lzma/fastpos_table.bc'): {}, PosixPath('657/liblzma/lzma/lzma_decoder.bc'): {'lzma_lzma_lclppb_decode': 4, 'lzma_decoder_reset': 78, 'rc_read_init': 14, 'dict_get': 4, 'dict_put': 6, 'dict_repeat': 20, 'lzma_decode': 819, 'lzma_lzma_decoder_create': 15, 'is_lclppb_valid': 4, 'lzma_decoder_init': 4, 'lzma_lzma_decoder_memusage': 7, 'unaligned_read32le': 7, 'lzma_lzma_props_decode': 14}, PosixPath('657/liblzma/lzma/lzma2_decoder.bc'): {'lzma2_decode': 489, 'dict_write': 11, 'lzma2_decoder_init': 27, 'lzma_lzma2_props_decode': 4}, PosixPath('657/liblzma/lzma/lzma_encoder.bc'): {'rc_bit': 2, 'rc_bittree': 2, 'encode_init': 10, 'mf_position': 2, 'rc_shift_low': 18, 'rc_reset': 11, 'rc_encode': 73, 'literal_matched': 2, 'literal': 23, 'length_update_prices': 6, 'length': 3, 'rep_match': 59, 'rc_bittree_reverse': 2, 'rc_direct': 1, 'match': 45, 'encode_symbol': 70, 'encode_eopm': 5, 'rc_flush': 1, 'lzma_lzma_encode': 424, 'is_lclppb_valid': 4, 'is_options_valid': 11, 'length_encoder_reset': 4, 'lzma_lzma_encoder_reset': 125, 'set_lz_options': 53, 'lzma_lzma_encoder_create': 104, 'lzma_lzma_encoder_memusage': 87, 'lzma_lzma_lclppb_encode': 7, 'unaligned_write32le': 7, 'lzma_lzma_props_encode': 14}, PosixPath('657/liblzma/lzma/lzma2_encoder.bc'): {'lzma2_header_uncompressed': 15, 'lzma2_encoder_options_update': 28, 'mf_unencoded': 4, 'lzma2_header_lzma': 121, 'mf_read': 2, 'lzma2_encode': 637, 'lzma2_encoder_init': 24}, PosixPath('657/liblzma/lzma/lzma_encoder_presets.bc'): {'lzma_lzma_preset': 316}, PosixPath('657/liblzma/lzma/lzma_encoder_optimum_fast.bc'): {'mf_ptr': 2, 'mf_avail': 2, 'lzma_lzma_optimum_fast': 152}, PosixPath('657/liblzma/delta/delta_decoder.bc'): {'decode_buffer': 6, 'delta_decode': 20, 'lzma_delta_props_decode': 2}, PosixPath('657/liblzma/delta/delta_common.bc'): {'lzma_delta_coder_memusage': 2, 'lzma_delta_coder_init': 29}, PosixPath('657/liblzma/delta/delta_encoder.bc'): {'copy_and_encode': 14, 'encode_in_place': 6, 'delta_encode': 47, 'lzma_delta_encoder_init': 2}, PosixPath('657/spec_mem_io/spec_mem_io.bc'): {'spec_mem_init': 8, 'spec_mem_sum': 4, 'fd_grow': 6, 'spec_uncompress': 2, 'spec_mem_load': 23, 'spec_mem_read': 9, 'spec_mem_fread': 9, 'spec_mem_getc': 11, 'spec_mem_ungetc': 7, 'spec_mem_lseek': 7, 'spec_mem_reset': 4, 'spec_mem_get_length': 3, 'spec_mem_fopen': 4, 'spec_mem_open': 2, 'spec_mem_write': 16, 'spec_mem_fwrite': 16, 'spec_mem_putc': 8, 'spec_mem_feof': 5, 'spec_compress': 2, 'sum_str_to_hex': 8, 'spec_mem_alloc_fds': 3, 'spec_mem_free_fds': 1}, PosixPath('657/sha-2/sha512.bc'): {'sha_process': 12, 'sha_compress': 468, 'sha_done': 12, 'sha_init': 46, 'sortof_strdup': 1}, PosixPath('657/xz/options.bc'): {'parse_options': 11, 'options_delta': 12, 'set_lzma': 4, 'options_lzma': 7}, PosixPath('657/xz/signals.bc'): {}, PosixPath('657/xz/hardware.bc'): {}, PosixPath('657/xz/args.bc'): {}, PosixPath('657/xz/file_io.bc'): {'io_open_dest_real': 3, 'io_open_dest': 3, 'io_write_buf': 1, 'io_close_dest': 1, 'io_close': 12, 'io_read': 1, 'io_write': 7}, PosixPath('657/xz/util.bc'): {'xrealloc': 1, 'str_to_uint64': 7, 'my_snprintf': 3, 'uint64_to_nicestr': 4}, PosixPath('657/xz/main.bc'): {}, PosixPath('657/xz/list.bc'): {'get_check_names': 1, 'print_totals_robot': 1, 'print_totals_basic': 7, 'list_totals': 15, 'parse_indexes': 47, 'parse_block_header': 65, 'parse_check_value': 3, 'parse_details': 75, 'print_info_robot': 94, 'print_info_basic': 2, 'print_info_adv': 90, 'update_totals': 6, 'list_file': 640}, PosixPath('657/xz/coder.bc'): {'coder_add_filter': 3, 'forget_filter_chain': 2, 'coder_set_compression_settings': 6, 'is_format_lzma': 3, 'coder_normal': 7, 'coder_run': 7}, PosixPath('657/xz/message.bc'): {'message_mem_needed': 2, 'message_filters_to_str': 27, 'message_filters_show': 1}}
+Time after AA Query measurement: 7.617100954055786
+Start Exploration
+***** Next file: 657/spec.bc
+==== Next function: main
+greedy search, currently checking 0 to 19 out of 19
+greedy search, time after compilation in step 0 : 7.825560569763184
+greedy search, time after assembly in step 0 : 7.980065584182739
+greedy search candidates: [2454]
+Time after exploration of main: 8.048435926437378
+Time after exploration of 657/spec.bc: 8.048455476760864
+***** Next file: 657/pxz.bc
+Time after exploration of 657/pxz.bc: 8.048466444015503
+***** Next file: 657/spec_xz.bc
+==== Next function: uncompressStream
+greedy search, currently checking 0 to 16 out of 16
+greedy search, time after compilation in step 0 : 8.260383129119873
+greedy search, time after assembly in step 0 : 8.415854692459106
+greedy search candidates: [2364]
+Time after exploration of uncompressStream: 8.472229480743408
+==== Next function: compressStream
+greedy search, currently checking 0 to 16 out of 16
+greedy search, time after compilation in step 0 : 8.686170816421509
+greedy search, time after assembly in step 0 : 8.841694593429565
+greedy search candidates: [2364]
+Time after exploration of compressStream: 8.898941040039062
+==== Next function: init_encoder
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 9.106461763381958
+greedy search, time after assembly in step 0 : 9.261157751083374
+greedy search candidates: [2364]
+Time after exploration of init_encoder: 9.271305084228516
+Time after exploration of 657/spec_xz.bc: 9.271322011947632
+***** Next file: 657/common/tuklib_progname.bc
+Time after exploration of 657/common/tuklib_progname.bc: 9.271329402923584
+***** Next file: 657/common/tuklib_physmem.bc
+Time after exploration of 657/common/tuklib_physmem.bc: 9.271335363388062
+***** Next file: 657/common/tuklib_cpucores.bc
+Time after exploration of 657/common/tuklib_cpucores.bc: 9.271341323852539
+***** Next file: 657/common/tuklib_mbstr_width.bc
+Time after exploration of 657/common/tuklib_mbstr_width.bc: 9.271345853805542
+***** Next file: 657/common/tuklib_exit.bc
+Time after exploration of 657/common/tuklib_exit.bc: 9.271351337432861
+***** Next file: 657/common/tuklib_open_stdxxx.bc
+Time after exploration of 657/common/tuklib_open_stdxxx.bc: 9.27135682106018
+***** Next file: 657/common/tuklib_mbstr_fw.bc
+==== Next function: tuklib_mbstr_fw
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 9.440253019332886
+greedy search, time after assembly in step 0 : 9.578386545181274
+greedy search candidates: [118]
+Time after exploration of tuklib_mbstr_fw: 9.58208179473877
+Time after exploration of 657/common/tuklib_mbstr_fw.bc: 9.582094192504883
+***** Next file: 657/liblzma/rangecoder/price_table.bc
+Time after exploration of 657/liblzma/rangecoder/price_table.bc: 9.582101106643677
+***** Next file: 657/liblzma/simple/x86.bc
+==== Next function: x86_code
+greedy search, currently checking 0 to 24 out of 24
+greedy search, time after compilation in step 0 : 9.792357444763184
+greedy search, time after assembly in step 0 : 9.947208642959595
+greedy search candidates: [671]
+Time after exploration of x86_code: 10.04158329963684
+==== Next function: x86_coder_init
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 10.247549772262573
+greedy search, time after assembly in step 0 : 10.387529850006104
+greedy search candidates: [671]
+Time after exploration of x86_coder_init: 10.39461064338684
+Time after exploration of 657/liblzma/simple/x86.bc: 10.394629001617432
+***** Next file: 657/liblzma/simple/simple_encoder.bc
+==== Next function: unaligned_write32le
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 10.571747303009033
+greedy search, time after assembly in step 0 : 10.709903240203857
+greedy search candidates: [101]
+Time after exploration of unaligned_write32le: 10.735883474349976
+==== Next function: lzma_simple_props_encode
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 10.910774946212769
+greedy search, time after assembly in step 0 : 11.045517444610596
+greedy search candidates: [101]
+Time after exploration of lzma_simple_props_encode: 11.071074962615967
+Time after exploration of 657/liblzma/simple/simple_encoder.bc: 11.07109808921814
+***** Next file: 657/liblzma/simple/ia64.bc
+==== Next function: ia64_code
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 11.275012493133545
+greedy search, time after assembly in step 0 : 11.425009489059448
+greedy search candidates: [921]
+Time after exploration of ia64_code: 11.433766841888428
+Time after exploration of 657/liblzma/simple/ia64.bc: 11.433779239654541
+***** Next file: 657/liblzma/simple/arm.bc
+==== Next function: arm_code
+greedy search, currently checking 0 to 9 out of 9
+greedy search, time after compilation in step 0 : 11.627262830734253
+greedy search, time after assembly in step 0 : 11.773780822753906
+greedy search candidates: [299]
+Time after exploration of arm_code: 11.808107376098633
+Time after exploration of 657/liblzma/simple/arm.bc: 11.808127641677856
+***** Next file: 657/liblzma/simple/simple_coder.bc
+==== Next function: copy_or_code
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 12.010111093521118
+greedy search, time after assembly in step 0 : 12.156314373016357
+greedy search candidates: [1588]
+Time after exploration of copy_or_code: 12.166789531707764
+==== Next function: call_filter
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 12.377636909484863
+greedy search, time after assembly in step 0 : 12.530177116394043
+greedy search candidates: [1588]
+Time after exploration of call_filter: 12.555820226669312
+==== Next function: simple_code
+greedy search, currently checking 0 to 102 out of 102
+greedy search, time after compilation in step 0 : 12.793159008026123
+greedy search, time after assembly in step 0 : 12.987305641174316
+greedy search candidates: [1605, 1585, 1586, 1588, 1589, 1559, 1592, 1567]
+greedy search, new min: 1585
+greedy search, current list: [2]
+greedy search, time after step 0 : 13.367376327514648
+greedy search, currently checking 2 to 102 out of 102
+greedy search, time after compilation in step 1 : 13.564750671386719
+greedy search, time after assembly in step 1 : 13.756556034088135
+greedy search candidates: [1583, 1585, 1589, 1591, 1564]
+greedy search, new min: 1564
+greedy search, current list: [2, 8]
+greedy search, time after step 1 : 14.089094638824463
+greedy search, currently checking 8 to 102 out of 102
+greedy search, time after compilation in step 2 : 14.283433437347412
+greedy search, time after assembly in step 2 : 14.47871208190918
+greedy search candidates: [1569, 1576, 1587, 1593, 1564]
+Time after exploration of simple_code: 14.8468656539917
+==== Next function: lzma_simple_coder_init
+greedy search, currently checking 0 to 37 out of 37
+greedy search, time after compilation in step 0 : 15.077975034713745
+greedy search, time after assembly in step 0 : 15.243887424468994
+greedy search candidates: [1588, 1628, 1591]
+Time after exploration of lzma_simple_coder_init: 15.387866735458374
+Time after exploration of 657/liblzma/simple/simple_coder.bc: 15.387887477874756
+***** Next file: 657/liblzma/simple/simple_decoder.bc
+==== Next function: unaligned_read32le
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 15.564523696899414
+greedy search, time after assembly in step 0 : 15.701575517654419
+greedy search candidates: [179]
+Time after exploration of unaligned_read32le: 15.730523109436035
+==== Next function: lzma_simple_props_decode
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 15.910531759262085
+greedy search, time after assembly in step 0 : 16.04679250717163
+greedy search candidates: [179]
+Time after exploration of lzma_simple_props_decode: 16.075897216796875
+Time after exploration of 657/liblzma/simple/simple_decoder.bc: 16.07592225074768
+***** Next file: 657/liblzma/simple/sparc.bc
+==== Next function: sparc_code
+greedy search, currently checking 0 to 9 out of 9
+greedy search, time after compilation in step 0 : 16.273732662200928
+greedy search, time after assembly in step 0 : 16.411903619766235
+greedy search candidates: [411, 413]
+Time after exploration of sparc_code: 16.449669122695923
+Time after exploration of 657/liblzma/simple/sparc.bc: 16.44968843460083
+***** Next file: 657/liblzma/simple/powerpc.bc
+==== Next function: powerpc_code
+greedy search, currently checking 0 to 12 out of 12
+greedy search, time after compilation in step 0 : 16.646071434020996
+greedy search, time after assembly in step 0 : 16.788366556167603
+greedy search candidates: [379, 356]
+greedy search, new min: 356
+greedy search, current list: [0]
+greedy search, time after step 0 : 16.835135221481323
+greedy search, currently checking 0 to 12 out of 12
+greedy search, time after compilation in step 1 : 16.986745357513428
+greedy search, time after assembly in step 1 : 17.130090713500977
+greedy search candidates: [356]
+Time after exploration of powerpc_code: 17.174002408981323
+Time after exploration of 657/liblzma/simple/powerpc.bc: 17.174023628234863
+***** Next file: 657/liblzma/simple/armthumb.bc
+==== Next function: armthumb_code
+greedy search, currently checking 0 to 13 out of 13
+greedy search, time after compilation in step 0 : 17.370518684387207
+greedy search, time after assembly in step 0 : 17.513643264770508
+greedy search candidates: [367]
+Time after exploration of armthumb_code: 17.563979387283325
+Time after exploration of 657/liblzma/simple/armthumb.bc: 17.56400203704834
+***** Next file: 657/liblzma/lz/lz_encoder_mf.bc
+==== Next function: mf_avail
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 17.96082854270935
+greedy search, time after assembly in step 0 : 18.143253803253174
+greedy search candidates: [4638]
+Time after exploration of mf_avail: 18.151636838912964
+==== Next function: mf_ptr
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 18.536638736724854
+greedy search, time after assembly in step 0 : 18.72037124633789
+greedy search candidates: [4638]
+Time after exploration of mf_ptr: 18.73040223121643
+==== Next function: lzma_mf_find
+greedy search, currently checking 0 to 14 out of 14
+greedy search, time after compilation in step 0 : 19.159828662872314
+greedy search, time after assembly in step 0 : 19.36912775039673
+greedy search candidates: [4638]
+Time after exploration of lzma_mf_find: 19.421680450439453
+==== Next function: move_pending
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 19.810072422027588
+greedy search, time after assembly in step 0 : 19.993728637695312
+greedy search candidates: [4638]
+Time after exploration of move_pending: 20.00546145439148
+==== Next function: normalize
+greedy search, currently checking 0 to 12 out of 12
+greedy search, time after compilation in step 0 : 20.429553747177124
+greedy search, time after assembly in step 0 : 20.63845729827881
+greedy search candidates: [4638]
+Time after exploration of normalize: 20.679327964782715
+==== Next function: move_pos
+greedy search, currently checking 0 to 32 out of 32
+greedy search, time after compilation in step 0 : 21.112340450286865
+greedy search, time after assembly in step 0 : 21.330117225646973
+greedy search candidates: [4628, 4638, 4639]
+greedy search, new min: 4628
+greedy search, current list: [27]
+greedy search, time after step 0 : 21.448707342147827
+greedy search, currently checking 27 to 32 out of 32
+greedy search, time after compilation in step 1 : 21.68110680580139
+greedy search, time after assembly in step 1 : 21.867982387542725
+greedy search candidates: [4628]
+Time after exploration of move_pos: 21.88964295387268
+==== Next function: hc_find_func
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 22.28697896003723
+greedy search, time after assembly in step 0 : 22.477465391159058
+greedy search candidates: [4638]
+Time after exploration of hc_find_func: 22.493168830871582
+==== Next function: lzma_mf_hc3_find
+greedy search, currently checking 0 to 56 out of 56
+greedy search, time after compilation in step 0 : 22.93676209449768
+greedy search, time after assembly in step 0 : 23.166486501693726
+greedy search candidates: [4638]
+Time after exploration of lzma_mf_hc3_find: 23.37152409553528
+==== Next function: lzma_mf_hc3_skip
+greedy search, currently checking 0 to 55 out of 55
+greedy search, time after compilation in step 0 : 23.81529927253723
+greedy search, time after assembly in step 0 : 24.05022931098938
+greedy search candidates: [4638]
+Time after exploration of lzma_mf_hc3_skip: 24.26783537864685
+==== Next function: lzma_mf_hc4_find
+greedy search, currently checking 0 to 68 out of 68
+greedy search, time after compilation in step 0 : 24.72101926803589
+greedy search, time after assembly in step 0 : 24.960224628448486
+greedy search candidates: [4638]
+Time after exploration of lzma_mf_hc4_find: 25.22369360923767
+==== Next function: lzma_mf_hc4_skip
+greedy search, currently checking 0 to 60 out of 60
+greedy search, time after compilation in step 0 : 25.671918630599976
+greedy search, time after assembly in step 0 : 25.90406060218811
+greedy search candidates: [4638]
+Time after exploration of lzma_mf_hc4_skip: 26.126748085021973
+==== Next function: bt_find_func
+greedy search, currently checking 0 to 10 out of 10
+greedy search, time after compilation in step 0 : 26.531262636184692
+greedy search, time after assembly in step 0 : 26.739098072052002
+greedy search candidates: [4638]
+Time after exploration of bt_find_func: 26.77811312675476
+==== Next function: lzma_mf_bt2_find
+greedy search, currently checking 0 to 42 out of 42
+greedy search, time after compilation in step 0 : 27.216776609420776
+greedy search, time after assembly in step 0 : 27.43409276008606
+greedy search candidates: [4638]
+Time after exploration of lzma_mf_bt2_find: 27.591774940490723
+==== Next function: bt_skip_func
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 27.98952555656433
+greedy search, time after assembly in step 0 : 28.193753719329834
+greedy search candidates: [4646, 4642, 4644, 4638]
+Time after exploration of bt_skip_func: 28.220323085784912
+==== Next function: lzma_mf_bt2_skip
+greedy search, currently checking 0 to 89 out of 89
+greedy search, time after compilation in step 0 : 28.682761907577515
+greedy search, time after assembly in step 0 : 28.930375337600708
+greedy search candidates: [4638]
+Time after exploration of lzma_mf_bt2_skip: 29.272234201431274
+==== Next function: lzma_mf_bt3_find
+greedy search, currently checking 0 to 70 out of 70
+greedy search, time after compilation in step 0 : 29.73158097267151
+greedy search, time after assembly in step 0 : 29.979239225387573
+greedy search candidates: [4638]
+Time after exploration of lzma_mf_bt3_find: 30.258424997329712
+==== Next function: lzma_mf_bt3_skip
+greedy search, currently checking 0 to 106 out of 106
+greedy search, time after compilation in step 0 : 30.73999857902527
+greedy search, time after assembly in step 0 : 31.003925323486328
+greedy search candidates: [4638]
+Time after exploration of lzma_mf_bt3_skip: 31.42989706993103
+==== Next function: lzma_mf_bt4_find
+greedy search, currently checking 0 to 81 out of 81
+greedy search, time after compilation in step 0 : 31.898632764816284
+greedy search, time after assembly in step 0 : 32.143391609191895
+greedy search candidates: [4638]
+Time after exploration of lzma_mf_bt4_find: 32.452064752578735
+==== Next function: lzma_mf_bt4_skip
+greedy search, currently checking 0 to 110 out of 110
+greedy search, time after compilation in step 0 : 32.96094822883606
+greedy search, time after assembly in step 0 : 33.22353982925415
+greedy search candidates: [4638]
+Time after exploration of lzma_mf_bt4_skip: 33.6055645942688
+Time after exploration of 657/liblzma/lz/lz_encoder_mf.bc: 33.60558247566223
+***** Next file: 657/liblzma/lz/lz_decoder.bc
+==== Next function: decode_buffer
+greedy search, currently checking 0 to 70 out of 70
+greedy search, time after compilation in step 0 : 33.847243309020996
+greedy search, time after assembly in step 0 : 34.04738163948059
+greedy search candidates: [1507, 1508, 1513, 1517, 1519, 1526]
+greedy search, new min: 1507
+greedy search, current list: [3]
+greedy search, time after step 0 : 34.33007097244263
+greedy search, currently checking 3 to 70 out of 70
+greedy search, time after compilation in step 1 : 34.522799015045166
+greedy search, time after assembly in step 1 : 34.704466104507446
+greedy search candidates: [1512, 1507]
+Time after exploration of decode_buffer: 34.96894812583923
+==== Next function: lz_decoder_reset
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 35.19304943084717
+greedy search, time after assembly in step 0 : 35.35463881492615
+greedy search candidates: [1513]
+Time after exploration of lz_decoder_reset: 35.383564949035645
+==== Next function: lz_decoder_end
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 35.60082674026489
+greedy search, time after assembly in step 0 : 35.75510835647583
+greedy search candidates: [1513]
+Time after exploration of lz_decoder_end: 35.76274824142456
+==== Next function: lz_decode
+greedy search, currently checking 0 to 50 out of 50
+greedy search, time after compilation in step 0 : 35.998392820358276
+greedy search, time after assembly in step 0 : 36.17035722732544
+greedy search candidates: [1513]
+Time after exploration of lz_decode: 36.33550572395325
+==== Next function: lzma_lz_decoder_init
+greedy search, currently checking 0 to 104 out of 104
+greedy search, time after compilation in step 0 : 36.59020733833313
+greedy search, time after assembly in step 0 : 36.79611825942993
+greedy search candidates: [1513, 1517, 1519, 1520, 1554, 1535]
+Time after exploration of lzma_lz_decoder_init: 37.19484353065491
+==== Next function: lzma_lz_decoder_uncompressed
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 37.41734743118286
+greedy search, time after assembly in step 0 : 37.56605625152588
+greedy search candidates: [1513]
+Time after exploration of lzma_lz_decoder_uncompressed: 37.57558584213257
+Time after exploration of 657/liblzma/lz/lz_decoder.bc: 37.57561111450195
+***** Next file: 657/liblzma/lz/lz_encoder.bc
+==== Next function: lz_encoder_prepare
+greedy search, currently checking 0 to 237 out of 237
+greedy search, time after compilation in step 0 : 37.97451615333557
+greedy search, time after assembly in step 0 : 38.29108643531799
+greedy search candidates: [2219, 2221, 2230]
+greedy search, new min: 2219
+greedy search, current list: [50]
+greedy search, time after step 0 : 39.2086124420166
+greedy search, currently checking 50 to 237 out of 237
+greedy search, time after compilation in step 1 : 39.51433873176575
+greedy search, time after assembly in step 1 : 39.783891439437866
+greedy search candidates: [2216, 2219, 2214]
+greedy search, new min: 2214
+greedy search, current list: [50, 54]
+greedy search, time after step 1 : 40.54015779495239
+greedy search, currently checking 54 to 237 out of 237
+greedy search, time after compilation in step 2 : 40.837889194488525
+greedy search, time after assembly in step 2 : 41.10670447349548
+greedy search candidates: [2211, 2214]
+greedy search, new min: 2211
+greedy search, current list: [50, 54, 59]
+greedy search, time after step 2 : 41.85429668426514
+greedy search, currently checking 59 to 237 out of 237
+greedy search, time after compilation in step 3 : 42.16050839424133
+greedy search, time after assembly in step 3 : 42.41560435295105
+greedy search candidates: [2211]
+Time after exploration of lz_encoder_prepare: 43.125030517578125
+==== Next function: lzma_lz_encoder_memusage
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 43.384357929229736
+greedy search, time after assembly in step 0 : 43.54535794258118
+greedy search candidates: [2230]
+Time after exploration of lzma_lz_encoder_memusage: 43.556793451309204
+==== Next function: lz_encoder_init
+greedy search, currently checking 0 to 69 out of 69
+greedy search, time after compilation in step 0 : 43.84220576286316
+greedy search, time after assembly in step 0 : 44.04088258743286
+greedy search candidates: [2230]
+Time after exploration of lz_encoder_init: 44.31100559234619
+==== Next function: lz_encoder_update
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 44.56970024108887
+greedy search, time after assembly in step 0 : 44.72677493095398
+greedy search candidates: [2230]
+Time after exploration of lz_encoder_update: 44.733575105667114
+==== Next function: lz_encoder_end
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 44.98346400260925
+greedy search, time after assembly in step 0 : 45.143314599990845
+greedy search candidates: [2230]
+Time after exploration of lz_encoder_end: 45.153969526290894
+==== Next function: move_window
+greedy search, currently checking 0 to 19 out of 19
+greedy search, time after compilation in step 0 : 45.427111864089966
+greedy search, time after assembly in step 0 : 45.59774351119995
+greedy search candidates: [2230]
+Time after exploration of move_window: 45.67184662818909
+==== Next function: fill_window
+greedy search, currently checking 0 to 132 out of 132
+greedy search, time after compilation in step 0 : 46.009698152542114
+greedy search, time after assembly in step 0 : 46.23983144760132
+greedy search candidates: [2230]
+Time after exploration of fill_window: 46.77617144584656
+==== Next function: lz_encode
+greedy search, currently checking 0 to 232 out of 232
+greedy search, time after compilation in step 0 : 47.18273854255676
+greedy search, time after assembly in step 0 : 47.474098682403564
+greedy search candidates: [2230]
+Time after exploration of lz_encode: 48.3923020362854
+==== Next function: lzma_lz_encoder_init
+greedy search, currently checking 0 to 145 out of 145
+greedy search, time after compilation in step 0 : 48.75314688682556
+greedy search, time after assembly in step 0 : 48.99224281311035
+greedy search candidates: [2266, 2228, 2230]
+greedy search, new min: 2228
+greedy search, current list: [0]
+greedy search, time after step 0 : 49.56860876083374
+greedy search, currently checking 0 to 145 out of 145
+greedy search, time after compilation in step 1 : 49.845486640930176
+greedy search, time after assembly in step 1 : 50.083173751831055
+greedy search candidates: [2264, 2228]
+Time after exploration of lzma_lz_encoder_init: 50.65730881690979
+Time after exploration of 657/liblzma/lz/lz_encoder.bc: 50.657328844070435
+***** Next file: 657/liblzma/common/common.bc
+==== Next function: lzma_code
+greedy search, currently checking 0 to 256 out of 309
+greedy search, time after compilation in step 0 : 51.013442039489746
+greedy search, time after assembly in step 0 : 51.332266092300415
+greedy search candidates: [2008, 2014, 2007]
+greedy search, currently checking 256 to 309 out of 309
+greedy search, time after compilation in step 0 : 52.54130697250366
+greedy search, time after assembly in step 0 : 52.73206686973572
+greedy search candidates: [2007]
+Time after exploration of lzma_code: 52.932292461395264
+==== Next function: lzma_alloc
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 53.16431212425232
+greedy search, time after assembly in step 0 : 53.32167911529541
+greedy search candidates: [2007]
+Time after exploration of lzma_alloc: 53.32824158668518
+==== Next function: lzma_free
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 53.55993914604187
+greedy search, time after assembly in step 0 : 53.72352123260498
+greedy search candidates: [2007]
+Time after exploration of lzma_free: 53.729910135269165
+==== Next function: lzma_bufcpy
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 53.966960191726685
+greedy search, time after assembly in step 0 : 54.12454557418823
+greedy search candidates: [1996, 2007]
+greedy search, new min: 1996
+greedy search, current list: [0]
+greedy search, time after step 0 : 54.14597415924072
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 1 : 54.31269812583923
+greedy search, time after assembly in step 1 : 54.47026014328003
+greedy search candidates: [1996, 1975]
+greedy search, new min: 1975
+greedy search, current list: [0, 2]
+greedy search, time after step 1 : 54.49218726158142
+greedy search, currently checking 2 to 6 out of 6
+greedy search, time after compilation in step 2 : 54.647963523864746
+greedy search, time after assembly in step 2 : 54.803980112075806
+greedy search candidates: [1975]
+Time after exploration of lzma_bufcpy: 54.81883430480957
+==== Next function: lzma_next_end
+greedy search, currently checking 0 to 17 out of 17
+greedy search, time after compilation in step 0 : 55.078723430633545
+greedy search, time after assembly in step 0 : 55.25274181365967
+greedy search candidates: [2038, 2007]
+Time after exploration of lzma_next_end: 55.31981182098389
+==== Next function: lzma_next_filter_init
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 55.55634951591492
+greedy search, time after assembly in step 0 : 55.717241525650024
+greedy search candidates: [2007]
+Time after exploration of lzma_next_filter_init: 55.730233907699585
+==== Next function: lzma_next_filter_update
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 55.96811294555664
+greedy search, time after assembly in step 0 : 56.12915349006653
+greedy search candidates: [2007]
+Time after exploration of lzma_next_filter_update: 56.14128923416138
+==== Next function: lzma_strm_init
+greedy search, currently checking 0 to 31 out of 31
+greedy search, time after compilation in step 0 : 56.3940372467041
+greedy search, time after assembly in step 0 : 56.57132148742676
+greedy search candidates: [2043, 2005, 2007]
+greedy search, new min: 2005
+greedy search, current list: [6]
+greedy search, time after step 0 : 56.691065311431885
+greedy search, currently checking 6 to 31 out of 31
+greedy search, time after compilation in step 1 : 56.87505006790161
+greedy search, time after assembly in step 1 : 57.04811239242554
+greedy search candidates: [2041, 2005]
+Time after exploration of lzma_strm_init: 57.14516615867615
+==== Next function: lzma_end
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 57.379913091659546
+greedy search, time after assembly in step 0 : 57.53703308105469
+greedy search candidates: [2007]
+Time after exploration of lzma_end: 57.55487561225891
+==== Next function: lzma_get_check
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 57.79314875602722
+greedy search, time after assembly in step 0 : 57.94759750366211
+greedy search candidates: [2007]
+Time after exploration of lzma_get_check: 57.95631551742554
+==== Next function: lzma_memusage
+greedy search, currently checking 0 to 8 out of 8
+greedy search, time after compilation in step 0 : 58.1902539730072
+greedy search, time after assembly in step 0 : 58.36541247367859
+greedy search candidates: [2007]
+Time after exploration of lzma_memusage: 58.396769523620605
+==== Next function: lzma_memlimit_get
+greedy search, currently checking 0 to 8 out of 8
+greedy search, time after compilation in step 0 : 58.633233308792114
+greedy search, time after assembly in step 0 : 58.80060958862305
+greedy search candidates: [2007]
+Time after exploration of lzma_memlimit_get: 58.82721972465515
+==== Next function: lzma_memlimit_set
+greedy search, currently checking 0 to 8 out of 8
+greedy search, time after compilation in step 0 : 59.072185039520264
+greedy search, time after assembly in step 0 : 59.24668645858765
+greedy search candidates: [2007]
+Time after exploration of lzma_memlimit_set: 59.28063941001892
+Time after exploration of 657/liblzma/common/common.bc: 59.28065752983093
+***** Next file: 657/liblzma/common/alone_decoder.bc
+==== Next function: alone_decoder_memconfig
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 59.49462628364563
+greedy search, time after assembly in step 0 : 59.64730405807495
+greedy search candidates: [1335]
+Time after exploration of alone_decoder_memconfig: 59.652297258377075
+==== Next function: alone_decode
+greedy search, currently checking 0 to 253 out of 253
+greedy search, time after compilation in step 0 : 59.969135761260986
+greedy search, time after assembly in step 0 : 60.255340814590454
+greedy search candidates: [1347, 1360, 1328, 1332, 1334, 1335, 1303]
+greedy search, new min: 1303
+greedy search, current list: [0]
+greedy search, time after step 0 : 61.25475859642029
+greedy search, currently checking 0 to 253 out of 253
+greedy search, time after compilation in step 1 : 61.55805158615112
+greedy search, time after assembly in step 1 : 61.8463978767395
+greedy search candidates: [1312, 1324, 1300, 1302, 1303, 1306]
+greedy search, new min: 1300
+greedy search, current list: [0, 11]
+greedy search, time after step 1 : 62.838618755340576
+greedy search, currently checking 11 to 253 out of 253
+greedy search, time after compilation in step 2 : 63.13723015785217
+greedy search, time after assembly in step 2 : 63.417837619781494
+greedy search candidates: [1321, 1299, 1300, 1303, 1309]
+greedy search, new min: 1299
+greedy search, current list: [0, 11, 12]
+greedy search, time after step 2 : 64.3568024635315
+greedy search, currently checking 12 to 253 out of 253
+greedy search, time after compilation in step 3 : 64.64765620231628
+greedy search, time after assembly in step 3 : 64.92857027053833
+greedy search candidates: [1320, 1299, 1308, 1302]
+Time after exploration of alone_decode: 65.9008195400238
+==== Next function: lzma_alone_decoder_init
+greedy search, currently checking 0 to 64 out of 64
+greedy search, time after compilation in step 0 : 66.14145493507385
+greedy search, time after assembly in step 0 : 66.32161450386047
+greedy search candidates: [1370, 1333, 1335]
+greedy search, new min: 1333
+greedy search, current list: [0]
+greedy search, time after step 0 : 66.569669008255
+greedy search, currently checking 0 to 64 out of 64
+greedy search, time after compilation in step 1 : 66.75952887535095
+greedy search, time after assembly in step 1 : 66.9489095211029
+greedy search candidates: [1368, 1333]
+Time after exploration of lzma_alone_decoder_init: 67.19545865058899
+==== Next function: lzma_alone_decoder
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 67.41391944885254
+greedy search, time after assembly in step 0 : 67.55920243263245
+greedy search candidates: [1335]
+Time after exploration of lzma_alone_decoder: 67.57474088668823
+Time after exploration of 657/liblzma/common/alone_decoder.bc: 67.57475876808167
+***** Next file: 657/liblzma/common/block_header_decoder.bc
+==== Next function: unaligned_read32le
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 67.77466702461243
+greedy search, time after assembly in step 0 : 67.9206964969635
+greedy search candidates: [638]
+Time after exploration of unaligned_read32le: 67.94780278205872
+==== Next function: free_properties
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 68.14707779884338
+greedy search, time after assembly in step 0 : 68.29114890098572
+greedy search candidates: [638]
+Time after exploration of free_properties: 68.3005735874176
+==== Next function: lzma_block_header_decode
+greedy search, currently checking 0 to 34 out of 34
+greedy search, time after compilation in step 0 : 68.51207756996155
+greedy search, time after assembly in step 0 : 68.66919207572937
+greedy search candidates: [640, 638]
+Time after exploration of lzma_block_header_decode: 68.79940629005432
+Time after exploration of 657/liblzma/common/block_header_decoder.bc: 68.79942798614502
+***** Next file: 657/liblzma/common/stream_buffer_decoder.bc
+==== Next function: lzma_stream_buffer_decode
+greedy search, currently checking 0 to 26 out of 26
+greedy search, time after compilation in step 0 : 68.98068308830261
+greedy search, time after assembly in step 0 : 69.12951469421387
+greedy search candidates: [497, 491]
+greedy search, new min: 491
+greedy search, current list: [5]
+greedy search, time after step 0 : 69.23068404197693
+greedy search, currently checking 5 to 26 out of 26
+greedy search, time after compilation in step 1 : 69.38204002380371
+greedy search, time after assembly in step 1 : 69.53054213523865
+greedy search candidates: [491, 485]
+greedy search, new min: 485
+greedy search, current list: [5, 8]
+greedy search, time after step 1 : 69.60623407363892
+greedy search, currently checking 8 to 26 out of 26
+greedy search, time after compilation in step 2 : 69.75843501091003
+greedy search, time after assembly in step 2 : 69.9047532081604
+greedy search candidates: [485]
+Time after exploration of lzma_stream_buffer_decode: 69.97386169433594
+Time after exploration of 657/liblzma/common/stream_buffer_decoder.bc: 69.97388005256653
+***** Next file: 657/liblzma/common/block_util.bc
+==== Next function: lzma_block_unpadded_size
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 70.16754031181335
+greedy search, time after assembly in step 0 : 70.31122970581055
+greedy search candidates: [338]
+Time after exploration of lzma_block_unpadded_size: 70.33726954460144
+==== Next function: lzma_block_compressed_size
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 70.52053236961365
+greedy search, time after assembly in step 0 : 70.65418219566345
+greedy search candidates: [338]
+Time after exploration of lzma_block_compressed_size: 70.66251969337463
+Time after exploration of 657/liblzma/common/block_util.bc: 70.66254091262817
+***** Next file: 657/liblzma/common/index_encoder.bc
+==== Next function: index_encoder_reset
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 70.86908888816833
+greedy search, time after assembly in step 0 : 71.0274167060852
+greedy search candidates: [1375]
+Time after exploration of index_encoder_reset: 71.05340051651001
+==== Next function: index_encode
+greedy search, currently checking 0 to 81 out of 81
+greedy search, time after compilation in step 0 : 71.28829836845398
+greedy search, time after assembly in step 0 : 71.47537803649902
+greedy search candidates: [1378, 1362, 1363, 1332, 1301, 1372, 1375]
+greedy search, new min: 1362
+greedy search, current list: [1]
+greedy search, time after step 0 : 71.78921246528625
+greedy search, currently checking 1 to 81 out of 81
+greedy search, time after compilation in step 1 : 71.97806596755981
+greedy search, time after assembly in step 1 : 72.16121029853821
+greedy search candidates: [1347, 1285, 1359, 1362, 1365, 1309]
+greedy search, new min: 1359
+greedy search, current list: [1, 2]
+greedy search, time after step 1 : 72.47474527359009
+greedy search, currently checking 2 to 81 out of 81
+greedy search, time after compilation in step 2 : 72.66637134552002
+greedy search, time after assembly in step 2 : 72.85719609260559
+greedy search candidates: [1344, 1282, 1359, 1362, 1306]
+greedy search, new min: 1282
+greedy search, current list: [1, 2, 3]
+greedy search, time after step 2 : 73.16760444641113
+greedy search, currently checking 3 to 81 out of 81
+greedy search, time after compilation in step 3 : 73.35421514511108
+greedy search, time after assembly in step 3 : 73.53817534446716
+greedy search candidates: [1288, 1282, 1267]
+greedy search, new min: 1267
+greedy search, current list: [1, 2, 3, 6]
+greedy search, time after step 3 : 73.83573079109192
+greedy search, currently checking 6 to 81 out of 81
+greedy search, time after compilation in step 4 : 74.02364420890808
+greedy search, time after assembly in step 4 : 74.20743417739868
+greedy search candidates: [1267]
+Time after exploration of index_encode: 74.40189838409424
+==== Next function: lzma_index_encoder_init
+greedy search, currently checking 0 to 12 out of 12
+greedy search, time after compilation in step 0 : 74.60904717445374
+greedy search, time after assembly in step 0 : 74.76038885116577
+greedy search candidates: [1361, 1375]
+greedy search, new min: 1361
+greedy search, current list: [0]
+greedy search, time after step 0 : 74.80659222602844
+greedy search, currently checking 0 to 12 out of 12
+greedy search, time after compilation in step 1 : 74.96573495864868
+greedy search, time after assembly in step 1 : 75.12219429016113
+greedy search candidates: [1361]
+Time after exploration of lzma_index_encoder_init: 75.16689848899841
+==== Next function: lzma_index_encoder
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 75.37680530548096
+greedy search, time after assembly in step 0 : 75.52985954284668
+greedy search candidates: [1375]
+Time after exploration of lzma_index_encoder: 75.54703164100647
+==== Next function: lzma_index_buffer_encode
+greedy search, currently checking 0 to 10 out of 10
+greedy search, time after compilation in step 0 : 75.75470757484436
+greedy search, time after assembly in step 0 : 75.91105961799622
+greedy search candidates: [1375]
+Time after exploration of lzma_index_buffer_encode: 75.95008778572083
+Time after exploration of 657/liblzma/common/index_encoder.bc: 75.95010995864868
+***** Next file: 657/liblzma/common/vli_decoder.bc
+==== Next function: lzma_vli_decode
+greedy search, currently checking 0 to 27 out of 27
+greedy search, time after compilation in step 0 : 76.1517264842987
+greedy search, time after assembly in step 0 : 76.30328035354614
+greedy search candidates: [384, 354, 386, 421, 325, 426, 427, 429, 305, 438, 380, 316]
+greedy search, new min: 305
+greedy search, current list: [0]
+greedy search, time after step 0 : 76.40337896347046
+greedy search, currently checking 0 to 27 out of 27
+greedy search, time after compilation in step 1 : 76.55535125732422
+greedy search, time after assembly in step 1 : 76.70109367370605
+greedy search candidates: [292, 293, 297, 305, 278]
+greedy search, new min: 278
+greedy search, current list: [0, 1]
+greedy search, time after step 1 : 76.80168652534485
+greedy search, currently checking 1 to 27 out of 27
+greedy search, time after compilation in step 2 : 76.95797228813171
+greedy search, time after assembly in step 2 : 77.10511445999146
+greedy search candidates: [273, 275, 278]
+greedy search, new min: 275
+greedy search, current list: [0, 1, 2]
+greedy search, time after step 2 : 77.2057135105133
+greedy search, currently checking 2 to 27 out of 27
+greedy search, time after compilation in step 3 : 77.36452078819275
+greedy search, time after assembly in step 3 : 77.5143506526947
+greedy search candidates: [275, 270]
+greedy search, new min: 270
+greedy search, current list: [0, 1, 2, 9]
+greedy search, time after step 3 : 77.60408139228821
+greedy search, currently checking 9 to 27 out of 27
+greedy search, time after compilation in step 4 : 77.75840091705322
+greedy search, time after assembly in step 4 : 77.9041690826416
+greedy search candidates: [270]
+Time after exploration of lzma_vli_decode: 77.97498655319214
+Time after exploration of 657/liblzma/common/vli_decoder.bc: 77.97500801086426
+***** Next file: 657/liblzma/common/filter_buffer_decoder.bc
+==== Next function: lzma_raw_buffer_decode
+greedy search, currently checking 0 to 27 out of 27
+greedy search, time after compilation in step 0 : 78.16062188148499
+greedy search, time after assembly in step 0 : 78.31441688537598
+greedy search candidates: [539]
+Time after exploration of lzma_raw_buffer_decode: 78.41751027107239
+Time after exploration of 657/liblzma/common/filter_buffer_decoder.bc: 78.41753339767456
+***** Next file: 657/liblzma/common/stream_buffer_encoder.bc
+==== Next function: lzma_stream_buffer_encode
+greedy search, currently checking 0 to 29 out of 29
+greedy search, time after compilation in step 0 : 78.61037540435791
+greedy search, time after assembly in step 0 : 78.7660870552063
+greedy search candidates: [753, 763]
+Time after exploration of lzma_stream_buffer_encode: 78.87921571731567
+Time after exploration of 657/liblzma/common/stream_buffer_encoder.bc: 78.87923502922058
+***** Next file: 657/liblzma/common/easy_buffer_encoder.bc
+Time after exploration of 657/liblzma/common/easy_buffer_encoder.bc: 78.87924408912659
+***** Next file: 657/liblzma/common/filter_common.bc
+==== Next function: lzma_raw_coder_init
+greedy search, currently checking 0 to 59 out of 59
+greedy search, time after compilation in step 0 : 79.12877893447876
+greedy search, time after assembly in step 0 : 79.30613398551941
+greedy search candidates: [1506, 1507, 1511, 1481, 1515]
+greedy search, new min: 1481
+greedy search, current list: [8]
+greedy search, time after step 0 : 79.52728295326233
+greedy search, currently checking 8 to 59 out of 59
+greedy search, time after compilation in step 1 : 79.71998882293701
+greedy search, time after assembly in step 1 : 79.89459037780762
+greedy search candidates: [1481]
+Time after exploration of lzma_raw_coder_init: 80.09824538230896
+==== Next function: lzma_filters_copy
+greedy search, currently checking 0 to 28 out of 28
+greedy search, time after compilation in step 0 : 80.337229013443
+greedy search, time after assembly in step 0 : 80.50675439834595
+greedy search candidates: [1506]
+Time after exploration of lzma_filters_copy: 80.62114524841309
+==== Next function: validate_chain
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 80.84519076347351
+greedy search, time after assembly in step 0 : 80.99447393417358
+greedy search candidates: [1512, 1506]
+Time after exploration of validate_chain: 81.01582884788513
+==== Next function: lzma_raw_coder_memusage
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 81.24450492858887
+greedy search, time after assembly in step 0 : 81.40601134300232
+greedy search candidates: [1504, 1506]
+greedy search, new min: 1504
+greedy search, current list: [2]
+greedy search, time after step 0 : 81.42479109764099
+greedy search, currently checking 2 to 5 out of 5
+greedy search, time after compilation in step 1 : 81.58693838119507
+greedy search, time after assembly in step 1 : 81.73576402664185
+greedy search candidates: [1504]
+Time after exploration of lzma_raw_coder_memusage: 81.74613070487976
+Time after exploration of 657/liblzma/common/filter_common.bc: 81.74615097045898
+***** Next file: 657/liblzma/common/easy_preset.bc
+==== Next function: lzma_easy_preset
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 81.91865587234497
+greedy search, time after assembly in step 0 : 82.05439066886902
+greedy search candidates: [119]
+Time after exploration of lzma_easy_preset: 82.07077956199646
+Time after exploration of 657/liblzma/common/easy_preset.bc: 82.0708019733429
+***** Next file: 657/liblzma/common/stream_encoder.bc
+==== Next function: stream_encoder_update
+greedy search, currently checking 0 to 8 out of 8
+greedy search, time after compilation in step 0 : 82.30053043365479
+greedy search, time after assembly in step 0 : 82.46666193008423
+greedy search candidates: [2010]
+Time after exploration of stream_encoder_update: 82.49798655509949
+==== Next function: stream_encode
+greedy search, currently checking 0 to 252 out of 252
+greedy search, time after compilation in step 0 : 82.82432174682617
+greedy search, time after assembly in step 0 : 83.11680245399475
+greedy search candidates: [2010, 1990]
+greedy search, new min: 1990
+greedy search, current list: [5]
+greedy search, time after step 0 : 84.11279892921448
+greedy search, currently checking 5 to 252 out of 252
+greedy search, time after compilation in step 1 : 84.41849422454834
+greedy search, time after assembly in step 1 : 84.71371340751648
+greedy search candidates: [1990]
+Time after exploration of stream_encode: 85.68449258804321
+==== Next function: lzma_stream_encoder_init
+greedy search, currently checking 0 to 114 out of 114
+greedy search, time after compilation in step 0 : 85.95448780059814
+greedy search, time after assembly in step 0 : 86.1590404510498
+greedy search candidates: [2040, 2010, 2011]
+Time after exploration of lzma_stream_encoder_init: 86.60876655578613
+==== Next function: lzma_stream_encoder
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 86.83350086212158
+greedy search, time after assembly in step 0 : 86.99113345146179
+greedy search candidates: [2010]
+Time after exploration of lzma_stream_encoder: 86.9990017414093
+Time after exploration of 657/liblzma/common/stream_encoder.bc: 86.99901485443115
+***** Next file: 657/liblzma/common/filter_flags_decoder.bc
+==== Next function: lzma_filter_flags_decode
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 87.17324209213257
+greedy search, time after assembly in step 0 : 87.30647253990173
+greedy search candidates: [235]
+Time after exploration of lzma_filter_flags_decode: 87.31751203536987
+Time after exploration of 657/liblzma/common/filter_flags_decoder.bc: 87.3175299167633
+***** Next file: 657/liblzma/common/stream_flags_decoder.bc
+==== Next function: unaligned_read32le
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 87.5084023475647
+greedy search, time after assembly in step 0 : 87.64707946777344
+greedy search candidates: [391]
+Time after exploration of unaligned_read32le: 87.67288184165955
+==== Next function: stream_flags_decode
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 87.85763454437256
+greedy search, time after assembly in step 0 : 87.99680781364441
+greedy search candidates: [391]
+Time after exploration of stream_flags_decode: 88.00960445404053
+==== Next function: lzma_stream_header_decode
+greedy search, currently checking 0 to 19 out of 19
+greedy search, time after compilation in step 0 : 88.20008730888367
+greedy search, time after assembly in step 0 : 88.34393692016602
+greedy search candidates: [391]
+Time after exploration of lzma_stream_header_decode: 88.41660046577454
+==== Next function: lzma_stream_footer_decode
+greedy search, currently checking 0 to 25 out of 25
+greedy search, time after compilation in step 0 : 88.6126434803009
+greedy search, time after assembly in step 0 : 88.7711284160614
+greedy search candidates: [391]
+Time after exploration of lzma_stream_footer_decode: 88.87574243545532
+Time after exploration of 657/liblzma/common/stream_flags_decoder.bc: 88.8757631778717
+***** Next file: 657/liblzma/common/index_decoder.bc
+==== Next function: index_decoder_reset
+greedy search, currently checking 0 to 16 out of 16
+greedy search, time after compilation in step 0 : 89.10574865341187
+greedy search, time after assembly in step 0 : 89.27050518989563
+greedy search candidates: [1862]
+Time after exploration of index_decoder_reset: 89.32913064956665
+==== Next function: index_decoder_memconfig
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 89.55262017250061
+greedy search, time after assembly in step 0 : 89.70772504806519
+greedy search candidates: [1862]
+Time after exploration of index_decoder_memconfig: 89.71311283111572
+==== Next function: index_decode
+greedy search, currently checking 0 to 168 out of 168
+greedy search, time after compilation in step 0 : 90.02299213409424
+greedy search, time after assembly in step 0 : 90.33480763435364
+greedy search candidates: [1856, 1857, 1862]
+greedy search, new min: 1857
+greedy search, current list: [0]
+greedy search, time after step 0 : 91.09721684455872
+greedy search, currently checking 0 to 168 out of 168
+greedy search, time after compilation in step 1 : 91.40642547607422
+greedy search, time after assembly in step 1 : 91.71894001960754
+greedy search candidates: [1857, 1851]
+greedy search, new min: 1851
+greedy search, current list: [0, 2]
+greedy search, time after step 1 : 92.2535629272461
+greedy search, currently checking 2 to 168 out of 168
+greedy search, time after compilation in step 2 : 92.57319903373718
+greedy search, time after assembly in step 2 : 92.86527872085571
+greedy search candidates: [1851]
+Time after exploration of index_decode: 93.49757599830627
+==== Next function: index_decoder_init
+greedy search, currently checking 0 to 25 out of 25
+greedy search, time after compilation in step 0 : 93.83386492729187
+greedy search, time after assembly in step 0 : 94.05013537406921
+greedy search candidates: [1862]
+Time after exploration of index_decoder_init: 94.15762209892273
+==== Next function: lzma_index_decoder
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 94.47133302688599
+greedy search, time after assembly in step 0 : 94.7318811416626
+greedy search candidates: [1862]
+Time after exploration of lzma_index_decoder: 94.7536346912384
+==== Next function: lzma_index_buffer_decode
+greedy search, currently checking 0 to 37 out of 37
+greedy search, time after compilation in step 0 : 95.08402752876282
+greedy search, time after assembly in step 0 : 95.3186137676239
+greedy search candidates: [1862]
+Time after exploration of lzma_index_buffer_decode: 95.43019938468933
+Time after exploration of 657/liblzma/common/index_decoder.bc: 95.43021988868713
+***** Next file: 657/liblzma/common/index_hash.bc
+==== Next function: lzma_index_hash_init
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 95.71530318260193
+greedy search, time after assembly in step 0 : 95.93367624282837
+greedy search candidates: [1630]
+Time after exploration of lzma_index_hash_init: 95.95534372329712
+==== Next function: lzma_index_hash_size
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 96.2486879825592
+greedy search, time after assembly in step 0 : 96.46996474266052
+greedy search candidates: [1630]
+Time after exploration of lzma_index_hash_size: 96.48006391525269
+==== Next function: hash_append
+greedy search, currently checking 0 to 25 out of 25
+greedy search, time after compilation in step 0 : 96.82706809043884
+greedy search, time after assembly in step 0 : 97.07020568847656
+greedy search candidates: [1630]
+Time after exploration of hash_append: 97.17065405845642
+==== Next function: lzma_index_hash_append
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 97.48078465461731
+greedy search, time after assembly in step 0 : 97.69865465164185
+greedy search candidates: [1630]
+Time after exploration of lzma_index_hash_append: 97.72398567199707
+==== Next function: lzma_index_hash_decode
+greedy search, currently checking 0 to 189 out of 189
+greedy search, time after compilation in step 0 : 98.14609503746033
+greedy search, time after assembly in step 0 : 98.48811030387878
+greedy search candidates: [1624, 1634, 1630]
+greedy search, new min: 1624
+greedy search, current list: [1]
+greedy search, time after step 0 : 99.17507934570312
+greedy search, currently checking 1 to 189 out of 189
+greedy search, time after compilation in step 1 : 99.53157234191895
+greedy search, time after assembly in step 1 : 99.88355684280396
+greedy search candidates: [1624]
+Time after exploration of lzma_index_hash_decode: 100.57830262184143
+Time after exploration of 657/liblzma/common/index_hash.bc: 100.57832646369934
+***** Next file: 657/liblzma/common/stream_flags_common.bc
+==== Next function: lzma_stream_flags_compare
+greedy search, currently checking 0 to 8 out of 8
+greedy search, time after compilation in step 0 : 100.8163652420044
+greedy search, time after assembly in step 0 : 101.02187442779541
+greedy search candidates: [178]
+Time after exploration of lzma_stream_flags_compare: 101.05260229110718
+Time after exploration of 657/liblzma/common/stream_flags_common.bc: 101.05262565612793
+***** Next file: 657/liblzma/common/block_decoder.bc
+==== Next function: block_decode
+greedy search, currently checking 0 to 58 out of 58
+greedy search, time after compilation in step 0 : 101.36575031280518
+greedy search, time after assembly in step 0 : 101.59051012992859
+greedy search candidates: [1224, 1222]
+greedy search, new min: 1222
+greedy search, current list: [0]
+greedy search, time after step 0 : 101.8241240978241
+greedy search, currently checking 0 to 58 out of 58
+greedy search, time after compilation in step 1 : 102.06452322006226
+greedy search, time after assembly in step 1 : 102.30948829650879
+greedy search candidates: [1222]
+Time after exploration of block_decode: 102.51047706604004
+==== Next function: lzma_block_decoder_init
+greedy search, currently checking 0 to 53 out of 53
+greedy search, time after compilation in step 0 : 102.81225991249084
+greedy search, time after assembly in step 0 : 103.03942656517029
+greedy search candidates: [1224, 1222, 1255]
+greedy search, new min: 1222
+greedy search, current list: [0]
+greedy search, time after step 0 : 103.2378282546997
+greedy search, currently checking 0 to 53 out of 53
+greedy search, time after compilation in step 1 : 103.46771144866943
+greedy search, time after assembly in step 1 : 103.69625043869019
+greedy search candidates: [1253, 1222]
+Time after exploration of lzma_block_decoder_init: 103.89191246032715
+==== Next function: lzma_block_decoder
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 104.1791181564331
+greedy search, time after assembly in step 0 : 104.39490962028503
+greedy search candidates: [1224]
+Time after exploration of lzma_block_decoder: 104.41217875480652
+Time after exploration of 657/liblzma/common/block_decoder.bc: 104.41220831871033
+***** Next file: 657/liblzma/common/auto_decoder.bc
+==== Next function: auto_decoder_memconfig
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 104.67461013793945
+greedy search, time after assembly in step 0 : 104.87207746505737
+greedy search candidates: [1014]
+Time after exploration of auto_decoder_memconfig: 104.8835289478302
+==== Next function: auto_decoder_get_check
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 105.15347003936768
+greedy search, time after assembly in step 0 : 105.3738100528717
+greedy search candidates: [1014]
+Time after exploration of auto_decoder_get_check: 105.38259696960449
+==== Next function: auto_decode
+greedy search, currently checking 0 to 20 out of 20
+greedy search, time after compilation in step 0 : 105.65209770202637
+greedy search, time after assembly in step 0 : 105.881915807724
+greedy search candidates: [1014]
+Time after exploration of auto_decode: 105.96403789520264
+==== Next function: auto_decoder_init
+greedy search, currently checking 0 to 38 out of 38
+greedy search, time after compilation in step 0 : 106.24605989456177
+greedy search, time after assembly in step 0 : 106.47546315193176
+greedy search candidates: [1057, 1012, 1014]
+greedy search, new min: 1012
+greedy search, current list: [0]
+greedy search, time after step 0 : 106.60899019241333
+greedy search, currently checking 0 to 38 out of 38
+greedy search, time after compilation in step 1 : 106.83514380455017
+greedy search, time after assembly in step 1 : 107.05389380455017
+greedy search candidates: [1012, 1055]
+Time after exploration of auto_decoder_init: 107.2139368057251
+==== Next function: lzma_auto_decoder
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 107.49773287773132
+greedy search, time after assembly in step 0 : 107.72330689430237
+greedy search candidates: [1014]
+Time after exploration of lzma_auto_decoder: 107.73968362808228
+Time after exploration of 657/liblzma/common/auto_decoder.bc: 107.73970913887024
+***** Next file: 657/liblzma/common/stream_decoder.bc
+==== Next function: stream_decoder_reset
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 108.09455633163452
+greedy search, time after assembly in step 0 : 108.3433187007904
+greedy search candidates: [2093]
+Time after exploration of stream_decoder_reset: 108.35994553565979
+==== Next function: stream_decoder_memconfig
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 108.70092272758484
+greedy search, time after assembly in step 0 : 108.9301221370697
+greedy search candidates: [2093]
+Time after exploration of stream_decoder_memconfig: 108.93573069572449
+==== Next function: stream_decode
+greedy search, currently checking 0 to 256 out of 360
+greedy search, time after compilation in step 0 : 109.49263143539429
+greedy search, time after assembly in step 0 : 109.91442251205444
+greedy search candidates: [2060, 2093]
+greedy search, new min: 2060
+greedy search, current list: [25]
+greedy search, time after step 0 : 110.93274474143982
+greedy search, currently checking 25 to 281 out of 360
+greedy search, time after compilation in step 1 : 111.39011693000793
+greedy search, time after assembly in step 1 : 111.81166315078735
+greedy search candidates: [2060]
+greedy search, currently checking 281 to 360 out of 360
+greedy search, time after compilation in step 1 : 113.13913226127625
+greedy search, time after assembly in step 1 : 113.43875455856323
+greedy search candidates: [2060]
+Time after exploration of stream_decode: 113.73161792755127
+==== Next function: lzma_stream_decoder_init
+greedy search, currently checking 0 to 73 out of 73
+greedy search, time after compilation in step 0 : 114.12241101264954
+greedy search, time after assembly in step 0 : 114.40586042404175
+greedy search candidates: [2082, 2140, 2093]
+greedy search, new min: 2082
+greedy search, current list: [0]
+greedy search, time after step 0 : 114.6829206943512
+greedy search, currently checking 0 to 73 out of 73
+greedy search, time after compilation in step 1 : 114.97803092002869
+greedy search, time after assembly in step 1 : 115.26116490364075
+greedy search candidates: [2113, 2082]
+Time after exploration of lzma_stream_decoder_init: 115.54800915718079
+==== Next function: lzma_stream_decoder
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 115.88831281661987
+greedy search, time after assembly in step 0 : 116.11942315101624
+greedy search candidates: [2093]
+Time after exploration of lzma_stream_decoder: 116.13662981987
+Time after exploration of 657/liblzma/common/stream_decoder.bc: 116.13665223121643
+***** Next file: 657/liblzma/common/vli_size.bc
+Time after exploration of 657/liblzma/common/vli_size.bc: 116.13666129112244
+***** Next file: 657/liblzma/common/easy_decoder_memusage.bc
+Time after exploration of 657/liblzma/common/easy_decoder_memusage.bc: 116.13666915893555
+***** Next file: 657/liblzma/common/block_buffer_encoder.bc
+==== Next function: lzma_block_buffer_encode
+greedy search, currently checking 0 to 15 out of 15
+greedy search, time after compilation in step 0 : 116.4413673877716
+greedy search, time after assembly in step 0 : 116.67040610313416
+greedy search candidates: [1594]
+Time after exploration of lzma_block_buffer_encode: 116.72988820075989
+==== Next function: block_encode_normal
+greedy search, currently checking 0 to 31 out of 31
+greedy search, time after compilation in step 0 : 117.08101391792297
+greedy search, time after assembly in step 0 : 117.32472968101501
+greedy search candidates: [1594]
+Time after exploration of block_encode_normal: 117.450434923172
+==== Next function: block_encode_uncompressed
+greedy search, currently checking 0 to 28 out of 28
+greedy search, time after compilation in step 0 : 117.78138422966003
+greedy search, time after assembly in step 0 : 118.01074481010437
+greedy search candidates: [1594]
+Time after exploration of block_encode_uncompressed: 118.11981987953186
+Time after exploration of 657/liblzma/common/block_buffer_encoder.bc: 118.11984157562256
+***** Next file: 657/liblzma/common/block_encoder.bc
+==== Next function: block_encode
+greedy search, currently checking 0 to 62 out of 62
+greedy search, time after compilation in step 0 : 118.45305395126343
+greedy search, time after assembly in step 0 : 118.7251296043396
+greedy search candidates: [1152, 1148, 1155, 1164]
+greedy search, new min: 1148
+greedy search, current list: [6]
+greedy search, time after step 0 : 118.96405124664307
+greedy search, currently checking 6 to 62 out of 62
+greedy search, time after compilation in step 1 : 119.20252513885498
+greedy search, time after assembly in step 1 : 119.43722009658813
+greedy search candidates: [1148, 1158]
+Time after exploration of block_encode: 119.65639519691467
+==== Next function: lzma_block_encoder_init
+greedy search, currently checking 0 to 38 out of 38
+greedy search, time after compilation in step 0 : 119.94356179237366
+greedy search, time after assembly in step 0 : 120.16314196586609
+greedy search candidates: [1152, 1204, 1150]
+greedy search, new min: 1150
+greedy search, current list: [0]
+greedy search, time after step 0 : 120.31179571151733
+greedy search, currently checking 0 to 38 out of 38
+greedy search, time after compilation in step 1 : 120.54593110084534
+greedy search, time after assembly in step 1 : 120.77083373069763
+greedy search candidates: [1202, 1150]
+Time after exploration of lzma_block_encoder_init: 120.91336727142334
+==== Next function: lzma_block_encoder
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 121.20405316352844
+greedy search, time after assembly in step 0 : 121.41979742050171
+greedy search candidates: [1152]
+Time after exploration of lzma_block_encoder: 121.4365758895874
+Time after exploration of 657/liblzma/common/block_encoder.bc: 121.43659329414368
+***** Next file: 657/liblzma/common/hardware_physmem.bc
+Time after exploration of 657/liblzma/common/hardware_physmem.bc: 121.43660116195679
+***** Next file: 657/liblzma/common/filter_buffer_encoder.bc
+==== Next function: lzma_raw_buffer_encode
+greedy search, currently checking 0 to 11 out of 11
+greedy search, time after compilation in step 0 : 121.69010066986084
+greedy search, time after assembly in step 0 : 121.90521359443665
+greedy search candidates: [366]
+Time after exploration of lzma_raw_buffer_encode: 121.95279002189636
+Time after exploration of 657/liblzma/common/filter_buffer_encoder.bc: 121.95281267166138
+***** Next file: 657/liblzma/common/easy_encoder_memusage.bc
+Time after exploration of 657/liblzma/common/easy_encoder_memusage.bc: 121.95282220840454
+***** Next file: 657/liblzma/common/vli_encoder.bc
+==== Next function: lzma_vli_encode
+greedy search, currently checking 0 to 28 out of 28
+greedy search, time after compilation in step 0 : 122.25717878341675
+greedy search, time after assembly in step 0 : 122.46115183830261
+greedy search candidates: [226, 295, 201, 212, 216, 222]
+greedy search, new min: 212
+greedy search, current list: [1]
+greedy search, time after step 0 : 122.57104587554932
+greedy search, currently checking 1 to 28 out of 28
+greedy search, time after compilation in step 1 : 122.81879210472107
+greedy search, time after assembly in step 1 : 123.0414183139801
+greedy search candidates: [228, 204, 206, 212, 249]
+greedy search, new min: 206
+greedy search, current list: [1, 4]
+greedy search, time after step 1 : 123.14969158172607
+greedy search, currently checking 4 to 28 out of 28
+greedy search, time after compilation in step 2 : 123.40099716186523
+greedy search, time after assembly in step 2 : 123.6175422668457
+greedy search candidates: [250, 198, 206]
+greedy search, new min: 198
+greedy search, current list: [1, 4, 8]
+greedy search, time after step 2 : 123.71031713485718
+greedy search, currently checking 8 to 28 out of 28
+greedy search, time after compilation in step 3 : 123.91749715805054
+greedy search, time after assembly in step 3 : 124.14807891845703
+greedy search candidates: [198]
+Time after exploration of lzma_vli_encode: 124.21634244918823
+Time after exploration of 657/liblzma/common/vli_encoder.bc: 124.21635890007019
+***** Next file: 657/liblzma/common/filter_flags_encoder.bc
+==== Next function: lzma_filter_flags_encode
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 124.45899891853333
+greedy search, time after assembly in step 0 : 124.66623163223267
+greedy search candidates: [346]
+Time after exploration of lzma_filter_flags_encode: 124.68048119544983
+Time after exploration of 657/liblzma/common/filter_flags_encoder.bc: 124.68050479888916
+***** Next file: 657/liblzma/common/filter_decoder.bc
+==== Next function: lzma_raw_decoder
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 124.94316816329956
+greedy search, time after assembly in step 0 : 125.14377951622009
+greedy search candidates: [693]
+Time after exploration of lzma_raw_decoder: 125.15984535217285
+==== Next function: lzma_properties_decode
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 125.43449139595032
+greedy search, time after assembly in step 0 : 125.65736293792725
+greedy search candidates: [693]
+Time after exploration of lzma_properties_decode: 125.67266774177551
+Time after exploration of 657/liblzma/common/filter_decoder.bc: 125.67268681526184
+***** Next file: 657/liblzma/common/index.bc
+==== Next function: lzma_index_append
+greedy search, currently checking 0 to 45 out of 45
+greedy search, time after compilation in step 0 : 126.31135511398315
+greedy search, time after assembly in step 0 : 126.6238055229187
+greedy search candidates: [5464, 5455]
+Time after exploration of lzma_index_append: 126.79771995544434
+==== Next function: index_dup_stream
+greedy search, currently checking 0 to 80 out of 80
+greedy search, time after compilation in step 0 : 127.54707384109497
+greedy search, time after assembly in step 0 : 127.95470213890076
+greedy search candidates: [5455]
+Time after exploration of index_dup_stream: 128.25761079788208
+==== Next function: index_init_plain
+greedy search, currently checking 0 to 8 out of 8
+greedy search, time after compilation in step 0 : 128.8683066368103
+greedy search, time after assembly in step 0 : 129.17668843269348
+greedy search candidates: [5455]
+Time after exploration of index_init_plain: 129.21078538894653
+==== Next function: index_stream_init
+greedy search, currently checking 0 to 39 out of 39
+greedy search, time after compilation in step 0 : 129.81968021392822
+greedy search, time after assembly in step 0 : 130.13875818252563
+greedy search candidates: [5455]
+Time after exploration of index_stream_init: 130.2848665714264
+==== Next function: index_tree_append
+greedy search, currently checking 0 to 25 out of 25
+greedy search, time after compilation in step 0 : 130.91066145896912
+greedy search, time after assembly in step 0 : 131.22018146514893
+greedy search candidates: [5455]
+Time after exploration of index_tree_append: 131.32637882232666
+==== Next function: lzma_index_init
+greedy search, currently checking 0 to 26 out of 26
+greedy search, time after compilation in step 0 : 131.97062849998474
+greedy search, time after assembly in step 0 : 132.27093648910522
+greedy search candidates: [5455]
+Time after exploration of lzma_index_init: 132.36938786506653
+==== Next function: index_tree_node_end
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 132.97330975532532
+greedy search, time after assembly in step 0 : 133.25544691085815
+greedy search candidates: [5455]
+Time after exploration of index_tree_node_end: 133.26617527008057
+==== Next function: lzma_index_memused
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 133.90440678596497
+greedy search, time after assembly in step 0 : 134.216246843338
+greedy search candidates: [5455]
+Time after exploration of lzma_index_memused: 134.22632932662964
+==== Next function: lzma_index_size
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 134.83398389816284
+greedy search, time after assembly in step 0 : 135.11937737464905
+greedy search candidates: [5455]
+Time after exploration of lzma_index_size: 135.12806296348572
+==== Next function: lzma_index_stream_size
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 135.75324892997742
+greedy search, time after assembly in step 0 : 136.0431101322174
+greedy search candidates: [5455]
+Time after exploration of lzma_index_stream_size: 136.05743765830994
+==== Next function: lzma_index_file_size
+greedy search, currently checking 0 to 12 out of 12
+greedy search, time after compilation in step 0 : 136.673645734787
+greedy search, time after assembly in step 0 : 136.96094679832458
+greedy search candidates: [5455]
+Time after exploration of lzma_index_file_size: 137.00593280792236
+==== Next function: lzma_index_checks
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 137.60950660705566
+greedy search, time after assembly in step 0 : 137.91206169128418
+greedy search candidates: [5455]
+Time after exploration of lzma_index_checks: 137.92683482170105
+==== Next function: lzma_index_padding_size
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 138.52321434020996
+greedy search, time after assembly in step 0 : 138.80900812149048
+greedy search candidates: [5455]
+Time after exploration of lzma_index_padding_size: 138.81823587417603
+==== Next function: index_cat_helper
+greedy search, currently checking 0 to 34 out of 34
+greedy search, time after compilation in step 0 : 139.4475519657135
+greedy search, time after assembly in step 0 : 139.75405526161194
+greedy search candidates: [5455]
+Time after exploration of index_cat_helper: 139.88130164146423
+==== Next function: lzma_index_cat
+greedy search, currently checking 0 to 256 out of 264
+greedy search, time after compilation in step 0 : 141.03069925308228
+greedy search, time after assembly in step 0 : 141.68477988243103
+greedy search candidates: [5444, 5437, 5455]
+greedy search, new min: 5444
+greedy search, current list: [52]
+greedy search, time after step 0 : 142.63589668273926
+greedy search, currently checking 52 to 264 out of 264
+greedy search, time after compilation in step 1 : 143.4207911491394
+greedy search, time after assembly in step 1 : 144.00238227844238
+greedy search candidates: [5444, 5431]
+greedy search, new min: 5431
+greedy search, current list: [52, 57]
+greedy search, time after step 1 : 144.7809977531433
+greedy search, currently checking 57 to 264 out of 264
+greedy search, time after compilation in step 2 : 145.55412650108337
+greedy search, time after assembly in step 2 : 146.14881467819214
+greedy search candidates: [5431]
+Time after exploration of lzma_index_cat: 146.94936203956604
+==== Next function: lzma_index_dup
+greedy search, currently checking 0 to 115 out of 115
+greedy search, time after compilation in step 0 : 147.7702534198761
+greedy search, time after assembly in step 0 : 148.20363926887512
+greedy search candidates: [5455]
+Time after exploration of lzma_index_dup: 148.62141871452332
+==== Next function: lzma_index_iter_init
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 149.22220158576965
+greedy search, time after assembly in step 0 : 149.50758028030396
+greedy search candidates: [5455]
+Time after exploration of lzma_index_iter_init: 149.51676774024963
+==== Next function: iter_set_info
+greedy search, currently checking 0 to 164 out of 164
+greedy search, time after compilation in step 0 : 150.41438579559326
+greedy search, time after assembly in step 0 : 150.9146478176117
+greedy search candidates: [5455]
+Time after exploration of iter_set_info: 151.58577942848206
+==== Next function: lzma_index_iter_next
+greedy search, currently checking 0 to 43 out of 43
+greedy search, time after compilation in step 0 : 152.21780133247375
+greedy search, time after assembly in step 0 : 152.52476692199707
+greedy search candidates: [5445, 5469, 5455]
+greedy search, new min: 5445
+greedy search, current list: [20]
+greedy search, time after step 0 : 152.68029403686523
+greedy search, currently checking 20 to 43 out of 43
+greedy search, time after compilation in step 1 : 153.03169655799866
+greedy search, time after assembly in step 1 : 153.32648539543152
+greedy search candidates: [5445]
+Time after exploration of lzma_index_iter_next: 153.40760231018066
+==== Next function: index_tree_locate
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 154.0107192993164
+greedy search, time after assembly in step 0 : 154.31251907348633
+greedy search candidates: [5455]
+Time after exploration of index_tree_locate: 154.32185053825378
+==== Next function: lzma_index_iter_locate
+greedy search, currently checking 0 to 23 out of 23
+greedy search, time after compilation in step 0 : 154.94627022743225
+greedy search, time after assembly in step 0 : 155.2522988319397
+greedy search candidates: [5455]
+Time after exploration of lzma_index_iter_locate: 155.33387851715088
+Time after exploration of 657/liblzma/common/index.bc: 155.333899974823
+***** Next file: 657/liblzma/common/block_buffer_decoder.bc
+==== Next function: lzma_block_buffer_decode
+greedy search, currently checking 0 to 11 out of 11
+greedy search, time after compilation in step 0 : 155.58022689819336
+greedy search, time after assembly in step 0 : 155.77621841430664
+greedy search candidates: [433, 437, 431]
+greedy search, new min: 431
+greedy search, current list: [1]
+greedy search, time after step 0 : 155.82019901275635
+greedy search, currently checking 1 to 11 out of 11
+greedy search, time after compilation in step 1 : 156.03522443771362
+greedy search, time after assembly in step 1 : 156.2602596282959
+greedy search candidates: [427, 431]
+greedy search, new min: 427
+greedy search, current list: [1, 3]
+greedy search, time after step 1 : 156.302992105484
+greedy search, currently checking 3 to 11 out of 11
+greedy search, time after compilation in step 2 : 156.5158772468567
+greedy search, time after assembly in step 2 : 156.7297821044922
+greedy search candidates: [427]
+Time after exploration of lzma_block_buffer_decode: 156.76083517074585
+Time after exploration of 657/liblzma/common/block_buffer_decoder.bc: 156.7608561515808
+***** Next file: 657/liblzma/common/block_header_encoder.bc
+==== Next function: lzma_block_header_size
+greedy search, currently checking 0 to 13 out of 13
+greedy search, time after compilation in step 0 : 157.06500554084778
+greedy search, time after assembly in step 0 : 157.27472305297852
+greedy search candidates: [705, 684, 709, 695]
+greedy search, new min: 684
+greedy search, current list: [0]
+greedy search, time after step 0 : 157.3273642063141
+greedy search, currently checking 0 to 13 out of 13
+greedy search, time after compilation in step 1 : 157.55449557304382
+greedy search, time after assembly in step 1 : 157.76687932014465
+greedy search candidates: [684, 694, 702]
+Time after exploration of lzma_block_header_size: 157.82231307029724
+==== Next function: unaligned_write32le
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 158.1003270149231
+greedy search, time after assembly in step 0 : 158.3131604194641
+greedy search candidates: [695]
+Time after exploration of unaligned_write32le: 158.34212017059326
+==== Next function: lzma_block_header_encode
+greedy search, currently checking 0 to 23 out of 23
+greedy search, time after compilation in step 0 : 158.6195125579834
+greedy search, time after assembly in step 0 : 158.86254930496216
+greedy search candidates: [703, 695]
+Time after exploration of lzma_block_header_encode: 158.9601273536682
+Time after exploration of 657/liblzma/common/block_header_encoder.bc: 158.9601502418518
+***** Next file: 657/liblzma/common/easy_encoder.bc
+Time after exploration of 657/liblzma/common/easy_encoder.bc: 158.9601595401764
+***** Next file: 657/liblzma/common/alone_encoder.bc
+==== Next function: unaligned_write32le
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 159.25727343559265
+greedy search, time after assembly in step 0 : 159.4758336544037
+greedy search candidates: [870]
+Time after exploration of unaligned_write32le: 159.50882053375244
+==== Next function: alone_encode
+greedy search, currently checking 0 to 14 out of 14
+greedy search, time after compilation in step 0 : 159.77973556518555
+greedy search, time after assembly in step 0 : 160.00275301933289
+greedy search candidates: [870]
+Time after exploration of alone_encode: 160.05187034606934
+==== Next function: alone_encoder_init
+greedy search, currently checking 0 to 108 out of 108
+greedy search, time after compilation in step 0 : 160.38277769088745
+greedy search, time after assembly in step 0 : 160.66805505752563
+greedy search candidates: [904, 868, 870]
+greedy search, new min: 868
+greedy search, current list: [0]
+greedy search, time after step 0 : 161.08795952796936
+greedy search, currently checking 0 to 108 out of 108
+greedy search, time after compilation in step 1 : 161.38162469863892
+greedy search, time after assembly in step 1 : 161.65142560005188
+greedy search candidates: [868, 902]
+Time after exploration of alone_encoder_init: 162.08425045013428
+==== Next function: lzma_alone_encoder
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 162.35148906707764
+greedy search, time after assembly in step 0 : 162.56288933753967
+greedy search candidates: [870]
+Time after exploration of lzma_alone_encoder: 162.58135509490967
+Time after exploration of 657/liblzma/common/alone_encoder.bc: 162.581378698349
+***** Next file: 657/liblzma/common/filter_encoder.bc
+==== Next function: lzma_filters_update
+greedy search, currently checking 0 to 18 out of 18
+greedy search, time after compilation in step 0 : 162.90002727508545
+greedy search, time after assembly in step 0 : 163.1348419189453
+greedy search candidates: [1173]
+Time after exploration of lzma_filters_update: 163.21057081222534
+==== Next function: lzma_raw_encoder
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 163.52575778961182
+greedy search, time after assembly in step 0 : 163.74938225746155
+greedy search candidates: [1173]
+Time after exploration of lzma_raw_encoder: 163.77158188819885
+==== Next function: lzma_properties_size
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 164.06027626991272
+greedy search, time after assembly in step 0 : 164.27675652503967
+greedy search candidates: [1173]
+Time after exploration of lzma_properties_size: 164.2941963672638
+==== Next function: lzma_properties_encode
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 164.5915014743805
+greedy search, time after assembly in step 0 : 164.80792045593262
+greedy search candidates: [1173]
+Time after exploration of lzma_properties_encode: 164.82196474075317
+Time after exploration of 657/liblzma/common/filter_encoder.bc: 164.8219871520996
+***** Next file: 657/liblzma/common/stream_flags_encoder.bc
+==== Next function: stream_flags_encode
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 165.09406924247742
+greedy search, time after assembly in step 0 : 165.30648159980774
+greedy search candidates: [342]
+Time after exploration of stream_flags_encode: 165.31643724441528
+==== Next function: unaligned_write32le
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 165.5617320537567
+greedy search, time after assembly in step 0 : 165.76964473724365
+greedy search candidates: [342]
+Time after exploration of unaligned_write32le: 165.79577803611755
+==== Next function: lzma_stream_header_encode
+greedy search, currently checking 0 to 14 out of 14
+greedy search, time after compilation in step 0 : 166.06434226036072
+greedy search, time after assembly in step 0 : 166.27807927131653
+greedy search candidates: [342]
+Time after exploration of lzma_stream_header_encode: 166.33861112594604
+==== Next function: lzma_stream_footer_encode
+greedy search, currently checking 0 to 34 out of 34
+greedy search, time after compilation in step 0 : 166.60123109817505
+greedy search, time after assembly in step 0 : 166.8315052986145
+greedy search candidates: [342]
+Time after exploration of lzma_stream_footer_encode: 166.97722578048706
+Time after exploration of 657/liblzma/common/stream_flags_encoder.bc: 166.97724986076355
+***** Next file: 657/liblzma/check/crc64_table.bc
+Time after exploration of 657/liblzma/check/crc64_table.bc: 166.97725892066956
+***** Next file: 657/liblzma/check/check.bc
+Time after exploration of 657/liblzma/check/check.bc: 166.97726607322693
+***** Next file: 657/liblzma/check/crc32_fast.bc
+==== Next function: lzma_crc32
+greedy search, currently checking 0 to 36 out of 36
+greedy search, time after compilation in step 0 : 167.25579071044922
+greedy search, time after assembly in step 0 : 167.4746322631836
+greedy search candidates: [403]
+Time after exploration of lzma_crc32: 167.6252212524414
+Time after exploration of 657/liblzma/check/crc32_fast.bc: 167.62524437904358
+***** Next file: 657/liblzma/check/sha256.bc
+==== Next function: lzma_sha256_init
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 168.45087265968323
+greedy search, time after assembly in step 0 : 168.71852207183838
+greedy search candidates: [4429]
+Time after exploration of lzma_sha256_init: 168.72837901115417
+==== Next function: transform
+greedy search, currently checking 0 to 256 out of 347
+greedy search, time after compilation in step 0 : 170.45139718055725
+greedy search, time after assembly in step 0 : 170.99552035331726
+greedy search candidates: [4429]
+greedy search, currently checking 256 to 347 out of 347
+greedy search, time after compilation in step 0 : 172.39484643936157
+greedy search, time after assembly in step 0 : 172.62523865699768
+greedy search candidates: [4429]
+Time after exploration of transform: 172.97055888175964
+==== Next function: process
+greedy search, currently checking 0 to 256 out of 467
+greedy search, time after compilation in step 0 : 174.07770133018494
+greedy search, time after assembly in step 0 : 174.45195198059082
+greedy search candidates: [4386, 4429]
+greedy search, new min: 4386
+greedy search, current list: [0]
+greedy search, time after step 0 : 175.45988655090332
+greedy search, currently checking 0 to 256 out of 467
+greedy search, time after compilation in step 1 : 176.35569524765015
+greedy search, time after assembly in step 1 : 176.7288315296173
+greedy search candidates: [4386]
+greedy search, currently checking 256 to 467 out of 467
+greedy search, time after compilation in step 1 : 178.35040283203125
+greedy search, time after assembly in step 1 : 178.69556760787964
+greedy search candidates: [4386]
+Time after exploration of process: 179.5008704662323
+==== Next function: lzma_sha256_update
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 180.01716113090515
+greedy search, time after assembly in step 0 : 180.18864798545837
+greedy search candidates: [4429]
+Time after exploration of lzma_sha256_update: 180.19575262069702
+==== Next function: lzma_sha256_finish
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 180.70102739334106
+greedy search, time after assembly in step 0 : 180.88214206695557
+greedy search candidates: [4429]
+Time after exploration of lzma_sha256_finish: 180.89910650253296
+Time after exploration of 657/liblzma/check/sha256.bc: 180.89912700653076
+***** Next file: 657/liblzma/check/crc32_table.bc
+Time after exploration of 657/liblzma/check/crc32_table.bc: 180.89913868904114
+***** Next file: 657/liblzma/check/crc64_fast.bc
+==== Next function: lzma_crc64
+greedy search, currently checking 0 to 12 out of 12
+greedy search, time after compilation in step 0 : 181.0961549282074
+greedy search, time after assembly in step 0 : 181.24096512794495
+greedy search candidates: [281]
+Time after exploration of lzma_crc64: 181.2819218635559
+Time after exploration of 657/liblzma/check/crc64_fast.bc: 181.28194189071655
+***** Next file: 657/liblzma/lzma/lzma_encoder_optimum_normal.bc
+==== Next function: lzma_lzma_optimum_normal
+greedy search, currently checking 0 to 256 out of 1875
+greedy search, time after compilation in step 0 : 182.81459856033325
+greedy search, time after assembly in step 0 : 183.40491652488708
+greedy search candidates: [7139, 7112, 7117, 7152, 7120, 7155, 7128, 7103]
+greedy search, new min: 7103
+greedy search, current list: [14]
+greedy search, time after step 0 : 184.4075207710266
+greedy search, currently checking 14 to 270 out of 1875
+greedy search, time after compilation in step 1 : 185.63366770744324
+greedy search, time after assembly in step 1 : 186.2277913093567
+greedy search candidates: [7130, 7108, 7103]
+greedy search, currently checking 270 to 526 out of 1875
+greedy search, time after compilation in step 1 : 188.4318413734436
+greedy search, time after assembly in step 1 : 189.0431489944458
+greedy search candidates: [7103]
+greedy search, currently checking 526 to 782 out of 1875
+greedy search, time after compilation in step 1 : 191.33344626426697
+greedy search, time after assembly in step 1 : 191.92885446548462
+greedy search candidates: [7088, 6992, 7103]
+greedy search, new min: 7088
+greedy search, current list: [14, 537]
+greedy search, time after step 1 : 192.84501004219055
+greedy search, currently checking 537 to 793 out of 1875
+greedy search, time after compilation in step 2 : 194.10550212860107
+greedy search, time after assembly in step 2 : 194.71062779426575
+greedy search candidates: [6992, 7017, 7088, 7103]
+greedy search, new min: 7017
+greedy search, current list: [14, 537, 538]
+greedy search, time after step 2 : 195.74786257743835
+greedy search, currently checking 538 to 794 out of 1875
+greedy search, time after compilation in step 3 : 196.95970606803894
+greedy search, time after assembly in step 3 : 197.5670680999756
+greedy search candidates: [6977, 7081, 7017, 7088, 7070, 7103]
+greedy search, new min: 6977
+greedy search, current list: [14, 537, 538, 539]
+greedy search, time after step 3 : 198.57909417152405
+greedy search, currently checking 539 to 795 out of 1875
+greedy search, time after compilation in step 4 : 199.80560445785522
+greedy search, time after assembly in step 4 : 200.41680455207825
+greedy search candidates: [6977, 7017, 7081, 7088, 7000]
+greedy search, currently checking 795 to 1051 out of 1875
+greedy search, time after compilation in step 4 : 202.6610026359558
+greedy search, time after assembly in step 4 : 203.24757313728333
+greedy search candidates: [7000, 6977, 7017, 7088]
+greedy search, currently checking 1051 to 1307 out of 1875
+greedy search, time after compilation in step 4 : 205.46102905273438
+greedy search, time after assembly in step 4 : 206.07982873916626
+greedy search candidates: [7088, 6977, 7000, 7017]
+greedy search, currently checking 1307 to 1563 out of 1875
+greedy search, time after compilation in step 4 : 208.30843496322632
+greedy search, time after assembly in step 4 : 208.8908565044403
+greedy search candidates: [7008, 6977, 7017, 7081, 6989, 7088, 7000]
+greedy search, currently checking 1563 to 1819 out of 1875
+greedy search, time after compilation in step 4 : 211.09104800224304
+greedy search, time after assembly in step 4 : 211.6601538658142
+greedy search candidates: [6977, 7017, 7081, 7088, 7000]
+greedy search, currently checking 1819 to 1875 out of 1875
+greedy search, time after compilation in step 4 : 213.18841528892517
+greedy search, time after assembly in step 4 : 213.47577166557312
+greedy search candidates: [7088, 6977, 7000]
+Time after exploration of lzma_lzma_optimum_normal: 213.6911883354187
+==== Next function: helper1
+greedy search, currently checking 0 to 256 out of 430
+greedy search, time after compilation in step 0 : 215.1411485671997
+greedy search, time after assembly in step 0 : 215.70827627182007
+greedy search candidates: [7112, 7113]
+greedy search, currently checking 256 to 430 out of 430
+greedy search, time after compilation in step 0 : 217.6629331111908
+greedy search, time after assembly in step 0 : 218.13133931159973
+greedy search candidates: [7112]
+Time after exploration of helper1: 218.816987991333
+==== Next function: backward
+greedy search, currently checking 0 to 89 out of 89
+greedy search, time after compilation in step 0 : 219.6772425174713
+greedy search, time after assembly in step 0 : 219.9870843887329
+greedy search candidates: [7112, 7121]
+Time after exploration of backward: 220.33602476119995
+==== Next function: fill_distances_prices
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 221.04590010643005
+greedy search, time after assembly in step 0 : 221.27964997291565
+greedy search candidates: [7112]
+Time after exploration of fill_distances_prices: 221.3057737350464
+==== Next function: fill_align_prices
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 222.00121021270752
+greedy search, time after assembly in step 0 : 222.2134506702423
+greedy search candidates: [7112]
+Time after exploration of fill_align_prices: 222.21837830543518
+==== Next function: mf_avail
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 222.91763019561768
+greedy search, time after assembly in step 0 : 223.14188814163208
+greedy search candidates: [7112]
+Time after exploration of mf_avail: 223.15135836601257
+==== Next function: mf_ptr
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 223.85167622566223
+greedy search, time after assembly in step 0 : 224.11133575439453
+greedy search candidates: [7112]
+Time after exploration of mf_ptr: 224.11907362937927
+==== Next function: get_literal_price
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 224.81055116653442
+greedy search, time after assembly in step 0 : 225.0444574356079
+greedy search candidates: [7112]
+Time after exploration of get_literal_price: 225.0507493019104
+==== Next function: make_literal
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 225.7438805103302
+greedy search, time after assembly in step 0 : 225.9682502746582
+greedy search candidates: [7112]
+Time after exploration of make_literal: 225.97933554649353
+==== Next function: get_short_rep_price
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 226.6697118282318
+greedy search, time after assembly in step 0 : 226.88938856124878
+greedy search candidates: [7112]
+Time after exploration of get_short_rep_price: 226.8970878124237
+==== Next function: make_short_rep
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 227.5856876373291
+greedy search, time after assembly in step 0 : 227.80671405792236
+greedy search candidates: [7112]
+Time after exploration of make_short_rep: 227.81582641601562
+==== Next function: get_pure_rep_price
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 228.50757002830505
+greedy search, time after assembly in step 0 : 228.7297284603119
+greedy search candidates: [7112]
+Time after exploration of get_pure_rep_price: 228.74760842323303
+==== Next function: get_pos_len_price
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 229.43840837478638
+greedy search, time after assembly in step 0 : 229.6640441417694
+greedy search candidates: [7112]
+Time after exploration of get_pos_len_price: 229.66829466819763
+==== Next function: get_rep_price
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 230.3609654903412
+greedy search, time after assembly in step 0 : 230.58837342262268
+greedy search candidates: [7112]
+Time after exploration of get_rep_price: 230.59635281562805
+==== Next function: helper2
+greedy search, currently checking 0 to 256 out of 700
+greedy search, time after compilation in step 0 : 232.0591380596161
+greedy search, time after assembly in step 0 : 232.64443945884705
+greedy search candidates: [7112]
+greedy search, currently checking 256 to 512 out of 700
+greedy search, time after compilation in step 0 : 234.83009004592896
+greedy search, time after assembly in step 0 : 235.39730668067932
+greedy search candidates: [7112]
+greedy search, currently checking 512 to 700 out of 700
+greedy search, time after compilation in step 0 : 237.3926661014557
+greedy search, time after assembly in step 0 : 237.87701535224915
+greedy search candidates: [7112]
+Time after exploration of helper2: 238.63980054855347
+Time after exploration of 657/liblzma/lzma/lzma_encoder_optimum_normal.bc: 238.6398220062256
+***** Next file: 657/liblzma/lzma/fastpos_table.bc
+Time after exploration of 657/liblzma/lzma/fastpos_table.bc: 238.63983249664307
+***** Next file: 657/liblzma/lzma/lzma_decoder.bc
+==== Next function: lzma_lzma_lclppb_decode
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 239.68463945388794
+greedy search, time after assembly in step 0 : 240.040789604187
+greedy search candidates: [17445]
+Time after exploration of lzma_lzma_lclppb_decode: 240.0610580444336
+==== Next function: lzma_decoder_reset
+greedy search, currently checking 0 to 78 out of 78
+greedy search, time after compilation in step 0 : 241.35241794586182
+greedy search, time after assembly in step 0 : 241.89306163787842
+greedy search candidates: [17445]
+Time after exploration of lzma_decoder_reset: 242.211767911911
+==== Next function: rc_read_init
+greedy search, currently checking 0 to 14 out of 14
+greedy search, time after compilation in step 0 : 243.26771926879883
+greedy search, time after assembly in step 0 : 243.6597499847412
+greedy search candidates: [17445]
+Time after exploration of rc_read_init: 243.71383023262024
+==== Next function: dict_get
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 244.747394323349
+greedy search, time after assembly in step 0 : 245.10098958015442
+greedy search candidates: [17445]
+Time after exploration of dict_get: 245.11780619621277
+==== Next function: dict_put
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 246.158616065979
+greedy search, time after assembly in step 0 : 246.52200555801392
+greedy search candidates: [17445]
+Time after exploration of dict_put: 246.54768824577332
+==== Next function: dict_repeat
+greedy search, currently checking 0 to 20 out of 20
+greedy search, time after compilation in step 0 : 247.60651016235352
+greedy search, time after assembly in step 0 : 248.00876140594482
+greedy search candidates: [17445]
+Time after exploration of dict_repeat: 248.08417177200317
+==== Next function: lzma_decode
+greedy search, currently checking 0 to 256 out of 819
+greedy search, time after compilation in step 0 : 250.32684898376465
+greedy search, time after assembly in step 0 : 251.50525617599487
+greedy search candidates: [17536, 17442, 17443, 17445, 17446, 17449, 17450, 17452, 17457, 17432, 16185, 17467, 17437, 17470]
+greedy search, new min: 17443
+greedy search, current list: [78]
+greedy search, time after step 0 : 252.54591965675354
+greedy search, currently checking 78 to 334 out of 819
+greedy search, time after compilation in step 1 : 254.20632243156433
+greedy search, time after assembly in step 1 : 255.45278406143188
+greedy search candidates: [17440, 17443, 17444, 17447, 17513, 17450, 16203, 17455, 17430, 17465, 17435, 17468]
+greedy search, new min: 16203
+greedy search, current list: [78, 146]
+greedy search, time after step 1 : 256.4752881526947
+greedy search, currently checking 146 to 402 out of 819
+greedy search, time after compilation in step 2 : 258.23309683799744
+greedy search, time after assembly in step 2 : 259.4205958843231
+greedy search candidates: [16194, 17506, 16203, 16206, 16217, 16189, 16223]
+greedy search, new min: 16189
+greedy search, current list: [78, 146, 149]
+greedy search, time after step 2 : 260.44340777397156
+greedy search, currently checking 149 to 405 out of 819
+greedy search, time after compilation in step 3 : 262.19156193733215
+greedy search, time after assembly in step 3 : 263.3685004711151
+greedy search candidates: [16203, 16175, 16209, 16180, 17498, 16189]
+greedy search, new min: 16175
+greedy search, current list: [78, 146, 149, 150]
+greedy search, time after step 3 : 264.3682837486267
+greedy search, currently checking 150 to 406 out of 819
+greedy search, time after compilation in step 4 : 266.0760545730591
+greedy search, time after assembly in step 4 : 267.23758935928345
+greedy search candidates: [16195, 16166, 16175, 17490, 16189]
+greedy search, new min: 16166
+greedy search, current list: [78, 146, 149, 150, 151]
+greedy search, time after step 4 : 268.2635142803192
+greedy search, currently checking 151 to 407 out of 819
+greedy search, time after compilation in step 5 : 269.94343161582947
+greedy search, time after assembly in step 5 : 271.12002897262573
+greedy search candidates: [16186, 16180, 16166, 16239]
+greedy search, currently checking 407 to 663 out of 819
+greedy search, time after compilation in step 5 : 273.9313280582428
+greedy search, time after assembly in step 5 : 275.0729835033417
+greedy search candidates: [16166]
+greedy search, currently checking 663 to 819 out of 819
+greedy search, time after compilation in step 5 : 277.3863079547882
+greedy search, time after assembly in step 5 : 278.3127374649048
+greedy search candidates: [16166]
+Time after exploration of lzma_decode: 278.95115184783936
+==== Next function: lzma_lzma_decoder_create
+greedy search, currently checking 0 to 15 out of 15
+greedy search, time after compilation in step 0 : 280.0305209159851
+greedy search, time after assembly in step 0 : 280.4427318572998
+greedy search candidates: [17445]
+Time after exploration of lzma_lzma_decoder_create: 280.50254940986633
+==== Next function: is_lclppb_valid
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 281.5357458591461
+greedy search, time after assembly in step 0 : 281.9025285243988
+greedy search candidates: [17445]
+Time after exploration of is_lclppb_valid: 281.91838812828064
+==== Next function: lzma_decoder_init
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 282.95204067230225
+greedy search, time after assembly in step 0 : 283.3097426891327
+greedy search candidates: [17445]
+Time after exploration of lzma_decoder_init: 283.32521772384644
+==== Next function: lzma_lzma_decoder_memusage
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 284.3728587627411
+greedy search, time after assembly in step 0 : 284.744136095047
+greedy search candidates: [17445]
+Time after exploration of lzma_lzma_decoder_memusage: 284.773649930954
+==== Next function: unaligned_read32le
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 285.82543540000916
+greedy search, time after assembly in step 0 : 286.2008481025696
+greedy search candidates: [17445]
+Time after exploration of unaligned_read32le: 286.23186469078064
+==== Next function: lzma_lzma_props_decode
+greedy search, currently checking 0 to 14 out of 14
+greedy search, time after compilation in step 0 : 287.28074169158936
+greedy search, time after assembly in step 0 : 287.66710472106934
+greedy search candidates: [17445]
+Time after exploration of lzma_lzma_props_decode: 287.7272117137909
+Time after exploration of 657/liblzma/lzma/lzma_decoder.bc: 287.72723293304443
+***** Next file: 657/liblzma/lzma/lzma2_decoder.bc
+==== Next function: lzma2_decode
+greedy search, currently checking 0 to 256 out of 489
+greedy search, time after compilation in step 0 : 288.057443857193
+greedy search, time after assembly in step 0 : 288.34039425849915
+greedy search candidates: [1419]
+greedy search, currently checking 256 to 489 out of 489
+greedy search, time after compilation in step 0 : 289.65646505355835
+greedy search, time after assembly in step 0 : 289.94114327430725
+greedy search candidates: [1419, 1414]
+greedy search, new min: 1414
+greedy search, current list: [458]
+greedy search, time after step 0 : 290.8731641769409
+greedy search, currently checking 458 to 489 out of 489
+greedy search, time after compilation in step 1 : 291.04943680763245
+greedy search, time after assembly in step 1 : 291.22444105148315
+greedy search candidates: [1414]
+Time after exploration of lzma2_decode: 291.3449475765228
+==== Next function: dict_write
+greedy search, currently checking 0 to 11 out of 11
+greedy search, time after compilation in step 0 : 291.5706100463867
+greedy search, time after assembly in step 0 : 291.73037099838257
+greedy search candidates: [1419]
+Time after exploration of dict_write: 291.7706754207611
+==== Next function: lzma2_decoder_init
+greedy search, currently checking 0 to 27 out of 27
+greedy search, time after compilation in step 0 : 292.0044379234314
+greedy search, time after assembly in step 0 : 292.16999673843384
+greedy search candidates: [1417, 1434, 1419]
+greedy search, new min: 1417
+greedy search, current list: [0]
+greedy search, time after step 0 : 292.27232599258423
+greedy search, currently checking 0 to 27 out of 27
+greedy search, time after compilation in step 1 : 292.44516158103943
+greedy search, time after assembly in step 1 : 292.6196165084839
+greedy search candidates: [1432, 1417]
+Time after exploration of lzma2_decoder_init: 292.73299503326416
+==== Next function: lzma_lzma2_props_decode
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 292.96384596824646
+greedy search, time after assembly in step 0 : 293.11867928504944
+greedy search candidates: [1419]
+Time after exploration of lzma_lzma2_props_decode: 293.1349103450775
+Time after exploration of 657/liblzma/lzma/lzma2_decoder.bc: 293.1349308490753
+***** Next file: 657/liblzma/lzma/lzma_encoder.bc
+==== Next function: rc_bit
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 293.6126787662506
+greedy search, time after assembly in step 0 : 293.8095772266388
+greedy search candidates: [5893]
+Time after exploration of rc_bit: 293.81787872314453
+==== Next function: rc_bittree
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 294.29238986968994
+greedy search, time after assembly in step 0 : 294.4880793094635
+greedy search candidates: [5893]
+Time after exploration of rc_bittree: 294.4974842071533
+==== Next function: encode_init
+greedy search, currently checking 0 to 10 out of 10
+greedy search, time after compilation in step 0 : 294.9888229370117
+greedy search, time after assembly in step 0 : 295.1892583370209
+greedy search candidates: [5893]
+Time after exploration of encode_init: 295.23185086250305
+==== Next function: mf_position
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 295.7186622619629
+greedy search, time after assembly in step 0 : 295.9148139953613
+greedy search candidates: [5893]
+Time after exploration of mf_position: 295.92275500297546
+==== Next function: rc_shift_low
+greedy search, currently checking 0 to 18 out of 18
+greedy search, time after compilation in step 0 : 296.4454073905945
+greedy search, time after assembly in step 0 : 296.67924308776855
+greedy search candidates: [5893]
+Time after exploration of rc_shift_low: 296.7520971298218
+==== Next function: rc_reset
+greedy search, currently checking 0 to 11 out of 11
+greedy search, time after compilation in step 0 : 297.2703878879547
+greedy search, time after assembly in step 0 : 297.48517775535583
+greedy search candidates: [5893]
+Time after exploration of rc_reset: 297.53162360191345
+==== Next function: rc_encode
+greedy search, currently checking 0 to 73 out of 73
+greedy search, time after compilation in step 0 : 298.08982014656067
+greedy search, time after assembly in step 0 : 298.3489639759064
+greedy search candidates: [5893, 5894, 5879]
+greedy search, new min: 5879
+greedy search, current list: [9]
+greedy search, time after step 0 : 298.63624262809753
+greedy search, currently checking 9 to 73 out of 73
+greedy search, time after compilation in step 1 : 298.994482755661
+greedy search, time after assembly in step 1 : 299.2406678199768
+greedy search candidates: [5879]
+Time after exploration of rc_encode: 299.4918601512909
+==== Next function: literal_matched
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 299.9738450050354
+greedy search, time after assembly in step 0 : 300.1709372997284
+greedy search candidates: [5893]
+Time after exploration of literal_matched: 300.1802394390106
+==== Next function: literal
+greedy search, currently checking 0 to 23 out of 23
+greedy search, time after compilation in step 0 : 300.7053942680359
+greedy search, time after assembly in step 0 : 300.93378615379333
+greedy search candidates: [5893]
+Time after exploration of literal: 301.02974033355713
+==== Next function: length_update_prices
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 301.5180118083954
+greedy search, time after assembly in step 0 : 301.714524269104
+greedy search candidates: [5893]
+Time after exploration of length_update_prices: 301.73537611961365
+==== Next function: length
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 302.21484994888306
+greedy search, time after assembly in step 0 : 302.4101474285126
+greedy search candidates: [5893]
+Time after exploration of length: 302.42388939857483
+==== Next function: rep_match
+greedy search, currently checking 0 to 59 out of 59
+greedy search, time after compilation in step 0 : 302.9708399772644
+greedy search, time after assembly in step 0 : 303.21811079978943
+greedy search candidates: [5893]
+Time after exploration of rep_match: 303.4538140296936
+==== Next function: rc_bittree_reverse
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 303.93665838241577
+greedy search, time after assembly in step 0 : 304.1375596523285
+greedy search candidates: [5893]
+Time after exploration of rc_bittree_reverse: 304.1457533836365
+==== Next function: rc_direct
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 304.6213641166687
+greedy search, time after assembly in step 0 : 304.87086510658264
+greedy search candidates: [5893]
+Time after exploration of rc_direct: 304.8770549297333
+==== Next function: match
+greedy search, currently checking 0 to 45 out of 45
+greedy search, time after compilation in step 0 : 305.5263912677765
+greedy search, time after assembly in step 0 : 305.8018717765808
+greedy search candidates: [5893]
+Time after exploration of match: 305.9507393836975
+==== Next function: encode_symbol
+greedy search, currently checking 0 to 70 out of 70
+greedy search, time after compilation in step 0 : 306.8180434703827
+greedy search, time after assembly in step 0 : 307.20564317703247
+greedy search candidates: [5893]
+Time after exploration of encode_symbol: 307.44738936424255
+==== Next function: encode_eopm
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 308.19873571395874
+greedy search, time after assembly in step 0 : 308.5021538734436
+greedy search candidates: [5893]
+Time after exploration of encode_eopm: 308.5214023590088
+==== Next function: rc_flush
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 309.24973797798157
+greedy search, time after assembly in step 0 : 309.55328607559204
+greedy search candidates: [5893]
+Time after exploration of rc_flush: 309.5586771965027
+==== Next function: lzma_lzma_encode
+greedy search, currently checking 0 to 256 out of 424
+greedy search, time after compilation in step 0 : 311.02296352386475
+greedy search, time after assembly in step 0 : 311.77110862731934
+greedy search candidates: [5893, 5895, 5900, 5903, 5915]
+greedy search, currently checking 256 to 424 out of 424
+greedy search, time after compilation in step 0 : 313.5940451622009
+greedy search, time after assembly in step 0 : 314.1475911140442
+greedy search candidates: [5893]
+Time after exploration of lzma_lzma_encode: 314.77746868133545
+==== Next function: is_lclppb_valid
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 315.55156326293945
+greedy search, time after assembly in step 0 : 315.86212849617004
+greedy search candidates: [5893]
+Time after exploration of is_lclppb_valid: 315.87721061706543
+==== Next function: is_options_valid
+greedy search, currently checking 0 to 11 out of 11
+greedy search, time after compilation in step 0 : 316.64812445640564
+greedy search, time after assembly in step 0 : 316.972128868103
+greedy search candidates: [5893]
+Time after exploration of is_options_valid: 317.0154538154602
+==== Next function: length_encoder_reset
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 317.7626750469208
+greedy search, time after assembly in step 0 : 318.0581440925598
+greedy search candidates: [5893]
+Time after exploration of length_encoder_reset: 318.07594752311707
+==== Next function: lzma_lzma_encoder_reset
+greedy search, currently checking 0 to 125 out of 125
+greedy search, time after compilation in step 0 : 319.1473023891449
+greedy search, time after assembly in step 0 : 319.63487243652344
+greedy search candidates: [5893, 5895]
+Time after exploration of lzma_lzma_encoder_reset: 320.14664793014526
+==== Next function: set_lz_options
+greedy search, currently checking 0 to 53 out of 53
+greedy search, time after compilation in step 0 : 320.9746301174164
+greedy search, time after assembly in step 0 : 321.3066871166229
+greedy search candidates: [5893]
+Time after exploration of set_lz_options: 321.52270793914795
+==== Next function: lzma_lzma_encoder_create
+greedy search, currently checking 0 to 104 out of 104
+greedy search, time after compilation in step 0 : 322.50835156440735
+greedy search, time after assembly in step 0 : 322.94513177871704
+greedy search candidates: [5896, 5893]
+Time after exploration of lzma_lzma_encoder_create: 323.3442850112915
+==== Next function: lzma_lzma_encoder_memusage
+greedy search, currently checking 0 to 87 out of 87
+greedy search, time after compilation in step 0 : 324.3860468864441
+greedy search, time after assembly in step 0 : 324.81600880622864
+greedy search candidates: [5893]
+Time after exploration of lzma_lzma_encoder_memusage: 325.18964743614197
+==== Next function: lzma_lzma_lclppb_encode
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 325.97390365600586
+greedy search, time after assembly in step 0 : 326.2860176563263
+greedy search candidates: [5898, 5893, 5895]
+Time after exploration of lzma_lzma_lclppb_encode: 326.31405448913574
+==== Next function: unaligned_write32le
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 327.0785138607025
+greedy search, time after assembly in step 0 : 327.41860723495483
+greedy search candidates: [5893]
+Time after exploration of unaligned_write32le: 327.4482493400574
+==== Next function: lzma_lzma_props_encode
+greedy search, currently checking 0 to 14 out of 14
+greedy search, time after compilation in step 0 : 328.2420554161072
+greedy search, time after assembly in step 0 : 328.55767798423767
+greedy search candidates: [5893]
+Time after exploration of lzma_lzma_props_encode: 328.6128194332123
+Time after exploration of 657/liblzma/lzma/lzma_encoder.bc: 328.61284255981445
+***** Next file: 657/liblzma/lzma/lzma2_encoder.bc
+==== Next function: lzma2_header_uncompressed
+greedy search, currently checking 0 to 15 out of 15
+greedy search, time after compilation in step 0 : 328.97733664512634
+greedy search, time after assembly in step 0 : 329.2100901603699
+greedy search candidates: [1846]
+Time after exploration of lzma2_header_uncompressed: 329.27336621284485
+==== Next function: lzma2_encoder_options_update
+greedy search, currently checking 0 to 28 out of 28
+greedy search, time after compilation in step 0 : 329.62587666511536
+greedy search, time after assembly in step 0 : 329.91085720062256
+greedy search candidates: [1846]
+Time after exploration of lzma2_encoder_options_update: 330.0319049358368
+==== Next function: mf_unencoded
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 330.3944661617279
+greedy search, time after assembly in step 0 : 330.63305711746216
+greedy search candidates: [1846]
+Time after exploration of mf_unencoded: 330.6499412059784
+==== Next function: lzma2_header_lzma
+greedy search, currently checking 0 to 121 out of 121
+greedy search, time after compilation in step 0 : 331.0957555770874
+greedy search, time after assembly in step 0 : 331.41387152671814
+greedy search candidates: [1846]
+Time after exploration of lzma2_header_lzma: 331.8828854560852
+==== Next function: mf_read
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 332.23740911483765
+greedy search, time after assembly in step 0 : 332.486775636673
+greedy search candidates: [1846]
+Time after exploration of mf_read: 332.4963047504425
+==== Next function: lzma2_encode
+greedy search, currently checking 0 to 256 out of 637
+greedy search, time after compilation in step 0 : 333.10463309288025
+greedy search, time after assembly in step 0 : 333.5260829925537
+greedy search candidates: [1863, 1836, 1840, 1844, 1846, 1847]
+greedy search, new min: 1844
+greedy search, current list: [22]
+greedy search, time after step 0 : 334.53674149513245
+greedy search, currently checking 22 to 278 out of 637
+greedy search, time after compilation in step 1 : 335.0559678077698
+greedy search, time after assembly in step 1 : 335.480947971344
+greedy search candidates: [1840, 1817, 1844, 1823]
+greedy search, new min: 1823
+greedy search, current list: [22, 23]
+greedy search, time after step 1 : 336.46397829055786
+greedy search, currently checking 23 to 279 out of 637
+greedy search, time after compilation in step 2 : 336.9649648666382
+greedy search, time after assembly in step 2 : 337.4004180431366
+greedy search candidates: [1815, 1822, 1823]
+greedy search, new min: 1822
+greedy search, current list: [22, 23, 25]
+greedy search, time after step 2 : 338.3637089729309
+greedy search, currently checking 25 to 281 out of 637
+greedy search, time after compilation in step 3 : 338.86087346076965
+greedy search, time after assembly in step 3 : 339.2871334552765
+greedy search candidates: [1822, 1814]
+greedy search, new min: 1814
+greedy search, current list: [22, 23, 25, 75]
+greedy search, time after step 3 : 340.2909805774689
+greedy search, currently checking 75 to 331 out of 637
+greedy search, time after compilation in step 4 : 340.834264755249
+greedy search, time after assembly in step 4 : 341.2871754169464
+greedy search candidates: [1814]
+greedy search, currently checking 331 to 587 out of 637
+greedy search, time after compilation in step 4 : 342.78093004226685
+greedy search, time after assembly in step 4 : 343.2042474746704
+greedy search candidates: [1790, 1814, 1823]
+greedy search, new min: 1790
+greedy search, current list: [22, 23, 25, 75, 533]
+greedy search, time after step 4 : 344.2027864456177
+greedy search, currently checking 533 to 637 out of 637
+greedy search, time after compilation in step 5 : 344.539080619812
+greedy search, time after assembly in step 5 : 344.84840273857117
+greedy search candidates: [1790, 1814, 1823]
+Time after exploration of lzma2_encode: 345.26542830467224
+==== Next function: lzma2_encoder_init
+greedy search, currently checking 0 to 24 out of 24
+greedy search, time after compilation in step 0 : 345.6379482746124
+greedy search, time after assembly in step 0 : 345.89052510261536
+greedy search candidates: [1848, 1846]
+Time after exploration of lzma2_encoder_init: 345.99158549308777
+Time after exploration of 657/liblzma/lzma/lzma2_encoder.bc: 345.9916069507599
+***** Next file: 657/liblzma/lzma/lzma_encoder_presets.bc
+==== Next function: lzma_lzma_preset
+greedy search, currently checking 0 to 256 out of 316
+greedy search, time after compilation in step 0 : 346.3618197441101
+greedy search, time after assembly in step 0 : 346.7096948623657
+greedy search candidates: [320, 326, 310, 313, 314, 316, 317, 319]
+greedy search, new min: 313
+greedy search, current list: [0]
+greedy search, time after step 0 : 347.7796983718872
+greedy search, currently checking 0 to 256 out of 316
+greedy search, time after compilation in step 1 : 348.14005064964294
+greedy search, time after assembly in step 1 : 348.50921869277954
+greedy search candidates: [313, 323, 316, 317]
+greedy search, currently checking 256 to 316 out of 316
+greedy search, time after compilation in step 1 : 349.7605197429657
+greedy search, time after assembly in step 1 : 349.9913671016693
+greedy search candidates: [313, 314, 316, 317]
+Time after exploration of lzma_lzma_preset: 350.24032735824585
+Time after exploration of 657/liblzma/lzma/lzma_encoder_presets.bc: 350.2403495311737
+***** Next file: 657/liblzma/lzma/lzma_encoder_optimum_fast.bc
+==== Next function: mf_ptr
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 350.5766656398773
+greedy search, time after assembly in step 0 : 350.82800579071045
+greedy search candidates: [1111]
+Time after exploration of mf_ptr: 350.8376500606537
+==== Next function: mf_avail
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 351.1793622970581
+greedy search, time after assembly in step 0 : 351.3961589336395
+greedy search candidates: [1111]
+Time after exploration of mf_avail: 351.4060435295105
+==== Next function: lzma_lzma_optimum_fast
+greedy search, currently checking 0 to 152 out of 152
+greedy search, time after compilation in step 0 : 351.86920142173767
+greedy search, time after assembly in step 0 : 352.2064826488495
+greedy search candidates: [1165, 1166, 1111]
+Time after exploration of lzma_lzma_optimum_fast: 352.8058180809021
+Time after exploration of 657/liblzma/lzma/lzma_encoder_optimum_fast.bc: 352.8058395385742
+***** Next file: 657/liblzma/delta/delta_decoder.bc
+==== Next function: decode_buffer
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 353.06062293052673
+greedy search, time after assembly in step 0 : 353.27269101142883
+greedy search candidates: [364]
+Time after exploration of decode_buffer: 353.2981045246124
+==== Next function: delta_decode
+greedy search, currently checking 0 to 20 out of 20
+greedy search, time after compilation in step 0 : 353.5654625892639
+greedy search, time after assembly in step 0 : 353.7843289375305
+greedy search candidates: [368, 364, 365]
+Time after exploration of delta_decode: 353.86464262008667
+==== Next function: lzma_delta_props_decode
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 354.11752438545227
+greedy search, time after assembly in step 0 : 354.33129811286926
+greedy search candidates: [364]
+Time after exploration of lzma_delta_props_decode: 354.34071016311646
+Time after exploration of 657/liblzma/delta/delta_decoder.bc: 354.34073543548584
+***** Next file: 657/liblzma/delta/delta_common.bc
+==== Next function: lzma_delta_coder_memusage
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 354.59318566322327
+greedy search, time after assembly in step 0 : 354.8229835033417
+greedy search candidates: [393]
+Time after exploration of lzma_delta_coder_memusage: 354.83301305770874
+==== Next function: lzma_delta_coder_init
+greedy search, currently checking 0 to 29 out of 29
+greedy search, time after compilation in step 0 : 355.11990451812744
+greedy search, time after assembly in step 0 : 355.3604328632355
+greedy search candidates: [393, 395, 445]
+Time after exploration of lzma_delta_coder_init: 355.4854657649994
+Time after exploration of 657/liblzma/delta/delta_common.bc: 355.48548555374146
+***** Next file: 657/liblzma/delta/delta_encoder.bc
+==== Next function: copy_and_encode
+greedy search, currently checking 0 to 14 out of 14
+greedy search, time after compilation in step 0 : 355.7898061275482
+greedy search, time after assembly in step 0 : 356.02142786979675
+greedy search candidates: [548]
+Time after exploration of copy_and_encode: 356.0847671031952
+==== Next function: encode_in_place
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 356.3989357948303
+greedy search, time after assembly in step 0 : 356.6190240383148
+greedy search candidates: [548]
+Time after exploration of encode_in_place: 356.6461851596832
+==== Next function: delta_encode
+greedy search, currently checking 0 to 47 out of 47
+greedy search, time after compilation in step 0 : 356.9521541595459
+greedy search, time after assembly in step 0 : 357.19470024108887
+greedy search candidates: [545, 547, 548, 536, 542]
+greedy search, new min: 542
+greedy search, current list: [1]
+greedy search, time after step 0 : 357.3965799808502
+greedy search, currently checking 1 to 47 out of 47
+greedy search, time after compilation in step 1 : 357.6545808315277
+greedy search, time after assembly in step 1 : 357.88446736335754
+greedy search candidates: [539, 541, 542, 534]
+greedy search, new min: 534
+greedy search, current list: [1, 2]
+greedy search, time after step 1 : 358.06764221191406
+greedy search, currently checking 2 to 47 out of 47
+greedy search, time after compilation in step 2 : 358.31395864486694
+greedy search, time after assembly in step 2 : 358.55978631973267
+greedy search candidates: [531, 533, 534]
+greedy search, new min: 531
+greedy search, current list: [1, 2, 5]
+greedy search, time after step 2 : 358.74650716781616
+greedy search, currently checking 5 to 47 out of 47
+greedy search, time after compilation in step 3 : 359.0101652145386
+greedy search, time after assembly in step 3 : 359.2426817417145
+greedy search candidates: [530, 531]
+greedy search, new min: 530
+greedy search, current list: [1, 2, 5, 7]
+greedy search, time after step 3 : 359.4173529148102
+greedy search, currently checking 7 to 47 out of 47
+greedy search, time after compilation in step 4 : 359.6610608100891
+greedy search, time after assembly in step 4 : 359.88794350624084
+greedy search candidates: [530]
+Time after exploration of delta_encode: 360.0480532646179
+==== Next function: lzma_delta_encoder_init
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 360.33539485931396
+greedy search, time after assembly in step 0 : 360.56941175460815
+greedy search candidates: [548]
+Time after exploration of lzma_delta_encoder_init: 360.5793070793152
+Time after exploration of 657/liblzma/delta/delta_encoder.bc: 360.57932782173157
+***** Next file: 657/spec_mem_io/spec_mem_io.bc
+==== Next function: spec_mem_init
+greedy search, currently checking 0 to 8 out of 8
+greedy search, time after compilation in step 0 : 361.2259521484375
+greedy search, time after assembly in step 0 : 361.5777633190155
+greedy search candidates: [12136]
+Time after exploration of spec_mem_init: 361.6122992038727
+==== Next function: spec_mem_sum
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 362.226393699646
+greedy search, time after assembly in step 0 : 362.5648956298828
+greedy search candidates: [12136]
+Time after exploration of spec_mem_sum: 362.58217883110046
+==== Next function: fd_grow
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 363.19634890556335
+greedy search, time after assembly in step 0 : 363.53692865371704
+greedy search candidates: [12136]
+Time after exploration of fd_grow: 363.5640478134155
+==== Next function: spec_uncompress
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 364.1901009082794
+greedy search, time after assembly in step 0 : 364.53211283683777
+greedy search candidates: [12136]
+Time after exploration of spec_uncompress: 364.54203248023987
+==== Next function: spec_mem_load
+greedy search, currently checking 0 to 23 out of 23
+greedy search, time after compilation in step 0 : 365.16632294654846
+greedy search, time after assembly in step 0 : 365.5695219039917
+greedy search candidates: [12136, 12140]
+Time after exploration of spec_mem_load: 365.67122411727905
+==== Next function: spec_mem_read
+greedy search, currently checking 0 to 9 out of 9
+greedy search, time after compilation in step 0 : 366.28705286979675
+greedy search, time after assembly in step 0 : 366.63412404060364
+greedy search candidates: [12136]
+Time after exploration of spec_mem_read: 366.6761507987976
+==== Next function: spec_mem_fread
+greedy search, currently checking 0 to 9 out of 9
+greedy search, time after compilation in step 0 : 367.2772536277771
+greedy search, time after assembly in step 0 : 367.61068058013916
+greedy search candidates: [12136]
+Time after exploration of spec_mem_fread: 367.6477189064026
+==== Next function: spec_mem_getc
+greedy search, currently checking 0 to 11 out of 11
+greedy search, time after compilation in step 0 : 368.2683367729187
+greedy search, time after assembly in step 0 : 368.62553191185
+greedy search candidates: [12136]
+Time after exploration of spec_mem_getc: 368.67324709892273
+==== Next function: spec_mem_ungetc
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 369.3134355545044
+greedy search, time after assembly in step 0 : 369.6621415615082
+greedy search candidates: [12136]
+Time after exploration of spec_mem_ungetc: 369.6923015117645
+==== Next function: spec_mem_lseek
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 370.32510018348694
+greedy search, time after assembly in step 0 : 370.67612767219543
+greedy search candidates: [12136]
+Time after exploration of spec_mem_lseek: 370.70568442344666
+==== Next function: spec_mem_reset
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 371.3361511230469
+greedy search, time after assembly in step 0 : 371.67034244537354
+greedy search candidates: [12136]
+Time after exploration of spec_mem_reset: 371.68852043151855
+==== Next function: spec_mem_get_length
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 372.31957483291626
+greedy search, time after assembly in step 0 : 372.6763708591461
+greedy search candidates: [12136]
+Time after exploration of spec_mem_get_length: 372.69064021110535
+==== Next function: spec_mem_fopen
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 373.3141210079193
+greedy search, time after assembly in step 0 : 373.639621257782
+greedy search candidates: [12136]
+Time after exploration of spec_mem_fopen: 373.6567471027374
+==== Next function: spec_mem_open
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 374.26246762275696
+greedy search, time after assembly in step 0 : 374.59831047058105
+greedy search candidates: [12136]
+Time after exploration of spec_mem_open: 374.6079308986664
+==== Next function: spec_mem_write
+greedy search, currently checking 0 to 16 out of 16
+greedy search, time after compilation in step 0 : 375.23024559020996
+greedy search, time after assembly in step 0 : 375.57556915283203
+greedy search candidates: [12136, 12130]
+greedy search, new min: 12130
+greedy search, current list: [2]
+greedy search, time after step 0 : 375.63728189468384
+greedy search, currently checking 2 to 16 out of 16
+greedy search, time after compilation in step 1 : 375.9804208278656
+greedy search, time after assembly in step 1 : 376.33306312561035
+greedy search candidates: [12130]
+Time after exploration of spec_mem_write: 376.38957047462463
+==== Next function: spec_mem_fwrite
+greedy search, currently checking 0 to 16 out of 16
+greedy search, time after compilation in step 0 : 376.9919812679291
+greedy search, time after assembly in step 0 : 377.3182406425476
+greedy search candidates: [12136, 12130]
+greedy search, new min: 12130
+greedy search, current list: [2]
+greedy search, time after step 0 : 377.3752851486206
+greedy search, currently checking 2 to 16 out of 16
+greedy search, time after compilation in step 1 : 377.7145595550537
+greedy search, time after assembly in step 1 : 378.0550284385681
+greedy search candidates: [12130]
+Time after exploration of spec_mem_fwrite: 378.1148545742035
+==== Next function: spec_mem_putc
+greedy search, currently checking 0 to 8 out of 8
+greedy search, time after compilation in step 0 : 378.7489356994629
+greedy search, time after assembly in step 0 : 379.1111569404602
+greedy search candidates: [12136]
+Time after exploration of spec_mem_putc: 379.14523434638977
+==== Next function: spec_mem_feof
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 379.7640480995178
+greedy search, time after assembly in step 0 : 380.13773584365845
+greedy search candidates: [12136]
+Time after exploration of spec_mem_feof: 380.15972805023193
+==== Next function: spec_compress
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 380.78330540657043
+greedy search, time after assembly in step 0 : 381.11108016967773
+greedy search candidates: [12136]
+Time after exploration of spec_compress: 381.1211802959442
+==== Next function: sum_str_to_hex
+greedy search, currently checking 0 to 8 out of 8
+greedy search, time after compilation in step 0 : 381.71375036239624
+greedy search, time after assembly in step 0 : 382.08018493652344
+greedy search candidates: [12136]
+Time after exploration of sum_str_to_hex: 382.1125752925873
+==== Next function: spec_mem_alloc_fds
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 382.705956697464
+greedy search, time after assembly in step 0 : 383.04753732681274
+greedy search candidates: [12136]
+Time after exploration of spec_mem_alloc_fds: 383.0598773956299
+==== Next function: spec_mem_free_fds
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 383.6323778629303
+greedy search, time after assembly in step 0 : 383.9536499977112
+greedy search candidates: [12136]
+Time after exploration of spec_mem_free_fds: 383.9595990180969
+Time after exploration of 657/spec_mem_io/spec_mem_io.bc: 383.9596199989319
+***** Next file: 657/sha-2/sha512.bc
+==== Next function: sha_process
+greedy search, currently checking 0 to 12 out of 12
+greedy search, time after compilation in step 0 : 384.5319731235504
+greedy search, time after assembly in step 0 : 384.7951843738556
+greedy search candidates: [3091]
+Time after exploration of sha_process: 384.8424482345581
+==== Next function: sha_compress
+greedy search, currently checking 0 to 256 out of 468
+greedy search, time after compilation in step 0 : 385.8791275024414
+greedy search, time after assembly in step 0 : 386.4061470031738
+greedy search candidates: [3104, 3109, 3080, 3088, 3091, 3101]
+greedy search, new min: 3080
+greedy search, current list: [137]
+greedy search, time after step 0 : 387.4773499965668
+greedy search, currently checking 137 to 393 out of 468
+greedy search, time after compilation in step 1 : 388.3265697956085
+greedy search, time after assembly in step 1 : 388.87089109420776
+greedy search candidates: [3066, 3074, 3077, 3080, 3090, 3093, 3098]
+greedy search, new min: 3077
+greedy search, current list: [137, 143]
+greedy search, time after step 1 : 389.9150335788727
+greedy search, currently checking 143 to 399 out of 468
+greedy search, time after compilation in step 2 : 390.7261040210724
+greedy search, time after assembly in step 2 : 391.2711429595947
+greedy search candidates: [3074, 3077, 3087, 3090, 3063, 3095, 3071]
+greedy search, new min: 3074
+greedy search, current list: [137, 143, 144]
+greedy search, time after step 2 : 392.36824774742126
+greedy search, currently checking 144 to 400 out of 468
+greedy search, time after compilation in step 3 : 393.17961287498474
+greedy search, time after assembly in step 3 : 393.7352912425995
+greedy search candidates: [3074, 3084, 3087, 3092, 3060, 3068, 3071]
+greedy search, new min: 3071
+greedy search, current list: [137, 143, 144, 145]
+greedy search, time after step 3 : 394.77246475219727
+greedy search, currently checking 145 to 401 out of 468
+greedy search, time after compilation in step 4 : 395.5832486152649
+greedy search, time after assembly in step 4 : 396.1158175468445
+greedy search candidates: [3081, 3084, 3057, 3065, 3068, 3071]
+greedy search, new min: 3068
+greedy search, current list: [137, 143, 144, 145, 150]
+greedy search, time after step 4 : 397.18377327919006
+greedy search, currently checking 150 to 406 out of 468
+greedy search, time after compilation in step 5 : 398.0034210681915
+greedy search, time after assembly in step 5 : 398.57229804992676
+greedy search candidates: [3078, 3081, 3054, 3062, 3068]
+greedy search, new min: 3054
+greedy search, current list: [137, 143, 144, 145, 150, 266]
+greedy search, time after step 5 : 399.5665316581726
+greedy search, currently checking 266 to 468 out of 468
+greedy search, time after compilation in step 6 : 400.2883577346802
+greedy search, time after assembly in step 6 : 400.7876012325287
+greedy search candidates: [3048, 3054]
+greedy search, new min: 3048
+greedy search, current list: [137, 143, 144, 145, 150, 266, 274]
+greedy search, time after step 6 : 401.6311523914337
+greedy search, currently checking 274 to 468 out of 468
+greedy search, time after compilation in step 7 : 402.3231146335602
+greedy search, time after assembly in step 7 : 402.8038465976715
+greedy search candidates: [3048]
+Time after exploration of sha_compress: 403.61791706085205
+==== Next function: sha_done
+greedy search, currently checking 0 to 12 out of 12
+greedy search, time after compilation in step 0 : 404.22256422042847
+greedy search, time after assembly in step 0 : 404.49525022506714
+greedy search candidates: [3041, 3084, 3053, 3089, 3091]
+greedy search, new min: 3041
+greedy search, current list: [0]
+greedy search, time after step 0 : 404.54538130760193
+greedy search, currently checking 0 to 12 out of 12
+greedy search, time after compilation in step 1 : 404.89462447166443
+greedy search, time after assembly in step 1 : 405.1694881916046
+greedy search candidates: [3041, 3051]
+Time after exploration of sha_done: 405.21891927719116
+==== Next function: sha_init
+greedy search, currently checking 0 to 46 out of 46
+greedy search, time after compilation in step 0 : 405.80740094184875
+greedy search, time after assembly in step 0 : 406.084264755249
+greedy search candidates: [3091]
+Time after exploration of sha_init: 406.2765872478485
+==== Next function: sortof_strdup
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 406.83226227760315
+greedy search, time after assembly in step 0 : 407.1200659275055
+greedy search candidates: [3091]
+Time after exploration of sortof_strdup: 407.12915205955505
+Time after exploration of 657/sha-2/sha512.bc: 407.1291720867157
+***** Next file: 657/xz/options.bc
+==== Next function: parse_options
+greedy search, currently checking 0 to 11 out of 11
+greedy search, time after compilation in step 0 : 407.425523519516
+greedy search, time after assembly in step 0 : 407.6489655971527
+greedy search candidates: [2269, 2237, 2271]
+greedy search, new min: 2269
+greedy search, current list: [2]
+greedy search, time after step 0 : 407.693318605423
+greedy search, currently checking 2 to 11 out of 11
+greedy search, time after compilation in step 1 : 407.93251156806946
+greedy search, time after assembly in step 1 : 408.16463351249695
+greedy search candidates: [2235, 2269]
+greedy search, new min: 2235
+greedy search, current list: [2, 5]
+greedy search, time after step 1 : 408.19908261299133
+greedy search, currently checking 5 to 11 out of 11
+greedy search, time after compilation in step 2 : 408.4394385814667
+greedy search, time after assembly in step 2 : 408.684207201004
+greedy search candidates: [2235]
+Time after exploration of parse_options: 408.70921778678894
+==== Next function: options_delta
+greedy search, currently checking 0 to 12 out of 12
+greedy search, time after compilation in step 0 : 409.0125026702881
+greedy search, time after assembly in step 0 : 409.24041509628296
+greedy search candidates: [2292, 2271]
+Time after exploration of options_delta: 409.29039478302
+==== Next function: set_lzma
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 409.5942838191986
+greedy search, time after assembly in step 0 : 409.8263018131256
+greedy search candidates: [2267, 2271]
+greedy search, new min: 2267
+greedy search, current list: [0]
+greedy search, time after step 0 : 409.84213399887085
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 1 : 410.09200263023376
+greedy search, time after assembly in step 1 : 410.3140811920166
+greedy search candidates: [2267]
+Time after exploration of set_lzma: 410.3310055732727
+==== Next function: options_lzma
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 410.62365913391113
+greedy search, time after assembly in step 0 : 410.838125705719
+greedy search candidates: [2271]
+Time after exploration of options_lzma: 410.86936593055725
+Time after exploration of 657/xz/options.bc: 410.8693895339966
+***** Next file: 657/xz/signals.bc
+Time after exploration of 657/xz/signals.bc: 410.8693985939026
+***** Next file: 657/xz/hardware.bc
+Time after exploration of 657/xz/hardware.bc: 410.8694038391113
+***** Next file: 657/xz/args.bc
+Time after exploration of 657/xz/args.bc: 410.8694088459015
+***** Next file: 657/xz/file_io.bc
+==== Next function: io_open_dest_real
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 411.2044222354889
+greedy search, time after assembly in step 0 : 411.428475856781
+greedy search candidates: [2003]
+Time after exploration of io_open_dest_real: 411.4426963329315
+==== Next function: io_open_dest
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 411.81871008872986
+greedy search, time after assembly in step 0 : 412.0659441947937
+greedy search candidates: [2003]
+Time after exploration of io_open_dest: 412.0807147026062
+==== Next function: io_write_buf
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 412.45875430107117
+greedy search, time after assembly in step 0 : 412.68714594841003
+greedy search candidates: [2003]
+Time after exploration of io_write_buf: 412.69314408302307
+==== Next function: io_close_dest
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 413.03232645988464
+greedy search, time after assembly in step 0 : 413.26186895370483
+greedy search candidates: [2003]
+Time after exploration of io_close_dest: 413.2677595615387
+==== Next function: io_close
+greedy search, currently checking 0 to 12 out of 12
+greedy search, time after compilation in step 0 : 413.6217043399811
+greedy search, time after assembly in step 0 : 413.8706123828888
+greedy search candidates: [2003]
+Time after exploration of io_close: 413.9238452911377
+==== Next function: io_read
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 414.2904579639435
+greedy search, time after assembly in step 0 : 414.5486400127411
+greedy search candidates: [2003]
+Time after exploration of io_read: 414.55426144599915
+==== Next function: io_write
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 414.90592408180237
+greedy search, time after assembly in step 0 : 415.15393233299255
+greedy search candidates: [2003]
+Time after exploration of io_write: 415.1831257343292
+Time after exploration of 657/xz/file_io.bc: 415.1831467151642
+***** Next file: 657/xz/util.bc
+==== Next function: xrealloc
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 415.50400829315186
+greedy search, time after assembly in step 0 : 415.7207655906677
+greedy search candidates: [1853]
+Time after exploration of xrealloc: 415.7264177799225
+==== Next function: str_to_uint64
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 416.0597221851349
+greedy search, time after assembly in step 0 : 416.30472111701965
+greedy search candidates: [1853]
+Time after exploration of str_to_uint64: 416.33247113227844
+==== Next function: my_snprintf
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 416.66402649879456
+greedy search, time after assembly in step 0 : 416.8894000053406
+greedy search candidates: [1853]
+Time after exploration of my_snprintf: 416.90334272384644
+==== Next function: uint64_to_nicestr
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 417.2195997238159
+greedy search, time after assembly in step 0 : 417.45650029182434
+greedy search candidates: [1853]
+Time after exploration of uint64_to_nicestr: 417.477263212204
+Time after exploration of 657/xz/util.bc: 417.47729301452637
+***** Next file: 657/xz/main.bc
+Time after exploration of 657/xz/main.bc: 417.4773027896881
+***** Next file: 657/xz/list.bc
+==== Next function: get_check_names
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 418.0595705509186
+greedy search, time after assembly in step 0 : 418.3497178554535
+greedy search candidates: [9120]
+Time after exploration of get_check_names: 418.3556127548218
+==== Next function: print_totals_robot
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 418.9616107940674
+greedy search, time after assembly in step 0 : 419.2595798969269
+greedy search candidates: [9120]
+Time after exploration of print_totals_robot: 419.2656228542328
+==== Next function: print_totals_basic
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 419.8976662158966
+greedy search, time after assembly in step 0 : 420.1979892253876
+greedy search candidates: [9120]
+Time after exploration of print_totals_basic: 420.22751116752625
+==== Next function: list_totals
+greedy search, currently checking 0 to 15 out of 15
+greedy search, time after compilation in step 0 : 420.8631823062897
+greedy search, time after assembly in step 0 : 421.16666316986084
+greedy search candidates: [9120]
+Time after exploration of list_totals: 421.23071932792664
+==== Next function: parse_indexes
+greedy search, currently checking 0 to 47 out of 47
+greedy search, time after compilation in step 0 : 421.8666672706604
+greedy search, time after assembly in step 0 : 422.19237065315247
+greedy search candidates: [9120]
+Time after exploration of parse_indexes: 422.4198830127716
+==== Next function: parse_block_header
+greedy search, currently checking 0 to 65 out of 65
+greedy search, time after compilation in step 0 : 423.0932366847992
+greedy search, time after assembly in step 0 : 423.4641582965851
+greedy search candidates: [9120]
+Time after exploration of parse_block_header: 423.7155690193176
+==== Next function: parse_check_value
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 424.350949048996
+greedy search, time after assembly in step 0 : 424.67498898506165
+greedy search candidates: [9120]
+Time after exploration of parse_check_value: 424.69007897377014
+==== Next function: parse_details
+greedy search, currently checking 0 to 75 out of 75
+greedy search, time after compilation in step 0 : 425.44251894950867
+greedy search, time after assembly in step 0 : 425.82126545906067
+greedy search candidates: [9120]
+Time after exploration of parse_details: 426.131290435791
+==== Next function: print_info_robot
+greedy search, currently checking 0 to 94 out of 94
+greedy search, time after compilation in step 0 : 426.8971209526062
+greedy search, time after assembly in step 0 : 427.31926465034485
+greedy search candidates: [9120]
+Time after exploration of print_info_robot: 427.74449467658997
+==== Next function: print_info_basic
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 428.369341135025
+greedy search, time after assembly in step 0 : 428.66122674942017
+greedy search candidates: [9120]
+Time after exploration of print_info_basic: 428.67152166366577
+==== Next function: print_info_adv
+greedy search, currently checking 0 to 90 out of 90
+greedy search, time after compilation in step 0 : 429.4179992675781
+greedy search, time after assembly in step 0 : 429.819944858551
+greedy search candidates: [9120]
+Time after exploration of print_info_adv: 430.1784715652466
+==== Next function: update_totals
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 430.7879250049591
+greedy search, time after assembly in step 0 : 431.0751619338989
+greedy search candidates: [9120]
+Time after exploration of update_totals: 431.09727787971497
+==== Next function: list_file
+greedy search, currently checking 0 to 256 out of 640
+greedy search, time after compilation in step 0 : 432.23221731185913
+greedy search, time after assembly in step 0 : 432.91339015960693
+greedy search candidates: [9120, 9155, 9292]
+greedy search, currently checking 256 to 512 out of 640
+greedy search, time after compilation in step 0 : 434.7829694747925
+greedy search, time after assembly in step 0 : 435.4675283432007
+greedy search candidates: [9120]
+greedy search, currently checking 512 to 640 out of 640
+greedy search, time after compilation in step 0 : 437.00361609458923
+greedy search, time after assembly in step 0 : 437.46172881126404
+greedy search candidates: [9120]
+Time after exploration of list_file: 438.00814843177795
+Time after exploration of 657/xz/list.bc: 438.00816774368286
+***** Next file: 657/xz/coder.bc
+==== Next function: coder_add_filter
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 438.427250623703
+greedy search, time after assembly in step 0 : 438.68175888061523
+greedy search candidates: [3344]
+Time after exploration of coder_add_filter: 438.69487833976746
+==== Next function: forget_filter_chain
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 439.10768461227417
+greedy search, time after assembly in step 0 : 439.35894560813904
+greedy search candidates: [3344]
+Time after exploration of forget_filter_chain: 439.36835193634033
+==== Next function: coder_set_compression_settings
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 439.78588366508484
+greedy search, time after assembly in step 0 : 440.03967928886414
+greedy search candidates: [3344, 3346]
+Time after exploration of coder_set_compression_settings: 440.06191325187683
+==== Next function: is_format_lzma
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 440.4652988910675
+greedy search, time after assembly in step 0 : 440.7056472301483
+greedy search candidates: [3344]
+Time after exploration of is_format_lzma: 440.7181022167206
+==== Next function: coder_normal
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 441.1230697631836
+greedy search, time after assembly in step 0 : 441.3856837749481
+greedy search candidates: [3344]
+Time after exploration of coder_normal: 441.4160387516022
+==== Next function: coder_run
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 441.83158135414124
+greedy search, time after assembly in step 0 : 442.09378600120544
+greedy search candidates: [3344]
+Time after exploration of coder_run: 442.12716698646545
+Time after exploration of 657/xz/coder.bc: 442.1271915435791
+***** Next file: 657/xz/message.bc
+==== Next function: message_mem_needed
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 442.4601500034332
+greedy search, time after assembly in step 0 : 442.71611762046814
+greedy search candidates: [7386]
+Time after exploration of message_mem_needed: 442.726530790329
+==== Next function: message_filters_to_str
+greedy search, currently checking 0 to 27 out of 27
+greedy search, time after compilation in step 0 : 443.096732378006
+greedy search, time after assembly in step 0 : 443.3551893234253
+greedy search candidates: [7386]
+Time after exploration of message_filters_to_str: 443.46710562705994
+==== Next function: message_filters_show
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 443.8029477596283
+greedy search, time after assembly in step 0 : 444.0516493320465
+greedy search candidates: [7386]
+Time after exploration of message_filters_show: 444.0574345588684
+Time after exploration of 657/xz/message.bc: 444.05745339393616
+found results: {PosixPath('657/spec.bc'): {'main': ([], 2454)}, PosixPath('657/pxz.bc'): {}, PosixPath('657/spec_xz.bc'): {'uncompressStream': ([], 2364), 'compressStream': ([], 2364), 'init_encoder': ([], 2364)}, PosixPath('657/common/tuklib_progname.bc'): {}, PosixPath('657/common/tuklib_physmem.bc'): {}, PosixPath('657/common/tuklib_cpucores.bc'): {}, PosixPath('657/common/tuklib_mbstr_width.bc'): {}, PosixPath('657/common/tuklib_exit.bc'): {}, PosixPath('657/common/tuklib_open_stdxxx.bc'): {}, PosixPath('657/common/tuklib_mbstr_fw.bc'): {'tuklib_mbstr_fw': ([], 118)}, PosixPath('657/liblzma/rangecoder/price_table.bc'): {}, PosixPath('657/liblzma/simple/x86.bc'): {'x86_code': ([], 671), 'x86_coder_init': ([], 671)}, PosixPath('657/liblzma/simple/simple_encoder.bc'): {'unaligned_write32le': ([], 101), 'lzma_simple_props_encode': ([], 101)}, PosixPath('657/liblzma/simple/ia64.bc'): {'ia64_code': ([], 921)}, PosixPath('657/liblzma/simple/arm.bc'): {'arm_code': ([], 299)}, PosixPath('657/liblzma/simple/simple_coder.bc'): {'copy_or_code': ([], 1588), 'call_filter': ([], 1588), 'simple_code': ([2, 8], 1564), 'lzma_simple_coder_init': ([], 1588)}, PosixPath('657/liblzma/simple/simple_decoder.bc'): {'unaligned_read32le': ([], 179), 'lzma_simple_props_decode': ([], 179)}, PosixPath('657/liblzma/simple/sparc.bc'): {'sparc_code': ([], 411)}, PosixPath('657/liblzma/simple/powerpc.bc'): {'powerpc_code': ([0], 356)}, PosixPath('657/liblzma/simple/armthumb.bc'): {'armthumb_code': ([], 367)}, PosixPath('657/liblzma/lz/lz_encoder_mf.bc'): {'mf_avail': ([], 4638), 'mf_ptr': ([], 4638), 'lzma_mf_find': ([], 4638), 'move_pending': ([], 4638), 'normalize': ([], 4638), 'move_pos': ([27], 4628), 'hc_find_func': ([], 4638), 'lzma_mf_hc3_find': ([], 4638), 'lzma_mf_hc3_skip': ([], 4638), 'lzma_mf_hc4_find': ([], 4638), 'lzma_mf_hc4_skip': ([], 4638), 'bt_find_func': ([], 4638), 'lzma_mf_bt2_find': ([], 4638), 'bt_skip_func': ([], 4638), 'lzma_mf_bt2_skip': ([], 4638), 'lzma_mf_bt3_find': ([], 4638), 'lzma_mf_bt3_skip': ([], 4638), 'lzma_mf_bt4_find': ([], 4638), 'lzma_mf_bt4_skip': ([], 4638)}, PosixPath('657/liblzma/lz/lz_decoder.bc'): {'decode_buffer': ([3], 1507), 'lz_decoder_reset': ([], 1513), 'lz_decoder_end': ([], 1513), 'lz_decode': ([], 1513), 'lzma_lz_decoder_init': ([], 1513), 'lzma_lz_decoder_uncompressed': ([], 1513)}, PosixPath('657/liblzma/lz/lz_encoder.bc'): {'lz_encoder_prepare': ([50, 54, 59], 2211), 'lzma_lz_encoder_memusage': ([], 2230), 'lz_encoder_init': ([], 2230), 'lz_encoder_update': ([], 2230), 'lz_encoder_end': ([], 2230), 'move_window': ([], 2230), 'fill_window': ([], 2230), 'lz_encode': ([], 2230), 'lzma_lz_encoder_init': ([0], 2228)}, PosixPath('657/liblzma/common/common.bc'): {'lzma_code': ([], 2007), 'lzma_alloc': ([], 2007), 'lzma_free': ([], 2007), 'lzma_bufcpy': ([0, 2], 1975), 'lzma_next_end': ([], 2007), 'lzma_next_filter_init': ([], 2007), 'lzma_next_filter_update': ([], 2007), 'lzma_strm_init': ([6], 2005), 'lzma_end': ([], 2007), 'lzma_get_check': ([], 2007), 'lzma_memusage': ([], 2007), 'lzma_memlimit_get': ([], 2007), 'lzma_memlimit_set': ([], 2007)}, PosixPath('657/liblzma/common/alone_decoder.bc'): {'alone_decoder_memconfig': ([], 1335), 'alone_decode': ([0, 11, 12], 1299), 'lzma_alone_decoder_init': ([0], 1333), 'lzma_alone_decoder': ([], 1335)}, PosixPath('657/liblzma/common/block_header_decoder.bc'): {'unaligned_read32le': ([], 638), 'free_properties': ([], 638), 'lzma_block_header_decode': ([], 638)}, PosixPath('657/liblzma/common/stream_buffer_decoder.bc'): {'lzma_stream_buffer_decode': ([5, 8], 485)}, PosixPath('657/liblzma/common/block_util.bc'): {'lzma_block_unpadded_size': ([], 338), 'lzma_block_compressed_size': ([], 338)}, PosixPath('657/liblzma/common/index_encoder.bc'): {'index_encoder_reset': ([], 1375), 'index_encode': ([1, 2, 3, 6], 1267), 'lzma_index_encoder_init': ([0], 1361), 'lzma_index_encoder': ([], 1375), 'lzma_index_buffer_encode': ([], 1375)}, PosixPath('657/liblzma/common/vli_decoder.bc'): {'lzma_vli_decode': ([0, 1, 2, 9], 270)}, PosixPath('657/liblzma/common/filter_buffer_decoder.bc'): {'lzma_raw_buffer_decode': ([], 539)}, PosixPath('657/liblzma/common/stream_buffer_encoder.bc'): {'lzma_stream_buffer_encode': ([], 753)}, PosixPath('657/liblzma/common/easy_buffer_encoder.bc'): {}, PosixPath('657/liblzma/common/filter_common.bc'): {'lzma_raw_coder_init': ([8], 1481), 'lzma_filters_copy': ([], 1506), 'validate_chain': ([], 1506), 'lzma_raw_coder_memusage': ([2], 1504)}, PosixPath('657/liblzma/common/easy_preset.bc'): {'lzma_easy_preset': ([], 119)}, PosixPath('657/liblzma/common/stream_encoder.bc'): {'stream_encoder_update': ([], 2010), 'stream_encode': ([5], 1990), 'lzma_stream_encoder_init': ([], 2010), 'lzma_stream_encoder': ([], 2010)}, PosixPath('657/liblzma/common/filter_flags_decoder.bc'): {'lzma_filter_flags_decode': ([], 235)}, PosixPath('657/liblzma/common/stream_flags_decoder.bc'): {'unaligned_read32le': ([], 391), 'stream_flags_decode': ([], 391), 'lzma_stream_header_decode': ([], 391), 'lzma_stream_footer_decode': ([], 391)}, PosixPath('657/liblzma/common/index_decoder.bc'): {'index_decoder_reset': ([], 1862), 'index_decoder_memconfig': ([], 1862), 'index_decode': ([0, 2], 1851), 'index_decoder_init': ([], 1862), 'lzma_index_decoder': ([], 1862), 'lzma_index_buffer_decode': ([], 1862)}, PosixPath('657/liblzma/common/index_hash.bc'): {'lzma_index_hash_init': ([], 1630), 'lzma_index_hash_size': ([], 1630), 'hash_append': ([], 1630), 'lzma_index_hash_append': ([], 1630), 'lzma_index_hash_decode': ([1], 1624)}, PosixPath('657/liblzma/common/stream_flags_common.bc'): {'lzma_stream_flags_compare': ([], 178)}, PosixPath('657/liblzma/common/block_decoder.bc'): {'block_decode': ([0], 1222), 'lzma_block_decoder_init': ([0], 1222), 'lzma_block_decoder': ([], 1224)}, PosixPath('657/liblzma/common/auto_decoder.bc'): {'auto_decoder_memconfig': ([], 1014), 'auto_decoder_get_check': ([], 1014), 'auto_decode': ([], 1014), 'auto_decoder_init': ([0], 1012), 'lzma_auto_decoder': ([], 1014)}, PosixPath('657/liblzma/common/stream_decoder.bc'): {'stream_decoder_reset': ([], 2093), 'stream_decoder_memconfig': ([], 2093), 'stream_decode': ([25], 2060), 'lzma_stream_decoder_init': ([0], 2082), 'lzma_stream_decoder': ([], 2093)}, PosixPath('657/liblzma/common/vli_size.bc'): {}, PosixPath('657/liblzma/common/easy_decoder_memusage.bc'): {}, PosixPath('657/liblzma/common/block_buffer_encoder.bc'): {'lzma_block_buffer_encode': ([], 1594), 'block_encode_normal': ([], 1594), 'block_encode_uncompressed': ([], 1594)}, PosixPath('657/liblzma/common/block_encoder.bc'): {'block_encode': ([6], 1148), 'lzma_block_encoder_init': ([0], 1150), 'lzma_block_encoder': ([], 1152)}, PosixPath('657/liblzma/common/hardware_physmem.bc'): {}, PosixPath('657/liblzma/common/filter_buffer_encoder.bc'): {'lzma_raw_buffer_encode': ([], 366)}, PosixPath('657/liblzma/common/easy_encoder_memusage.bc'): {}, PosixPath('657/liblzma/common/vli_encoder.bc'): {'lzma_vli_encode': ([1, 4, 8], 198)}, PosixPath('657/liblzma/common/filter_flags_encoder.bc'): {'lzma_filter_flags_encode': ([], 346)}, PosixPath('657/liblzma/common/filter_decoder.bc'): {'lzma_raw_decoder': ([], 693), 'lzma_properties_decode': ([], 693)}, PosixPath('657/liblzma/common/index.bc'): {'lzma_index_append': ([], 5455), 'index_dup_stream': ([], 5455), 'index_init_plain': ([], 5455), 'index_stream_init': ([], 5455), 'index_tree_append': ([], 5455), 'lzma_index_init': ([], 5455), 'index_tree_node_end': ([], 5455), 'lzma_index_memused': ([], 5455), 'lzma_index_size': ([], 5455), 'lzma_index_stream_size': ([], 5455), 'lzma_index_file_size': ([], 5455), 'lzma_index_checks': ([], 5455), 'lzma_index_padding_size': ([], 5455), 'index_cat_helper': ([], 5455), 'lzma_index_cat': ([52, 57], 5431), 'lzma_index_dup': ([], 5455), 'lzma_index_iter_init': ([], 5455), 'iter_set_info': ([], 5455), 'lzma_index_iter_next': ([20], 5445), 'index_tree_locate': ([], 5455), 'lzma_index_iter_locate': ([], 5455)}, PosixPath('657/liblzma/common/block_buffer_decoder.bc'): {'lzma_block_buffer_decode': ([1, 3], 427)}, PosixPath('657/liblzma/common/block_header_encoder.bc'): {'lzma_block_header_size': ([0], 684), 'unaligned_write32le': ([], 695), 'lzma_block_header_encode': ([], 695)}, PosixPath('657/liblzma/common/easy_encoder.bc'): {}, PosixPath('657/liblzma/common/alone_encoder.bc'): {'unaligned_write32le': ([], 870), 'alone_encode': ([], 870), 'alone_encoder_init': ([0], 868), 'lzma_alone_encoder': ([], 870)}, PosixPath('657/liblzma/common/filter_encoder.bc'): {'lzma_filters_update': ([], 1173), 'lzma_raw_encoder': ([], 1173), 'lzma_properties_size': ([], 1173), 'lzma_properties_encode': ([], 1173)}, PosixPath('657/liblzma/common/stream_flags_encoder.bc'): {'stream_flags_encode': ([], 342), 'unaligned_write32le': ([], 342), 'lzma_stream_header_encode': ([], 342), 'lzma_stream_footer_encode': ([], 342)}, PosixPath('657/liblzma/check/crc64_table.bc'): {}, PosixPath('657/liblzma/check/check.bc'): {}, PosixPath('657/liblzma/check/crc32_fast.bc'): {'lzma_crc32': ([], 403)}, PosixPath('657/liblzma/check/sha256.bc'): {'lzma_sha256_init': ([], 4429), 'transform': ([], 4429), 'process': ([0], 4386), 'lzma_sha256_update': ([], 4429), 'lzma_sha256_finish': ([], 4429)}, PosixPath('657/liblzma/check/crc32_table.bc'): {}, PosixPath('657/liblzma/check/crc64_fast.bc'): {'lzma_crc64': ([], 281)}, PosixPath('657/liblzma/lzma/lzma_encoder_optimum_normal.bc'): {'lzma_lzma_optimum_normal': ([14, 537, 538, 539], 6977), 'helper1': ([], 7112), 'backward': ([], 7112), 'fill_distances_prices': ([], 7112), 'fill_align_prices': ([], 7112), 'mf_avail': ([], 7112), 'mf_ptr': ([], 7112), 'get_literal_price': ([], 7112), 'make_literal': ([], 7112), 'get_short_rep_price': ([], 7112), 'make_short_rep': ([], 7112), 'get_pure_rep_price': ([], 7112), 'get_pos_len_price': ([], 7112), 'get_rep_price': ([], 7112), 'helper2': ([], 7112)}, PosixPath('657/liblzma/lzma/fastpos_table.bc'): {}, PosixPath('657/liblzma/lzma/lzma_decoder.bc'): {'lzma_lzma_lclppb_decode': ([], 17445), 'lzma_decoder_reset': ([], 17445), 'rc_read_init': ([], 17445), 'dict_get': ([], 17445), 'dict_put': ([], 17445), 'dict_repeat': ([], 17445), 'lzma_decode': ([78, 146, 149, 150, 151], 16166), 'lzma_lzma_decoder_create': ([], 17445), 'is_lclppb_valid': ([], 17445), 'lzma_decoder_init': ([], 17445), 'lzma_lzma_decoder_memusage': ([], 17445), 'unaligned_read32le': ([], 17445), 'lzma_lzma_props_decode': ([], 17445)}, PosixPath('657/liblzma/lzma/lzma2_decoder.bc'): {'lzma2_decode': ([458], 1414), 'dict_write': ([], 1419), 'lzma2_decoder_init': ([0], 1417), 'lzma_lzma2_props_decode': ([], 1419)}, PosixPath('657/liblzma/lzma/lzma_encoder.bc'): {'rc_bit': ([], 5893), 'rc_bittree': ([], 5893), 'encode_init': ([], 5893), 'mf_position': ([], 5893), 'rc_shift_low': ([], 5893), 'rc_reset': ([], 5893), 'rc_encode': ([9], 5879), 'literal_matched': ([], 5893), 'literal': ([], 5893), 'length_update_prices': ([], 5893), 'length': ([], 5893), 'rep_match': ([], 5893), 'rc_bittree_reverse': ([], 5893), 'rc_direct': ([], 5893), 'match': ([], 5893), 'encode_symbol': ([], 5893), 'encode_eopm': ([], 5893), 'rc_flush': ([], 5893), 'lzma_lzma_encode': ([], 5893), 'is_lclppb_valid': ([], 5893), 'is_options_valid': ([], 5893), 'length_encoder_reset': ([], 5893), 'lzma_lzma_encoder_reset': ([], 5893), 'set_lz_options': ([], 5893), 'lzma_lzma_encoder_create': ([], 5893), 'lzma_lzma_encoder_memusage': ([], 5893), 'lzma_lzma_lclppb_encode': ([], 5893), 'unaligned_write32le': ([], 5893), 'lzma_lzma_props_encode': ([], 5893)}, PosixPath('657/liblzma/lzma/lzma2_encoder.bc'): {'lzma2_header_uncompressed': ([], 1846), 'lzma2_encoder_options_update': ([], 1846), 'mf_unencoded': ([], 1846), 'lzma2_header_lzma': ([], 1846), 'mf_read': ([], 1846), 'lzma2_encode': ([22, 23, 25, 75, 533], 1790), 'lzma2_encoder_init': ([], 1846)}, PosixPath('657/liblzma/lzma/lzma_encoder_presets.bc'): {'lzma_lzma_preset': ([0], 313)}, PosixPath('657/liblzma/lzma/lzma_encoder_optimum_fast.bc'): {'mf_ptr': ([], 1111), 'mf_avail': ([], 1111), 'lzma_lzma_optimum_fast': ([], 1111)}, PosixPath('657/liblzma/delta/delta_decoder.bc'): {'decode_buffer': ([], 364), 'delta_decode': ([], 364), 'lzma_delta_props_decode': ([], 364)}, PosixPath('657/liblzma/delta/delta_common.bc'): {'lzma_delta_coder_memusage': ([], 393), 'lzma_delta_coder_init': ([], 393)}, PosixPath('657/liblzma/delta/delta_encoder.bc'): {'copy_and_encode': ([], 548), 'encode_in_place': ([], 548), 'delta_encode': ([1, 2, 5, 7], 530), 'lzma_delta_encoder_init': ([], 548)}, PosixPath('657/spec_mem_io/spec_mem_io.bc'): {'spec_mem_init': ([], 12136), 'spec_mem_sum': ([], 12136), 'fd_grow': ([], 12136), 'spec_uncompress': ([], 12136), 'spec_mem_load': ([], 12136), 'spec_mem_read': ([], 12136), 'spec_mem_fread': ([], 12136), 'spec_mem_getc': ([], 12136), 'spec_mem_ungetc': ([], 12136), 'spec_mem_lseek': ([], 12136), 'spec_mem_reset': ([], 12136), 'spec_mem_get_length': ([], 12136), 'spec_mem_fopen': ([], 12136), 'spec_mem_open': ([], 12136), 'spec_mem_write': ([2], 12130), 'spec_mem_fwrite': ([2], 12130), 'spec_mem_putc': ([], 12136), 'spec_mem_feof': ([], 12136), 'spec_compress': ([], 12136), 'sum_str_to_hex': ([], 12136), 'spec_mem_alloc_fds': ([], 12136), 'spec_mem_free_fds': ([], 12136)}, PosixPath('657/sha-2/sha512.bc'): {'sha_process': ([], 3091), 'sha_compress': ([137, 143, 144, 145, 150, 266, 274], 3048), 'sha_done': ([0], 3041), 'sha_init': ([], 3091), 'sortof_strdup': ([], 3091)}, PosixPath('657/xz/options.bc'): {'parse_options': ([2, 5], 2235), 'options_delta': ([], 2271), 'set_lzma': ([0], 2267), 'options_lzma': ([], 2271)}, PosixPath('657/xz/signals.bc'): {}, PosixPath('657/xz/hardware.bc'): {}, PosixPath('657/xz/args.bc'): {}, PosixPath('657/xz/file_io.bc'): {'io_open_dest_real': ([], 2003), 'io_open_dest': ([], 2003), 'io_write_buf': ([], 2003), 'io_close_dest': ([], 2003), 'io_close': ([], 2003), 'io_read': ([], 2003), 'io_write': ([], 2003)}, PosixPath('657/xz/util.bc'): {'xrealloc': ([], 1853), 'str_to_uint64': ([], 1853), 'my_snprintf': ([], 1853), 'uint64_to_nicestr': ([], 1853)}, PosixPath('657/xz/main.bc'): {}, PosixPath('657/xz/list.bc'): {'get_check_names': ([], 9120), 'print_totals_robot': ([], 9120), 'print_totals_basic': ([], 9120), 'list_totals': ([], 9120), 'parse_indexes': ([], 9120), 'parse_block_header': ([], 9120), 'parse_check_value': ([], 9120), 'parse_details': ([], 9120), 'print_info_robot': ([], 9120), 'print_info_basic': ([], 9120), 'print_info_adv': ([], 9120), 'update_totals': ([], 9120), 'list_file': ([], 9120)}, PosixPath('657/xz/coder.bc'): {'coder_add_filter': ([], 3344), 'forget_filter_chain': ([], 3344), 'coder_set_compression_settings': ([], 3344), 'is_format_lzma': ([], 3344), 'coder_normal': ([], 3344), 'coder_run': ([], 3344)}, PosixPath('657/xz/message.bc'): {'message_mem_needed': ([], 7386), 'message_filters_to_str': ([], 7386), 'message_filters_show': ([], 7386)}}
+time after exploration: 444.0580425262451
+Time after std exploration: 452.53340673446655
+657/spec.bc: 2454 vs 2454
+657/pxz.bc: 0 vs 0
+657/spec_xz.bc: 2364 vs 2364
+657/common/tuklib_progname.bc: 58 vs 58
+657/common/tuklib_physmem.bc: 51 vs 51
+657/common/tuklib_cpucores.bc: 51 vs 51
+657/common/tuklib_mbstr_width.bc: 75 vs 75
+657/common/tuklib_exit.bc: 54 vs 54
+657/common/tuklib_open_stdxxx.bc: 49 vs 49
+657/common/tuklib_mbstr_fw.bc: 118 vs 118
+657/liblzma/rangecoder/price_table.bc: 128 vs 128
+657/liblzma/simple/x86.bc: 671 vs 671
+657/liblzma/simple/simple_encoder.bc: 101 vs 101
+657/liblzma/simple/ia64.bc: 921 vs 921
+657/liblzma/simple/arm.bc: 299 vs 299
+657/liblzma/simple/simple_coder.bc: 1564 vs 1588
+657/liblzma/simple/simple_decoder.bc: 179 vs 179
+657/liblzma/simple/sparc.bc: 411 vs 411
+657/liblzma/simple/powerpc.bc: 356 vs 379
+657/liblzma/simple/armthumb.bc: 367 vs 367
+657/liblzma/lz/lz_encoder_mf.bc: 4628 vs 4638
+657/liblzma/lz/lz_decoder.bc: 1507 vs 1513
+657/liblzma/lz/lz_encoder.bc: 2209 vs 2230
+657/liblzma/common/common.bc: 1973 vs 2007
+657/liblzma/common/alone_decoder.bc: 1297 vs 1335
+657/liblzma/common/block_header_decoder.bc: 638 vs 638
+657/liblzma/common/stream_buffer_decoder.bc: 485 vs 497
+657/liblzma/common/block_util.bc: 338 vs 338
+657/liblzma/common/index_encoder.bc: 1253 vs 1375
+657/liblzma/common/vli_decoder.bc: 270 vs 429
+657/liblzma/common/filter_buffer_decoder.bc: 539 vs 539
+657/liblzma/common/stream_buffer_encoder.bc: 753 vs 753
+657/liblzma/common/easy_buffer_encoder.bc: 210 vs 210
+657/liblzma/common/filter_common.bc: 1479 vs 1506
+657/liblzma/common/easy_preset.bc: 119 vs 119
+657/liblzma/common/stream_encoder.bc: 1990 vs 2010
+657/liblzma/common/filter_flags_decoder.bc: 235 vs 235
+657/liblzma/common/stream_flags_decoder.bc: 391 vs 391
+657/liblzma/common/index_decoder.bc: 1851 vs 1862
+657/liblzma/common/index_hash.bc: 1624 vs 1630
+657/liblzma/common/stream_flags_common.bc: 178 vs 178
+657/liblzma/common/block_decoder.bc: 1220 vs 1224
+657/liblzma/common/auto_decoder.bc: 1012 vs 1014
+657/liblzma/common/stream_decoder.bc: 2049 vs 2093
+657/liblzma/common/vli_size.bc: 74 vs 74
+657/liblzma/common/easy_decoder_memusage.bc: 96 vs 96
+657/liblzma/common/block_buffer_encoder.bc: 1594 vs 1594
+657/liblzma/common/block_encoder.bc: 1146 vs 1152
+657/liblzma/common/hardware_physmem.bc: 53 vs 53
+657/liblzma/common/filter_buffer_encoder.bc: 366 vs 366
+657/liblzma/common/easy_encoder_memusage.bc: 96 vs 96
+657/liblzma/common/vli_encoder.bc: 198 vs 222
+657/liblzma/common/filter_flags_encoder.bc: 346 vs 346
+657/liblzma/common/filter_decoder.bc: 693 vs 693
+657/liblzma/common/index.bc: 5421 vs 5455
+657/liblzma/common/block_buffer_decoder.bc: 427 vs 437
+657/liblzma/common/block_header_encoder.bc: 684 vs 695
+657/liblzma/common/easy_encoder.bc: 126 vs 126
+657/liblzma/common/alone_encoder.bc: 868 vs 870
+657/liblzma/common/filter_encoder.bc: 1173 vs 1173
+657/liblzma/common/stream_flags_encoder.bc: 342 vs 342
+657/liblzma/check/crc64_table.bc: 8192 vs 8192
+657/liblzma/check/check.bc: 353 vs 353
+657/liblzma/check/crc32_fast.bc: 403 vs 403
+657/liblzma/check/sha256.bc: 4386 vs 4429
+657/liblzma/check/crc32_table.bc: 8192 vs 8192
+657/liblzma/check/crc64_fast.bc: 281 vs 281
+657/liblzma/lzma/lzma_encoder_optimum_normal.bc: 6977 vs 7112
+657/liblzma/lzma/fastpos_table.bc: 8192 vs 8192
+657/liblzma/lzma/lzma_decoder.bc: 16166 vs 17445
+657/liblzma/lzma/lzma2_decoder.bc: 1412 vs 1419
+657/liblzma/lzma/lzma_encoder.bc: 5879 vs 5893
+657/liblzma/lzma/lzma2_encoder.bc: 1814 vs 1846
+657/liblzma/lzma/lzma_encoder_presets.bc: 313 vs 316
+657/liblzma/lzma/lzma_encoder_optimum_fast.bc: 1111 vs 1111
+657/liblzma/delta/delta_decoder.bc: 364 vs 364
+657/liblzma/delta/delta_common.bc: 393 vs 393
+657/liblzma/delta/delta_encoder.bc: 530 vs 548
+657/spec_mem_io/spec_mem_io.bc: 12124 vs 12136
+657/sha-2/sha512.bc: 2998 vs 3091
+657/xz/options.bc: 2231 vs 2271
+657/xz/signals.bc: 108 vs 108
+657/xz/hardware.bc: 345 vs 345
+657/xz/args.bc: 8 vs 8
+657/xz/file_io.bc: 2003 vs 2003
+657/xz/util.bc: 1853 vs 1853
+657/xz/main.bc: 81 vs 81
+657/xz/list.bc: 9120 vs 9120
+657/xz/coder.bc: 3344 vs 3344
+657/xz/message.bc: 7386 vs 7386
+Time after after composition: 456.6606020927429
+result: 162677 vs 165013
+meaning a 1.415646040008969% improvement
+Total Time: 456.666143655777
