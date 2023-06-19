@@ -741,11 +741,6 @@ class AAChecker:
         # compare sizes
         return red_size + self.size_diff == initial_size
 
-    def __run__(self):
-        if self.is_valid():
-            exit(0)
-        exit(1)
-
 
 if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser()
@@ -822,7 +817,7 @@ if __name__ == "__main__":
         print(
             "=============== checking file " + args.file_to_check + " ==============="
         )
-        if not AAChecker(
+        if AAChecker(
             Path(args.file_to_check),
             args.func_name,
             [args.sequence],
@@ -841,8 +836,10 @@ if __name__ == "__main__":
                 "Oz",
             ),
         ).is_valid():
-            exit(1)
-        exit(0)
+            print("valid")
+            exit(0)
+        print("invalid")
+        exit(1)
 
     benchmarks = [
         "619",
