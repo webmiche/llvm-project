@@ -702,30 +702,49 @@ class InstrumentAlias:
 @dataclass
 class AAChecker:
     file_path: Path
-    aa_files_dir: Path
     function_name: str
+    sequence: list[int]
+    size_diff: int
 
     aa_instr: InstrumentAlias
 
     def is_valid(self):
-        init_size = self.aa_instr.assemble_and_measure_file(self.file_path)
-        os.makedirs(self.aa_files_dir.joinpath(self.file_path), exist_ok=True)
-
-        take_may = False
-        cmd = [
-            str(self.aa_instr.instr_path.joinpath("opt")),
-            str(self.file_path),
-            "--ofile",
-            str(self.aa_files_dir.joinpath(self.file_path.with_suffix(".txt"))),
-            "-" + self.opt_flag,
-        ] + (["--take_may"] if take_may else [])
-        print(" ".join(cmd))
-        run(cmd, cwd=self.aa_instr.exec_root)
-
-        counts = self.aa_instr.get_count(
-            self.aa_files_dir.joinpath(self.file_path.with_suffix(".txt"))
+        # compile with seq and without
+        self.aa_instr.run_step_single_func(
+            self.file_path,
+            0,
+            self.sequence,
+            self.function_name,
+            False,
         )
-        print(counts)
+        self.aa_instr.run_step_single_func(
+            self.file_path,
+            1,
+            [],
+            self.function_name,
+            False,
+        )
+
+        # assemble both
+
+        red_size = self.aa_instr.assemble_and_measure_file(
+            self.aa_instr.instr_dir.joinpath(
+                self.file_path.parent, str(0) + str(self.file_path.stem) + ".bc"
+            )
+        )
+        initial_size = self.aa_instr.assemble_and_measure_file(
+            self.aa_instr.instr_dir.joinpath(
+                self.file_path.parent, str(1) + str(self.file_path.stem) + ".bc"
+            )
+        )
+
+        # compare sizes
+        return red_size + self.size_diff == initial_size
+
+    def __run__(self):
+        if self.is_valid():
+            exit(0)
+        exit(1)
 
 
 if __name__ == "__main__":
@@ -764,10 +783,31 @@ if __name__ == "__main__":
     )
 
     arg_parser.add_argument(
-        "--check_file",
+        "--file_to_check",
         type=str,
         nargs="?",
-        help="check if the file is valid",
+        help="check if the given file is valid",
+    )
+
+    arg_parser.add_argument(
+        "--size_diff",
+        type=int,
+        nargs="?",
+        help="size difference to check",
+    )
+
+    arg_parser.add_argument(
+        "--sequence",
+        type=int,
+        nargs="?",
+        help="sequence to check",
+    )
+
+    arg_parser.add_argument(
+        "--func_name",
+        type=str,
+        nargs="?",
+        help="function to check",
     )
 
     args = arg_parser.parse_args()
@@ -778,21 +818,24 @@ if __name__ == "__main__":
     default_may_truth = "naive_truth/"
     instr_dir = "aafiles/"
 
-    if args.check_file:
-        print("=============== checking file " + args.check_file + " ===============")
+    if args.file_to_check:
+        print(
+            "=============== checking file " + args.file_to_check + " ==============="
+        )
         if not AAChecker(
-            Path(args.check_file),
-            Path(instr_dir),
-            "price_out_impl",
+            Path(args.file_to_check),
+            args.func_name,
+            [args.sequence],
+            args.size_diff,
             InstrumentAlias(
                 Path(args.instr_path),
-                Path(args.exec_root),
+                Path("./"),
                 Path(args.specbuild_dir),
                 Path(args.benchmark),
-                Path(initial_dir),
+                Path("./"),
                 Path(groundtruth_dir),
                 Path(default_may_truth),
-                Path(instr_dir),
+                Path("./"),
                 time.time(),
                 {},
                 "Oz",

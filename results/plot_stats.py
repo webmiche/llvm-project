@@ -16,7 +16,7 @@ dark_red = "#e31a1c"
 black = "#000000"
 white = "#ffffff"
 
-opt_flag = "Os"
+opt_flag = "Oz"
 
 
 def filter_non_changes(res_dict):
