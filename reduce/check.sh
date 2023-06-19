@@ -1,1 +1,2 @@
-python3 instrument_alias.py --file_to_check reduce/dct.bc --size_diff 1192 --sequence 177 --func_name sub8x8_dct8
+#!/bin/bash
+python3 /home/michel/ETH/AST/llvm-project/instrument_alias.py --file_to_check $1 --size_diff 54 --sequence 5 --func_name price_out_impl --try_all True

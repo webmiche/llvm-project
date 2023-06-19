@@ -101,6 +101,7 @@ class InstrumentAlias:
             + "-"
             + "-".join([str(i) for i in index_list]),
         ] + (["--take_may"] if take_may else [])
+        print(" ".join(cmd))
         run(
             cmd,
             cwd=self.exec_root,
@@ -705,41 +706,50 @@ class AAChecker:
     function_name: str
     sequence: list[int]
     size_diff: int
+    try_all: bool
 
     aa_instr: InstrumentAlias
 
     def is_valid(self):
         # compile with seq and without
+        for i in range(self.sequence[0] if self.try_all else 1):
+            self.aa_instr.run_step_single_func(
+                self.file_path,
+                i + 1,
+                [self.sequence[0] - i],
+                self.function_name,
+                False,
+            )
+
         self.aa_instr.run_step_single_func(
             self.file_path,
             0,
-            self.sequence,
-            self.function_name,
-            False,
-        )
-        self.aa_instr.run_step_single_func(
-            self.file_path,
-            1,
             [],
             self.function_name,
             False,
         )
 
         # assemble both
-
-        red_size = self.aa_instr.assemble_and_measure_file(
+        sizes = []
+        for i in range(self.sequence[0] if self.try_all else 1):
+            sizes.append(
+                self.aa_instr.assemble_and_measure_file(
+                    self.aa_instr.instr_dir.joinpath(
+                        self.file_path.parent,
+                        str(i + 1) + str(self.file_path.stem) + ".bc",
+                    )
+                )
+            )
+        initial_size = self.aa_instr.assemble_and_measure_file(
             self.aa_instr.instr_dir.joinpath(
                 self.file_path.parent, str(0) + str(self.file_path.stem) + ".bc"
             )
         )
-        initial_size = self.aa_instr.assemble_and_measure_file(
-            self.aa_instr.instr_dir.joinpath(
-                self.file_path.parent, str(1) + str(self.file_path.stem) + ".bc"
-            )
-        )
 
+        print("sizes: " + str(sizes))
+        print(initial_size)
         # compare sizes
-        return red_size + self.size_diff == initial_size
+        return any([self.size_diff + size == initial_size for size in sizes])
 
 
 if __name__ == "__main__":
@@ -805,6 +815,14 @@ if __name__ == "__main__":
         help="function to check",
     )
 
+    arg_parser.add_argument(
+        "--try_all",
+        type=bool,
+        nargs="?",
+        help="try all elements smaller than sequence",
+        default=False,
+    )
+
     args = arg_parser.parse_args()
     p = run(["git", "rev-parse", "HEAD"], cwd=args.exec_root, stdout=PIPE)
 
@@ -814,14 +832,12 @@ if __name__ == "__main__":
     instr_dir = "aafiles/"
 
     if args.file_to_check:
-        print(
-            "=============== checking file " + args.file_to_check + " ==============="
-        )
         if AAChecker(
             Path(args.file_to_check),
             args.func_name,
             [args.sequence],
             args.size_diff,
+            args.try_all,
             InstrumentAlias(
                 Path(args.instr_path),
                 Path("./"),
@@ -836,9 +852,7 @@ if __name__ == "__main__":
                 "Oz",
             ),
         ).is_valid():
-            print("valid")
             exit(0)
-        print("invalid")
         exit(1)
 
     benchmarks = [

@@ -1,0 +1,2281 @@
+*** IR Dump At Start ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+declare ptr @malloc(i64)
+
+declare void @replace_weaker_arc()
+
+declare i64 @switch_arcs(ptr, ptr)
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr %0, ptr %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) #1 {
+entry:
+  %call32 = call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  br label %for.cond82
+
+for.cond82:                                       ; preds = %while.cond, %if.end111, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %3, %while.cond ], [ %inc209, %if.end111 ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214
+
+if.then87:                                        ; preds = %for.cond82
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  %cmp114 = icmp eq i32 %conv113, 0
+  br i1 %cmp114, label %for.cond82, label %while.cond
+
+while.cond:                                       ; preds = %if.then201, %if.end140, %if.end111
+  %iterator.0 = phi ptr [ %net, %if.end111 ], [ null, %if.then201 ], [ %0, %if.end140 ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  %cmp145 = icmp slt i64 %2, 0
+  br i1 %cmp145, label %if.else159, label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  call void @llvm.memcpy.p0.p0.i64(ptr null, ptr align 8 %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond
+
+while.cond214:                                    ; preds = %while.body216, %for.cond82
+  br i1 %tobool, label %while.body216, label %for.body268
+
+while.body216:                                    ; preds = %while.cond214
+  %call217 = call i64 @switch_arcs(ptr %call32, ptr %net)
+  br label %while.cond214
+
+for.body268:                                      ; preds = %for.body268, %while.cond214
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { minsize }
+*** IR Dump After Annotation2MetadataPass on [module] omitted because no change ***
+*** IR Dump After ForceFunctionAttrsPass on [module] omitted because no change ***
+*** IR Dump After InferFunctionAttrsPass on [module] ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite)
+declare noalias noundef ptr @malloc(i64 noundef) #1
+
+declare void @replace_weaker_arc()
+
+declare i64 @switch_arcs(ptr, ptr)
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr %0, ptr %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) #2 {
+entry:
+  %call32 = call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  br label %for.cond82
+
+for.cond82:                                       ; preds = %while.cond, %if.end111, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %3, %while.cond ], [ %inc209, %if.end111 ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214
+
+if.then87:                                        ; preds = %for.cond82
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  %cmp114 = icmp eq i32 %conv113, 0
+  br i1 %cmp114, label %for.cond82, label %while.cond
+
+while.cond:                                       ; preds = %if.then201, %if.end140, %if.end111
+  %iterator.0 = phi ptr [ %net, %if.end111 ], [ null, %if.then201 ], [ %0, %if.end140 ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  %cmp145 = icmp slt i64 %2, 0
+  br i1 %cmp145, label %if.else159, label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  call void @llvm.memcpy.p0.p0.i64(ptr null, ptr align 8 %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond
+
+while.cond214:                                    ; preds = %while.body216, %for.cond82
+  br i1 %tobool, label %while.body216, label %for.body268
+
+while.body216:                                    ; preds = %while.cond214
+  %call217 = call i64 @switch_arcs(ptr %call32, ptr %net)
+  br label %while.cond214
+
+for.body268:                                      ; preds = %for.body268, %while.cond214
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite) "alloc-family"="malloc" }
+attributes #2 = { minsize }
+*** IR Dump After CoroEarlyPass on [module] omitted because no change ***
+*** IR Dump After LowerExpectIntrinsicPass on price_out_impl omitted because no change ***
+*** IR Dump After SimplifyCFGPass on price_out_impl omitted because no change ***
+*** IR Dump After SROAPass on price_out_impl omitted because no change ***
+*** IR Dump After EarlyCSEPass on price_out_impl omitted because no change ***
+*** IR Pass PassManager<Function> on price_out_impl ignored ***
+*** IR Pass ModuleToFunctionPassAdaptor on [module] ignored ***
+*** IR Dump After OpenMPOptPass on [module] omitted because no change ***
+*** IR Dump After IPSCCPPass on [module] omitted because no change ***
+*** IR Dump After CalledValuePropagationPass on [module] omitted because no change ***
+*** IR Dump After GlobalOptPass on [module] ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite)
+declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #1
+
+declare void @replace_weaker_arc() local_unnamed_addr
+
+declare i64 @switch_arcs(ptr, ptr) local_unnamed_addr
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr %0, ptr %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) local_unnamed_addr #2 {
+entry:
+  %call32 = call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  br label %for.cond82
+
+for.cond82:                                       ; preds = %while.cond, %if.end111, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %3, %while.cond ], [ %inc209, %if.end111 ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214
+
+if.then87:                                        ; preds = %for.cond82
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  %cmp114 = icmp eq i32 %conv113, 0
+  br i1 %cmp114, label %for.cond82, label %while.cond
+
+while.cond:                                       ; preds = %if.then201, %if.end140, %if.end111
+  %iterator.0 = phi ptr [ %net, %if.end111 ], [ null, %if.then201 ], [ %0, %if.end140 ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  %cmp145 = icmp slt i64 %2, 0
+  br i1 %cmp145, label %if.else159, label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  call void @llvm.memcpy.p0.p0.i64(ptr null, ptr align 8 %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond
+
+while.cond214:                                    ; preds = %while.body216, %for.cond82
+  br i1 %tobool, label %while.body216, label %for.body268
+
+while.body216:                                    ; preds = %while.cond214
+  %call217 = call i64 @switch_arcs(ptr %call32, ptr %net)
+  br label %while.cond214
+
+for.body268:                                      ; preds = %for.body268, %while.cond214
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite) "alloc-family"="malloc" }
+attributes #2 = { minsize }
+*** IR Dump After PromotePass on price_out_impl omitted because no change ***
+*** IR Dump After InstCombinePass on price_out_impl ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite)
+declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #1
+
+declare void @replace_weaker_arc() local_unnamed_addr
+
+declare i64 @switch_arcs(ptr, ptr) local_unnamed_addr
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr %0, ptr %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) local_unnamed_addr #2 {
+entry:
+  %call32 = call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  br label %for.cond82
+
+for.cond82:                                       ; preds = %while.cond, %if.end111, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %3, %while.cond ], [ %inc209, %if.end111 ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214
+
+if.then87:                                        ; preds = %for.cond82
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  %cmp114 = icmp eq i32 %conv113, 0
+  br i1 %cmp114, label %for.cond82, label %while.cond
+
+while.cond:                                       ; preds = %if.then201, %if.end140, %if.end111
+  %iterator.0 = phi ptr [ %net, %if.end111 ], [ null, %if.then201 ], [ %0, %if.end140 ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  %cmp145 = icmp slt i64 %2, 0
+  br i1 %cmp145, label %if.else159, label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 4294967296 dereferenceable(72) null, ptr noundef nonnull align 8 dereferenceable(72) %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond
+
+while.cond214:                                    ; preds = %while.body216, %for.cond82
+  br i1 %tobool, label %while.body216, label %for.body268
+
+while.body216:                                    ; preds = %while.cond214
+  %call217 = call i64 @switch_arcs(ptr %call32, ptr nonnull %net)
+  br label %while.cond214
+
+for.body268:                                      ; preds = %for.body268, %while.cond214
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite) "alloc-family"="malloc" }
+attributes #2 = { minsize }
+*** IR Dump After SimplifyCFGPass on price_out_impl omitted because no change ***
+*** IR Pass PassManager<Function> on price_out_impl ignored ***
+*** IR Pass ModuleToFunctionPassAdaptor on [module] ignored ***
+*** IR Dump After RequireAnalysisPass<GlobalsAA, Module> on [module] omitted because no change ***
+*** IR Dump After InvalidateAnalysisPass<AAManager> on price_out_impl omitted because no change ***
+*** IR Pass ModuleToFunctionPassAdaptor on [module] ignored ***
+*** IR Dump After RequireAnalysisPass<ProfileSummaryAnalysis, Module> on [module] omitted because no change ***
+*** IR Dump After InlinerPass on (price_out_impl) omitted because no change ***
+*** IR Dump After InlinerPass on (price_out_impl) omitted because no change ***
+*** IR Dump After PostOrderFunctionAttrsPass on (price_out_impl) ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite)
+declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #1
+
+declare void @replace_weaker_arc() local_unnamed_addr
+
+declare i64 @switch_arcs(ptr, ptr) local_unnamed_addr
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr readnone %0, ptr nocapture writeonly %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) local_unnamed_addr #2 {
+entry:
+  %call32 = call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  br label %for.cond82
+
+for.cond82:                                       ; preds = %while.cond, %if.end111, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %3, %while.cond ], [ %inc209, %if.end111 ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214
+
+if.then87:                                        ; preds = %for.cond82
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  %cmp114 = icmp eq i32 %conv113, 0
+  br i1 %cmp114, label %for.cond82, label %while.cond
+
+while.cond:                                       ; preds = %if.then201, %if.end140, %if.end111
+  %iterator.0 = phi ptr [ %net, %if.end111 ], [ null, %if.then201 ], [ %0, %if.end140 ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  %cmp145 = icmp slt i64 %2, 0
+  br i1 %cmp145, label %if.else159, label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 4294967296 dereferenceable(72) null, ptr noundef nonnull align 8 dereferenceable(72) %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond
+
+while.cond214:                                    ; preds = %while.body216, %for.cond82
+  br i1 %tobool, label %while.body216, label %for.body268
+
+while.body216:                                    ; preds = %while.cond214
+  %call217 = call i64 @switch_arcs(ptr %call32, ptr nonnull %net)
+  br label %while.cond214
+
+for.body268:                                      ; preds = %for.body268, %while.cond214
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite) "alloc-family"="malloc" }
+attributes #2 = { minsize }
+*** IR Dump After SROAPass on price_out_impl omitted because no change ***
+*** IR Dump After EarlyCSEPass on price_out_impl omitted because no change ***
+*** IR Dump After SpeculativeExecutionPass on price_out_impl omitted because no change ***
+*** IR Dump After JumpThreadingPass on price_out_impl omitted because no change ***
+*** IR Dump After CorrelatedValuePropagationPass on price_out_impl omitted because no change ***
+*** IR Dump After SimplifyCFGPass on price_out_impl omitted because no change ***
+*** IR Dump After InstCombinePass on price_out_impl omitted because no change ***
+*** IR Dump After ConstraintEliminationPass on price_out_impl omitted because no change ***
+*** IR Dump After TailCallElimPass on price_out_impl ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite)
+declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #1
+
+declare void @replace_weaker_arc() local_unnamed_addr
+
+declare i64 @switch_arcs(ptr, ptr) local_unnamed_addr
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr readnone %0, ptr nocapture writeonly %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) local_unnamed_addr #2 {
+entry:
+  %call32 = tail call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  br label %for.cond82
+
+for.cond82:                                       ; preds = %while.cond, %if.end111, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %3, %while.cond ], [ %inc209, %if.end111 ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214
+
+if.then87:                                        ; preds = %for.cond82
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = tail call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  %cmp114 = icmp eq i32 %conv113, 0
+  br i1 %cmp114, label %for.cond82, label %while.cond
+
+while.cond:                                       ; preds = %if.then201, %if.end140, %if.end111
+  %iterator.0 = phi ptr [ %net, %if.end111 ], [ null, %if.then201 ], [ %0, %if.end140 ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  %cmp145 = icmp slt i64 %2, 0
+  br i1 %cmp145, label %if.else159, label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 4294967296 dereferenceable(72) null, ptr noundef nonnull align 8 dereferenceable(72) %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  tail call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond
+
+while.cond214:                                    ; preds = %while.body216, %for.cond82
+  br i1 %tobool, label %while.body216, label %for.body268
+
+while.body216:                                    ; preds = %while.cond214
+  %call217 = tail call i64 @switch_arcs(ptr %call32, ptr nonnull %net)
+  br label %while.cond214
+
+for.body268:                                      ; preds = %for.body268, %while.cond214
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite) "alloc-family"="malloc" }
+attributes #2 = { minsize }
+*** IR Dump After SimplifyCFGPass on price_out_impl omitted because no change ***
+*** IR Dump After ReassociatePass on price_out_impl omitted because no change ***
+*** IR Dump After RequireAnalysisPass<OptimizationRemarkEmitterAnalysis, Function> on price_out_impl omitted because no change ***
+*** IR Dump After LoopSimplifyPass on price_out_impl ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite)
+declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #1
+
+declare void @replace_weaker_arc() local_unnamed_addr
+
+declare i64 @switch_arcs(ptr, ptr) local_unnamed_addr
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr readnone %0, ptr nocapture writeonly %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) local_unnamed_addr #2 {
+entry:
+  %call32 = tail call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  br label %for.cond82
+
+for.cond82.loopexit:                              ; preds = %while.cond
+  br label %for.cond82.backedge
+
+for.cond82:                                       ; preds = %for.cond82.backedge, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %i.0121.be, %for.cond82.backedge ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214.preheader
+
+while.cond214.preheader:                          ; preds = %for.cond82
+  br label %while.cond214
+
+if.then87:                                        ; preds = %for.cond82
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = tail call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  %cmp114 = icmp eq i32 %conv113, 0
+  br i1 %cmp114, label %for.cond82.backedge, label %while.cond.preheader
+
+for.cond82.backedge:                              ; preds = %if.end111, %for.cond82.loopexit
+  %i.0121.be = phi i64 [ %inc209, %if.end111 ], [ %3, %for.cond82.loopexit ]
+  br label %for.cond82
+
+while.cond.preheader:                             ; preds = %if.end111
+  br label %while.cond
+
+while.cond:                                       ; preds = %while.cond.backedge, %while.cond.preheader
+  %iterator.0 = phi ptr [ %net, %while.cond.preheader ], [ %iterator.0.be, %while.cond.backedge ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82.loopexit, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  %cmp145 = icmp slt i64 %2, 0
+  br i1 %cmp145, label %if.else159, label %while.cond.backedge
+
+while.cond.backedge:                              ; preds = %if.end140, %if.then201
+  %iterator.0.be = phi ptr [ null, %if.then201 ], [ %0, %if.end140 ]
+  br label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 4294967296 dereferenceable(72) null, ptr noundef nonnull align 8 dereferenceable(72) %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  tail call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond.backedge
+
+while.cond214:                                    ; preds = %while.cond214.preheader, %while.body216
+  br i1 %tobool, label %while.body216, label %for.body268.preheader
+
+for.body268.preheader:                            ; preds = %while.cond214
+  br label %for.body268
+
+while.body216:                                    ; preds = %while.cond214
+  %call217 = tail call i64 @switch_arcs(ptr %call32, ptr nonnull %net)
+  br label %while.cond214
+
+for.body268:                                      ; preds = %for.body268.preheader, %for.body268
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite) "alloc-family"="malloc" }
+attributes #2 = { minsize }
+*** IR Dump After LCSSAPass on price_out_impl omitted because no change ***
+*** IR Pass PassManager<Function> on price_out_impl ignored ***
+*** IR Dump After LoopInstSimplifyPass on while.cond omitted because no change ***
+*** IR Dump After LoopSimplifyCFGPass on while.cond omitted because no change ***
+Changed Query Used!
+Changed Query Used!
+Changed Query Used!
+Changed Query Used!
+Changed Query Used!
+*** IR Dump After LICMPass on while.cond ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite)
+declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #1
+
+declare void @replace_weaker_arc() local_unnamed_addr
+
+declare i64 @switch_arcs(ptr, ptr) local_unnamed_addr
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr readnone %0, ptr nocapture writeonly %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) local_unnamed_addr #2 {
+entry:
+  %call32 = tail call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  br label %for.cond82
+
+for.cond82.loopexit:                              ; preds = %while.cond
+  br label %for.cond82.backedge
+
+for.cond82:                                       ; preds = %for.cond82.backedge, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %i.0121.be, %for.cond82.backedge ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214.preheader
+
+while.cond214.preheader:                          ; preds = %for.cond82
+  br label %while.cond214
+
+if.then87:                                        ; preds = %for.cond82
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = tail call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  %cmp114 = icmp eq i32 %conv113, 0
+  br i1 %cmp114, label %for.cond82.backedge, label %while.cond.preheader
+
+for.cond82.backedge:                              ; preds = %if.end111, %for.cond82.loopexit
+  %i.0121.be = phi i64 [ %inc209, %if.end111 ], [ %3, %for.cond82.loopexit ]
+  br label %for.cond82
+
+while.cond.preheader:                             ; preds = %if.end111
+  %cmp145 = icmp slt i64 %2, 0
+  br label %while.cond
+
+while.cond:                                       ; preds = %while.cond.backedge, %while.cond.preheader
+  %iterator.0 = phi ptr [ %net, %while.cond.preheader ], [ %iterator.0.be, %while.cond.backedge ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82.loopexit, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  br i1 %cmp145, label %if.else159, label %while.cond.backedge
+
+while.cond.backedge:                              ; preds = %if.end140, %if.then201
+  %iterator.0.be = phi ptr [ null, %if.then201 ], [ %0, %if.end140 ]
+  br label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 4294967296 dereferenceable(72) null, ptr noundef nonnull align 8 dereferenceable(72) %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  tail call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond.backedge
+
+while.cond214:                                    ; preds = %while.cond214.preheader, %while.body216
+  br i1 %tobool, label %while.body216, label %for.body268.preheader
+
+for.body268.preheader:                            ; preds = %while.cond214
+  br label %for.body268
+
+while.body216:                                    ; preds = %while.cond214
+  %call217 = tail call i64 @switch_arcs(ptr %call32, ptr nonnull %net)
+  br label %while.cond214
+
+for.body268:                                      ; preds = %for.body268.preheader, %for.body268
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite) "alloc-family"="malloc" }
+attributes #2 = { minsize }
+*** IR Dump After LoopRotatePass on while.cond omitted because no change ***
+Changed Query Used!
+Changed Query Used!
+*** IR Dump After LICMPass on while.cond omitted because no change ***
+*** IR Dump After SimpleLoopUnswitchPass on while.cond omitted because no change ***
+*** IR Pass PassManager<Loop, AnalysisManager<Loop, LoopStandardAnalysisResults&>, LoopStandardAnalysisResults&, LPMUpdater&> on while.cond ignored ***
+*** IR Dump After LoopInstSimplifyPass on for.cond82 omitted because no change ***
+*** IR Dump After LoopSimplifyCFGPass on for.cond82 omitted because no change ***
+*** IR Dump After LICMPass on for.cond82 omitted because no change ***
+*** IR Dump After LoopRotatePass on for.cond82 omitted because no change ***
+*** IR Dump After LICMPass on for.cond82 ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite)
+declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #1
+
+declare void @replace_weaker_arc() local_unnamed_addr
+
+declare i64 @switch_arcs(ptr, ptr) local_unnamed_addr
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr readnone %0, ptr nocapture writeonly %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) local_unnamed_addr #2 {
+entry:
+  %call32 = tail call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  %cmp114 = icmp eq i32 %conv113, 0
+  %cmp145 = icmp slt i64 %2, 0
+  br label %for.cond82
+
+for.cond82.loopexit:                              ; preds = %while.cond
+  br label %for.cond82.backedge
+
+for.cond82:                                       ; preds = %for.cond82.backedge, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %i.0121.be, %for.cond82.backedge ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214.preheader
+
+while.cond214.preheader:                          ; preds = %for.cond82
+  br label %while.cond214
+
+if.then87:                                        ; preds = %for.cond82
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = tail call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  br i1 %cmp114, label %for.cond82.backedge, label %while.cond.preheader
+
+for.cond82.backedge:                              ; preds = %if.end111, %for.cond82.loopexit
+  %i.0121.be = phi i64 [ %inc209, %if.end111 ], [ %3, %for.cond82.loopexit ]
+  br label %for.cond82
+
+while.cond.preheader:                             ; preds = %if.end111
+  br label %while.cond
+
+while.cond:                                       ; preds = %while.cond.backedge, %while.cond.preheader
+  %iterator.0 = phi ptr [ %net, %while.cond.preheader ], [ %iterator.0.be, %while.cond.backedge ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82.loopexit, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  br i1 %cmp145, label %if.else159, label %while.cond.backedge
+
+while.cond.backedge:                              ; preds = %if.end140, %if.then201
+  %iterator.0.be = phi ptr [ null, %if.then201 ], [ %0, %if.end140 ]
+  br label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 4294967296 dereferenceable(72) null, ptr noundef nonnull align 8 dereferenceable(72) %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  tail call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond.backedge
+
+while.cond214:                                    ; preds = %while.cond214.preheader, %while.body216
+  br i1 %tobool, label %while.body216, label %for.body268.preheader
+
+for.body268.preheader:                            ; preds = %while.cond214
+  br label %for.body268
+
+while.body216:                                    ; preds = %while.cond214
+  %call217 = tail call i64 @switch_arcs(ptr %call32, ptr nonnull %net)
+  br label %while.cond214
+
+for.body268:                                      ; preds = %for.body268.preheader, %for.body268
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite) "alloc-family"="malloc" }
+attributes #2 = { minsize }
+*** IR Dump After SimpleLoopUnswitchPass on for.cond82 omitted because no change ***
+*** IR Pass PassManager<Loop, AnalysisManager<Loop, LoopStandardAnalysisResults&>, LoopStandardAnalysisResults&, LPMUpdater&> on for.cond82 ignored ***
+*** IR Dump After LoopInstSimplifyPass on while.cond214 omitted because no change ***
+*** IR Dump After LoopSimplifyCFGPass on while.cond214 omitted because no change ***
+*** IR Dump After LICMPass on while.cond214 omitted because no change ***
+*** IR Dump After LoopRotatePass on while.cond214 omitted because no change ***
+*** IR Dump After LICMPass on while.cond214 omitted because no change ***
+*** IR Pass SimpleLoopUnswitchPass invalidated ***
+*** IR Pass PassManager<Loop, AnalysisManager<Loop, LoopStandardAnalysisResults&>, LoopStandardAnalysisResults&, LPMUpdater&> invalidated ***
+*** IR Dump After LoopInstSimplifyPass on while.cond214 omitted because no change ***
+*** IR Dump After LoopSimplifyCFGPass on while.cond214 ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite)
+declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #1
+
+declare void @replace_weaker_arc() local_unnamed_addr
+
+declare i64 @switch_arcs(ptr, ptr) local_unnamed_addr
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr readnone %0, ptr nocapture writeonly %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) local_unnamed_addr #2 {
+entry:
+  %call32 = tail call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  %cmp114 = icmp eq i32 %conv113, 0
+  %cmp145 = icmp slt i64 %2, 0
+  br label %for.cond82
+
+for.cond82.loopexit:                              ; preds = %while.cond
+  br label %for.cond82.backedge
+
+for.cond82:                                       ; preds = %for.cond82.backedge, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %i.0121.be, %for.cond82.backedge ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214.preheader
+
+while.cond214.preheader:                          ; preds = %for.cond82
+  br i1 %tobool, label %while.cond214.preheader.split, label %for.body268.preheader
+
+while.cond214.preheader.split:                    ; preds = %while.cond214.preheader
+  br label %while.cond214
+
+if.then87:                                        ; preds = %for.cond82
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = tail call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  br i1 %cmp114, label %for.cond82.backedge, label %while.cond.preheader
+
+for.cond82.backedge:                              ; preds = %if.end111, %for.cond82.loopexit
+  %i.0121.be = phi i64 [ %inc209, %if.end111 ], [ %3, %for.cond82.loopexit ]
+  br label %for.cond82
+
+while.cond.preheader:                             ; preds = %if.end111
+  br label %while.cond
+
+while.cond:                                       ; preds = %while.cond.backedge, %while.cond.preheader
+  %iterator.0 = phi ptr [ %net, %while.cond.preheader ], [ %iterator.0.be, %while.cond.backedge ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82.loopexit, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  br i1 %cmp145, label %if.else159, label %while.cond.backedge
+
+while.cond.backedge:                              ; preds = %if.end140, %if.then201
+  %iterator.0.be = phi ptr [ null, %if.then201 ], [ %0, %if.end140 ]
+  br label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 4294967296 dereferenceable(72) null, ptr noundef nonnull align 8 dereferenceable(72) %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  tail call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond.backedge
+
+while.cond214:                                    ; preds = %while.cond214.preheader.split, %while.cond214
+  %call217 = tail call i64 @switch_arcs(ptr %call32, ptr nonnull %net)
+  br label %while.cond214
+
+for.body268.preheader:                            ; preds = %while.cond214.preheader
+  br label %for.body268
+
+for.body268:                                      ; preds = %for.body268.preheader, %for.body268
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite) "alloc-family"="malloc" }
+attributes #2 = { minsize }
+*** IR Dump After LICMPass on while.cond214 omitted because no change ***
+*** IR Dump After LoopRotatePass on while.cond214 omitted because no change ***
+*** IR Dump After LICMPass on while.cond214 omitted because no change ***
+*** IR Dump After SimpleLoopUnswitchPass on while.cond214 omitted because no change ***
+*** IR Pass PassManager<Loop, AnalysisManager<Loop, LoopStandardAnalysisResults&>, LoopStandardAnalysisResults&, LPMUpdater&> on while.cond214 ignored ***
+*** IR Dump After LoopInstSimplifyPass on for.body268 omitted because no change ***
+*** IR Dump After LoopSimplifyCFGPass on for.body268 omitted because no change ***
+*** IR Dump After LICMPass on for.body268 omitted because no change ***
+*** IR Dump After LoopRotatePass on for.body268 omitted because no change ***
+*** IR Dump After LICMPass on for.body268 omitted because no change ***
+*** IR Dump After SimpleLoopUnswitchPass on for.body268 omitted because no change ***
+*** IR Pass PassManager<Loop, AnalysisManager<Loop, LoopStandardAnalysisResults&>, LoopStandardAnalysisResults&, LPMUpdater&> on for.body268 ignored ***
+*** IR Pass FunctionToLoopPassAdaptor on price_out_impl ignored ***
+*** IR Dump After SimplifyCFGPass on price_out_impl ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite)
+declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #1
+
+declare void @replace_weaker_arc() local_unnamed_addr
+
+declare i64 @switch_arcs(ptr, ptr) local_unnamed_addr
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr readnone %0, ptr nocapture writeonly %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) local_unnamed_addr #2 {
+entry:
+  %call32 = tail call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  %cmp114 = icmp eq i32 %conv113, 0
+  %cmp145 = icmp slt i64 %2, 0
+  br label %for.cond82
+
+for.cond82:                                       ; preds = %for.cond82.backedge, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %i.0121.be, %for.cond82.backedge ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214.preheader
+
+while.cond214.preheader:                          ; preds = %for.cond82
+  br i1 %tobool, label %while.cond214, label %for.body268
+
+if.then87:                                        ; preds = %for.cond82
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = tail call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  br i1 %cmp114, label %for.cond82.backedge, label %while.cond
+
+for.cond82.backedge:                              ; preds = %while.cond, %if.end111
+  %i.0121.be = phi i64 [ %inc209, %if.end111 ], [ %3, %while.cond ]
+  br label %for.cond82
+
+while.cond:                                       ; preds = %if.end111, %while.cond.backedge
+  %iterator.0 = phi ptr [ %iterator.0.be, %while.cond.backedge ], [ %net, %if.end111 ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82.backedge, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  br i1 %cmp145, label %if.else159, label %while.cond.backedge
+
+while.cond.backedge:                              ; preds = %if.end140, %if.then201
+  %iterator.0.be = phi ptr [ null, %if.then201 ], [ %0, %if.end140 ]
+  br label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 4294967296 dereferenceable(72) null, ptr noundef nonnull align 8 dereferenceable(72) %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  tail call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond.backedge
+
+while.cond214:                                    ; preds = %while.cond214.preheader, %while.cond214
+  %call217 = tail call i64 @switch_arcs(ptr %call32, ptr nonnull %net)
+  br label %while.cond214
+
+for.body268:                                      ; preds = %while.cond214.preheader, %for.body268
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite) "alloc-family"="malloc" }
+attributes #2 = { minsize }
+*** IR Dump After InstCombinePass on price_out_impl omitted because no change ***
+*** IR Dump After LoopSimplifyPass on price_out_impl ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite)
+declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #1
+
+declare void @replace_weaker_arc() local_unnamed_addr
+
+declare i64 @switch_arcs(ptr, ptr) local_unnamed_addr
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr readnone %0, ptr nocapture writeonly %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) local_unnamed_addr #2 {
+entry:
+  %call32 = tail call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  %cmp114 = icmp eq i32 %conv113, 0
+  %cmp145 = icmp slt i64 %2, 0
+  br label %for.cond82
+
+for.cond82:                                       ; preds = %for.cond82.backedge, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %i.0121.be, %for.cond82.backedge ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214.preheader
+
+while.cond214.preheader:                          ; preds = %for.cond82
+  br i1 %tobool, label %while.cond214.preheader2, label %for.body268.preheader
+
+for.body268.preheader:                            ; preds = %while.cond214.preheader
+  br label %for.body268
+
+while.cond214.preheader2:                         ; preds = %while.cond214.preheader
+  br label %while.cond214
+
+if.then87:                                        ; preds = %for.cond82
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = tail call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  br i1 %cmp114, label %for.cond82.backedge, label %while.cond.preheader
+
+while.cond.preheader:                             ; preds = %if.end111
+  br label %while.cond
+
+for.cond82.backedge.loopexit:                     ; preds = %while.cond
+  br label %for.cond82.backedge
+
+for.cond82.backedge:                              ; preds = %for.cond82.backedge.loopexit, %if.end111
+  %i.0121.be = phi i64 [ %inc209, %if.end111 ], [ %3, %for.cond82.backedge.loopexit ]
+  br label %for.cond82
+
+while.cond:                                       ; preds = %while.cond.preheader, %while.cond.backedge
+  %iterator.0 = phi ptr [ %iterator.0.be, %while.cond.backedge ], [ %net, %while.cond.preheader ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82.backedge.loopexit, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  br i1 %cmp145, label %if.else159, label %while.cond.backedge
+
+while.cond.backedge:                              ; preds = %if.end140, %if.then201
+  %iterator.0.be = phi ptr [ null, %if.then201 ], [ %0, %if.end140 ]
+  br label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 4294967296 dereferenceable(72) null, ptr noundef nonnull align 8 dereferenceable(72) %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  tail call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond.backedge
+
+while.cond214:                                    ; preds = %while.cond214.preheader2, %while.cond214
+  %call217 = tail call i64 @switch_arcs(ptr %call32, ptr nonnull %net)
+  br label %while.cond214
+
+for.body268:                                      ; preds = %for.body268.preheader, %for.body268
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite) "alloc-family"="malloc" }
+attributes #2 = { minsize }
+*** IR Dump After LCSSAPass on price_out_impl omitted because no change ***
+*** IR Pass PassManager<Function> on price_out_impl ignored ***
+*** IR Dump After LoopIdiomRecognizePass on while.cond omitted because no change ***
+*** IR Dump After IndVarSimplifyPass on while.cond omitted because no change ***
+*** IR Dump After LoopDeletionPass on while.cond omitted because no change ***
+*** IR Dump After LoopFullUnrollPass on while.cond omitted because no change ***
+*** IR Pass PassManager<Loop, AnalysisManager<Loop, LoopStandardAnalysisResults&>, LoopStandardAnalysisResults&, LPMUpdater&> on while.cond ignored ***
+*** IR Dump After LoopIdiomRecognizePass on for.cond82 omitted because no change ***
+*** IR Dump After IndVarSimplifyPass on for.cond82 omitted because no change ***
+*** IR Dump After LoopDeletionPass on for.cond82 omitted because no change ***
+*** IR Dump After LoopFullUnrollPass on for.cond82 omitted because no change ***
+*** IR Pass PassManager<Loop, AnalysisManager<Loop, LoopStandardAnalysisResults&>, LoopStandardAnalysisResults&, LPMUpdater&> on for.cond82 ignored ***
+*** IR Dump After LoopIdiomRecognizePass on for.body268 omitted because no change ***
+*** IR Dump After IndVarSimplifyPass on for.body268 omitted because no change ***
+*** IR Dump After LoopDeletionPass on for.body268 omitted because no change ***
+*** IR Dump After LoopFullUnrollPass on for.body268 omitted because no change ***
+*** IR Pass PassManager<Loop, AnalysisManager<Loop, LoopStandardAnalysisResults&>, LoopStandardAnalysisResults&, LPMUpdater&> on for.body268 ignored ***
+*** IR Dump After LoopIdiomRecognizePass on while.cond214 omitted because no change ***
+*** IR Dump After IndVarSimplifyPass on while.cond214 omitted because no change ***
+*** IR Dump After LoopDeletionPass on while.cond214 omitted because no change ***
+*** IR Dump After LoopFullUnrollPass on while.cond214 omitted because no change ***
+*** IR Pass PassManager<Loop, AnalysisManager<Loop, LoopStandardAnalysisResults&>, LoopStandardAnalysisResults&, LPMUpdater&> on while.cond214 ignored ***
+*** IR Pass FunctionToLoopPassAdaptor on price_out_impl ignored ***
+*** IR Dump After SROAPass on price_out_impl omitted because no change ***
+*** IR Dump After VectorCombinePass on price_out_impl omitted because no change ***
+*** IR Dump After MergedLoadStoreMotionPass on price_out_impl omitted because no change ***
+Changed Query Used!
+Changed Query Used!
+Changed Query Used!
+Changed Query Used!
+*** IR Dump After GVNPass on price_out_impl omitted because no change ***
+*** IR Dump After SCCPPass on price_out_impl omitted because no change ***
+*** IR Dump After BDCEPass on price_out_impl omitted because no change ***
+*** IR Dump After InstCombinePass on price_out_impl omitted because no change ***
+*** IR Dump After JumpThreadingPass on price_out_impl ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite)
+declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #1
+
+declare void @replace_weaker_arc() local_unnamed_addr
+
+declare i64 @switch_arcs(ptr, ptr) local_unnamed_addr
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr readnone %0, ptr nocapture writeonly %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) local_unnamed_addr #2 {
+entry:
+  %call32 = tail call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  %cmp114 = icmp eq i32 %conv113, 0
+  %cmp145 = icmp slt i64 %2, 0
+  br label %for.cond82
+
+for.cond82:                                       ; preds = %for.cond82.backedge, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %i.0121.be, %for.cond82.backedge ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214.preheader
+
+while.cond214.preheader:                          ; preds = %for.cond82
+  br i1 %tobool, label %while.cond214.preheader2, label %for.body268.preheader
+
+for.body268.preheader:                            ; preds = %while.cond214.preheader
+  br label %for.body268
+
+while.cond214.preheader2:                         ; preds = %while.cond214.preheader
+  br label %while.cond214
+
+if.then87:                                        ; preds = %for.cond82
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = tail call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  br i1 %cmp114, label %for.cond82.backedge, label %while.cond.preheader
+
+while.cond.preheader:                             ; preds = %if.end111
+  br label %while.cond
+
+for.cond82.backedge:                              ; preds = %while.cond, %if.end111
+  %i.0121.be = phi i64 [ %inc209, %if.end111 ], [ %3, %while.cond ]
+  br label %for.cond82
+
+while.cond:                                       ; preds = %while.cond.preheader, %while.cond.backedge
+  %iterator.0 = phi ptr [ %iterator.0.be, %while.cond.backedge ], [ %net, %while.cond.preheader ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82.backedge, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  br i1 %cmp145, label %if.else159, label %while.cond.backedge
+
+while.cond.backedge:                              ; preds = %if.end140, %if.then201
+  %iterator.0.be = phi ptr [ null, %if.then201 ], [ %0, %if.end140 ]
+  br label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 4294967296 dereferenceable(72) null, ptr noundef nonnull align 8 dereferenceable(72) %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  tail call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond.backedge
+
+while.cond214:                                    ; preds = %while.cond214.preheader2, %while.cond214
+  %call217 = tail call i64 @switch_arcs(ptr %call32, ptr nonnull %net)
+  br label %while.cond214
+
+for.body268:                                      ; preds = %for.body268.preheader, %for.body268
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite) "alloc-family"="malloc" }
+attributes #2 = { minsize }
+*** IR Dump After CorrelatedValuePropagationPass on price_out_impl omitted because no change ***
+*** IR Dump After ADCEPass on price_out_impl omitted because no change ***
+*** IR Dump After MemCpyOptPass on price_out_impl omitted because no change ***
+Changed Query Used!
+Changed Query Used!
+Changed Query Used!
+Changed Query Used!
+*** IR Dump After DSEPass on price_out_impl omitted because no change ***
+*** IR Dump After LoopSimplifyPass on price_out_impl ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite)
+declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #1
+
+declare void @replace_weaker_arc() local_unnamed_addr
+
+declare i64 @switch_arcs(ptr, ptr) local_unnamed_addr
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr readnone %0, ptr nocapture writeonly %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) local_unnamed_addr #2 {
+entry:
+  %call32 = tail call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  %cmp114 = icmp eq i32 %conv113, 0
+  %cmp145 = icmp slt i64 %2, 0
+  br label %for.cond82
+
+for.cond82:                                       ; preds = %for.cond82.backedge, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %i.0121.be, %for.cond82.backedge ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214.preheader
+
+while.cond214.preheader:                          ; preds = %for.cond82
+  br i1 %tobool, label %while.cond214.preheader2, label %for.body268.preheader
+
+for.body268.preheader:                            ; preds = %while.cond214.preheader
+  br label %for.body268
+
+while.cond214.preheader2:                         ; preds = %while.cond214.preheader
+  br label %while.cond214
+
+if.then87:                                        ; preds = %for.cond82
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = tail call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  br i1 %cmp114, label %for.cond82.backedge, label %while.cond.preheader
+
+while.cond.preheader:                             ; preds = %if.end111
+  br label %while.cond
+
+for.cond82.backedge.loopexit:                     ; preds = %while.cond
+  br label %for.cond82.backedge
+
+for.cond82.backedge:                              ; preds = %for.cond82.backedge.loopexit, %if.end111
+  %i.0121.be = phi i64 [ %inc209, %if.end111 ], [ %3, %for.cond82.backedge.loopexit ]
+  br label %for.cond82
+
+while.cond:                                       ; preds = %while.cond.preheader, %while.cond.backedge
+  %iterator.0 = phi ptr [ %iterator.0.be, %while.cond.backedge ], [ %net, %while.cond.preheader ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82.backedge.loopexit, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  br i1 %cmp145, label %if.else159, label %while.cond.backedge
+
+while.cond.backedge:                              ; preds = %if.end140, %if.then201
+  %iterator.0.be = phi ptr [ null, %if.then201 ], [ %0, %if.end140 ]
+  br label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 4294967296 dereferenceable(72) null, ptr noundef nonnull align 8 dereferenceable(72) %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  tail call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond.backedge
+
+while.cond214:                                    ; preds = %while.cond214.preheader2, %while.cond214
+  %call217 = tail call i64 @switch_arcs(ptr %call32, ptr nonnull %net)
+  br label %while.cond214
+
+for.body268:                                      ; preds = %for.body268.preheader, %for.body268
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite) "alloc-family"="malloc" }
+attributes #2 = { minsize }
+*** IR Dump After LCSSAPass on price_out_impl omitted because no change ***
+*** IR Pass PassManager<Function> on price_out_impl ignored ***
+Changed Query Used!
+Changed Query Used!
+*** IR Dump After LICMPass on while.cond omitted because no change ***
+*** IR Dump After LICMPass on for.cond82 omitted because no change ***
+*** IR Dump After LICMPass on for.body268 omitted because no change ***
+*** IR Dump After LICMPass on while.cond214 omitted because no change ***
+*** IR Pass FunctionToLoopPassAdaptor on price_out_impl ignored ***
+*** IR Dump After CoroElidePass on price_out_impl omitted because no change ***
+*** IR Dump After SimplifyCFGPass on price_out_impl ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite)
+declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #1
+
+declare void @replace_weaker_arc() local_unnamed_addr
+
+declare i64 @switch_arcs(ptr, ptr) local_unnamed_addr
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr readnone %0, ptr nocapture writeonly %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) local_unnamed_addr #2 {
+entry:
+  %call32 = tail call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  %cmp114 = icmp eq i32 %conv113, 0
+  %cmp145 = icmp slt i64 %2, 0
+  br label %for.cond82
+
+for.cond82:                                       ; preds = %for.cond82.backedge, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %i.0121.be, %for.cond82.backedge ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214.preheader
+
+while.cond214.preheader:                          ; preds = %for.cond82
+  br i1 %tobool, label %while.cond214, label %for.body268
+
+if.then87:                                        ; preds = %for.cond82
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = tail call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  br i1 %cmp114, label %for.cond82.backedge, label %while.cond
+
+for.cond82.backedge:                              ; preds = %while.cond, %if.end111
+  %i.0121.be = phi i64 [ %inc209, %if.end111 ], [ %3, %while.cond ]
+  br label %for.cond82
+
+while.cond:                                       ; preds = %if.end111, %while.cond.backedge
+  %iterator.0 = phi ptr [ %iterator.0.be, %while.cond.backedge ], [ %net, %if.end111 ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82.backedge, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  br i1 %cmp145, label %if.else159, label %while.cond.backedge
+
+while.cond.backedge:                              ; preds = %if.end140, %if.then201
+  %iterator.0.be = phi ptr [ null, %if.then201 ], [ %0, %if.end140 ]
+  br label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 4294967296 dereferenceable(72) null, ptr noundef nonnull align 8 dereferenceable(72) %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  tail call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond.backedge
+
+while.cond214:                                    ; preds = %while.cond214.preheader, %while.cond214
+  %call217 = tail call i64 @switch_arcs(ptr %call32, ptr nonnull %net)
+  br label %while.cond214
+
+for.body268:                                      ; preds = %while.cond214.preheader, %for.body268
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite) "alloc-family"="malloc" }
+attributes #2 = { minsize }
+*** IR Dump After InstCombinePass on price_out_impl omitted because no change ***
+*** IR Pass PassManager<Function> on price_out_impl ignored ***
+*** IR Pass CGSCCToFunctionPassAdaptor on (price_out_impl) ignored ***
+*** IR Dump After CoroSplitPass on (price_out_impl) omitted because no change ***
+*** IR Pass PassManager<LazyCallGraph::SCC, AnalysisManager<LazyCallGraph::SCC, LazyCallGraph&>, LazyCallGraph&, CGSCCUpdateResult&> on (price_out_impl) ignored ***
+*** IR Pass DevirtSCCRepeatedPass on (price_out_impl) ignored ***
+*** IR Pass ModuleToPostOrderCGSCCPassAdaptor on [module] ignored ***
+*** IR Dump After InvalidateAnalysisPass<ShouldNotRunFunctionPassesAnalysis> on price_out_impl omitted because no change ***
+*** IR Pass ModuleToFunctionPassAdaptor on [module] ignored ***
+*** IR Pass ModuleInlinerWrapperPass on [module] ignored ***
+*** IR Dump After DeadArgumentEliminationPass on [module] omitted because no change ***
+*** IR Dump After CoroCleanupPass on [module] omitted because no change ***
+*** IR Dump After GlobalOptPass on [module] omitted because no change ***
+*** IR Dump After GlobalDCEPass on [module] omitted because no change ***
+*** IR Dump After EliminateAvailableExternallyPass on [module] omitted because no change ***
+*** IR Dump After ReversePostOrderFunctionAttrsPass on [module] omitted because no change ***
+*** IR Dump After RecomputeGlobalsAAPass on [module] omitted because no change ***
+*** IR Dump After Float2IntPass on price_out_impl omitted because no change ***
+*** IR Dump After LowerConstantIntrinsicsPass on price_out_impl omitted because no change ***
+*** IR Dump After LoopSimplifyPass on price_out_impl ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite)
+declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #1
+
+declare void @replace_weaker_arc() local_unnamed_addr
+
+declare i64 @switch_arcs(ptr, ptr) local_unnamed_addr
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr readnone %0, ptr nocapture writeonly %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) local_unnamed_addr #2 {
+entry:
+  %call32 = tail call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  %cmp114 = icmp eq i32 %conv113, 0
+  %cmp145 = icmp slt i64 %2, 0
+  br label %for.cond82
+
+for.cond82:                                       ; preds = %for.cond82.backedge, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %i.0121.be, %for.cond82.backedge ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214.preheader
+
+while.cond214.preheader:                          ; preds = %for.cond82
+  br i1 %tobool, label %while.cond214.preheader3, label %for.body268.preheader
+
+for.body268.preheader:                            ; preds = %while.cond214.preheader
+  br label %for.body268
+
+while.cond214.preheader3:                         ; preds = %while.cond214.preheader
+  br label %while.cond214
+
+if.then87:                                        ; preds = %for.cond82
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = tail call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  br i1 %cmp114, label %for.cond82.backedge, label %while.cond.preheader
+
+while.cond.preheader:                             ; preds = %if.end111
+  br label %while.cond
+
+for.cond82.backedge.loopexit:                     ; preds = %while.cond
+  br label %for.cond82.backedge
+
+for.cond82.backedge:                              ; preds = %for.cond82.backedge.loopexit, %if.end111
+  %i.0121.be = phi i64 [ %inc209, %if.end111 ], [ %3, %for.cond82.backedge.loopexit ]
+  br label %for.cond82
+
+while.cond:                                       ; preds = %while.cond.preheader, %while.cond.backedge
+  %iterator.0 = phi ptr [ %iterator.0.be, %while.cond.backedge ], [ %net, %while.cond.preheader ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82.backedge.loopexit, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  br i1 %cmp145, label %if.else159, label %while.cond.backedge
+
+while.cond.backedge:                              ; preds = %if.end140, %if.then201
+  %iterator.0.be = phi ptr [ null, %if.then201 ], [ %0, %if.end140 ]
+  br label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 4294967296 dereferenceable(72) null, ptr noundef nonnull align 8 dereferenceable(72) %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  tail call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond.backedge
+
+while.cond214:                                    ; preds = %while.cond214.preheader3, %while.cond214
+  %call217 = tail call i64 @switch_arcs(ptr %call32, ptr nonnull %net)
+  br label %while.cond214
+
+for.body268:                                      ; preds = %for.body268.preheader, %for.body268
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite) "alloc-family"="malloc" }
+attributes #2 = { minsize }
+*** IR Dump After LCSSAPass on price_out_impl omitted because no change ***
+*** IR Pass PassManager<Function> on price_out_impl ignored ***
+*** IR Dump After LoopRotatePass on while.cond omitted because no change ***
+*** IR Dump After LoopDeletionPass on while.cond omitted because no change ***
+*** IR Pass PassManager<Loop, AnalysisManager<Loop, LoopStandardAnalysisResults&>, LoopStandardAnalysisResults&, LPMUpdater&> on while.cond ignored ***
+*** IR Dump After LoopRotatePass on for.cond82 omitted because no change ***
+*** IR Dump After LoopDeletionPass on for.cond82 omitted because no change ***
+*** IR Pass PassManager<Loop, AnalysisManager<Loop, LoopStandardAnalysisResults&>, LoopStandardAnalysisResults&, LPMUpdater&> on for.cond82 ignored ***
+*** IR Dump After LoopRotatePass on for.body268 omitted because no change ***
+*** IR Dump After LoopDeletionPass on for.body268 omitted because no change ***
+*** IR Pass PassManager<Loop, AnalysisManager<Loop, LoopStandardAnalysisResults&>, LoopStandardAnalysisResults&, LPMUpdater&> on for.body268 ignored ***
+*** IR Dump After LoopRotatePass on while.cond214 omitted because no change ***
+*** IR Dump After LoopDeletionPass on while.cond214 omitted because no change ***
+*** IR Pass PassManager<Loop, AnalysisManager<Loop, LoopStandardAnalysisResults&>, LoopStandardAnalysisResults&, LPMUpdater&> on while.cond214 ignored ***
+*** IR Pass FunctionToLoopPassAdaptor on price_out_impl ignored ***
+*** IR Dump After LoopDistributePass on price_out_impl omitted because no change ***
+*** IR Dump After InjectTLIMappings on price_out_impl omitted because no change ***
+*** IR Dump After LoopVectorizePass on price_out_impl omitted because no change ***
+*** IR Dump After LoopLoadEliminationPass on price_out_impl omitted because no change ***
+*** IR Dump After InstCombinePass on price_out_impl omitted because no change ***
+*** IR Dump After SimplifyCFGPass on price_out_impl ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite)
+declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #1
+
+declare void @replace_weaker_arc() local_unnamed_addr
+
+declare i64 @switch_arcs(ptr, ptr) local_unnamed_addr
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr readnone %0, ptr nocapture writeonly %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) local_unnamed_addr #2 {
+entry:
+  %call32 = tail call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  %cmp114 = icmp eq i32 %conv113, 0
+  %cmp145 = icmp slt i64 %2, 0
+  br label %for.cond82
+
+for.cond82:                                       ; preds = %if.end111, %while.cond, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %inc209, %if.end111 ], [ %3, %while.cond ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214.preheader
+
+while.cond214.preheader:                          ; preds = %for.cond82
+  br i1 %tobool, label %while.cond214, label %for.body268
+
+if.then87:                                        ; preds = %for.cond82
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = tail call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  br i1 %cmp114, label %for.cond82, label %while.cond
+
+while.cond:                                       ; preds = %if.then201, %if.end140, %if.end111
+  %iterator.0 = phi ptr [ %net, %if.end111 ], [ null, %if.then201 ], [ %0, %if.end140 ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  br i1 %cmp145, label %if.else159, label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 4294967296 dereferenceable(72) null, ptr noundef nonnull align 8 dereferenceable(72) %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  tail call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond
+
+while.cond214:                                    ; preds = %while.cond214.preheader, %while.cond214
+  %call217 = tail call i64 @switch_arcs(ptr %call32, ptr nonnull %net)
+  br label %while.cond214
+
+for.body268:                                      ; preds = %while.cond214.preheader, %for.body268
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite) "alloc-family"="malloc" }
+attributes #2 = { minsize }
+*** IR Dump After VectorCombinePass on price_out_impl omitted because no change ***
+*** IR Dump After InstCombinePass on price_out_impl omitted because no change ***
+*** IR Dump After LoopUnrollPass on price_out_impl ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite)
+declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #1
+
+declare void @replace_weaker_arc() local_unnamed_addr
+
+declare i64 @switch_arcs(ptr, ptr) local_unnamed_addr
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr readnone %0, ptr nocapture writeonly %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) local_unnamed_addr #2 {
+entry:
+  %call32 = tail call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  %cmp114 = icmp eq i32 %conv113, 0
+  %cmp145 = icmp slt i64 %2, 0
+  br label %for.cond82
+
+for.cond82.loopexit:                              ; preds = %while.cond
+  br label %for.cond82.backedge
+
+for.cond82:                                       ; preds = %for.cond82.backedge, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %i.0121.be, %for.cond82.backedge ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214.preheader
+
+while.cond214.preheader:                          ; preds = %for.cond82
+  br i1 %tobool, label %while.cond214.preheader4, label %for.body268.preheader
+
+for.body268.preheader:                            ; preds = %while.cond214.preheader
+  br label %for.body268
+
+while.cond214.preheader4:                         ; preds = %while.cond214.preheader
+  br label %while.cond214
+
+if.then87:                                        ; preds = %for.cond82
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = tail call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  br i1 %cmp114, label %for.cond82.backedge, label %while.cond.preheader
+
+for.cond82.backedge:                              ; preds = %if.end111, %for.cond82.loopexit
+  %i.0121.be = phi i64 [ %inc209, %if.end111 ], [ %3, %for.cond82.loopexit ]
+  br label %for.cond82
+
+while.cond.preheader:                             ; preds = %if.end111
+  br label %while.cond
+
+while.cond:                                       ; preds = %while.cond.backedge, %while.cond.preheader
+  %iterator.0 = phi ptr [ %net, %while.cond.preheader ], [ %iterator.0.be, %while.cond.backedge ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82.loopexit, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  br i1 %cmp145, label %if.else159, label %while.cond.backedge
+
+while.cond.backedge:                              ; preds = %if.end140, %if.then201
+  %iterator.0.be = phi ptr [ null, %if.then201 ], [ %0, %if.end140 ]
+  br label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 4294967296 dereferenceable(72) null, ptr noundef nonnull align 8 dereferenceable(72) %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  tail call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond.backedge
+
+while.cond214:                                    ; preds = %while.cond214.preheader4, %while.cond214
+  %call217 = tail call i64 @switch_arcs(ptr %call32, ptr nonnull %net)
+  br label %while.cond214
+
+for.body268:                                      ; preds = %for.body268.preheader, %for.body268
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite) "alloc-family"="malloc" }
+attributes #2 = { minsize }
+*** IR Dump After WarnMissedTransformationsPass on price_out_impl omitted because no change ***
+*** IR Dump After SROAPass on price_out_impl omitted because no change ***
+*** IR Dump After InstCombinePass on price_out_impl omitted because no change ***
+*** IR Dump After RequireAnalysisPass<OptimizationRemarkEmitterAnalysis, Function> on price_out_impl omitted because no change ***
+*** IR Dump After LoopSimplifyPass on price_out_impl omitted because no change ***
+*** IR Dump After LCSSAPass on price_out_impl omitted because no change ***
+*** IR Pass PassManager<Function> on price_out_impl ignored ***
+Changed Query Used!
+Changed Query Used!
+Changed Query Used!
+Changed Query Used!
+Changed Query Used!
+*** IR Dump After LICMPass on while.cond omitted because no change ***
+*** IR Dump After LICMPass on for.cond82 omitted because no change ***
+*** IR Dump After LICMPass on for.body268 omitted because no change ***
+*** IR Dump After LICMPass on while.cond214 omitted because no change ***
+*** IR Pass FunctionToLoopPassAdaptor on price_out_impl ignored ***
+*** IR Dump After AlignmentFromAssumptionsPass on price_out_impl omitted because no change ***
+*** IR Dump After LoopSinkPass on price_out_impl omitted because no change ***
+*** IR Dump After InstSimplifyPass on price_out_impl omitted because no change ***
+*** IR Dump After DivRemPairsPass on price_out_impl omitted because no change ***
+*** IR Dump After TailCallElimPass on price_out_impl omitted because no change ***
+*** IR Dump After SimplifyCFGPass on price_out_impl ***
+; ModuleID = 'reduced.bc'
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.arc = type { i32, i64, ptr, ptr, i16, ptr, ptr, i64, i64 }
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #0
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite)
+declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #1
+
+declare void @replace_weaker_arc() local_unnamed_addr
+
+declare i64 @switch_arcs(ptr, ptr) local_unnamed_addr
+
+; Function Attrs: minsize
+define i64 @price_out_impl(ptr %net, ptr readnone %0, ptr nocapture writeonly %1, i64 %2, i1 %cmp, i1 %tobool, i1 %cmp42, i64 %3, i32 %conv113, i64 %4, i64 %inc209) local_unnamed_addr #2 {
+entry:
+  %call32 = tail call ptr @malloc(i64 0)
+  br i1 %cmp42, label %if.end40, label %common.ret
+
+common.ret:                                       ; preds = %entry
+  ret i64 0
+
+if.end40:                                         ; preds = %entry
+  %5 = load ptr, ptr %net, align 8
+  %cmp.not = xor i1 %cmp, true
+  %brmerge = select i1 %cmp.not, i1 true, i1 %tobool
+  %cmp114 = icmp eq i32 %conv113, 0
+  %cmp145 = icmp slt i64 %2, 0
+  br label %for.cond82
+
+for.cond82:                                       ; preds = %for.cond82.backedge, %if.end40
+  %i.0121 = phi i64 [ 0, %if.end40 ], [ %i.0121.be, %for.cond82.backedge ]
+  %cmp83 = icmp slt i64 %i.0121, %3
+  br i1 %cmp83, label %if.then87, label %while.cond214.preheader
+
+while.cond214.preheader:                          ; preds = %for.cond82
+  br i1 %tobool, label %while.cond214, label %for.body268
+
+if.then87:                                        ; preds = %for.cond82
+  br i1 %brmerge, label %if.end111, label %if.then93
+
+if.then93:                                        ; preds = %if.then87
+  %call96 = tail call i64 @switch_arcs(ptr null, ptr null)
+  store i64 0, ptr %1, align 8
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.then93, %if.then87
+  br i1 %cmp114, label %for.cond82.backedge, label %while.cond
+
+for.cond82.backedge:                              ; preds = %while.cond, %if.end111
+  %i.0121.be = phi i64 [ %inc209, %if.end111 ], [ %3, %while.cond ]
+  br label %for.cond82
+
+while.cond:                                       ; preds = %if.end111, %while.cond.backedge
+  %iterator.0 = phi ptr [ %iterator.0.be, %while.cond.backedge ], [ %net, %if.end111 ]
+  %tobool128.not = icmp eq ptr %iterator.0, null
+  br i1 %tobool128.not, label %for.cond82.backedge, label %if.end140
+
+if.end140:                                        ; preds = %while.cond
+  br i1 %cmp145, label %if.else159, label %while.cond.backedge
+
+while.cond.backedge:                              ; preds = %if.end140, %if.then201
+  %iterator.0.be = phi ptr [ null, %if.then201 ], [ %0, %if.end140 ]
+  br label %while.cond
+
+if.else159:                                       ; preds = %if.end140
+  br i1 %cmp, label %if.then163, label %if.else177
+
+if.then163:                                       ; preds = %if.else159
+  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 4294967296 dereferenceable(72) null, ptr noundef nonnull align 8 dereferenceable(72) %net, i64 72, i1 false)
+  %6 = load i64, ptr %call32, align 8
+  store i64 %6, ptr %net, align 8
+  tail call void @replace_weaker_arc()
+  br label %if.then201
+
+if.else177:                                       ; preds = %if.else159
+  br i1 %tobool, label %if.then180, label %if.then201
+
+if.then180:                                       ; preds = %if.else177
+  %7 = load ptr, ptr %net, align 8
+  store i64 %2, ptr %call32, align 8
+  %arrayidx186 = getelementptr %struct.arc, ptr %7, i64 %4
+  store i64 0, ptr %1, align 8
+  store i32 0, ptr %arrayidx186, align 8
+  br label %if.then201
+
+if.then201:                                       ; preds = %if.then180, %if.else177, %if.then163
+  store i64 0, ptr %net, align 8
+  br label %while.cond.backedge
+
+while.cond214:                                    ; preds = %while.cond214.preheader, %while.cond214
+  %call217 = tail call i64 @switch_arcs(ptr %call32, ptr nonnull %net)
+  br label %while.cond214
+
+for.body268:                                      ; preds = %while.cond214.preheader, %for.body268
+  %8 = load ptr, ptr %5, align 8
+  store ptr null, ptr %8, align 8
+  br label %for.body268
+}
+
+attributes #0 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite) "alloc-family"="malloc" }
+attributes #2 = { minsize }
+*** IR Pass PassManager<Function> on price_out_impl ignored ***
+*** IR Pass ModuleToFunctionPassAdaptor on [module] ignored ***
+*** IR Dump After GlobalDCEPass on [module] omitted because no change ***
+*** IR Dump After ConstantMergePass on [module] omitted because no change ***
+*** IR Dump After CGProfilePass on [module] omitted because no change ***
+*** IR Dump After RelLookupTableConverterPass on [module] omitted because no change ***
+*** IR Dump After AnnotationRemarksPass on price_out_impl omitted because no change ***
+*** IR Pass ModuleToFunctionPassAdaptor on [module] ignored ***
+*** IR Dump After VerifierPass on [module] omitted because no change ***
+*** IR Dump After BitcodeWriterPass on [module] omitted because no change ***
