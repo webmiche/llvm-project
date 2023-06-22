@@ -746,6 +746,30 @@ class AAChecker:
             )
         )
 
+        # delete files
+        for i in range(self.sequence[0] if self.try_all else 1):
+            os.remove(
+                self.aa_instr.instr_dir.joinpath(
+                    self.file_path.parent, str(i + 1) + str(self.file_path.stem) + ".bc"
+                )
+            )
+            os.remove(
+                self.aa_instr.instr_dir.joinpath(
+                    self.file_path.parent, str(i + 1) + str(self.file_path.stem) + ".o"
+                )
+            )
+
+        os.remove(
+            self.aa_instr.instr_dir.joinpath(
+                self.file_path.parent, str(0) + str(self.file_path.stem) + ".bc"
+            )
+        )
+        os.remove(
+            self.aa_instr.instr_dir.joinpath(
+                self.file_path.parent, str(0) + str(self.file_path.stem) + ".o"
+            )
+        )
+
         print("sizes: " + str(sizes))
         print(initial_size)
         # compare sizes
