@@ -57,9 +57,6 @@
 #include <cassert>
 #include <cstdint>
 #include <cstdlib>
-#include <fstream>
-#include <iostream>
-#include <map>
 #include <optional>
 #include <utility>
 
@@ -830,178 +827,13 @@ static bool notDifferentParent(const Value *O1, const Value *O2) {
 }
 #endif
 
-static cl::opt<std::string> AliasResultFile("arfile", cl::init(""));
-
-static size_t num_funcs = 0;
-
-// Status of aa instrumentation. -1 means not alloced, 0 means running, 1 means
-// freed.
-static int64_t status = -1;
-
-static std::map<std::string, uint64_t *> *change_indeces_map;
-static std::map<std::string, uint64_t> *current_indeces_map;
-static std::map<std::string, uint64_t> *indeces_len_map;
-
-// Query cache. If the entry is true, return default.
-static std::map<std::pair<const llvm::Value *const, const llvm::Value *const>,
-                bool>
-    decisionCache;
-
-static cl::opt<bool> take_may("take_may", cl::init(false));
-static cl::opt<std::string> OutputFile("ofile", cl::init(""));
-static int first = -1;
-
-// length first, then all the queries
-static cl::opt<std::string> AASequence("aasequence", cl::init(""));
-static cl::opt<std::string> AAFunction("aafunc", cl::init(""));
-
-STATISTIC(NumberOfAACacheHits, "Number of AA cache hits");
-STATISTIC(NumberOfAAQueries, "Number of AA queries");
-
 AliasResult BasicAAResult::alias(const MemoryLocation &LocA,
                                  const MemoryLocation &LocB, AAQueryInfo &AAQI,
                                  const Instruction *CtxI) {
   assert(notDifferentParent(LocA.Ptr, LocB.Ptr) &&
          "BasicAliasAnalysis doesn't support interprocedural queries.");
 
-  auto res = aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI, CtxI);
-  NumberOfAAQueries++;
-
-  if (res == AliasResult::MayAlias) {
-    return res;
-  }
-
-  const Function *F1 = getParent(LocA.Ptr);
-
-  if (!F1)
-    return res;
-
-  AliasResult default_res = res;
-  AliasResult other_res = AliasResult::MayAlias;
-
-  if (take_may) {
-    other_res = default_res;
-    default_res = AliasResult::MayAlias;
-  }
-
-  std::pair<const llvm::Value *const, const llvm::Value *const> pr(LocA.Ptr,
-                                                                   LocB.Ptr);
-  if (decisionCache.find(pr) != decisionCache.end()) {
-    NumberOfAACacheHits++;
-    if (decisionCache[pr]) {
-      return default_res;
-    }
-    return other_res;
-  }
-
-  if (OutputFile != "") {
-    std::ofstream f;
-    if (first == -1) {
-      f.open(OutputFile, std::ios_base::out);
-      first = 0;
-    } else {
-      f.open(OutputFile, std::ios_base::app);
-    }
-
-    if (f.is_open()) {
-      if (res == AliasResult::NoAlias) {
-        f << F1->getName().str() << " NoAlias\n";
-      } else if (res == AliasResult::PartialAlias) {
-        f << F1->getName().str() << " PartialAlias\n";
-      } else if (res == AliasResult::MustAlias) {
-        f << F1->getName().str() << " MustAlias\n";
-      }
-      f.flush();
-    } else {
-      assert(false);
-    }
-    f.close();
-
-    decisionCache[pr] = true;
-    return default_res;
-  }
-
-  if (AASequence != "" || AliasResultFile != "") {
-    std::string func_name = F1->getName().str();
-    if (res == AliasResult::MayAlias) {
-      return res;
-    }
-
-    if (AASequence != "" and status == -1) {
-      assert(AAFunction != "");
-      change_indeces_map = new std::map<std::string, uint64_t *>();
-      current_indeces_map = new std::map<std::string, uint64_t>();
-      indeces_len_map = new std::map<std::string, uint64_t>();
-      num_funcs = 1;
-      status = 0;
-
-      int len = stoi(AASequence.substr(0, AASequence.find("-")));
-      std::string curr_seq = AASequence.substr(AASequence.find("-") + 1);
-      uint64_t *curr_array = (uint64_t *)malloc(sizeof(uint64_t) * len);
-      for (int i = 0; i < len; i++) {
-        curr_array[i] = stoi(curr_seq.substr(0, curr_seq.find("-")));
-        curr_seq = curr_seq.substr(curr_seq.find("-") + 1);
-      }
-
-      std::string curr_func_name = AAFunction;
-      std::pair<std::string, uint64_t> curr_pair =
-          std::make_pair(curr_func_name, len);
-      indeces_len_map->insert(curr_pair);
-      current_indeces_map->insert({curr_func_name, 0});
-      change_indeces_map->insert({curr_func_name, curr_array});
-    }
-
-    if (AliasResultFile != "" and status == -1) {
-      // Allocate map, parse file
-      status = 0;
-      std::ifstream f(AliasResultFile);
-      change_indeces_map = new std::map<std::string, uint64_t *>();
-      current_indeces_map = new std::map<std::string, uint64_t>();
-      indeces_len_map = new std::map<std::string, uint64_t>();
-
-      if (f.is_open()) {
-        // parse and store change_indeces
-        f >> num_funcs;
-        for (size_t i = 0; i < num_funcs; i++) {
-          std::string curr_func_name;
-          f >> curr_func_name;
-          size_t curr_func_change_indeces_len;
-          f >> curr_func_change_indeces_len;
-          uint64_t *curr_array = (uint64_t *)malloc(
-              sizeof(uint64_t) * curr_func_change_indeces_len);
-          std::pair<std::string, uint64_t> curr_pair =
-              std::make_pair(curr_func_name, curr_func_change_indeces_len);
-          indeces_len_map->insert(curr_pair);
-          for (size_t j = 0; j < curr_func_change_indeces_len; j++) {
-            std::string input;
-            f >> input;
-            curr_array[j] = stoi(input);
-          }
-          current_indeces_map->insert({curr_func_name, 0});
-          change_indeces_map->insert({curr_func_name, curr_array});
-        }
-      } else {
-        assert(false);
-      }
-    }
-
-    if (change_indeces_map->find(func_name) != change_indeces_map->end()) {
-      auto len = indeces_len_map->at(func_name);
-      auto curr_index = current_indeces_map->at(func_name);
-      auto curr_array = change_indeces_map->at(func_name);
-      current_indeces_map->at(func_name) = curr_index + 1;
-      for (size_t i = 0; i < len; i++) {
-        if (curr_array[i] == curr_index) {
-          decisionCache[pr] = false;
-          return other_res;
-        }
-      }
-    }
-    decisionCache[pr] = true;
-    return default_res;
-  }
-
-  return default_res;
+  return aliasCheck(LocA.Ptr, LocA.Size, LocB.Ptr, LocB.Size, AAQI, CtxI);
 }
 
 /// Checks to see if the specified callsite can clobber the specified memory

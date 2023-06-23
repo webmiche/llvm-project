@@ -49,15 +49,18 @@
 #include "llvm/Support/CommandLine.h"
 #include <algorithm>
 #include <cassert>
+#include <fstream>
 #include <functional>
+#include <iostream>
 #include <iterator>
+#include <map>
 
 #define DEBUG_TYPE "aa"
 
 using namespace llvm;
 
-STATISTIC(NumNoAlias,   "Number of NoAlias results");
-STATISTIC(NumMayAlias,  "Number of MayAlias results");
+STATISTIC(NumNoAlias, "Number of NoAlias results");
+STATISTIC(NumMayAlias, "Number of MayAlias results");
 STATISTIC(NumMustAlias, "Number of MustAlias results");
 
 namespace llvm {
@@ -108,6 +111,47 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
   return alias(LocA, LocB, AAQIP, nullptr);
 }
 
+static const Function *getParent(const Value *V) {
+  if (const Instruction *inst = dyn_cast<Instruction>(V)) {
+    if (!inst->getParent())
+      return nullptr;
+    return inst->getParent()->getParent();
+  }
+
+  if (const Argument *arg = dyn_cast<Argument>(V))
+    return arg->getParent();
+
+  return nullptr;
+}
+
+static cl::opt<std::string> AliasResultFile("arfile", cl::init(""));
+
+static size_t num_funcs = 0;
+
+// Status of aa instrumentation. -1 means not alloced, 0 means running, 1 means
+// freed.
+static int64_t status = -1;
+
+static std::map<std::string, uint64_t *> *change_indeces_map;
+static std::map<std::string, uint64_t> *current_indeces_map;
+static std::map<std::string, uint64_t> *indeces_len_map;
+
+// Query cache. If the entry is true, return default.
+static std::map<std::pair<const llvm::Value *const, const llvm::Value *const>,
+                bool>
+    decisionCache;
+
+static cl::opt<bool> take_may("take_may", cl::init(false));
+static cl::opt<std::string> OutputFile("ofile", cl::init(""));
+static int first = -1;
+
+// length first, then all the queries
+static cl::opt<std::string> AASequence("aasequence", cl::init(""));
+static cl::opt<std::string> AAFunction("aafunc", cl::init(""));
+
+STATISTIC(NumberOfAACacheHits, "Number of AA cache hits");
+STATISTIC(NumberOfAAQueries, "Number of AA queries");
+
 AliasResult AAResults::alias(const MemoryLocation &LocA,
                              const MemoryLocation &LocB, AAQueryInfo &AAQI,
                              const Instruction *CtxI) {
@@ -116,8 +160,8 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
   if (EnableAATrace) {
     for (unsigned I = 0; I < AAQI.Depth; ++I)
       dbgs() << "  ";
-    dbgs() << "Start " << *LocA.Ptr << " @ " << LocA.Size << ", "
-           << *LocB.Ptr << " @ " << LocB.Size << "\n";
+    dbgs() << "Start " << *LocA.Ptr << " @ " << LocA.Size << ", " << *LocB.Ptr
+           << " @ " << LocB.Size << "\n";
   }
 
   AAQI.Depth++;
@@ -127,23 +171,153 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
       break;
   }
   AAQI.Depth--;
+  NumberOfAAQueries++;
 
+  const Function *F1 = getParent(LocA.Ptr);
+
+  if (!F1)
+    return Result;
+
+  AliasResult default_res = Result;
+  AliasResult other_res = AliasResult::MayAlias;
+
+  if (take_may) {
+    other_res = default_res;
+    default_res = AliasResult::MayAlias;
+  }
+
+  std::pair<const llvm::Value *const, const llvm::Value *const> pr(LocA.Ptr,
+                                                                   LocB.Ptr);
+  if (decisionCache.find(pr) != decisionCache.end()) {
+    NumberOfAACacheHits++;
+    if (decisionCache[pr]) {
+      return default_res;
+    }
+    return other_res;
+  }
+
+  if (OutputFile != "") {
+    std::ofstream f;
+    if (first == -1) {
+      f.open(OutputFile, std::ios_base::out);
+      first = 0;
+    } else {
+      f.open(OutputFile, std::ios_base::app);
+    }
+
+    if (f.is_open()) {
+      if (Result == AliasResult::NoAlias) {
+        f << F1->getName().str() << " NoAlias\n";
+      } else if (Result == AliasResult::PartialAlias) {
+        f << F1->getName().str() << " PartialAlias\n";
+      } else if (Result == AliasResult::MustAlias) {
+        f << F1->getName().str() << " MustAlias\n";
+      }
+      f.flush();
+    } else {
+      assert(false);
+    }
+    f.close();
+
+    decisionCache[pr] = true;
+    return default_res;
+  }
+
+  if (AASequence != "" || AliasResultFile != "") {
+    std::string func_name = F1->getName().str();
+    if (Result == AliasResult::MayAlias) {
+      return Result;
+    }
+
+    if (AASequence != "" and status == -1) {
+      assert(AAFunction != "");
+      change_indeces_map = new std::map<std::string, uint64_t *>();
+      current_indeces_map = new std::map<std::string, uint64_t>();
+      indeces_len_map = new std::map<std::string, uint64_t>();
+      num_funcs = 1;
+      status = 0;
+
+      int len = stoi(AASequence.substr(0, AASequence.find("-")));
+      std::string curr_seq = AASequence.substr(AASequence.find("-") + 1);
+      uint64_t *curr_array = (uint64_t *)malloc(sizeof(uint64_t) * len);
+      for (int i = 0; i < len; i++) {
+        curr_array[i] = stoi(curr_seq.substr(0, curr_seq.find("-")));
+        curr_seq = curr_seq.substr(curr_seq.find("-") + 1);
+      }
+
+      std::string curr_func_name = AAFunction;
+      std::pair<std::string, uint64_t> curr_pair =
+          std::make_pair(curr_func_name, len);
+      indeces_len_map->insert(curr_pair);
+      current_indeces_map->insert({curr_func_name, 0});
+      change_indeces_map->insert({curr_func_name, curr_array});
+    }
+
+    if (AliasResultFile != "" and status == -1) {
+      // Allocate map, parse file
+      status = 0;
+      std::ifstream f(AliasResultFile);
+      change_indeces_map = new std::map<std::string, uint64_t *>();
+      current_indeces_map = new std::map<std::string, uint64_t>();
+      indeces_len_map = new std::map<std::string, uint64_t>();
+
+      if (f.is_open()) {
+        // parse and store change_indeces
+        f >> num_funcs;
+        for (size_t i = 0; i < num_funcs; i++) {
+          std::string curr_func_name;
+          f >> curr_func_name;
+          size_t curr_func_change_indeces_len;
+          f >> curr_func_change_indeces_len;
+          uint64_t *curr_array = (uint64_t *)malloc(
+              sizeof(uint64_t) * curr_func_change_indeces_len);
+          std::pair<std::string, uint64_t> curr_pair =
+              std::make_pair(curr_func_name, curr_func_change_indeces_len);
+          indeces_len_map->insert(curr_pair);
+          for (size_t j = 0; j < curr_func_change_indeces_len; j++) {
+            std::string input;
+            f >> input;
+            curr_array[j] = stoi(input);
+          }
+          current_indeces_map->insert({curr_func_name, 0});
+          change_indeces_map->insert({curr_func_name, curr_array});
+        }
+      } else {
+        assert(false);
+      }
+    }
+
+    if (change_indeces_map->find(func_name) != change_indeces_map->end()) {
+      auto len = indeces_len_map->at(func_name);
+      auto curr_index = current_indeces_map->at(func_name);
+      auto curr_array = change_indeces_map->at(func_name);
+      current_indeces_map->at(func_name) = curr_index + 1;
+      for (size_t i = 0; i < len; i++) {
+        if (curr_array[i] == curr_index) {
+          decisionCache[pr] = false;
+          return other_res;
+        }
+      }
+    }
+    decisionCache[pr] = true;
+    return default_res;
+  }
   if (EnableAATrace) {
     for (unsigned I = 0; I < AAQI.Depth; ++I)
       dbgs() << "  ";
-    dbgs() << "End " << *LocA.Ptr << " @ " << LocA.Size << ", "
-           << *LocB.Ptr << " @ " << LocB.Size << " = " << Result << "\n";
+    dbgs() << "End " << *LocA.Ptr << " @ " << LocA.Size << ", " << *LocB.Ptr
+           << " @ " << LocB.Size << " = " << Result << "\n";
   }
 
   if (AAQI.Depth == 0) {
-    if (Result == AliasResult::NoAlias)
+    if (default_res == AliasResult::NoAlias)
       ++NumNoAlias;
-    else if (Result == AliasResult::MustAlias)
+    else if (default_res == AliasResult::MustAlias)
       ++NumMustAlias;
     else
       ++NumMayAlias;
   }
-  return Result;
+  return default_res;
 }
 
 ModRefInfo AAResults::getModRefInfoMask(const MemoryLocation &Loc,
@@ -584,7 +758,8 @@ ModRefInfo AAResults::getModRefInfo(const AtomicCmpXchgInst *CX,
 ModRefInfo AAResults::getModRefInfo(const AtomicRMWInst *RMW,
                                     const MemoryLocation &Loc,
                                     AAQueryInfo &AAQI) {
-  // Acquire/Release atomicrmw has properties that matter for arbitrary addresses.
+  // Acquire/Release atomicrmw has properties that matter for arbitrary
+  // addresses.
   if (isStrongerThanMonotonic(RMW->getOrdering()))
     return ModRefInfo::ModRef;
 
@@ -646,8 +821,7 @@ ModRefInfo AAResults::getModRefInfo(const Instruction *I,
 /// with a smarter AA in place, this test is just wasting compile time.
 ModRefInfo AAResults::callCapturesBefore(const Instruction *I,
                                          const MemoryLocation &MemLoc,
-                                         DominatorTree *DT,
-                                         AAQueryInfo &AAQI) {
+                                         DominatorTree *DT, AAQueryInfo &AAQI) {
   if (!DT)
     return ModRefInfo::ModRef;
 
@@ -718,7 +892,7 @@ bool AAResults::canInstructionRangeModRef(const Instruction &I1,
          "Instructions not in same basic block!");
   BasicBlock::const_iterator I = I1.getIterator();
   BasicBlock::const_iterator E = I2.getIterator();
-  ++E;  // Convert from inclusive to exclusive range.
+  ++E; // Convert from inclusive to exclusive range.
 
   for (; I != E; ++I) // Check every instruction in range
     if (isModOrRefSet(getModRefInfo(&*I, Loc) & Mode))

@@ -1,0 +1,278 @@
+=============== running benchmark 619 ===============
+8e4d90dccb47a17cec82f24060baa3ac355bc033
+
+Time after baseline: 0.46434998512268066
+Track AA Queries std
+counts per function per file: {PosixPath('619/main.bc'): {'MAIN_parseCommandLine': 34, 'MAIN_printInfo': 29, 'MAIN_initialize': 4, 'MAIN_finalize': 4, 'main': 7}, PosixPath('619/lbm.bc'): {'LBM_allocateGrid': 1, 'LBM_initializeGrid': 191, 'LBM_initializeSpecialCellsForLDC': 2, 'LBM_initializeSpecialCellsForChannel': 1, 'LBM_performStreamCollideBGK': 302, 'LBM_performStreamCollideTRT': 302, 'LBM_handleInOutFlow': 1463, 'LBM_showGridStatistics': 191, 'LBM_storeVelocityField': 267, 'LBM_compareVelocityField': 175}}
+Time after AA Query measurement: 0.7043743133544922
+Start Exploration
+***** Next file: 619/main.bc
+==== Next function: MAIN_parseCommandLine
+greedy search, currently checking 0 to 34 out of 34
+greedy search, time after compilation in step 0 : 0.882190465927124
+greedy search, time after assembly in step 0 : 1.0071306228637695
+greedy search candidates: [1747, 1767]
+greedy search, new min: 1747
+greedy search, current list: [1]
+greedy search, time after step 0 : 1.054332971572876
+greedy search, currently checking 1 to 34 out of 34
+greedy search, time after compilation in step 1 : 1.1780891418457031
+greedy search, time after assembly in step 1 : 1.3121683597564697
+greedy search candidates: [1747]
+Time after exploration of MAIN_parseCommandLine: 1.3569047451019287
+==== Next function: MAIN_printInfo
+greedy search, currently checking 0 to 29 out of 29
+greedy search, time after compilation in step 0 : 1.5006203651428223
+greedy search, time after assembly in step 0 : 1.6174006462097168
+greedy search candidates: [1767]
+Time after exploration of MAIN_printInfo: 1.658259391784668
+==== Next function: MAIN_initialize
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 1.7483043670654297
+greedy search, time after assembly in step 0 : 1.7819066047668457
+greedy search candidates: [1767]
+Time after exploration of MAIN_initialize: 1.7880301475524902
+==== Next function: MAIN_finalize
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 1.8627467155456543
+greedy search, time after assembly in step 0 : 1.8958680629730225
+greedy search candidates: [1767]
+Time after exploration of MAIN_finalize: 1.9020180702209473
+==== Next function: main
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 1.9778718948364258
+greedy search, time after assembly in step 0 : 2.0137977600097656
+greedy search candidates: [1767]
+Time after exploration of main: 2.0243706703186035
+Time after exploration of 619/main.bc: 2.0243821144104004
+***** Next file: 619/lbm.bc
+==== Next function: LBM_allocateGrid
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 2.292245864868164
+greedy search, time after assembly in step 0 : 2.384713888168335
+greedy search candidates: [12094]
+Time after exploration of LBM_allocateGrid: 2.3881137371063232
+==== Next function: LBM_initializeGrid
+greedy search, currently checking 0 to 64 out of 191
+greedy search, time after compilation in step 0 : 3.509182929992676
+greedy search, time after assembly in step 0 : 4.204959154129028
+greedy search candidates: [12094]
+greedy search, currently checking 64 to 128 out of 191
+greedy search, time after compilation in step 0 : 5.306199550628662
+greedy search, time after assembly in step 0 : 6.002908229827881
+greedy search candidates: [12094]
+greedy search, currently checking 128 to 191 out of 191
+greedy search, time after compilation in step 0 : 7.075433731079102
+greedy search, time after assembly in step 0 : 7.757566213607788
+greedy search candidates: [12094]
+Time after exploration of LBM_initializeGrid: 7.841228008270264
+==== Next function: LBM_initializeSpecialCellsForLDC
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 8.10358214378357
+greedy search, time after assembly in step 0 : 8.191412687301636
+greedy search candidates: [12094]
+Time after exploration of LBM_initializeSpecialCellsForLDC: 8.197017431259155
+==== Next function: LBM_initializeSpecialCellsForChannel
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 8.49441123008728
+greedy search, time after assembly in step 0 : 8.578941345214844
+greedy search candidates: [12094]
+Time after exploration of LBM_initializeSpecialCellsForChannel: 8.581097602844238
+==== Next function: LBM_performStreamCollideBGK
+greedy search, currently checking 0 to 64 out of 302
+greedy search, time after compilation in step 0 : 9.761297941207886
+greedy search, time after assembly in step 0 : 10.450730800628662
+greedy search candidates: [12094]
+greedy search, currently checking 64 to 128 out of 302
+greedy search, time after compilation in step 0 : 11.535285711288452
+greedy search, time after assembly in step 0 : 12.261587381362915
+greedy search candidates: [12094]
+greedy search, currently checking 128 to 192 out of 302
+greedy search, time after compilation in step 0 : 13.350383281707764
+greedy search, time after assembly in step 0 : 14.12695837020874
+greedy search candidates: [12094]
+greedy search, currently checking 192 to 256 out of 302
+greedy search, time after compilation in step 0 : 15.28275752067566
+greedy search, time after assembly in step 0 : 15.984837055206299
+greedy search candidates: [12094]
+greedy search, currently checking 256 to 302 out of 302
+greedy search, time after compilation in step 0 : 16.78445601463318
+greedy search, time after assembly in step 0 : 17.242982387542725
+greedy search candidates: [12094]
+Time after exploration of LBM_performStreamCollideBGK: 17.36219024658203
+==== Next function: LBM_performStreamCollideTRT
+greedy search, currently checking 0 to 64 out of 302
+greedy search, time after compilation in step 0 : 18.41517949104309
+greedy search, time after assembly in step 0 : 19.03645157814026
+greedy search candidates: [12094]
+greedy search, currently checking 64 to 128 out of 302
+greedy search, time after compilation in step 0 : 20.062284469604492
+greedy search, time after assembly in step 0 : 20.69778347015381
+greedy search candidates: [12094]
+greedy search, currently checking 128 to 192 out of 302
+greedy search, time after compilation in step 0 : 21.75615930557251
+greedy search, time after assembly in step 0 : 22.383488655090332
+greedy search candidates: [12094]
+greedy search, currently checking 192 to 256 out of 302
+greedy search, time after compilation in step 0 : 23.455963850021362
+greedy search, time after assembly in step 0 : 24.0924973487854
+greedy search candidates: [12094]
+greedy search, currently checking 256 to 302 out of 302
+greedy search, time after compilation in step 0 : 24.917423248291016
+greedy search, time after assembly in step 0 : 25.391194343566895
+greedy search candidates: [12094]
+Time after exploration of LBM_performStreamCollideTRT: 25.499274969100952
+==== Next function: LBM_handleInOutFlow
+greedy search, currently checking 0 to 64 out of 1463
+greedy search, time after compilation in step 0 : 26.56986713409424
+greedy search, time after assembly in step 0 : 27.203879356384277
+greedy search candidates: [12094]
+greedy search, currently checking 64 to 128 out of 1463
+greedy search, time after compilation in step 0 : 28.266967296600342
+greedy search, time after assembly in step 0 : 28.908843994140625
+greedy search candidates: [12094]
+greedy search, currently checking 128 to 192 out of 1463
+greedy search, time after compilation in step 0 : 29.98200511932373
+greedy search, time after assembly in step 0 : 30.681621551513672
+greedy search candidates: [12094]
+greedy search, currently checking 192 to 256 out of 1463
+greedy search, time after compilation in step 0 : 31.725839138031006
+greedy search, time after assembly in step 0 : 32.40822386741638
+greedy search candidates: [12094]
+greedy search, currently checking 256 to 320 out of 1463
+greedy search, time after compilation in step 0 : 33.49334001541138
+greedy search, time after assembly in step 0 : 34.14270067214966
+greedy search candidates: [12094]
+greedy search, currently checking 320 to 384 out of 1463
+greedy search, time after compilation in step 0 : 35.23495411872864
+greedy search, time after assembly in step 0 : 35.88148546218872
+greedy search candidates: [12094]
+greedy search, currently checking 384 to 448 out of 1463
+greedy search, time after compilation in step 0 : 36.9439218044281
+greedy search, time after assembly in step 0 : 37.59561562538147
+greedy search candidates: [12094]
+greedy search, currently checking 448 to 512 out of 1463
+greedy search, time after compilation in step 0 : 38.68829011917114
+greedy search, time after assembly in step 0 : 39.33336853981018
+greedy search candidates: [12094]
+greedy search, currently checking 512 to 576 out of 1463
+greedy search, time after compilation in step 0 : 40.42923164367676
+greedy search, time after assembly in step 0 : 41.10980176925659
+greedy search candidates: [12094]
+greedy search, currently checking 576 to 640 out of 1463
+greedy search, time after compilation in step 0 : 42.11493802070618
+greedy search, time after assembly in step 0 : 42.772273778915405
+greedy search candidates: [12094]
+greedy search, currently checking 640 to 704 out of 1463
+greedy search, time after compilation in step 0 : 43.87590575218201
+greedy search, time after assembly in step 0 : 44.53457498550415
+greedy search candidates: [12094]
+greedy search, currently checking 704 to 768 out of 1463
+greedy search, time after compilation in step 0 : 45.63455843925476
+greedy search, time after assembly in step 0 : 46.28912353515625
+greedy search candidates: [12094]
+greedy search, currently checking 768 to 832 out of 1463
+greedy search, time after compilation in step 0 : 47.37815308570862
+greedy search, time after assembly in step 0 : 48.036678075790405
+greedy search candidates: [12094]
+greedy search, currently checking 832 to 896 out of 1463
+greedy search, time after compilation in step 0 : 49.12176847457886
+greedy search, time after assembly in step 0 : 49.782649517059326
+greedy search candidates: [12094]
+greedy search, currently checking 896 to 960 out of 1463
+greedy search, time after compilation in step 0 : 50.88887166976929
+greedy search, time after assembly in step 0 : 51.53825330734253
+greedy search candidates: [12094]
+greedy search, currently checking 960 to 1024 out of 1463
+greedy search, time after compilation in step 0 : 52.636762619018555
+greedy search, time after assembly in step 0 : 53.29847240447998
+greedy search candidates: [12094]
+greedy search, currently checking 1024 to 1088 out of 1463
+greedy search, time after compilation in step 0 : 54.39501667022705
+greedy search, time after assembly in step 0 : 55.08104491233826
+greedy search candidates: [12094]
+greedy search, currently checking 1088 to 1152 out of 1463
+greedy search, time after compilation in step 0 : 56.143733978271484
+greedy search, time after assembly in step 0 : 56.793352365493774
+greedy search candidates: [12094]
+greedy search, currently checking 1152 to 1216 out of 1463
+greedy search, time after compilation in step 0 : 57.89120888710022
+greedy search, time after assembly in step 0 : 58.55274987220764
+greedy search candidates: [12094]
+greedy search, currently checking 1216 to 1280 out of 1463
+greedy search, time after compilation in step 0 : 59.658316135406494
+greedy search, time after assembly in step 0 : 60.3246693611145
+greedy search candidates: [12094]
+greedy search, currently checking 1280 to 1344 out of 1463
+greedy search, time after compilation in step 0 : 61.44385480880737
+greedy search, time after assembly in step 0 : 62.11783051490784
+greedy search candidates: [12094]
+greedy search, currently checking 1344 to 1408 out of 1463
+greedy search, time after compilation in step 0 : 63.21174502372742
+greedy search, time after assembly in step 0 : 63.87082839012146
+greedy search candidates: [12094]
+greedy search, currently checking 1408 to 1463 out of 1463
+greedy search, time after compilation in step 0 : 64.86816358566284
+greedy search, time after assembly in step 0 : 65.47343230247498
+greedy search candidates: [12094]
+Time after exploration of LBM_handleInOutFlow: 65.60652256011963
+==== Next function: LBM_showGridStatistics
+greedy search, currently checking 0 to 64 out of 191
+greedy search, time after compilation in step 0 : 66.70153021812439
+greedy search, time after assembly in step 0 : 67.367103099823
+greedy search candidates: [12094]
+greedy search, currently checking 64 to 128 out of 191
+greedy search, time after compilation in step 0 : 68.5400938987732
+greedy search, time after assembly in step 0 : 69.33073544502258
+greedy search candidates: [12094]
+greedy search, currently checking 128 to 191 out of 191
+greedy search, time after compilation in step 0 : 70.46215724945068
+greedy search, time after assembly in step 0 : 71.13511848449707
+greedy search candidates: [12094]
+Time after exploration of LBM_showGridStatistics: 71.30987286567688
+==== Next function: LBM_storeVelocityField
+greedy search, currently checking 0 to 64 out of 267
+greedy search, time after compilation in step 0 : 72.4378731250763
+greedy search, time after assembly in step 0 : 73.10483622550964
+greedy search candidates: [12096, 12094]
+greedy search, currently checking 64 to 128 out of 267
+greedy search, time after compilation in step 0 : 74.2214207649231
+greedy search, time after assembly in step 0 : 74.9611463546753
+greedy search candidates: [12094]
+greedy search, currently checking 128 to 192 out of 267
+greedy search, time after compilation in step 0 : 76.08483076095581
+greedy search, time after assembly in step 0 : 76.8099799156189
+greedy search candidates: [12094]
+greedy search, currently checking 192 to 256 out of 267
+greedy search, time after compilation in step 0 : 78.00915479660034
+greedy search, time after assembly in step 0 : 78.70912075042725
+greedy search candidates: [12094]
+greedy search, currently checking 256 to 267 out of 267
+greedy search, time after compilation in step 0 : 79.0891330242157
+greedy search, time after assembly in step 0 : 79.2363805770874
+greedy search candidates: [12094]
+Time after exploration of LBM_storeVelocityField: 79.25223183631897
+==== Next function: LBM_compareVelocityField
+greedy search, currently checking 0 to 64 out of 175
+greedy search, time after compilation in step 0 : 80.43493628501892
+greedy search, time after assembly in step 0 : 81.22673010826111
+greedy search candidates: [12094]
+greedy search, currently checking 64 to 128 out of 175
+greedy search, time after compilation in step 0 : 82.35336661338806
+greedy search, time after assembly in step 0 : 83.01360607147217
+greedy search candidates: [12094]
+greedy search, currently checking 128 to 175 out of 175
+greedy search, time after compilation in step 0 : 83.87493538856506
+greedy search, time after assembly in step 0 : 84.37645602226257
+greedy search candidates: [12094]
+Time after exploration of LBM_compareVelocityField: 84.50547623634338
+Time after exploration of 619/lbm.bc: 84.50548958778381
+found results: {PosixPath('619/main.bc'): {'MAIN_parseCommandLine': ([1], 1747), 'MAIN_printInfo': ([], 1767), 'MAIN_initialize': ([], 1767), 'MAIN_finalize': ([], 1767), 'main': ([], 1767)}, PosixPath('619/lbm.bc'): {'LBM_allocateGrid': ([], 12094), 'LBM_initializeGrid': ([], 12094), 'LBM_initializeSpecialCellsForLDC': ([], 12094), 'LBM_initializeSpecialCellsForChannel': ([], 12094), 'LBM_performStreamCollideBGK': ([], 12094), 'LBM_performStreamCollideTRT': ([], 12094), 'LBM_handleInOutFlow': ([], 12094), 'LBM_showGridStatistics': ([], 12094), 'LBM_storeVelocityField': ([], 12094), 'LBM_compareVelocityField': ([], 12094)}}
+time after exploration: 84.50553822517395
+Time after std exploration: 84.70414423942566
+619/main.bc: 1747 vs 1767
+619/lbm.bc: 12094 vs 12094
+Time after after composition: 84.83996248245239
+result: 15982 vs 16002
+meaning a 0.1249843769528809% improvement
+Total Time: 84.84326910972595

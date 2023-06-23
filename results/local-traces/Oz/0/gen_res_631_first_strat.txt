@@ -1,0 +1,2093 @@
+=============== running benchmark 631 ===============
+8e4d90dccb47a17cec82f24060baa3ac355bc033
+
+Time after baseline: 2.1164793968200684
+Track AA Queries std
+counts per function per file: {PosixPath('631/bits.bc'): {'_Z15FindFirstRemovePy': 1}, PosixPath('631/draw.bc'): {'_Z7is_drawP11gamestate_tP7state_t': 29, '_Z21insufficient_materialP7state_t': 86}, PosixPath('631/endgame.bc'): {'_Z14drawn_endgamesP7state_tiii': 4611}, PosixPath('631/epd.bc'): {'_Z14setup_epd_lineP11gamestate_tP7state_tPKc': 350, '_Z17run_epd_testsuiteP11gamestate_tP7state_tPKc': 14, '_Z14check_solutionP7state_tPci': 4, '_Z15position_to_fenP7state_tPc': 18}, PosixPath('631/neval.bc'): {'_Z4evalP7state_tiii': 238, '_ZL13mobility_evalP7state_tP12t_eval_compsP12attackinfo_t': 240, '_ZL15kingsafety_evalP7state_tP8pawntt_tP12t_eval_comps': 178, '_ZL17kingpressure_evalP7state_tP12attackinfo_tP12t_eval_comps': 222, '_ZL11passer_evalP7state_tP8pawntt_tiP12t_eval_comps': 158, '_ZL15positional_evalP7state_tP8pawntt_tP12t_eval_comps': 148, '_ZL12trapped_evalP7state_tP12t_eval_comps': 631, '_Z5fevalP7state_tiP12t_eval_comps': 1358, '_ZL16opposite_bishopsP7state_tiii': 11, '_Z13retrieve_evalP7state_t': 7}, PosixPath('631/bitboard.bc'): {'_Z22SetupPrecalculatedDatav': 3985, '_Z16SetupCastleMasksP7state_t': 80, '_Z15DiagonalAttacksyj': 1, '_Z15AntiDiagAttacksyj': 1, '_Z13BishopAttacksP7state_ti': 5}, PosixPath('631/initp.bc'): {'_Z15init_parametersP11gamestate_t': 4}, PosixPath('631/see.bc'): {'_Z3seeP7state_tiiii': 358}, PosixPath('631/sjeng.bc'): {}, PosixPath('631/make.bc'): {'_Z4makeP7state_ti': 1760, '_Z6unmakeP7state_ti': 1401}, PosixPath('631/search.bc'): {'_Z6searchP7state_tiiiii': 587, '_ZL12history_goodP7state_tii': 33, '_Z11search_rootP7state_tiii': 153, '_ZL17search_time_checkP7state_t': 1, '_ZL16fast_order_movesP7state_tPiS1_ij': 18, '_ZL15remove_one_fastPiS_S_i': 4, '_ZL15history_pre_cutP7state_tii': 3, '_Z7qsearchP7state_tiiii': 256, '_ZL12make_blunderP7state_tiPii': 69, '_ZL11order_movesP7state_tPiS1_ij': 144, '_ZL13history_scoreP7state_ti': 3, '_ZL11history_badP7state_tii': 7, '_Z21reset_search_countersP7state_t': 4, '_Z5thinkP11gamestate_tP7state_t': 34}, PosixPath('631/state.bc'): {}, PosixPath('631/attacks.bc'): {'_Z11is_attackedP7state_tii': 75, '_Z8in_checkP7state_t': 3, '_Z10attacks_toP7state_ti': 107}, PosixPath('631/generate.bc'): {'_Z9gen_quietP7state_tPi': 386, '_Z3genP7state_tPi': 1018, '_Z16gen_check_blocksP7state_tPii': 225, '_Z12gen_capturesP7state_tPi': 529, '_Z15gen_good_checksP7state_tPi': 388, '_Z12gen_evasionsP7state_tPii': 27}, PosixPath('631/preproc.bc'): {'_Z8psq_evalP7state_tP12t_eval_comps': 28, '_Z14init_psq_scoreP7state_t': 5, '_Z18preprocess_preparev': 6}, PosixPath('631/utils.bc'): {'_Z9init_gameP11gamestate_tP7state_t': 71, '_Z15make_text_movesP11gamestate_tP7state_tPc': 23, '_Z11comp_to_sanP7state_tiPc': 20, '_Z13display_boardP7state_ti': 3, '_Z18reset_piece_squareP7state_t': 92, '_Z7is_movePc': 7, '_Z20extract_current_pathP7state_t': 21, '_Z19extract_ponder_moveP7state_t': 2, '_ZL15hash_extract_pvP7state_tiPc': 19, '_Z24extract_current_bestlineP7state_t': 1, '_Z13post_thinkingP7state_tiiPci': 36, '_Z16post_fh_thinkingP7state_tiiPci': 18, '_Z16post_fl_thinkingP7state_tiiPci': 13, '_ZL14resort_multipvv': 15, '_Z21post_multipv_thinkingP7state_tiii': 91, '_Z6rinputPciP8_IO_FILE': 3, '_Z12verify_coordP7state_tPcPi': 5, '_Z17input_causes_stopv': 2, '_Z11reset_boardP7state_t': 22}, PosixPath('631/moves.bc'): {'_Z11check_legalP7state_ti': 3, '_Z20check_castle_blockerP7state_ti': 29}, PosixPath('631/pawn.bc'): {'_ZL14full_pawn_evalP7state_tP8pawntt_t': 639, '_Z16static_pawn_evalP7state_t': 727}, PosixPath('631/ttable.bc'): {'_Z18initialize_zobristP7state_t': 2, '_Z15initialize_hashP7state_t': 10, '_Z7StoreTTP7state_tiiijiiii': 85, '_Z7ProbeTTP7state_tPiiiPjS1_S1_S1_S1_i': 84}, PosixPath('631/board.bc'): {'_Z11check_phaseP11gamestate_tP7state_t': 21}}
+Time after AA Query measurement: 2.4422247409820557
+Start Exploration
+***** Next file: 631/bits.bc
+==== Next function: _Z15FindFirstRemovePy
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 2.50551438331604
+greedy search, time after assembly in step 0 : 2.5325448513031006
+greedy search candidates: [625]
+Time after exploration of _Z15FindFirstRemovePy: 2.534501314163208
+Time after exploration of 631/bits.bc: 2.5345070362091064
+***** Next file: 631/draw.bc
+==== Next function: _Z7is_drawP11gamestate_tP7state_t
+greedy search, currently checking 0 to 29 out of 29
+greedy search, time after compilation in step 0 : 2.6599483489990234
+greedy search, time after assembly in step 0 : 2.742417097091675
+greedy search candidates: [362, 366]
+greedy search, new min: 362
+greedy search, current list: [4]
+greedy search, time after step 0 : 2.7848846912384033
+greedy search, currently checking 4 to 29 out of 29
+greedy search, time after compilation in step 1 : 2.8746116161346436
+greedy search, time after assembly in step 1 : 2.9528799057006836
+greedy search candidates: [362]
+Time after exploration of _Z7is_drawP11gamestate_tP7state_t: 2.989039421081543
+==== Next function: _Z21insufficient_materialP7state_t
+greedy search, currently checking 0 to 64 out of 86
+greedy search, time after compilation in step 0 : 3.227818727493286
+greedy search, time after assembly in step 0 : 3.392282247543335
+greedy search candidates: [368, 366]
+greedy search, currently checking 64 to 86 out of 86
+greedy search, time after compilation in step 0 : 3.6363089084625244
+greedy search, time after assembly in step 0 : 3.706792116165161
+greedy search candidates: [366]
+Time after exploration of _Z21insufficient_materialP7state_t: 3.7392396926879883
+Time after exploration of 631/draw.bc: 3.7392470836639404
+***** Next file: 631/endgame.bc
+==== Next function: _Z14drawn_endgamesP7state_tiii
+greedy search, currently checking 0 to 64 out of 4611
+greedy search, time after compilation in step 0 : 4.354203701019287
+greedy search, time after assembly in step 0 : 4.721912622451782
+greedy search candidates: [3513, 3530, 3541]
+greedy search, new min: 3513
+greedy search, current list: [0]
+greedy search, time after step 0 : 4.904537200927734
+greedy search, currently checking 0 to 64 out of 4611
+greedy search, time after compilation in step 1 : 5.416090726852417
+greedy search, time after assembly in step 1 : 5.786379098892212
+greedy search candidates: [3513, 3522]
+greedy search, currently checking 64 to 128 out of 4611
+greedy search, time after compilation in step 1 : 6.480301856994629
+greedy search, time after assembly in step 1 : 6.849358558654785
+greedy search candidates: [3513]
+greedy search, currently checking 128 to 192 out of 4611
+greedy search, time after compilation in step 1 : 7.544958114624023
+greedy search, time after assembly in step 1 : 7.9158711433410645
+greedy search candidates: [3513, 3515]
+greedy search, currently checking 192 to 256 out of 4611
+greedy search, time after compilation in step 1 : 8.611365556716919
+greedy search, time after assembly in step 1 : 8.98287057876587
+greedy search candidates: [3513]
+greedy search, currently checking 256 to 320 out of 4611
+greedy search, time after compilation in step 1 : 9.679977893829346
+greedy search, time after assembly in step 1 : 10.052428960800171
+greedy search candidates: [3513]
+greedy search, currently checking 320 to 384 out of 4611
+greedy search, time after compilation in step 1 : 10.743430852890015
+greedy search, time after assembly in step 1 : 11.116407632827759
+greedy search candidates: [3513]
+greedy search, currently checking 384 to 448 out of 4611
+greedy search, time after compilation in step 1 : 11.812945365905762
+greedy search, time after assembly in step 1 : 12.18471074104309
+greedy search candidates: [3513]
+greedy search, currently checking 448 to 512 out of 4611
+greedy search, time after compilation in step 1 : 12.906570434570312
+greedy search, time after assembly in step 1 : 13.27659821510315
+greedy search candidates: [3513]
+greedy search, currently checking 512 to 576 out of 4611
+greedy search, time after compilation in step 1 : 13.970794677734375
+greedy search, time after assembly in step 1 : 14.34701132774353
+greedy search candidates: [3513]
+greedy search, currently checking 576 to 640 out of 4611
+greedy search, time after compilation in step 1 : 15.030829191207886
+greedy search, time after assembly in step 1 : 15.403273344039917
+greedy search candidates: [3513]
+greedy search, currently checking 640 to 704 out of 4611
+greedy search, time after compilation in step 1 : 16.102025747299194
+greedy search, time after assembly in step 1 : 16.47285532951355
+greedy search candidates: [3513]
+greedy search, currently checking 704 to 768 out of 4611
+greedy search, time after compilation in step 1 : 17.167213678359985
+greedy search, time after assembly in step 1 : 17.5413920879364
+greedy search candidates: [3513]
+greedy search, currently checking 768 to 832 out of 4611
+greedy search, time after compilation in step 1 : 18.23309326171875
+greedy search, time after assembly in step 1 : 18.640130281448364
+greedy search candidates: [3513]
+greedy search, currently checking 832 to 896 out of 4611
+greedy search, time after compilation in step 1 : 19.32607412338257
+greedy search, time after assembly in step 1 : 19.695861339569092
+greedy search candidates: [3513]
+greedy search, currently checking 896 to 960 out of 4611
+greedy search, time after compilation in step 1 : 20.408076286315918
+greedy search, time after assembly in step 1 : 20.777944803237915
+greedy search candidates: [3513]
+greedy search, currently checking 960 to 1024 out of 4611
+greedy search, time after compilation in step 1 : 21.4693341255188
+greedy search, time after assembly in step 1 : 21.83863401412964
+greedy search candidates: [3513]
+greedy search, currently checking 1024 to 1088 out of 4611
+greedy search, time after compilation in step 1 : 22.53829336166382
+greedy search, time after assembly in step 1 : 22.90692377090454
+greedy search candidates: [3513]
+greedy search, currently checking 1088 to 1152 out of 4611
+greedy search, time after compilation in step 1 : 23.564843893051147
+greedy search, time after assembly in step 1 : 23.93734836578369
+greedy search candidates: [3513]
+greedy search, currently checking 1152 to 1216 out of 4611
+greedy search, time after compilation in step 1 : 24.66610360145569
+greedy search, time after assembly in step 1 : 25.033724784851074
+greedy search candidates: [3513]
+greedy search, currently checking 1216 to 1280 out of 4611
+greedy search, time after compilation in step 1 : 25.7624032497406
+greedy search, time after assembly in step 1 : 26.128759145736694
+greedy search candidates: [3513]
+greedy search, currently checking 1280 to 1344 out of 4611
+greedy search, time after compilation in step 1 : 26.8221275806427
+greedy search, time after assembly in step 1 : 27.193344116210938
+greedy search candidates: [3513]
+greedy search, currently checking 1344 to 1408 out of 4611
+greedy search, time after compilation in step 1 : 27.885152101516724
+greedy search, time after assembly in step 1 : 28.26175832748413
+greedy search candidates: [3513]
+greedy search, currently checking 1408 to 1472 out of 4611
+greedy search, time after compilation in step 1 : 28.943279504776
+greedy search, time after assembly in step 1 : 29.313390493392944
+greedy search candidates: [3513]
+greedy search, currently checking 1472 to 1536 out of 4611
+greedy search, time after compilation in step 1 : 30.007395267486572
+greedy search, time after assembly in step 1 : 30.379498720169067
+greedy search candidates: [3513]
+greedy search, currently checking 1536 to 1600 out of 4611
+greedy search, time after compilation in step 1 : 31.07054567337036
+greedy search, time after assembly in step 1 : 31.443771362304688
+greedy search candidates: [3513]
+greedy search, currently checking 1600 to 1664 out of 4611
+greedy search, time after compilation in step 1 : 32.13275647163391
+greedy search, time after assembly in step 1 : 32.5039803981781
+greedy search candidates: [3513]
+greedy search, currently checking 1664 to 1728 out of 4611
+greedy search, time after compilation in step 1 : 33.19850206375122
+greedy search, time after assembly in step 1 : 33.5671443939209
+greedy search candidates: [3513]
+greedy search, currently checking 1728 to 1792 out of 4611
+greedy search, time after compilation in step 1 : 34.25597095489502
+greedy search, time after assembly in step 1 : 34.62640857696533
+greedy search candidates: [3513]
+greedy search, currently checking 1792 to 1856 out of 4611
+greedy search, time after compilation in step 1 : 35.314828395843506
+greedy search, time after assembly in step 1 : 35.68235421180725
+greedy search candidates: [3513]
+greedy search, currently checking 1856 to 1920 out of 4611
+greedy search, time after compilation in step 1 : 36.383442640304565
+greedy search, time after assembly in step 1 : 36.75511860847473
+greedy search candidates: [3513]
+greedy search, currently checking 1920 to 1984 out of 4611
+greedy search, time after compilation in step 1 : 37.44996237754822
+greedy search, time after assembly in step 1 : 37.84078788757324
+greedy search candidates: [3513]
+greedy search, currently checking 1984 to 2048 out of 4611
+greedy search, time after compilation in step 1 : 38.53163695335388
+greedy search, time after assembly in step 1 : 38.902884006500244
+greedy search candidates: [3513]
+greedy search, currently checking 2048 to 2112 out of 4611
+greedy search, time after compilation in step 1 : 39.58381271362305
+greedy search, time after assembly in step 1 : 39.957213401794434
+greedy search candidates: [3513]
+greedy search, currently checking 2112 to 2176 out of 4611
+greedy search, time after compilation in step 1 : 40.65556979179382
+greedy search, time after assembly in step 1 : 41.026548862457275
+greedy search candidates: [3513]
+greedy search, currently checking 2176 to 2240 out of 4611
+greedy search, time after compilation in step 1 : 41.66198229789734
+greedy search, time after assembly in step 1 : 42.030667304992676
+greedy search candidates: [3513]
+greedy search, currently checking 2240 to 2304 out of 4611
+greedy search, time after compilation in step 1 : 42.74872851371765
+greedy search, time after assembly in step 1 : 43.11806535720825
+greedy search candidates: [3513]
+greedy search, currently checking 2304 to 2368 out of 4611
+greedy search, time after compilation in step 1 : 43.805880546569824
+greedy search, time after assembly in step 1 : 44.184293031692505
+greedy search candidates: [3513]
+greedy search, currently checking 2368 to 2432 out of 4611
+greedy search, time after compilation in step 1 : 44.870537757873535
+greedy search, time after assembly in step 1 : 45.24219560623169
+greedy search candidates: [3513]
+greedy search, currently checking 2432 to 2496 out of 4611
+greedy search, time after compilation in step 1 : 45.93687701225281
+greedy search, time after assembly in step 1 : 46.308120012283325
+greedy search candidates: [3513]
+greedy search, currently checking 2496 to 2560 out of 4611
+greedy search, time after compilation in step 1 : 47.00404953956604
+greedy search, time after assembly in step 1 : 47.37578797340393
+greedy search candidates: [3513]
+greedy search, currently checking 2560 to 2624 out of 4611
+greedy search, time after compilation in step 1 : 48.074946641922
+greedy search, time after assembly in step 1 : 48.44149160385132
+greedy search candidates: [3513]
+greedy search, currently checking 2624 to 2688 out of 4611
+greedy search, time after compilation in step 1 : 49.14064121246338
+greedy search, time after assembly in step 1 : 49.54443311691284
+greedy search candidates: [3513]
+greedy search, currently checking 2688 to 2752 out of 4611
+greedy search, time after compilation in step 1 : 50.24362230300903
+greedy search, time after assembly in step 1 : 50.61094546318054
+greedy search candidates: [3513]
+greedy search, currently checking 2752 to 2816 out of 4611
+greedy search, time after compilation in step 1 : 51.29167151451111
+greedy search, time after assembly in step 1 : 51.661691427230835
+greedy search candidates: [3513]
+greedy search, currently checking 2816 to 2880 out of 4611
+greedy search, time after compilation in step 1 : 52.352630615234375
+greedy search, time after assembly in step 1 : 52.71942472457886
+greedy search candidates: [3513]
+greedy search, currently checking 2880 to 2944 out of 4611
+greedy search, time after compilation in step 1 : 53.40502190589905
+greedy search, time after assembly in step 1 : 53.77145314216614
+greedy search candidates: [3513]
+greedy search, currently checking 2944 to 3008 out of 4611
+greedy search, time after compilation in step 1 : 54.46622681617737
+greedy search, time after assembly in step 1 : 54.837279319763184
+greedy search candidates: [3513]
+greedy search, currently checking 3008 to 3072 out of 4611
+greedy search, time after compilation in step 1 : 55.53483533859253
+greedy search, time after assembly in step 1 : 55.90143895149231
+greedy search candidates: [3513]
+greedy search, currently checking 3072 to 3136 out of 4611
+greedy search, time after compilation in step 1 : 56.6018283367157
+greedy search, time after assembly in step 1 : 56.97285842895508
+greedy search candidates: [3513]
+greedy search, currently checking 3136 to 3200 out of 4611
+greedy search, time after compilation in step 1 : 57.66393160820007
+greedy search, time after assembly in step 1 : 58.02598333358765
+greedy search candidates: [3513]
+greedy search, currently checking 3200 to 3264 out of 4611
+greedy search, time after compilation in step 1 : 58.7057089805603
+greedy search, time after assembly in step 1 : 59.079434633255005
+greedy search candidates: [3513]
+greedy search, currently checking 3264 to 3328 out of 4611
+greedy search, time after compilation in step 1 : 59.773303747177124
+greedy search, time after assembly in step 1 : 60.14198565483093
+greedy search candidates: [3513]
+greedy search, currently checking 3328 to 3392 out of 4611
+greedy search, time after compilation in step 1 : 60.83412528038025
+greedy search, time after assembly in step 1 : 61.206456661224365
+greedy search candidates: [3513]
+greedy search, currently checking 3392 to 3456 out of 4611
+greedy search, time after compilation in step 1 : 61.89466190338135
+greedy search, time after assembly in step 1 : 62.26642084121704
+greedy search candidates: [3513]
+greedy search, currently checking 3456 to 3520 out of 4611
+greedy search, time after compilation in step 1 : 62.951653718948364
+greedy search, time after assembly in step 1 : 63.32367968559265
+greedy search candidates: [3513]
+greedy search, currently checking 3520 to 3584 out of 4611
+greedy search, time after compilation in step 1 : 64.00624942779541
+greedy search, time after assembly in step 1 : 64.37582182884216
+greedy search candidates: [3513]
+greedy search, currently checking 3584 to 3648 out of 4611
+greedy search, time after compilation in step 1 : 65.06917238235474
+greedy search, time after assembly in step 1 : 65.43831491470337
+greedy search candidates: [3513]
+greedy search, currently checking 3648 to 3712 out of 4611
+greedy search, time after compilation in step 1 : 66.13380789756775
+greedy search, time after assembly in step 1 : 66.5116286277771
+greedy search candidates: [3513]
+greedy search, currently checking 3712 to 3776 out of 4611
+greedy search, time after compilation in step 1 : 67.21075916290283
+greedy search, time after assembly in step 1 : 67.58104729652405
+greedy search candidates: [3513]
+greedy search, currently checking 3776 to 3840 out of 4611
+greedy search, time after compilation in step 1 : 68.27064061164856
+greedy search, time after assembly in step 1 : 68.64102339744568
+greedy search candidates: [3513]
+greedy search, currently checking 3840 to 3904 out of 4611
+greedy search, time after compilation in step 1 : 69.35903310775757
+greedy search, time after assembly in step 1 : 69.72642421722412
+greedy search candidates: [3513]
+greedy search, currently checking 3904 to 3968 out of 4611
+greedy search, time after compilation in step 1 : 70.42781519889832
+greedy search, time after assembly in step 1 : 70.80361342430115
+greedy search candidates: [3513]
+greedy search, currently checking 3968 to 4032 out of 4611
+greedy search, time after compilation in step 1 : 71.500492811203
+greedy search, time after assembly in step 1 : 71.87424230575562
+greedy search candidates: [3513]
+greedy search, currently checking 4032 to 4096 out of 4611
+greedy search, time after compilation in step 1 : 72.56704235076904
+greedy search, time after assembly in step 1 : 72.93821740150452
+greedy search candidates: [3513]
+greedy search, currently checking 4096 to 4160 out of 4611
+greedy search, time after compilation in step 1 : 73.6292576789856
+greedy search, time after assembly in step 1 : 73.99798488616943
+greedy search candidates: [3513]
+greedy search, currently checking 4160 to 4224 out of 4611
+greedy search, time after compilation in step 1 : 74.6938533782959
+greedy search, time after assembly in step 1 : 75.06620621681213
+greedy search candidates: [3513]
+greedy search, currently checking 4224 to 4288 out of 4611
+greedy search, time after compilation in step 1 : 75.75993514060974
+greedy search, time after assembly in step 1 : 76.12938737869263
+greedy search candidates: [3513]
+greedy search, currently checking 4288 to 4352 out of 4611
+greedy search, time after compilation in step 1 : 76.82937502861023
+greedy search, time after assembly in step 1 : 77.1948926448822
+greedy search candidates: [3513]
+greedy search, currently checking 4352 to 4416 out of 4611
+greedy search, time after compilation in step 1 : 77.88337969779968
+greedy search, time after assembly in step 1 : 78.25372886657715
+greedy search candidates: [3513]
+greedy search, currently checking 4416 to 4480 out of 4611
+greedy search, time after compilation in step 1 : 78.9175431728363
+greedy search, time after assembly in step 1 : 79.28480839729309
+greedy search candidates: [3513]
+greedy search, currently checking 4480 to 4544 out of 4611
+greedy search, time after compilation in step 1 : 79.9687328338623
+greedy search, time after assembly in step 1 : 80.33974885940552
+greedy search candidates: [3513]
+greedy search, currently checking 4544 to 4608 out of 4611
+greedy search, time after compilation in step 1 : 81.03401780128479
+greedy search, time after assembly in step 1 : 81.40537023544312
+greedy search candidates: [3513]
+greedy search, currently checking 4608 to 4611 out of 4611
+greedy search, time after compilation in step 1 : 81.65210127830505
+greedy search, time after assembly in step 1 : 81.70030355453491
+greedy search candidates: [3513]
+Time after exploration of _Z14drawn_endgamesP7state_tiii: 81.70512866973877
+Time after exploration of 631/endgame.bc: 81.70513796806335
+***** Next file: 631/epd.bc
+==== Next function: _Z14setup_epd_lineP11gamestate_tP7state_tPKc
+greedy search, currently checking 0 to 64 out of 350
+greedy search, time after compilation in step 0 : 82.1321051120758
+greedy search, time after assembly in step 0 : 82.46936011314392
+greedy search candidates: [3235]
+greedy search, currently checking 64 to 128 out of 350
+greedy search, time after compilation in step 0 : 83.02230715751648
+greedy search, time after assembly in step 0 : 83.32981324195862
+greedy search candidates: [3235]
+greedy search, currently checking 128 to 192 out of 350
+greedy search, time after compilation in step 0 : 83.86857533454895
+greedy search, time after assembly in step 0 : 84.1797194480896
+greedy search candidates: [3235]
+greedy search, currently checking 192 to 256 out of 350
+greedy search, time after compilation in step 0 : 84.72360849380493
+greedy search, time after assembly in step 0 : 85.03385639190674
+greedy search candidates: [3235]
+greedy search, currently checking 256 to 320 out of 350
+greedy search, time after compilation in step 0 : 85.57796859741211
+greedy search, time after assembly in step 0 : 85.88905143737793
+greedy search candidates: [3235]
+greedy search, currently checking 320 to 350 out of 350
+greedy search, time after compilation in step 0 : 86.23148441314697
+greedy search, time after assembly in step 0 : 86.38818502426147
+greedy search candidates: [3235]
+Time after exploration of _Z14setup_epd_lineP11gamestate_tP7state_tPKc: 86.46021509170532
+==== Next function: _Z17run_epd_testsuiteP11gamestate_tP7state_tPKc
+greedy search, currently checking 0 to 14 out of 14
+greedy search, time after compilation in step 0 : 86.62477350234985
+greedy search, time after assembly in step 0 : 86.70352077484131
+greedy search candidates: [3235]
+Time after exploration of _Z17run_epd_testsuiteP11gamestate_tP7state_tPKc: 86.7255859375
+==== Next function: _Z14check_solutionP7state_tPci
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 86.85206079483032
+greedy search, time after assembly in step 0 : 86.9164559841156
+greedy search candidates: [3235]
+Time after exploration of _Z14check_solutionP7state_tPci: 86.92462277412415
+==== Next function: _Z15position_to_fenP7state_tPc
+greedy search, currently checking 0 to 18 out of 18
+greedy search, time after compilation in step 0 : 87.14320302009583
+greedy search, time after assembly in step 0 : 87.26553630828857
+greedy search candidates: [3235, 3230]
+greedy search, new min: 3230
+greedy search, current list: [2]
+greedy search, time after step 0 : 87.2888433933258
+greedy search, currently checking 2 to 18 out of 18
+greedy search, time after compilation in step 1 : 87.40909576416016
+greedy search, time after assembly in step 1 : 87.52055168151855
+greedy search candidates: [3230]
+Time after exploration of _Z15position_to_fenP7state_tPc: 87.54731893539429
+Time after exploration of 631/epd.bc: 87.54732847213745
+***** Next file: 631/neval.bc
+==== Next function: _Z4evalP7state_tiii
+greedy search, currently checking 0 to 64 out of 238
+greedy search, time after compilation in step 0 : 88.88145041465759
+greedy search, time after assembly in step 0 : 89.55075526237488
+greedy search candidates: [6212]
+greedy search, currently checking 64 to 128 out of 238
+greedy search, time after compilation in step 0 : 90.91092658042908
+greedy search, time after assembly in step 0 : 91.50038313865662
+greedy search candidates: [6212]
+greedy search, currently checking 128 to 192 out of 238
+greedy search, time after compilation in step 0 : 92.74136328697205
+greedy search, time after assembly in step 0 : 93.28626751899719
+greedy search candidates: [6212]
+greedy search, currently checking 192 to 238 out of 238
+greedy search, time after compilation in step 0 : 94.26223564147949
+greedy search, time after assembly in step 0 : 94.66704535484314
+greedy search candidates: [6212]
+Time after exploration of _Z4evalP7state_tiii: 94.75612354278564
+==== Next function: _ZL13mobility_evalP7state_tP12t_eval_compsP12attackinfo_t
+greedy search, currently checking 0 to 64 out of 240
+greedy search, time after compilation in step 0 : 96.17427849769592
+greedy search, time after assembly in step 0 : 96.72172713279724
+greedy search candidates: [6212]
+greedy search, currently checking 64 to 128 out of 240
+greedy search, time after compilation in step 0 : 97.9845519065857
+greedy search, time after assembly in step 0 : 98.53020453453064
+greedy search candidates: [6212]
+greedy search, currently checking 128 to 192 out of 240
+greedy search, time after compilation in step 0 : 99.81027460098267
+greedy search, time after assembly in step 0 : 100.35402822494507
+greedy search candidates: [6212]
+greedy search, currently checking 192 to 240 out of 240
+greedy search, time after compilation in step 0 : 101.38465356826782
+greedy search, time after assembly in step 0 : 101.81564521789551
+greedy search candidates: [6212]
+Time after exploration of _ZL13mobility_evalP7state_tP12t_eval_compsP12attackinfo_t: 101.93790102005005
+==== Next function: _ZL15kingsafety_evalP7state_tP8pawntt_tP12t_eval_comps
+greedy search, currently checking 0 to 64 out of 178
+greedy search, time after compilation in step 0 : 103.21658420562744
+greedy search, time after assembly in step 0 : 103.78633546829224
+greedy search candidates: [6212]
+greedy search, currently checking 64 to 128 out of 178
+greedy search, time after compilation in step 0 : 105.04134631156921
+greedy search, time after assembly in step 0 : 105.58417463302612
+greedy search candidates: [6212]
+greedy search, currently checking 128 to 178 out of 178
+greedy search, time after compilation in step 0 : 106.70154595375061
+greedy search, time after assembly in step 0 : 107.21442985534668
+greedy search candidates: [6212]
+Time after exploration of _ZL15kingsafety_evalP7state_tP8pawntt_tP12t_eval_comps: 107.34210658073425
+==== Next function: _ZL17kingpressure_evalP7state_tP12attackinfo_tP12t_eval_comps
+greedy search, currently checking 0 to 64 out of 222
+greedy search, time after compilation in step 0 : 108.71265840530396
+greedy search, time after assembly in step 0 : 109.30515909194946
+greedy search candidates: [6212]
+greedy search, currently checking 64 to 128 out of 222
+greedy search, time after compilation in step 0 : 110.51682114601135
+greedy search, time after assembly in step 0 : 111.10441732406616
+greedy search candidates: [6212]
+greedy search, currently checking 128 to 192 out of 222
+greedy search, time after compilation in step 0 : 112.44388055801392
+greedy search, time after assembly in step 0 : 113.04492998123169
+greedy search candidates: [6212]
+greedy search, currently checking 192 to 222 out of 222
+greedy search, time after compilation in step 0 : 113.81055736541748
+greedy search, time after assembly in step 0 : 114.10526251792908
+greedy search candidates: [6212]
+Time after exploration of _ZL17kingpressure_evalP7state_tP12attackinfo_tP12t_eval_comps: 114.17875051498413
+==== Next function: _ZL11passer_evalP7state_tP8pawntt_tiP12t_eval_comps
+greedy search, currently checking 0 to 64 out of 158
+greedy search, time after compilation in step 0 : 115.50417160987854
+greedy search, time after assembly in step 0 : 116.09330773353577
+greedy search candidates: [6212]
+greedy search, currently checking 64 to 128 out of 158
+greedy search, time after compilation in step 0 : 117.385906457901
+greedy search, time after assembly in step 0 : 117.98693132400513
+greedy search candidates: [6212]
+greedy search, currently checking 128 to 158 out of 158
+greedy search, time after compilation in step 0 : 118.60253095626831
+greedy search, time after assembly in step 0 : 118.87197947502136
+greedy search candidates: [6212]
+Time after exploration of _ZL11passer_evalP7state_tP8pawntt_tiP12t_eval_comps: 118.93998503684998
+==== Next function: _ZL15positional_evalP7state_tP8pawntt_tP12t_eval_comps
+greedy search, currently checking 0 to 64 out of 148
+greedy search, time after compilation in step 0 : 120.22612643241882
+greedy search, time after assembly in step 0 : 120.76982569694519
+greedy search candidates: [6212]
+greedy search, currently checking 64 to 128 out of 148
+greedy search, time after compilation in step 0 : 122.06016707420349
+greedy search, time after assembly in step 0 : 122.64711856842041
+greedy search candidates: [6212]
+greedy search, currently checking 128 to 148 out of 148
+greedy search, time after compilation in step 0 : 123.24285125732422
+greedy search, time after assembly in step 0 : 123.4650456905365
+greedy search candidates: [6212]
+Time after exploration of _ZL15positional_evalP7state_tP8pawntt_tP12t_eval_comps: 123.4951982498169
+==== Next function: _ZL12trapped_evalP7state_tP12t_eval_comps
+greedy search, currently checking 0 to 64 out of 631
+greedy search, time after compilation in step 0 : 124.77400159835815
+greedy search, time after assembly in step 0 : 125.32712602615356
+greedy search candidates: [6212]
+greedy search, currently checking 64 to 128 out of 631
+greedy search, time after compilation in step 0 : 126.61025500297546
+greedy search, time after assembly in step 0 : 127.14890003204346
+greedy search candidates: [6212]
+greedy search, currently checking 128 to 192 out of 631
+greedy search, time after compilation in step 0 : 128.43127059936523
+greedy search, time after assembly in step 0 : 129.0383062362671
+greedy search candidates: [6212]
+greedy search, currently checking 192 to 256 out of 631
+greedy search, time after compilation in step 0 : 130.2482705116272
+greedy search, time after assembly in step 0 : 130.79974555969238
+greedy search candidates: [6212]
+greedy search, currently checking 256 to 320 out of 631
+greedy search, time after compilation in step 0 : 132.06464004516602
+greedy search, time after assembly in step 0 : 132.6109220981598
+greedy search candidates: [6212]
+greedy search, currently checking 320 to 384 out of 631
+greedy search, time after compilation in step 0 : 133.89196968078613
+greedy search, time after assembly in step 0 : 134.50714445114136
+greedy search candidates: [6212]
+greedy search, currently checking 384 to 448 out of 631
+greedy search, time after compilation in step 0 : 135.69718098640442
+greedy search, time after assembly in step 0 : 136.23896551132202
+greedy search candidates: [6212]
+greedy search, currently checking 448 to 512 out of 631
+greedy search, time after compilation in step 0 : 137.52530574798584
+greedy search, time after assembly in step 0 : 138.07152557373047
+greedy search candidates: [6212]
+greedy search, currently checking 512 to 576 out of 631
+greedy search, time after compilation in step 0 : 139.3719036579132
+greedy search, time after assembly in step 0 : 139.96360516548157
+greedy search candidates: [6212]
+greedy search, currently checking 576 to 631 out of 631
+greedy search, time after compilation in step 0 : 141.028058052063
+greedy search, time after assembly in step 0 : 141.52289175987244
+greedy search candidates: [6212]
+Time after exploration of _ZL12trapped_evalP7state_tP12t_eval_comps: 141.66967034339905
+==== Next function: _Z5fevalP7state_tiP12t_eval_comps
+greedy search, currently checking 0 to 64 out of 1358
+greedy search, time after compilation in step 0 : 142.93908739089966
+greedy search, time after assembly in step 0 : 143.48025226593018
+greedy search candidates: [6212]
+greedy search, currently checking 64 to 128 out of 1358
+greedy search, time after compilation in step 0 : 144.72600650787354
+greedy search, time after assembly in step 0 : 145.30841255187988
+greedy search candidates: [6212]
+greedy search, currently checking 128 to 192 out of 1358
+greedy search, time after compilation in step 0 : 146.53551197052002
+greedy search, time after assembly in step 0 : 147.0831401348114
+greedy search candidates: [6212]
+greedy search, currently checking 192 to 256 out of 1358
+greedy search, time after compilation in step 0 : 148.35493874549866
+greedy search, time after assembly in step 0 : 148.9054503440857
+greedy search candidates: [6212]
+greedy search, currently checking 256 to 320 out of 1358
+greedy search, time after compilation in step 0 : 150.17761278152466
+greedy search, time after assembly in step 0 : 150.76726937294006
+greedy search candidates: [6212]
+greedy search, currently checking 320 to 384 out of 1358
+greedy search, time after compilation in step 0 : 151.98974299430847
+greedy search, time after assembly in step 0 : 152.53196907043457
+greedy search candidates: [6212]
+greedy search, currently checking 384 to 448 out of 1358
+greedy search, time after compilation in step 0 : 153.8041491508484
+greedy search, time after assembly in step 0 : 154.36146020889282
+greedy search candidates: [6212, 6205]
+greedy search, new min: 6205
+greedy search, current list: [421]
+greedy search, time after step 0 : 154.54239892959595
+greedy search, currently checking 421 to 485 out of 1358
+greedy search, time after compilation in step 1 : 155.6420042514801
+greedy search, time after assembly in step 1 : 156.24036645889282
+greedy search candidates: [6212, 6205]
+greedy search, currently checking 485 to 549 out of 1358
+greedy search, time after compilation in step 1 : 157.4527506828308
+greedy search, time after assembly in step 1 : 157.99427676200867
+greedy search candidates: [6212, 6205]
+greedy search, currently checking 549 to 613 out of 1358
+greedy search, time after compilation in step 1 : 159.2659854888916
+greedy search, time after assembly in step 1 : 159.8100781440735
+greedy search candidates: [6212, 6205]
+greedy search, currently checking 613 to 677 out of 1358
+greedy search, time after compilation in step 1 : 161.08429622650146
+greedy search, time after assembly in step 1 : 161.65903615951538
+greedy search candidates: [6212, 6205]
+greedy search, currently checking 677 to 741 out of 1358
+greedy search, time after compilation in step 1 : 162.90160489082336
+greedy search, time after assembly in step 1 : 163.447749376297
+greedy search candidates: [6212, 6205]
+greedy search, currently checking 741 to 805 out of 1358
+greedy search, time after compilation in step 1 : 164.74377822875977
+greedy search, time after assembly in step 1 : 165.29268741607666
+greedy search candidates: [6212, 6205]
+greedy search, currently checking 805 to 869 out of 1358
+greedy search, time after compilation in step 1 : 166.60228371620178
+greedy search, time after assembly in step 1 : 167.1843979358673
+greedy search candidates: [6212, 6205]
+greedy search, currently checking 869 to 933 out of 1358
+greedy search, time after compilation in step 1 : 168.39255499839783
+greedy search, time after assembly in step 1 : 168.93784141540527
+greedy search candidates: [6212, 6205]
+greedy search, currently checking 933 to 997 out of 1358
+greedy search, time after compilation in step 1 : 170.22657179832458
+greedy search, time after assembly in step 1 : 170.77033638954163
+greedy search candidates: [6212, 6205]
+greedy search, currently checking 997 to 1061 out of 1358
+greedy search, time after compilation in step 1 : 172.06188821792603
+greedy search, time after assembly in step 1 : 172.6410105228424
+greedy search candidates: [6212, 6205]
+greedy search, currently checking 1061 to 1125 out of 1358
+greedy search, time after compilation in step 1 : 173.8524250984192
+greedy search, time after assembly in step 1 : 174.39786791801453
+greedy search candidates: [6212, 6205]
+greedy search, currently checking 1125 to 1189 out of 1358
+greedy search, time after compilation in step 1 : 175.68382620811462
+greedy search, time after assembly in step 1 : 176.25477933883667
+greedy search candidates: [6212, 6205]
+greedy search, currently checking 1189 to 1253 out of 1358
+greedy search, time after compilation in step 1 : 177.50973081588745
+greedy search, time after assembly in step 1 : 178.10187363624573
+greedy search candidates: [6212, 6205]
+greedy search, currently checking 1253 to 1317 out of 1358
+greedy search, time after compilation in step 1 : 179.3239197731018
+greedy search, time after assembly in step 1 : 179.86366415023804
+greedy search candidates: [6212, 6205]
+greedy search, currently checking 1317 to 1358 out of 1358
+greedy search, time after compilation in step 1 : 180.80002760887146
+greedy search, time after assembly in step 1 : 181.18225622177124
+greedy search candidates: [6212, 6205]
+Time after exploration of _Z5fevalP7state_tiP12t_eval_comps: 181.27012038230896
+==== Next function: _ZL16opposite_bishopsP7state_tiii
+greedy search, currently checking 0 to 11 out of 11
+greedy search, time after compilation in step 0 : 181.67784905433655
+greedy search, time after assembly in step 0 : 181.8017497062683
+greedy search candidates: [6212]
+Time after exploration of _ZL16opposite_bishopsP7state_tiii: 181.8187174797058
+==== Next function: _Z13retrieve_evalP7state_t
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 182.14122533798218
+greedy search, time after assembly in step 0 : 182.22888231277466
+greedy search candidates: [6212]
+Time after exploration of _Z13retrieve_evalP7state_t: 182.2422411441803
+Time after exploration of 631/neval.bc: 182.24224638938904
+***** Next file: 631/bitboard.bc
+==== Next function: _Z22SetupPrecalculatedDatav
+greedy search, currently checking 0 to 64 out of 3985
+greedy search, time after compilation in step 0 : 183.42802095413208
+greedy search, time after assembly in step 0 : 183.99809551239014
+greedy search candidates: [4961, 4941, 4947, 4951, 4953, 4958, 4959]
+greedy search, new min: 4947
+greedy search, current list: [8]
+greedy search, time after step 0 : 184.16321921348572
+greedy search, currently checking 8 to 72 out of 3985
+greedy search, time after compilation in step 1 : 185.1438066959381
+greedy search, time after assembly in step 1 : 185.67655992507935
+greedy search candidates: [4935, 4937, 4945, 4947, 4950, 4952, 4953, 4955]
+greedy search, new min: 4935
+greedy search, current list: [8, 13]
+greedy search, time after step 1 : 185.856547832489
+greedy search, currently checking 13 to 77 out of 3985
+greedy search, time after compilation in step 2 : 186.8491723537445
+greedy search, time after assembly in step 2 : 187.3877899646759
+greedy search candidates: [4933, 4935, 4940, 4943, 4925]
+greedy search, new min: 4925
+greedy search, current list: [8, 13, 20]
+greedy search, time after step 2 : 187.55577206611633
+greedy search, currently checking 20 to 84 out of 3985
+greedy search, time after compilation in step 3 : 188.54763317108154
+greedy search, time after assembly in step 3 : 189.12318062782288
+greedy search candidates: [4930, 4923, 4925]
+greedy search, new min: 4923
+greedy search, current list: [8, 13, 20, 25]
+greedy search, time after step 3 : 189.20570874214172
+greedy search, currently checking 25 to 89 out of 3985
+greedy search, time after compilation in step 4 : 190.22438764572144
+greedy search, time after assembly in step 4 : 190.7573585510254
+greedy search candidates: [4921, 4923]
+greedy search, new min: 4921
+greedy search, current list: [8, 13, 20, 25, 26]
+greedy search, time after step 4 : 190.9271092414856
+greedy search, currently checking 26 to 90 out of 3985
+greedy search, time after compilation in step 5 : 191.9209303855896
+greedy search, time after assembly in step 5 : 192.45064544677734
+greedy search candidates: [4921, 4919]
+greedy search, new min: 4919
+greedy search, current list: [8, 13, 20, 25, 26, 27]
+greedy search, time after step 5 : 192.632018327713
+greedy search, currently checking 27 to 91 out of 3985
+greedy search, time after compilation in step 6 : 193.6347267627716
+greedy search, time after assembly in step 6 : 194.16392922401428
+greedy search candidates: [4917, 4919]
+greedy search, new min: 4917
+greedy search, current list: [8, 13, 20, 25, 26, 27, 28]
+greedy search, time after step 6 : 194.28711485862732
+greedy search, currently checking 28 to 92 out of 3985
+greedy search, time after compilation in step 7 : 195.35813736915588
+greedy search, time after assembly in step 7 : 195.89515900611877
+greedy search candidates: [4917]
+greedy search, currently checking 92 to 156 out of 3985
+greedy search, time after compilation in step 7 : 197.06932544708252
+greedy search, time after assembly in step 7 : 197.59699010849
+greedy search candidates: [4917]
+greedy search, currently checking 156 to 220 out of 3985
+greedy search, time after compilation in step 7 : 198.79771733283997
+greedy search, time after assembly in step 7 : 199.32622075080872
+greedy search candidates: [4917]
+greedy search, currently checking 220 to 284 out of 3985
+greedy search, time after compilation in step 7 : 200.56238508224487
+greedy search, time after assembly in step 7 : 201.0986728668213
+greedy search candidates: [4917]
+greedy search, currently checking 284 to 348 out of 3985
+greedy search, time after compilation in step 7 : 202.26436805725098
+greedy search, time after assembly in step 7 : 202.792564868927
+greedy search candidates: [4917]
+greedy search, currently checking 348 to 412 out of 3985
+greedy search, time after compilation in step 7 : 203.96278882026672
+greedy search, time after assembly in step 7 : 204.49181747436523
+greedy search candidates: [4917]
+greedy search, currently checking 412 to 476 out of 3985
+greedy search, time after compilation in step 7 : 205.6521770954132
+greedy search, time after assembly in step 7 : 206.24522948265076
+greedy search candidates: [4917]
+greedy search, currently checking 476 to 540 out of 3985
+greedy search, time after compilation in step 7 : 207.39794921875
+greedy search, time after assembly in step 7 : 207.936185836792
+greedy search candidates: [4917]
+greedy search, currently checking 540 to 604 out of 3985
+greedy search, time after compilation in step 7 : 209.08539152145386
+greedy search, time after assembly in step 7 : 209.61582207679749
+greedy search candidates: [4917]
+greedy search, currently checking 604 to 668 out of 3985
+greedy search, time after compilation in step 7 : 210.79659366607666
+greedy search, time after assembly in step 7 : 211.35654950141907
+greedy search candidates: [4914, 4917]
+greedy search, new min: 4914
+greedy search, current list: [8, 13, 20, 25, 26, 27, 28, 639]
+greedy search, time after step 7 : 211.45513153076172
+greedy search, currently checking 639 to 703 out of 3985
+greedy search, time after compilation in step 8 : 212.48362946510315
+greedy search, time after assembly in step 8 : 213.01650881767273
+greedy search candidates: [4896, 4902, 4872, 4878, 4914, 4884]
+greedy search, new min: 4872
+greedy search, current list: [8, 13, 20, 25, 26, 27, 28, 639, 640]
+greedy search, time after step 8 : 213.18971729278564
+greedy search, currently checking 640 to 704 out of 3985
+greedy search, time after compilation in step 9 : 214.1824929714203
+greedy search, time after assembly in step 9 : 214.71358823776245
+greedy search candidates: [4896, 4900, 4903, 4872, 4906]
+greedy search, currently checking 704 to 768 out of 3985
+greedy search, time after compilation in step 9 : 215.8859212398529
+greedy search, time after assembly in step 9 : 216.4191656112671
+greedy search candidates: [4872, 4900, 4909, 4903]
+greedy search, currently checking 768 to 832 out of 3985
+greedy search, time after compilation in step 9 : 217.6934323310852
+greedy search, time after assembly in step 9 : 218.22061276435852
+greedy search candidates: [4929, 4899, 4903, 4872, 4863]
+greedy search, new min: 4863
+greedy search, current list: [8, 13, 20, 25, 26, 27, 28, 639, 640, 817]
+greedy search, time after step 9 : 218.40287375450134
+greedy search, currently checking 817 to 881 out of 3985
+greedy search, time after compilation in step 10 : 219.4080159664154
+greedy search, time after assembly in step 10 : 219.93077731132507
+greedy search candidates: [4905, 4850, 4857, 4863]
+greedy search, new min: 4850
+greedy search, current list: [8, 13, 20, 25, 26, 27, 28, 639, 640, 817, 850]
+greedy search, time after step 10 : 220.1033136844635
+greedy search, currently checking 850 to 914 out of 3985
+greedy search, time after compilation in step 11 : 221.10332822799683
+greedy search, time after assembly in step 11 : 221.6309666633606
+greedy search candidates: [4864, 4850, 4861, 4930]
+greedy search, currently checking 914 to 978 out of 3985
+greedy search, time after compilation in step 11 : 222.86261773109436
+greedy search, time after assembly in step 11 : 223.38885283470154
+greedy search candidates: [4864, 4850]
+greedy search, currently checking 978 to 1042 out of 3985
+greedy search, time after compilation in step 11 : 224.5514144897461
+greedy search, time after assembly in step 11 : 225.11649370193481
+greedy search candidates: [4850]
+greedy search, currently checking 1042 to 1106 out of 3985
+greedy search, time after compilation in step 11 : 226.28697443008423
+greedy search, time after assembly in step 11 : 226.8211522102356
+greedy search candidates: [4850]
+greedy search, currently checking 1106 to 1170 out of 3985
+greedy search, time after compilation in step 11 : 227.9435715675354
+greedy search, time after assembly in step 11 : 228.51206827163696
+greedy search candidates: [4850]
+greedy search, currently checking 1170 to 1234 out of 3985
+greedy search, time after compilation in step 11 : 229.68355536460876
+greedy search, time after assembly in step 11 : 230.2092022895813
+greedy search candidates: [4850]
+greedy search, currently checking 1234 to 1298 out of 3985
+greedy search, time after compilation in step 11 : 231.37110567092896
+greedy search, time after assembly in step 11 : 231.90729928016663
+greedy search candidates: [4850]
+greedy search, currently checking 1298 to 1362 out of 3985
+greedy search, time after compilation in step 11 : 233.07359051704407
+greedy search, time after assembly in step 11 : 233.63546895980835
+greedy search candidates: [4850]
+greedy search, currently checking 1362 to 1426 out of 3985
+greedy search, time after compilation in step 11 : 234.7419776916504
+greedy search, time after assembly in step 11 : 235.27016520500183
+greedy search candidates: [4850]
+greedy search, currently checking 1426 to 1490 out of 3985
+greedy search, time after compilation in step 11 : 236.45537185668945
+greedy search, time after assembly in step 11 : 236.98411440849304
+greedy search candidates: [4850]
+greedy search, currently checking 1490 to 1554 out of 3985
+greedy search, time after compilation in step 11 : 238.155508518219
+greedy search, time after assembly in step 11 : 238.68428754806519
+greedy search candidates: [4850]
+greedy search, currently checking 1554 to 1618 out of 3985
+greedy search, time after compilation in step 11 : 239.9372546672821
+greedy search, time after assembly in step 11 : 240.46118235588074
+greedy search candidates: [4850]
+greedy search, currently checking 1618 to 1682 out of 3985
+greedy search, time after compilation in step 11 : 241.64212560653687
+greedy search, time after assembly in step 11 : 242.17093873023987
+greedy search candidates: [4850]
+greedy search, currently checking 1682 to 1746 out of 3985
+greedy search, time after compilation in step 11 : 243.33479118347168
+greedy search, time after assembly in step 11 : 243.87546253204346
+greedy search candidates: [4850]
+greedy search, currently checking 1746 to 1810 out of 3985
+greedy search, time after compilation in step 11 : 245.11321330070496
+greedy search, time after assembly in step 11 : 245.6362292766571
+greedy search candidates: [4850]
+greedy search, currently checking 1810 to 1874 out of 3985
+greedy search, time after compilation in step 11 : 246.82233357429504
+greedy search, time after assembly in step 11 : 247.35208177566528
+greedy search candidates: [4850]
+greedy search, currently checking 1874 to 1938 out of 3985
+greedy search, time after compilation in step 11 : 248.53048086166382
+greedy search, time after assembly in step 11 : 249.05576848983765
+greedy search candidates: [4850]
+greedy search, currently checking 1938 to 2002 out of 3985
+greedy search, time after compilation in step 11 : 250.24691557884216
+greedy search, time after assembly in step 11 : 250.83250164985657
+greedy search candidates: [4850]
+greedy search, currently checking 2002 to 2066 out of 3985
+greedy search, time after compilation in step 11 : 251.98942732810974
+greedy search, time after assembly in step 11 : 252.51203203201294
+greedy search candidates: [4850]
+greedy search, currently checking 2066 to 2130 out of 3985
+greedy search, time after compilation in step 11 : 253.72808861732483
+greedy search, time after assembly in step 11 : 254.25287055969238
+greedy search candidates: [4850]
+greedy search, currently checking 2130 to 2194 out of 3985
+greedy search, time after compilation in step 11 : 255.43013286590576
+greedy search, time after assembly in step 11 : 256.0251121520996
+greedy search candidates: [4850]
+greedy search, currently checking 2194 to 2258 out of 3985
+greedy search, time after compilation in step 11 : 257.1225779056549
+greedy search, time after assembly in step 11 : 257.66232419013977
+greedy search candidates: [4850]
+greedy search, currently checking 2258 to 2322 out of 3985
+greedy search, time after compilation in step 11 : 258.8901870250702
+greedy search, time after assembly in step 11 : 259.4433889389038
+greedy search candidates: [4850]
+greedy search, currently checking 2322 to 2386 out of 3985
+greedy search, time after compilation in step 11 : 260.6111104488373
+greedy search, time after assembly in step 11 : 261.144024848938
+greedy search candidates: [4850]
+greedy search, currently checking 2386 to 2450 out of 3985
+greedy search, time after compilation in step 11 : 262.299870967865
+greedy search, time after assembly in step 11 : 262.8270719051361
+greedy search candidates: [4850]
+greedy search, currently checking 2450 to 2514 out of 3985
+greedy search, time after compilation in step 11 : 264.01766657829285
+greedy search, time after assembly in step 11 : 264.54187297821045
+greedy search candidates: [4850]
+greedy search, currently checking 2514 to 2578 out of 3985
+greedy search, time after compilation in step 11 : 265.71447467803955
+greedy search, time after assembly in step 11 : 266.2466218471527
+greedy search candidates: [4850]
+greedy search, currently checking 2578 to 2642 out of 3985
+greedy search, time after compilation in step 11 : 267.5104534626007
+greedy search, time after assembly in step 11 : 268.04673075675964
+greedy search candidates: [4850]
+greedy search, currently checking 2642 to 2706 out of 3985
+greedy search, time after compilation in step 11 : 269.25712633132935
+greedy search, time after assembly in step 11 : 269.78074169158936
+greedy search candidates: [4850]
+greedy search, currently checking 2706 to 2770 out of 3985
+greedy search, time after compilation in step 11 : 270.96468210220337
+greedy search, time after assembly in step 11 : 271.4937665462494
+greedy search candidates: [4850]
+greedy search, currently checking 2770 to 2834 out of 3985
+greedy search, time after compilation in step 11 : 272.74768447875977
+greedy search, time after assembly in step 11 : 273.2923946380615
+greedy search candidates: [4850]
+greedy search, currently checking 2834 to 2898 out of 3985
+greedy search, time after compilation in step 11 : 274.39234924316406
+greedy search, time after assembly in step 11 : 274.92025327682495
+greedy search candidates: [4850]
+greedy search, currently checking 2898 to 2962 out of 3985
+greedy search, time after compilation in step 11 : 276.091912984848
+greedy search, time after assembly in step 11 : 276.6158585548401
+greedy search candidates: [4850]
+greedy search, currently checking 2962 to 3026 out of 3985
+greedy search, time after compilation in step 11 : 277.8319091796875
+greedy search, time after assembly in step 11 : 278.4007933139801
+greedy search candidates: [4850]
+greedy search, currently checking 3026 to 3090 out of 3985
+greedy search, time after compilation in step 11 : 279.56098914146423
+greedy search, time after assembly in step 11 : 280.0959162712097
+greedy search candidates: [4850]
+greedy search, currently checking 3090 to 3154 out of 3985
+greedy search, time after compilation in step 11 : 281.30706453323364
+greedy search, time after assembly in step 11 : 281.85985708236694
+greedy search candidates: [4850]
+greedy search, currently checking 3154 to 3218 out of 3985
+greedy search, time after compilation in step 11 : 283.0047695636749
+greedy search, time after assembly in step 11 : 283.5969717502594
+greedy search candidates: [4850]
+greedy search, currently checking 3218 to 3282 out of 3985
+greedy search, time after compilation in step 11 : 284.7141320705414
+greedy search, time after assembly in step 11 : 285.2434537410736
+greedy search candidates: [4850]
+greedy search, currently checking 3282 to 3346 out of 3985
+greedy search, time after compilation in step 11 : 286.4179587364197
+greedy search, time after assembly in step 11 : 286.9452919960022
+greedy search candidates: [4850]
+greedy search, currently checking 3346 to 3410 out of 3985
+greedy search, time after compilation in step 11 : 288.13487935066223
+greedy search, time after assembly in step 11 : 288.6653277873993
+greedy search candidates: [4848, 4850, 4847]
+greedy search, new min: 4847
+greedy search, current list: [8, 13, 20, 25, 26, 27, 28, 639, 640, 817, 850, 3388]
+greedy search, time after step 11 : 288.79645919799805
+greedy search, currently checking 3388 to 3452 out of 3985
+greedy search, time after compilation in step 12 : 289.8768775463104
+greedy search, time after assembly in step 12 : 290.4055166244507
+greedy search candidates: [4844, 4845, 4847]
+greedy search, new min: 4844
+greedy search, current list: [8, 13, 20, 25, 26, 27, 28, 639, 640, 817, 850, 3388, 3390]
+greedy search, time after step 12 : 290.5894706249237
+greedy search, currently checking 3390 to 3454 out of 3985
+greedy search, time after compilation in step 13 : 291.5866298675537
+greedy search, time after assembly in step 13 : 292.1167800426483
+greedy search candidates: [4842, 4844]
+greedy search, new min: 4842
+greedy search, current list: [8, 13, 20, 25, 26, 27, 28, 639, 640, 817, 850, 3388, 3390, 3391]
+greedy search, time after step 13 : 292.2949688434601
+greedy search, currently checking 3391 to 3455 out of 3985
+greedy search, time after compilation in step 14 : 293.30284309387207
+greedy search, time after assembly in step 14 : 293.83351731300354
+greedy search candidates: [4840, 4842]
+greedy search, new min: 4840
+greedy search, current list: [8, 13, 20, 25, 26, 27, 28, 639, 640, 817, 850, 3388, 3390, 3391, 3392]
+greedy search, time after step 14 : 294.00596594810486
+greedy search, currently checking 3392 to 3456 out of 3985
+greedy search, time after compilation in step 15 : 295.0557813644409
+greedy search, time after assembly in step 15 : 295.58849334716797
+greedy search candidates: [4840]
+greedy search, currently checking 3456 to 3520 out of 3985
+greedy search, time after compilation in step 15 : 296.76934814453125
+greedy search, time after assembly in step 15 : 297.298951625824
+greedy search candidates: [4840]
+greedy search, currently checking 3520 to 3584 out of 3985
+greedy search, time after compilation in step 15 : 298.480507850647
+greedy search, time after assembly in step 15 : 299.00924491882324
+greedy search candidates: [4840]
+greedy search, currently checking 3584 to 3648 out of 3985
+greedy search, time after compilation in step 15 : 300.19091057777405
+greedy search, time after assembly in step 15 : 300.76911783218384
+greedy search candidates: [4840]
+greedy search, currently checking 3648 to 3712 out of 3985
+greedy search, time after compilation in step 15 : 301.92686319351196
+greedy search, time after assembly in step 15 : 302.4525034427643
+greedy search candidates: [4840]
+greedy search, currently checking 3712 to 3776 out of 3985
+greedy search, time after compilation in step 15 : 303.63133358955383
+greedy search, time after assembly in step 15 : 304.16253900527954
+greedy search candidates: [4840]
+greedy search, currently checking 3776 to 3840 out of 3985
+greedy search, time after compilation in step 15 : 305.3292019367218
+greedy search, time after assembly in step 15 : 305.9058609008789
+greedy search candidates: [4840]
+greedy search, currently checking 3840 to 3904 out of 3985
+greedy search, time after compilation in step 15 : 307.0185868740082
+greedy search, time after assembly in step 15 : 307.5395441055298
+greedy search candidates: [4840]
+greedy search, currently checking 3904 to 3968 out of 3985
+greedy search, time after compilation in step 15 : 308.71948432922363
+greedy search, time after assembly in step 15 : 309.2471160888672
+greedy search candidates: [4840]
+greedy search, currently checking 3968 to 3985 out of 3985
+greedy search, time after compilation in step 15 : 309.7761800289154
+greedy search, time after assembly in step 15 : 309.9798438549042
+greedy search candidates: [4840]
+Time after exploration of _Z22SetupPrecalculatedDatav: 310.00304985046387
+==== Next function: _Z16SetupCastleMasksP7state_t
+greedy search, currently checking 0 to 64 out of 80
+greedy search, time after compilation in step 0 : 311.142126083374
+greedy search, time after assembly in step 0 : 311.73605823516846
+greedy search candidates: [4953]
+greedy search, currently checking 64 to 80 out of 80
+greedy search, time after compilation in step 0 : 312.15461778640747
+greedy search, time after assembly in step 0 : 312.30720829963684
+greedy search candidates: [4953]
+Time after exploration of _Z16SetupCastleMasksP7state_t: 312.3473448753357
+==== Next function: _Z15DiagonalAttacksyj
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 312.609614610672
+greedy search, time after assembly in step 0 : 312.6725001335144
+greedy search candidates: [4953]
+Time after exploration of _Z15DiagonalAttacksyj: 312.6744751930237
+==== Next function: _Z15AntiDiagAttacksyj
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 312.9178695678711
+greedy search, time after assembly in step 0 : 312.98110008239746
+greedy search candidates: [4953]
+Time after exploration of _Z15AntiDiagAttacksyj: 312.9834792613983
+==== Next function: _Z13BishopAttacksP7state_ti
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 313.2461791038513
+greedy search, time after assembly in step 0 : 313.31565594673157
+greedy search candidates: [4953]
+Time after exploration of _Z13BishopAttacksP7state_ti: 313.3237261772156
+Time after exploration of 631/bitboard.bc: 313.3237318992615
+***** Next file: 631/initp.bc
+==== Next function: _Z15init_parametersP11gamestate_t
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 313.3725275993347
+greedy search, time after assembly in step 0 : 313.3964478969574
+greedy search candidates: [205]
+Time after exploration of _Z15init_parametersP11gamestate_t: 313.4022784233093
+Time after exploration of 631/initp.bc: 313.4022834300995
+***** Next file: 631/see.bc
+==== Next function: _Z3seeP7state_tiiii
+greedy search, currently checking 0 to 64 out of 358
+greedy search, time after compilation in step 0 : 313.672146320343
+greedy search, time after assembly in step 0 : 313.8868751525879
+greedy search candidates: [893]
+greedy search, currently checking 64 to 128 out of 358
+greedy search, time after compilation in step 0 : 314.29404735565186
+greedy search, time after assembly in step 0 : 314.47753524780273
+greedy search candidates: [893]
+greedy search, currently checking 128 to 192 out of 358
+greedy search, time after compilation in step 0 : 314.86435985565186
+greedy search, time after assembly in step 0 : 315.04777240753174
+greedy search candidates: [893]
+greedy search, currently checking 192 to 256 out of 358
+greedy search, time after compilation in step 0 : 315.4352786540985
+greedy search, time after assembly in step 0 : 315.6195001602173
+greedy search candidates: [893]
+greedy search, currently checking 256 to 320 out of 358
+greedy search, time after compilation in step 0 : 316.0080862045288
+greedy search, time after assembly in step 0 : 316.19200897216797
+greedy search candidates: [860, 893]
+greedy search, new min: 860
+greedy search, current list: [287]
+greedy search, time after step 0 : 316.3650391101837
+greedy search, currently checking 287 to 351 out of 358
+greedy search, time after compilation in step 1 : 316.5823698043823
+greedy search, time after assembly in step 1 : 316.7735233306885
+greedy search candidates: [860]
+greedy search, currently checking 351 to 358 out of 358
+greedy search, time after compilation in step 1 : 316.90400886535645
+greedy search, time after assembly in step 1 : 316.94619035720825
+greedy search candidates: [860]
+Time after exploration of _Z3seeP7state_tiiii: 316.9589695930481
+Time after exploration of 631/see.bc: 316.95897459983826
+***** Next file: 631/sjeng.bc
+Time after exploration of 631/sjeng.bc: 316.9589786529541
+***** Next file: 631/make.bc
+==== Next function: _Z4makeP7state_ti
+greedy search, currently checking 0 to 64 out of 1760
+greedy search, time after compilation in step 0 : 317.48269510269165
+greedy search, time after assembly in step 0 : 317.7925841808319
+greedy search candidates: [3009, 2977, 2980, 3014, 2983, 3016, 2985, 3017, 3020, 3021, 3022, 2991, 3024, 2929, 2992, 3025, 3002, 3004]
+greedy search, new min: 2929
+greedy search, current list: [0]
+greedy search, time after step 0 : 317.9693036079407
+greedy search, currently checking 0 to 64 out of 1760
+greedy search, time after compilation in step 1 : 318.3838906288147
+greedy search, time after assembly in step 1 : 318.6924741268158
+greedy search candidates: [2957, 2929, 2934, 2936, 2940, 2941, 2943]
+greedy search, currently checking 64 to 128 out of 1760
+greedy search, time after compilation in step 1 : 319.2841863632202
+greedy search, time after assembly in step 1 : 319.5830442905426
+greedy search candidates: [2929, 2957, 2927]
+greedy search, new min: 2927
+greedy search, current list: [0, 77]
+greedy search, time after step 1 : 319.76057744026184
+greedy search, currently checking 77 to 141 out of 1760
+greedy search, time after compilation in step 2 : 320.1620202064514
+greedy search, time after assembly in step 2 : 320.4586374759674
+greedy search candidates: [2955, 2927]
+greedy search, currently checking 141 to 205 out of 1760
+greedy search, time after compilation in step 2 : 321.03586530685425
+greedy search, time after assembly in step 2 : 321.33242201805115
+greedy search candidates: [2927]
+greedy search, currently checking 205 to 269 out of 1760
+greedy search, time after compilation in step 2 : 321.9102816581726
+greedy search, time after assembly in step 2 : 322.2049295902252
+greedy search candidates: [2927]
+greedy search, currently checking 269 to 333 out of 1760
+greedy search, time after compilation in step 2 : 322.75875878334045
+greedy search, time after assembly in step 2 : 323.0554084777832
+greedy search candidates: [2927]
+greedy search, currently checking 333 to 397 out of 1760
+greedy search, time after compilation in step 2 : 323.6081717014313
+greedy search, time after assembly in step 2 : 323.9053530693054
+greedy search candidates: [2927]
+greedy search, currently checking 397 to 461 out of 1760
+greedy search, time after compilation in step 2 : 324.48093032836914
+greedy search, time after assembly in step 2 : 324.77535820007324
+greedy search candidates: [2927]
+greedy search, currently checking 461 to 525 out of 1760
+greedy search, time after compilation in step 2 : 325.3621919155121
+greedy search, time after assembly in step 2 : 325.67813444137573
+greedy search candidates: [2927]
+greedy search, currently checking 525 to 589 out of 1760
+greedy search, time after compilation in step 2 : 326.22724294662476
+greedy search, time after assembly in step 2 : 326.5231068134308
+greedy search candidates: [2927]
+greedy search, currently checking 589 to 653 out of 1760
+greedy search, time after compilation in step 2 : 327.10329723358154
+greedy search, time after assembly in step 2 : 327.4027397632599
+greedy search candidates: [2927]
+greedy search, currently checking 653 to 717 out of 1760
+greedy search, time after compilation in step 2 : 327.99146366119385
+greedy search, time after assembly in step 2 : 328.2891209125519
+greedy search candidates: [2927]
+greedy search, currently checking 717 to 781 out of 1760
+greedy search, time after compilation in step 2 : 328.87173676490784
+greedy search, time after assembly in step 2 : 329.1657247543335
+greedy search candidates: [2927]
+greedy search, currently checking 781 to 845 out of 1760
+greedy search, time after compilation in step 2 : 329.7416512966156
+greedy search, time after assembly in step 2 : 330.0391311645508
+greedy search candidates: [2927]
+greedy search, currently checking 845 to 909 out of 1760
+greedy search, time after compilation in step 2 : 330.6169240474701
+greedy search, time after assembly in step 2 : 330.91090273857117
+greedy search candidates: [2927]
+greedy search, currently checking 909 to 973 out of 1760
+greedy search, time after compilation in step 2 : 331.4906527996063
+greedy search, time after assembly in step 2 : 331.78719544410706
+greedy search candidates: [2927]
+greedy search, currently checking 973 to 1037 out of 1760
+greedy search, time after compilation in step 2 : 332.366286277771
+greedy search, time after assembly in step 2 : 332.6612660884857
+greedy search candidates: [2927]
+greedy search, currently checking 1037 to 1101 out of 1760
+greedy search, time after compilation in step 2 : 333.2366373538971
+greedy search, time after assembly in step 2 : 333.53209471702576
+greedy search candidates: [2927]
+greedy search, currently checking 1101 to 1165 out of 1760
+greedy search, time after compilation in step 2 : 334.11526012420654
+greedy search, time after assembly in step 2 : 334.40742921829224
+greedy search candidates: [2927]
+greedy search, currently checking 1165 to 1229 out of 1760
+greedy search, time after compilation in step 2 : 334.9869873523712
+greedy search, time after assembly in step 2 : 335.2836649417877
+greedy search candidates: [2927]
+greedy search, currently checking 1229 to 1293 out of 1760
+greedy search, time after compilation in step 2 : 335.8606638908386
+greedy search, time after assembly in step 2 : 336.15607476234436
+greedy search candidates: [2927]
+greedy search, currently checking 1293 to 1357 out of 1760
+greedy search, time after compilation in step 2 : 336.73719215393066
+greedy search, time after assembly in step 2 : 337.034747838974
+greedy search candidates: [2927]
+greedy search, currently checking 1357 to 1421 out of 1760
+greedy search, time after compilation in step 2 : 337.62011337280273
+greedy search, time after assembly in step 2 : 337.9464747905731
+greedy search candidates: [2927]
+greedy search, currently checking 1421 to 1485 out of 1760
+greedy search, time after compilation in step 2 : 338.5125455856323
+greedy search, time after assembly in step 2 : 338.80947375297546
+greedy search candidates: [2927]
+greedy search, currently checking 1485 to 1549 out of 1760
+greedy search, time after compilation in step 2 : 339.402143239975
+greedy search, time after assembly in step 2 : 339.698273897171
+greedy search candidates: [2927]
+greedy search, currently checking 1549 to 1613 out of 1760
+greedy search, time after compilation in step 2 : 340.2815492153168
+greedy search, time after assembly in step 2 : 340.57550263404846
+greedy search candidates: [2927]
+greedy search, currently checking 1613 to 1677 out of 1760
+greedy search, time after compilation in step 2 : 341.15680027008057
+greedy search, time after assembly in step 2 : 341.45003938674927
+greedy search candidates: [2927]
+greedy search, currently checking 1677 to 1741 out of 1760
+greedy search, time after compilation in step 2 : 342.0193407535553
+greedy search, time after assembly in step 2 : 342.31477212905884
+greedy search candidates: [2927]
+greedy search, currently checking 1741 to 1760 out of 1760
+greedy search, time after compilation in step 2 : 342.6434848308563
+greedy search, time after assembly in step 2 : 342.76345014572144
+greedy search candidates: [2927]
+Time after exploration of _Z4makeP7state_ti: 342.7890899181366
+==== Next function: _Z6unmakeP7state_ti
+greedy search, currently checking 0 to 64 out of 1401
+greedy search, time after compilation in step 0 : 343.3016095161438
+greedy search, time after assembly in step 0 : 343.60394954681396
+greedy search candidates: [3009, 3010, 3016, 3017, 3018, 3019]
+greedy search, currently checking 64 to 128 out of 1401
+greedy search, time after compilation in step 0 : 344.20994114875793
+greedy search, time after assembly in step 0 : 344.5113422870636
+greedy search candidates: [3009]
+greedy search, currently checking 128 to 192 out of 1401
+greedy search, time after compilation in step 0 : 345.12548780441284
+greedy search, time after assembly in step 0 : 345.42312026023865
+greedy search candidates: [3009]
+greedy search, currently checking 192 to 256 out of 1401
+greedy search, time after compilation in step 0 : 346.02298736572266
+greedy search, time after assembly in step 0 : 346.3230106830597
+greedy search candidates: [3009]
+greedy search, currently checking 256 to 320 out of 1401
+greedy search, time after compilation in step 0 : 346.9281599521637
+greedy search, time after assembly in step 0 : 347.25704741477966
+greedy search candidates: [3009]
+greedy search, currently checking 320 to 384 out of 1401
+greedy search, time after compilation in step 0 : 347.84951853752136
+greedy search, time after assembly in step 0 : 348.150146484375
+greedy search candidates: [3009]
+greedy search, currently checking 384 to 448 out of 1401
+greedy search, time after compilation in step 0 : 348.7633469104767
+greedy search, time after assembly in step 0 : 349.06219267845154
+greedy search candidates: [3009]
+greedy search, currently checking 448 to 512 out of 1401
+greedy search, time after compilation in step 0 : 349.67910647392273
+greedy search, time after assembly in step 0 : 349.97430205345154
+greedy search candidates: [3009]
+greedy search, currently checking 512 to 576 out of 1401
+greedy search, time after compilation in step 0 : 350.58799958229065
+greedy search, time after assembly in step 0 : 350.8868215084076
+greedy search candidates: [3009]
+greedy search, currently checking 576 to 640 out of 1401
+greedy search, time after compilation in step 0 : 351.5066931247711
+greedy search, time after assembly in step 0 : 351.80640864372253
+greedy search candidates: [3009]
+greedy search, currently checking 640 to 704 out of 1401
+greedy search, time after compilation in step 0 : 352.39535117149353
+greedy search, time after assembly in step 0 : 352.6934177875519
+greedy search candidates: [3009]
+greedy search, currently checking 704 to 768 out of 1401
+greedy search, time after compilation in step 0 : 353.30210852622986
+greedy search, time after assembly in step 0 : 353.603227853775
+greedy search candidates: [3009]
+greedy search, currently checking 768 to 832 out of 1401
+greedy search, time after compilation in step 0 : 354.21074390411377
+greedy search, time after assembly in step 0 : 354.5150396823883
+greedy search candidates: [3009]
+greedy search, currently checking 832 to 896 out of 1401
+greedy search, time after compilation in step 0 : 355.09736132621765
+greedy search, time after assembly in step 0 : 355.3982837200165
+greedy search candidates: [3009]
+greedy search, currently checking 896 to 960 out of 1401
+greedy search, time after compilation in step 0 : 356.0002808570862
+greedy search, time after assembly in step 0 : 356.2994635105133
+greedy search candidates: [3009]
+greedy search, currently checking 960 to 1024 out of 1401
+greedy search, time after compilation in step 0 : 356.9126024246216
+greedy search, time after assembly in step 0 : 357.2119052410126
+greedy search candidates: [3009]
+greedy search, currently checking 1024 to 1088 out of 1401
+greedy search, time after compilation in step 0 : 357.8227696418762
+greedy search, time after assembly in step 0 : 358.122846364975
+greedy search candidates: [3009]
+greedy search, currently checking 1088 to 1152 out of 1401
+greedy search, time after compilation in step 0 : 358.72919940948486
+greedy search, time after assembly in step 0 : 359.02874422073364
+greedy search candidates: [3009]
+greedy search, currently checking 1152 to 1216 out of 1401
+greedy search, time after compilation in step 0 : 359.6398124694824
+greedy search, time after assembly in step 0 : 359.9411723613739
+greedy search candidates: [3009]
+greedy search, currently checking 1216 to 1280 out of 1401
+greedy search, time after compilation in step 0 : 360.54447531700134
+greedy search, time after assembly in step 0 : 360.8461594581604
+greedy search candidates: [3009]
+greedy search, currently checking 1280 to 1344 out of 1401
+greedy search, time after compilation in step 0 : 361.45503211021423
+greedy search, time after assembly in step 0 : 361.75608110427856
+greedy search candidates: [3009]
+greedy search, currently checking 1344 to 1401 out of 1401
+greedy search, time after compilation in step 0 : 362.3515315055847
+greedy search, time after assembly in step 0 : 362.63349890708923
+greedy search candidates: [3009]
+Time after exploration of _Z6unmakeP7state_ti: 362.7756857872009
+Time after exploration of 631/make.bc: 362.7756989002228
+***** Next file: 631/search.bc
+==== Next function: _Z6searchP7state_tiiiii
+greedy search, currently checking 0 to 64 out of 587
+greedy search, time after compilation in step 0 : 364.7772853374481
+greedy search, time after assembly in step 0 : 365.99971985816956
+greedy search candidates: [16097, 16001, 16035, 16103, 16010, 16042, 16110, 16021, 16090, 16028, 16095]
+greedy search, new min: 16028
+greedy search, current list: [18]
+greedy search, time after step 0 : 366.17201948165894
+greedy search, currently checking 18 to 82 out of 587
+greedy search, time after compilation in step 1 : 367.8410692214966
+greedy search, time after assembly in step 1 : 369.05305886268616
+greedy search candidates: [16065, 16035, 16036, 16037, 16103, 16009, 16010, 16079, 15990, 16026, 16028, 16061]
+greedy search, new min: 16026
+greedy search, current list: [18, 25]
+greedy search, time after step 1 : 369.2227683067322
+greedy search, currently checking 25 to 89 out of 587
+greedy search, time after compilation in step 2 : 370.97264289855957
+greedy search, time after assembly in step 2 : 372.1753463745117
+greedy search candidates: [15968, 16033, 16002, 16034, 15972, 16035, 16102, 16078, 15986, 16026]
+greedy search, new min: 16002
+greedy search, current list: [18, 25, 32]
+greedy search, time after step 2 : 372.3516833782196
+greedy search, currently checking 32 to 96 out of 587
+greedy search, time after compilation in step 3 : 374.07567071914673
+greedy search, time after assembly in step 3 : 375.2765169143677
+greedy search candidates: [16002, 16006, 16009, 16010, 16043, 16011, 16046, 16053, 16031]
+greedy search, currently checking 96 to 160 out of 587
+greedy search, time after compilation in step 3 : 377.2064549922943
+greedy search, time after assembly in step 3 : 378.42292404174805
+greedy search candidates: [16002]
+greedy search, currently checking 160 to 224 out of 587
+greedy search, time after compilation in step 3 : 380.19856691360474
+greedy search, time after assembly in step 3 : 381.4196581840515
+greedy search candidates: [16002, 16014]
+greedy search, currently checking 224 to 288 out of 587
+greedy search, time after compilation in step 3 : 383.23904824256897
+greedy search, time after assembly in step 3 : 384.4635236263275
+greedy search candidates: [16002]
+greedy search, currently checking 288 to 352 out of 587
+greedy search, time after compilation in step 3 : 386.28291940689087
+greedy search, time after assembly in step 3 : 387.57589888572693
+greedy search candidates: [16002]
+greedy search, currently checking 352 to 416 out of 587
+greedy search, time after compilation in step 3 : 389.3985426425934
+greedy search, time after assembly in step 3 : 390.5941174030304
+greedy search candidates: [16057, 16002]
+greedy search, currently checking 416 to 480 out of 587
+greedy search, time after compilation in step 3 : 392.4725229740143
+greedy search, time after assembly in step 3 : 393.7566969394684
+greedy search candidates: [16002, 16043]
+greedy search, currently checking 480 to 544 out of 587
+greedy search, time after compilation in step 3 : 395.5972192287445
+greedy search, time after assembly in step 3 : 396.8039710521698
+greedy search candidates: [16002]
+greedy search, currently checking 544 to 587 out of 587
+greedy search, time after compilation in step 3 : 398.1552188396454
+greedy search, time after assembly in step 3 : 399.08657479286194
+greedy search candidates: [16002]
+Time after exploration of _Z6searchP7state_tiiiii: 399.1503448486328
+==== Next function: _ZL12history_goodP7state_tii
+greedy search, currently checking 0 to 33 out of 33
+greedy search, time after compilation in step 0 : 400.4793393611908
+greedy search, time after assembly in step 0 : 401.1894998550415
+greedy search candidates: [16112, 16090]
+Time after exploration of _ZL12history_goodP7state_tii: 401.25157403945923
+==== Next function: _Z11search_rootP7state_tiii
+greedy search, currently checking 0 to 64 out of 153
+greedy search, time after compilation in step 0 : 403.27359771728516
+greedy search, time after assembly in step 0 : 404.5483419895172
+greedy search candidates: [16096, 16097, 16100, 16101, 16132, 16079, 16090, 16062, 16095]
+greedy search, new min: 16079
+greedy search, current list: [14]
+greedy search, time after step 0 : 404.6274268627167
+greedy search, currently checking 14 to 78 out of 153
+greedy search, time after compilation in step 1 : 406.322660446167
+greedy search, time after assembly in step 1 : 407.5632905960083
+greedy search candidates: [16120, 16084, 16079]
+greedy search, currently checking 78 to 142 out of 153
+greedy search, time after compilation in step 1 : 409.4075679779053
+greedy search, time after assembly in step 1 : 410.70276069641113
+greedy search candidates: [15972, 16079]
+greedy search, new min: 15972
+greedy search, current list: [14, 119]
+greedy search, time after step 1 : 410.8608949184418
+greedy search, currently checking 119 to 153 out of 153
+greedy search, time after compilation in step 2 : 411.87863516807556
+greedy search, time after assembly in step 2 : 412.6038930416107
+greedy search candidates: [15972]
+Time after exploration of _Z11search_rootP7state_tiii: 412.6686577796936
+==== Next function: _ZL17search_time_checkP7state_t
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 413.143177986145
+greedy search, time after assembly in step 0 : 413.2729868888855
+greedy search candidates: [16090]
+Time after exploration of _ZL17search_time_checkP7state_t: 413.2749207019806
+==== Next function: _ZL16fast_order_movesP7state_tPiS1_ij
+greedy search, currently checking 0 to 18 out of 18
+greedy search, time after compilation in step 0 : 414.14438033103943
+greedy search, time after assembly in step 0 : 414.582072019577
+greedy search candidates: [16090]
+Time after exploration of _ZL16fast_order_movesP7state_tPiS1_ij: 414.6077723503113
+==== Next function: _ZL15remove_one_fastPiS_S_i
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 415.09906792640686
+greedy search, time after assembly in step 0 : 415.24577713012695
+greedy search candidates: [16090]
+Time after exploration of _ZL15remove_one_fastPiS_S_i: 415.2523148059845
+==== Next function: _ZL15history_pre_cutP7state_tii
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 415.78903126716614
+greedy search, time after assembly in step 0 : 415.92866921424866
+greedy search candidates: [16090]
+Time after exploration of _ZL15history_pre_cutP7state_tii: 415.93348145484924
+==== Next function: _Z7qsearchP7state_tiiii
+greedy search, currently checking 0 to 64 out of 256
+greedy search, time after compilation in step 0 : 417.9313199520111
+greedy search, time after assembly in step 0 : 419.13148379325867
+greedy search candidates: [16096, 16090, 16059, 16061, 16126]
+greedy search, new min: 16061
+greedy search, current list: [4]
+greedy search, time after step 0 : 419.3029685020447
+greedy search, currently checking 4 to 68 out of 256
+greedy search, time after compilation in step 1 : 420.9911165237427
+greedy search, time after assembly in step 1 : 422.2481939792633
+greedy search candidates: [16066, 16067, 16061, 16071]
+greedy search, currently checking 68 to 132 out of 256
+greedy search, time after compilation in step 1 : 424.0702042579651
+greedy search, time after assembly in step 1 : 425.28288769721985
+greedy search candidates: [16061]
+greedy search, currently checking 132 to 196 out of 256
+greedy search, time after compilation in step 1 : 427.19914054870605
+greedy search, time after assembly in step 1 : 428.40559911727905
+greedy search candidates: [16061]
+greedy search, currently checking 196 to 256 out of 256
+greedy search, time after compilation in step 1 : 430.1820740699768
+greedy search, time after assembly in step 1 : 431.3343904018402
+greedy search candidates: [16061]
+Time after exploration of _Z7qsearchP7state_tiiii: 431.4647047519684
+==== Next function: _ZL12make_blunderP7state_tiPii
+greedy search, currently checking 0 to 64 out of 69
+greedy search, time after compilation in step 0 : 433.51961970329285
+greedy search, time after assembly in step 0 : 434.72874760627747
+greedy search candidates: [16090]
+greedy search, currently checking 64 to 69 out of 69
+greedy search, time after compilation in step 0 : 435.10313177108765
+greedy search, time after assembly in step 0 : 435.25264739990234
+greedy search candidates: [16090]
+Time after exploration of _ZL12make_blunderP7state_tiPii: 435.2608253955841
+==== Next function: _ZL11order_movesP7state_tPiS1_ij
+greedy search, currently checking 0 to 64 out of 144
+greedy search, time after compilation in step 0 : 437.2416522502899
+greedy search, time after assembly in step 0 : 438.5572078227997
+greedy search candidates: [16090]
+greedy search, currently checking 64 to 128 out of 144
+greedy search, time after compilation in step 0 : 440.40747904777527
+greedy search, time after assembly in step 0 : 441.62592101097107
+greedy search candidates: [16090]
+greedy search, currently checking 128 to 144 out of 144
+greedy search, time after compilation in step 0 : 442.2294645309448
+greedy search, time after assembly in step 0 : 442.5532591342926
+greedy search candidates: [16090]
+Time after exploration of _ZL11order_movesP7state_tPiS1_ij: 442.5760202407837
+==== Next function: _ZL13history_scoreP7state_ti
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 443.08814001083374
+greedy search, time after assembly in step 0 : 443.2589502334595
+greedy search candidates: [16090]
+Time after exploration of _ZL13history_scoreP7state_ti: 443.2653965950012
+==== Next function: _ZL11history_badP7state_tii
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 443.85877752304077
+greedy search, time after assembly in step 0 : 444.0341212749481
+greedy search candidates: [16090]
+Time after exploration of _ZL11history_badP7state_tii: 444.04657196998596
+==== Next function: _Z21reset_search_countersP7state_t
+greedy search, currently checking 0 to 4 out of 4
+greedy search, time after compilation in step 0 : 444.55936455726624
+greedy search, time after assembly in step 0 : 444.71795201301575
+greedy search candidates: [16090]
+Time after exploration of _Z21reset_search_countersP7state_t: 444.7252583503723
+==== Next function: _Z5thinkP11gamestate_tP7state_t
+greedy search, currently checking 0 to 34 out of 34
+greedy search, time after compilation in step 0 : 446.0270092487335
+greedy search, time after assembly in step 0 : 446.7531969547272
+greedy search candidates: [16090, 16094]
+Time after exploration of _Z5thinkP11gamestate_tP7state_t: 446.8248996734619
+Time after exploration of 631/search.bc: 446.824914932251
+***** Next file: 631/state.bc
+Time after exploration of 631/state.bc: 446.82492184638977
+***** Next file: 631/attacks.bc
+==== Next function: _Z11is_attackedP7state_tii
+greedy search, currently checking 0 to 64 out of 75
+greedy search, time after compilation in step 0 : 447.0700173377991
+greedy search, time after assembly in step 0 : 447.26402473449707
+greedy search candidates: [1127]
+greedy search, currently checking 64 to 75 out of 75
+greedy search, time after compilation in step 0 : 447.477970123291
+greedy search, time after assembly in step 0 : 447.52533435821533
+greedy search candidates: [1127]
+Time after exploration of _Z11is_attackedP7state_tii: 447.5440180301666
+==== Next function: _Z8in_checkP7state_t
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 447.6136517524719
+greedy search, time after assembly in step 0 : 447.6447842121124
+greedy search candidates: [1127]
+Time after exploration of _Z8in_checkP7state_t: 447.6496002674103
+==== Next function: _Z10attacks_toP7state_ti
+greedy search, currently checking 0 to 64 out of 107
+greedy search, time after compilation in step 0 : 447.88741159439087
+greedy search, time after assembly in step 0 : 448.1077892780304
+greedy search candidates: [1127]
+greedy search, currently checking 64 to 107 out of 107
+greedy search, time after compilation in step 0 : 448.342960357666
+greedy search, time after assembly in step 0 : 448.48423862457275
+greedy search candidates: [1127]
+Time after exploration of _Z10attacks_toP7state_ti: 448.5915832519531
+Time after exploration of 631/attacks.bc: 448.59159564971924
+***** Next file: 631/generate.bc
+==== Next function: _Z9gen_quietP7state_tPi
+greedy search, currently checking 0 to 64 out of 386
+greedy search, time after compilation in step 0 : 449.7978038787842
+greedy search, time after assembly in step 0 : 450.413010597229
+greedy search candidates: [7045]
+greedy search, currently checking 64 to 128 out of 386
+greedy search, time after compilation in step 0 : 451.5888271331787
+greedy search, time after assembly in step 0 : 452.2023422718048
+greedy search candidates: [7045]
+greedy search, currently checking 128 to 192 out of 386
+greedy search, time after compilation in step 0 : 453.3746123313904
+greedy search, time after assembly in step 0 : 453.99309182167053
+greedy search candidates: [7045]
+greedy search, currently checking 192 to 256 out of 386
+greedy search, time after compilation in step 0 : 455.17024207115173
+greedy search, time after assembly in step 0 : 455.79028725624084
+greedy search candidates: [7045]
+greedy search, currently checking 256 to 320 out of 386
+greedy search, time after compilation in step 0 : 456.9606099128723
+greedy search, time after assembly in step 0 : 457.6658368110657
+greedy search candidates: [7045]
+greedy search, currently checking 320 to 384 out of 386
+greedy search, time after compilation in step 0 : 458.83671045303345
+greedy search, time after assembly in step 0 : 459.4991488456726
+greedy search candidates: [7045]
+greedy search, currently checking 384 to 386 out of 386
+greedy search, time after compilation in step 0 : 459.78442454338074
+greedy search, time after assembly in step 0 : 459.85616660118103
+greedy search candidates: [7045]
+Time after exploration of _Z9gen_quietP7state_tPi: 459.8597836494446
+==== Next function: _Z3genP7state_tPi
+greedy search, currently checking 0 to 64 out of 1018
+greedy search, time after compilation in step 0 : 461.0169734954834
+greedy search, time after assembly in step 0 : 461.63435101509094
+greedy search candidates: [7049, 7035, 7052, 7045]
+greedy search, new min: 7035
+greedy search, current list: [10]
+greedy search, time after step 0 : 461.8170828819275
+greedy search, currently checking 10 to 74 out of 1018
+greedy search, time after compilation in step 1 : 462.82362389564514
+greedy search, time after assembly in step 1 : 463.4976260662079
+greedy search candidates: [7025, 7042, 7035]
+greedy search, new min: 7025
+greedy search, current list: [10, 20]
+greedy search, time after step 1 : 463.6695477962494
+greedy search, currently checking 20 to 84 out of 1018
+greedy search, time after compilation in step 2 : 464.6582522392273
+greedy search, time after assembly in step 2 : 465.2802469730377
+greedy search candidates: [7032, 7025]
+greedy search, currently checking 84 to 148 out of 1018
+greedy search, time after compilation in step 2 : 466.46596002578735
+greedy search, time after assembly in step 2 : 467.08556151390076
+greedy search candidates: [7025]
+greedy search, currently checking 148 to 212 out of 1018
+greedy search, time after compilation in step 2 : 468.24843764305115
+greedy search, time after assembly in step 2 : 468.9327127933502
+greedy search candidates: [7025]
+greedy search, currently checking 212 to 276 out of 1018
+greedy search, time after compilation in step 2 : 470.1165683269501
+greedy search, time after assembly in step 2 : 470.73917841911316
+greedy search candidates: [7025]
+greedy search, currently checking 276 to 340 out of 1018
+greedy search, time after compilation in step 2 : 471.94919204711914
+greedy search, time after assembly in step 2 : 472.56495237350464
+greedy search candidates: [7025]
+greedy search, currently checking 340 to 404 out of 1018
+greedy search, time after compilation in step 2 : 473.7371509075165
+greedy search, time after assembly in step 2 : 474.4105911254883
+greedy search candidates: [7025]
+greedy search, currently checking 404 to 468 out of 1018
+greedy search, time after compilation in step 2 : 475.5700354576111
+greedy search, time after assembly in step 2 : 476.1859018802643
+greedy search candidates: [7025]
+greedy search, currently checking 468 to 532 out of 1018
+greedy search, time after compilation in step 2 : 477.36333751678467
+greedy search, time after assembly in step 2 : 477.98181343078613
+greedy search candidates: [7025]
+greedy search, currently checking 532 to 596 out of 1018
+greedy search, time after compilation in step 2 : 479.1626853942871
+greedy search, time after assembly in step 2 : 479.8212540149689
+greedy search candidates: [7025]
+greedy search, currently checking 596 to 660 out of 1018
+greedy search, time after compilation in step 2 : 480.941645860672
+greedy search, time after assembly in step 2 : 481.56200671195984
+greedy search candidates: [7025]
+greedy search, currently checking 660 to 724 out of 1018
+greedy search, time after compilation in step 2 : 482.746009349823
+greedy search, time after assembly in step 2 : 483.36810636520386
+greedy search candidates: [7025]
+greedy search, currently checking 724 to 788 out of 1018
+greedy search, time after compilation in step 2 : 484.5437135696411
+greedy search, time after assembly in step 2 : 485.20500683784485
+greedy search candidates: [7025]
+greedy search, currently checking 788 to 852 out of 1018
+greedy search, time after compilation in step 2 : 486.2973642349243
+greedy search, time after assembly in step 2 : 486.9404776096344
+greedy search candidates: [7025]
+greedy search, currently checking 852 to 916 out of 1018
+greedy search, time after compilation in step 2 : 488.119668006897
+greedy search, time after assembly in step 2 : 488.73960757255554
+greedy search candidates: [7025]
+greedy search, currently checking 916 to 980 out of 1018
+greedy search, time after compilation in step 2 : 489.9086067676544
+greedy search, time after assembly in step 2 : 490.5721228122711
+greedy search candidates: [7025]
+greedy search, currently checking 980 to 1018 out of 1018
+greedy search, time after compilation in step 2 : 491.33157777786255
+greedy search, time after assembly in step 2 : 491.7419431209564
+greedy search candidates: [7025]
+Time after exploration of _Z3genP7state_tPi: 491.8246521949768
+==== Next function: _Z16gen_check_blocksP7state_tPii
+greedy search, currently checking 0 to 64 out of 225
+greedy search, time after compilation in step 0 : 493.0017611980438
+greedy search, time after assembly in step 0 : 493.6255397796631
+greedy search candidates: [7045]
+greedy search, currently checking 64 to 128 out of 225
+greedy search, time after compilation in step 0 : 494.8061330318451
+greedy search, time after assembly in step 0 : 495.42275381088257
+greedy search candidates: [7045]
+greedy search, currently checking 128 to 192 out of 225
+greedy search, time after compilation in step 0 : 496.6720163822174
+greedy search, time after assembly in step 0 : 497.2916615009308
+greedy search candidates: [7045]
+greedy search, currently checking 192 to 225 out of 225
+greedy search, time after compilation in step 0 : 498.0601558685303
+greedy search, time after assembly in step 0 : 498.42904114723206
+greedy search candidates: [7045]
+Time after exploration of _Z16gen_check_blocksP7state_tPii: 498.47267270088196
+==== Next function: _Z12gen_capturesP7state_tPi
+greedy search, currently checking 0 to 64 out of 529
+greedy search, time after compilation in step 0 : 499.66232562065125
+greedy search, time after assembly in step 0 : 500.28335428237915
+greedy search candidates: [7034, 7045]
+greedy search, new min: 7034
+greedy search, current list: [5]
+greedy search, time after step 0 : 500.46059346199036
+greedy search, currently checking 5 to 69 out of 529
+greedy search, time after compilation in step 1 : 501.4731032848358
+greedy search, time after assembly in step 1 : 502.1641118526459
+greedy search candidates: [7034, 7023]
+greedy search, new min: 7023
+greedy search, current list: [5, 17]
+greedy search, time after step 1 : 502.3257269859314
+greedy search, currently checking 17 to 81 out of 529
+greedy search, time after compilation in step 2 : 503.3759968280792
+greedy search, time after assembly in step 2 : 504.0083336830139
+greedy search candidates: [7023]
+greedy search, currently checking 81 to 145 out of 529
+greedy search, time after compilation in step 2 : 505.1701772212982
+greedy search, time after assembly in step 2 : 505.7896132469177
+greedy search candidates: [7023]
+greedy search, currently checking 145 to 209 out of 529
+greedy search, time after compilation in step 2 : 506.96107721328735
+greedy search, time after assembly in step 2 : 507.6367609500885
+greedy search candidates: [7023]
+greedy search, currently checking 209 to 273 out of 529
+greedy search, time after compilation in step 2 : 508.8160946369171
+greedy search, time after assembly in step 2 : 509.43870544433594
+greedy search candidates: [7023]
+greedy search, currently checking 273 to 337 out of 529
+greedy search, time after compilation in step 2 : 510.63278913497925
+greedy search, time after assembly in step 2 : 511.2470922470093
+greedy search candidates: [7023]
+greedy search, currently checking 337 to 401 out of 529
+greedy search, time after compilation in step 2 : 512.4353091716766
+greedy search, time after assembly in step 2 : 513.0905911922455
+greedy search candidates: [7023]
+greedy search, currently checking 401 to 465 out of 529
+greedy search, time after compilation in step 2 : 514.1951773166656
+greedy search, time after assembly in step 2 : 514.8163912296295
+greedy search candidates: [7023]
+greedy search, currently checking 465 to 529 out of 529
+greedy search, time after compilation in step 2 : 515.9986448287964
+greedy search, time after assembly in step 2 : 516.6241402626038
+greedy search candidates: [7023]
+Time after exploration of _Z12gen_capturesP7state_tPi: 516.8049018383026
+==== Next function: _Z15gen_good_checksP7state_tPi
+greedy search, currently checking 0 to 64 out of 388
+greedy search, time after compilation in step 0 : 517.9785103797913
+greedy search, time after assembly in step 0 : 518.6632907390594
+greedy search candidates: [7045]
+greedy search, currently checking 64 to 128 out of 388
+greedy search, time after compilation in step 0 : 519.7997279167175
+greedy search, time after assembly in step 0 : 520.4198160171509
+greedy search candidates: [7045]
+greedy search, currently checking 128 to 192 out of 388
+greedy search, time after compilation in step 0 : 521.6098999977112
+greedy search, time after assembly in step 0 : 522.2307074069977
+greedy search candidates: [7045]
+greedy search, currently checking 192 to 256 out of 388
+greedy search, time after compilation in step 0 : 523.405189037323
+greedy search, time after assembly in step 0 : 524.0763919353485
+greedy search candidates: [7045]
+greedy search, currently checking 256 to 320 out of 388
+greedy search, time after compilation in step 0 : 525.1937589645386
+greedy search, time after assembly in step 0 : 525.8144800662994
+greedy search candidates: [7045]
+greedy search, currently checking 320 to 384 out of 388
+greedy search, time after compilation in step 0 : 527.0130722522736
+greedy search, time after assembly in step 0 : 527.6337146759033
+greedy search candidates: [7045]
+greedy search, currently checking 384 to 388 out of 388
+greedy search, time after compilation in step 0 : 527.9388465881348
+greedy search, time after assembly in step 0 : 528.0173318386078
+greedy search candidates: [7045]
+Time after exploration of _Z15gen_good_checksP7state_tPi: 528.0242159366608
+==== Next function: _Z12gen_evasionsP7state_tPii
+greedy search, currently checking 0 to 27 out of 27
+greedy search, time after compilation in step 0 : 528.6743142604828
+greedy search, time after assembly in step 0 : 528.9734904766083
+greedy search candidates: [7045]
+Time after exploration of _Z12gen_evasionsP7state_tPii: 529.0340073108673
+Time after exploration of 631/generate.bc: 529.0340209007263
+***** Next file: 631/preproc.bc
+==== Next function: _Z8psq_evalP7state_tP12t_eval_comps
+greedy search, currently checking 0 to 28 out of 28
+greedy search, time after compilation in step 0 : 529.1621310710907
+greedy search, time after assembly in step 0 : 529.2538340091705
+greedy search candidates: [3212]
+Time after exploration of _Z8psq_evalP7state_tP12t_eval_comps: 529.3029973506927
+==== Next function: _Z14init_psq_scoreP7state_t
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 529.3873488903046
+greedy search, time after assembly in step 0 : 529.4228003025055
+greedy search candidates: [3212]
+Time after exploration of _Z14init_psq_scoreP7state_t: 529.4323859214783
+==== Next function: _Z18preprocess_preparev
+greedy search, currently checking 0 to 6 out of 6
+greedy search, time after compilation in step 0 : 529.5108811855316
+greedy search, time after assembly in step 0 : 529.5432217121124
+greedy search candidates: [3212]
+Time after exploration of _Z18preprocess_preparev: 529.5535655021667
+Time after exploration of 631/preproc.bc: 529.5535726547241
+***** Next file: 631/utils.bc
+==== Next function: _Z9init_gameP11gamestate_tP7state_t
+greedy search, currently checking 0 to 64 out of 71
+greedy search, time after compilation in step 0 : 530.425628900528
+greedy search, time after assembly in step 0 : 531.1483373641968
+greedy search candidates: [10322, 10309, 10319]
+greedy search, new min: 10309
+greedy search, current list: [2]
+greedy search, time after step 0 : 531.3199577331543
+greedy search, currently checking 2 to 66 out of 71
+greedy search, time after compilation in step 1 : 532.0305185317993
+greedy search, time after assembly in step 1 : 532.7343163490295
+greedy search candidates: [10309]
+greedy search, currently checking 66 to 71 out of 71
+greedy search, time after compilation in step 1 : 533.0047945976257
+greedy search, time after assembly in step 1 : 533.1021509170532
+greedy search candidates: [10309]
+Time after exploration of _Z9init_gameP11gamestate_tP7state_t: 533.1110963821411
+==== Next function: _Z15make_text_movesP11gamestate_tP7state_tPc
+greedy search, currently checking 0 to 23 out of 23
+greedy search, time after compilation in step 0 : 533.5451838970184
+greedy search, time after assembly in step 0 : 533.8339600563049
+greedy search candidates: [10323, 10319]
+Time after exploration of _Z15make_text_movesP11gamestate_tP7state_tPc: 533.8874454498291
+==== Next function: _Z11comp_to_sanP7state_tiPc
+greedy search, currently checking 0 to 20 out of 20
+greedy search, time after compilation in step 0 : 534.3328449726105
+greedy search, time after assembly in step 0 : 534.5970942974091
+greedy search candidates: [10319]
+Time after exploration of _Z11comp_to_sanP7state_tiPc: 534.6249420642853
+==== Next function: _Z13display_boardP7state_ti
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 534.8581068515778
+greedy search, time after assembly in step 0 : 534.9542129039764
+greedy search candidates: [10319]
+Time after exploration of _Z13display_boardP7state_ti: 534.9595773220062
+==== Next function: _Z18reset_piece_squareP7state_t
+greedy search, currently checking 0 to 64 out of 92
+greedy search, time after compilation in step 0 : 535.8485667705536
+greedy search, time after assembly in step 0 : 536.5605754852295
+greedy search candidates: [10323, 10319]
+greedy search, currently checking 64 to 92 out of 92
+greedy search, time after compilation in step 0 : 537.0796222686768
+greedy search, time after assembly in step 0 : 537.4175295829773
+greedy search candidates: [10319]
+Time after exploration of _Z18reset_piece_squareP7state_t: 537.4773178100586
+==== Next function: _Z7is_movePc
+greedy search, currently checking 0 to 7 out of 7
+greedy search, time after compilation in step 0 : 537.7336235046387
+greedy search, time after assembly in step 0 : 537.8369784355164
+greedy search candidates: [10319]
+Time after exploration of _Z7is_movePc: 537.8488533496857
+==== Next function: _Z20extract_current_pathP7state_t
+greedy search, currently checking 0 to 21 out of 21
+greedy search, time after compilation in step 0 : 538.3017365932465
+greedy search, time after assembly in step 0 : 538.5849225521088
+greedy search candidates: [10319]
+Time after exploration of _Z20extract_current_pathP7state_t: 538.6127936840057
+==== Next function: _Z19extract_ponder_moveP7state_t
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 538.8438215255737
+greedy search, time after assembly in step 0 : 538.9298641681671
+greedy search candidates: [10325, 10319]
+Time after exploration of _Z19extract_ponder_moveP7state_t: 538.9332046508789
+==== Next function: _ZL15hash_extract_pvP7state_tiPc
+greedy search, currently checking 0 to 19 out of 19
+greedy search, time after compilation in step 0 : 539.3565926551819
+greedy search, time after assembly in step 0 : 539.6235129833221
+greedy search candidates: [10319]
+Time after exploration of _ZL15hash_extract_pvP7state_tiPc: 539.6494030952454
+==== Next function: _Z24extract_current_bestlineP7state_t
+greedy search, currently checking 0 to 1 out of 1
+greedy search, time after compilation in step 0 : 539.8904211521149
+greedy search, time after assembly in step 0 : 539.9758813381195
+greedy search candidates: [10319]
+Time after exploration of _Z24extract_current_bestlineP7state_t: 539.9778425693512
+==== Next function: _Z13post_thinkingP7state_tiiPci
+greedy search, currently checking 0 to 36 out of 36
+greedy search, time after compilation in step 0 : 540.5580358505249
+greedy search, time after assembly in step 0 : 541.0162682533264
+greedy search candidates: [10319]
+Time after exploration of _Z13post_thinkingP7state_tiiPci: 541.0785992145538
+==== Next function: _Z16post_fh_thinkingP7state_tiiPci
+greedy search, currently checking 0 to 18 out of 18
+greedy search, time after compilation in step 0 : 541.4924745559692
+greedy search, time after assembly in step 0 : 541.753026008606
+greedy search candidates: [10319]
+Time after exploration of _Z16post_fh_thinkingP7state_tiiPci: 541.7766783237457
+==== Next function: _Z16post_fl_thinkingP7state_tiiPci
+greedy search, currently checking 0 to 13 out of 13
+greedy search, time after compilation in step 0 : 542.0868117809296
+greedy search, time after assembly in step 0 : 542.2526829242706
+greedy search candidates: [10319]
+Time after exploration of _Z16post_fl_thinkingP7state_tiiPci: 542.2725632190704
+==== Next function: _ZL14resort_multipvv
+greedy search, currently checking 0 to 15 out of 15
+greedy search, time after compilation in step 0 : 542.611310005188
+greedy search, time after assembly in step 0 : 542.7880961894989
+greedy search candidates: [10319]
+Time after exploration of _ZL14resort_multipvv: 542.813777923584
+==== Next function: _Z21post_multipv_thinkingP7state_tiii
+greedy search, currently checking 0 to 64 out of 91
+greedy search, time after compilation in step 0 : 543.706063747406
+greedy search, time after assembly in step 0 : 544.4097580909729
+greedy search candidates: [10320, 10312, 10319]
+greedy search, new min: 10312
+greedy search, current list: [44]
+greedy search, time after step 0 : 544.5797276496887
+greedy search, currently checking 44 to 91 out of 91
+greedy search, time after compilation in step 1 : 545.1318871974945
+greedy search, time after assembly in step 1 : 545.6492915153503
+greedy search candidates: [10312]
+Time after exploration of _Z21post_multipv_thinkingP7state_tiii: 545.7764492034912
+==== Next function: _Z6rinputPciP8_IO_FILE
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 546.0224034786224
+greedy search, time after assembly in step 0 : 546.1181404590607
+greedy search candidates: [10319]
+Time after exploration of _Z6rinputPciP8_IO_FILE: 546.123349905014
+==== Next function: _Z12verify_coordP7state_tPcPi
+greedy search, currently checking 0 to 5 out of 5
+greedy search, time after compilation in step 0 : 546.3662624359131
+greedy search, time after assembly in step 0 : 546.4632933139801
+greedy search candidates: [10323, 10319]
+Time after exploration of _Z12verify_coordP7state_tPcPi: 546.4715704917908
+==== Next function: _Z17input_causes_stopv
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 546.7060964107513
+greedy search, time after assembly in step 0 : 546.7892062664032
+greedy search candidates: [10319]
+Time after exploration of _Z17input_causes_stopv: 546.7927839756012
+==== Next function: _Z11reset_boardP7state_t
+greedy search, currently checking 0 to 22 out of 22
+greedy search, time after compilation in step 0 : 547.2334053516388
+greedy search, time after assembly in step 0 : 547.5373733043671
+greedy search candidates: [10319]
+Time after exploration of _Z11reset_boardP7state_t: 547.5678548812866
+Time after exploration of 631/utils.bc: 547.5678625106812
+***** Next file: 631/moves.bc
+==== Next function: _Z11check_legalP7state_ti
+greedy search, currently checking 0 to 3 out of 3
+greedy search, time after compilation in step 0 : 547.6795670986176
+greedy search, time after assembly in step 0 : 547.7251868247986
+greedy search candidates: [1421]
+Time after exploration of _Z11check_legalP7state_ti: 547.7305343151093
+==== Next function: _Z20check_castle_blockerP7state_ti
+greedy search, currently checking 0 to 29 out of 29
+greedy search, time after compilation in step 0 : 547.9528512954712
+greedy search, time after assembly in step 0 : 548.1073467731476
+greedy search candidates: [1421]
+Time after exploration of _Z20check_castle_blockerP7state_ti: 548.168694972992
+Time after exploration of 631/moves.bc: 548.1687071323395
+***** Next file: 631/pawn.bc
+==== Next function: _ZL14full_pawn_evalP7state_tP8pawntt_t
+greedy search, currently checking 0 to 64 out of 639
+greedy search, time after compilation in step 0 : 548.9882380962372
+greedy search, time after assembly in step 0 : 549.3515985012054
+greedy search candidates: [3016]
+greedy search, currently checking 64 to 128 out of 639
+greedy search, time after compilation in step 0 : 550.2213611602783
+greedy search, time after assembly in step 0 : 550.5875110626221
+greedy search candidates: [3016, 3011]
+greedy search, new min: 3011
+greedy search, current list: [80]
+greedy search, time after step 0 : 550.7756097316742
+greedy search, currently checking 80 to 144 out of 639
+greedy search, time after compilation in step 1 : 551.4710586071014
+greedy search, time after assembly in step 1 : 551.8381624221802
+greedy search candidates: [3011, 3006]
+greedy search, new min: 3006
+greedy search, current list: [80, 81]
+greedy search, time after step 1 : 552.0195472240448
+greedy search, currently checking 81 to 145 out of 639
+greedy search, time after compilation in step 2 : 552.7156672477722
+greedy search, time after assembly in step 2 : 553.0822947025299
+greedy search candidates: [3001, 3006]
+greedy search, new min: 3001
+greedy search, current list: [80, 81, 82]
+greedy search, time after step 2 : 553.2671358585358
+greedy search, currently checking 82 to 146 out of 639
+greedy search, time after compilation in step 3 : 553.9942684173584
+greedy search, time after assembly in step 3 : 554.3539183139801
+greedy search candidates: [3001]
+greedy search, currently checking 146 to 210 out of 639
+greedy search, time after compilation in step 3 : 555.2212960720062
+greedy search, time after assembly in step 3 : 555.5851697921753
+greedy search candidates: [3001]
+greedy search, currently checking 210 to 274 out of 639
+greedy search, time after compilation in step 3 : 556.4714691638947
+greedy search, time after assembly in step 3 : 556.8348741531372
+greedy search candidates: [3001]
+greedy search, currently checking 274 to 338 out of 639
+greedy search, time after compilation in step 3 : 557.7097289562225
+greedy search, time after assembly in step 3 : 558.0742557048798
+greedy search candidates: [3001]
+greedy search, currently checking 338 to 402 out of 639
+greedy search, time after compilation in step 3 : 558.9965398311615
+greedy search, time after assembly in step 3 : 559.3543691635132
+greedy search candidates: [3001]
+greedy search, currently checking 402 to 466 out of 639
+greedy search, time after compilation in step 3 : 560.227123260498
+greedy search, time after assembly in step 3 : 560.5942091941833
+greedy search candidates: [3001]
+greedy search, currently checking 466 to 530 out of 639
+greedy search, time after compilation in step 3 : 561.4769802093506
+greedy search, time after assembly in step 3 : 561.8405170440674
+greedy search candidates: [3001]
+greedy search, currently checking 530 to 594 out of 639
+greedy search, time after compilation in step 3 : 562.7173013687134
+greedy search, time after assembly in step 3 : 563.083366394043
+greedy search candidates: [3001]
+greedy search, currently checking 594 to 639 out of 639
+greedy search, time after compilation in step 3 : 563.769036769867
+greedy search, time after assembly in step 3 : 564.0384411811829
+greedy search candidates: [3001]
+Time after exploration of _ZL14full_pawn_evalP7state_tP8pawntt_t: 564.1577703952789
+==== Next function: _Z16static_pawn_evalP7state_t
+greedy search, currently checking 0 to 64 out of 727
+greedy search, time after compilation in step 0 : 564.9722452163696
+greedy search, time after assembly in step 0 : 565.3393340110779
+greedy search candidates: [3016]
+greedy search, currently checking 64 to 128 out of 727
+greedy search, time after compilation in step 0 : 566.2127158641815
+greedy search, time after assembly in step 0 : 566.5735142230988
+greedy search candidates: [3016]
+greedy search, currently checking 128 to 192 out of 727
+greedy search, time after compilation in step 0 : 567.4545302391052
+greedy search, time after assembly in step 0 : 567.8221201896667
+greedy search candidates: [3016]
+greedy search, currently checking 192 to 256 out of 727
+greedy search, time after compilation in step 0 : 568.6957507133484
+greedy search, time after assembly in step 0 : 569.0892281532288
+greedy search candidates: [3016]
+greedy search, currently checking 256 to 320 out of 727
+greedy search, time after compilation in step 0 : 569.9056167602539
+greedy search, time after assembly in step 0 : 570.2816812992096
+greedy search candidates: [3016]
+greedy search, currently checking 320 to 384 out of 727
+greedy search, time after compilation in step 0 : 571.1465089321136
+greedy search, time after assembly in step 0 : 571.5106992721558
+greedy search candidates: [3016]
+greedy search, currently checking 384 to 448 out of 727
+greedy search, time after compilation in step 0 : 572.3918559551239
+greedy search, time after assembly in step 0 : 572.7615151405334
+greedy search candidates: [3016]
+greedy search, currently checking 448 to 512 out of 727
+greedy search, time after compilation in step 0 : 573.6563687324524
+greedy search, time after assembly in step 0 : 574.0211668014526
+greedy search candidates: [3016]
+greedy search, currently checking 512 to 576 out of 727
+greedy search, time after compilation in step 0 : 574.8863427639008
+greedy search, time after assembly in step 0 : 575.252165555954
+greedy search candidates: [3016]
+greedy search, currently checking 576 to 640 out of 727
+greedy search, time after compilation in step 0 : 576.1275336742401
+greedy search, time after assembly in step 0 : 576.4982936382294
+greedy search candidates: [3016]
+greedy search, currently checking 640 to 704 out of 727
+greedy search, time after compilation in step 0 : 577.3767893314362
+greedy search, time after assembly in step 0 : 577.7508640289307
+greedy search candidates: [3016]
+greedy search, currently checking 704 to 727 out of 727
+greedy search, time after compilation in step 0 : 578.1976189613342
+greedy search, time after assembly in step 0 : 578.3567671775818
+greedy search candidates: [3016]
+Time after exploration of _Z16static_pawn_evalP7state_t: 578.4093210697174
+Time after exploration of 631/pawn.bc: 578.409336566925
+***** Next file: 631/ttable.bc
+==== Next function: _Z18initialize_zobristP7state_t
+greedy search, currently checking 0 to 2 out of 2
+greedy search, time after compilation in step 0 : 578.5135517120361
+greedy search, time after assembly in step 0 : 578.5496339797974
+greedy search candidates: [1696]
+Time after exploration of _Z18initialize_zobristP7state_t: 578.5530996322632
+==== Next function: _Z15initialize_hashP7state_t
+greedy search, currently checking 0 to 10 out of 10
+greedy search, time after compilation in step 0 : 578.6951398849487
+greedy search, time after assembly in step 0 : 578.7537536621094
+greedy search candidates: [1696, 1692, 1720]
+greedy search, new min: 1692
+greedy search, current list: [3]
+greedy search, time after step 0 : 578.7689025402069
+greedy search, currently checking 3 to 10 out of 10
+greedy search, time after compilation in step 1 : 578.819319486618
+greedy search, time after assembly in step 1 : 578.8675835132599
+greedy search candidates: [1692]
+Time after exploration of _Z15initialize_hashP7state_t: 578.8785798549652
+==== Next function: _Z7StoreTTP7state_tiiijiiii
+greedy search, currently checking 0 to 64 out of 85
+greedy search, time after compilation in step 0 : 579.2495255470276
+greedy search, time after assembly in step 0 : 579.5018932819366
+greedy search candidates: [1696, 1699, 1692, 1702]
+greedy search, new min: 1692
+greedy search, current list: [1]
+greedy search, time after step 0 : 579.678190946579
+greedy search, currently checking 1 to 65 out of 85
+greedy search, time after compilation in step 1 : 579.9824545383453
+greedy search, time after assembly in step 1 : 580.2349581718445
+greedy search candidates: [1698, 1692]
+greedy search, currently checking 65 to 85 out of 85
+greedy search, time after compilation in step 1 : 580.5271680355072
+greedy search, time after assembly in step 1 : 580.630651473999
+greedy search candidates: [1692]
+Time after exploration of _Z7StoreTTP7state_tiiijiiii: 580.6587085723877
+==== Next function: _Z7ProbeTTP7state_tPiiiPjS1_S1_S1_S1_i
+greedy search, currently checking 0 to 64 out of 84
+greedy search, time after compilation in step 0 : 581.0221185684204
+greedy search, time after assembly in step 0 : 581.2831294536591
+greedy search candidates: [1696, 1701, 1693]
+greedy search, new min: 1693
+greedy search, current list: [1]
+greedy search, time after step 0 : 581.4492616653442
+greedy search, currently checking 1 to 65 out of 84
+greedy search, time after compilation in step 1 : 581.7659125328064
+greedy search, time after assembly in step 1 : 582.016818523407
+greedy search candidates: [1693]
+greedy search, currently checking 65 to 84 out of 84
+greedy search, time after compilation in step 1 : 582.3101899623871
+greedy search, time after assembly in step 1 : 582.4135274887085
+greedy search candidates: [1693]
+Time after exploration of _Z7ProbeTTP7state_tPiiiPjS1_S1_S1_S1_i: 582.4395847320557
+Time after exploration of 631/ttable.bc: 582.4395904541016
+***** Next file: 631/board.bc
+==== Next function: _Z11check_phaseP11gamestate_tP7state_t
+greedy search, currently checking 0 to 21 out of 21
+greedy search, time after compilation in step 0 : 582.5448877811432
+greedy search, time after assembly in step 0 : 582.6163802146912
+greedy search candidates: [575]
+Time after exploration of _Z11check_phaseP11gamestate_tP7state_t: 582.6471230983734
+Time after exploration of 631/board.bc: 582.6471304893494
+found results: {PosixPath('631/bits.bc'): {'_Z15FindFirstRemovePy': ([], 625)}, PosixPath('631/draw.bc'): {'_Z7is_drawP11gamestate_tP7state_t': ([4], 362), '_Z21insufficient_materialP7state_t': ([], 366)}, PosixPath('631/endgame.bc'): {'_Z14drawn_endgamesP7state_tiii': ([0], 3513)}, PosixPath('631/epd.bc'): {'_Z14setup_epd_lineP11gamestate_tP7state_tPKc': ([], 3235), '_Z17run_epd_testsuiteP11gamestate_tP7state_tPKc': ([], 3235), '_Z14check_solutionP7state_tPci': ([], 3235), '_Z15position_to_fenP7state_tPc': ([2], 3230)}, PosixPath('631/neval.bc'): {'_Z4evalP7state_tiii': ([], 6212), '_ZL13mobility_evalP7state_tP12t_eval_compsP12attackinfo_t': ([], 6212), '_ZL15kingsafety_evalP7state_tP8pawntt_tP12t_eval_comps': ([], 6212), '_ZL17kingpressure_evalP7state_tP12attackinfo_tP12t_eval_comps': ([], 6212), '_ZL11passer_evalP7state_tP8pawntt_tiP12t_eval_comps': ([], 6212), '_ZL15positional_evalP7state_tP8pawntt_tP12t_eval_comps': ([], 6212), '_ZL12trapped_evalP7state_tP12t_eval_comps': ([], 6212), '_Z5fevalP7state_tiP12t_eval_comps': ([421], 6205), '_ZL16opposite_bishopsP7state_tiii': ([], 6212), '_Z13retrieve_evalP7state_t': ([], 6212)}, PosixPath('631/bitboard.bc'): {'_Z22SetupPrecalculatedDatav': ([8, 13, 20, 25, 26, 27, 28, 639, 640, 817, 850, 3388, 3390, 3391, 3392], 4840), '_Z16SetupCastleMasksP7state_t': ([], 4953), '_Z15DiagonalAttacksyj': ([], 4953), '_Z15AntiDiagAttacksyj': ([], 4953), '_Z13BishopAttacksP7state_ti': ([], 4953)}, PosixPath('631/initp.bc'): {'_Z15init_parametersP11gamestate_t': ([], 205)}, PosixPath('631/see.bc'): {'_Z3seeP7state_tiiii': ([287], 860)}, PosixPath('631/sjeng.bc'): {}, PosixPath('631/make.bc'): {'_Z4makeP7state_ti': ([0, 77], 2927), '_Z6unmakeP7state_ti': ([], 3009)}, PosixPath('631/search.bc'): {'_Z6searchP7state_tiiiii': ([18, 25, 32], 16002), '_ZL12history_goodP7state_tii': ([], 16090), '_Z11search_rootP7state_tiii': ([14, 119], 15972), '_ZL17search_time_checkP7state_t': ([], 16090), '_ZL16fast_order_movesP7state_tPiS1_ij': ([], 16090), '_ZL15remove_one_fastPiS_S_i': ([], 16090), '_ZL15history_pre_cutP7state_tii': ([], 16090), '_Z7qsearchP7state_tiiii': ([4], 16061), '_ZL12make_blunderP7state_tiPii': ([], 16090), '_ZL11order_movesP7state_tPiS1_ij': ([], 16090), '_ZL13history_scoreP7state_ti': ([], 16090), '_ZL11history_badP7state_tii': ([], 16090), '_Z21reset_search_countersP7state_t': ([], 16090), '_Z5thinkP11gamestate_tP7state_t': ([], 16090)}, PosixPath('631/state.bc'): {}, PosixPath('631/attacks.bc'): {'_Z11is_attackedP7state_tii': ([], 1127), '_Z8in_checkP7state_t': ([], 1127), '_Z10attacks_toP7state_ti': ([], 1127)}, PosixPath('631/generate.bc'): {'_Z9gen_quietP7state_tPi': ([], 7045), '_Z3genP7state_tPi': ([10, 20], 7025), '_Z16gen_check_blocksP7state_tPii': ([], 7045), '_Z12gen_capturesP7state_tPi': ([5, 17], 7023), '_Z15gen_good_checksP7state_tPi': ([], 7045), '_Z12gen_evasionsP7state_tPii': ([], 7045)}, PosixPath('631/preproc.bc'): {'_Z8psq_evalP7state_tP12t_eval_comps': ([], 3212), '_Z14init_psq_scoreP7state_t': ([], 3212), '_Z18preprocess_preparev': ([], 3212)}, PosixPath('631/utils.bc'): {'_Z9init_gameP11gamestate_tP7state_t': ([2], 10309), '_Z15make_text_movesP11gamestate_tP7state_tPc': ([], 10319), '_Z11comp_to_sanP7state_tiPc': ([], 10319), '_Z13display_boardP7state_ti': ([], 10319), '_Z18reset_piece_squareP7state_t': ([], 10319), '_Z7is_movePc': ([], 10319), '_Z20extract_current_pathP7state_t': ([], 10319), '_Z19extract_ponder_moveP7state_t': ([], 10319), '_ZL15hash_extract_pvP7state_tiPc': ([], 10319), '_Z24extract_current_bestlineP7state_t': ([], 10319), '_Z13post_thinkingP7state_tiiPci': ([], 10319), '_Z16post_fh_thinkingP7state_tiiPci': ([], 10319), '_Z16post_fl_thinkingP7state_tiiPci': ([], 10319), '_ZL14resort_multipvv': ([], 10319), '_Z21post_multipv_thinkingP7state_tiii': ([44], 10312), '_Z6rinputPciP8_IO_FILE': ([], 10319), '_Z12verify_coordP7state_tPcPi': ([], 10319), '_Z17input_causes_stopv': ([], 10319), '_Z11reset_boardP7state_t': ([], 10319)}, PosixPath('631/moves.bc'): {'_Z11check_legalP7state_ti': ([], 1421), '_Z20check_castle_blockerP7state_ti': ([], 1421)}, PosixPath('631/pawn.bc'): {'_ZL14full_pawn_evalP7state_tP8pawntt_t': ([80, 81, 82], 3001), '_Z16static_pawn_evalP7state_t': ([], 3016)}, PosixPath('631/ttable.bc'): {'_Z18initialize_zobristP7state_t': ([], 1696), '_Z15initialize_hashP7state_t': ([3], 1692), '_Z7StoreTTP7state_tiiijiiii': ([1], 1692), '_Z7ProbeTTP7state_tPiiiPjS1_S1_S1_S1_i': ([1], 1693)}, PosixPath('631/board.bc'): {'_Z11check_phaseP11gamestate_tP7state_t': ([], 575)}}
+time after exploration: 582.6472215652466
+Time after std exploration: 584.3047347068787
+631/bits.bc: 625 vs 625
+631/draw.bc: 362 vs 366
+631/endgame.bc: 3513 vs 3530
+631/epd.bc: 3230 vs 3235
+631/neval.bc: 6205 vs 6212
+631/bitboard.bc: 4840 vs 4953
+631/initp.bc: 205 vs 205
+631/see.bc: 860 vs 893
+631/sjeng.bc: 466 vs 466
+631/make.bc: 2927 vs 3009
+631/search.bc: 15855 vs 16090
+631/state.bc: 0 vs 0
+631/attacks.bc: 1127 vs 1127
+631/generate.bc: 7003 vs 7045
+631/preproc.bc: 3212 vs 3212
+631/utils.bc: 10302 vs 10319
+631/moves.bc: 1421 vs 1421
+631/pawn.bc: 3001 vs 3016
+631/ttable.bc: 1685 vs 1696
+631/board.bc: 575 vs 575
+Time after after composition: 585.1803572177887
+result: 70812 vs 71400
+meaning a 0.823529411764706% improvement
+Total Time: 585.184282541275

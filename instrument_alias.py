@@ -101,7 +101,7 @@ class InstrumentAlias:
             + "-"
             + "-".join([str(i) for i in index_list]),
         ] + (["--take_may"] if take_may else [])
-        print(" ".join(cmd))
+        # print(" ".join(cmd))
         run(
             cmd,
             cwd=self.exec_root,
@@ -243,7 +243,7 @@ class InstrumentAlias:
 
         iteration_count = 0
 
-        proc_count = 256
+        proc_count = 64
         curr_fixed = 0
         while True:
             counts = []
@@ -773,7 +773,7 @@ class AAChecker:
         print("sizes: " + str(sizes))
         print(initial_size)
         # compare sizes
-        return any([self.size_diff + size == initial_size for size in sizes])
+        return any([self.size_diff <= initial_size - size for size in sizes])
 
 
 if __name__ == "__main__":

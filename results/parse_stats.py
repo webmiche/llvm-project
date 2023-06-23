@@ -207,7 +207,7 @@ benchmarks = [
 
 opt_flag = "Oz"
 if __name__ == "__main__":
-    curr_folder = Path("results/epyc-traces/" + opt_flag + "/0/")
+    curr_folder = Path("results/local-traces/" + opt_flag + "/0/")
     stat_folder = Path("results/stats/" + opt_flag + "/")
     for benchmark in benchmarks:
         initial_file = curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
