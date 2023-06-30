@@ -169,6 +169,14 @@ def parse_total_sizes(file_name: str):
                 )
 
 
+def parse_counts_dict(file_name: str):
+    with open(file_name, "r") as f:
+        for line in f.readlines():
+            if line.startswith("counts per function per file: "):
+                dict_line = line.split("counts per function per file: ")[1].strip()
+                return ast.literal_eval(dict_line)
+
+
 def print_relevant_size_stats(benchmark: str):
     size_dict = parse_sizes(
         "results/stats/" + opt_flag + "/stats_" + benchmark + ".txt"
@@ -187,9 +195,8 @@ def print_relevant_size_stats(benchmark: str):
         + str((old_size - new_size) / old_size)
     )
 
-    # difference_dict = {}
-    # for f in size_dict:
-    #    difference_dict[f] = size_dict[f][1] - size_dict[f][0]
+    possible_reduction = sum([size_dict[f][1] - size_dict[f][0] for f in size_dict])
+    print("Possible reduction: " + str(possible_reduction))
 
     # relevant_size_dict = {}
     # for f in difference_dict:
@@ -198,6 +205,98 @@ def print_relevant_size_stats(benchmark: str):
 
     # for f in sorted(relevant_size_dict, key=lambda x: relevant_size_dict[x]):
     #    print(f + ": " + str(relevant_size_dict[f]))
+
+
+def print_influence_small_func(benchmark: str, threshold=10):
+    query_dict, counts_dict = parse_stats(
+        "results/stats/" + opt_flag + "/stats_" + benchmark + ".txt"
+    )
+    size_dict = parse_change_dict(
+        "results/stats/" + opt_flag + "/stats_" + benchmark + ".txt"
+    )
+
+    size_dict = {f: sum([x[0] for x in size_dict[f]]) for f in size_dict}
+    query_and_size_per_function = {}
+    func_count = {}
+    for f in counts_dict:
+        for func in counts_dict[f]:
+            size_diff = size_dict.get(func, 0)
+            queries = counts_dict[f][func]
+            query_and_size_per_function[func + "_" + str(func_count.get(func, 0))] = (
+                queries,
+                size_diff,
+            )
+            func_count[func] = func_count.get(func, 0) + 1
+
+    print("Total functions: " + str(len(query_and_size_per_function)))
+    smaller_functions = {
+        f: query_and_size_per_function[f]
+        for f in query_and_size_per_function
+        if query_and_size_per_function[f][0] <= threshold
+    }
+    print(
+        "Functions with less than "
+        + str(threshold)
+        + " queries: "
+        + str(len(smaller_functions))
+    )
+    print("Possible reduction: " + str(sum([x[1] for x in smaller_functions.values()])))
+
+
+def plot_query_distribution(benchmarks: list):
+    functions = {}
+    func_count = {}
+    for benchmark in benchmarks:
+        query_dict, counts_dict = parse_stats(
+            "results/stats/" + opt_flag + "/stats_" + benchmark + ".txt"
+        )
+        for file in counts_dict:
+            for func in counts_dict[file]:
+                if not func in functions:
+                    functions[func] = counts_dict[file][func]
+                    continue
+                functions[func + "_" + str(func_count.get(func, 0))] = counts_dict[
+                    file
+                ][func]
+                func_count[func] = func_count.get(func, 0) + 1
+
+    print("Total functions: " + str(len(functions)))
+
+    count_smaller_queries = len([x for x in functions.values() if x <= 10])
+    print(
+        "Less than 10 queries: "
+        + str(count_smaller_queries)
+        + " meaning "
+        + str(count_smaller_queries / len(functions))
+        + " of all functions"
+    )
+
+    plt.figure(figsize=(10, 10))
+    plt.xscale(value="log")
+    values = list(functions.values())
+    logbins = np.geomspace(min(values), max(values), 100)
+    plt.hist(
+        list(functions.values()),
+        bins=logbins,
+        color=light_blue,
+        edgecolor=black,
+        linewidth=1.2,
+    )
+
+    # draw a vertical line at the several percentiles
+    for i in [70, 90, 95]:
+        plt.axvline(
+            x=np.percentile(values, i),
+            color=dark_blue,
+            linestyle="dashed",
+            linewidth=1.2,
+        )
+
+    plt.xlabel("Number of queries")
+    plt.ylabel("Number of functions")
+    plt.title("Distribution of queries per function")
+
+    plt.show()
 
 
 benchmarks = [
@@ -220,8 +319,11 @@ if __name__ == "__main__":
         try:
             print_relevant_size_stats(benchmark)
             print_relevant_query_stats(benchmark)
-            print_biggest_change(benchmark)
-            print_biggest_first_change(benchmark)
+            print_influence_small_func(benchmark, 20)
+            # print_biggest_change(benchmark)
+            # print_biggest_first_change(benchmark)
         except Exception as e:
             print(e)
             continue
+
+    # plot_query_distribution(benchmarks)
