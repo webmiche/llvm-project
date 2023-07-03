@@ -380,16 +380,9 @@ class InstrumentAlias:
 
         return counts
 
-    def exploration(
-        self,
-        files: list[Path],
-        take_may: bool,
-    ):
-        description: Path = Path("may") if take_may else Path("std")
-        os.mkdir(Path("alias_queries/").joinpath(description))
-        os.mkdir(Path("res/").joinpath(description))
-
-        print("Track AA Queries " + str(description))
+    def get_aa_count_per_file(
+        self, take_may: bool, description: str, files: list[str]
+    ) -> dict:
         with Pool() as p:
             p.starmap(self.get_func_names, [(f, take_may, description) for f in files])
 
@@ -401,6 +394,59 @@ class InstrumentAlias:
             )
             curr_counts = self.get_count(filename, f)
             count_per_file[f] = curr_counts
+
+        return count_per_file
+
+    def get_aa_per_pass(self):
+        self.generate_baseline()
+
+        files = [
+            Path(os.path.join(dirpath.removeprefix(str(self.initial_dir) + "/"), f))
+            for (dirpath, dirnames, filenames) in os.walk(
+                self.initial_dir.joinpath(self.benchmark)
+            )
+            for f in filenames
+        ]
+
+        aa_per_pass_per_func_per_file = {}
+
+        for file_name in files:
+            counts: dict[str, int] = {}
+
+            aa_counts = self.get_aa_count_per_pass(
+                self.initial_dir.joinpath(file_name),
+            )
+            aa_counts = {k: v for k, v in aa_counts.items() if v != 0}
+            aa_per_pass_per_func_per_file[str(file_name)] = aa_counts
+
+        return aa_per_pass_per_func_per_file
+
+    def get_aa_count_per_pass(self, file_name) -> dict:
+        cmd = [
+            str(self.instr_path.joinpath("opt")),
+            str(file_name),
+            "--disable-output",
+            "--print-aa-per-func",
+            "--print-changed",
+            "--print-module-scope",
+            "-" + self.opt_flag,
+            "--ir-dump=" + "tmp_trace15.txt",
+        ]
+        p = run(cmd)
+        aa, _, _ = self.parse_trace("tmp_trace15.txt")
+        return aa
+
+    def exploration(
+        self,
+        files: list[Path],
+        take_may: bool,
+    ):
+        description: Path = Path("may") if take_may else Path("std")
+        os.mkdir(Path("alias_queries/").joinpath(description))
+        os.mkdir(Path("res/").joinpath(description))
+
+        print("Track AA Queries " + str(description))
+        count_per_file = self.get_aa_count_per_file(take_may, description, files)
 
         print("counts per function per file: " + str(count_per_file))
         print("Time after AA Query measurement: " + str(time.time() - self.start_time))
@@ -659,7 +705,7 @@ class InstrumentAlias:
 
     def parse_trace(self, trace_file):
         curr_pass = ""
-        aa_count = 0
+        aa_count_per_func = {}
         aa_per_pass = {}
         pass_list = []
         pass_count = {}
@@ -686,14 +732,17 @@ class InstrumentAlias:
                     trim_line = trim_line.removesuffix(" ignored ")
                     curr_pass = trim_line
                     curr_pass_key = curr_pass + "_" + str(pass_count.get(curr_pass, 0))
-                    aa_per_pass[curr_pass_key] = aa_count
+                    for k in aa_count_per_func.keys():
+                        aa_per_pass[curr_pass_key + "_" + k] = aa_count_per_func[k]
+                        aa_count_per_func[k] = 0
                     pass_count[curr_pass] = pass_count.get(curr_pass, 0) + 1
                     aa_count = 0
                     pass_list.append(curr_pass_key)
                     continue
 
                 if line.startswith("==== "):
-                    aa_count += 1
+                    aa_func = line.split(" ")[1]
+                    aa_count_per_func[aa_func] = aa_count_per_func.get(aa_func, 0) + 1
                     continue
 
                 curr_ir += line
@@ -900,6 +949,14 @@ if __name__ == "__main__":
         default=False,
     )
 
+    arg_parser.add_argument(
+        "--aa_per_pass",
+        type=bool,
+        nargs="?",
+        help="get aa per pass",
+        default=False,
+    )
+
     args = arg_parser.parse_args()
     p = run(["git", "rev-parse", "HEAD"], cwd=args.exec_root, stdout=PIPE)
 
@@ -949,6 +1006,24 @@ if __name__ == "__main__":
     allowed_benchmarks = ["605", "619", "631", "641"]
     if args.benchmark == "all":
         for i in benchmarks:
+            if args.aa_per_pass:
+                print(i)
+                print(
+                    InstrumentAlias(
+                        Path(args.instr_path),
+                        Path(args.exec_root),
+                        Path(args.specbuild_dir),
+                        Path(i),
+                        Path(initial_dir),
+                        Path(groundtruth_dir),
+                        Path(default_may_truth),
+                        Path(instr_dir),
+                        time.time(),
+                        {},
+                        "Oz",
+                    ).get_aa_per_pass()
+                )
+                continue
             sys.stdout = open("gen_res_" + i + "_first_strat.txt", "w")
             print("=============== running benchmark " + i + " ===============")
             print(p.stdout.decode("utf-8"))

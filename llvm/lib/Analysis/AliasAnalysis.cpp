@@ -213,18 +213,18 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
   }
 
   if (print_aliases) {
-    assert(AAFunction != "");
 
     std::string func_name = F1->getName().str();
-    if (func_name != AAFunction) {
+    if (Result == AliasResult::MayAlias) {
+      return default_res;
+    }
+
+    if (AAFunction != "" && func_name != AAFunction) {
       decisionCache[pr] = true;
       return default_res;
     }
 
-    if (Result == AliasResult::MayAlias) {
-      return default_res;
-    }
-    llvm::my_out() << "==== " << Result << "\n";
+    llvm::my_out() << "==== " << func_name << " " << Result << "\n";
 
     decisionCache[pr] = true;
     return default_res;
