@@ -50,7 +50,7 @@ cl::opt<bool> PreservedCFGCheckerInstrumentation::VerifyPreservedCFG(
 #else
     cl::init(true)
 #endif
-    );
+);
 
 // An option that supports the -print-changed option.  See
 // the description for -print-changed for an explanation of the use
@@ -294,10 +294,7 @@ const Module *getModuleForComparison(Any IR) {
   if (const auto **M = any_cast<const Module *>(&IR))
     return *M;
   if (const auto **C = any_cast<const LazyCallGraph::SCC *>(&IR))
-    return (*C)
-        ->begin()
-        ->getFunction()
-        .getParent();
+    return (*C)->begin()->getFunction().getParent();
   return nullptr;
 }
 
@@ -404,9 +401,18 @@ void ChangeReporter<T>::registerRequiredCallbacks(
       });
 }
 
+static cl::opt<std::string> IR_dump_file("ir-dump", cl::init("-"));
+
+raw_ostream &llvm::my_out() {
+  std::error_code EC;
+  static llvm::raw_fd_ostream Out(IR_dump_file, EC);
+  assert(!EC && "Unable to stream to file.");
+  return Out;
+}
+
 template <typename T>
 TextChangeReporter<T>::TextChangeReporter(bool Verbose)
-    : ChangeReporter<T>(Verbose), Out(dbgs()) {}
+    : ChangeReporter<T>(Verbose), Out(my_out()) {}
 
 template <typename T> void TextChangeReporter<T>::handleInitialIR(Any IR) {
   // Always print the module.
@@ -865,29 +871,29 @@ void PrintPassInstrumentation::registerCallbacks(
 
     print() << "Skipping pass: " << PassID << " on " << getIRName(IR) << "\n";
   });
-  PIC.registerBeforeNonSkippedPassCallback([this, SpecialPasses](
-                                               StringRef PassID, Any IR) {
-    if (isSpecialPass(PassID, SpecialPasses))
-      return;
+  PIC.registerBeforeNonSkippedPassCallback(
+      [this, SpecialPasses](StringRef PassID, Any IR) {
+        if (isSpecialPass(PassID, SpecialPasses))
+          return;
 
-    auto &OS = print();
-    OS << "Running pass: " << PassID << " on " << getIRName(IR);
-    if (const auto **F = any_cast<const Function *>(&IR)) {
-      unsigned Count = (*F)->getInstructionCount();
-      OS << " (" << Count << " instruction";
-      if (Count != 1)
-        OS << 's';
-      OS << ')';
-    } else if (const auto **C = any_cast<const LazyCallGraph::SCC *>(&IR)) {
-      int Count = (*C)->size();
-      OS << " (" << Count << " node";
-      if (Count != 1)
-        OS << 's';
-      OS << ')';
-    }
-    OS << "\n";
-    Indent += 2;
-  });
+        auto &OS = print();
+        OS << "Running pass: " << PassID << " on " << getIRName(IR);
+        if (const auto **F = any_cast<const Function *>(&IR)) {
+          unsigned Count = (*F)->getInstructionCount();
+          OS << " (" << Count << " instruction";
+          if (Count != 1)
+            OS << 's';
+          OS << ')';
+        } else if (const auto **C = any_cast<const LazyCallGraph::SCC *>(&IR)) {
+          int Count = (*C)->size();
+          OS << " (" << Count << " node";
+          if (Count != 1)
+            OS << 's';
+          OS << ')';
+        }
+        OS << "\n";
+        Indent += 2;
+      });
   PIC.registerAfterPassCallback(
       [this, SpecialPasses](StringRef PassID, Any IR,
                             const PreservedAnalyses &) {
@@ -1077,19 +1083,18 @@ void PreservedCFGCheckerInstrumentation::registerCallbacks(
     report_fatal_error(Twine("CFG unexpectedly changed by ", Pass));
   };
 
-  PIC.registerBeforeNonSkippedPassCallback(
-      [this, &FAM](StringRef P, Any IR) {
+  PIC.registerBeforeNonSkippedPassCallback([this, &FAM](StringRef P, Any IR) {
 #ifdef LLVM_ENABLE_ABI_BREAKING_CHECKS
-        assert(&PassStack.emplace_back(P));
+    assert(&PassStack.emplace_back(P));
 #endif
-        (void)this;
-        const auto **F = any_cast<const Function *>(&IR);
-        if (!F)
-          return;
+    (void)this;
+    const auto **F = any_cast<const Function *>(&IR);
+    if (!F)
+      return;
 
-        // Make sure a fresh CFG snapshot is available before the pass.
-        FAM.getResult<PreservedCFGCheckerAnalysis>(*const_cast<Function *>(*F));
-      });
+    // Make sure a fresh CFG snapshot is available before the pass.
+    FAM.getResult<PreservedCFGCheckerAnalysis>(*const_cast<Function *>(*F));
+  });
 
   PIC.registerAfterPassInvalidatedCallback(
       [this](StringRef P, const PreservedAnalyses &PassPA) {
@@ -1164,16 +1169,14 @@ void VerifyInstrumentation::registerCallbacks(
 
 InLineChangePrinter::~InLineChangePrinter() = default;
 
-void InLineChangePrinter::generateIRRepresentation(Any IR,
-                                                   StringRef PassID,
+void InLineChangePrinter::generateIRRepresentation(Any IR, StringRef PassID,
                                                    IRDataT<EmptyData> &D) {
   IRComparer<EmptyData>::analyzeIR(IR, D);
 }
 
 void InLineChangePrinter::handleAfter(StringRef PassID, std::string &Name,
                                       const IRDataT<EmptyData> &Before,
-                                      const IRDataT<EmptyData> &After,
-                                      Any IR) {
+                                      const IRDataT<EmptyData> &After, Any IR) {
   SmallString<20> Banner =
       formatv("*** IR Dump After {0} on {1} ***\n", PassID, Name);
   Out << Banner;
@@ -2075,7 +2078,7 @@ DotCfgChangeReporter::~DotCfgChangeReporter() {
 void DotCfgChangeReporter::registerCallbacks(
     PassInstrumentationCallbacks &PIC) {
   if (PrintChanged == ChangePrinter::DotCfgVerbose ||
-       PrintChanged == ChangePrinter::DotCfgQuiet) {
+      PrintChanged == ChangePrinter::DotCfgQuiet) {
     SmallString<128> OutputDir;
     sys::fs::expand_tilde(DotCfgDir, OutputDir);
     sys::fs::make_absolute(OutputDir);
@@ -2092,8 +2095,7 @@ void DotCfgChangeReporter::registerCallbacks(
 StandardInstrumentations::StandardInstrumentations(
     LLVMContext &Context, bool DebugLogging, bool VerifyEach,
     PrintPassOptions PrintPassOpts)
-    : PrintPass(DebugLogging, PrintPassOpts),
-      OptNone(DebugLogging),
+    : PrintPass(DebugLogging, PrintPassOpts), OptNone(DebugLogging),
       OptPassGate(Context),
       PrintChangedIR(PrintChanged == ChangePrinter::Verbose),
       PrintChangedDiff(PrintChanged == ChangePrinter::DiffVerbose ||
@@ -2134,19 +2136,19 @@ void PrintCrashIRInstrumentation::registerCallbacks(
   sys::AddSignalHandler(SignalHandler, nullptr);
   CrashReporter = this;
 
-  PIC.registerBeforeNonSkippedPassCallback([&PIC, this](StringRef PassID,
-                                                        Any IR) {
-    SavedIR.clear();
-    raw_string_ostream OS(SavedIR);
-    OS << formatv("*** Dump of {0}IR Before Last Pass {1}",
-                  llvm::forcePrintModuleIR() ? "Module " : "", PassID);
-    if (!isInteresting(IR, PassID, PIC.getPassNameForClassName(PassID))) {
-      OS << " Filtered Out ***\n";
-      return;
-    }
-    OS << " Started ***\n";
-    unwrapAndPrint(OS, IR);
-  });
+  PIC.registerBeforeNonSkippedPassCallback(
+      [&PIC, this](StringRef PassID, Any IR) {
+        SavedIR.clear();
+        raw_string_ostream OS(SavedIR);
+        OS << formatv("*** Dump of {0}IR Before Last Pass {1}",
+                      llvm::forcePrintModuleIR() ? "Module " : "", PassID);
+        if (!isInteresting(IR, PassID, PIC.getPassNameForClassName(PassID))) {
+          OS << " Filtered Out ***\n";
+          return;
+        }
+        OS << " Started ***\n";
+        unwrapAndPrint(OS, IR);
+      });
 }
 
 void StandardInstrumentations::registerCallbacks(

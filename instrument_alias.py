@@ -101,7 +101,6 @@ class InstrumentAlias:
             + "-"
             + "-".join([str(i) for i in index_list]),
         ] + (["--take_may"] if take_may else [])
-        # print(" ".join(cmd))
         run(
             cmd,
             cwd=self.exec_root,
@@ -339,7 +338,7 @@ class InstrumentAlias:
 
         return curr_list, min_count
 
-    def oneexplore(self, f: Path, take_may: bool, description: str):
+    def get_func_names(self, f: Path, take_may: bool, description: str) -> list[str]:
         os.makedirs(
             self.default_may_truth.joinpath(description, f).parent, exist_ok=True
         )
@@ -351,25 +350,33 @@ class InstrumentAlias:
             str(self.initial_dir.joinpath(f)),
             "-o",
             str(self.default_may_truth.joinpath(description, f)),
-            "--ofile",
+            "--print-aa-func-names",
+            "--ir-dump",
             str(Path("alias_queries/").joinpath(description, f.with_suffix(".txt"))),
             "-" + self.opt_flag,
         ] + (["--take_may"] if take_may else [])
         run(cmd, cwd=self.exec_root)
 
-    def get_count(self, file_name: Path) -> dict[str, int]:
+    def get_count(
+        self, text_file_name: Path, compile_file_name: Path
+    ) -> dict[str, int]:
         try:
-            f = open(file_name, "r")
+            f = open(text_file_name, "r")
         except FileNotFoundError:
             return {}
         counts: dict[str, int] = {}
 
-        for line in [l.strip() for l in f.readlines()]:
-            curr_line = line.split(" ")[0]
-            if curr_line in counts:
-                counts[curr_line] = counts[curr_line] + 1
-            else:
-                counts[curr_line] = 1
+        for line in f.readlines():
+            cmd = [
+                str(self.instr_path.joinpath("opt")),
+                "--disable-output",
+                "--print-aa-per-func",
+                "-" + self.opt_flag,
+                str(self.initial_dir.joinpath(compile_file_name)),
+                "--aafunc=" + line.strip(),
+            ]
+            p = run(cmd, stdout=PIPE, stderr=PIPE, text=True)
+            counts[line.strip()] = len(p.stdout.split("\n")) - 1
 
         return counts
 
@@ -384,7 +391,7 @@ class InstrumentAlias:
 
         print("Track AA Queries " + str(description))
         with Pool() as p:
-            p.starmap(self.oneexplore, [(f, take_may, description) for f in files])
+            p.starmap(self.get_func_names, [(f, take_may, description) for f in files])
 
         count_per_file = {}
 
@@ -392,7 +399,7 @@ class InstrumentAlias:
             filename = self.exec_root.joinpath(
                 Path("alias_queries/"), description, f.with_suffix(".txt")
             )
-            curr_counts = self.get_count(filename)
+            curr_counts = self.get_count(filename, f)
             count_per_file[f] = curr_counts
 
         print("counts per function per file: " + str(count_per_file))
@@ -459,9 +466,7 @@ class InstrumentAlias:
                 self.exec_root.joinpath(Path("res/"), description, file_name)
             )
 
-    def exploration_driver(
-        self,
-    ):
+    def generate_baseline(self):
         run(
             [
                 "./spec",
@@ -484,6 +489,11 @@ class InstrumentAlias:
             ],
             cwd=self.specbuild_dir,
         )
+
+    def exploration_driver(
+        self,
+    ):
+        self.generate_baseline()
 
         files = [
             Path(os.path.join(dirpath.removeprefix(str(self.initial_dir) + "/"), f))
@@ -646,6 +656,49 @@ class InstrumentAlias:
         # p = run(" ".join(cmd), cwd=exec_root, shell=True)
 
         # print(p.returncode)
+
+    def parse_trace(self, trace_file):
+        curr_pass = ""
+        aa_count = 0
+        aa_per_pass = {}
+        pass_list = []
+        pass_count = {}
+        ir_per_pass = {}
+        curr_ir = ""
+        with open(trace_file, "r") as f:
+            for line in f.readlines():
+                if line == "*** IR Dump At Start ***\n":
+                    continue
+                if line.startswith("*** "):
+                    if curr_ir != "":
+                        if curr_pass == "":
+                            curr_ir = ""
+                        else:
+                            ir_per_pass[
+                                curr_pass + "_" + str(pass_count[curr_pass] - 1)
+                            ] = curr_ir
+                            curr_ir = ""
+
+                    trim_line = line.removeprefix("*** IR Dump After ")
+                    trim_line = trim_line.removeprefix("*** IR Pass ")
+                    trim_line = trim_line.removesuffix(" ***\n")
+                    trim_line = trim_line.removesuffix(" omitted because no change")
+                    trim_line = trim_line.removesuffix(" ignored ")
+                    curr_pass = trim_line
+                    curr_pass_key = curr_pass + "_" + str(pass_count.get(curr_pass, 0))
+                    aa_per_pass[curr_pass_key] = aa_count
+                    pass_count[curr_pass] = pass_count.get(curr_pass, 0) + 1
+                    aa_count = 0
+                    pass_list.append(curr_pass_key)
+                    continue
+
+                if line.startswith("==== "):
+                    aa_count += 1
+                    continue
+
+                curr_ir += line
+
+        return aa_per_pass, pass_list, ir_per_pass
 
     def generate_composed_files(self, res: dict):
         for file_name, indeces_per_function in res.items():

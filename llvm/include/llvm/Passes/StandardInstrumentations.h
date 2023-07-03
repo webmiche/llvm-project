@@ -77,6 +77,7 @@ private:
 class OptPassGateInstrumentation {
   LLVMContext &Context;
   bool HasWrittenIR = false;
+
 public:
   OptPassGateInstrumentation(LLVMContext &Context) : Context(Context) {}
   bool shouldRun(StringRef PassName, Any IR);
@@ -240,6 +241,8 @@ protected:
 
   raw_ostream &Out;
 };
+
+raw_ostream &my_out();
 
 // A change printer based on the string representation of the IR as created
 // by unwrapAndPrint.  The string representation is stored in a std::string

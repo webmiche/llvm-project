@@ -55,6 +55,8 @@
 #include <iterator>
 #include <map>
 
+#include "llvm/Passes/StandardInstrumentations.h"
+
 #define DEBUG_TYPE "aa"
 
 using namespace llvm;
@@ -141,8 +143,11 @@ static std::map<std::pair<const llvm::Value *const, const llvm::Value *const>,
                 bool>
     decisionCache;
 
+static cl::opt<bool> print_aa_func_names("print-aa-func-names",
+                                         cl::init(false));
+
 static cl::opt<bool> take_may("take_may", cl::init(false));
-static cl::opt<std::string> OutputFile("ofile", cl::init(""));
+static cl::opt<bool> print_aliases("print-aa-per-func", cl::init(false));
 static int first = -1;
 
 // length first, then all the queries
@@ -151,6 +156,8 @@ static cl::opt<std::string> AAFunction("aafunc", cl::init(""));
 
 STATISTIC(NumberOfAACacheHits, "Number of AA cache hits");
 STATISTIC(NumberOfAAQueries, "Number of AA queries");
+
+std::vector<std::string> printed_funcs;
 
 AliasResult AAResults::alias(const MemoryLocation &LocA,
                              const MemoryLocation &LocB, AAQueryInfo &AAQI,
@@ -196,28 +203,28 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
     return other_res;
   }
 
-  if (OutputFile != "") {
-    std::ofstream f;
-    if (first == -1) {
-      f.open(OutputFile, std::ios_base::out);
-      first = 0;
-    } else {
-      f.open(OutputFile, std::ios_base::app);
+  if (print_aa_func_names) {
+    std::string func_name = F1->getName().str();
+    if (std::find(printed_funcs.begin(), printed_funcs.end(), func_name) ==
+        printed_funcs.end()) {
+      llvm::my_out() << func_name << "\n";
+      printed_funcs.push_back(func_name);
+    }
+  }
+
+  if (print_aliases) {
+    assert(AAFunction != "");
+
+    std::string func_name = F1->getName().str();
+    if (func_name != AAFunction) {
+      decisionCache[pr] = true;
+      return default_res;
     }
 
-    if (f.is_open()) {
-      if (Result == AliasResult::NoAlias) {
-        f << F1->getName().str() << " NoAlias\n";
-      } else if (Result == AliasResult::PartialAlias) {
-        f << F1->getName().str() << " PartialAlias\n";
-      } else if (Result == AliasResult::MustAlias) {
-        f << F1->getName().str() << " MustAlias\n";
-      }
-      f.flush();
-    } else {
-      assert(false);
+    if (Result == AliasResult::MayAlias) {
+      return default_res;
     }
-    f.close();
+    llvm::my_out() << "==== " << Result << "\n";
 
     decisionCache[pr] = true;
     return default_res;
