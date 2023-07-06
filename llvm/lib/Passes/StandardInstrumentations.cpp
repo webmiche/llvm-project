@@ -24,6 +24,7 @@
 #include "llvm/IR/PassInstrumentation.h"
 #include "llvm/IR/PassManager.h"
 #include "llvm/IR/PrintPasses.h"
+#include "llvm/IR/StructuralHash.h"
 #include "llvm/IR/Verifier.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/CrashRecoveryContext.h"
@@ -59,6 +60,11 @@ static cl::opt<bool>
     PrintChangedBefore("print-before-changed",
                        cl::desc("Print before passes that change them"),
                        cl::init(false), cl::Hidden);
+
+static cl::opt<bool>
+    PrintChangedHash("print-changed-hash",
+                     cl::desc("Print IR hash after passes that change them"),
+                     cl::init(false), cl::Hidden);
 
 // An option for specifying the dot used by
 // print-changed=[dot-cfg | dot-cfg-quiet]
@@ -241,7 +247,10 @@ void unwrapAndPrint(raw_ostream &OS, Any IR) {
   if (forcePrintModuleIR()) {
     auto *M = unwrapModule(IR);
     assert(M && "should have unwrapped module");
-    printIR(OS, M);
+    if (PrintChangedHash) {
+      OS << StructuralHash(*M) << "\n";
+    } else
+      printIR(OS, M);
     return;
   }
 
@@ -415,6 +424,7 @@ TextChangeReporter<T>::TextChangeReporter(bool Verbose)
     : ChangeReporter<T>(Verbose), Out(my_out()) {}
 
 template <typename T> void TextChangeReporter<T>::handleInitialIR(Any IR) {
+  return;
   // Always print the module.
   // Unwrap and print directly to avoid filtering problems in general routines.
   auto *M = unwrapModule(IR, /*Force=*/true);

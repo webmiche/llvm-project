@@ -14,8 +14,6 @@
 #ifndef LLVM_IR_STRUCTURALHASH_H
 #define LLVM_IR_STRUCTURALHASH_H
 
-#ifdef EXPENSIVE_CHECKS
-
 #include <cstdint>
 
 // This header is only meant to be used when -DEXPENSIVE_CHECKS is set
@@ -28,7 +26,5 @@ uint64_t StructuralHash(const Function &F);
 uint64_t StructuralHash(const Module &M);
 
 } // end namespace llvm
-
-#endif
 
 #endif // LLVM_IR_STRUCTURALHASH_H

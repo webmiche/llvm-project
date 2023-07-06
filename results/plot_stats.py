@@ -284,7 +284,7 @@ def plot_query_distribution(benchmarks: list):
     )
 
     # draw a vertical line at the several percentiles
-    for i in [70, 90, 95]:
+    for i in [70, 80, 90, 95]:
         plt.axvline(
             x=np.percentile(values, i),
             color=dark_blue,
@@ -295,6 +295,115 @@ def plot_query_distribution(benchmarks: list):
     plt.xlabel("Number of queries")
     plt.ylabel("Number of functions")
     plt.title("Distribution of queries per function")
+    plt.savefig("results/aa_per_func.pdf")
+
+    plt.show()
+
+
+def parse_data(file: str):
+    with open(file, "r") as f:
+        counts = []
+        lines = f.readlines()
+        for line in lines:
+            if line.startswith("{"):
+                data = eval(line)
+                pass_dicts = data.values()
+                for pass_dict in pass_dicts:
+                    counts.extend(pass_dict.values())
+
+    return counts
+
+
+def plot_query_per_pass_and_func(benchmarks: list):
+    functions = {}
+    func_count = {}
+    for benchmark in benchmarks:
+        query_dict, counts_dict = parse_stats(
+            "results/stats/" + opt_flag + "/stats_" + benchmark + ".txt"
+        )
+        for file in counts_dict:
+            for func in counts_dict[file]:
+                if not func in functions:
+                    functions[func] = counts_dict[file][func]
+                    continue
+                functions[func + "_" + str(func_count.get(func, 0))] = counts_dict[
+                    file
+                ][func]
+                func_count[func] = func_count.get(func, 0) + 1
+
+    counts = parse_data("aa_per_pass.txt")
+
+    plt.figure(figsize=(10, 10))
+    plt.xscale(value="log")
+    # plt.yscale(value="log")
+    values = counts
+    logbins = np.geomspace(min(values), max(values), 50)
+    plt.hist(
+        [values, list(functions.values())],
+        bins=logbins,
+        color=[light_blue, light_green],
+        edgecolor=black,
+        linewidth=1.2,
+    )
+
+    percentiles = [80, 95]
+    # draw a vertical line at the several percentiles
+    for i in percentiles:
+        plt.axvline(
+            x=np.percentile(values, i),
+            color=dark_blue,
+            linestyle="dashed",
+            linewidth=3,
+        )
+
+    # draw a vertical line at the several percentiles
+    for i in percentiles:
+        plt.axvline(
+            x=np.percentile(list(functions.values()), i),
+            color=dark_green,
+            linestyle="dashed",
+            linewidth=3,
+        )
+
+    plt.xlabel("Number of queries")
+    plt.ylabel("Number of functions/passes")
+    plt.title("Distribution of queries per function/pass")
+    plt.legend(["Passes", "Functions"])
+    plt.savefig("results/aa_per_func_and_pass.pdf")
+
+    plt.show()
+
+
+def plot_query_per_pass():
+    counts = parse_data("aa_per_pass.txt")
+
+    plt.figure(figsize=(10, 10))
+    plt.xscale(value="log")
+    plt.yscale(value="log")
+    values = counts
+    logbins = np.geomspace(min(values), max(values), 100)
+    plt.hist(
+        values,
+        alpha=0.5,
+        bins=logbins,
+        color=light_blue,
+        edgecolor=black,
+        linewidth=1.2,
+    )
+
+    # draw a vertical line at the several percentiles
+    for i in [70, 80, 90, 95]:
+        plt.axvline(
+            x=np.percentile(values, i),
+            color=dark_blue,
+            linestyle="dashed",
+            linewidth=1.2,
+        )
+
+    plt.xlabel("Number of queries")
+    plt.ylabel("Number of passes")
+    plt.title("Distribution of queries per function")
+    plt.savefig("results/aa_per_pass.pdf")
 
     plt.show()
 
@@ -314,16 +423,16 @@ benchmarks = [
     "602",
 ]
 if __name__ == "__main__":
-    for benchmark in benchmarks:
-        print(benchmark)
-        try:
-            print_relevant_size_stats(benchmark)
-            print_relevant_query_stats(benchmark)
-            print_influence_small_func(benchmark, 20)
-            # print_biggest_change(benchmark)
-            # print_biggest_first_change(benchmark)
-        except Exception as e:
-            print(e)
-            continue
+    # for benchmark in benchmarks:
+    #    print(benchmark)
+    #    try:
+    #        print_relevant_size_stats(benchmark)
+    #        print_relevant_query_stats(benchmark)
+    #        print_influence_small_func(benchmark, 20)
+    #        # print_biggest_change(benchmark)
+    #        # print_biggest_first_change(benchmark)
+    #    except Exception as e:
+    #        print(e)
+    #        continue
 
-    # plot_query_distribution(benchmarks)
+    plot_query_per_pass_and_func(benchmarks)

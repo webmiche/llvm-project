@@ -7,8 +7,6 @@
 //===----------------------------------------------------------------------===//
 //
 
-#ifdef EXPENSIVE_CHECKS
-
 #include "llvm/IR/StructuralHash.h"
 #include "llvm/IR/Function.h"
 #include "llvm/IR/Module.h"
@@ -77,5 +75,3 @@ uint64_t llvm::StructuralHash(const Module &M) {
   H.update(M);
   return H.getHash();
 }
-
-#endif

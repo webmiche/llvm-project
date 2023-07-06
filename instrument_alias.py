@@ -1,5 +1,5 @@
 from __future__ import annotations
-from subprocess import Popen, PIPE, run
+from subprocess import Popen, PIPE, run, DEVNULL
 import os
 from itertools import combinations
 import shutil
@@ -417,6 +417,12 @@ class InstrumentAlias:
                 self.initial_dir.joinpath(file_name),
             )
             aa_counts = {k: v for k, v in aa_counts.items() if v != 0}
+
+            print("Number of Passes: " + str(len(aa_counts.keys())))
+            print(
+                "Of which more than 10 queries: "
+                + str(len([k for k in aa_counts.keys() if aa_counts[k] > 10]))
+            )
             aa_per_pass_per_func_per_file[str(file_name)] = aa_counts
 
         return aa_per_pass_per_func_per_file
@@ -428,11 +434,12 @@ class InstrumentAlias:
             "--disable-output",
             "--print-aa-per-func",
             "--print-changed",
-            "--print-module-scope",
+            "--print-changed-hash",
+            "--print-module-scope",  # Maybe remove to only hash function?
             "-" + self.opt_flag,
             "--ir-dump=" + "tmp_trace15.txt",
         ]
-        p = run(cmd)
+        p = run(cmd, stdout=DEVNULL, stderr=DEVNULL, text=True)
         aa, _, _ = self.parse_trace("tmp_trace15.txt")
         return aa
 
@@ -525,6 +532,8 @@ class InstrumentAlias:
                 self.opt_flag,
             ],
             cwd=self.specbuild_dir,
+            stdout=DEVNULL,
+            stderr=DEVNULL,
         )
         run(
             [
@@ -534,6 +543,8 @@ class InstrumentAlias:
                 str(self.exec_root),
             ],
             cwd=self.specbuild_dir,
+            stdout=DEVNULL,
+            stderr=DEVNULL,
         )
 
     def exploration_driver(
