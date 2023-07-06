@@ -150,6 +150,8 @@ class InstrumentAlias:
         function_name: str,
         count: int,
         take_may: bool,
+        prefix_list,
+        offset: int = 0,
     ):
         os.makedirs(str(self.instr_dir.joinpath(file_name).parent), exist_ok=True)
         # generate all files
@@ -219,9 +221,11 @@ class InstrumentAlias:
         count: int,
         take_may: bool,
         take_min: bool,
+        prefix_list,
+        offset: int = 0,
     ):
         os.makedirs(str(self.instr_dir.joinpath(file_name).parent), exist_ok=True)
-        curr_list: list = []
+        curr_list: list = prefix_list.copy()
 
         # generate empty file
 
@@ -230,7 +234,7 @@ class InstrumentAlias:
         self.run_step_single_func(
             file_name,
             0,
-            [],
+            prefix_list,
             function_name,
             take_may,
         )
@@ -243,11 +247,14 @@ class InstrumentAlias:
         iteration_count = 0
 
         proc_count = 64
-        curr_fixed = 0
+        curr_fixed = offset + 1
+
         while True:
             counts = []
             lower_bound = curr_fixed
             upper_bound = min(count, curr_fixed + proc_count)
+            if upper_bound == lower_bound:
+                break
             print(
                 "greedy search, currently checking "
                 + str(lower_bound)
@@ -334,7 +341,7 @@ class InstrumentAlias:
                 + str(time.time() - self.start_time)
             )
             iteration_count += 1
-            curr_fixed = lower_bound + min_index
+            curr_fixed = lower_bound + min_index + 1
 
         return curr_list, min_count
 
@@ -413,9 +420,15 @@ class InstrumentAlias:
         for file_name in files:
             counts: dict[str, int] = {}
 
-            aa_counts = self.get_aa_count_per_pass(
+            aa_counts, _, _ = self.get_aa_count_per_pass(
                 self.initial_dir.joinpath(file_name),
             )
+
+            sum_per_pass = {}
+            for k, v in aa_counts.items():
+                assert k not in sum_per_pass.keys()
+                sum_per_pass[k] = sum(v.values())
+            aa_counts = sum_per_pass
             aa_counts = {k: v for k, v in aa_counts.items() if v != 0}
 
             print("Number of Passes: " + str(len(aa_counts.keys())))
@@ -430,7 +443,7 @@ class InstrumentAlias:
     def get_aa_count_per_pass(self, file_name) -> dict:
         cmd = [
             str(self.instr_path.joinpath("opt")),
-            str(file_name),
+            str(self.initial_dir.joinpath(file_name)),
             "--disable-output",
             "--print-aa-per-func",
             "--print-changed",
@@ -440,8 +453,31 @@ class InstrumentAlias:
             "--ir-dump=" + "tmp_trace15.txt",
         ]
         p = run(cmd, stdout=DEVNULL, stderr=DEVNULL, text=True)
-        aa, _, _ = self.parse_trace("tmp_trace15.txt")
-        return aa
+        aa_count, pass_list, ir_per_pass = self.parse_trace("tmp_trace15.txt")
+        return aa_count, pass_list, ir_per_pass
+
+    def get_aa_count_per_pass_with_seq_and_func(
+        self, file_name, index_list, function_name
+    ) -> dict:
+        cmd = [
+            str(self.instr_path.joinpath("opt")),
+            str(self.initial_dir.joinpath(file_name)),
+            "--disable-output",
+            "--print-aa-per-func",
+            "--print-changed",
+            "--print-changed-hash",
+            "--print-module-scope",  # Maybe remove to only hash function?
+            "-" + self.opt_flag,
+            "--ir-dump=" + "tmp_trace15.txt",
+            "--aafunc=" + function_name,
+            "--aasequence="
+            + str(len(index_list))
+            + "-"
+            + "-".join([str(i) for i in index_list]),
+        ]
+        p = run(cmd, stdout=DEVNULL, stderr=DEVNULL, text=True)
+        aa_count, pass_list, ir_per_pass = self.parse_trace("tmp_trace15.txt")
+        return aa_count, pass_list, ir_per_pass
 
     def exploration(
         self,
@@ -453,6 +489,10 @@ class InstrumentAlias:
         os.mkdir(Path("res/").joinpath(description))
 
         print("Track AA Queries " + str(description))
+        info_per_file_per_pass_per_func = {}
+        for f in files:
+            info_per_file_per_pass_per_func[f] = self.get_aa_count_per_pass(f)
+
         count_per_file = self.get_aa_count_per_file(take_may, description, files)
 
         print("counts per function per file: " + str(count_per_file))
@@ -473,22 +513,65 @@ class InstrumentAlias:
                 )
                 if not os.path.exists(curr_path):
                     os.makedirs(curr_path, exist_ok=True)
-                count = count_per_file[file_name][function]
-                if count < 0:
-                    curr_results[function] = self.exhaustive_exploration(
-                        file_name,
-                        function,
-                        count,
-                        take_may,
+
+                aa_count, pass_list, _ = info_per_file_per_pass_per_func[file_name]
+
+                curr_seq = []
+                curr_offset = -1
+                new_count = -1
+                for pass_name in pass_list:
+                    if not aa_count[pass_name].get(function):
+                        continue
+
+                    max_query_count = curr_offset + aa_count[pass_name][function] + 1
+                    print(
+                        "Running pass: "
+                        + pass_name
+                        + " with max_query_index: "
+                        + str(max_query_count)
                     )
-                else:
-                    curr_results[function] = self.greedy_exploration(
-                        file_name,
-                        function,
-                        count,
-                        take_may,
-                        False,  # take_min
+                    if aa_count[pass_name][function] < 0:
+                        new_seq, new_count = self.exhaustive_exploration(
+                            file_name,
+                            function,
+                            max_query_count,
+                            take_may,
+                        )
+                    else:
+                        new_seq, new_count = self.greedy_exploration(
+                            file_name,
+                            function,
+                            max_query_count,
+                            take_may,
+                            True,
+                            curr_seq,
+                            curr_offset,
+                        )
+                    print(
+                        "Pass: "
+                        + pass_name
+                        + " generated: "
+                        + str(new_seq)
+                        + " with offset: "
+                        + str(curr_offset)
+                        + " with count: "
+                        + str(new_count)
                     )
+                    if len(new_seq) != len(curr_seq):
+                        aa_count, _, _ = self.get_aa_count_per_pass_with_seq_and_func(
+                            file_name, curr_seq, function
+                        )
+
+                    new_seq = [
+                        i
+                        for i in new_seq
+                        if i < curr_offset + aa_count[pass_name][function] + 1
+                    ]
+                    curr_seq = new_seq
+                    curr_offset += aa_count[pass_name][function]
+
+                curr_results[function] = curr_seq, new_count
+
                 print(
                     "Time after exploration of "
                     + function
@@ -743,9 +826,8 @@ class InstrumentAlias:
                     trim_line = trim_line.removesuffix(" ignored ")
                     curr_pass = trim_line
                     curr_pass_key = curr_pass + "_" + str(pass_count.get(curr_pass, 0))
-                    for k in aa_count_per_func.keys():
-                        aa_per_pass[curr_pass_key + "_" + k] = aa_count_per_func[k]
-                        aa_count_per_func[k] = 0
+                    aa_per_pass[curr_pass_key] = aa_count_per_func
+                    aa_count_per_func = {}
                     pass_count[curr_pass] = pass_count.get(curr_pass, 0) + 1
                     aa_count = 0
                     pass_list.append(curr_pass_key)
@@ -757,7 +839,6 @@ class InstrumentAlias:
                     continue
 
                 curr_ir += line
-
         return aa_per_pass, pass_list, ir_per_pass
 
     def generate_composed_files(self, res: dict):
