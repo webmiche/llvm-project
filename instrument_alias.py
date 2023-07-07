@@ -249,7 +249,7 @@ class InstrumentAlias:
 
         iteration_count = 0
 
-        proc_count = 64
+        proc_count = 256
         curr_fixed = offset + 1
 
         while True:
@@ -443,21 +443,41 @@ class InstrumentAlias:
 
         return aa_per_pass_per_func_per_file
 
-    def get_aa_count_per_pass(self, file_name) -> dict:
+    def get_aa_count_per_pass(self, file_name, take_may, description) -> dict:
+        os.makedirs(
+            self.default_may_truth.joinpath(description, file_name).parent,
+            exist_ok=True,
+        )
+        os.makedirs(
+            Path("alias_queries/").joinpath(description, file_name).parent,
+            exist_ok=True,
+        )
         cmd = [
             str(self.instr_path.joinpath("opt")),
             str(self.initial_dir.joinpath(file_name)),
-            "--disable-output",
+            "-o",
+            str(self.default_may_truth.joinpath(description, file_name)),
             "--print-aa-per-func",
             "--print-changed",
             "--print-changed-hash",
             "--print-module-scope",  # Maybe remove to only hash function?
             "-" + self.opt_flag,
-            "--ir-dump=" + "tmp_trace15.txt",
-        ]
-        p = run(cmd, stdout=DEVNULL, stderr=DEVNULL, text=True)
-        aa_count, pass_list, ir_per_pass = self.parse_trace("tmp_trace15.txt")
-        return aa_count, pass_list, ir_per_pass
+            "--ir-dump="
+            + str(
+                Path("alias_queries/").joinpath(
+                    description, file_name.with_suffix(".txt")
+                )
+            ),
+        ] + (["--take_may"] if take_may else [])
+        p = run(cmd, stdout=DEVNULL, stderr=DEVNULL, text=True, cwd=self.exec_root)
+        aa_count, pass_list = self.parse_trace(
+            str(
+                Path("alias_queries/").joinpath(
+                    description, file_name.with_suffix(".txt")
+                )
+            )
+        )
+        return aa_count, pass_list
 
     def get_aa_count_per_pass_with_seq_and_func(
         self, file_name, index_list, function_name
@@ -471,16 +491,17 @@ class InstrumentAlias:
             "--print-changed-hash",
             "--print-module-scope",  # Maybe remove to only hash function?
             "-" + self.opt_flag,
-            "--ir-dump=" + "tmp_trace15.txt",
+            "--ir-dump=" + "/tmp/tmp_trace15.txt",
             "--aafunc=" + function_name,
             "--aasequence="
             + str(len(index_list))
             + "-"
             + "-".join([str(i) for i in index_list]),
         ]
-        p = run(cmd, stdout=DEVNULL, stderr=DEVNULL, text=True)
-        aa_count, pass_list, ir_per_pass = self.parse_trace("tmp_trace15.txt")
-        return aa_count, pass_list, ir_per_pass
+        p = run(cmd, stdout=DEVNULL, stderr=DEVNULL, text=True, cwd=self.exec_root)
+        aa_count, pass_list = self.parse_trace("/tmp/tmp_trace15.txt")
+        os.remove("/tmp/tmp_trace15.txt")
+        return aa_count, pass_list
 
     def exploration(
         self,
@@ -493,10 +514,18 @@ class InstrumentAlias:
 
         print("Track AA Queries " + str(description))
         info_per_file_per_pass_per_func = {}
+        count_per_file = {}
         for f in files:
-            info_per_file_per_pass_per_func[f] = self.get_aa_count_per_pass(f)
+            aa_count, pass_list = self.get_aa_count_per_pass(f, take_may, description)
+            info_per_file_per_pass_per_func[f] = (aa_count, pass_list)
 
-        count_per_file = self.get_aa_count_per_file(take_may, description, files)
+            count_func = {}
+            for k, v in aa_count.items():
+                for k2, v2 in v.items():
+                    if k2 not in count_func.keys():
+                        count_func[k2] = 0
+                    count_func[k2] += v2
+            count_per_file[f] = count_func
 
         print("counts per function per file: " + str(count_per_file))
         print("Time after AA Query measurement: " + str(time.time() - self.start_time))
@@ -517,13 +546,15 @@ class InstrumentAlias:
                 if not os.path.exists(curr_path):
                     os.makedirs(curr_path, exist_ok=True)
 
-                aa_count, pass_list, _ = info_per_file_per_pass_per_func[file_name]
+                aa_count, pass_list = info_per_file_per_pass_per_func[file_name]
 
                 curr_seq = []
                 curr_offset = -1
                 new_count = -1
                 for pass_name in pass_list:
-                    if not aa_count[pass_name].get(function):
+                    if pass_name.startswith("BitcodeWriterPass") or not aa_count[
+                        pass_name
+                    ].get(function):
                         continue
 
                     max_query_count = curr_offset + aa_count[pass_name][function] + 1
@@ -533,7 +564,7 @@ class InstrumentAlias:
                         + " with max_query_index: "
                         + str(max_query_count)
                     )
-                    if aa_count[pass_name][function] < 15:
+                    if aa_count[pass_name][function] < 9:
                         new_seq, new_count = self.exhaustive_exploration(
                             file_name,
                             function,
@@ -563,7 +594,7 @@ class InstrumentAlias:
                         + str(new_count)
                     )
                     if len(new_seq) != len(curr_seq):
-                        aa_count, _, _ = self.get_aa_count_per_pass_with_seq_and_func(
+                        aa_count, _ = self.get_aa_count_per_pass_with_seq_and_func(
                             file_name, curr_seq, function
                         )
 
@@ -808,21 +839,21 @@ class InstrumentAlias:
         aa_per_pass = {}
         pass_list = []
         pass_count = {}
-        ir_per_pass = {}
-        curr_ir = ""
+        # ir_per_pass = {}
+        # curr_ir = ""
         with open(trace_file, "r") as f:
             for line in f.readlines():
                 if line == "*** IR Dump At Start ***\n":
                     continue
                 if line.startswith("*** "):
-                    if curr_ir != "":
-                        if curr_pass == "":
-                            curr_ir = ""
-                        else:
-                            ir_per_pass[
-                                curr_pass + "_" + str(pass_count[curr_pass] - 1)
-                            ] = curr_ir
-                            curr_ir = ""
+                    # if curr_ir != "":
+                    #    if curr_pass == "":
+                    #        curr_ir = ""
+                    #    else:
+                    #        ir_per_pass[
+                    #            curr_pass + "_" + str(pass_count[curr_pass] - 1)
+                    #        ] = curr_ir
+                    #        curr_ir = ""
 
                     trim_line = line.removeprefix("*** IR Dump After ")
                     trim_line = trim_line.removeprefix("*** IR Pass ")
@@ -843,8 +874,8 @@ class InstrumentAlias:
                     aa_count_per_func[aa_func] = aa_count_per_func.get(aa_func, 0) + 1
                     continue
 
-                curr_ir += line
-        return aa_per_pass, pass_list, ir_per_pass
+                # curr_ir += line
+        return aa_per_pass, pass_list  # , ir_per_pass
 
     def generate_composed_files(self, res: dict):
         for file_name, indeces_per_function in res.items():
