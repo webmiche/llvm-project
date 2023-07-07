@@ -101,6 +101,7 @@ class InstrumentAlias:
             + "-"
             + "-".join([str(i) for i in index_list]),
         ] + (["--take_may"] if take_may else [])
+        # print(" ".join(cmd))
         run(
             cmd,
             cwd=self.exec_root,
@@ -156,11 +157,13 @@ class InstrumentAlias:
         os.makedirs(str(self.instr_dir.joinpath(file_name).parent), exist_ok=True)
         # generate all files
 
-        sample_list = list(range(count))
+        sample_list = list(range(offset + 1, count))
         list_combinations = []
 
         for n in range(len(sample_list) + 1):
             list_combinations += list(combinations(sample_list, n))
+
+        list_combinations = [prefix_list + list(i) for i in list_combinations]
 
         # compile and measure
         with Pool() as p:
@@ -530,12 +533,14 @@ class InstrumentAlias:
                         + " with max_query_index: "
                         + str(max_query_count)
                     )
-                    if aa_count[pass_name][function] < 0:
+                    if aa_count[pass_name][function] < 15:
                         new_seq, new_count = self.exhaustive_exploration(
                             file_name,
                             function,
                             max_query_count,
                             take_may,
+                            curr_seq,
+                            curr_offset,
                         )
                     else:
                         new_seq, new_count = self.greedy_exploration(
@@ -543,7 +548,7 @@ class InstrumentAlias:
                             function,
                             max_query_count,
                             take_may,
-                            True,
+                            False,
                             curr_seq,
                             curr_offset,
                         )
