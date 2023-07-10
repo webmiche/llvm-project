@@ -248,7 +248,7 @@ void unwrapAndPrint(raw_ostream &OS, Any IR) {
     auto *M = unwrapModule(IR);
     assert(M && "should have unwrapped module");
     if (PrintChangedHash) {
-      OS << StructuralHash(*M) << "\n";
+      // OS << StructuralHash(*M) << "\n";
     } else
       printIR(OS, M);
     return;

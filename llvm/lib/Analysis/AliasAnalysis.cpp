@@ -187,7 +187,7 @@ AliasResult instrumented_alias(const llvm::Value *ptr1, const llvm::Value *ptr2,
     std::string func_name = F1->getName().str();
     if (std::find(printed_funcs.begin(), printed_funcs.end(), func_name) ==
         printed_funcs.end()) {
-      llvm::my_out() << func_name << "\n";
+      llvm::outs() << func_name << "\n";
       printed_funcs.push_back(func_name);
     }
   }
@@ -204,7 +204,7 @@ AliasResult instrumented_alias(const llvm::Value *ptr1, const llvm::Value *ptr2,
       return default_res;
     }
 
-    llvm::my_out() << "==== " << func_name << " " << Result << "\n";
+    llvm::outs() << "==== " << func_name << " " << Result << "\n";
   }
 
   if (AASequence != "" || AliasResultFile != "") {

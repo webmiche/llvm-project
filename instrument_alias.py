@@ -105,6 +105,7 @@ class InstrumentAlias:
         run(
             cmd,
             cwd=self.exec_root,
+            stdout=DEVNULL,
         )
 
     def run_step(
@@ -134,6 +135,7 @@ class InstrumentAlias:
         run(
             cmd,
             cwd=self.exec_root,
+            stdout=DEVNULL,
         )
 
     def write_one_file(self, instr_dir: Path, i: int, curr_list, function_name: str):
@@ -487,21 +489,47 @@ class InstrumentAlias:
             str(self.initial_dir.joinpath(file_name)),
             "--disable-output",
             "--print-aa-per-func",
-            "--print-changed",
-            "--print-changed-hash",
-            "--print-module-scope",  # Maybe remove to only hash function?
             "-" + self.opt_flag,
-            "--ir-dump=" + "/tmp/tmp_trace15.txt",
             "--aafunc=" + function_name,
             "--aasequence="
             + str(len(index_list))
             + "-"
             + "-".join([str(i) for i in index_list]),
         ]
-        p = run(cmd, stdout=DEVNULL, stderr=DEVNULL, text=True, cwd=self.exec_root)
-        aa_count, pass_list = self.parse_trace("/tmp/tmp_trace15.txt")
-        os.remove("/tmp/tmp_trace15.txt")
+        p = run(cmd, stdout=PIPE, stderr=DEVNULL, text=True, cwd=self.exec_root)
+        with open("tmp_trace15.txt", "w") as f:
+            f.write(p.stdout)
+        aa_count, pass_list = self.parse_trace("tmp_trace15.txt")
+        os.remove("tmp_trace15.txt")
         return aa_count, pass_list
+
+    def compute_aa_trace(self, file_name, take_may, description) -> dict:
+        os.makedirs(
+            self.default_may_truth.joinpath(description, file_name).parent,
+            exist_ok=True,
+        )
+        os.makedirs(
+            Path("alias_queries/").joinpath(description, file_name).parent,
+            exist_ok=True,
+        )
+        cmd = [
+            str(self.instr_path.joinpath("opt")),
+            str(self.initial_dir.joinpath(file_name)),
+            "-o",
+            str(self.default_may_truth.joinpath(description, file_name)),
+            "--print-aa-per-func",
+            "-" + self.opt_flag,
+        ] + (["--take_may"] if take_may else [])
+        p = run(cmd, stdout=PIPE, stderr=DEVNULL, text=True, cwd=self.exec_root)
+        with open(
+            str(
+                Path("alias_queries/").joinpath(
+                    description, file_name.with_suffix(".txt")
+                )
+            ),
+            "w",
+        ) as f:
+            f.write(p.stdout)
 
     def exploration(
         self,
@@ -515,8 +543,15 @@ class InstrumentAlias:
         print("Track AA Queries " + str(description))
         info_per_file_per_pass_per_func = {}
         count_per_file = {}
+        with Pool() as p:
+            p.starmap(
+                self.compute_aa_trace,
+                [(f, take_may, description) for f in files],
+            )
         for f in files:
-            aa_count, pass_list = self.get_aa_count_per_pass(f, take_may, description)
+            aa_count, pass_list = self.parse_trace(
+                str(Path("alias_queries/").joinpath(description, f.with_suffix(".txt")))
+            )
             info_per_file_per_pass_per_func[f] = (aa_count, pass_list)
 
             count_func = {}
@@ -666,6 +701,20 @@ class InstrumentAlias:
             stderr=DEVNULL,
         )
 
+    def compute_baseline_file(self, f: Path):
+        os.makedirs(
+            self.exec_root.joinpath(self.groundtruth_dir, f.parent), exist_ok=True
+        )
+        cmd = [
+            str(self.instr_path.joinpath("opt")),
+            "-" + self.opt_flag,
+            "-o",
+            str(self.groundtruth_dir.joinpath(f)),
+            str(self.initial_dir.joinpath(f)),
+        ]
+        run(cmd, cwd=self.exec_root, stdout=DEVNULL)
+        self.assemble_and_measure_file(self.groundtruth_dir.joinpath(f))
+
     def exploration_driver(
         self,
     ):
@@ -680,19 +729,8 @@ class InstrumentAlias:
         ]
 
         # compute baseline
-        for f in files:
-            os.makedirs(
-                self.exec_root.joinpath(groundtruth_dir, f.parent), exist_ok=True
-            )
-            cmd = [
-                str(self.instr_path.joinpath("opt")),
-                "-" + self.opt_flag,
-                "-o",
-                str(self.groundtruth_dir.joinpath(f)),
-                str(self.initial_dir.joinpath(f)),
-            ]
-            run(cmd, cwd=self.exec_root)
-            self.assemble_and_measure_file(self.groundtruth_dir.joinpath(f))
+        with Pool() as p:
+            p.map(self.compute_baseline_file, files)
 
         cmd = (
             [
@@ -733,6 +771,8 @@ class InstrumentAlias:
             d = d.removeprefix(str(self.initial_dir) + "/")
             os.makedirs(self.default_may_truth.joinpath("may", d), exist_ok=True)
             os.makedirs(self.default_may_truth.joinpath("std", d), exist_ok=True)
+
+        print("Time after file setup: " + str(time.time() - self.start_time))
 
         # self.exploration(
         #    files,
@@ -807,7 +847,7 @@ class InstrumentAlias:
             ]
             + ["final_res/" + str(f.with_suffix(".o")) for f in files]
         )
-        run(cmd, cwd=self.exec_root)
+        run(cmd, cwd=self.exec_root, stdout=DEVNULL)
 
         print("Time after after composition: " + str(time.time() - self.start_time))
 
@@ -857,6 +897,7 @@ class InstrumentAlias:
 
                     trim_line = line.removeprefix("*** IR Dump After ")
                     trim_line = trim_line.removeprefix("*** IR Pass ")
+                    trim_line = trim_line.removeprefix("*** Pass: ")
                     trim_line = trim_line.removesuffix(" ***\n")
                     trim_line = trim_line.removesuffix(" omitted because no change")
                     trim_line = trim_line.removesuffix(" ignored ")
@@ -927,6 +968,7 @@ class InstrumentAlias:
         run(
             cmd,
             cwd=self.exec_root,
+            stdout=DEVNULL,
         )
 
 

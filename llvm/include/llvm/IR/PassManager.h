@@ -515,6 +515,9 @@ public:
         continue;
 
       PreservedAnalyses PassPA = Pass->run(IR, AM, ExtraArgs...);
+      // if (PrintPassNames2) {
+      llvm::outs() << "*** Pass: " << Pass->name() << " ***\n";
+      //}
 
       // Call onto PassInstrumentation's AfterPass callbacks immediately after
       // running the pass.
