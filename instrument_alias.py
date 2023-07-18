@@ -4,7 +4,7 @@ import os
 from itertools import combinations
 import shutil
 import argparse
-from pathlib import Path
+from pathlib import Path, PosixPath
 from dataclasses import dataclass
 from multiprocessing import Pool
 import sys
@@ -56,15 +56,16 @@ class InstrumentAlias:
     def assemble_file(self, file_name: Path, obj_file_name: Path):
         """Assemble the file."""
 
+        cmd = [
+            str(self.instr_path.joinpath("llc")),
+            "-O2",
+            str(file_name),
+            "-o",
+            str(obj_file_name),
+            "-filetype=obj",
+        ]
         run(
-            [
-                str(self.instr_path.joinpath("llc")),
-                "-O2",
-                str(file_name),
-                "-o",
-                str(obj_file_name),
-                "-filetype=obj",
-            ],
+            cmd,
         )
 
     def assemble_and_measure_file(self, file_name: Path) -> int:
@@ -232,8 +233,6 @@ class InstrumentAlias:
         os.makedirs(str(self.instr_dir.joinpath(file_name).parent), exist_ok=True)
         curr_list: list = prefix_list.copy()
 
-        # generate empty file
-
         # compile and count
 
         self.run_step_single_func(
@@ -251,7 +250,7 @@ class InstrumentAlias:
 
         iteration_count = 0
 
-        proc_count = 256
+        proc_count = 64
         curr_fixed = offset + 1
 
         while True:
@@ -314,6 +313,16 @@ class InstrumentAlias:
                         self.instr_dir.joinpath(
                             file_name.parent, str(i) + str(file_name.stem) + ".o"
                         )
+                    )
+                )
+                os.remove(
+                    self.instr_dir.joinpath(
+                        file_name.parent, str(i) + str(file_name.stem) + ".bc"
+                    )
+                )
+                os.remove(
+                    self.instr_dir.joinpath(
+                        file_name.parent, str(i) + str(file_name.stem) + ".o"
                     )
                 )
 
@@ -573,13 +582,13 @@ class InstrumentAlias:
             curr_results = {}
             for function in count_per_file[file_name].keys():
                 print("==== Next function: " + function)
-                self.function_encoding[function] = str(self.func_count)
+                # self.function_encoding[function] = str(self.func_count)
                 self.func_count += 1
-                curr_path: Path = self.instr_dir.joinpath(
-                    Path(str(self.function_encoding[function]))
-                )
-                if not os.path.exists(curr_path):
-                    os.makedirs(curr_path, exist_ok=True)
+                # curr_path: Path = self.instr_dir.joinpath(
+                #     Path(str(self.function_encoding[function]))
+                # )
+                # if not os.path.exists(curr_path):
+                #     os.makedirs(curr_path, exist_ok=True)
 
                 aa_count, pass_list = info_per_file_per_pass_per_func[file_name]
 
@@ -661,17 +670,7 @@ class InstrumentAlias:
         print("found results: " + str(results))
         print("time after exploration: " + str(time.time() - self.start_time))
 
-        self.generate_composed_files(results)
-
-        for file_name in files:
-            self.compile_composed(
-                file_name,
-                self.exec_root.joinpath(Path("res/"), description),
-                take_may,
-            )
-            self.assemble_and_measure_file(
-                self.exec_root.joinpath(Path("res/"), description, file_name)
-            )
+        return results
 
     def generate_baseline(self):
         run(
@@ -718,7 +717,8 @@ class InstrumentAlias:
     def exploration_driver(
         self,
     ):
-        self.generate_baseline()
+        print("Let's go!")
+        # self.generate_baseline()
 
         files = [
             Path(os.path.join(dirpath.removeprefix(str(self.initial_dir) + "/"), f))
@@ -779,12 +779,48 @@ class InstrumentAlias:
         #    True,
         # )
         # print("Time after may exploration: " + str(time.time() - self.start_time))
-
-        self.exploration(
+        results = self.exploration(
             files,
             False,
         )
         print("Time after std exploration: " + str(time.time() - self.start_time))
+
+        # filter empty lists
+        for file_name, seq_per_func_dict in results.items():
+            seq_per_func_dict = {
+                k: v for k, v in seq_per_func_dict.items() if v[0] != []
+            }
+            results[file_name] = seq_per_func_dict
+
+        for file_name, seq_per_func_dict in results.items():
+            print("composing " + str(file_name) + " ...")
+            if seq_per_func_dict == {}:
+                continue
+            if len(seq_per_func_dict.keys()) < 10:
+                results[file_name] = self.find_composition_exhaustive(
+                    seq_per_func_dict, False, file_name
+                )
+            else:
+                print("Could not compose " + str(file_name) + " due to number of funcs")
+
+        print("Time after filtering: " + str(time.time() - self.start_time))
+
+        self.generate_composed_files(results)
+
+        for file_name in files:
+            self.compile_composed(
+                file_name,
+                self.exec_root.joinpath(Path("res/"), "std"),
+                False,
+                str(
+                    Path("composed_files/").joinpath(
+                        str(file_name.with_suffix("")) + "_composed.txt"
+                    )
+                ),
+            )
+            self.assemble_and_measure_file(
+                self.exec_root.joinpath(Path("res/"), "std", file_name)
+            )
 
         for file_name in files:
             output_name = file_name.with_suffix(".o")
@@ -873,6 +909,72 @@ class InstrumentAlias:
 
         # print(p.returncode)
 
+    def find_composition_exhaustive(self, seq_dict, take_may, file_name):
+        # filter empty lists
+
+        indices = list(range(len(seq_dict.keys())))
+        index_combinations = []
+        for n in range(len(indices) + 1):
+            index_combinations += list(combinations(indices, n))
+
+        min_size = -1
+        min_comb = None
+        for curr_comb in index_combinations:
+            curr_dict = {}
+            for i, (key, seq) in enumerate(seq_dict.items()):
+                if i in curr_comb:
+                    curr_dict[key] = seq
+
+            composed_file_name = Path("composed_files/").joinpath(
+                # name_suffix,
+                str(file_name.with_suffix(""))
+                + "".join([str(x) for x in curr_comb])
+                + "_composed.txt",
+            )
+
+            self.generate_composed_file(composed_file_name, curr_dict)
+
+            self.compile_composed(
+                file_name,
+                self.exec_root.joinpath(Path("res/"), "std"),
+                False,
+                composed_file_name,
+                Path(
+                    str(file_name.with_suffix(""))
+                    + "".join([str(x) for x in curr_comb])
+                    + ".bc"
+                ),
+            )
+
+            curr_size = self.assemble_and_measure_file(
+                self.exec_root.joinpath(
+                    Path("res/"),
+                    "std",
+                    Path(
+                        str(file_name.with_suffix(""))
+                        + "".join([str(x) for x in curr_comb])
+                        + ".bc"
+                    ),
+                ),
+            )
+            if min_size == -1 or curr_size < min_size:
+                min_size = curr_size
+                min_comb = curr_comb
+
+        if any([x != y for x, y in zip(min_comb, index_combinations[-1])]):
+            print(
+                "=== Exhaustive composition found new optimal solution with size "
+                + str(min_size)
+                + " and combo "
+                + str(min_comb)
+                + " ==="
+            )
+        min_dict = {}
+        for i, (key, seq) in enumerate(seq_dict.items()):
+            if i in min_comb:
+                min_dict[key] = seq
+        return min_dict
+
     def parse_trace(self, trace_file):
         curr_pass = ""
         aa_count_per_func = {}
@@ -918,51 +1020,56 @@ class InstrumentAlias:
                 # curr_ir += line
         return aa_per_pass, pass_list  # , ir_per_pass
 
-    def generate_composed_files(self, res: dict):
+    def generate_composed_files(self, res: dict, name_suffix: str = ""):
         for file_name, indeces_per_function in res.items():
             composed_file_name = Path("composed_files/").joinpath(
-                str(file_name.with_suffix("")) + "_composed.txt"
+                name_suffix, str(file_name.with_suffix("")) + "_composed.txt"
             )
-            os.makedirs(composed_file_name.parent, exist_ok=True)
+            self.generate_composed_file(composed_file_name, indeces_per_function)
 
-            num_funcs = 0
-            for function, curr_indeces in indeces_per_function.items():
-                if curr_indeces[0] == []:
-                    continue
-                if curr_indeces[0] == ():
-                    continue
-                num_funcs += 1
+    def generate_composed_file(self, file_name: str, indeces_per_function: dict):
+        os.makedirs(file_name.parent, exist_ok=True)
 
-            with open(composed_file_name, "w") as f:
-                f.write(str(num_funcs) + "\n")
-                for function, curr_indeces in indeces_per_function.items():
-                    if curr_indeces[0] == ():
-                        continue
-                    if curr_indeces[0] == []:
-                        continue
-                    f.write(function + "\n")
-                    f.write(str(len(curr_indeces[0])) + "\n")
-                    for index in curr_indeces[0]:
-                        f.write(str(index) + "\n")
+        num_funcs = 0
+        for function, curr_indeces in indeces_per_function.items():
+            if curr_indeces[0] == []:
+                continue
+            if curr_indeces[0] == ():
+                continue
+            num_funcs += 1
+
+        str_to_write = str(num_funcs) + "\n"
+        for function, curr_indeces in indeces_per_function.items():
+            if curr_indeces[0] == ():
+                continue
+            if curr_indeces[0] == []:
+                continue
+            str_to_write += function + "\n"
+            str_to_write += str(len(curr_indeces[0])) + "\n"
+            for index in curr_indeces[0]:
+                str_to_write += str(index) + "\n"
+
+        with open(file_name, "w") as f:
+            f.write(str_to_write)
 
     def compile_composed(
         self,
         file_name: Path,
         compose_dir: Path,
         take_may: bool,
+        composed_file_name: Path,
+        output_file: Path = None,
     ):
         os.makedirs(compose_dir.joinpath(file_name).parent, exist_ok=True)
+        if output_file is None:
+            output_file = file_name
         cmd = [
             str(self.instr_path.joinpath("opt")),
             str(self.initial_dir.joinpath(file_name)),
             "-o",
-            str(compose_dir.joinpath(file_name)),
+            str(compose_dir.joinpath(output_file)),
             "--arfile",
-            str(
-                Path("composed_files/").joinpath(
-                    str(file_name.with_suffix("")) + "_composed.txt"
-                )
-            ),
+            str(composed_file_name),
             "-" + self.opt_flag,
         ] + (["--take_may"] if take_may else [])
         run(

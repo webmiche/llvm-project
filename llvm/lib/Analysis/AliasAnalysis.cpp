@@ -42,6 +42,7 @@
 #include "llvm/IR/Instructions.h"
 #include "llvm/IR/Type.h"
 #include "llvm/IR/Value.h"
+#include "llvm/IR/ValueHandle.h"
 #include "llvm/InitializePasses.h"
 #include "llvm/Pass.h"
 #include "llvm/Support/AtomicOrdering.h"
@@ -139,9 +140,9 @@ static std::map<std::string, uint64_t> *current_indeces_map;
 static std::map<std::string, uint64_t> *indeces_len_map;
 
 // Query cache. If the entry is true, return default.
-static std::map<std::pair<const llvm::Value *const, const llvm::Value *const>,
-                bool>
+static std::map<std::pair<const Value *const, const Value *const>, bool>
     decisionCache;
+static std::map<const Value *, WeakVH *> value_to_weakvh;
 
 static cl::opt<bool> print_aa_func_names("print-aa-func-names",
                                          cl::init(false));
@@ -174,7 +175,55 @@ AliasResult instrumented_alias(const llvm::Value *ptr1, const llvm::Value *ptr2,
     default_res = AliasResult::MayAlias;
   }
 
-  std::pair<const llvm::Value *const, const llvm::Value *const> pr(ptr1, ptr2);
+  if (Result == AliasResult::MayAlias) {
+    return default_res;
+  }
+
+  WeakVH *vh1;
+  if (value_to_weakvh.find(ptr1) != value_to_weakvh.end()) {
+    // llvm::outs() << "found ptr1\n";
+    vh1 = value_to_weakvh[ptr1];
+  } else {
+    // llvm::outs() << "not found ptr1\n";
+    vh1 = new WeakVH((Value *)ptr1);
+    value_to_weakvh[ptr1] = vh1;
+  }
+  if (!*vh1) {
+    // invalidate cache
+    for (auto itr = decisionCache.begin(); itr != decisionCache.end();) {
+      if (itr->first.first == ptr1 || itr->first.second == ptr1) {
+        itr = decisionCache.erase(itr);
+      } else {
+        ++itr;
+      }
+    }
+    // llvm::outs() << "vh1 is null\n";
+    vh1 = new WeakVH((Value *)ptr1);
+    value_to_weakvh[ptr1] = vh1;
+  }
+
+  WeakVH *vh2;
+  if (value_to_weakvh.find(ptr2) != value_to_weakvh.end()) {
+    vh2 = value_to_weakvh[ptr2];
+  } else {
+    vh2 = new WeakVH((Value *)ptr2);
+    value_to_weakvh[ptr2] = vh2;
+  }
+  if (!*vh2) {
+    // invalidate cache
+    for (auto itr = decisionCache.begin(); itr != decisionCache.end();) {
+      if (itr->first.first == ptr2 || itr->first.second == ptr2) {
+        itr = decisionCache.erase(itr);
+      } else {
+        ++itr;
+      }
+    }
+    // llvm::outs() << "vh2 is null\n";
+    vh2 = new WeakVH((Value *)ptr2);
+    value_to_weakvh[ptr2] = vh2;
+  }
+
+  std::pair<const Value *const, const Value *const> pr(*vh1, *vh2);
   if (decisionCache.find(pr) != decisionCache.end()) {
     NumberOfAACacheHits++;
     if (decisionCache[pr]) {
@@ -193,7 +242,6 @@ AliasResult instrumented_alias(const llvm::Value *ptr1, const llvm::Value *ptr2,
   }
 
   if (print_aliases) {
-
     std::string func_name = F1->getName().str();
     if (Result == AliasResult::MayAlias) {
       return default_res;
