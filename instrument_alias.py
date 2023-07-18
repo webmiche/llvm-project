@@ -251,7 +251,7 @@ class InstrumentAlias:
 
         iteration_count = 0
 
-        proc_count = 256
+        proc_count = 128
         curr_fixed = offset + 1
 
         while True:
