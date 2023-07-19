@@ -451,6 +451,7 @@ getAnalysisResult(AnalysisManager<IRUnitT, AnalysisArgTs...> &AM, IRUnitT &IR,
 // header.
 class PassInstrumentationAnalysis;
 
+bool print_pass_names();
 /// Manages a sequence of passes over a particular unit of IR.
 ///
 /// A pass manager contains a sequence of passes to run over a particular unit
@@ -515,9 +516,9 @@ public:
         continue;
 
       PreservedAnalyses PassPA = Pass->run(IR, AM, ExtraArgs...);
-      // if (PrintPassNames2) {
-      llvm::outs() << "*** Pass: " << Pass->name() << " ***\n";
-      //}
+      if (print_pass_names()) {
+        llvm::outs() << "*** Pass: " << Pass->name() << " ***\n";
+      }
 
       // Call onto PassInstrumentation's AfterPass callbacks immediately after
       // running the pass.

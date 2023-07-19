@@ -497,6 +497,7 @@ class InstrumentAlias:
             str(self.instr_path.joinpath("opt")),
             str(self.initial_dir.joinpath(file_name)),
             "--disable-output",
+            "--print-pass-names",
             "--print-aa-per-func",
             "-" + self.opt_flag,
             "--aafunc=" + function_name,
@@ -528,6 +529,7 @@ class InstrumentAlias:
             str(self.default_may_truth.joinpath(description, file_name)),
             "--print-aa-per-func",
             "-" + self.opt_flag,
+            "--print-pass-names",
         ] + (["--take_may"] if take_may else [])
         p = run(cmd, stdout=PIPE, stderr=DEVNULL, text=True, cwd=self.exec_root)
         with open(
