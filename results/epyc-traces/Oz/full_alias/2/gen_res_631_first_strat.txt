@@ -1,0 +1,2883 @@
+=============== running benchmark 631 ===============
+7a651e6ea3803611ce1f4f65f730da1bcc9be912
+
+Let's go!
+Time after baseline: 1.2627758979797363
+Time after file setup: 1.3264224529266357
+Track AA Queries std
+counts per function per file: {PosixPath('631/make.bc'): {'_Z4makeP7state_ti': 1760, '_Z6unmakeP7state_ti': 1401}, PosixPath('631/epd.bc'): {'_Z14setup_epd_lineP11gamestate_tP7state_tPKc': 350, '_Z17run_epd_testsuiteP11gamestate_tP7state_tPKc': 14, '_Z14check_solutionP7state_tPci': 4, '_Z15position_to_fenP7state_tPc': 18}, PosixPath('631/generate.bc'): {'_Z9gen_quietP7state_tPi': 386, '_Z3genP7state_tPi': 1022, '_Z16gen_check_blocksP7state_tPii': 225, '_Z12gen_capturesP7state_tPi': 529, '_Z15gen_good_checksP7state_tPi': 388, '_Z12gen_evasionsP7state_tPii': 27}, PosixPath('631/board.bc'): {'_Z11check_phaseP11gamestate_tP7state_t': 21}, PosixPath('631/initp.bc'): {'_Z15init_parametersP11gamestate_t': 4}, PosixPath('631/bitboard.bc'): {'_Z22SetupPrecalculatedDatav': 3985, '_Z16SetupCastleMasksP7state_t': 80, '_Z15DiagonalAttacksyj': 1, '_Z15AntiDiagAttacksyj': 1, '_Z13BishopAttacksP7state_ti': 5}, PosixPath('631/neval.bc'): {'_Z4evalP7state_tiii': 238, '_ZL13mobility_evalP7state_tP12t_eval_compsP12attackinfo_t': 240, '_ZL15kingsafety_evalP7state_tP8pawntt_tP12t_eval_comps': 178, '_ZL17kingpressure_evalP7state_tP12attackinfo_tP12t_eval_comps': 222, '_ZL11passer_evalP7state_tP8pawntt_tiP12t_eval_comps': 158, '_ZL15positional_evalP7state_tP8pawntt_tP12t_eval_comps': 148, '_ZL12trapped_evalP7state_tP12t_eval_comps': 631, '_Z5fevalP7state_tiP12t_eval_comps': 1365, '_ZL16opposite_bishopsP7state_tiii': 11, '_Z13retrieve_evalP7state_t': 7}, PosixPath('631/search.bc'): {'_Z6searchP7state_tiiiii': 588, '_ZL12history_goodP7state_tii': 33, '_Z11search_rootP7state_tiii': 153, '_ZL17search_time_checkP7state_t': 1, '_ZL16fast_order_movesP7state_tPiS1_ij': 18, '_ZL15remove_one_fastPiS_S_i': 4, '_ZL15history_pre_cutP7state_tii': 3, '_Z7qsearchP7state_tiiii': 256, '_ZL12make_blunderP7state_tiPii': 69, '_ZL11order_movesP7state_tPiS1_ij': 144, '_ZL13history_scoreP7state_ti': 3, '_ZL11history_badP7state_tii': 7, '_Z21reset_search_countersP7state_t': 4, '_Z5thinkP11gamestate_tP7state_t': 38}, PosixPath('631/draw.bc'): {'_Z7is_drawP11gamestate_tP7state_t': 29, '_Z21insufficient_materialP7state_t': 86}, PosixPath('631/state.bc'): {}, PosixPath('631/attacks.bc'): {'_Z11is_attackedP7state_tii': 75, '_Z8in_checkP7state_t': 3, '_Z10attacks_toP7state_ti': 107}, PosixPath('631/sjeng.bc'): {}, PosixPath('631/moves.bc'): {'_Z11check_legalP7state_ti': 3, '_Z20check_castle_blockerP7state_ti': 29}, PosixPath('631/pawn.bc'): {'_ZL14full_pawn_evalP7state_tP8pawntt_t': 639, '_Z16static_pawn_evalP7state_t': 737}, PosixPath('631/endgame.bc'): {'_Z14drawn_endgamesP7state_tiii': 4611}, PosixPath('631/bits.bc'): {'_Z15FindFirstRemovePy': 1}, PosixPath('631/preproc.bc'): {'_Z8psq_evalP7state_tP12t_eval_comps': 28, '_Z14init_psq_scoreP7state_t': 5, '_Z18preprocess_preparev': 6}, PosixPath('631/utils.bc'): {'_Z9init_gameP11gamestate_tP7state_t': 71, '_Z15make_text_movesP11gamestate_tP7state_tPc': 23, '_Z11comp_to_sanP7state_tiPc': 20, '_Z13display_boardP7state_ti': 3, '_Z18reset_piece_squareP7state_t': 92, '_Z7is_movePc': 7, '_Z20extract_current_pathP7state_t': 21, '_Z19extract_ponder_moveP7state_t': 2, '_ZL15hash_extract_pvP7state_tiPc': 19, '_Z24extract_current_bestlineP7state_t': 1, '_Z13post_thinkingP7state_tiiPci': 36, '_Z16post_fh_thinkingP7state_tiiPci': 18, '_Z16post_fl_thinkingP7state_tiiPci': 13, '_ZL14resort_multipvv': 15, '_Z21post_multipv_thinkingP7state_tiii': 91, '_Z6rinputPciP8_IO_FILE': 3, '_Z12verify_coordP7state_tPcPi': 5, '_Z17input_causes_stopv': 2, '_Z11reset_boardP7state_t': 22}, PosixPath('631/see.bc'): {'_Z3seeP7state_tiiii': 358}, PosixPath('631/ttable.bc'): {'_Z18initialize_zobristP7state_t': 2, '_Z15initialize_hashP7state_t': 10, '_Z7StoreTTP7state_tiiijiiii': 86, '_Z7ProbeTTP7state_tPiiiPjS1_S1_S1_S1_i': 91}}
+Time after AA Query measurement: 2.214963674545288
+Start Exploration
+***** Next file: 631/make.bc
+==== Next function: _Z4makeP7state_ti
+Running pass: InstCombinePass_0 with max_query_index: 4
+exhaustive search, time after compilation : 2.7147819995880127
+exhaustive search, time after assembly : 3.074692726135254
+exhaustive search candidates : [3009, 2945, 3043, 3014, 2951, 2952, 3020, 3024, 2929, 3025, 2962, 2934, 3032, 2940, 2941]
+Pass: InstCombinePass_0 generated: [0] with offset: -1 with count: 2929
+Running pass: EarlyCSEPass_2 with max_query_index: 143
+greedy search, currently checking 4 to 68 out of 143
+greedy search, time after compilation in step 0 : 4.080936908721924
+greedy search, time after assembly in step 0 : 4.573284864425659
+greedy search candidates: [2957, 2929, 2934, 2936, 2940, 2941, 2943]
+greedy search, currently checking 68 to 132 out of 143
+greedy search, time after compilation in step 0 : 5.666199445724487
+greedy search, time after assembly in step 0 : 6.065284490585327
+greedy search candidates: [2929, 2957, 2927]
+greedy search, new min: 2927
+greedy search, current list: [0, 77]
+greedy search, time after step 0 : 6.661026954650879
+greedy search, currently checking 78 to 142 out of 143
+greedy search, time after compilation in step 1 : 7.207557678222656
+greedy search, time after assembly in step 1 : 7.657658100128174
+greedy search candidates: [2955, 2927]
+greedy search, currently checking 142 to 143 out of 143
+greedy search, time after compilation in step 1 : 8.718315362930298
+greedy search, time after assembly in step 1 : 9.141883611679077
+greedy search candidates: [2927]
+Pass: EarlyCSEPass_2 generated: [0, 77] with offset: 3 with count: 2927
+Running pass: JumpThreadingPass_0 with max_query_index: 84
+exhaustive search, time after compilation : 9.74545931816101
+exhaustive search, time after assembly : 10.186068534851074
+exhaustive search candidates : [2927]
+Pass: JumpThreadingPass_0 generated: [0, 77] with offset: 81 with count: 2927
+Running pass: MergedLoadStoreMotionPass_0 with max_query_index: 100
+greedy search, currently checking 84 to 100 out of 100
+greedy search, time after compilation in step 0 : 10.855585098266602
+greedy search, time after assembly in step 0 : 11.254509210586548
+greedy search candidates: [2955, 2927]
+Pass: MergedLoadStoreMotionPass_0 generated: [0, 77] with offset: 83 with count: 2927
+Running pass: GVNPass_0 with max_query_index: 728
+greedy search, currently checking 100 to 164 out of 728
+greedy search, time after compilation in step 0 : 12.071335315704346
+greedy search, time after assembly in step 0 : 12.635300636291504
+greedy search candidates: [2927]
+greedy search, currently checking 164 to 228 out of 728
+greedy search, time after compilation in step 0 : 13.849881172180176
+greedy search, time after assembly in step 0 : 14.32911992073059
+greedy search candidates: [2927]
+greedy search, currently checking 228 to 292 out of 728
+greedy search, time after compilation in step 0 : 15.398041725158691
+greedy search, time after assembly in step 0 : 15.854747772216797
+greedy search candidates: [2927]
+greedy search, currently checking 292 to 356 out of 728
+greedy search, time after compilation in step 0 : 16.99420952796936
+greedy search, time after assembly in step 0 : 17.516841173171997
+greedy search candidates: [2927]
+greedy search, currently checking 356 to 420 out of 728
+greedy search, time after compilation in step 0 : 18.735763788223267
+greedy search, time after assembly in step 0 : 19.292194604873657
+greedy search candidates: [2927]
+greedy search, currently checking 420 to 484 out of 728
+greedy search, time after compilation in step 0 : 20.514582872390747
+greedy search, time after assembly in step 0 : 21.045339345932007
+greedy search candidates: [2927]
+greedy search, currently checking 484 to 548 out of 728
+greedy search, time after compilation in step 0 : 22.168360948562622
+greedy search, time after assembly in step 0 : 22.728450775146484
+greedy search candidates: [2927]
+greedy search, currently checking 548 to 612 out of 728
+greedy search, time after compilation in step 0 : 23.828365802764893
+greedy search, time after assembly in step 0 : 24.246822357177734
+greedy search candidates: [2927]
+greedy search, currently checking 612 to 676 out of 728
+greedy search, time after compilation in step 0 : 25.346583366394043
+greedy search, time after assembly in step 0 : 25.839218854904175
+greedy search candidates: [2927]
+greedy search, currently checking 676 to 728 out of 728
+greedy search, time after compilation in step 0 : 26.852937698364258
+greedy search, time after assembly in step 0 : 27.259032249450684
+greedy search candidates: [2927]
+Pass: GVNPass_0 generated: [0, 77] with offset: 99 with count: 2927
+Running pass: DSEPass_0 with max_query_index: 971
+greedy search, currently checking 728 to 792 out of 971
+greedy search, time after compilation in step 0 : 28.475992441177368
+greedy search, time after assembly in step 0 : 28.89445686340332
+greedy search candidates: [2927]
+greedy search, currently checking 792 to 856 out of 971
+greedy search, time after compilation in step 0 : 30.048891067504883
+greedy search, time after assembly in step 0 : 30.586270570755005
+greedy search candidates: [2927]
+greedy search, currently checking 856 to 920 out of 971
+greedy search, time after compilation in step 0 : 31.698583602905273
+greedy search, time after assembly in step 0 : 32.258410692214966
+greedy search candidates: [2927]
+greedy search, currently checking 920 to 971 out of 971
+greedy search, time after compilation in step 0 : 33.438111543655396
+greedy search, time after assembly in step 0 : 33.90587663650513
+greedy search candidates: [2927]
+Pass: DSEPass_0 generated: [0, 77] with offset: 727 with count: 2927
+Time after exploration of _Z4makeP7state_ti: 34.370739698410034
+==== Next function: _Z6unmakeP7state_ti
+Running pass: InstCombinePass_1 with max_query_index: 4
+exhaustive search, time after compilation : 34.87915802001953
+exhaustive search, time after assembly : 35.259785890579224
+exhaustive search candidates : [3009, 3010, 3019, 3017]
+Pass: InstCombinePass_1 generated: [] with offset: -1 with count: 3009
+Running pass: EarlyCSEPass_3 with max_query_index: 20
+greedy search, currently checking 4 to 20 out of 20
+greedy search, time after compilation in step 0 : 36.10070490837097
+greedy search, time after assembly in step 0 : 36.58373498916626
+greedy search candidates: [3016, 3009, 3018]
+Pass: EarlyCSEPass_3 generated: [] with offset: 3 with count: 3009
+Running pass: MergedLoadStoreMotionPass_1 with max_query_index: 21
+exhaustive search, time after compilation : 37.180264711380005
+exhaustive search, time after assembly : 37.572657346725464
+exhaustive search candidates : [3009]
+Pass: MergedLoadStoreMotionPass_1 generated: [] with offset: 19 with count: 3009
+Running pass: GVNPass_1 with max_query_index: 903
+greedy search, currently checking 21 to 85 out of 903
+greedy search, time after compilation in step 0 : 38.43786859512329
+greedy search, time after assembly in step 0 : 38.93056797981262
+greedy search candidates: [3009]
+greedy search, currently checking 85 to 149 out of 903
+greedy search, time after compilation in step 0 : 40.074588775634766
+greedy search, time after assembly in step 0 : 40.49586606025696
+greedy search candidates: [3009]
+greedy search, currently checking 149 to 213 out of 903
+greedy search, time after compilation in step 0 : 41.73348546028137
+greedy search, time after assembly in step 0 : 42.23255276679993
+greedy search candidates: [3009]
+greedy search, currently checking 213 to 277 out of 903
+greedy search, time after compilation in step 0 : 43.2611198425293
+greedy search, time after assembly in step 0 : 43.692861557006836
+greedy search candidates: [3009]
+greedy search, currently checking 277 to 341 out of 903
+greedy search, time after compilation in step 0 : 44.86496043205261
+greedy search, time after assembly in step 0 : 45.3620879650116
+greedy search candidates: [3009]
+greedy search, currently checking 341 to 405 out of 903
+greedy search, time after compilation in step 0 : 46.45080208778381
+greedy search, time after assembly in step 0 : 46.86005759239197
+greedy search candidates: [3009]
+greedy search, currently checking 405 to 469 out of 903
+greedy search, time after compilation in step 0 : 47.93149781227112
+greedy search, time after assembly in step 0 : 48.39212942123413
+greedy search candidates: [3009]
+greedy search, currently checking 469 to 533 out of 903
+greedy search, time after compilation in step 0 : 49.536224603652954
+greedy search, time after assembly in step 0 : 50.03589153289795
+greedy search candidates: [3009]
+greedy search, currently checking 533 to 597 out of 903
+greedy search, time after compilation in step 0 : 51.18445062637329
+greedy search, time after assembly in step 0 : 51.637638568878174
+greedy search candidates: [3009]
+greedy search, currently checking 597 to 661 out of 903
+greedy search, time after compilation in step 0 : 52.813483238220215
+greedy search, time after assembly in step 0 : 53.271404504776
+greedy search candidates: [3009]
+greedy search, currently checking 661 to 725 out of 903
+greedy search, time after compilation in step 0 : 54.330811977386475
+greedy search, time after assembly in step 0 : 54.91863417625427
+greedy search candidates: [3009]
+greedy search, currently checking 725 to 789 out of 903
+greedy search, time after compilation in step 0 : 56.007235288619995
+greedy search, time after assembly in step 0 : 56.412036180496216
+greedy search candidates: [3009]
+greedy search, currently checking 789 to 853 out of 903
+greedy search, time after compilation in step 0 : 57.48729062080383
+greedy search, time after assembly in step 0 : 57.991721868515015
+greedy search candidates: [3009]
+greedy search, currently checking 853 to 903 out of 903
+greedy search, time after compilation in step 0 : 59.038938999176025
+greedy search, time after assembly in step 0 : 59.529897928237915
+greedy search candidates: [3009]
+Pass: GVNPass_1 generated: [] with offset: 20 with count: 3009
+Running pass: DSEPass_1 with max_query_index: 1401
+greedy search, currently checking 903 to 967 out of 1401
+greedy search, time after compilation in step 0 : 60.858792781829834
+greedy search, time after assembly in step 0 : 61.283315658569336
+greedy search candidates: [3009]
+greedy search, currently checking 967 to 1031 out of 1401
+greedy search, time after compilation in step 0 : 62.444072246551514
+greedy search, time after assembly in step 0 : 62.88222050666809
+greedy search candidates: [3009]
+greedy search, currently checking 1031 to 1095 out of 1401
+greedy search, time after compilation in step 0 : 63.97487783432007
+greedy search, time after assembly in step 0 : 64.35343527793884
+greedy search candidates: [3009]
+greedy search, currently checking 1095 to 1159 out of 1401
+greedy search, time after compilation in step 0 : 65.52856826782227
+greedy search, time after assembly in step 0 : 66.02993702888489
+greedy search candidates: [3009]
+greedy search, currently checking 1159 to 1223 out of 1401
+greedy search, time after compilation in step 0 : 67.18839526176453
+greedy search, time after assembly in step 0 : 67.72268843650818
+greedy search candidates: [3009]
+greedy search, currently checking 1223 to 1287 out of 1401
+greedy search, time after compilation in step 0 : 68.7681212425232
+greedy search, time after assembly in step 0 : 69.33355689048767
+greedy search candidates: [3009]
+greedy search, currently checking 1287 to 1351 out of 1401
+greedy search, time after compilation in step 0 : 70.46064043045044
+greedy search, time after assembly in step 0 : 70.97913384437561
+greedy search candidates: [3009]
+greedy search, currently checking 1351 to 1401 out of 1401
+greedy search, time after compilation in step 0 : 72.04230117797852
+greedy search, time after assembly in step 0 : 72.57356858253479
+greedy search candidates: [3009]
+Pass: DSEPass_1 generated: [] with offset: 902 with count: 3009
+Time after exploration of _Z6unmakeP7state_ti: 72.99268841743469
+Time after exploration of 631/make.bc: 72.99270796775818
+***** Next file: 631/epd.bc
+==== Next function: _Z14setup_epd_lineP11gamestate_tP7state_tPKc
+Running pass: InstCombinePass_0 with max_query_index: 1
+exhaustive search, time after compilation : 73.44334435462952
+exhaustive search, time after assembly : 73.90748453140259
+exhaustive search candidates : [3235]
+Pass: InstCombinePass_0 generated: [] with offset: -1 with count: 3235
+Running pass: EarlyCSEPass_4 with max_query_index: 9
+exhaustive search, time after compilation : 74.73439455032349
+exhaustive search, time after assembly : 75.4080741405487
+exhaustive search candidates : [3235]
+Pass: EarlyCSEPass_4 generated: [] with offset: 0 with count: 3235
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 161
+greedy search, currently checking 9 to 73 out of 161
+greedy search, time after compilation in step 0 : 78.52415657043457
+greedy search, time after assembly in step 0 : 79.02455234527588
+greedy search candidates: [3235]
+greedy search, currently checking 73 to 137 out of 161
+greedy search, time after compilation in step 0 : 80.05352139472961
+greedy search, time after assembly in step 0 : 80.54173994064331
+greedy search candidates: [3235]
+greedy search, currently checking 137 to 161 out of 161
+greedy search, time after compilation in step 0 : 81.58246326446533
+greedy search, time after assembly in step 0 : 82.06406140327454
+greedy search candidates: [3235]
+Pass: FunctionToLoopPassAdaptor_0 generated: [] with offset: 8 with count: 3235
+Running pass: GVNPass_0 with max_query_index: 335
+greedy search, currently checking 161 to 225 out of 335
+greedy search, time after compilation in step 0 : 83.04362726211548
+greedy search, time after assembly in step 0 : 83.57049298286438
+greedy search candidates: [3235]
+greedy search, currently checking 225 to 289 out of 335
+greedy search, time after compilation in step 0 : 84.66170001029968
+greedy search, time after assembly in step 0 : 85.14125514030457
+greedy search candidates: [3235]
+greedy search, currently checking 289 to 335 out of 335
+greedy search, time after compilation in step 0 : 86.20749735832214
+greedy search, time after assembly in step 0 : 86.7650032043457
+greedy search candidates: [3235]
+Pass: GVNPass_0 generated: [] with offset: 160 with count: 3235
+Running pass: DSEPass_0 with max_query_index: 350
+greedy search, currently checking 335 to 350 out of 350
+greedy search, time after compilation in step 0 : 87.98954653739929
+greedy search, time after assembly in step 0 : 88.46778655052185
+greedy search candidates: [3235]
+Pass: DSEPass_0 generated: [] with offset: 334 with count: 3235
+Time after exploration of _Z14setup_epd_lineP11gamestate_tP7state_tPKc: 88.60981035232544
+==== Next function: _Z17run_epd_testsuiteP11gamestate_tP7state_tPKc
+Running pass: InstCombinePass_2 with max_query_index: 1
+exhaustive search, time after compilation : 89.09208035469055
+exhaustive search, time after assembly : 89.52998113632202
+exhaustive search candidates : [3235]
+Pass: InstCombinePass_2 generated: [] with offset: -1 with count: 3235
+Running pass: FunctionToLoopPassAdaptor_6 with max_query_index: 13
+greedy search, currently checking 1 to 13 out of 13
+greedy search, time after compilation in step 0 : 90.2716715335846
+greedy search, time after assembly in step 0 : 90.7689278125763
+greedy search candidates: [3235]
+Pass: FunctionToLoopPassAdaptor_6 generated: [] with offset: 0 with count: 3235
+Running pass: DSEPass_2 with max_query_index: 14
+exhaustive search, time after compilation : 91.34985041618347
+exhaustive search, time after assembly : 91.868337392807
+exhaustive search candidates : [3235]
+Pass: DSEPass_2 generated: [] with offset: 12 with count: 3235
+Time after exploration of _Z17run_epd_testsuiteP11gamestate_tP7state_tPKc: 91.89203810691833
+==== Next function: _Z14check_solutionP7state_tPci
+Running pass: GVNPass_1 with max_query_index: 4
+exhaustive search, time after compilation : 92.35084128379822
+exhaustive search, time after assembly : 92.77939462661743
+exhaustive search candidates : [3235]
+Pass: GVNPass_1 generated: [] with offset: -1 with count: 3235
+Time after exploration of _Z14check_solutionP7state_tPci: 92.96857762336731
+==== Next function: _Z15position_to_fenP7state_tPc
+Running pass: GVNPass_3 with max_query_index: 10
+greedy search, currently checking 0 to 10 out of 10
+greedy search, time after compilation in step 0 : 93.6427252292633
+greedy search, time after assembly in step 0 : 93.99897885322571
+greedy search candidates: [3235, 3230]
+greedy search, new min: 3230
+greedy search, current list: [2]
+greedy search, time after step 0 : 94.10102033615112
+greedy search, currently checking 3 to 10 out of 10
+greedy search, time after compilation in step 1 : 94.50151443481445
+greedy search, time after assembly in step 1 : 94.89350724220276
+greedy search candidates: [3230]
+Pass: GVNPass_3 generated: [2] with offset: -1 with count: 3230
+Running pass: MemCpyOptPass_3 with max_query_index: 13
+exhaustive search, time after compilation : 95.45145344734192
+exhaustive search, time after assembly : 95.93109583854675
+exhaustive search candidates : [3230]
+Pass: MemCpyOptPass_3 generated: [2] with offset: 9 with count: 3230
+Running pass: DSEPass_3 with max_query_index: 18
+exhaustive search, time after compilation : 96.46705555915833
+exhaustive search, time after assembly : 96.9174153804779
+exhaustive search candidates : [3230]
+Pass: DSEPass_3 generated: [2] with offset: 12 with count: 3230
+Time after exploration of _Z15position_to_fenP7state_tPc: 97.17308735847473
+Time after exploration of 631/epd.bc: 97.17311263084412
+***** Next file: 631/generate.bc
+==== Next function: _Z9gen_quietP7state_tPi
+Running pass: InstCombinePass_0 with max_query_index: 2
+exhaustive search, time after compilation : 97.73021054267883
+exhaustive search, time after assembly : 98.27153825759888
+exhaustive search candidates : [7045]
+Pass: InstCombinePass_0 generated: [] with offset: -1 with count: 7045
+Running pass: EarlyCSEPass_12 with max_query_index: 19
+greedy search, currently checking 2 to 19 out of 19
+greedy search, time after compilation in step 0 : 99.46413373947144
+greedy search, time after assembly in step 0 : 100.05808854103088
+greedy search candidates: [7045]
+Pass: EarlyCSEPass_12 generated: [] with offset: 1 with count: 7045
+Running pass: FunctionToLoopPassAdaptor_9 with max_query_index: 43
+greedy search, currently checking 19 to 43 out of 43
+greedy search, time after compilation in step 0 : 101.41500234603882
+greedy search, time after assembly in step 0 : 101.9381971359253
+greedy search candidates: [7045]
+Pass: FunctionToLoopPassAdaptor_9 generated: [] with offset: 18 with count: 7045
+Running pass: MergedLoadStoreMotionPass_3 with max_query_index: 51
+exhaustive search, time after compilation : 103.53911972045898
+exhaustive search, time after assembly : 104.5400505065918
+exhaustive search candidates : [7045]
+Pass: MergedLoadStoreMotionPass_3 generated: [] with offset: 42 with count: 7045
+Running pass: GVNPass_3 with max_query_index: 344
+greedy search, currently checking 51 to 115 out of 344
+greedy search, time after compilation in step 0 : 108.09678173065186
+greedy search, time after assembly in step 0 : 108.72675156593323
+greedy search candidates: [7045]
+greedy search, currently checking 115 to 179 out of 344
+greedy search, time after compilation in step 0 : 110.06855607032776
+greedy search, time after assembly in step 0 : 110.63666820526123
+greedy search candidates: [7045]
+greedy search, currently checking 179 to 243 out of 344
+greedy search, time after compilation in step 0 : 112.00352263450623
+greedy search, time after assembly in step 0 : 112.66730880737305
+greedy search candidates: [7045]
+greedy search, currently checking 243 to 307 out of 344
+greedy search, time after compilation in step 0 : 113.96508979797363
+greedy search, time after assembly in step 0 : 114.60500597953796
+greedy search candidates: [7045]
+greedy search, currently checking 307 to 344 out of 344
+greedy search, time after compilation in step 0 : 115.79711747169495
+greedy search, time after assembly in step 0 : 116.34881663322449
+greedy search candidates: [7045]
+Pass: GVNPass_3 generated: [] with offset: 50 with count: 7045
+Running pass: DSEPass_3 with max_query_index: 382
+greedy search, currently checking 344 to 382 out of 382
+greedy search, time after compilation in step 0 : 117.87142157554626
+greedy search, time after assembly in step 0 : 118.42022442817688
+greedy search candidates: [7045]
+Pass: DSEPass_3 generated: [] with offset: 343 with count: 7045
+Running pass: FunctionToLoopPassAdaptor_28 with max_query_index: 386
+exhaustive search, time after compilation : 119.37065410614014
+exhaustive search, time after assembly : 119.97244095802307
+exhaustive search candidates : [7045]
+Pass: FunctionToLoopPassAdaptor_28 generated: [] with offset: 381 with count: 7045
+Time after exploration of _Z9gen_quietP7state_tPi: 120.135338306427
+==== Next function: _Z3genP7state_tPi
+Running pass: InstCombinePass_4 with max_query_index: 2
+exhaustive search, time after compilation : 120.75252223014832
+exhaustive search, time after assembly : 121.25204038619995
+exhaustive search candidates : [7049, 7045]
+Pass: InstCombinePass_4 generated: [] with offset: -1 with count: 7045
+Running pass: EarlyCSEPass_13 with max_query_index: 31
+greedy search, currently checking 2 to 31 out of 31
+greedy search, time after compilation in step 0 : 122.46676969528198
+greedy search, time after assembly in step 0 : 122.96263837814331
+greedy search candidates: [7035, 7052, 7045]
+greedy search, new min: 7035
+greedy search, current list: [10]
+greedy search, time after step 0 : 123.25481104850769
+greedy search, currently checking 11 to 31 out of 31
+greedy search, time after compilation in step 1 : 123.93594527244568
+greedy search, time after assembly in step 1 : 124.53758692741394
+greedy search candidates: [7025, 7042, 7035]
+greedy search, new min: 7025
+greedy search, current list: [10, 20]
+greedy search, time after step 1 : 124.77483177185059
+greedy search, currently checking 21 to 31 out of 31
+greedy search, time after compilation in step 2 : 125.47592377662659
+greedy search, time after assembly in step 2 : 125.99083948135376
+greedy search candidates: [7032, 7025]
+Pass: EarlyCSEPass_13 generated: [10, 20] with offset: 1 with count: 7025
+Running pass: FunctionToLoopPassAdaptor_12 with max_query_index: 109
+greedy search, currently checking 31 to 95 out of 109
+greedy search, time after compilation in step 0 : 127.46086430549622
+greedy search, time after assembly in step 0 : 128.01092171669006
+greedy search candidates: [7025]
+greedy search, currently checking 95 to 109 out of 109
+greedy search, time after compilation in step 0 : 129.2419629096985
+greedy search, time after assembly in step 0 : 129.75527453422546
+greedy search candidates: [7025]
+Pass: FunctionToLoopPassAdaptor_12 generated: [10, 20] with offset: 30 with count: 7025
+Running pass: MergedLoadStoreMotionPass_4 with max_query_index: 117
+exhaustive search, time after compilation : 131.18960285186768
+exhaustive search, time after assembly : 132.15733242034912
+exhaustive search candidates : [7025]
+Pass: MergedLoadStoreMotionPass_4 generated: [10, 20] with offset: 108 with count: 7025
+Running pass: GVNPass_4 with max_query_index: 935
+greedy search, currently checking 117 to 181 out of 935
+greedy search, time after compilation in step 0 : 135.92724585533142
+greedy search, time after assembly in step 0 : 136.45663237571716
+greedy search candidates: [7025]
+greedy search, currently checking 181 to 245 out of 935
+greedy search, time after compilation in step 0 : 137.76300573349
+greedy search, time after assembly in step 0 : 138.42356705665588
+greedy search candidates: [7025]
+greedy search, currently checking 245 to 309 out of 935
+greedy search, time after compilation in step 0 : 139.63521122932434
+greedy search, time after assembly in step 0 : 140.24189734458923
+greedy search candidates: [7025]
+greedy search, currently checking 309 to 373 out of 935
+greedy search, time after compilation in step 0 : 141.54453778266907
+greedy search, time after assembly in step 0 : 142.15372681617737
+greedy search candidates: [7025]
+greedy search, currently checking 373 to 437 out of 935
+greedy search, time after compilation in step 0 : 143.44944095611572
+greedy search, time after assembly in step 0 : 144.04788875579834
+greedy search candidates: [7025]
+greedy search, currently checking 437 to 501 out of 935
+greedy search, time after compilation in step 0 : 145.49752616882324
+greedy search, time after assembly in step 0 : 146.08134531974792
+greedy search candidates: [7025]
+greedy search, currently checking 501 to 565 out of 935
+greedy search, time after compilation in step 0 : 147.35539031028748
+greedy search, time after assembly in step 0 : 147.94995498657227
+greedy search candidates: [7025]
+greedy search, currently checking 565 to 629 out of 935
+greedy search, time after compilation in step 0 : 149.3650884628296
+greedy search, time after assembly in step 0 : 149.9720492362976
+greedy search candidates: [7025]
+greedy search, currently checking 629 to 693 out of 935
+greedy search, time after compilation in step 0 : 151.30442786216736
+greedy search, time after assembly in step 0 : 151.91550660133362
+greedy search candidates: [7025]
+greedy search, currently checking 693 to 757 out of 935
+greedy search, time after compilation in step 0 : 153.28703117370605
+greedy search, time after assembly in step 0 : 153.805255651474
+greedy search candidates: [7025]
+greedy search, currently checking 757 to 821 out of 935
+greedy search, time after compilation in step 0 : 155.18350267410278
+greedy search, time after assembly in step 0 : 155.673974275589
+greedy search candidates: [7025]
+greedy search, currently checking 821 to 885 out of 935
+greedy search, time after compilation in step 0 : 156.9556655883789
+greedy search, time after assembly in step 0 : 157.54489946365356
+greedy search candidates: [7025]
+greedy search, currently checking 885 to 935 out of 935
+greedy search, time after compilation in step 0 : 158.80186104774475
+greedy search, time after assembly in step 0 : 159.33831930160522
+greedy search candidates: [7025]
+Pass: GVNPass_4 generated: [10, 20] with offset: 116 with count: 7025
+Running pass: DSEPass_4 with max_query_index: 1017
+greedy search, currently checking 935 to 999 out of 1017
+greedy search, time after compilation in step 0 : 161.1555473804474
+greedy search, time after assembly in step 0 : 161.80168294906616
+greedy search candidates: [7025]
+greedy search, currently checking 999 to 1017 out of 1017
+greedy search, time after compilation in step 0 : 162.95417475700378
+greedy search, time after assembly in step 0 : 163.42306065559387
+greedy search candidates: [7025]
+Pass: DSEPass_4 generated: [10, 20] with offset: 934 with count: 7025
+Running pass: FunctionToLoopPassAdaptor_36 with max_query_index: 1022
+exhaustive search, time after compilation : 164.16445469856262
+exhaustive search, time after assembly : 164.71042943000793
+exhaustive search candidates : [7025]
+Pass: FunctionToLoopPassAdaptor_36 generated: [10, 20] with offset: 1016 with count: 7025
+Time after exploration of _Z3genP7state_tPi: 164.9794020652771
+==== Next function: _Z16gen_check_blocksP7state_tPii
+Running pass: InstCombinePass_7 with max_query_index: 1
+exhaustive search, time after compilation : 165.5504286289215
+exhaustive search, time after assembly : 166.13074851036072
+exhaustive search candidates : [7045]
+Pass: InstCombinePass_7 generated: [] with offset: -1 with count: 7045
+Running pass: EarlyCSEPass_16 with max_query_index: 15
+greedy search, currently checking 1 to 15 out of 15
+greedy search, time after compilation in step 0 : 167.30878162384033
+greedy search, time after assembly in step 0 : 167.83320426940918
+greedy search candidates: [7045]
+Pass: EarlyCSEPass_16 generated: [] with offset: 0 with count: 7045
+Running pass: FunctionToLoopPassAdaptor_21 with max_query_index: 38
+greedy search, currently checking 15 to 38 out of 38
+greedy search, time after compilation in step 0 : 169.21565198898315
+greedy search, time after assembly in step 0 : 169.7136890888214
+greedy search candidates: [7045]
+Pass: FunctionToLoopPassAdaptor_21 generated: [] with offset: 14 with count: 7045
+Running pass: GVNPass_7 with max_query_index: 196
+greedy search, currently checking 38 to 102 out of 196
+greedy search, time after compilation in step 0 : 171.0399374961853
+greedy search, time after assembly in step 0 : 171.6473684310913
+greedy search candidates: [7045]
+greedy search, currently checking 102 to 166 out of 196
+greedy search, time after compilation in step 0 : 173.06314635276794
+greedy search, time after assembly in step 0 : 173.6855182647705
+greedy search candidates: [7045]
+greedy search, currently checking 166 to 196 out of 196
+greedy search, time after compilation in step 0 : 175.01516389846802
+greedy search, time after assembly in step 0 : 175.56926774978638
+greedy search candidates: [7045]
+Pass: GVNPass_7 generated: [] with offset: 37 with count: 7045
+Running pass: DSEPass_7 with max_query_index: 221
+greedy search, currently checking 196 to 221 out of 221
+greedy search, time after compilation in step 0 : 176.83448243141174
+greedy search, time after assembly in step 0 : 177.362961769104
+greedy search candidates: [7045]
+Pass: DSEPass_7 generated: [] with offset: 195 with count: 7045
+Running pass: FunctionToLoopPassAdaptor_42 with max_query_index: 225
+exhaustive search, time after compilation : 178.0975570678711
+exhaustive search, time after assembly : 178.57814764976501
+exhaustive search candidates : [7045]
+Pass: FunctionToLoopPassAdaptor_42 generated: [] with offset: 220 with count: 7045
+Time after exploration of _Z16gen_check_blocksP7state_tPii: 178.70657992362976
+==== Next function: _Z12gen_capturesP7state_tPi
+Running pass: EarlyCSEPass_14 with max_query_index: 18
+greedy search, currently checking 0 to 18 out of 18
+greedy search, time after compilation in step 0 : 179.8879714012146
+greedy search, time after assembly in step 0 : 180.49490070343018
+greedy search candidates: [7034, 7045]
+greedy search, new min: 7034
+greedy search, current list: [5]
+greedy search, time after step 0 : 180.6623730659485
+greedy search, currently checking 6 to 18 out of 18
+greedy search, time after compilation in step 1 : 181.2513244152069
+greedy search, time after assembly in step 1 : 181.73284769058228
+greedy search candidates: [7034, 7023]
+greedy search, new min: 7023
+greedy search, current list: [5, 17]
+greedy search, time after step 1 : 181.83689880371094
+Pass: EarlyCSEPass_14 generated: [5, 17] with offset: -1 with count: 7023
+Running pass: FunctionToLoopPassAdaptor_15 with max_query_index: 69
+greedy search, currently checking 18 to 69 out of 69
+greedy search, time after compilation in step 0 : 183.48328685760498
+greedy search, time after assembly in step 0 : 184.08448314666748
+greedy search candidates: [7023]
+Pass: FunctionToLoopPassAdaptor_15 generated: [5, 17] with offset: 17 with count: 7023
+Running pass: GVNPass_5 with max_query_index: 510
+greedy search, currently checking 69 to 133 out of 510
+greedy search, time after compilation in step 0 : 185.81348371505737
+greedy search, time after assembly in step 0 : 186.4691460132599
+greedy search candidates: [7023]
+greedy search, currently checking 133 to 197 out of 510
+greedy search, time after compilation in step 0 : 187.70689368247986
+greedy search, time after assembly in step 0 : 188.32223463058472
+greedy search candidates: [7023]
+greedy search, currently checking 197 to 261 out of 510
+greedy search, time after compilation in step 0 : 189.6735076904297
+greedy search, time after assembly in step 0 : 190.31209707260132
+greedy search candidates: [7023]
+greedy search, currently checking 261 to 325 out of 510
+greedy search, time after compilation in step 0 : 191.62517380714417
+greedy search, time after assembly in step 0 : 192.21258354187012
+greedy search candidates: [7023]
+greedy search, currently checking 325 to 389 out of 510
+greedy search, time after compilation in step 0 : 193.57255673408508
+greedy search, time after assembly in step 0 : 194.16492819786072
+greedy search candidates: [7023]
+greedy search, currently checking 389 to 453 out of 510
+greedy search, time after compilation in step 0 : 195.6514778137207
+greedy search, time after assembly in step 0 : 196.39873242378235
+greedy search candidates: [7023]
+greedy search, currently checking 453 to 510 out of 510
+greedy search, time after compilation in step 0 : 197.8602340221405
+greedy search, time after assembly in step 0 : 198.46070528030396
+greedy search candidates: [7023]
+Pass: GVNPass_5 generated: [5, 17] with offset: 68 with count: 7023
+Running pass: DSEPass_5 with max_query_index: 525
+greedy search, currently checking 510 to 525 out of 525
+greedy search, time after compilation in step 0 : 200.2736051082611
+greedy search, time after assembly in step 0 : 200.78023171424866
+greedy search candidates: [7023]
+Pass: DSEPass_5 generated: [5, 17] with offset: 509 with count: 7023
+Running pass: FunctionToLoopPassAdaptor_38 with max_query_index: 529
+exhaustive search, time after compilation : 201.5410134792328
+exhaustive search, time after assembly : 202.04865074157715
+exhaustive search candidates : [7023]
+Pass: FunctionToLoopPassAdaptor_38 generated: [5, 17] with offset: 524 with count: 7023
+Time after exploration of _Z12gen_capturesP7state_tPi: 202.21247243881226
+==== Next function: _Z15gen_good_checksP7state_tPi
+Running pass: EarlyCSEPass_15 with max_query_index: 7
+exhaustive search, time after compilation : 203.09345769882202
+exhaustive search, time after assembly : 203.78565120697021
+exhaustive search candidates : [7045]
+Pass: EarlyCSEPass_15 generated: [] with offset: -1 with count: 7045
+Running pass: FunctionToLoopPassAdaptor_18 with max_query_index: 53
+greedy search, currently checking 7 to 53 out of 53
+greedy search, time after compilation in step 0 : 206.0463056564331
+greedy search, time after assembly in step 0 : 206.61543560028076
+greedy search candidates: [7045]
+Pass: FunctionToLoopPassAdaptor_18 generated: [] with offset: 6 with count: 7045
+Running pass: MergedLoadStoreMotionPass_6 with max_query_index: 56
+exhaustive search, time after compilation : 207.75376510620117
+exhaustive search, time after assembly : 208.25647711753845
+exhaustive search candidates : [7045]
+Pass: MergedLoadStoreMotionPass_6 generated: [] with offset: 52 with count: 7045
+Running pass: GVNPass_6 with max_query_index: 370
+greedy search, currently checking 56 to 120 out of 370
+greedy search, time after compilation in step 0 : 209.66047167778015
+greedy search, time after assembly in step 0 : 210.29162430763245
+greedy search candidates: [7045]
+greedy search, currently checking 120 to 184 out of 370
+greedy search, time after compilation in step 0 : 211.5969467163086
+greedy search, time after assembly in step 0 : 212.283597946167
+greedy search candidates: [7045]
+greedy search, currently checking 184 to 248 out of 370
+greedy search, time after compilation in step 0 : 213.62532901763916
+greedy search, time after assembly in step 0 : 214.29050970077515
+greedy search candidates: [7045]
+greedy search, currently checking 248 to 312 out of 370
+greedy search, time after compilation in step 0 : 215.71259236335754
+greedy search, time after assembly in step 0 : 216.31142139434814
+greedy search candidates: [7045]
+greedy search, currently checking 312 to 370 out of 370
+greedy search, time after compilation in step 0 : 217.68710279464722
+greedy search, time after assembly in step 0 : 218.33844470977783
+greedy search candidates: [7045]
+Pass: GVNPass_6 generated: [] with offset: 55 with count: 7045
+Running pass: DSEPass_6 with max_query_index: 383
+greedy search, currently checking 370 to 383 out of 383
+greedy search, time after compilation in step 0 : 220.07438039779663
+greedy search, time after assembly in step 0 : 220.5896852016449
+greedy search candidates: [7045]
+Pass: DSEPass_6 generated: [] with offset: 369 with count: 7045
+Running pass: FunctionToLoopPassAdaptor_20 with max_query_index: 384
+exhaustive search, time after compilation : 221.51209235191345
+exhaustive search, time after assembly : 221.98324489593506
+exhaustive search candidates : [7045]
+Pass: FunctionToLoopPassAdaptor_20 generated: [] with offset: 382 with count: 7045
+Running pass: FunctionToLoopPassAdaptor_40 with max_query_index: 388
+exhaustive search, time after compilation : 222.63281559944153
+exhaustive search, time after assembly : 223.22382020950317
+exhaustive search candidates : [7045]
+Pass: FunctionToLoopPassAdaptor_40 generated: [] with offset: 383 with count: 7045
+Time after exploration of _Z15gen_good_checksP7state_tPi: 223.40503334999084
+==== Next function: _Z12gen_evasionsP7state_tPii
+Running pass: EarlyCSEPass_17 with max_query_index: 2
+exhaustive search, time after compilation : 224.07218432426453
+exhaustive search, time after assembly : 224.61366176605225
+exhaustive search candidates : [7045]
+Pass: EarlyCSEPass_17 generated: [] with offset: -1 with count: 7045
+Running pass: FunctionToLoopPassAdaptor_24 with max_query_index: 12
+greedy search, currently checking 2 to 12 out of 12
+greedy search, time after compilation in step 0 : 225.6467320919037
+greedy search, time after assembly in step 0 : 226.10747170448303
+greedy search candidates: [7045]
+Pass: FunctionToLoopPassAdaptor_24 generated: [] with offset: 1 with count: 7045
+Running pass: GVNPass_8 with max_query_index: 26
+greedy search, currently checking 12 to 26 out of 26
+greedy search, time after compilation in step 0 : 227.22906041145325
+greedy search, time after assembly in step 0 : 227.77078461647034
+greedy search candidates: [7045]
+Pass: GVNPass_8 generated: [] with offset: 11 with count: 7045
+Running pass: FunctionToLoopPassAdaptor_44 with max_query_index: 27
+exhaustive search, time after compilation : 228.61798071861267
+exhaustive search, time after assembly : 229.10476160049438
+exhaustive search candidates : [7045]
+Pass: FunctionToLoopPassAdaptor_44 generated: [] with offset: 25 with count: 7045
+Time after exploration of _Z12gen_evasionsP7state_tPii: 229.12637567520142
+Time after exploration of 631/generate.bc: 229.12643122673035
+***** Next file: 631/board.bc
+==== Next function: _Z11check_phaseP11gamestate_tP7state_t
+Running pass: FunctionToLoopPassAdaptor_15 with max_query_index: 1
+exhaustive search, time after compilation : 229.52268171310425
+exhaustive search, time after assembly : 229.8899209499359
+exhaustive search candidates : [575]
+Pass: FunctionToLoopPassAdaptor_15 generated: [] with offset: -1 with count: 575
+Running pass: GVNPass_5 with max_query_index: 15
+greedy search, currently checking 1 to 15 out of 15
+greedy search, time after compilation in step 0 : 230.4747347831726
+greedy search, time after assembly in step 0 : 230.87500739097595
+greedy search candidates: [575]
+Pass: GVNPass_5 generated: [] with offset: 0 with count: 575
+Running pass: DSEPass_5 with max_query_index: 21
+exhaustive search, time after compilation : 231.48736119270325
+exhaustive search, time after assembly : 231.91438555717468
+exhaustive search candidates : [575]
+Pass: DSEPass_5 generated: [] with offset: 14 with count: 575
+Time after exploration of _Z11check_phaseP11gamestate_tP7state_t: 232.52190589904785
+Time after exploration of 631/board.bc: 232.52192854881287
+***** Next file: 631/initp.bc
+==== Next function: _Z15init_parametersP11gamestate_t
+Running pass: DSEPass_0 with max_query_index: 4
+exhaustive search, time after compilation : 232.9498429298401
+exhaustive search, time after assembly : 233.4167537689209
+exhaustive search candidates : [205]
+Pass: DSEPass_0 generated: [] with offset: -1 with count: 205
+Time after exploration of _Z15init_parametersP11gamestate_t: 233.56005954742432
+Time after exploration of 631/initp.bc: 233.56008291244507
+***** Next file: 631/bitboard.bc
+==== Next function: _Z22SetupPrecalculatedDatav
+Running pass: InstCombinePass_3 with max_query_index: 1
+exhaustive search, time after compilation : 234.09471678733826
+exhaustive search, time after assembly : 234.57644891738892
+exhaustive search candidates : [4953, 4959]
+Pass: InstCombinePass_3 generated: [] with offset: -1 with count: 4953
+Running pass: EarlyCSEPass_16 with max_query_index: 998
+greedy search, currently checking 1 to 65 out of 998
+greedy search, time after compilation in step 0 : 235.86112093925476
+greedy search, time after assembly in step 0 : 236.4542202949524
+greedy search candidates: [4961, 4941, 4947, 4951, 4953, 4958, 4959]
+greedy search, new min: 4947
+greedy search, current list: [8]
+greedy search, time after step 0 : 236.99886870384216
+greedy search, currently checking 9 to 73 out of 998
+greedy search, time after compilation in step 1 : 237.71949934959412
+greedy search, time after assembly in step 1 : 238.3663249015808
+greedy search candidates: [4935, 4937, 4945, 4947, 4950, 4952, 4953, 4955]
+greedy search, new min: 4935
+greedy search, current list: [8, 13]
+greedy search, time after step 1 : 239.06100249290466
+greedy search, currently checking 14 to 78 out of 998
+greedy search, time after compilation in step 2 : 239.83339953422546
+greedy search, time after assembly in step 2 : 240.42682528495789
+greedy search candidates: [4933, 4935, 4940, 4943, 4925]
+greedy search, new min: 4925
+greedy search, current list: [8, 13, 20]
+greedy search, time after step 2 : 241.13095045089722
+greedy search, currently checking 21 to 85 out of 998
+greedy search, time after compilation in step 3 : 241.95910596847534
+greedy search, time after assembly in step 3 : 242.47049736976624
+greedy search candidates: [4930, 4923, 4925]
+greedy search, new min: 4923
+greedy search, current list: [8, 13, 20, 25]
+greedy search, time after step 3 : 243.04028248786926
+greedy search, currently checking 26 to 90 out of 998
+greedy search, time after compilation in step 4 : 243.6986472606659
+greedy search, time after assembly in step 4 : 244.26690793037415
+greedy search candidates: [4921, 4923]
+greedy search, new min: 4921
+greedy search, current list: [8, 13, 20, 25, 26]
+greedy search, time after step 4 : 244.8624198436737
+greedy search, currently checking 27 to 91 out of 998
+greedy search, time after compilation in step 5 : 245.7047369480133
+greedy search, time after assembly in step 5 : 246.36477255821228
+greedy search candidates: [4921, 4919]
+greedy search, new min: 4919
+greedy search, current list: [8, 13, 20, 25, 26, 27]
+greedy search, time after step 5 : 246.91071248054504
+greedy search, currently checking 28 to 92 out of 998
+greedy search, time after compilation in step 6 : 247.63513112068176
+greedy search, time after assembly in step 6 : 248.12839436531067
+greedy search candidates: [4917, 4919]
+greedy search, new min: 4917
+greedy search, current list: [8, 13, 20, 25, 26, 27, 28]
+greedy search, time after step 6 : 248.76697158813477
+greedy search, currently checking 29 to 93 out of 998
+greedy search, time after compilation in step 7 : 249.41193175315857
+greedy search, time after assembly in step 7 : 250.01902508735657
+greedy search candidates: [4917]
+greedy search, currently checking 93 to 157 out of 998
+greedy search, time after compilation in step 7 : 251.21573758125305
+greedy search, time after assembly in step 7 : 251.65974307060242
+greedy search candidates: [4917]
+greedy search, currently checking 157 to 221 out of 998
+greedy search, time after compilation in step 7 : 252.74271249771118
+greedy search, time after assembly in step 7 : 253.1484410762787
+greedy search candidates: [4917]
+greedy search, currently checking 221 to 285 out of 998
+greedy search, time after compilation in step 7 : 254.09995985031128
+greedy search, time after assembly in step 7 : 254.558114528656
+greedy search candidates: [4917]
+greedy search, currently checking 285 to 349 out of 998
+greedy search, time after compilation in step 7 : 255.41701221466064
+greedy search, time after assembly in step 7 : 255.80377578735352
+greedy search candidates: [4917]
+greedy search, currently checking 349 to 413 out of 998
+greedy search, time after compilation in step 7 : 256.62415385246277
+greedy search, time after assembly in step 7 : 256.9806830883026
+greedy search candidates: [4917]
+greedy search, currently checking 413 to 477 out of 998
+greedy search, time after compilation in step 7 : 257.7284212112427
+greedy search, time after assembly in step 7 : 258.06152629852295
+greedy search candidates: [4917]
+greedy search, currently checking 477 to 541 out of 998
+greedy search, time after compilation in step 7 : 258.8273084163666
+greedy search, time after assembly in step 7 : 259.1742043495178
+greedy search candidates: [4917]
+greedy search, currently checking 541 to 605 out of 998
+greedy search, time after compilation in step 7 : 259.9469873905182
+greedy search, time after assembly in step 7 : 260.30773735046387
+greedy search candidates: [4917]
+greedy search, currently checking 605 to 669 out of 998
+greedy search, time after compilation in step 7 : 261.0710165500641
+greedy search, time after assembly in step 7 : 261.440016746521
+greedy search candidates: [4914, 4917]
+greedy search, new min: 4914
+greedy search, current list: [8, 13, 20, 25, 26, 27, 28, 639]
+greedy search, time after step 7 : 261.69317841529846
+greedy search, currently checking 640 to 704 out of 998
+greedy search, time after compilation in step 8 : 262.21242570877075
+greedy search, time after assembly in step 8 : 262.56340527534485
+greedy search candidates: [4896, 4902, 4872, 4878, 4914, 4884]
+greedy search, new min: 4872
+greedy search, current list: [8, 13, 20, 25, 26, 27, 28, 639, 640]
+greedy search, time after step 8 : 262.8202791213989
+greedy search, currently checking 641 to 705 out of 998
+greedy search, time after compilation in step 9 : 263.30691957473755
+greedy search, time after assembly in step 9 : 263.6689670085907
+greedy search candidates: [4896, 4900, 4903, 4872, 4906]
+greedy search, currently checking 705 to 769 out of 998
+greedy search, time after compilation in step 9 : 264.4158365726471
+greedy search, time after assembly in step 9 : 264.7630605697632
+greedy search candidates: [4872, 4900, 4909, 4903]
+greedy search, currently checking 769 to 833 out of 998
+greedy search, time after compilation in step 9 : 265.51856875419617
+greedy search, time after assembly in step 9 : 265.9050347805023
+greedy search candidates: [4929, 4899, 4903, 4872, 4863]
+greedy search, new min: 4863
+greedy search, current list: [8, 13, 20, 25, 26, 27, 28, 639, 640, 817]
+greedy search, time after step 9 : 266.1659007072449
+greedy search, currently checking 818 to 882 out of 998
+greedy search, time after compilation in step 10 : 266.66242694854736
+greedy search, time after assembly in step 10 : 267.03449296951294
+greedy search candidates: [4905, 4850, 4857, 4863]
+greedy search, new min: 4850
+greedy search, current list: [8, 13, 20, 25, 26, 27, 28, 639, 640, 817, 850]
+greedy search, time after step 10 : 267.26426005363464
+greedy search, currently checking 851 to 915 out of 998
+greedy search, time after compilation in step 11 : 267.74653363227844
+greedy search, time after assembly in step 11 : 268.07761311531067
+greedy search candidates: [4864, 4930, 4861, 4850]
+greedy search, currently checking 915 to 979 out of 998
+greedy search, time after compilation in step 11 : 268.822057723999
+greedy search, time after assembly in step 11 : 269.1517357826233
+greedy search candidates: [4864, 4850]
+greedy search, currently checking 979 to 998 out of 998
+greedy search, time after compilation in step 11 : 269.81064653396606
+greedy search, time after assembly in step 11 : 270.095463514328
+greedy search candidates: [4850]
+Pass: EarlyCSEPass_16 generated: [8, 13, 20, 25, 26, 27, 28, 639, 640, 817, 850] with offset: 0 with count: 4850
+Running pass: FunctionToLoopPassAdaptor_12 with max_query_index: 1792
+greedy search, currently checking 998 to 1062 out of 1792
+greedy search, time after compilation in step 0 : 271.0749328136444
+greedy search, time after assembly in step 0 : 271.4167082309723
+greedy search candidates: [4850]
+greedy search, currently checking 1062 to 1126 out of 1792
+greedy search, time after compilation in step 0 : 272.1796672344208
+greedy search, time after assembly in step 0 : 272.54776310920715
+greedy search candidates: [4850]
+greedy search, currently checking 1126 to 1190 out of 1792
+greedy search, time after compilation in step 0 : 273.3171203136444
+greedy search, time after assembly in step 0 : 273.65566658973694
+greedy search candidates: [4850]
+greedy search, currently checking 1190 to 1254 out of 1792
+greedy search, time after compilation in step 0 : 274.4548897743225
+greedy search, time after assembly in step 0 : 274.78490710258484
+greedy search candidates: [4850]
+greedy search, currently checking 1254 to 1318 out of 1792
+greedy search, time after compilation in step 0 : 275.5614879131317
+greedy search, time after assembly in step 0 : 275.8868017196655
+greedy search candidates: [4850]
+greedy search, currently checking 1318 to 1382 out of 1792
+greedy search, time after compilation in step 0 : 276.66781735420227
+greedy search, time after assembly in step 0 : 277.00778579711914
+greedy search candidates: [4850]
+greedy search, currently checking 1382 to 1446 out of 1792
+greedy search, time after compilation in step 0 : 277.7970178127289
+greedy search, time after assembly in step 0 : 278.20348715782166
+greedy search candidates: [4850]
+greedy search, currently checking 1446 to 1510 out of 1792
+greedy search, time after compilation in step 0 : 278.98762679100037
+greedy search, time after assembly in step 0 : 279.35884404182434
+greedy search candidates: [4850]
+greedy search, currently checking 1510 to 1574 out of 1792
+greedy search, time after compilation in step 0 : 280.2590789794922
+greedy search, time after assembly in step 0 : 280.6776180267334
+greedy search candidates: [4850]
+greedy search, currently checking 1574 to 1638 out of 1792
+greedy search, time after compilation in step 0 : 281.5419864654541
+greedy search, time after assembly in step 0 : 281.92016196250916
+greedy search candidates: [4850]
+greedy search, currently checking 1638 to 1702 out of 1792
+greedy search, time after compilation in step 0 : 282.80215096473694
+greedy search, time after assembly in step 0 : 283.22886061668396
+greedy search candidates: [4850]
+greedy search, currently checking 1702 to 1766 out of 1792
+greedy search, time after compilation in step 0 : 284.04086422920227
+greedy search, time after assembly in step 0 : 284.40279746055603
+greedy search candidates: [4850]
+greedy search, currently checking 1766 to 1792 out of 1792
+greedy search, time after compilation in step 0 : 285.1282002925873
+greedy search, time after assembly in step 0 : 285.4544529914856
+greedy search candidates: [4850]
+Pass: FunctionToLoopPassAdaptor_12 generated: [8, 13, 20, 25, 26, 27, 28, 639, 640, 817, 850] with offset: 997 with count: 4850
+Running pass: GVNPass_4 with max_query_index: 3808
+greedy search, currently checking 1792 to 1856 out of 3808
+greedy search, time after compilation in step 0 : 286.36510252952576
+greedy search, time after assembly in step 0 : 286.740355014801
+greedy search candidates: [4850]
+greedy search, currently checking 1856 to 1920 out of 3808
+greedy search, time after compilation in step 0 : 287.58569979667664
+greedy search, time after assembly in step 0 : 287.93556118011475
+greedy search candidates: [4850]
+greedy search, currently checking 1920 to 1984 out of 3808
+greedy search, time after compilation in step 0 : 288.72039890289307
+greedy search, time after assembly in step 0 : 289.05765175819397
+greedy search candidates: [4850]
+greedy search, currently checking 1984 to 2048 out of 3808
+greedy search, time after compilation in step 0 : 289.8426215648651
+greedy search, time after assembly in step 0 : 290.1703796386719
+greedy search candidates: [4850]
+greedy search, currently checking 2048 to 2112 out of 3808
+greedy search, time after compilation in step 0 : 290.92203545570374
+greedy search, time after assembly in step 0 : 291.2652609348297
+greedy search candidates: [4850]
+greedy search, currently checking 2112 to 2176 out of 3808
+greedy search, time after compilation in step 0 : 292.0184473991394
+greedy search, time after assembly in step 0 : 292.35144305229187
+greedy search candidates: [4850]
+greedy search, currently checking 2176 to 2240 out of 3808
+greedy search, time after compilation in step 0 : 293.1504430770874
+greedy search, time after assembly in step 0 : 293.4857249259949
+greedy search candidates: [4850]
+greedy search, currently checking 2240 to 2304 out of 3808
+greedy search, time after compilation in step 0 : 294.3660378456116
+greedy search, time after assembly in step 0 : 294.7590436935425
+greedy search candidates: [4850]
+greedy search, currently checking 2304 to 2368 out of 3808
+greedy search, time after compilation in step 0 : 295.5340528488159
+greedy search, time after assembly in step 0 : 295.8844909667969
+greedy search candidates: [4850]
+greedy search, currently checking 2368 to 2432 out of 3808
+greedy search, time after compilation in step 0 : 296.6373653411865
+greedy search, time after assembly in step 0 : 297.0022163391113
+greedy search candidates: [4850]
+greedy search, currently checking 2432 to 2496 out of 3808
+greedy search, time after compilation in step 0 : 297.80367279052734
+greedy search, time after assembly in step 0 : 298.17589592933655
+greedy search candidates: [4850]
+greedy search, currently checking 2496 to 2560 out of 3808
+greedy search, time after compilation in step 0 : 298.9492983818054
+greedy search, time after assembly in step 0 : 299.26744508743286
+greedy search candidates: [4850]
+greedy search, currently checking 2560 to 2624 out of 3808
+greedy search, time after compilation in step 0 : 300.0538206100464
+greedy search, time after assembly in step 0 : 300.3970277309418
+greedy search candidates: [4850]
+greedy search, currently checking 2624 to 2688 out of 3808
+greedy search, time after compilation in step 0 : 301.18534088134766
+greedy search, time after assembly in step 0 : 301.5156011581421
+greedy search candidates: [4850]
+greedy search, currently checking 2688 to 2752 out of 3808
+greedy search, time after compilation in step 0 : 302.40327048301697
+greedy search, time after assembly in step 0 : 302.7956795692444
+greedy search candidates: [4850]
+greedy search, currently checking 2752 to 2816 out of 3808
+greedy search, time after compilation in step 0 : 303.59320616722107
+greedy search, time after assembly in step 0 : 303.9171154499054
+greedy search candidates: [4850]
+greedy search, currently checking 2816 to 2880 out of 3808
+greedy search, time after compilation in step 0 : 304.7283456325531
+greedy search, time after assembly in step 0 : 305.0641303062439
+greedy search candidates: [4850]
+greedy search, currently checking 2880 to 2944 out of 3808
+greedy search, time after compilation in step 0 : 305.8462975025177
+greedy search, time after assembly in step 0 : 306.2432084083557
+greedy search candidates: [4850]
+greedy search, currently checking 2944 to 3008 out of 3808
+greedy search, time after compilation in step 0 : 307.05910658836365
+greedy search, time after assembly in step 0 : 307.43565917015076
+greedy search candidates: [4850]
+greedy search, currently checking 3008 to 3072 out of 3808
+greedy search, time after compilation in step 0 : 308.3788409233093
+greedy search, time after assembly in step 0 : 308.8920829296112
+greedy search candidates: [4850]
+greedy search, currently checking 3072 to 3136 out of 3808
+greedy search, time after compilation in step 0 : 310.15353655815125
+greedy search, time after assembly in step 0 : 310.6887454986572
+greedy search candidates: [4850]
+greedy search, currently checking 3136 to 3200 out of 3808
+greedy search, time after compilation in step 0 : 311.92460441589355
+greedy search, time after assembly in step 0 : 312.40957522392273
+greedy search candidates: [4850]
+greedy search, currently checking 3200 to 3264 out of 3808
+greedy search, time after compilation in step 0 : 313.7122893333435
+greedy search, time after assembly in step 0 : 314.36335134506226
+greedy search candidates: [4850]
+greedy search, currently checking 3264 to 3328 out of 3808
+greedy search, time after compilation in step 0 : 315.65174865722656
+greedy search, time after assembly in step 0 : 316.32083344459534
+greedy search candidates: [4850]
+greedy search, currently checking 3328 to 3392 out of 3808
+greedy search, time after compilation in step 0 : 317.69903326034546
+greedy search, time after assembly in step 0 : 318.2279736995697
+greedy search candidates: [4850, 4847]
+greedy search, new min: 4847
+greedy search, current list: [8, 13, 20, 25, 26, 27, 28, 639, 640, 817, 850, 3388]
+greedy search, time after step 0 : 318.7393398284912
+greedy search, currently checking 3389 to 3453 out of 3808
+greedy search, time after compilation in step 1 : 319.5507357120514
+greedy search, time after assembly in step 1 : 320.1341323852539
+greedy search candidates: [4844, 4845, 4847]
+greedy search, new min: 4844
+greedy search, current list: [8, 13, 20, 25, 26, 27, 28, 639, 640, 817, 850, 3388, 3390]
+greedy search, time after step 1 : 320.7158908843994
+greedy search, currently checking 3391 to 3455 out of 3808
+greedy search, time after compilation in step 2 : 321.4627912044525
+greedy search, time after assembly in step 2 : 322.09881687164307
+greedy search candidates: [4842, 4844]
+greedy search, new min: 4842
+greedy search, current list: [8, 13, 20, 25, 26, 27, 28, 639, 640, 817, 850, 3388, 3390, 3391]
+greedy search, time after step 2 : 322.7158246040344
+greedy search, currently checking 3392 to 3456 out of 3808
+greedy search, time after compilation in step 3 : 323.52087235450745
+greedy search, time after assembly in step 3 : 324.1759808063507
+greedy search candidates: [4840, 4842]
+greedy search, new min: 4840
+greedy search, current list: [8, 13, 20, 25, 26, 27, 28, 639, 640, 817, 850, 3388, 3390, 3391, 3392]
+greedy search, time after step 3 : 324.7636489868164
+greedy search, currently checking 3393 to 3457 out of 3808
+greedy search, time after compilation in step 4 : 325.43783140182495
+greedy search, time after assembly in step 4 : 325.97347927093506
+greedy search candidates: [4840]
+greedy search, currently checking 3457 to 3521 out of 3808
+greedy search, time after compilation in step 4 : 327.26822996139526
+greedy search, time after assembly in step 4 : 327.8367793560028
+greedy search candidates: [4840]
+greedy search, currently checking 3521 to 3585 out of 3808
+greedy search, time after compilation in step 4 : 329.2468457221985
+greedy search, time after assembly in step 4 : 329.8390052318573
+greedy search candidates: [4840]
+greedy search, currently checking 3585 to 3649 out of 3808
+greedy search, time after compilation in step 4 : 331.22620368003845
+greedy search, time after assembly in step 4 : 331.7847249507904
+greedy search candidates: [4840]
+greedy search, currently checking 3649 to 3713 out of 3808
+greedy search, time after compilation in step 4 : 333.0742881298065
+greedy search, time after assembly in step 4 : 333.7550940513611
+greedy search candidates: [4840]
+greedy search, currently checking 3713 to 3777 out of 3808
+greedy search, time after compilation in step 4 : 335.16300344467163
+greedy search, time after assembly in step 4 : 335.776686668396
+greedy search candidates: [4840]
+greedy search, currently checking 3777 to 3808 out of 3808
+greedy search, time after compilation in step 4 : 337.0236511230469
+greedy search, time after assembly in step 4 : 337.5307970046997
+greedy search candidates: [4840]
+Pass: GVNPass_4 generated: [8, 13, 20, 25, 26, 27, 28, 639, 640, 817, 850, 3388, 3390, 3391, 3392] with offset: 1791 with count: 4840
+Running pass: DSEPass_4 with max_query_index: 3544
+greedy search, currently checking 3430 to 3494 out of 3544
+greedy search, time after compilation in step 0 : 339.2636754512787
+greedy search, time after assembly in step 0 : 339.8922848701477
+greedy search candidates: [4840]
+greedy search, currently checking 3494 to 3544 out of 3544
+greedy search, time after compilation in step 0 : 341.14401483535767
+greedy search, time after assembly in step 0 : 341.76454067230225
+greedy search candidates: [4840]
+Pass: DSEPass_4 generated: [8, 13, 20, 25, 26, 27, 28, 639, 640, 817, 850, 3388, 3390, 3391, 3392] with offset: 3429 with count: 4840
+Running pass: FunctionToLoopPassAdaptor_43 with max_query_index: 3614
+greedy search, currently checking 3544 to 3608 out of 3614
+greedy search, time after compilation in step 0 : 343.4967415332794
+greedy search, time after assembly in step 0 : 344.0479485988617
+greedy search candidates: [4840]
+greedy search, currently checking 3608 to 3614 out of 3614
+greedy search, time after compilation in step 0 : 345.1757628917694
+greedy search, time after assembly in step 0 : 345.6165769100189
+greedy search candidates: [4840]
+Pass: FunctionToLoopPassAdaptor_43 generated: [8, 13, 20, 25, 26, 27, 28, 639, 640, 817, 850, 3388, 3390, 3391, 3392] with offset: 3543 with count: 4840
+Time after exploration of _Z22SetupPrecalculatedDatav: 345.6641311645508
+==== Next function: _Z16SetupCastleMasksP7state_t
+Running pass: GVNPass_5 with max_query_index: 80
+greedy search, currently checking 0 to 64 out of 80
+greedy search, time after compilation in step 0 : 346.8618760108948
+greedy search, time after assembly in step 0 : 347.34907603263855
+greedy search candidates: [4953]
+greedy search, currently checking 64 to 80 out of 80
+greedy search, time after compilation in step 0 : 348.52135157585144
+greedy search, time after assembly in step 0 : 348.98079228401184
+greedy search candidates: [4953]
+Pass: GVNPass_5 generated: [] with offset: -1 with count: 4953
+Time after exploration of _Z16SetupCastleMasksP7state_t: 349.12517261505127
+==== Next function: _Z15DiagonalAttacksyj
+Running pass: GVNPass_8 with max_query_index: 1
+exhaustive search, time after compilation : 349.7022898197174
+exhaustive search, time after assembly : 350.13788747787476
+exhaustive search candidates : [4953]
+Pass: GVNPass_8 generated: [] with offset: -1 with count: 4953
+Time after exploration of _Z15DiagonalAttacksyj: 350.1544392108917
+==== Next function: _Z15AntiDiagAttacksyj
+Running pass: GVNPass_9 with max_query_index: 1
+exhaustive search, time after compilation : 350.7407057285309
+exhaustive search, time after assembly : 351.23779344558716
+exhaustive search candidates : [4953]
+Pass: GVNPass_9 generated: [] with offset: -1 with count: 4953
+Time after exploration of _Z15AntiDiagAttacksyj: 351.26943159103394
+==== Next function: _Z13BishopAttacksP7state_ti
+Running pass: GVNPass_10 with max_query_index: 5
+exhaustive search, time after compilation : 351.9059796333313
+exhaustive search, time after assembly : 352.41015911102295
+exhaustive search candidates : [4953]
+Pass: GVNPass_10 generated: [] with offset: -1 with count: 4953
+Time after exploration of _Z13BishopAttacksP7state_ti: 352.70094776153564
+Time after exploration of 631/bitboard.bc: 352.70097494125366
+***** Next file: 631/neval.bc
+==== Next function: _Z4evalP7state_tiii
+Running pass: InstCombinePass_7 with max_query_index: 1
+exhaustive search, time after compilation : 353.31101870536804
+exhaustive search, time after assembly : 353.72988653182983
+exhaustive search candidates : [6212]
+Pass: InstCombinePass_7 generated: [] with offset: -1 with count: 6212
+Running pass: EarlyCSEPass_20 with max_query_index: 2
+exhaustive search, time after compilation : 354.40695571899414
+exhaustive search, time after assembly : 354.88953399658203
+exhaustive search candidates : [6212]
+Pass: EarlyCSEPass_20 generated: [] with offset: 0 with count: 6212
+Running pass: GVNPass_9 with max_query_index: 235
+greedy search, currently checking 2 to 66 out of 235
+greedy search, time after compilation in step 0 : 356.1176118850708
+greedy search, time after assembly in step 0 : 356.6963267326355
+greedy search candidates: [6212]
+greedy search, currently checking 66 to 130 out of 235
+greedy search, time after compilation in step 0 : 358.183456659317
+greedy search, time after assembly in step 0 : 358.79540514945984
+greedy search candidates: [6212]
+greedy search, currently checking 130 to 194 out of 235
+greedy search, time after compilation in step 0 : 360.2021725177765
+greedy search, time after assembly in step 0 : 360.7587525844574
+greedy search candidates: [6212]
+greedy search, currently checking 194 to 235 out of 235
+greedy search, time after compilation in step 0 : 362.0617210865021
+greedy search, time after assembly in step 0 : 362.5981149673462
+greedy search candidates: [6212]
+Pass: GVNPass_9 generated: [] with offset: 1 with count: 6212
+Running pass: DSEPass_9 with max_query_index: 238
+exhaustive search, time after compilation : 363.5131764411926
+exhaustive search, time after assembly : 363.9973695278168
+exhaustive search candidates : [6212]
+Pass: DSEPass_9 generated: [] with offset: 234 with count: 6212
+Time after exploration of _Z4evalP7state_tiii: 364.06502532958984
+==== Next function: _ZL13mobility_evalP7state_tP12t_eval_compsP12attackinfo_t
+Running pass: EarlyCSEPass_11 with max_query_index: 4
+exhaustive search, time after compilation : 364.7011938095093
+exhaustive search, time after assembly : 365.1452841758728
+exhaustive search candidates : [6212]
+Pass: EarlyCSEPass_11 generated: [] with offset: -1 with count: 6212
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 153
+greedy search, currently checking 4 to 68 out of 153
+greedy search, time after compilation in step 0 : 366.49613761901855
+greedy search, time after assembly in step 0 : 367.08055210113525
+greedy search candidates: [6212]
+greedy search, currently checking 68 to 132 out of 153
+greedy search, time after compilation in step 0 : 368.4925630092621
+greedy search, time after assembly in step 0 : 369.16134238243103
+greedy search candidates: [6212]
+greedy search, currently checking 132 to 153 out of 153
+greedy search, time after compilation in step 0 : 370.4633700847626
+greedy search, time after assembly in step 0 : 370.96095061302185
+greedy search candidates: [6212]
+Pass: FunctionToLoopPassAdaptor_0 generated: [] with offset: 3 with count: 6212
+Running pass: GVNPass_0 with max_query_index: 223
+greedy search, currently checking 153 to 217 out of 223
+greedy search, time after compilation in step 0 : 372.47426414489746
+greedy search, time after assembly in step 0 : 373.0312852859497
+greedy search candidates: [6212]
+greedy search, currently checking 217 to 223 out of 223
+greedy search, time after compilation in step 0 : 374.3457860946655
+greedy search, time after assembly in step 0 : 374.896790266037
+greedy search candidates: [6212]
+Pass: GVNPass_0 generated: [] with offset: 152 with count: 6212
+Running pass: DSEPass_0 with max_query_index: 235
+greedy search, currently checking 223 to 235 out of 235
+greedy search, time after compilation in step 0 : 376.1067388057709
+greedy search, time after assembly in step 0 : 376.6685140132904
+greedy search candidates: [6212]
+Pass: DSEPass_0 generated: [] with offset: 222 with count: 6212
+Running pass: FunctionToLoopPassAdaptor_2 with max_query_index: 240
+exhaustive search, time after compilation : 377.37791872024536
+exhaustive search, time after assembly : 377.8521795272827
+exhaustive search candidates : [6212]
+Pass: FunctionToLoopPassAdaptor_2 generated: [] with offset: 234 with count: 6212
+Time after exploration of _ZL13mobility_evalP7state_tP12t_eval_compsP12attackinfo_t: 378.12386775016785
+==== Next function: _ZL15kingsafety_evalP7state_tP8pawntt_tP12t_eval_comps
+Running pass: GVNPass_1 with max_query_index: 177
+greedy search, currently checking 0 to 64 out of 177
+greedy search, time after compilation in step 0 : 379.29684710502625
+greedy search, time after assembly in step 0 : 379.87829780578613
+greedy search candidates: [6212]
+greedy search, currently checking 64 to 128 out of 177
+greedy search, time after compilation in step 0 : 381.21978735923767
+greedy search, time after assembly in step 0 : 381.84254360198975
+greedy search candidates: [6212]
+greedy search, currently checking 128 to 177 out of 177
+greedy search, time after compilation in step 0 : 383.077919960022
+greedy search, time after assembly in step 0 : 383.607075214386
+greedy search candidates: [6212]
+Pass: GVNPass_1 generated: [] with offset: -1 with count: 6212
+Running pass: DSEPass_1 with max_query_index: 178
+exhaustive search, time after compilation : 384.7107906341553
+exhaustive search, time after assembly : 385.1924202442169
+exhaustive search candidates : [6212]
+Pass: DSEPass_1 generated: [] with offset: 176 with count: 6212
+Time after exploration of _ZL15kingsafety_evalP7state_tP8pawntt_tP12t_eval_comps: 385.213259935379
+==== Next function: _ZL17kingpressure_evalP7state_tP12attackinfo_tP12t_eval_comps
+Running pass: GVNPass_2 with max_query_index: 221
+greedy search, currently checking 0 to 64 out of 221
+greedy search, time after compilation in step 0 : 386.48695397377014
+greedy search, time after assembly in step 0 : 387.0233278274536
+greedy search candidates: [6212]
+greedy search, currently checking 64 to 128 out of 221
+greedy search, time after compilation in step 0 : 388.3276138305664
+greedy search, time after assembly in step 0 : 388.8433656692505
+greedy search candidates: [6212]
+greedy search, currently checking 128 to 192 out of 221
+greedy search, time after compilation in step 0 : 390.18455147743225
+greedy search, time after assembly in step 0 : 390.73822140693665
+greedy search candidates: [6212]
+greedy search, currently checking 192 to 221 out of 221
+greedy search, time after compilation in step 0 : 391.90217423439026
+greedy search, time after assembly in step 0 : 392.402067899704
+greedy search candidates: [6212]
+Pass: GVNPass_2 generated: [] with offset: -1 with count: 6212
+Running pass: DSEPass_2 with max_query_index: 222
+exhaustive search, time after compilation : 393.3916425704956
+exhaustive search, time after assembly : 393.8746736049652
+exhaustive search candidates : [6212]
+Pass: DSEPass_2 generated: [] with offset: 220 with count: 6212
+Time after exploration of _ZL17kingpressure_evalP7state_tP12attackinfo_tP12t_eval_comps: 393.896338224411
+==== Next function: _ZL11passer_evalP7state_tP8pawntt_tiP12t_eval_comps
+Running pass: FunctionToLoopPassAdaptor_9 with max_query_index: 14
+greedy search, currently checking 0 to 14 out of 14
+greedy search, time after compilation in step 0 : 395.0346405506134
+greedy search, time after assembly in step 0 : 395.5036358833313
+greedy search candidates: [6212]
+Pass: FunctionToLoopPassAdaptor_9 generated: [] with offset: -1 with count: 6212
+Running pass: GVNPass_3 with max_query_index: 151
+greedy search, currently checking 14 to 78 out of 151
+greedy search, time after compilation in step 0 : 396.9486954212189
+greedy search, time after assembly in step 0 : 397.467191696167
+greedy search candidates: [6212]
+greedy search, currently checking 78 to 142 out of 151
+greedy search, time after compilation in step 0 : 398.73007678985596
+greedy search, time after assembly in step 0 : 399.2212097644806
+greedy search candidates: [6212]
+greedy search, currently checking 142 to 151 out of 151
+greedy search, time after compilation in step 0 : 400.4917736053467
+greedy search, time after assembly in step 0 : 400.95674204826355
+greedy search candidates: [6212]
+Pass: GVNPass_3 generated: [] with offset: 13 with count: 6212
+Running pass: DSEPass_3 with max_query_index: 156
+exhaustive search, time after compilation : 401.6667594909668
+exhaustive search, time after assembly : 402.17800426483154
+exhaustive search candidates : [6212]
+Pass: DSEPass_3 generated: [] with offset: 150 with count: 6212
+Running pass: FunctionToLoopPassAdaptor_11 with max_query_index: 158
+exhaustive search, time after compilation : 403.06249380111694
+exhaustive search, time after assembly : 403.60055565834045
+exhaustive search candidates : [6212]
+Pass: FunctionToLoopPassAdaptor_11 generated: [] with offset: 155 with count: 6212
+Time after exploration of _ZL11passer_evalP7state_tP8pawntt_tiP12t_eval_comps: 403.6417946815491
+==== Next function: _ZL15positional_evalP7state_tP8pawntt_tP12t_eval_comps
+Running pass: GVNPass_4 with max_query_index: 146
+greedy search, currently checking 0 to 64 out of 146
+greedy search, time after compilation in step 0 : 404.98487091064453
+greedy search, time after assembly in step 0 : 405.5418870449066
+greedy search candidates: [6212]
+greedy search, currently checking 64 to 128 out of 146
+greedy search, time after compilation in step 0 : 406.91534948349
+greedy search, time after assembly in step 0 : 407.513032913208
+greedy search candidates: [6212]
+greedy search, currently checking 128 to 146 out of 146
+greedy search, time after compilation in step 0 : 408.70007061958313
+greedy search, time after assembly in step 0 : 409.2165415287018
+greedy search candidates: [6212]
+Pass: GVNPass_4 generated: [] with offset: -1 with count: 6212
+Running pass: DSEPass_4 with max_query_index: 148
+exhaustive search, time after compilation : 409.9743638038635
+exhaustive search, time after assembly : 410.42106223106384
+exhaustive search candidates : [6212]
+Pass: DSEPass_4 generated: [] with offset: 145 with count: 6212
+Time after exploration of _ZL15positional_evalP7state_tP8pawntt_tP12t_eval_comps: 410.47630643844604
+==== Next function: _ZL12trapped_evalP7state_tP12t_eval_comps
+Running pass: GVNPass_5 with max_query_index: 631
+greedy search, currently checking 0 to 64 out of 631
+greedy search, time after compilation in step 0 : 411.7675006389618
+greedy search, time after assembly in step 0 : 412.29098200798035
+greedy search candidates: [6212]
+greedy search, currently checking 64 to 128 out of 631
+greedy search, time after compilation in step 0 : 413.7211797237396
+greedy search, time after assembly in step 0 : 414.21791768074036
+greedy search candidates: [6212]
+greedy search, currently checking 128 to 192 out of 631
+greedy search, time after compilation in step 0 : 415.5298492908478
+greedy search, time after assembly in step 0 : 416.1310887336731
+greedy search candidates: [6212]
+greedy search, currently checking 192 to 256 out of 631
+greedy search, time after compilation in step 0 : 417.54947233200073
+greedy search, time after assembly in step 0 : 418.08556389808655
+greedy search candidates: [6212]
+greedy search, currently checking 256 to 320 out of 631
+greedy search, time after compilation in step 0 : 419.54282808303833
+greedy search, time after assembly in step 0 : 420.15194034576416
+greedy search candidates: [6212]
+greedy search, currently checking 320 to 384 out of 631
+greedy search, time after compilation in step 0 : 421.5412366390228
+greedy search, time after assembly in step 0 : 422.1346755027771
+greedy search candidates: [6212]
+greedy search, currently checking 384 to 448 out of 631
+greedy search, time after compilation in step 0 : 423.5134425163269
+greedy search, time after assembly in step 0 : 424.07292103767395
+greedy search candidates: [6212]
+greedy search, currently checking 448 to 512 out of 631
+greedy search, time after compilation in step 0 : 425.48295068740845
+greedy search, time after assembly in step 0 : 426.0357789993286
+greedy search candidates: [6212]
+greedy search, currently checking 512 to 576 out of 631
+greedy search, time after compilation in step 0 : 427.3474838733673
+greedy search, time after assembly in step 0 : 427.96032071113586
+greedy search candidates: [6212]
+greedy search, currently checking 576 to 631 out of 631
+greedy search, time after compilation in step 0 : 429.2475655078888
+greedy search, time after assembly in step 0 : 429.80911564826965
+greedy search candidates: [6212]
+Pass: GVNPass_5 generated: [] with offset: -1 with count: 6212
+Time after exploration of _ZL12trapped_evalP7state_tP12t_eval_comps: 430.2825508117676
+==== Next function: _Z5fevalP7state_tiP12t_eval_comps
+Running pass: EarlyCSEPass_17 with max_query_index: 18
+greedy search, currently checking 0 to 18 out of 18
+greedy search, time after compilation in step 0 : 431.5065236091614
+greedy search, time after assembly in step 0 : 431.99305272102356
+greedy search candidates: [6212]
+Pass: EarlyCSEPass_17 generated: [] with offset: -1 with count: 6212
+Running pass: FunctionToLoopPassAdaptor_18 with max_query_index: 104
+greedy search, currently checking 18 to 82 out of 104
+greedy search, time after compilation in step 0 : 433.45275616645813
+greedy search, time after assembly in step 0 : 433.96998167037964
+greedy search candidates: [6212]
+greedy search, currently checking 82 to 104 out of 104
+greedy search, time after compilation in step 0 : 435.0521562099457
+greedy search, time after assembly in step 0 : 435.5375294685364
+greedy search candidates: [6212]
+Pass: FunctionToLoopPassAdaptor_18 generated: [] with offset: 17 with count: 6212
+Running pass: GVNPass_6 with max_query_index: 1342
+greedy search, currently checking 104 to 168 out of 1342
+greedy search, time after compilation in step 0 : 436.96615982055664
+greedy search, time after assembly in step 0 : 437.54061913490295
+greedy search candidates: [6212]
+greedy search, currently checking 168 to 232 out of 1342
+greedy search, time after compilation in step 0 : 439.0053312778473
+greedy search, time after assembly in step 0 : 439.5977339744568
+greedy search candidates: [6212]
+greedy search, currently checking 232 to 296 out of 1342
+greedy search, time after compilation in step 0 : 440.91932249069214
+greedy search, time after assembly in step 0 : 441.56372928619385
+greedy search candidates: [6212]
+greedy search, currently checking 296 to 360 out of 1342
+greedy search, time after compilation in step 0 : 442.79565143585205
+greedy search, time after assembly in step 0 : 443.33109641075134
+greedy search candidates: [6212]
+greedy search, currently checking 360 to 424 out of 1342
+greedy search, time after compilation in step 0 : 444.76895403862
+greedy search, time after assembly in step 0 : 445.3836131095886
+greedy search candidates: [6212]
+greedy search, currently checking 424 to 488 out of 1342
+greedy search, time after compilation in step 0 : 446.7514750957489
+greedy search, time after assembly in step 0 : 447.3902883529663
+greedy search candidates: [6212, 6205]
+greedy search, new min: 6205
+greedy search, current list: [427]
+greedy search, time after step 0 : 447.93489599227905
+greedy search, currently checking 428 to 492 out of 1342
+greedy search, time after compilation in step 1 : 448.79384422302246
+greedy search, time after assembly in step 1 : 449.495165348053
+greedy search candidates: [6205]
+greedy search, currently checking 492 to 556 out of 1342
+greedy search, time after compilation in step 1 : 450.85340213775635
+greedy search, time after assembly in step 1 : 451.4096989631653
+greedy search candidates: [6205, 6111]
+greedy search, new min: 6111
+greedy search, current list: [427, 502]
+greedy search, time after step 1 : 451.8889374732971
+greedy search, currently checking 503 to 567 out of 1342
+greedy search, time after compilation in step 2 : 452.67380475997925
+greedy search, time after assembly in step 2 : 453.21245312690735
+greedy search candidates: [6111]
+greedy search, currently checking 567 to 631 out of 1342
+greedy search, time after compilation in step 2 : 454.5723354816437
+greedy search, time after assembly in step 2 : 455.14048409461975
+greedy search candidates: [6111]
+greedy search, currently checking 631 to 695 out of 1342
+greedy search, time after compilation in step 2 : 456.5376751422882
+greedy search, time after assembly in step 2 : 457.1221513748169
+greedy search candidates: [6111]
+greedy search, currently checking 695 to 759 out of 1342
+greedy search, time after compilation in step 2 : 458.58718705177307
+greedy search, time after assembly in step 2 : 459.09275007247925
+greedy search candidates: [6094, 6111]
+greedy search, new min: 6094
+greedy search, current list: [427, 502, 711]
+greedy search, time after step 2 : 459.6192524433136
+greedy search, currently checking 712 to 776 out of 1342
+greedy search, time after compilation in step 3 : 460.42276263237
+greedy search, time after assembly in step 3 : 461.00877571105957
+greedy search candidates: [6094]
+greedy search, currently checking 776 to 840 out of 1342
+greedy search, time after compilation in step 3 : 462.35839557647705
+greedy search, time after assembly in step 3 : 462.96422266960144
+greedy search candidates: [6094]
+greedy search, currently checking 840 to 904 out of 1342
+greedy search, time after compilation in step 3 : 464.2300901412964
+greedy search, time after assembly in step 3 : 464.7689583301544
+greedy search candidates: [6094]
+greedy search, currently checking 904 to 968 out of 1342
+greedy search, time after compilation in step 3 : 466.010137796402
+greedy search, time after assembly in step 3 : 466.5739290714264
+greedy search candidates: [6094]
+greedy search, currently checking 968 to 1032 out of 1342
+greedy search, time after compilation in step 3 : 467.80609679222107
+greedy search, time after assembly in step 3 : 468.31128787994385
+greedy search candidates: [6094]
+greedy search, currently checking 1032 to 1096 out of 1342
+greedy search, time after compilation in step 3 : 469.57175493240356
+greedy search, time after assembly in step 3 : 470.2170317173004
+greedy search candidates: [6094]
+greedy search, currently checking 1096 to 1160 out of 1342
+greedy search, time after compilation in step 3 : 471.5378978252411
+greedy search, time after assembly in step 3 : 472.0641553401947
+greedy search candidates: [6094]
+greedy search, currently checking 1160 to 1224 out of 1342
+greedy search, time after compilation in step 3 : 473.4974596500397
+greedy search, time after assembly in step 3 : 474.0738205909729
+greedy search candidates: [6094]
+greedy search, currently checking 1224 to 1288 out of 1342
+greedy search, time after compilation in step 3 : 475.33464431762695
+greedy search, time after assembly in step 3 : 475.8738477230072
+greedy search candidates: [6094]
+greedy search, currently checking 1288 to 1342 out of 1342
+greedy search, time after compilation in step 3 : 477.1623032093048
+greedy search, time after assembly in step 3 : 477.74203991889954
+greedy search candidates: [6094]
+Pass: GVNPass_6 generated: [427, 502, 711] with offset: 103 with count: 6094
+Running pass: DSEPass_6 with max_query_index: 1365
+greedy search, currently checking 1342 to 1365 out of 1365
+greedy search, time after compilation in step 0 : 479.719500541687
+greedy search, time after assembly in step 0 : 480.27554202079773
+greedy search candidates: [6094]
+Pass: DSEPass_6 generated: [427, 502, 711] with offset: 1341 with count: 6094
+Time after exploration of _Z5fevalP7state_tiP12t_eval_comps: 480.4902403354645
+==== Next function: _ZL16opposite_bishopsP7state_tiii
+Running pass: GVNPass_8 with max_query_index: 11
+greedy search, currently checking 0 to 11 out of 11
+greedy search, time after compilation in step 0 : 481.6421983242035
+greedy search, time after assembly in step 0 : 482.1345679759979
+greedy search candidates: [6212]
+Pass: GVNPass_8 generated: [] with offset: -1 with count: 6212
+Time after exploration of _ZL16opposite_bishopsP7state_tiii: 482.24053049087524
+==== Next function: _Z13retrieve_evalP7state_t
+Running pass: GVNPass_10 with max_query_index: 7
+exhaustive search, time after compilation : 483.1652626991272
+exhaustive search, time after assembly : 483.88907527923584
+exhaustive search candidates : [6212]
+Pass: GVNPass_10 generated: [] with offset: -1 with count: 6212
+Time after exploration of _Z13retrieve_evalP7state_t: 484.90843081474304
+Time after exploration of 631/neval.bc: 484.9084646701813
+***** Next file: 631/search.bc
+==== Next function: _Z6searchP7state_tiiiii
+Running pass: InstCombinePass_5 with max_query_index: 2
+exhaustive search, time after compilation : 485.7270669937134
+exhaustive search, time after assembly : 486.3302221298218
+exhaustive search candidates : [16090]
+Pass: InstCombinePass_5 generated: [] with offset: -1 with count: 16090
+Running pass: EarlyCSEPass_30 with max_query_index: 76
+greedy search, currently checking 2 to 66 out of 76
+greedy search, time after compilation in step 0 : 488.2110319137573
+greedy search, time after assembly in step 0 : 489.0973446369171
+greedy search candidates: [16097, 16001, 16035, 16103, 16010, 16042, 16110, 16021, 16090, 16028, 16095]
+greedy search, new min: 16028
+greedy search, current list: [18]
+greedy search, time after step 0 : 489.6879847049713
+greedy search, currently checking 19 to 76 out of 76
+greedy search, time after compilation in step 1 : 490.5767433643341
+greedy search, time after assembly in step 1 : 491.2841558456421
+greedy search candidates: [16065, 16035, 16036, 16037, 16103, 16009, 16010, 16079, 15990, 16026, 16028, 16061]
+greedy search, new min: 16026
+greedy search, current list: [18, 25]
+greedy search, time after step 1 : 491.71070408821106
+greedy search, currently checking 26 to 76 out of 76
+greedy search, time after compilation in step 2 : 492.59205412864685
+greedy search, time after assembly in step 2 : 493.26217818260193
+greedy search candidates: [15968, 16033, 16002, 16034, 15972, 16035, 16102, 16078, 15986, 16026]
+greedy search, new min: 16002
+greedy search, current list: [18, 25, 32]
+greedy search, time after step 2 : 493.7223415374756
+greedy search, currently checking 33 to 76 out of 76
+greedy search, time after compilation in step 3 : 494.6583602428436
+greedy search, time after assembly in step 3 : 495.3493015766144
+greedy search candidates: [16002, 16006, 16009, 16010, 16043, 16011, 16046, 16053, 16031]
+Pass: EarlyCSEPass_30 generated: [18, 25, 32] with offset: 1 with count: 16002
+Running pass: JumpThreadingPass_24 with max_query_index: 79
+exhaustive search, time after compilation : 496.98142409324646
+exhaustive search, time after assembly : 497.6489145755768
+exhaustive search candidates : [16002]
+Pass: JumpThreadingPass_24 generated: [18, 25, 32] with offset: 75 with count: 16002
+Running pass: FunctionToLoopPassAdaptor_36 with max_query_index: 225
+greedy search, currently checking 79 to 143 out of 225
+greedy search, time after compilation in step 0 : 499.42251539230347
+greedy search, time after assembly in step 0 : 500.2157733440399
+greedy search candidates: [16002]
+greedy search, currently checking 143 to 207 out of 225
+greedy search, time after compilation in step 0 : 501.7078146934509
+greedy search, time after assembly in step 0 : 502.46501874923706
+greedy search candidates: [16002, 16014]
+greedy search, currently checking 207 to 225 out of 225
+greedy search, time after compilation in step 0 : 503.9210469722748
+greedy search, time after assembly in step 0 : 504.60902309417725
+greedy search candidates: [16002]
+Pass: FunctionToLoopPassAdaptor_36 generated: [18, 25, 32] with offset: 78 with count: 16002
+Running pass: GVNPass_12 with max_query_index: 558
+greedy search, currently checking 225 to 289 out of 558
+greedy search, time after compilation in step 0 : 506.58303570747375
+greedy search, time after assembly in step 0 : 507.3297176361084
+greedy search candidates: [16002]
+greedy search, currently checking 289 to 353 out of 558
+greedy search, time after compilation in step 0 : 508.8266546726227
+greedy search, time after assembly in step 0 : 509.64940071105957
+greedy search candidates: [16002]
+greedy search, currently checking 353 to 417 out of 558
+greedy search, time after compilation in step 0 : 511.21513962745667
+greedy search, time after assembly in step 0 : 512.0817954540253
+greedy search candidates: [16057, 16002]
+greedy search, currently checking 417 to 481 out of 558
+greedy search, time after compilation in step 0 : 513.5143022537231
+greedy search, time after assembly in step 0 : 514.260409116745
+greedy search candidates: [16002, 16043]
+greedy search, currently checking 481 to 545 out of 558
+greedy search, time after compilation in step 0 : 515.7443442344666
+greedy search, time after assembly in step 0 : 516.5451865196228
+greedy search candidates: [16002]
+greedy search, currently checking 545 to 558 out of 558
+greedy search, time after compilation in step 0 : 517.9817862510681
+greedy search, time after assembly in step 0 : 518.7188491821289
+greedy search candidates: [16002]
+Pass: GVNPass_12 generated: [18, 25, 32] with offset: 224 with count: 16002
+Running pass: DSEPass_12 with max_query_index: 582
+greedy search, currently checking 558 to 582 out of 582
+greedy search, time after compilation in step 0 : 520.448424577713
+greedy search, time after assembly in step 0 : 521.101184129715
+greedy search candidates: [16002]
+Pass: DSEPass_12 generated: [18, 25, 32] with offset: 557 with count: 16002
+Running pass: FunctionToLoopPassAdaptor_63 with max_query_index: 588
+exhaustive search, time after compilation : 522.2830305099487
+exhaustive search, time after assembly : 523.1601479053497
+exhaustive search candidates : [16002]
+Pass: FunctionToLoopPassAdaptor_63 generated: [18, 25, 32] with offset: 581 with count: 16002
+Time after exploration of _Z6searchP7state_tiiiii: 523.7087006568909
+==== Next function: _ZL12history_goodP7state_tii
+Running pass: InstCombinePass_8 with max_query_index: 2
+exhaustive search, time after compilation : 524.6610243320465
+exhaustive search, time after assembly : 525.2980117797852
+exhaustive search candidates : [16090]
+Pass: InstCombinePass_8 generated: [] with offset: -1 with count: 16090
+Running pass: EarlyCSEPass_28 with max_query_index: 4
+exhaustive search, time after compilation : 526.1607954502106
+exhaustive search, time after assembly : 526.7681035995483
+exhaustive search candidates : [16112, 16090, 16115]
+Pass: EarlyCSEPass_28 generated: [] with offset: 1 with count: 16090
+Running pass: FunctionToLoopPassAdaptor_30 with max_query_index: 14
+greedy search, currently checking 4 to 14 out of 14
+greedy search, time after compilation in step 0 : 528.4989042282104
+greedy search, time after assembly in step 0 : 529.1160845756531
+greedy search candidates: [16090]
+Pass: FunctionToLoopPassAdaptor_30 generated: [] with offset: 3 with count: 16090
+Running pass: GVNPass_10 with max_query_index: 22
+exhaustive search, time after compilation : 531.1949551105499
+exhaustive search, time after assembly : 532.6256873607635
+exhaustive search candidates : [16090]
+Pass: GVNPass_10 generated: [] with offset: 13 with count: 16090
+Running pass: DSEPass_10 with max_query_index: 33
+greedy search, currently checking 22 to 33 out of 33
+greedy search, time after compilation in step 0 : 536.5910997390747
+greedy search, time after assembly in step 0 : 537.2747583389282
+greedy search candidates: [16090]
+Pass: DSEPass_10 generated: [] with offset: 21 with count: 16090
+Time after exploration of _ZL12history_goodP7state_tii: 537.3647801876068
+==== Next function: _Z11search_rootP7state_tiii
+Running pass: InstCombinePass_11 with max_query_index: 1
+exhaustive search, time after compilation : 538.1992356777191
+exhaustive search, time after assembly : 538.8722467422485
+exhaustive search candidates : [16090, 16100]
+Pass: InstCombinePass_11 generated: [] with offset: -1 with count: 16090
+Running pass: EarlyCSEPass_32 with max_query_index: 22
+greedy search, currently checking 1 to 22 out of 22
+greedy search, time after compilation in step 0 : 540.5207600593567
+greedy search, time after assembly in step 0 : 541.2233698368073
+greedy search candidates: [16096, 16097, 16132, 16101, 16079, 16090, 16062, 16095]
+greedy search, new min: 16079
+greedy search, current list: [14]
+greedy search, time after step 0 : 541.3796112537384
+greedy search, currently checking 15 to 22 out of 22
+greedy search, time after compilation in step 1 : 542.143393278122
+greedy search, time after assembly in step 1 : 542.8988816738129
+greedy search candidates: [16120, 16084, 16079]
+Pass: EarlyCSEPass_32 generated: [14] with offset: 0 with count: 16079
+Running pass: JumpThreadingPass_28 with max_query_index: 24
+exhaustive search, time after compilation : 544.3103013038635
+exhaustive search, time after assembly : 544.890896320343
+exhaustive search candidates : [16079]
+Pass: JumpThreadingPass_28 generated: [14] with offset: 21 with count: 16079
+Running pass: FunctionToLoopPassAdaptor_42 with max_query_index: 100
+greedy search, currently checking 24 to 88 out of 100
+greedy search, time after compilation in step 0 : 546.7352724075317
+greedy search, time after assembly in step 0 : 547.5429735183716
+greedy search candidates: [16079]
+greedy search, currently checking 88 to 100 out of 100
+greedy search, time after compilation in step 0 : 548.9221107959747
+greedy search, time after assembly in step 0 : 549.6734142303467
+greedy search candidates: [16079]
+Pass: FunctionToLoopPassAdaptor_42 generated: [14] with offset: 23 with count: 16079
+Running pass: GVNPass_14 with max_query_index: 139
+greedy search, currently checking 100 to 139 out of 139
+greedy search, time after compilation in step 0 : 551.4280641078949
+greedy search, time after assembly in step 0 : 552.1133999824524
+greedy search candidates: [15972, 16079]
+greedy search, new min: 15972
+greedy search, current list: [14, 119]
+greedy search, time after step 0 : 552.4314422607422
+greedy search, currently checking 120 to 139 out of 139
+greedy search, time after compilation in step 1 : 553.2650318145752
+greedy search, time after assembly in step 1 : 553.93345952034
+greedy search candidates: [15972]
+Pass: GVNPass_14 generated: [14, 119] with offset: 99 with count: 15972
+Running pass: DSEPass_14 with max_query_index: 176
+greedy search, currently checking 163 to 176 out of 176
+greedy search, time after compilation in step 0 : 556.1811466217041
+greedy search, time after assembly in step 0 : 556.8238532543182
+greedy search candidates: [15972]
+Pass: DSEPass_14 generated: [14, 119] with offset: 162 with count: 15972
+Time after exploration of _Z11search_rootP7state_tiii: 556.9489483833313
+==== Next function: _ZL17search_time_checkP7state_t
+Running pass: GVNPass_2 with max_query_index: 1
+exhaustive search, time after compilation : 557.8449568748474
+exhaustive search, time after assembly : 558.4886047840118
+exhaustive search candidates : [16090]
+Pass: GVNPass_2 generated: [] with offset: -1 with count: 16090
+Time after exploration of _ZL17search_time_checkP7state_t: 558.5101537704468
+==== Next function: _ZL16fast_order_movesP7state_tPiS1_ij
+Running pass: FunctionToLoopPassAdaptor_9 with max_query_index: 2
+exhaustive search, time after compilation : 559.3138794898987
+exhaustive search, time after assembly : 560.0153903961182
+exhaustive search candidates : [16090]
+Pass: FunctionToLoopPassAdaptor_9 generated: [] with offset: -1 with count: 16090
+Running pass: GVNPass_3 with max_query_index: 18
+greedy search, currently checking 2 to 18 out of 18
+greedy search, time after compilation in step 0 : 561.6744403839111
+greedy search, time after assembly in step 0 : 562.3516044616699
+greedy search candidates: [16090]
+Pass: GVNPass_3 generated: [] with offset: 1 with count: 16090
+Time after exploration of _ZL16fast_order_movesP7state_tPiS1_ij: 562.5141317844391
+==== Next function: _ZL15remove_one_fastPiS_S_i
+Running pass: GVNPass_4 with max_query_index: 2
+exhaustive search, time after compilation : 563.4221713542938
+exhaustive search, time after assembly : 564.119021654129
+exhaustive search candidates : [16090]
+Pass: GVNPass_4 generated: [] with offset: -1 with count: 16090
+Running pass: DSEPass_4 with max_query_index: 4
+exhaustive search, time after compilation : 565.0617463588715
+exhaustive search, time after assembly : 565.6790606975555
+exhaustive search candidates : [16090]
+Pass: DSEPass_4 generated: [] with offset: 1 with count: 16090
+Time after exploration of _ZL15remove_one_fastPiS_S_i: 565.7191934585571
+==== Next function: _ZL15history_pre_cutP7state_tii
+Running pass: GVNPass_5 with max_query_index: 3
+exhaustive search, time after compilation : 566.5048780441284
+exhaustive search, time after assembly : 567.1952769756317
+exhaustive search candidates : [16090]
+Pass: GVNPass_5 generated: [] with offset: -1 with count: 16090
+Time after exploration of _ZL15history_pre_cutP7state_tii: 567.2544419765472
+==== Next function: _Z7qsearchP7state_tiiii
+Running pass: EarlyCSEPass_24 with max_query_index: 13
+greedy search, currently checking 0 to 13 out of 13
+greedy search, time after compilation in step 0 : 568.915420293808
+greedy search, time after assembly in step 0 : 569.6302673816681
+greedy search candidates: [16096, 16090, 16059, 16061, 16126]
+greedy search, new min: 16061
+greedy search, current list: [4]
+greedy search, time after step 0 : 569.7535312175751
+greedy search, currently checking 5 to 13 out of 13
+greedy search, time after compilation in step 1 : 570.6131925582886
+greedy search, time after assembly in step 1 : 571.2619209289551
+greedy search candidates: [16066, 16067, 16061, 16071]
+Pass: EarlyCSEPass_24 generated: [4] with offset: -1 with count: 16061
+Running pass: FunctionToLoopPassAdaptor_18 with max_query_index: 98
+greedy search, currently checking 13 to 77 out of 98
+greedy search, time after compilation in step 0 : 573.493198633194
+greedy search, time after assembly in step 0 : 574.2305960655212
+greedy search candidates: [16061]
+greedy search, currently checking 77 to 98 out of 98
+greedy search, time after compilation in step 0 : 575.7362430095673
+greedy search, time after assembly in step 0 : 576.454829454422
+greedy search candidates: [16061]
+Pass: FunctionToLoopPassAdaptor_18 generated: [4] with offset: 12 with count: 16061
+Running pass: GVNPass_6 with max_query_index: 239
+greedy search, currently checking 98 to 162 out of 239
+greedy search, time after compilation in step 0 : 578.404025554657
+greedy search, time after assembly in step 0 : 579.2847473621368
+greedy search candidates: [16061]
+greedy search, currently checking 162 to 226 out of 239
+greedy search, time after compilation in step 0 : 580.8216452598572
+greedy search, time after assembly in step 0 : 581.6252419948578
+greedy search candidates: [16061]
+greedy search, currently checking 226 to 239 out of 239
+greedy search, time after compilation in step 0 : 583.0104076862335
+greedy search, time after assembly in step 0 : 583.7168574333191
+greedy search candidates: [16061]
+Pass: GVNPass_6 generated: [4] with offset: 97 with count: 16061
+Running pass: DSEPass_6 with max_query_index: 256
+greedy search, currently checking 239 to 256 out of 256
+greedy search, time after compilation in step 0 : 585.4321112632751
+greedy search, time after assembly in step 0 : 586.1303496360779
+greedy search candidates: [16061]
+Pass: DSEPass_6 generated: [4] with offset: 238 with count: 16061
+Time after exploration of _Z7qsearchP7state_tiiii: 586.3103837966919
+==== Next function: _ZL12make_blunderP7state_tiPii
+Running pass: GVNPass_7 with max_query_index: 69
+greedy search, currently checking 0 to 64 out of 69
+greedy search, time after compilation in step 0 : 588.0679359436035
+greedy search, time after assembly in step 0 : 588.7651839256287
+greedy search candidates: [16090]
+greedy search, currently checking 64 to 69 out of 69
+greedy search, time after compilation in step 0 : 590.2086691856384
+greedy search, time after assembly in step 0 : 590.9064512252808
+greedy search candidates: [16090]
+Pass: GVNPass_7 generated: [] with offset: -1 with count: 16090
+Time after exploration of _ZL12make_blunderP7state_tiPii: 590.9568283557892
+==== Next function: _ZL11order_movesP7state_tPiS1_ij
+Running pass: FunctionToLoopPassAdaptor_24 with max_query_index: 112
+greedy search, currently checking 0 to 64 out of 112
+greedy search, time after compilation in step 0 : 592.6902656555176
+greedy search, time after assembly in step 0 : 593.4198458194733
+greedy search candidates: [16090]
+greedy search, currently checking 64 to 112 out of 112
+greedy search, time after compilation in step 0 : 594.7226459980011
+greedy search, time after assembly in step 0 : 595.4216074943542
+greedy search candidates: [16090]
+Pass: FunctionToLoopPassAdaptor_24 generated: [] with offset: -1 with count: 16090
+Running pass: GVNPass_8 with max_query_index: 144
+greedy search, currently checking 112 to 144 out of 144
+greedy search, time after compilation in step 0 : 597.5984320640564
+greedy search, time after assembly in step 0 : 598.2782990932465
+greedy search candidates: [16090]
+Pass: GVNPass_8 generated: [] with offset: 111 with count: 16090
+Time after exploration of _ZL11order_movesP7state_tPiS1_ij: 598.5636546611786
+==== Next function: _ZL13history_scoreP7state_ti
+Running pass: GVNPass_9 with max_query_index: 3
+exhaustive search, time after compilation : 599.5003461837769
+exhaustive search, time after assembly : 600.1537988185883
+exhaustive search candidates : [16090]
+Pass: GVNPass_9 generated: [] with offset: -1 with count: 16090
+Time after exploration of _ZL13history_scoreP7state_ti: 600.2304744720459
+==== Next function: _ZL11history_badP7state_tii
+Running pass: FunctionToLoopPassAdaptor_33 with max_query_index: 4
+exhaustive search, time after compilation : 601.0730872154236
+exhaustive search, time after assembly : 601.7260315418243
+exhaustive search candidates : [16090]
+Pass: FunctionToLoopPassAdaptor_33 generated: [] with offset: -1 with count: 16090
+Running pass: GVNPass_11 with max_query_index: 6
+exhaustive search, time after compilation : 602.7588238716125
+exhaustive search, time after assembly : 603.5119369029999
+exhaustive search candidates : [16090]
+Pass: GVNPass_11 generated: [] with offset: 3 with count: 16090
+Running pass: DSEPass_11 with max_query_index: 7
+exhaustive search, time after compilation : 604.4125220775604
+exhaustive search, time after assembly : 605.1248600482941
+exhaustive search candidates : [16090]
+Pass: DSEPass_11 generated: [] with offset: 5 with count: 16090
+Time after exploration of _ZL11history_badP7state_tii: 605.1559295654297
+==== Next function: _Z21reset_search_countersP7state_t
+Running pass: DSEPass_15 with max_query_index: 4
+exhaustive search, time after compilation : 606.1590197086334
+exhaustive search, time after assembly : 606.9256725311279
+exhaustive search candidates : [16090]
+Pass: DSEPass_15 generated: [] with offset: -1 with count: 16090
+Time after exploration of _Z21reset_search_countersP7state_t: 607.0636248588562
+==== Next function: _Z5thinkP11gamestate_tP7state_t
+Running pass: EarlyCSEPass_35 with max_query_index: 2
+exhaustive search, time after compilation : 607.8454763889313
+exhaustive search, time after assembly : 608.5853028297424
+exhaustive search candidates : [16090, 16094]
+Pass: EarlyCSEPass_35 generated: [] with offset: -1 with count: 16090
+Running pass: FunctionToLoopPassAdaptor_51 with max_query_index: 15
+greedy search, currently checking 2 to 15 out of 15
+greedy search, time after compilation in step 0 : 610.3131082057953
+greedy search, time after assembly in step 0 : 610.9997630119324
+greedy search candidates: [16090]
+Pass: FunctionToLoopPassAdaptor_51 generated: [] with offset: 1 with count: 16090
+Running pass: GVNPass_17 with max_query_index: 17
+exhaustive search, time after compilation : 611.9408459663391
+exhaustive search, time after assembly : 612.5670483112335
+exhaustive search candidates : [16090]
+Pass: GVNPass_17 generated: [] with offset: 14 with count: 16090
+Running pass: DSEPass_17 with max_query_index: 38
+greedy search, currently checking 17 to 38 out of 38
+greedy search, time after compilation in step 0 : 614.2048704624176
+greedy search, time after assembly in step 0 : 614.9226434230804
+greedy search candidates: [16090]
+Pass: DSEPass_17 generated: [] with offset: 16 with count: 16090
+Time after exploration of _Z5thinkP11gamestate_tP7state_t: 615.1397275924683
+Time after exploration of 631/search.bc: 615.1397526264191
+***** Next file: 631/draw.bc
+==== Next function: _Z7is_drawP11gamestate_tP7state_t
+Running pass: GVNPass_0 with max_query_index: 29
+greedy search, currently checking 0 to 29 out of 29
+greedy search, time after compilation in step 0 : 615.5903832912445
+greedy search, time after assembly in step 0 : 616.012745141983
+greedy search candidates: [362, 366]
+greedy search, new min: 362
+greedy search, current list: [4]
+greedy search, time after step 0 : 616.275271654129
+greedy search, currently checking 5 to 29 out of 29
+greedy search, time after compilation in step 1 : 616.5714988708496
+greedy search, time after assembly in step 1 : 616.9552991390228
+greedy search candidates: [362]
+Pass: GVNPass_0 generated: [4] with offset: -1 with count: 362
+Time after exploration of _Z7is_drawP11gamestate_tP7state_t: 617.2247686386108
+==== Next function: _Z21insufficient_materialP7state_t
+Running pass: GVNPass_1 with max_query_index: 86
+greedy search, currently checking 0 to 64 out of 86
+greedy search, time after compilation in step 0 : 617.7872095108032
+greedy search, time after assembly in step 0 : 618.2956960201263
+greedy search candidates: [368, 366]
+greedy search, currently checking 64 to 86 out of 86
+greedy search, time after compilation in step 0 : 619.3267514705658
+greedy search, time after assembly in step 0 : 619.7721345424652
+greedy search candidates: [366]
+Pass: GVNPass_1 generated: [] with offset: -1 with count: 366
+Time after exploration of _Z21insufficient_materialP7state_t: 619.9985992908478
+Time after exploration of 631/draw.bc: 619.9986686706543
+***** Next file: 631/state.bc
+Time after exploration of 631/state.bc: 619.9986886978149
+***** Next file: 631/attacks.bc
+==== Next function: _Z11is_attackedP7state_tii
+Running pass: GVNPass_0 with max_query_index: 75
+greedy search, currently checking 0 to 64 out of 75
+greedy search, time after compilation in step 0 : 620.6542778015137
+greedy search, time after assembly in step 0 : 621.1042785644531
+greedy search candidates: [1127]
+greedy search, currently checking 64 to 75 out of 75
+greedy search, time after compilation in step 0 : 622.0942907333374
+greedy search, time after assembly in step 0 : 622.4288620948792
+greedy search candidates: [1127]
+Pass: GVNPass_0 generated: [] with offset: -1 with count: 1127
+Time after exploration of _Z11is_attackedP7state_tii: 622.512638092041
+==== Next function: _Z8in_checkP7state_t
+Running pass: GVNPass_1 with max_query_index: 3
+exhaustive search, time after compilation : 622.8095433712006
+exhaustive search, time after assembly : 623.1758515834808
+exhaustive search candidates : [1127]
+Pass: GVNPass_1 generated: [] with offset: -1 with count: 1127
+Time after exploration of _Z8in_checkP7state_t: 623.2478287220001
+==== Next function: _Z10attacks_toP7state_ti
+Running pass: GVNPass_2 with max_query_index: 107
+greedy search, currently checking 0 to 64 out of 107
+greedy search, time after compilation in step 0 : 623.7299630641937
+greedy search, time after assembly in step 0 : 624.1297013759613
+greedy search candidates: [1127]
+greedy search, currently checking 64 to 107 out of 107
+greedy search, time after compilation in step 0 : 625.2215793132782
+greedy search, time after assembly in step 0 : 625.7248928546906
+greedy search candidates: [1127]
+Pass: GVNPass_2 generated: [] with offset: -1 with count: 1127
+Time after exploration of _Z10attacks_toP7state_ti: 626.060150384903
+Time after exploration of 631/attacks.bc: 626.0601780414581
+***** Next file: 631/sjeng.bc
+Time after exploration of 631/sjeng.bc: 626.0601909160614
+***** Next file: 631/moves.bc
+==== Next function: _Z11check_legalP7state_ti
+Running pass: GVNPass_0 with max_query_index: 3
+exhaustive search, time after compilation : 626.431622505188
+exhaustive search, time after assembly : 626.7588195800781
+exhaustive search candidates : [1421]
+Pass: GVNPass_0 generated: [] with offset: -1 with count: 1421
+Time after exploration of _Z11check_legalP7state_ti: 626.8288793563843
+==== Next function: _Z20check_castle_blockerP7state_ti
+Running pass: GVNPass_1 with max_query_index: 29
+greedy search, currently checking 0 to 29 out of 29
+greedy search, time after compilation in step 0 : 627.4645671844482
+greedy search, time after assembly in step 0 : 627.8427734375
+greedy search candidates: [1421]
+Pass: GVNPass_1 generated: [] with offset: -1 with count: 1421
+Time after exploration of _Z20check_castle_blockerP7state_ti: 628.125061750412
+Time after exploration of 631/moves.bc: 628.1250863075256
+***** Next file: 631/pawn.bc
+==== Next function: _ZL14full_pawn_evalP7state_tP8pawntt_t
+Running pass: InstCombinePass_3 with max_query_index: 3
+exhaustive search, time after compilation : 628.6079182624817
+exhaustive search, time after assembly : 629.0115826129913
+exhaustive search candidates : [3016]
+Pass: InstCombinePass_3 generated: [] with offset: -1 with count: 3016
+Running pass: EarlyCSEPass_6 with max_query_index: 80
+greedy search, currently checking 3 to 67 out of 80
+greedy search, time after compilation in step 0 : 629.9788494110107
+greedy search, time after assembly in step 0 : 630.543707370758
+greedy search candidates: [3016]
+greedy search, currently checking 67 to 80 out of 80
+greedy search, time after compilation in step 0 : 631.637553691864
+greedy search, time after assembly in step 0 : 632.0430567264557
+greedy search candidates: [3016]
+Pass: EarlyCSEPass_6 generated: [] with offset: 2 with count: 3016
+Running pass: FunctionToLoopPassAdaptor_6 with max_query_index: 226
+greedy search, currently checking 80 to 144 out of 226
+greedy search, time after compilation in step 0 : 633.0758225917816
+greedy search, time after assembly in step 0 : 633.5815176963806
+greedy search candidates: [3016, 3011]
+greedy search, new min: 3011
+greedy search, current list: [80]
+greedy search, time after step 0 : 634.1390795707703
+greedy search, currently checking 81 to 145 out of 226
+greedy search, time after compilation in step 1 : 634.7648115158081
+greedy search, time after assembly in step 1 : 635.2075908184052
+greedy search candidates: [3011, 3006]
+greedy search, new min: 3006
+greedy search, current list: [80, 81]
+greedy search, time after step 1 : 635.8246014118195
+greedy search, currently checking 82 to 146 out of 226
+greedy search, time after compilation in step 2 : 636.526398897171
+greedy search, time after assembly in step 2 : 637.0423135757446
+greedy search candidates: [3001, 3006]
+greedy search, new min: 3001
+greedy search, current list: [80, 81, 82]
+greedy search, time after step 2 : 637.6222493648529
+greedy search, currently checking 83 to 147 out of 226
+greedy search, time after compilation in step 3 : 638.232093334198
+greedy search, time after assembly in step 3 : 638.6756672859192
+greedy search candidates: [3001]
+greedy search, currently checking 147 to 211 out of 226
+greedy search, time after compilation in step 3 : 639.8782851696014
+greedy search, time after assembly in step 3 : 640.3469679355621
+greedy search candidates: [3001]
+greedy search, currently checking 211 to 226 out of 226
+greedy search, time after compilation in step 3 : 641.5005798339844
+greedy search, time after assembly in step 3 : 641.9703347682953
+greedy search candidates: [3001]
+Pass: FunctionToLoopPassAdaptor_6 generated: [80, 81, 82] with offset: 79 with count: 3001
+Running pass: GVNPass_2 with max_query_index: 616
+greedy search, currently checking 226 to 290 out of 616
+greedy search, time after compilation in step 0 : 643.2590141296387
+greedy search, time after assembly in step 0 : 643.739253282547
+greedy search candidates: [3001]
+greedy search, currently checking 290 to 354 out of 616
+greedy search, time after compilation in step 0 : 644.8890137672424
+greedy search, time after assembly in step 0 : 645.3631541728973
+greedy search candidates: [3001]
+greedy search, currently checking 354 to 418 out of 616
+greedy search, time after compilation in step 0 : 646.4813959598541
+greedy search, time after assembly in step 0 : 647.0302472114563
+greedy search candidates: [3001]
+greedy search, currently checking 418 to 482 out of 616
+greedy search, time after compilation in step 0 : 648.13685131073
+greedy search, time after assembly in step 0 : 648.6639261245728
+greedy search candidates: [3001]
+greedy search, currently checking 482 to 546 out of 616
+greedy search, time after compilation in step 0 : 649.8950865268707
+greedy search, time after assembly in step 0 : 650.4425630569458
+greedy search candidates: [3001]
+greedy search, currently checking 546 to 610 out of 616
+greedy search, time after compilation in step 0 : 651.7176966667175
+greedy search, time after assembly in step 0 : 652.2050895690918
+greedy search candidates: [3001]
+greedy search, currently checking 610 to 616 out of 616
+greedy search, time after compilation in step 0 : 653.4058952331543
+greedy search, time after assembly in step 0 : 653.8021247386932
+greedy search candidates: [3001]
+Pass: GVNPass_2 generated: [80, 81, 82] with offset: 225 with count: 3001
+Running pass: DSEPass_2 with max_query_index: 638
+greedy search, currently checking 616 to 638 out of 638
+greedy search, time after compilation in step 0 : 654.6498413085938
+greedy search, time after assembly in step 0 : 655.0550196170807
+greedy search candidates: [3001]
+Pass: DSEPass_2 generated: [80, 81, 82] with offset: 615 with count: 3001
+Running pass: FunctionToLoopPassAdaptor_8 with max_query_index: 639
+exhaustive search, time after compilation : 655.8615696430206
+exhaustive search, time after assembly : 656.2982835769653
+exhaustive search candidates : [3001]
+Pass: FunctionToLoopPassAdaptor_8 generated: [80, 81, 82] with offset: 637 with count: 3001
+Time after exploration of _ZL14full_pawn_evalP7state_tP8pawntt_t: 656.3254244327545
+==== Next function: _Z16static_pawn_evalP7state_t
+Running pass: EarlyCSEPass_7 with max_query_index: 19
+greedy search, currently checking 0 to 19 out of 19
+greedy search, time after compilation in step 0 : 657.2250535488129
+greedy search, time after assembly in step 0 : 657.6704473495483
+greedy search candidates: [3016]
+Pass: EarlyCSEPass_7 generated: [] with offset: -1 with count: 3016
+Running pass: FunctionToLoopPassAdaptor_9 with max_query_index: 126
+greedy search, currently checking 19 to 83 out of 126
+greedy search, time after compilation in step 0 : 658.7512099742889
+greedy search, time after assembly in step 0 : 659.2121412754059
+greedy search candidates: [3016]
+greedy search, currently checking 83 to 126 out of 126
+greedy search, time after compilation in step 0 : 660.3897998332977
+greedy search, time after assembly in step 0 : 660.8618240356445
+greedy search candidates: [3016]
+Pass: FunctionToLoopPassAdaptor_9 generated: [] with offset: 18 with count: 3016
+Running pass: GVNPass_3 with max_query_index: 691
+greedy search, currently checking 126 to 190 out of 691
+greedy search, time after compilation in step 0 : 662.2228991985321
+greedy search, time after assembly in step 0 : 662.7151961326599
+greedy search candidates: [3016]
+greedy search, currently checking 190 to 254 out of 691
+greedy search, time after compilation in step 0 : 663.8790438175201
+greedy search, time after assembly in step 0 : 664.3812229633331
+greedy search candidates: [3016]
+greedy search, currently checking 254 to 318 out of 691
+greedy search, time after compilation in step 0 : 665.60298204422
+greedy search, time after assembly in step 0 : 666.1465270519257
+greedy search candidates: [3016]
+greedy search, currently checking 318 to 382 out of 691
+greedy search, time after compilation in step 0 : 667.3446750640869
+greedy search, time after assembly in step 0 : 667.8895392417908
+greedy search candidates: [3016]
+greedy search, currently checking 382 to 446 out of 691
+greedy search, time after compilation in step 0 : 669.0484147071838
+greedy search, time after assembly in step 0 : 669.5002768039703
+greedy search candidates: [3016]
+greedy search, currently checking 446 to 510 out of 691
+greedy search, time after compilation in step 0 : 670.6850147247314
+greedy search, time after assembly in step 0 : 671.1622426509857
+greedy search candidates: [3016]
+greedy search, currently checking 510 to 574 out of 691
+greedy search, time after compilation in step 0 : 672.3585786819458
+greedy search, time after assembly in step 0 : 672.8960371017456
+greedy search candidates: [3016]
+greedy search, currently checking 574 to 638 out of 691
+greedy search, time after compilation in step 0 : 674.0531432628632
+greedy search, time after assembly in step 0 : 674.567510843277
+greedy search candidates: [3016]
+greedy search, currently checking 638 to 691 out of 691
+greedy search, time after compilation in step 0 : 675.7876996994019
+greedy search, time after assembly in step 0 : 676.2547926902771
+greedy search candidates: [3016]
+Pass: GVNPass_3 generated: [] with offset: 125 with count: 3016
+Running pass: DSEPass_3 with max_query_index: 737
+greedy search, currently checking 691 to 737 out of 737
+greedy search, time after compilation in step 0 : 677.6438639163971
+greedy search, time after assembly in step 0 : 678.067754983902
+greedy search candidates: [3016]
+Pass: DSEPass_3 generated: [] with offset: 690 with count: 3016
+Time after exploration of _Z16static_pawn_evalP7state_t: 678.4812438488007
+Time after exploration of 631/pawn.bc: 678.4812684059143
+***** Next file: 631/endgame.bc
+==== Next function: _Z14drawn_endgamesP7state_tiii
+Running pass: GVNPass_0 with max_query_index: 4611
+greedy search, currently checking 0 to 64 out of 4611
+greedy search, time after compilation in step 0 : 679.2435772418976
+greedy search, time after assembly in step 0 : 679.722461938858
+greedy search candidates: [3513, 3530, 3541]
+greedy search, new min: 3513
+greedy search, current list: [0]
+greedy search, time after step 0 : 680.2468049526215
+greedy search, currently checking 1 to 65 out of 4611
+greedy search, time after compilation in step 1 : 680.8802149295807
+greedy search, time after assembly in step 1 : 681.3609158992767
+greedy search candidates: [3513, 3522]
+greedy search, currently checking 65 to 129 out of 4611
+greedy search, time after compilation in step 1 : 682.4790046215057
+greedy search, time after assembly in step 1 : 682.9215226173401
+greedy search candidates: [3513]
+greedy search, currently checking 129 to 193 out of 4611
+greedy search, time after compilation in step 1 : 684.1845517158508
+greedy search, time after assembly in step 1 : 684.643542766571
+greedy search candidates: [3513, 3515]
+greedy search, currently checking 193 to 257 out of 4611
+greedy search, time after compilation in step 1 : 685.6617116928101
+greedy search, time after assembly in step 1 : 686.143449306488
+greedy search candidates: [3513]
+greedy search, currently checking 257 to 321 out of 4611
+greedy search, time after compilation in step 1 : 687.2898473739624
+greedy search, time after assembly in step 1 : 687.7757833003998
+greedy search candidates: [3513]
+greedy search, currently checking 321 to 385 out of 4611
+greedy search, time after compilation in step 1 : 688.8763177394867
+greedy search, time after assembly in step 1 : 689.3552846908569
+greedy search candidates: [3513]
+greedy search, currently checking 385 to 449 out of 4611
+greedy search, time after compilation in step 1 : 690.4247658252716
+greedy search, time after assembly in step 1 : 690.9310629367828
+greedy search candidates: [3513]
+greedy search, currently checking 449 to 513 out of 4611
+greedy search, time after compilation in step 1 : 692.0807855129242
+greedy search, time after assembly in step 1 : 692.5319738388062
+greedy search candidates: [3513]
+greedy search, currently checking 513 to 577 out of 4611
+greedy search, time after compilation in step 1 : 693.7671339511871
+greedy search, time after assembly in step 1 : 694.3278992176056
+greedy search candidates: [3513]
+greedy search, currently checking 577 to 641 out of 4611
+greedy search, time after compilation in step 1 : 695.4798746109009
+greedy search, time after assembly in step 1 : 695.926266670227
+greedy search candidates: [3513]
+greedy search, currently checking 641 to 705 out of 4611
+greedy search, time after compilation in step 1 : 697.0594282150269
+greedy search, time after assembly in step 1 : 697.556732416153
+greedy search candidates: [3513]
+greedy search, currently checking 705 to 769 out of 4611
+greedy search, time after compilation in step 1 : 698.7111449241638
+greedy search, time after assembly in step 1 : 699.2018136978149
+greedy search candidates: [3513]
+greedy search, currently checking 769 to 833 out of 4611
+greedy search, time after compilation in step 1 : 700.2664620876312
+greedy search, time after assembly in step 1 : 700.7238702774048
+greedy search candidates: [3513]
+greedy search, currently checking 833 to 897 out of 4611
+greedy search, time after compilation in step 1 : 701.8506970405579
+greedy search, time after assembly in step 1 : 702.3904232978821
+greedy search candidates: [3513]
+greedy search, currently checking 897 to 961 out of 4611
+greedy search, time after compilation in step 1 : 703.5777785778046
+greedy search, time after assembly in step 1 : 704.1414265632629
+greedy search candidates: [3513]
+greedy search, currently checking 961 to 1025 out of 4611
+greedy search, time after compilation in step 1 : 705.2372109889984
+greedy search, time after assembly in step 1 : 705.7189095020294
+greedy search candidates: [3513]
+greedy search, currently checking 1025 to 1089 out of 4611
+greedy search, time after compilation in step 1 : 706.8397393226624
+greedy search, time after assembly in step 1 : 707.3751757144928
+greedy search candidates: [3513]
+greedy search, currently checking 1089 to 1153 out of 4611
+greedy search, time after compilation in step 1 : 708.4375805854797
+greedy search, time after assembly in step 1 : 708.9789309501648
+greedy search candidates: [3513]
+greedy search, currently checking 1153 to 1217 out of 4611
+greedy search, time after compilation in step 1 : 710.1287784576416
+greedy search, time after assembly in step 1 : 710.5735991001129
+greedy search candidates: [3513]
+greedy search, currently checking 1217 to 1281 out of 4611
+greedy search, time after compilation in step 1 : 711.6775240898132
+greedy search, time after assembly in step 1 : 712.1990854740143
+greedy search candidates: [3513]
+greedy search, currently checking 1281 to 1345 out of 4611
+greedy search, time after compilation in step 1 : 713.3753740787506
+greedy search, time after assembly in step 1 : 713.9236826896667
+greedy search candidates: [3513]
+greedy search, currently checking 1345 to 1409 out of 4611
+greedy search, time after compilation in step 1 : 715.0701270103455
+greedy search, time after assembly in step 1 : 715.5632853507996
+greedy search candidates: [3513]
+greedy search, currently checking 1409 to 1473 out of 4611
+greedy search, time after compilation in step 1 : 716.7658658027649
+greedy search, time after assembly in step 1 : 717.2772209644318
+greedy search candidates: [3513]
+greedy search, currently checking 1473 to 1537 out of 4611
+greedy search, time after compilation in step 1 : 718.4048879146576
+greedy search, time after assembly in step 1 : 718.9434397220612
+greedy search candidates: [3513]
+greedy search, currently checking 1537 to 1601 out of 4611
+greedy search, time after compilation in step 1 : 720.1326801776886
+greedy search, time after assembly in step 1 : 720.66166639328
+greedy search candidates: [3513]
+greedy search, currently checking 1601 to 1665 out of 4611
+greedy search, time after compilation in step 1 : 721.7716529369354
+greedy search, time after assembly in step 1 : 722.2690575122833
+greedy search candidates: [3513]
+greedy search, currently checking 1665 to 1729 out of 4611
+greedy search, time after compilation in step 1 : 723.4882671833038
+greedy search, time after assembly in step 1 : 724.0154337882996
+greedy search candidates: [3513]
+greedy search, currently checking 1729 to 1793 out of 4611
+greedy search, time after compilation in step 1 : 725.1993050575256
+greedy search, time after assembly in step 1 : 725.7277390956879
+greedy search candidates: [3513]
+greedy search, currently checking 1793 to 1857 out of 4611
+greedy search, time after compilation in step 1 : 726.8596701622009
+greedy search, time after assembly in step 1 : 727.3731310367584
+greedy search candidates: [3513]
+greedy search, currently checking 1857 to 1921 out of 4611
+greedy search, time after compilation in step 1 : 728.5127944946289
+greedy search, time after assembly in step 1 : 729.035210609436
+greedy search candidates: [3513]
+greedy search, currently checking 1921 to 1985 out of 4611
+greedy search, time after compilation in step 1 : 730.0990817546844
+greedy search, time after assembly in step 1 : 730.642148733139
+greedy search candidates: [3513]
+greedy search, currently checking 1985 to 2049 out of 4611
+greedy search, time after compilation in step 1 : 731.7747347354889
+greedy search, time after assembly in step 1 : 732.3644208908081
+greedy search candidates: [3513]
+greedy search, currently checking 2049 to 2113 out of 4611
+greedy search, time after compilation in step 1 : 733.4795963764191
+greedy search, time after assembly in step 1 : 734.0075142383575
+greedy search candidates: [3513]
+greedy search, currently checking 2113 to 2177 out of 4611
+greedy search, time after compilation in step 1 : 735.1747286319733
+greedy search, time after assembly in step 1 : 735.737640619278
+greedy search candidates: [3513]
+greedy search, currently checking 2177 to 2241 out of 4611
+greedy search, time after compilation in step 1 : 736.9342555999756
+greedy search, time after assembly in step 1 : 737.5400786399841
+greedy search candidates: [3513]
+greedy search, currently checking 2241 to 2305 out of 4611
+greedy search, time after compilation in step 1 : 738.7879929542542
+greedy search, time after assembly in step 1 : 739.2517120838165
+greedy search candidates: [3513]
+greedy search, currently checking 2305 to 2369 out of 4611
+greedy search, time after compilation in step 1 : 740.4507911205292
+greedy search, time after assembly in step 1 : 740.9280278682709
+greedy search candidates: [3513]
+greedy search, currently checking 2369 to 2433 out of 4611
+greedy search, time after compilation in step 1 : 742.1864154338837
+greedy search, time after assembly in step 1 : 742.6857995986938
+greedy search candidates: [3513]
+greedy search, currently checking 2433 to 2497 out of 4611
+greedy search, time after compilation in step 1 : 743.8372588157654
+greedy search, time after assembly in step 1 : 744.4598388671875
+greedy search candidates: [3513]
+greedy search, currently checking 2497 to 2561 out of 4611
+greedy search, time after compilation in step 1 : 745.5559077262878
+greedy search, time after assembly in step 1 : 746.0279581546783
+greedy search candidates: [3513]
+greedy search, currently checking 2561 to 2625 out of 4611
+greedy search, time after compilation in step 1 : 747.1744158267975
+greedy search, time after assembly in step 1 : 747.6917655467987
+greedy search candidates: [3513]
+greedy search, currently checking 2625 to 2689 out of 4611
+greedy search, time after compilation in step 1 : 748.7532453536987
+greedy search, time after assembly in step 1 : 749.2428979873657
+greedy search candidates: [3513]
+greedy search, currently checking 2689 to 2753 out of 4611
+greedy search, time after compilation in step 1 : 750.4069955348969
+greedy search, time after assembly in step 1 : 750.8627293109894
+greedy search candidates: [3513]
+greedy search, currently checking 2753 to 2817 out of 4611
+greedy search, time after compilation in step 1 : 751.962553024292
+greedy search, time after assembly in step 1 : 752.4650630950928
+greedy search candidates: [3513]
+greedy search, currently checking 2817 to 2881 out of 4611
+greedy search, time after compilation in step 1 : 753.6647009849548
+greedy search, time after assembly in step 1 : 754.2500395774841
+greedy search candidates: [3513]
+greedy search, currently checking 2881 to 2945 out of 4611
+greedy search, time after compilation in step 1 : 755.3611238002777
+greedy search, time after assembly in step 1 : 755.827837228775
+greedy search candidates: [3513]
+greedy search, currently checking 2945 to 3009 out of 4611
+greedy search, time after compilation in step 1 : 756.9783837795258
+greedy search, time after assembly in step 1 : 757.5263500213623
+greedy search candidates: [3513]
+greedy search, currently checking 3009 to 3073 out of 4611
+greedy search, time after compilation in step 1 : 758.7685806751251
+greedy search, time after assembly in step 1 : 759.2538478374481
+greedy search candidates: [3513]
+greedy search, currently checking 3073 to 3137 out of 4611
+greedy search, time after compilation in step 1 : 760.3757073879242
+greedy search, time after assembly in step 1 : 760.8480231761932
+greedy search candidates: [3513]
+greedy search, currently checking 3137 to 3201 out of 4611
+greedy search, time after compilation in step 1 : 762.0077593326569
+greedy search, time after assembly in step 1 : 762.5722496509552
+greedy search candidates: [3513]
+greedy search, currently checking 3201 to 3265 out of 4611
+greedy search, time after compilation in step 1 : 763.7477929592133
+greedy search, time after assembly in step 1 : 764.3225309848785
+greedy search candidates: [3513]
+greedy search, currently checking 3265 to 3329 out of 4611
+greedy search, time after compilation in step 1 : 765.50648188591
+greedy search, time after assembly in step 1 : 766.0221905708313
+greedy search candidates: [3513]
+greedy search, currently checking 3329 to 3393 out of 4611
+greedy search, time after compilation in step 1 : 767.1997640132904
+greedy search, time after assembly in step 1 : 767.7053890228271
+greedy search candidates: [3513]
+greedy search, currently checking 3393 to 3457 out of 4611
+greedy search, time after compilation in step 1 : 768.8831386566162
+greedy search, time after assembly in step 1 : 769.3476483821869
+greedy search candidates: [3513]
+greedy search, currently checking 3457 to 3521 out of 4611
+greedy search, time after compilation in step 1 : 770.5453269481659
+greedy search, time after assembly in step 1 : 771.1157872676849
+greedy search candidates: [3513]
+greedy search, currently checking 3521 to 3585 out of 4611
+greedy search, time after compilation in step 1 : 772.1487205028534
+greedy search, time after assembly in step 1 : 772.6922776699066
+greedy search candidates: [3513]
+greedy search, currently checking 3585 to 3649 out of 4611
+greedy search, time after compilation in step 1 : 773.8540287017822
+greedy search, time after assembly in step 1 : 774.4089064598083
+greedy search candidates: [3513]
+greedy search, currently checking 3649 to 3713 out of 4611
+greedy search, time after compilation in step 1 : 775.494252204895
+greedy search, time after assembly in step 1 : 776.0011441707611
+greedy search candidates: [3513]
+greedy search, currently checking 3713 to 3777 out of 4611
+greedy search, time after compilation in step 1 : 777.131778717041
+greedy search, time after assembly in step 1 : 777.6359324455261
+greedy search candidates: [3513]
+greedy search, currently checking 3777 to 3841 out of 4611
+greedy search, time after compilation in step 1 : 778.7186591625214
+greedy search, time after assembly in step 1 : 779.3485329151154
+greedy search candidates: [3513]
+greedy search, currently checking 3841 to 3905 out of 4611
+greedy search, time after compilation in step 1 : 780.4899752140045
+greedy search, time after assembly in step 1 : 780.9549736976624
+greedy search candidates: [3513]
+greedy search, currently checking 3905 to 3969 out of 4611
+greedy search, time after compilation in step 1 : 782.077730178833
+greedy search, time after assembly in step 1 : 782.5913412570953
+greedy search candidates: [3513]
+greedy search, currently checking 3969 to 4033 out of 4611
+greedy search, time after compilation in step 1 : 783.6959228515625
+greedy search, time after assembly in step 1 : 784.2493782043457
+greedy search candidates: [3513]
+greedy search, currently checking 4033 to 4097 out of 4611
+greedy search, time after compilation in step 1 : 785.3970742225647
+greedy search, time after assembly in step 1 : 785.897337436676
+greedy search candidates: [3513]
+greedy search, currently checking 4097 to 4161 out of 4611
+greedy search, time after compilation in step 1 : 787.0594410896301
+greedy search, time after assembly in step 1 : 787.5584630966187
+greedy search candidates: [3513]
+greedy search, currently checking 4161 to 4225 out of 4611
+greedy search, time after compilation in step 1 : 788.665824174881
+greedy search, time after assembly in step 1 : 789.1368234157562
+greedy search candidates: [3513]
+greedy search, currently checking 4225 to 4289 out of 4611
+greedy search, time after compilation in step 1 : 790.2409415245056
+greedy search, time after assembly in step 1 : 790.7155644893646
+greedy search candidates: [3513]
+greedy search, currently checking 4289 to 4353 out of 4611
+greedy search, time after compilation in step 1 : 791.8107135295868
+greedy search, time after assembly in step 1 : 792.2750651836395
+greedy search candidates: [3513]
+greedy search, currently checking 4353 to 4417 out of 4611
+greedy search, time after compilation in step 1 : 793.4178714752197
+greedy search, time after assembly in step 1 : 794.0037910938263
+greedy search candidates: [3513]
+greedy search, currently checking 4417 to 4481 out of 4611
+greedy search, time after compilation in step 1 : 795.1719934940338
+greedy search, time after assembly in step 1 : 795.655398607254
+greedy search candidates: [3513]
+greedy search, currently checking 4481 to 4545 out of 4611
+greedy search, time after compilation in step 1 : 796.7202498912811
+greedy search, time after assembly in step 1 : 797.1942822933197
+greedy search candidates: [3513]
+greedy search, currently checking 4545 to 4609 out of 4611
+greedy search, time after compilation in step 1 : 798.3246490955353
+greedy search, time after assembly in step 1 : 798.8025245666504
+greedy search candidates: [3513]
+greedy search, currently checking 4609 to 4611 out of 4611
+greedy search, time after compilation in step 1 : 799.8329944610596
+greedy search, time after assembly in step 1 : 800.3030698299408
+greedy search candidates: [3513]
+Pass: GVNPass_0 generated: [0] with offset: -1 with count: 3513
+Time after exploration of _Z14drawn_endgamesP7state_tiii: 800.4993622303009
+Time after exploration of 631/endgame.bc: 800.4994518756866
+***** Next file: 631/bits.bc
+==== Next function: _Z15FindFirstRemovePy
+Running pass: GVNPass_2 with max_query_index: 1
+exhaustive search, time after compilation : 800.7971425056458
+exhaustive search, time after assembly : 801.1214785575867
+exhaustive search candidates : [625]
+Pass: GVNPass_2 generated: [] with offset: -1 with count: 625
+Time after exploration of _Z15FindFirstRemovePy: 801.1460416316986
+Time after exploration of 631/bits.bc: 801.1460709571838
+***** Next file: 631/preproc.bc
+==== Next function: _Z8psq_evalP7state_tP12t_eval_comps
+Running pass: GVNPass_0 with max_query_index: 27
+greedy search, currently checking 0 to 27 out of 27
+greedy search, time after compilation in step 0 : 801.658130645752
+greedy search, time after assembly in step 0 : 802.0392258167267
+greedy search candidates: [3212]
+Pass: GVNPass_0 generated: [] with offset: -1 with count: 3212
+Running pass: DSEPass_0 with max_query_index: 28
+exhaustive search, time after compilation : 802.6497473716736
+exhaustive search, time after assembly : 802.9757151603699
+exhaustive search candidates : [3212]
+Pass: DSEPass_0 generated: [] with offset: 26 with count: 3212
+Time after exploration of _Z8psq_evalP7state_tP12t_eval_comps: 802.9967706203461
+==== Next function: _Z14init_psq_scoreP7state_t
+Running pass: FunctionToLoopPassAdaptor_3 with max_query_index: 1
+exhaustive search, time after compilation : 803.2942416667938
+exhaustive search, time after assembly : 803.6646926403046
+exhaustive search candidates : [3212]
+Pass: FunctionToLoopPassAdaptor_3 generated: [] with offset: -1 with count: 3212
+Running pass: GVNPass_1 with max_query_index: 4
+exhaustive search, time after compilation : 804.0257341861725
+exhaustive search, time after assembly : 804.3781852722168
+exhaustive search candidates : [3212]
+Pass: GVNPass_1 generated: [] with offset: 0 with count: 3212
+Running pass: DSEPass_1 with max_query_index: 5
+exhaustive search, time after compilation : 804.7009315490723
+exhaustive search, time after assembly : 805.0673394203186
+exhaustive search candidates : [3212]
+Pass: DSEPass_1 generated: [] with offset: 3 with count: 3212
+Time after exploration of _Z14init_psq_scoreP7state_t: 805.0864081382751
+==== Next function: _Z18preprocess_preparev
+Running pass: GVNPass_2 with max_query_index: 5
+exhaustive search, time after compilation : 805.4041922092438
+exhaustive search, time after assembly : 805.7947833538055
+exhaustive search candidates : [3212]
+Pass: GVNPass_2 generated: [] with offset: -1 with count: 3212
+Running pass: DSEPass_2 with max_query_index: 6
+exhaustive search, time after compilation : 806.4353203773499
+exhaustive search, time after assembly : 806.8004865646362
+exhaustive search candidates : [3212]
+Pass: DSEPass_2 generated: [] with offset: 4 with count: 3212
+Time after exploration of _Z18preprocess_preparev: 806.8211395740509
+Time after exploration of 631/preproc.bc: 806.8211712837219
+***** Next file: 631/utils.bc
+==== Next function: _Z9init_gameP11gamestate_tP7state_t
+Running pass: InstCombinePass_10 with max_query_index: 3
+exhaustive search, time after compilation : 807.326290845871
+exhaustive search, time after assembly : 807.8821060657501
+exhaustive search candidates : [10322, 10309, 10319]
+Pass: InstCombinePass_10 generated: [2] with offset: -1 with count: 10309
+Running pass: DSEPass_11 with max_query_index: 71
+greedy search, currently checking 3 to 67 out of 71
+greedy search, time after compilation in step 0 : 809.2125174999237
+greedy search, time after assembly in step 0 : 809.8265562057495
+greedy search candidates: [10309]
+greedy search, currently checking 67 to 71 out of 71
+greedy search, time after compilation in step 0 : 810.9173748493195
+greedy search, time after assembly in step 0 : 811.3898351192474
+greedy search candidates: [10309]
+Pass: DSEPass_11 generated: [2] with offset: 2 with count: 10309
+Time after exploration of _Z9init_gameP11gamestate_tP7state_t: 811.417811870575
+==== Next function: _Z15make_text_movesP11gamestate_tP7state_tPc
+Running pass: InstCombinePass_31 with max_query_index: 2
+exhaustive search, time after compilation : 811.8854179382324
+exhaustive search, time after assembly : 812.4146072864532
+exhaustive search candidates : [10323, 10327, 10319]
+Pass: InstCombinePass_31 generated: [] with offset: -1 with count: 10319
+Running pass: FunctionToLoopPassAdaptor_93 with max_query_index: 17
+greedy search, currently checking 2 to 17 out of 17
+greedy search, time after compilation in step 0 : 813.5254793167114
+greedy search, time after assembly in step 0 : 814.0581612586975
+greedy search candidates: [10319]
+Pass: FunctionToLoopPassAdaptor_93 generated: [] with offset: 1 with count: 10319
+Running pass: GVNPass_31 with max_query_index: 19
+exhaustive search, time after compilation : 814.6924998760223
+exhaustive search, time after assembly : 815.1971726417542
+exhaustive search candidates : [10319]
+Pass: GVNPass_31 generated: [] with offset: 16 with count: 10319
+Running pass: DSEPass_31 with max_query_index: 23
+exhaustive search, time after compilation : 815.7767767906189
+exhaustive search, time after assembly : 816.2989354133606
+exhaustive search candidates : [10319]
+Pass: DSEPass_31 generated: [] with offset: 18 with count: 10319
+Time after exploration of _Z15make_text_movesP11gamestate_tP7state_tPc: 816.452320098877
+==== Next function: _Z11comp_to_sanP7state_tiPc
+Running pass: GVNPass_6 with max_query_index: 15
+greedy search, currently checking 0 to 15 out of 15
+greedy search, time after compilation in step 0 : 817.5092899799347
+greedy search, time after assembly in step 0 : 818.0497596263885
+greedy search candidates: [10319]
+Pass: GVNPass_6 generated: [] with offset: -1 with count: 10319
+Running pass: MemCpyOptPass_6 with max_query_index: 20
+exhaustive search, time after compilation : 818.6993403434753
+exhaustive search, time after assembly : 819.2487716674805
+exhaustive search candidates : [10319]
+Pass: MemCpyOptPass_6 generated: [] with offset: 14 with count: 10319
+Time after exploration of _Z11comp_to_sanP7state_tiPc: 819.502961397171
+==== Next function: _Z13display_boardP7state_ti
+Running pass: GVNPass_9 with max_query_index: 3
+exhaustive search, time after compilation : 819.996345281601
+exhaustive search, time after assembly : 820.6128251552582
+exhaustive search candidates : [10319]
+Pass: GVNPass_9 generated: [] with offset: -1 with count: 10319
+Time after exploration of _Z13display_boardP7state_ti: 820.6940310001373
+==== Next function: _Z18reset_piece_squareP7state_t
+Running pass: EarlyCSEPass_44 with max_query_index: 20
+greedy search, currently checking 0 to 20 out of 20
+greedy search, time after compilation in step 0 : 821.6147146224976
+greedy search, time after assembly in step 0 : 822.1871461868286
+greedy search candidates: [10323, 10319]
+Pass: EarlyCSEPass_44 generated: [] with offset: -1 with count: 10319
+Running pass: FunctionToLoopPassAdaptor_30 with max_query_index: 23
+exhaustive search, time after compilation : 822.9738516807556
+exhaustive search, time after assembly : 823.5136075019836
+exhaustive search candidates : [10319]
+Pass: FunctionToLoopPassAdaptor_30 generated: [] with offset: 19 with count: 10319
+Running pass: GVNPass_10 with max_query_index: 75
+greedy search, currently checking 23 to 75 out of 75
+greedy search, time after compilation in step 0 : 824.6419217586517
+greedy search, time after assembly in step 0 : 825.2180376052856
+greedy search candidates: [10319]
+Pass: GVNPass_10 generated: [] with offset: 22 with count: 10319
+Running pass: DSEPass_10 with max_query_index: 91
+greedy search, currently checking 75 to 91 out of 91
+greedy search, time after compilation in step 0 : 826.704630613327
+greedy search, time after assembly in step 0 : 827.3359515666962
+greedy search candidates: [10319]
+Pass: DSEPass_10 generated: [] with offset: 74 with count: 10319
+Running pass: FunctionToLoopPassAdaptor_125 with max_query_index: 92
+exhaustive search, time after compilation : 828.0445928573608
+exhaustive search, time after assembly : 828.6773874759674
+exhaustive search candidates : [10319]
+Pass: FunctionToLoopPassAdaptor_125 generated: [] with offset: 90 with count: 10319
+Time after exploration of _Z18reset_piece_squareP7state_t: 828.7039034366608
+==== Next function: _Z7is_movePc
+Running pass: GVNPass_12 with max_query_index: 7
+exhaustive search, time after compilation : 829.576090335846
+exhaustive search, time after assembly : 830.4088470935822
+exhaustive search candidates : [10319]
+Pass: GVNPass_12 generated: [] with offset: -1 with count: 10319
+Time after exploration of _Z7is_movePc: 831.5434818267822
+==== Next function: _Z20extract_current_pathP7state_t
+Running pass: FunctionToLoopPassAdaptor_39 with max_query_index: 8
+exhaustive search, time after compilation : 832.661182641983
+exhaustive search, time after assembly : 833.7219364643097
+exhaustive search candidates : [10319]
+Pass: FunctionToLoopPassAdaptor_39 generated: [] with offset: -1 with count: 10319
+Running pass: GVNPass_13 with max_query_index: 15
+exhaustive search, time after compilation : 836.7554416656494
+exhaustive search, time after assembly : 837.5530920028687
+exhaustive search candidates : [10319]
+Pass: GVNPass_13 generated: [] with offset: 7 with count: 10319
+Running pass: MemCpyOptPass_13 with max_query_index: 19
+exhaustive search, time after compilation : 839.2015686035156
+exhaustive search, time after assembly : 839.8333384990692
+exhaustive search candidates : [10319]
+Pass: MemCpyOptPass_13 generated: [] with offset: 14 with count: 10319
+Running pass: DSEPass_13 with max_query_index: 21
+exhaustive search, time after compilation : 840.5412509441376
+exhaustive search, time after assembly : 841.1208114624023
+exhaustive search candidates : [10319]
+Pass: DSEPass_13 generated: [] with offset: 18 with count: 10319
+Time after exploration of _Z20extract_current_pathP7state_t: 841.1652195453644
+==== Next function: _Z19extract_ponder_moveP7state_t
+Running pass: GVNPass_14 with max_query_index: 2
+exhaustive search, time after compilation : 841.6831805706024
+exhaustive search, time after assembly : 842.2357552051544
+exhaustive search candidates : [10325, 10319]
+Pass: GVNPass_14 generated: [] with offset: -1 with count: 10319
+Time after exploration of _Z19extract_ponder_moveP7state_t: 842.2689309120178
+==== Next function: _ZL15hash_extract_pvP7state_tiPc
+Running pass: EarlyCSEPass_49 with max_query_index: 1
+exhaustive search, time after compilation : 842.7013573646545
+exhaustive search, time after assembly : 843.2195136547089
+exhaustive search candidates : [10319]
+Pass: EarlyCSEPass_49 generated: [] with offset: -1 with count: 10319
+Running pass: FunctionToLoopPassAdaptor_45 with max_query_index: 7
+exhaustive search, time after compilation : 843.9242599010468
+exhaustive search, time after assembly : 844.582994222641
+exhaustive search candidates : [10319]
+Pass: FunctionToLoopPassAdaptor_45 generated: [] with offset: 0 with count: 10319
+Running pass: GVNPass_15 with max_query_index: 14
+exhaustive search, time after compilation : 845.8699872493744
+exhaustive search, time after assembly : 846.6634721755981
+exhaustive search candidates : [10319]
+Pass: GVNPass_15 generated: [] with offset: 6 with count: 10319
+Running pass: DSEPass_15 with max_query_index: 19
+exhaustive search, time after compilation : 848.3410794734955
+exhaustive search, time after assembly : 848.8686559200287
+exhaustive search candidates : [10319]
+Pass: DSEPass_15 generated: [] with offset: 13 with count: 10319
+Time after exploration of _ZL15hash_extract_pvP7state_tiPc: 849.1419589519501
+==== Next function: _Z24extract_current_bestlineP7state_t
+Running pass: DSEPass_16 with max_query_index: 1
+exhaustive search, time after compilation : 849.6496067047119
+exhaustive search, time after assembly : 850.1074466705322
+exhaustive search candidates : [10319]
+Pass: DSEPass_16 generated: [] with offset: -1 with count: 10319
+Time after exploration of _Z24extract_current_bestlineP7state_t: 850.1293792724609
+==== Next function: _Z13post_thinkingP7state_tiiPci
+Running pass: EarlyCSEPass_54 with max_query_index: 2
+exhaustive search, time after compilation : 850.6840240955353
+exhaustive search, time after assembly : 851.2088429927826
+exhaustive search candidates : [10319]
+Pass: EarlyCSEPass_54 generated: [] with offset: -1 with count: 10319
+Running pass: GVNPass_20 with max_query_index: 17
+greedy search, currently checking 2 to 17 out of 17
+greedy search, time after compilation in step 0 : 852.2153234481812
+greedy search, time after assembly in step 0 : 852.7233934402466
+greedy search candidates: [10319]
+Pass: GVNPass_20 generated: [] with offset: 1 with count: 10319
+Running pass: DSEPass_20 with max_query_index: 36
+greedy search, currently checking 17 to 36 out of 36
+greedy search, time after compilation in step 0 : 853.8742325305939
+greedy search, time after assembly in step 0 : 854.4597668647766
+greedy search candidates: [10319]
+Pass: DSEPass_20 generated: [] with offset: 16 with count: 10319
+Time after exploration of _Z13post_thinkingP7state_tiiPci: 854.6434803009033
+==== Next function: _Z16post_fh_thinkingP7state_tiiPci
+Running pass: GVNPass_21 with max_query_index: 18
+greedy search, currently checking 0 to 18 out of 18
+greedy search, time after compilation in step 0 : 855.6275355815887
+greedy search, time after assembly in step 0 : 856.2419936656952
+greedy search candidates: [10319]
+Pass: GVNPass_21 generated: [] with offset: -1 with count: 10319
+Time after exploration of _Z16post_fh_thinkingP7state_tiiPci: 856.4036452770233
+==== Next function: _Z16post_fl_thinkingP7state_tiiPci
+Running pass: GVNPass_22 with max_query_index: 13
+greedy search, currently checking 0 to 13 out of 13
+greedy search, time after compilation in step 0 : 857.3658630847931
+greedy search, time after assembly in step 0 : 857.9339265823364
+greedy search candidates: [10319]
+Pass: GVNPass_22 generated: [] with offset: -1 with count: 10319
+Time after exploration of _Z16post_fl_thinkingP7state_tiiPci: 858.0447928905487
+==== Next function: _ZL14resort_multipvv
+Running pass: EarlyCSEPass_57 with max_query_index: 7
+exhaustive search, time after compilation : 858.8640234470367
+exhaustive search, time after assembly : 859.6486303806305
+exhaustive search candidates : [10319]
+Pass: EarlyCSEPass_57 generated: [] with offset: -1 with count: 10319
+Running pass: GVNPass_23 with max_query_index: 9
+exhaustive search, time after compilation : 861.1663494110107
+exhaustive search, time after assembly : 861.6274104118347
+exhaustive search candidates : [10319]
+Pass: GVNPass_23 generated: [] with offset: 6 with count: 10319
+Running pass: DSEPass_23 with max_query_index: 15
+exhaustive search, time after compilation : 862.337723493576
+exhaustive search, time after assembly : 863.0573360919952
+exhaustive search candidates : [10319]
+Pass: DSEPass_23 generated: [] with offset: 8 with count: 10319
+Time after exploration of _ZL14resort_multipvv: 863.634254693985
+==== Next function: _Z21post_multipv_thinkingP7state_tiii
+Running pass: EarlyCSEPass_58 with max_query_index: 9
+greedy search, currently checking 0 to 9 out of 9
+greedy search, time after compilation in step 0 : 864.5658102035522
+greedy search, time after assembly in step 0 : 865.1194050312042
+greedy search candidates: [10320, 10319]
+Pass: EarlyCSEPass_58 generated: [] with offset: -1 with count: 10319
+Running pass: FunctionToLoopPassAdaptor_72 with max_query_index: 28
+greedy search, currently checking 9 to 28 out of 28
+greedy search, time after compilation in step 0 : 866.2108986377716
+greedy search, time after assembly in step 0 : 866.8423390388489
+greedy search candidates: [10319]
+Pass: FunctionToLoopPassAdaptor_72 generated: [] with offset: 8 with count: 10319
+Running pass: GVNPass_24 with max_query_index: 50
+greedy search, currently checking 28 to 50 out of 50
+greedy search, time after compilation in step 0 : 868.0170845985413
+greedy search, time after assembly in step 0 : 868.6035904884338
+greedy search candidates: [10312, 10319]
+greedy search, new min: 10312
+greedy search, current list: [44]
+greedy search, time after step 0 : 868.7927293777466
+greedy search, currently checking 45 to 50 out of 50
+greedy search, time after compilation in step 1 : 869.317798614502
+greedy search, time after assembly in step 1 : 869.9242386817932
+greedy search candidates: [10312]
+Pass: GVNPass_24 generated: [44] with offset: 27 with count: 10312
+Running pass: DSEPass_24 with max_query_index: 91
+greedy search, currently checking 50 to 91 out of 91
+greedy search, time after compilation in step 0 : 871.2857241630554
+greedy search, time after assembly in step 0 : 871.8948261737823
+greedy search candidates: [10312]
+Pass: DSEPass_24 generated: [44] with offset: 49 with count: 10312
+Time after exploration of _Z21post_multipv_thinkingP7state_tiii: 872.293292760849
+==== Next function: _Z6rinputPciP8_IO_FILE
+Running pass: EarlyCSEPass_59 with max_query_index: 2
+exhaustive search, time after compilation : 872.8348617553711
+exhaustive search, time after assembly : 873.3736300468445
+exhaustive search candidates : [10319]
+Pass: EarlyCSEPass_59 generated: [] with offset: -1 with count: 10319
+Running pass: DSEPass_25 with max_query_index: 3
+exhaustive search, time after compilation : 873.9104754924774
+exhaustive search, time after assembly : 874.4411330223083
+exhaustive search candidates : [10319]
+Pass: DSEPass_25 generated: [] with offset: 1 with count: 10319
+Time after exploration of _Z6rinputPciP8_IO_FILE: 874.4651689529419
+==== Next function: _Z12verify_coordP7state_tPcPi
+Running pass: EarlyCSEPass_61 with max_query_index: 1
+exhaustive search, time after compilation : 874.9093568325043
+exhaustive search, time after assembly : 875.4755001068115
+exhaustive search candidates : [10323, 10319]
+Pass: EarlyCSEPass_61 generated: [] with offset: -1 with count: 10319
+Running pass: FunctionToLoopPassAdaptor_81 with max_query_index: 2
+exhaustive search, time after compilation : 876.0229337215424
+exhaustive search, time after assembly : 876.5476701259613
+exhaustive search candidates : [10319]
+Pass: FunctionToLoopPassAdaptor_81 generated: [] with offset: 0 with count: 10319
+Running pass: GVNPass_27 with max_query_index: 5
+exhaustive search, time after compilation : 877.095538854599
+exhaustive search, time after assembly : 877.6142106056213
+exhaustive search candidates : [10323, 10319]
+Pass: GVNPass_27 generated: [] with offset: 1 with count: 10319
+Time after exploration of _Z12verify_coordP7state_tPcPi: 877.6875169277191
+==== Next function: _Z17input_causes_stopv
+Running pass: GVNPass_28 with max_query_index: 1
+exhaustive search, time after compilation : 878.1806902885437
+exhaustive search, time after assembly : 878.6608464717865
+exhaustive search candidates : [10319]
+Pass: GVNPass_28 generated: [] with offset: -1 with count: 10319
+Running pass: MemCpyOptPass_28 with max_query_index: 2
+exhaustive search, time after compilation : 879.1632144451141
+exhaustive search, time after assembly : 879.6826920509338
+exhaustive search candidates : [10319]
+Pass: MemCpyOptPass_28 generated: [] with offset: 0 with count: 10319
+Time after exploration of _Z17input_causes_stopv: 879.7084832191467
+==== Next function: _Z11reset_boardP7state_t
+Running pass: DSEPass_30 with max_query_index: 22
+greedy search, currently checking 0 to 22 out of 22
+greedy search, time after compilation in step 0 : 880.76087641716
+greedy search, time after assembly in step 0 : 881.2851309776306
+greedy search candidates: [10319]
+Pass: DSEPass_30 generated: [] with offset: -1 with count: 10319
+Time after exploration of _Z11reset_boardP7state_t: 881.4800391197205
+Time after exploration of 631/utils.bc: 881.4800577163696
+***** Next file: 631/see.bc
+==== Next function: _Z3seeP7state_tiiii
+Running pass: InstCombinePass_0 with max_query_index: 1
+exhaustive search, time after compilation : 881.8362834453583
+exhaustive search, time after assembly : 882.1759450435638
+exhaustive search candidates : [893]
+Pass: InstCombinePass_0 generated: [] with offset: -1 with count: 893
+Running pass: EarlyCSEPass_1 with max_query_index: 2
+exhaustive search, time after compilation : 882.545045375824
+exhaustive search, time after assembly : 882.9223320484161
+exhaustive search candidates : [893]
+Pass: EarlyCSEPass_1 generated: [] with offset: 0 with count: 893
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 95
+greedy search, currently checking 2 to 66 out of 95
+greedy search, time after compilation in step 0 : 883.6153647899628
+greedy search, time after assembly in step 0 : 884.0590677261353
+greedy search candidates: [893]
+greedy search, currently checking 66 to 95 out of 95
+greedy search, time after compilation in step 0 : 885.0095641613007
+greedy search, time after assembly in step 0 : 885.3427813053131
+greedy search candidates: [893]
+Pass: FunctionToLoopPassAdaptor_0 generated: [] with offset: 1 with count: 893
+Running pass: GVNPass_0 with max_query_index: 345
+greedy search, currently checking 95 to 159 out of 345
+greedy search, time after compilation in step 0 : 886.109367609024
+greedy search, time after assembly in step 0 : 886.5540196895599
+greedy search candidates: [893]
+greedy search, currently checking 159 to 223 out of 345
+greedy search, time after compilation in step 0 : 887.5301761627197
+greedy search, time after assembly in step 0 : 887.9921107292175
+greedy search candidates: [893]
+greedy search, currently checking 223 to 287 out of 345
+greedy search, time after compilation in step 0 : 889.0113942623138
+greedy search, time after assembly in step 0 : 889.4610252380371
+greedy search candidates: [893]
+greedy search, currently checking 287 to 345 out of 345
+greedy search, time after compilation in step 0 : 890.3730993270874
+greedy search, time after assembly in step 0 : 890.7839612960815
+greedy search candidates: [860, 893]
+greedy search, new min: 860
+greedy search, current list: [287]
+greedy search, time after step 0 : 891.2641291618347
+greedy search, currently checking 288 to 345 out of 345
+greedy search, time after compilation in step 1 : 891.7009043693542
+greedy search, time after assembly in step 1 : 892.0983793735504
+greedy search candidates: [860]
+Pass: GVNPass_0 generated: [287] with offset: 94 with count: 860
+Running pass: DSEPass_0 with max_query_index: 358
+greedy search, currently checking 345 to 358 out of 358
+greedy search, time after compilation in step 0 : 893.0205593109131
+greedy search, time after assembly in step 0 : 893.3405001163483
+greedy search candidates: [860]
+Pass: DSEPass_0 generated: [287] with offset: 344 with count: 860
+Time after exploration of _Z3seeP7state_tiiii: 893.4693510532379
+Time after exploration of 631/see.bc: 893.4693739414215
+***** Next file: 631/ttable.bc
+==== Next function: _Z18initialize_zobristP7state_t
+Running pass: DSEPass_2 with max_query_index: 2
+exhaustive search, time after compilation : 893.8216502666473
+exhaustive search, time after assembly : 894.1926505565643
+exhaustive search candidates : [1696]
+Pass: DSEPass_2 generated: [] with offset: -1 with count: 1696
+Time after exploration of _Z18initialize_zobristP7state_t: 894.235677242279
+==== Next function: _Z15initialize_hashP7state_t
+Running pass: EarlyCSEPass_11 with max_query_index: 7
+exhaustive search, time after compilation : 894.790638923645
+exhaustive search, time after assembly : 895.2987232208252
+exhaustive search candidates : [1696, 1713, 1716, 1720, 1692]
+Pass: EarlyCSEPass_11 generated: [3] with offset: -1 with count: 1692
+Running pass: FunctionToLoopPassAdaptor_9 with max_query_index: 9
+exhaustive search, time after compilation : 896.7478535175323
+exhaustive search, time after assembly : 897.0745162963867
+exhaustive search candidates : [1692]
+Pass: FunctionToLoopPassAdaptor_9 generated: [3] with offset: 6 with count: 1692
+Running pass: GVNPass_3 with max_query_index: 10
+exhaustive search, time after compilation : 897.5269248485565
+exhaustive search, time after assembly : 897.9336795806885
+exhaustive search candidates : [1692]
+Pass: GVNPass_3 generated: [3] with offset: 8 with count: 1692
+Time after exploration of _Z15initialize_hashP7state_t: 897.9575836658478
+==== Next function: _Z7StoreTTP7state_tiiijiiii
+Running pass: EarlyCSEPass_12 with max_query_index: 2
+exhaustive search, time after compilation : 898.4196162223816
+exhaustive search, time after assembly : 898.8749034404755
+exhaustive search candidates : [1696, 1699, 1692]
+Pass: EarlyCSEPass_12 generated: [1] with offset: -1 with count: 1692
+Running pass: FunctionToLoopPassAdaptor_12 with max_query_index: 28
+greedy search, currently checking 2 to 28 out of 28
+greedy search, time after compilation in step 0 : 899.5892639160156
+greedy search, time after assembly in step 0 : 899.9108190536499
+greedy search candidates: [1698, 1692]
+Pass: FunctionToLoopPassAdaptor_12 generated: [1] with offset: 1 with count: 1692
+Running pass: GVNPass_4 with max_query_index: 59
+greedy search, currently checking 28 to 59 out of 59
+greedy search, time after compilation in step 0 : 900.7287621498108
+greedy search, time after assembly in step 0 : 901.1077456474304
+greedy search candidates: [1692]
+Pass: GVNPass_4 generated: [1] with offset: 27 with count: 1692
+Running pass: DSEPass_4 with max_query_index: 86
+greedy search, currently checking 59 to 86 out of 86
+greedy search, time after compilation in step 0 : 901.9301118850708
+greedy search, time after assembly in step 0 : 902.3320159912109
+greedy search candidates: [1692]
+Pass: DSEPass_4 generated: [1] with offset: 58 with count: 1692
+Time after exploration of _Z7StoreTTP7state_tiiijiiii: 902.5648584365845
+==== Next function: _Z7ProbeTTP7state_tPiiiPjS1_S1_S1_S1_i
+Running pass: EarlyCSEPass_13 with max_query_index: 3
+exhaustive search, time after compilation : 902.9557690620422
+exhaustive search, time after assembly : 903.3806307315826
+exhaustive search candidates : [1696, 1698, 1701, 1693]
+Pass: EarlyCSEPass_13 generated: [1] with offset: -1 with count: 1693
+Running pass: FunctionToLoopPassAdaptor_15 with max_query_index: 26
+greedy search, currently checking 3 to 26 out of 26
+greedy search, time after compilation in step 0 : 904.0906374454498
+greedy search, time after assembly in step 0 : 904.4722640514374
+greedy search candidates: [1693]
+Pass: FunctionToLoopPassAdaptor_15 generated: [1] with offset: 2 with count: 1693
+Running pass: GVNPass_5 with max_query_index: 84
+greedy search, currently checking 26 to 84 out of 84
+greedy search, time after compilation in step 0 : 905.2174427509308
+greedy search, time after assembly in step 0 : 905.6037375926971
+greedy search candidates: [1693]
+Pass: GVNPass_5 generated: [1] with offset: 25 with count: 1693
+Running pass: DSEPass_5 with max_query_index: 91
+exhaustive search, time after compilation : 906.6531040668488
+exhaustive search, time after assembly : 907.1570863723755
+exhaustive search candidates : [1693]
+Pass: DSEPass_5 generated: [1] with offset: 83 with count: 1693
+Time after exploration of _Z7ProbeTTP7state_tPiiiPjS1_S1_S1_S1_i: 908.1949362754822
+Time after exploration of 631/ttable.bc: 908.1949598789215
+found results: {PosixPath('631/make.bc'): {'_Z4makeP7state_ti': ([0, 77], 2927), '_Z6unmakeP7state_ti': ([], 3009)}, PosixPath('631/epd.bc'): {'_Z14setup_epd_lineP11gamestate_tP7state_tPKc': ([], 3235), '_Z17run_epd_testsuiteP11gamestate_tP7state_tPKc': ([], 3235), '_Z14check_solutionP7state_tPci': ([], 3235), '_Z15position_to_fenP7state_tPc': ([2], 3230)}, PosixPath('631/generate.bc'): {'_Z9gen_quietP7state_tPi': ([], 7045), '_Z3genP7state_tPi': ([10, 20], 7025), '_Z16gen_check_blocksP7state_tPii': ([], 7045), '_Z12gen_capturesP7state_tPi': ([5, 17], 7023), '_Z15gen_good_checksP7state_tPi': ([], 7045), '_Z12gen_evasionsP7state_tPii': ([], 7045)}, PosixPath('631/board.bc'): {'_Z11check_phaseP11gamestate_tP7state_t': ([], 575)}, PosixPath('631/initp.bc'): {'_Z15init_parametersP11gamestate_t': ([], 205)}, PosixPath('631/bitboard.bc'): {'_Z22SetupPrecalculatedDatav': ([8, 13, 20, 25, 26, 27, 28, 639, 640, 817, 850, 3388, 3390, 3391, 3392], 4840), '_Z16SetupCastleMasksP7state_t': ([], 4953), '_Z15DiagonalAttacksyj': ([], 4953), '_Z15AntiDiagAttacksyj': ([], 4953), '_Z13BishopAttacksP7state_ti': ([], 4953)}, PosixPath('631/neval.bc'): {'_Z4evalP7state_tiii': ([], 6212), '_ZL13mobility_evalP7state_tP12t_eval_compsP12attackinfo_t': ([], 6212), '_ZL15kingsafety_evalP7state_tP8pawntt_tP12t_eval_comps': ([], 6212), '_ZL17kingpressure_evalP7state_tP12attackinfo_tP12t_eval_comps': ([], 6212), '_ZL11passer_evalP7state_tP8pawntt_tiP12t_eval_comps': ([], 6212), '_ZL15positional_evalP7state_tP8pawntt_tP12t_eval_comps': ([], 6212), '_ZL12trapped_evalP7state_tP12t_eval_comps': ([], 6212), '_Z5fevalP7state_tiP12t_eval_comps': ([427, 502, 711], 6094), '_ZL16opposite_bishopsP7state_tiii': ([], 6212), '_Z13retrieve_evalP7state_t': ([], 6212)}, PosixPath('631/search.bc'): {'_Z6searchP7state_tiiiii': ([18, 25, 32], 16002), '_ZL12history_goodP7state_tii': ([], 16090), '_Z11search_rootP7state_tiii': ([14, 119], 15972), '_ZL17search_time_checkP7state_t': ([], 16090), '_ZL16fast_order_movesP7state_tPiS1_ij': ([], 16090), '_ZL15remove_one_fastPiS_S_i': ([], 16090), '_ZL15history_pre_cutP7state_tii': ([], 16090), '_Z7qsearchP7state_tiiii': ([4], 16061), '_ZL12make_blunderP7state_tiPii': ([], 16090), '_ZL11order_movesP7state_tPiS1_ij': ([], 16090), '_ZL13history_scoreP7state_ti': ([], 16090), '_ZL11history_badP7state_tii': ([], 16090), '_Z21reset_search_countersP7state_t': ([], 16090), '_Z5thinkP11gamestate_tP7state_t': ([], 16090)}, PosixPath('631/draw.bc'): {'_Z7is_drawP11gamestate_tP7state_t': ([4], 362), '_Z21insufficient_materialP7state_t': ([], 366)}, PosixPath('631/state.bc'): {}, PosixPath('631/attacks.bc'): {'_Z11is_attackedP7state_tii': ([], 1127), '_Z8in_checkP7state_t': ([], 1127), '_Z10attacks_toP7state_ti': ([], 1127)}, PosixPath('631/sjeng.bc'): {}, PosixPath('631/moves.bc'): {'_Z11check_legalP7state_ti': ([], 1421), '_Z20check_castle_blockerP7state_ti': ([], 1421)}, PosixPath('631/pawn.bc'): {'_ZL14full_pawn_evalP7state_tP8pawntt_t': ([80, 81, 82], 3001), '_Z16static_pawn_evalP7state_t': ([], 3016)}, PosixPath('631/endgame.bc'): {'_Z14drawn_endgamesP7state_tiii': ([0], 3513)}, PosixPath('631/bits.bc'): {'_Z15FindFirstRemovePy': ([], 625)}, PosixPath('631/preproc.bc'): {'_Z8psq_evalP7state_tP12t_eval_comps': ([], 3212), '_Z14init_psq_scoreP7state_t': ([], 3212), '_Z18preprocess_preparev': ([], 3212)}, PosixPath('631/utils.bc'): {'_Z9init_gameP11gamestate_tP7state_t': ([2], 10309), '_Z15make_text_movesP11gamestate_tP7state_tPc': ([], 10319), '_Z11comp_to_sanP7state_tiPc': ([], 10319), '_Z13display_boardP7state_ti': ([], 10319), '_Z18reset_piece_squareP7state_t': ([], 10319), '_Z7is_movePc': ([], 10319), '_Z20extract_current_pathP7state_t': ([], 10319), '_Z19extract_ponder_moveP7state_t': ([], 10319), '_ZL15hash_extract_pvP7state_tiPc': ([], 10319), '_Z24extract_current_bestlineP7state_t': ([], 10319), '_Z13post_thinkingP7state_tiiPci': ([], 10319), '_Z16post_fh_thinkingP7state_tiiPci': ([], 10319), '_Z16post_fl_thinkingP7state_tiiPci': ([], 10319), '_ZL14resort_multipvv': ([], 10319), '_Z21post_multipv_thinkingP7state_tiii': ([44], 10312), '_Z6rinputPciP8_IO_FILE': ([], 10319), '_Z12verify_coordP7state_tPcPi': ([], 10319), '_Z17input_causes_stopv': ([], 10319), '_Z11reset_boardP7state_t': ([], 10319)}, PosixPath('631/see.bc'): {'_Z3seeP7state_tiiii': ([287], 860)}, PosixPath('631/ttable.bc'): {'_Z18initialize_zobristP7state_t': ([], 1696), '_Z15initialize_hashP7state_t': ([3], 1692), '_Z7StoreTTP7state_tiiijiiii': ([1], 1692), '_Z7ProbeTTP7state_tPiiiPjS1_S1_S1_S1_i': ([1], 1693)}}
+time after exploration: 908.1952242851257
+Time after std exploration: 908.1992769241333
+composing 631/make.bc ...
+composing 631/epd.bc ...
+composing 631/generate.bc ...
+composing 631/board.bc ...
+composing 631/initp.bc ...
+composing 631/bitboard.bc ...
+composing 631/neval.bc ...
+composing 631/search.bc ...
+composing 631/draw.bc ...
+composing 631/state.bc ...
+composing 631/attacks.bc ...
+composing 631/sjeng.bc ...
+composing 631/moves.bc ...
+composing 631/pawn.bc ...
+composing 631/endgame.bc ...
+composing 631/bits.bc ...
+composing 631/preproc.bc ...
+composing 631/utils.bc ...
+composing 631/see.bc ...
+composing 631/ttable.bc ...
+Time after filtering: 924.7085254192352
+631/make.bc: 2927 vs 3009
+631/epd.bc: 3230 vs 3235
+631/generate.bc: 7003 vs 7045
+631/board.bc: 575 vs 575
+631/initp.bc: 205 vs 205
+631/bitboard.bc: 4840 vs 4953
+631/neval.bc: 6094 vs 6212
+631/search.bc: 15855 vs 16090
+631/draw.bc: 362 vs 366
+631/state.bc: 0 vs 0
+631/attacks.bc: 1127 vs 1127
+631/sjeng.bc: 466 vs 466
+631/moves.bc: 1421 vs 1421
+631/pawn.bc: 3001 vs 3016
+631/endgame.bc: 3513 vs 3530
+631/bits.bc: 625 vs 625
+631/preproc.bc: 3212 vs 3212
+631/utils.bc: 10302 vs 10319
+631/see.bc: 860 vs 893
+631/ttable.bc: 1685 vs 1696
+Time after after composition: 932.5463819503784
+result: 70709 vs 71413
+meaning a 0.9858149076498677% improvement
+Total Time: 932.5616781711578
