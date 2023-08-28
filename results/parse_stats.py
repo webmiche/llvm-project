@@ -1,5 +1,6 @@
 from pathlib import Path
 import ast
+import argparse
 
 
 def parse_file(f: Path):
@@ -207,8 +208,25 @@ benchmarks = [
 
 opt_flag = "Oz"
 if __name__ == "__main__":
-    curr_folder = Path("results/epyc-traces/" + opt_flag + "/full_alias/0/")
-    stat_folder = Path("results/stats/" + opt_flag + "/")
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument(
+        "input_folder",
+        type=str,
+        help="folder containing the results",
+        default="results/epyc-traces/Oz/full_alias/0/",
+    )
+
+    arg_parser.add_argument(
+        "--opt_flag",
+        type=str,
+        help="optimization flag",
+        default=opt_flag,
+    )
+
+    args = arg_parser.parse_args()
+
+    curr_folder = Path(args.input_folder)
+    stat_folder = Path("results/stats/" + args.opt_flag + "/")
     for benchmark in benchmarks:
         initial_file = curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
         stat_file = stat_folder.joinpath("stats_" + benchmark + ".txt")
@@ -225,7 +243,7 @@ if __name__ == "__main__":
                 f.write("result: " + str(old_size) + " vs " + str(new_size) + "\n")
 
         except Exception as e:
-            print("failed: " + str(f))
+            print("failed: " + str(stat_file))
             print(e)
             continue
 

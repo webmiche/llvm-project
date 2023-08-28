@@ -434,60 +434,42 @@ class InstrumentAlias:
         for file_name in files:
             counts: dict[str, int] = {}
 
-            aa_counts, _, _ = self.get_aa_count_per_pass(
+            aa_counts, _ = self.get_aa_count_per_pass(
                 self.initial_dir.joinpath(file_name),
             )
 
-            sum_per_pass = {}
-            for k, v in aa_counts.items():
-                assert k not in sum_per_pass.keys()
-                sum_per_pass[k] = sum(v.values())
-            aa_counts = sum_per_pass
-            aa_counts = {k: v for k, v in aa_counts.items() if v != 0}
+            # filter empty dicts
+            aa_counts = {k: v for k, v in aa_counts.items() if v != {}}
 
-            print("Number of Passes: " + str(len(aa_counts.keys())))
-            print(
-                "Of which more than 10 queries: "
-                + str(len([k for k in aa_counts.keys() if aa_counts[k] > 10]))
-            )
+            # sum_per_pass = {}
+            # for k, v in aa_counts.items():
+            #    assert k not in sum_per_pass.keys()
+            #    sum_per_pass[k] = sum(v.values())
+            # aa_counts = sum_per_pass
+            # aa_counts = {k: v for k, v in aa_counts.items() if v != 0}
+
+            # print("Number of Passes: " + str(len(aa_counts.keys())))
+            # print(
+            #    "Of which more than 10 queries: "
+            #    + str(len([k for k in aa_counts.keys() if aa_counts[k] > 10]))
+            # )
             aa_per_pass_per_func_per_file[str(file_name)] = aa_counts
 
         return aa_per_pass_per_func_per_file
 
-    def get_aa_count_per_pass(self, file_name, take_may, description) -> dict:
-        os.makedirs(
-            self.default_may_truth.joinpath(description, file_name).parent,
-            exist_ok=True,
-        )
-        os.makedirs(
-            Path("alias_queries/").joinpath(description, file_name).parent,
-            exist_ok=True,
-        )
+    def get_aa_count_per_pass(self, file_name) -> dict:
         cmd = [
             str(self.instr_path.joinpath("opt")),
-            str(self.initial_dir.joinpath(file_name)),
-            "-o",
-            str(self.default_may_truth.joinpath(description, file_name)),
+            str(file_name),
+            "--disable-output",
             "--print-aa-per-func",
-            "--print-changed",
-            "--print-changed-hash",
-            "--print-module-scope",  # Maybe remove to only hash function?
+            "--print-pass-names",
             "-" + self.opt_flag,
-            "--ir-dump="
-            + str(
-                Path("alias_queries/").joinpath(
-                    description, file_name.with_suffix(".txt")
-                )
-            ),
-        ] + (["--take_may"] if take_may else [])
-        p = run(cmd, stdout=DEVNULL, stderr=DEVNULL, text=True, cwd=self.exec_root)
-        aa_count, pass_list = self.parse_trace(
-            str(
-                Path("alias_queries/").joinpath(
-                    description, file_name.with_suffix(".txt")
-                )
-            )
-        )
+        ]
+        p = run(cmd, stdout=PIPE, stderr=DEVNULL, text=True, cwd=self.exec_root)
+        with open("tmp_trace15.txt", "w") as f:
+            f.write(p.stdout)
+        aa_count, pass_list = self.parse_trace("tmp_trace15.txt")
         return aa_count, pass_list
 
     def get_aa_count_per_pass_with_seq_and_func(
@@ -1093,14 +1075,28 @@ class AAChecker:
 
     def is_valid(self):
         # compile with seq and without
-        for i in range(self.sequence[0] if self.try_all else 1):
-            self.aa_instr.run_step_single_func(
-                self.file_path,
-                i + 1,
-                [self.sequence[0] - i],
-                self.function_name,
-                False,
-            )
+        if len(self.sequence) > 1 and self.try_all:
+            max_index = self.sequence[-1]
+            for i, comb in enumerate(
+                combinations(range(max_index + 1), len(self.sequence))
+            ):
+                self.aa_instr.run_step_single_func(
+                    self.file_path,
+                    i + 1,
+                    comb,
+                    self.function_name,
+                    False,
+                )
+
+        else:
+            for i in range(self.sequence[0] if self.try_all else 1):
+                self.aa_instr.run_step_single_func(
+                    self.file_path,
+                    i + 1,
+                    [self.sequence[0] - i] + self.sequence[1:],
+                    self.function_name,
+                    False,
+                )
 
         self.aa_instr.run_step_single_func(
             self.file_path,
@@ -1112,15 +1108,29 @@ class AAChecker:
 
         # assemble both
         sizes = []
-        for i in range(self.sequence[0] if self.try_all else 1):
-            sizes.append(
-                self.aa_instr.assemble_and_measure_file(
-                    self.aa_instr.instr_dir.joinpath(
-                        self.file_path.parent,
-                        str(i + 1) + str(self.file_path.stem) + ".bc",
+        if len(self.sequence) > 1 and self.try_all:
+            max_index = self.sequence[-1]
+            for i, comb in enumerate(
+                combinations(range(max_index + 1), len(self.sequence))
+            ):
+                sizes.append(
+                    self.aa_instr.assemble_and_measure_file(
+                        self.aa_instr.instr_dir.joinpath(
+                            self.file_path.parent,
+                            str(i + 1) + str(self.file_path.stem) + ".bc",
+                        )
                     )
                 )
-            )
+        else:
+            for i in range(self.sequence[0] if self.try_all else 1):
+                sizes.append(
+                    self.aa_instr.assemble_and_measure_file(
+                        self.aa_instr.instr_dir.joinpath(
+                            self.file_path.parent,
+                            str(i + 1) + str(self.file_path.stem) + ".bc",
+                        )
+                    )
+                )
         initial_size = self.aa_instr.assemble_and_measure_file(
             self.aa_instr.instr_dir.joinpath(
                 self.file_path.parent, str(0) + str(self.file_path.stem) + ".bc"
@@ -1128,17 +1138,37 @@ class AAChecker:
         )
 
         # delete files
-        for i in range(self.sequence[0] if self.try_all else 1):
-            os.remove(
-                self.aa_instr.instr_dir.joinpath(
-                    self.file_path.parent, str(i + 1) + str(self.file_path.stem) + ".bc"
+        if len(self.sequence) > 1 and self.try_all:
+            max_index = self.sequence[-1]
+            for i, comb in enumerate(
+                combinations(range(max_index + 1), len(self.sequence))
+            ):
+                os.remove(
+                    self.aa_instr.instr_dir.joinpath(
+                        self.file_path.parent,
+                        str(i + 1) + str(self.file_path.stem) + ".bc",
+                    )
                 )
-            )
-            os.remove(
-                self.aa_instr.instr_dir.joinpath(
-                    self.file_path.parent, str(i + 1) + str(self.file_path.stem) + ".o"
+                os.remove(
+                    self.aa_instr.instr_dir.joinpath(
+                        self.file_path.parent,
+                        str(i + 1) + str(self.file_path.stem) + ".o",
+                    )
                 )
-            )
+        else:
+            for i in range(self.sequence[0] if self.try_all else 1):
+                os.remove(
+                    self.aa_instr.instr_dir.joinpath(
+                        self.file_path.parent,
+                        str(i + 1) + str(self.file_path.stem) + ".bc",
+                    )
+                )
+                os.remove(
+                    self.aa_instr.instr_dir.joinpath(
+                        self.file_path.parent,
+                        str(i + 1) + str(self.file_path.stem) + ".o",
+                    )
+                )
 
         os.remove(
             self.aa_instr.instr_dir.joinpath(
@@ -1151,8 +1181,8 @@ class AAChecker:
             )
         )
 
-        print("sizes: " + str(sizes))
-        print(initial_size)
+        # print("sizes: " + str(sizes))
+        # print(initial_size)
         # compare sizes
         return any([self.size_diff <= initial_size - size for size in sizes])
 
@@ -1208,7 +1238,7 @@ if __name__ == "__main__":
 
     arg_parser.add_argument(
         "--sequence",
-        type=int,
+        type=list[int],
         nargs="?",
         help="sequence to check",
     )
@@ -1248,7 +1278,7 @@ if __name__ == "__main__":
         if AAChecker(
             Path(args.file_to_check),
             args.func_name,
-            [args.sequence],
+            [int(i) for i in args.sequence],
             args.size_diff,
             args.try_all,
             InstrumentAlias(

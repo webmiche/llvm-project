@@ -300,6 +300,18 @@ def plot_query_distribution(benchmarks: list):
     plt.show()
 
 
+def parse_dicts(file: str):
+    with open(file, "r") as f:
+        counts_per_pass = []
+        lines = f.readlines()
+        for line in lines:
+            if line.startswith("{"):
+                data = eval(line)
+                counts_per_pass.append(data)
+
+    return counts_per_pass
+
+
 def parse_data(file: str):
     with open(file, "r") as f:
         counts_per_pass = []
@@ -310,11 +322,15 @@ def parse_data(file: str):
                 data = eval(line)
                 pass_dicts = data.values()
                 for pass_dict in pass_dicts:
-                    counts_per_pass.extend(pass_dict.values())
+                    for pass_name, func_dict in pass_dict.items():
+                        for func, value in func_dict.items():
+                            counts_per_pass.append(value)
+
                 for file_name, file_dict in data.items():
                     sum_file = 0
-                    for pass_value in file_dict.values():
-                        sum_file += pass_value
+                    for pass_dict in file_dict.values():
+                        for pass_value in pass_dict.values():
+                            sum_file += pass_value
                     counts_per_file.append(sum_file)
 
     return counts_per_pass, counts_per_file
@@ -426,6 +442,70 @@ def plot_query_per_pass():
     plt.show()
 
 
+def plot_queries_per_passname():
+    counts = parse_dicts("aa_per_pass.txt")
+    counts_per_pass = {}
+    for file_dict in counts:
+        for file_name, pass_dict in file_dict.items():
+            for pass_name, func_dict in pass_dict.items():
+                original_pass_name = pass_name.removesuffix(pass_name.split("_")[-1])
+                if not original_pass_name in counts_per_pass:
+                    counts_per_pass[original_pass_name] = []
+                counts_per_pass[original_pass_name].append(sum(func_dict.values()))
+
+    pass_names = [
+        "GVNPass_",
+        "DSEPass_",
+        "FunctionToLoopPassAdaptor_",
+        "EarlyCSEPass_",
+        "MemCpyOptPass_",
+        "InstCombinePass_",
+        "MergedLoadStoreMotionPass_",
+        "JumpThreadingPass_",
+        "LoopLoadEliminationPass_",
+    ]
+    for pass_name in pass_names:
+        print(
+            pass_name
+            + ": "
+            + str(sum(counts_per_pass[pass_name]))
+            + " "
+            + str(len(counts_per_pass[pass_name]))
+        )
+    colors = [
+        light_blue,
+        dark_blue,
+        light_green,
+        dark_green,
+        light_red,
+        dark_red,
+        light_gray,
+        dark_gray,
+        black,
+    ]
+    # plot distribution per pass
+    plt.figure(figsize=(20, 10))
+    plt.xlim(1, 100000)
+    plt.ylim(0.7, 10000)
+    for i, pass_name in enumerate(pass_names):
+        plt.xscale(value="log")
+        plt.yscale(value="log")
+        values = counts_per_pass[pass_name]
+        logbins = np.geomspace(min(values), max(values), 50)
+        plt.hist(
+            values,
+            bins=logbins,
+            color=colors[i],
+            edgecolor=black,
+            linewidth=1.2,
+        )
+    plt.xlabel("Number of queries")
+    plt.ylabel("Number of occurences")
+    plt.legend(counts_per_pass.keys())
+    plt.savefig("results/aa_per_passname.pdf")
+    plt.show()
+
+
 benchmarks = [
     "619",
     "605",
@@ -447,10 +527,11 @@ if __name__ == "__main__":
             print_relevant_size_stats(benchmark)
             print_relevant_query_stats(benchmark)
             print_influence_small_func(benchmark, 20)
-            # print_biggest_change(benchmark)
-            # print_biggest_first_change(benchmark)
+            print_biggest_change(benchmark)
+            print_biggest_first_change(benchmark)
         except Exception as e:
             print(e)
             continue
 
     plot_query_per_pass_and_func(benchmarks)
+    plot_queries_per_passname()
