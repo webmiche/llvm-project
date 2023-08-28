@@ -163,7 +163,7 @@ class LoadEliminationForLoop {
 public:
   LoadEliminationForLoop(Loop *L, LoopInfo *LI, const LoopAccessInfo &LAI,
                          DominatorTree *DT, BlockFrequencyInfo *BFI,
-                         ProfileSummaryInfo* PSI)
+                         ProfileSummaryInfo *PSI)
       : L(L), LI(LI), LAI(LAI), DT(DT), BFI(BFI), PSI(PSI), PSE(LAI.getPSE()) {}
 
   /// Look through the loop-carried and loop-independent dependences in
@@ -564,9 +564,9 @@ public:
 
       auto *HeaderBB = L->getHeader();
       auto *F = HeaderBB->getParent();
-      bool OptForSize = F->hasOptSize() ||
-                        llvm::shouldOptimizeForSize(HeaderBB, PSI, BFI,
-                                                    PGSOQueryType::IRPass);
+      bool OptForSize =
+          F->hasOptSize() || llvm::shouldOptimizeForSize(HeaderBB, PSI, BFI,
+                                                         PGSOQueryType::IRPass);
       if (OptForSize) {
         LLVM_DEBUG(
             dbgs() << "Versioning is needed but not allowed when optimizing "
@@ -582,13 +582,13 @@ public:
 
       // After versioning, some of the candidates' pointers could stop being
       // SCEVAddRecs. We need to filter them out.
-      auto NoLongerGoodCandidate = [this](
-          const StoreToLoadForwardingCandidate &Cand) {
-        return !isa<SCEVAddRecExpr>(
-                    PSE.getSCEV(Cand.Load->getPointerOperand())) ||
-               !isa<SCEVAddRecExpr>(
-                    PSE.getSCEV(Cand.Store->getPointerOperand()));
-      };
+      auto NoLongerGoodCandidate =
+          [this](const StoreToLoadForwardingCandidate &Cand) {
+            return !isa<SCEVAddRecExpr>(
+                       PSE.getSCEV(Cand.Load->getPointerOperand())) ||
+                   !isa<SCEVAddRecExpr>(
+                       PSE.getSCEV(Cand.Store->getPointerOperand()));
+          };
       llvm::erase_if(Candidates, NoLongerGoodCandidate);
     }
 
@@ -638,7 +638,8 @@ static bool eliminateLoadsAcrossLoops(Function &F, LoopInfo &LI,
 
   for (Loop *TopLevelLoop : LI)
     for (Loop *L : depth_first(TopLevelLoop)) {
-      Changed |= simplifyLoop(L, &DT, &LI, SE, AC, /*MSSAU*/ nullptr, false);
+      Changed |=
+          simplifyLoop(L, &DT, &LI, SE, AC, /*MSSAU*/ nullptr, false, nullptr);
       // We only handle inner-most loops.
       if (L->isInnermost())
         Worklist.push_back(L);
@@ -670,8 +671,9 @@ PreservedAnalyses LoopLoadEliminationPass::run(Function &F,
   auto &AC = AM.getResult<AssumptionAnalysis>(F);
   auto &MAMProxy = AM.getResult<ModuleAnalysisManagerFunctionProxy>(F);
   auto *PSI = MAMProxy.getCachedResult<ProfileSummaryAnalysis>(*F.getParent());
-  auto *BFI = (PSI && PSI->hasProfileSummary()) ?
-      &AM.getResult<BlockFrequencyAnalysis>(F) : nullptr;
+  auto *BFI = (PSI && PSI->hasProfileSummary())
+                  ? &AM.getResult<BlockFrequencyAnalysis>(F)
+                  : nullptr;
   LoopAccessInfoManager &LAIs = AM.getResult<LoopAccessAnalysis>(F);
 
   bool Changed = eliminateLoadsAcrossLoops(F, LI, DT, BFI, PSI, &SE, &AC, LAIs);

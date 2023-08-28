@@ -85,30 +85,29 @@ STATISTIC(NumUnrolledNotLatch, "Number of loops unrolled without a conditional "
                                "latch (completely or otherwise)");
 
 static cl::opt<bool>
-UnrollRuntimeEpilog("unroll-runtime-epilog", cl::init(false), cl::Hidden,
-                    cl::desc("Allow runtime unrolled loops to be unrolled "
-                             "with epilog instead of prolog."));
+    UnrollRuntimeEpilog("unroll-runtime-epilog", cl::init(false), cl::Hidden,
+                        cl::desc("Allow runtime unrolled loops to be unrolled "
+                                 "with epilog instead of prolog."));
 
 static cl::opt<bool>
-UnrollVerifyDomtree("unroll-verify-domtree", cl::Hidden,
-                    cl::desc("Verify domtree after unrolling"),
+    UnrollVerifyDomtree("unroll-verify-domtree", cl::Hidden,
+                        cl::desc("Verify domtree after unrolling"),
 #ifdef EXPENSIVE_CHECKS
-    cl::init(true)
+                        cl::init(true)
 #else
-    cl::init(false)
+                        cl::init(false)
 #endif
-                    );
+    );
 
 static cl::opt<bool>
-UnrollVerifyLoopInfo("unroll-verify-loopinfo", cl::Hidden,
-                    cl::desc("Verify loopinfo after unrolling"),
+    UnrollVerifyLoopInfo("unroll-verify-loopinfo", cl::Hidden,
+                         cl::desc("Verify loopinfo after unrolling"),
 #ifdef EXPENSIVE_CHECKS
-    cl::init(true)
+                         cl::init(true)
 #else
-    cl::init(false)
+                         cl::init(false)
 #endif
-                    );
-
+    );
 
 /// Check if unrolling created a situation where we need to insert phi nodes to
 /// preserve LCSSA form.
@@ -144,7 +143,7 @@ static bool needToInsertPhisForLCSSA(Loop *L,
 /// and adds a mapping from the original loop to the new loop to NewLoops.
 /// Returns nullptr if no new loop was created and a pointer to the
 /// original loop OriginalBB was part of otherwise.
-const Loop* llvm::addClonedBlockToLoopInfo(BasicBlock *OriginalBB,
+const Loop *llvm::addClonedBlockToLoopInfo(BasicBlock *OriginalBB,
                                            BasicBlock *ClonedBB, LoopInfo *LI,
                                            NewLoopsMap &NewLoops) {
   // Figure out which loop New is in.
@@ -373,10 +372,10 @@ LoopUnrollResult llvm::UnrollLoop(Loop *L, UnrollLoopOptions ULO, LoopInfo *LI,
   // it in-place after the transformation, or entirely rebuild LCSSA. TODO: For
   // now we just recompute LCSSA for the outer loop, but it should be possible
   // to fix it in-place.
-  bool NeedToFixLCSSA =
-      PreserveLCSSA && CompletelyUnroll &&
-      any_of(ExitBlocks,
-             [](const BasicBlock *BB) { return isa<PHINode>(BB->begin()); });
+  bool NeedToFixLCSSA = PreserveLCSSA && CompletelyUnroll &&
+                        any_of(ExitBlocks, [](const BasicBlock *BB) {
+                          return isa<PHINode>(BB->begin());
+                        });
 
   // The current loop unroll pass can unroll loops that have
   // (1) single latch; and
@@ -398,20 +397,19 @@ LoopUnrollResult llvm::UnrollLoop(Loop *L, UnrollLoopOptions ULO, LoopInfo *LI,
   // Loops containing convergent instructions cannot use runtime unrolling,
   // as the prologue/epilogue may add additional control-dependencies to
   // convergent operations.
-  LLVM_DEBUG(
-      {
-        bool HasConvergent = false;
-        for (auto &BB : L->blocks())
-          for (auto &I : *BB)
-            if (auto *CB = dyn_cast<CallBase>(&I))
-              HasConvergent |= CB->isConvergent();
-        assert((!HasConvergent || !ULO.Runtime) &&
-               "Can't runtime unroll if loop contains a convergent operation.");
-      });
+  LLVM_DEBUG({
+    bool HasConvergent = false;
+    for (auto &BB : L->blocks())
+      for (auto &I : *BB)
+        if (auto *CB = dyn_cast<CallBase>(&I))
+          HasConvergent |= CB->isConvergent();
+    assert((!HasConvergent || !ULO.Runtime) &&
+           "Can't runtime unroll if loop contains a convergent operation.");
+  });
 
-  bool EpilogProfitability =
-      UnrollRuntimeEpilog.getNumOccurrences() ? UnrollRuntimeEpilog
-                                              : isEpilogProfitable(L);
+  bool EpilogProfitability = UnrollRuntimeEpilog.getNumOccurrences()
+                                 ? UnrollRuntimeEpilog
+                                 : isEpilogProfitable(L);
 
   if (ULO.Runtime &&
       !UnrollRuntimeLoopRemainder(L, ULO.Count, ULO.AllowExpensiveTripCount,
@@ -480,7 +478,7 @@ LoopUnrollResult llvm::UnrollLoop(Loop *L, UnrollLoopOptions ULO, LoopInfo *LI,
   // For the first iteration of the loop, we should use the precloned values for
   // PHI nodes.  Insert associations now.
   ValueToValueMapTy LastValueMap;
-  std::vector<PHINode*> OrigPHINode;
+  std::vector<PHINode *> OrigPHINode;
   for (BasicBlock::iterator I = Header->begin(); isa<PHINode>(I); ++I) {
     OrigPHINode.push_back(cast<PHINode>(I));
   }
@@ -500,7 +498,7 @@ LoopUnrollResult llvm::UnrollLoop(Loop *L, UnrollLoopOptions ULO, LoopInfo *LI,
   LoopBlocksDFS::RPOIterator BlockBegin = DFS.beginRPO();
   LoopBlocksDFS::RPOIterator BlockEnd = DFS.endRPO();
 
-  std::vector<BasicBlock*> UnrolledLoopBlocks = L->getBlocks();
+  std::vector<BasicBlock *> UnrolledLoopBlocks = L->getBlocks();
 
   // Loop Unrolling might create new loops. While we do preserve LoopInfo, we
   // might break loop-simplified form for these loops (as they, e.g., would
@@ -689,7 +687,7 @@ LoopUnrollResult llvm::UnrollLoop(Loop *L, UnrollLoopOptions ULO, LoopInfo *LI,
     auto *Term = cast<BranchInst>(Src->getTerminator());
     const unsigned Idx = ExitOnTrue ^ WillExit;
     BasicBlock *Dest = Term->getSuccessor(Idx);
-    BasicBlock *DeadSucc = Term->getSuccessor(1-Idx);
+    BasicBlock *DeadSucc = Term->getSuccessor(1 - Idx);
 
     // Remove predecessors from all non-Dest successors.
     DeadSucc->removePredecessor(Src, /* KeepOneInputPHIs */ true);
@@ -857,7 +855,8 @@ LoopUnrollResult llvm::UnrollLoop(Loop *L, UnrollLoopOptions ULO, LoopInfo *LI,
   // TODO: For now we just recompute LCSSA for the outer loop in this case, but
   // it should be possible to fix it in-place.
   if (PreserveLCSSA && OuterL && CompletelyUnroll && !NeedToFixLCSSA)
-    NeedToFixLCSSA |= ::needToInsertPhisForLCSSA(OuterL, UnrolledLoopBlocks, LI);
+    NeedToFixLCSSA |=
+        ::needToInsertPhisForLCSSA(OuterL, UnrolledLoopBlocks, LI);
 
   // Make sure that loop-simplify form is preserved. We want to simplify
   // at least one layer outside of the loop that was unrolled so that any
@@ -884,11 +883,11 @@ LoopUnrollResult llvm::UnrollLoop(Loop *L, UnrollLoopOptions ULO, LoopInfo *LI,
 
     // TODO: That potentially might be compile-time expensive. We should try
     // to fix the loop-simplified form incrementally.
-    simplifyLoop(OuterL, DT, LI, SE, AC, nullptr, PreserveLCSSA);
+    simplifyLoop(OuterL, DT, LI, SE, AC, nullptr, PreserveLCSSA, nullptr);
   } else {
     // Simplify loops for which we might've broken loop-simplify form.
     for (Loop *SubLoop : LoopsToSimplify)
-      simplifyLoop(SubLoop, DT, LI, SE, AC, nullptr, PreserveLCSSA);
+      simplifyLoop(SubLoop, DT, LI, SE, AC, nullptr, PreserveLCSSA, nullptr);
   }
 
   return CompletelyUnroll ? LoopUnrollResult::FullyUnrolled

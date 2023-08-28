@@ -463,10 +463,9 @@ static bool violatesLegacyMultiExitLoopCheck(Loop *L) {
   SmallVector<BasicBlock *, 4> ExitBlocks;
   L->getUniqueNonLatchExitBlocks(ExitBlocks);
   return any_of(ExitBlocks, [](const BasicBlock *EB) {
-      return !EB->getTerminatingDeoptimizeCall();
-    });
+    return !EB->getTerminatingDeoptimizeCall();
+  });
 }
-
 
 // Return the number of iterations we want to peel off.
 void llvm::computePeelCount(Loop *L, unsigned LoopSize,
@@ -619,9 +618,8 @@ static void updateBranchWeights(Instruction *Term, WeightInfo &Info) {
                     MDB.createBranchWeights(Info.Weights));
   for (auto [Idx, SubWeight] : enumerate(Info.SubWeights))
     if (SubWeight != 0)
-      Info.Weights[Idx] = Info.Weights[Idx] > SubWeight
-                              ? Info.Weights[Idx] - SubWeight
-                              : 1;
+      Info.Weights[Idx] =
+          Info.Weights[Idx] > SubWeight ? Info.Weights[Idx] - SubWeight : 1;
 }
 
 /// Initialize the weights for all exiting blocks.
@@ -976,7 +974,7 @@ bool llvm::peelLoop(Loop *L, unsigned PeelCount, LoopInfo *LI,
     if (Iter == 0)
       for (auto BBIDom : NonLoopBlocksIDom)
         DT.changeImmediateDominator(BBIDom.first,
-                                     cast<BasicBlock>(LVMap[BBIDom.second]));
+                                    cast<BasicBlock>(LVMap[BBIDom.second]));
 #ifdef EXPENSIVE_CHECKS
     assert(DT.verify(DominatorTree::VerificationLevel::Fast));
 #endif
@@ -1032,7 +1030,7 @@ bool llvm::peelLoop(Loop *L, unsigned PeelCount, LoopInfo *LI,
 #endif
 
   // FIXME: Incrementally update loop-simplify
-  simplifyLoop(L, &DT, LI, SE, AC, nullptr, PreserveLCSSA);
+  simplifyLoop(L, &DT, LI, SE, AC, nullptr, PreserveLCSSA, nullptr);
 
   NumPeeled++;
 

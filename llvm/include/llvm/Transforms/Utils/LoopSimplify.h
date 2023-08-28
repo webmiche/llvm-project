@@ -38,6 +38,7 @@
 #ifndef LLVM_TRANSFORMS_UTILS_LOOPSIMPLIFY_H
 #define LLVM_TRANSFORMS_UTILS_LOOPSIMPLIFY_H
 
+#include "llvm/Analysis/OptimizationRemarkEmitter.h"
 #include "llvm/IR/PassManager.h"
 
 namespace llvm {
@@ -63,7 +64,7 @@ public:
 /// analyses if they're non-null, and LCSSA if \c PreserveLCSSA is true.
 bool simplifyLoop(Loop *L, DominatorTree *DT, LoopInfo *LI, ScalarEvolution *SE,
                   AssumptionCache *AC, MemorySSAUpdater *MSSAU,
-                  bool PreserveLCSSA);
+                  bool PreserveLCSSA, OptimizationRemarkEmitter *ORE);
 
 } // end namespace llvm
 

@@ -1,0 +1,166 @@
+!Passed
+Added: false
+Args:
+- String: 'load of type '
+- Type: i64
+- String: ' eliminated'
+- String: ' in favor of '
+- InfavorOfValue: phi
+DebugLoc:
+  Column: 13
+  File: implicit_preprocessed.c
+  Line: 27
+Function: price_out_impl
+Hotness: 0
+Name: LoadElim
+Pass: gvn
+max_hotness: 0
+--- !Passed
+Added: true
+Args:
+- String: 'deleting edge from dead predecessor '
+- DebugLoc:
+    Column: 11
+    File: implicit_preprocessed.c
+    Line: 31
+  Predecessor: br
+DebugLoc:
+  Column: 5
+  File: implicit_preprocessed.c
+  Line: 24
+Function: price_out_impl
+Hotness: 0
+Name: DeadPred
+Pass: loop-simplify
+max_hotness: 0
+--- !Missed
+Added: false
+Args:
+- String: 'load of type '
+- Type: i64
+- String: ' not eliminated'
+- String: ' because it is clobbered by '
+- ClobberedBy: call
+  DebugLoc:
+    Column: 9
+    File: implicit_preprocessed.c
+    Line: 26
+DebugLoc:
+  Column: 14
+  File: implicit_preprocessed.c
+  Line: 25
+Function: price_out_impl
+Hotness: 0
+Name: LoadClobbered
+Pass: gvn
+max_hotness: 0
+--- !Missed
+Added: true
+Args:
+- String: 'load of type '
+- Type: i64
+- String: ' not eliminated'
+- String: ' in favor of '
+- DebugLoc:
+    Column: 13
+    File: implicit_preprocessed.c
+    Line: 27
+  OtherAccess: store
+- String: ' because it is clobbered by '
+- ClobberedBy: store
+  DebugLoc:
+    Column: 15
+    File: implicit_preprocessed.c
+    Line: 28
+DebugLoc:
+  Column: 13
+  File: implicit_preprocessed.c
+  Line: 27
+Function: price_out_impl
+Hotness: 0
+Name: LoadClobbered
+Pass: gvn
+max_hotness: 0
+--- !Missed
+Added: true
+Args:
+- String: 'load of type '
+- Type: i64
+- String: ' not eliminated'
+- String: ' because it is clobbered by '
+- ClobberedBy: store
+  DebugLoc:
+    Column: 16
+    File: implicit_preprocessed.c
+    Line: 31
+DebugLoc:
+  Column: 14
+  File: implicit_preprocessed.c
+  Line: 25
+Function: price_out_impl
+Hotness: 0
+Name: LoadClobbered
+Pass: gvn
+max_hotness: 0
+--- !Missed
+Added: false
+Args:
+- String: failed to hoist load with loop-invariant address because load is conditionally
+    executed
+DebugLoc:
+  Column: 14
+  File: implicit_preprocessed.c
+  Line: 25
+Function: price_out_impl
+Hotness: 0
+Name: LoadWithLoopInvariantAddressCondExecuted
+Pass: licm
+max_hotness: 0
+--- !Missed
+Added: true
+Args:
+- String: 'load of type '
+- Type: i64
+- String: ' not eliminated'
+- String: ' because it is clobbered by '
+- ClobberedBy: store
+  DebugLoc:
+    Column: 15
+    File: implicit_preprocessed.c
+    Line: 28
+DebugLoc:
+  Column: 14
+  File: implicit_preprocessed.c
+  Line: 25
+Function: price_out_impl
+Hotness: 0
+Name: LoadClobbered
+Pass: gvn
+max_hotness: 0
+--- !Missed
+Added: true
+Args:
+- String: 'load of type '
+- Type: i64
+- String: ' not eliminated'
+- String: ' in favor of '
+- DebugLoc:
+    Column: 13
+    File: implicit_preprocessed.c
+    Line: 27
+  OtherAccess: store
+- String: ' because it is clobbered by '
+- ClobberedBy: store
+  DebugLoc:
+    Column: 16
+    File: implicit_preprocessed.c
+    Line: 31
+DebugLoc:
+  Column: 13
+  File: implicit_preprocessed.c
+  Line: 27
+Function: price_out_impl
+Hotness: 0
+Name: LoadClobbered
+Pass: gvn
+max_hotness: 0

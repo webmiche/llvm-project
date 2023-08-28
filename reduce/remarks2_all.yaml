@@ -1,0 +1,463 @@
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 6, Column: 11 }
+Function:        price_out_impl
+Args:
+  - Callee:          malloc
+  - String:          ' will not be inlined into '
+  - Caller:          price_out_impl
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 3, 
+                       Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 8, Column: 9 }
+Function:        price_out_impl
+Args:
+  - Callee:          calloc
+  - String:          ' will not be inlined into '
+  - Caller:          price_out_impl
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 3, 
+                       Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 11, Column: 7 }
+Function:        price_out_impl
+Args:
+  - Callee:          b
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 0, 
+                       Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          price_out_impl
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 3, 
+                       Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 6, Column: 11 }
+Function:        price_out_impl
+Args:
+  - Callee:          malloc
+  - String:          ' will not be inlined into '
+  - Caller:          price_out_impl
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 3, 
+                       Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 8, Column: 9 }
+Function:        price_out_impl
+Args:
+  - Callee:          calloc
+  - String:          ' will not be inlined into '
+  - Caller:          price_out_impl
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 3, 
+                       Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 11, Column: 7 }
+Function:        price_out_impl
+Args:
+  - Callee:          b
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 0, 
+                       Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          price_out_impl
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 3, 
+                       Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 9, Column: 10 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 10, Column: 9 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 12, Column: 11 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 13, Column: 12 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 14, Column: 19 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressCondExecuted
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 12, Column: 11 }
+Function:        price_out_impl
+Args:
+  - String:          failed to hoist load with loop-invariant address because load is conditionally executed
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 9, Column: 10 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 10, Column: 9 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 12, Column: 11 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 13, Column: 12 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 14, Column: 19 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressCondExecuted
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 12, Column: 11 }
+Function:        price_out_impl
+Args:
+  - String:          failed to hoist load with loop-invariant address because load is conditionally executed
+...
+--- !Passed
+Pass:            TTI
+Name:            DontUnroll
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 9, Column: 3 }
+Function:        price_out_impl
+Args:
+  - String:          'advising against unrolling the loop because it contains a '
+  - Call:            call
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 11, 
+                       Column: 7 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 9, Column: 10 }
+Function:        price_out_impl
+Args:
+  - String:          'load of type '
+  - Type:            i32
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     store
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 15, 
+                       Column: 14 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 9, Column: 10 }
+Function:        price_out_impl
+Args:
+  - String:          'load of type '
+  - Type:            i32
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     store
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 12, 
+                       Column: 11 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 10, Column: 9 }
+Function:        price_out_impl
+Args:
+  - String:          'load of type '
+  - Type:            ptr
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     load
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 7, 
+                       Column: 7 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     store
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 15, 
+                       Column: 14 }
+...
+--- !Passed
+Pass:            gvn
+Name:            LoadElim
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 12, Column: 11 }
+Function:        price_out_impl
+Args:
+  - String:          'load of type '
+  - Type:            i64
+  - String:          ' eliminated'
+  - String:          ' in favor of '
+  - InfavorOfValue:  phi
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 13, Column: 12 }
+Function:        price_out_impl
+Args:
+  - String:          'load of type '
+  - Type:            ptr
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     load
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 10, 
+                       Column: 9 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     store
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 12, 
+                       Column: 11 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 13, Column: 11 }
+Function:        price_out_impl
+Args:
+  - String:          'load of type '
+  - Type:            i32
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 11, 
+                       Column: 7 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 14, Column: 19 }
+Function:        price_out_impl
+Args:
+  - String:          'load of type '
+  - Type:            i32
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 11, 
+                       Column: 7 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 9, Column: 10 }
+Function:        price_out_impl
+Args:
+  - String:          'load of type '
+  - Type:            i32
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     store
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 12, 
+                       Column: 11 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 9, Column: 10 }
+Function:        price_out_impl
+Args:
+  - String:          'load of type '
+  - Type:            i32
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     store
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 15, 
+                       Column: 14 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 10, Column: 9 }
+Function:        price_out_impl
+Args:
+  - String:          'load of type '
+  - Type:            ptr
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     load
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 7, 
+                       Column: 7 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     store
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 15, 
+                       Column: 14 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 13, Column: 12 }
+Function:        price_out_impl
+Args:
+  - String:          'load of type '
+  - Type:            ptr
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     load
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 10, 
+                       Column: 9 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     store
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 12, 
+                       Column: 11 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 13, Column: 11 }
+Function:        price_out_impl
+Args:
+  - String:          'load of type '
+  - Type:            i32
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 11, 
+                       Column: 7 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 14, Column: 19 }
+Function:        price_out_impl
+Args:
+  - String:          'load of type '
+  - Type:            i32
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 11, 
+                       Column: 7 }
+...
+--- !Passed
+Pass:            loop-simplify
+Name:            DeadPred
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 9, Column: 3 }
+Function:        price_out_impl
+Args:
+  - String:          'deleting edge from dead predecessor '
+  - Predecessor:     br
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 15, 
+                       Column: 9 }
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 9, Column: 10 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 10, Column: 9 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 13, Column: 12 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            loop-vectorize
+Name:            MissedDetails
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 9, Column: 3 }
+Function:        price_out_impl
+Args:
+  - String:          loop not vectorized
+...
+--- !Passed
+Pass:            TTI
+Name:            DontUnroll
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 9, Column: 3 }
+Function:        price_out_impl
+Args:
+  - String:          'advising against unrolling the loop because it contains a '
+  - Call:            call
+    DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 11, 
+                       Column: 7 }
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 9, Column: 10 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 10, Column: 9 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all.c, Line: 13, Column: 12 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...

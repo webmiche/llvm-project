@@ -172,9 +172,7 @@ public:
   }
 
   LLVM_DUMP_METHOD
-  void dump() {
-    print(dbgs());
-  }
+  void dump() { print(dbgs()); }
 
   Use *getCheckUse() const { return CheckUse; }
 
@@ -288,10 +286,10 @@ INITIALIZE_PASS_END(IRCELegacyPass, "irce", "Inductive range check elimination",
 /// be interpreted as a range check, return false and set `Index` and `Length`
 /// to `nullptr`.  Otherwise set `Index` to the value being range checked, and
 /// set `Length` to the upper limit `Index` is being range checked.
-bool
-InductiveRangeCheck::parseRangeCheckICmp(Loop *L, ICmpInst *ICI,
-                                         ScalarEvolution &SE, Value *&Index,
-                                         Value *&Length, bool &IsSigned) {
+bool InductiveRangeCheck::parseRangeCheckICmp(Loop *L, ICmpInst *ICI,
+                                              ScalarEvolution &SE,
+                                              Value *&Index, Value *&Length,
+                                              bool &IsSigned) {
   auto IsLoopInvariant = [&SE, L](Value *V) {
     return SE.isLoopInvariant(SE.getSCEV(V), L);
   };
@@ -390,7 +388,8 @@ void InductiveRangeCheck::extractRangeChecksFromCond(
     // So far we can only reach this point for Signed range check. This may
     // change in future. In this case we will need to pick Unsigned max for the
     // unsigned range check.
-    unsigned BitWidth = cast<IntegerType>(IndexAddRec->getType())->getBitWidth();
+    unsigned BitWidth =
+        cast<IntegerType>(IndexAddRec->getType())->getBitWidth();
     const SCEV *SIntMax = SE.getConstant(APInt::getSignedMaxValue(BitWidth));
     End = SIntMax;
   }
@@ -437,7 +436,7 @@ static void DisableAllLoopOptsOnLoop(Loop &L) {
       {MDString::get(Context, "llvm.loop.vectorize.enable"), FalseVal});
   MDNode *DisableLICMVersioning = MDNode::get(
       Context, {MDString::get(Context, "llvm.loop.licm_versioning.disable")});
-  MDNode *DisableDistribution= MDNode::get(
+  MDNode *DisableDistribution = MDNode::get(
       Context,
       {MDString::get(Context, "llvm.loop.distribute.enable"), FalseVal});
   MDNode *NewLoopID =
@@ -653,11 +652,10 @@ public:
 
 /// Given a loop with an deccreasing induction variable, is it possible to
 /// safely calculate the bounds of a new loop using the given Predicate.
-static bool isSafeDecreasingBound(const SCEV *Start,
-                                  const SCEV *BoundSCEV, const SCEV *Step,
-                                  ICmpInst::Predicate Pred,
-                                  unsigned LatchBrExitIdx,
-                                  Loop *L, ScalarEvolution &SE) {
+static bool isSafeDecreasingBound(const SCEV *Start, const SCEV *BoundSCEV,
+                                  const SCEV *Step, ICmpInst::Predicate Pred,
+                                  unsigned LatchBrExitIdx, Loop *L,
+                                  ScalarEvolution &SE) {
   if (Pred != ICmpInst::ICMP_SLT && Pred != ICmpInst::ICMP_SGT &&
       Pred != ICmpInst::ICMP_ULT && Pred != ICmpInst::ICMP_UGT)
     return false;
@@ -679,35 +677,32 @@ static bool isSafeDecreasingBound(const SCEV *Start,
   // The predicate that we need to check that the induction variable lies
   // within bounds.
   ICmpInst::Predicate BoundPred =
-    IsSigned ? CmpInst::ICMP_SGT : CmpInst::ICMP_UGT;
+      IsSigned ? CmpInst::ICMP_SGT : CmpInst::ICMP_UGT;
 
   if (LatchBrExitIdx == 1)
     return SE.isLoopEntryGuardedByCond(L, BoundPred, Start, BoundSCEV);
 
-  assert(LatchBrExitIdx == 0 &&
-         "LatchBrExitIdx should be either 0 or 1");
+  assert(LatchBrExitIdx == 0 && "LatchBrExitIdx should be either 0 or 1");
 
   const SCEV *StepPlusOne = SE.getAddExpr(Step, SE.getOne(Step->getType()));
   unsigned BitWidth = cast<IntegerType>(BoundSCEV->getType())->getBitWidth();
-  APInt Min = IsSigned ? APInt::getSignedMinValue(BitWidth) :
-    APInt::getMinValue(BitWidth);
+  APInt Min = IsSigned ? APInt::getSignedMinValue(BitWidth)
+                       : APInt::getMinValue(BitWidth);
   const SCEV *Limit = SE.getMinusSCEV(SE.getConstant(Min), StepPlusOne);
 
   const SCEV *MinusOne =
-    SE.getMinusSCEV(BoundSCEV, SE.getOne(BoundSCEV->getType()));
+      SE.getMinusSCEV(BoundSCEV, SE.getOne(BoundSCEV->getType()));
 
   return SE.isLoopEntryGuardedByCond(L, BoundPred, Start, MinusOne) &&
          SE.isLoopEntryGuardedByCond(L, BoundPred, BoundSCEV, Limit);
-
 }
 
 /// Given a loop with an increasing induction variable, is it possible to
 /// safely calculate the bounds of a new loop using the given Predicate.
-static bool isSafeIncreasingBound(const SCEV *Start,
-                                  const SCEV *BoundSCEV, const SCEV *Step,
-                                  ICmpInst::Predicate Pred,
-                                  unsigned LatchBrExitIdx,
-                                  Loop *L, ScalarEvolution &SE) {
+static bool isSafeIncreasingBound(const SCEV *Start, const SCEV *BoundSCEV,
+                                  const SCEV *Step, ICmpInst::Predicate Pred,
+                                  unsigned LatchBrExitIdx, Loop *L,
+                                  ScalarEvolution &SE) {
   if (Pred != ICmpInst::ICMP_SLT && Pred != ICmpInst::ICMP_SGT &&
       Pred != ICmpInst::ICMP_ULT && Pred != ICmpInst::ICMP_UGT)
     return false;
@@ -734,11 +729,10 @@ static bool isSafeIncreasingBound(const SCEV *Start,
 
   assert(LatchBrExitIdx == 0 && "LatchBrExitIdx should be 0 or 1");
 
-  const SCEV *StepMinusOne =
-    SE.getMinusSCEV(Step, SE.getOne(Step->getType()));
+  const SCEV *StepMinusOne = SE.getMinusSCEV(Step, SE.getOne(Step->getType()));
   unsigned BitWidth = cast<IntegerType>(BoundSCEV->getType())->getBitWidth();
-  APInt Max = IsSigned ? APInt::getSignedMaxValue(BitWidth) :
-    APInt::getMaxValue(BitWidth);
+  APInt Max = IsSigned ? APInt::getSignedMaxValue(BitWidth)
+                       : APInt::getMaxValue(BitWidth);
   const SCEV *Limit = SE.getMinusSCEV(SE.getConstant(Max), StepMinusOne);
 
   return (SE.isLoopEntryGuardedByCond(L, BoundPred, Start,
@@ -852,7 +846,7 @@ LoopStructure::parseLoopStructure(ScalarEvolution &SE, Loop &L,
     FailureReason = "LHS in icmp not induction variable";
     return std::nullopt;
   }
-  const SCEV* StepRec = IndVarBase->getStepRecurrence(SE);
+  const SCEV *StepRec = IndVarBase->getStepRecurrence(SE);
   if (!isa<SCEVConstant>(StepRec)) {
     FailureReason = "LHS in icmp not induction variable";
     return std::nullopt;
@@ -903,15 +897,15 @@ LoopStructure::parseLoopStructure(ScalarEvolution &SE, Loop &L,
         //   ...                          ...
         // }                            }
         if (IndVarBase->getNoWrapFlags(SCEV::FlagNUW) &&
-            cannotBeMinInLoop(RightSCEV, &L, SE, /*Signed*/false)) {
+            cannotBeMinInLoop(RightSCEV, &L, SE, /*Signed*/ false)) {
           Pred = ICmpInst::ICMP_UGT;
-          RightSCEV = SE.getMinusSCEV(RightSCEV,
-                                      SE.getOne(RightSCEV->getType()));
+          RightSCEV =
+              SE.getMinusSCEV(RightSCEV, SE.getOne(RightSCEV->getType()));
           DecreasedRightValueByOne = true;
-        } else if (cannotBeMinInLoop(RightSCEV, &L, SE, /*Signed*/true)) {
+        } else if (cannotBeMinInLoop(RightSCEV, &L, SE, /*Signed*/ true)) {
           Pred = ICmpInst::ICMP_SGT;
-          RightSCEV = SE.getMinusSCEV(RightSCEV,
-                                      SE.getOne(RightSCEV->getType()));
+          RightSCEV =
+              SE.getMinusSCEV(RightSCEV, SE.getOne(RightSCEV->getType()));
           DecreasedRightValueByOne = true;
         }
       }
@@ -1420,8 +1414,7 @@ bool LoopConstrainer::run() {
 
   SubRanges SR = *MaybeSR;
   bool Increasing = MainLoopStructure.IndVarIncreasing;
-  IntegerType *IVTy =
-      cast<IntegerType>(Range.getBegin()->getType());
+  IntegerType *IVTy = cast<IntegerType>(Range.getBegin()->getType());
 
   SCEVExpander Expander(SE, F.getParent()->getDataLayout(), "irce");
   Instruction *InsertPt = OriginalPreheader->getTerminator();
@@ -1560,9 +1553,9 @@ bool LoopConstrainer::run() {
   }
 
   // This function canonicalizes the loop into Loop-Simplify and LCSSA forms.
-  auto CanonicalizeLoop = [&] (Loop *L, bool IsOriginalLoop) {
+  auto CanonicalizeLoop = [&](Loop *L, bool IsOriginalLoop) {
     formLCSSARecursively(*L, DT, &LI, &SE);
-    simplifyLoop(L, &DT, &LI, &SE, nullptr, nullptr, true);
+    simplifyLoop(L, &DT, &LI, &SE, nullptr, nullptr, true, nullptr);
     // Pre/post loops are slow paths, we do not need to perform any loop
     // optimizations on them.
     if (!IsOriginalLoop)
@@ -1779,17 +1772,17 @@ PreservedAnalyses IRCEPass::run(Function &F, FunctionAnalysisManager &AM) {
 
   // Get BFI analysis result on demand. Please note that modification of
   // CFG invalidates this analysis and we should handle it.
-  auto getBFI = [&F, &AM ]()->BlockFrequencyInfo & {
+  auto getBFI = [&F, &AM]() -> BlockFrequencyInfo & {
     return AM.getResult<BlockFrequencyAnalysis>(F);
   };
-  InductiveRangeCheckElimination IRCE(SE, &BPI, DT, LI, { getBFI });
+  InductiveRangeCheckElimination IRCE(SE, &BPI, DT, LI, {getBFI});
 
   bool Changed = false;
   {
     bool CFGChanged = false;
     for (const auto &L : LI) {
       CFGChanged |= simplifyLoop(L, &DT, &LI, &SE, nullptr, nullptr,
-                                 /*PreserveLCSSA=*/false);
+                                 /*PreserveLCSSA=*/false, nullptr);
       Changed |= formLCSSARecursively(*L, DT, &LI, &SE);
     }
     Changed |= CFGChanged;
@@ -1840,7 +1833,7 @@ bool IRCELegacyPass::runOnFunction(Function &F) {
 
   for (const auto &L : LI) {
     Changed |= simplifyLoop(L, &DT, &LI, &SE, nullptr, nullptr,
-                            /*PreserveLCSSA=*/false);
+                            /*PreserveLCSSA=*/false, nullptr);
     Changed |= formLCSSARecursively(*L, DT, &LI, &SE);
   }
 
@@ -1858,9 +1851,8 @@ bool IRCELegacyPass::runOnFunction(Function &F) {
   return Changed;
 }
 
-bool
-InductiveRangeCheckElimination::isProfitableToTransform(const Loop &L,
-                                                        LoopStructure &LS) {
+bool InductiveRangeCheckElimination::isProfitableToTransform(
+    const Loop &L, LoopStructure &LS) {
   if (SkipProfitabilityChecks)
     return true;
   if (GetBFI) {
@@ -1870,7 +1862,8 @@ InductiveRangeCheckElimination::isProfitableToTransform(const Loop &L,
     if (phFreq != 0 && hFreq != 0 && (hFreq / phFreq < MinRuntimeIterations)) {
       LLVM_DEBUG(dbgs() << "irce: could not prove profitability: "
                         << "the estimated number of iterations basing on "
-                           "frequency info is " << (hFreq / phFreq) << "\n";);
+                           "frequency info is "
+                        << (hFreq / phFreq) << "\n";);
       return false;
     }
     return true;
@@ -1914,7 +1907,8 @@ bool InductiveRangeCheckElimination::run(
     return false;
 
   auto PrintRecognizedRangeChecks = [&](raw_ostream &OS) {
-    OS << "irce: looking at loop "; L->print(OS);
+    OS << "irce: looking at loop ";
+    L->print(OS);
     OS << "irce: loop has " << RangeChecks.size()
        << " inductive range checks: \n";
     for (InductiveRangeCheck &IRC : RangeChecks)
@@ -1937,8 +1931,8 @@ bool InductiveRangeCheckElimination::run(
   LoopStructure LS = *MaybeLoopStructure;
   if (!isProfitableToTransform(*L, LS))
     return false;
-  const SCEVAddRecExpr *IndVar =
-      cast<SCEVAddRecExpr>(SE.getMinusSCEV(SE.getSCEV(LS.IndVarBase), SE.getSCEV(LS.IndVarStep)));
+  const SCEVAddRecExpr *IndVar = cast<SCEVAddRecExpr>(
+      SE.getMinusSCEV(SE.getSCEV(LS.IndVarBase), SE.getSCEV(LS.IndVarStep)));
 
   std::optional<InductiveRangeCheck::Range> SafeIterRange;
   Instruction *ExprInsertPt = Preheader->getTerminator();
@@ -1953,8 +1947,8 @@ bool InductiveRangeCheckElimination::run(
 
   IRBuilder<> B(ExprInsertPt);
   for (InductiveRangeCheck &IRC : RangeChecks) {
-    auto Result = IRC.computeSafeIterationSpace(SE, IndVar,
-                                                LS.IsSignedPredicate);
+    auto Result =
+        IRC.computeSafeIterationSpace(SE, IndVar, LS.IsSignedPredicate);
     if (Result) {
       auto MaybeSafeIterRange = IntersectRange(SE, SafeIterRange, *Result);
       if (MaybeSafeIterRange) {

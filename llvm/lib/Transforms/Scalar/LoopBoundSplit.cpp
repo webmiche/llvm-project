@@ -461,8 +461,8 @@ static bool splitLoopBound(Loop &L, DominatorTree &DT, LoopInfo &LI,
   SE.forgetLoop(&L);
 
   // Canonicalize loops.
-  simplifyLoop(&L, &DT, &LI, &SE, nullptr, nullptr, true);
-  simplifyLoop(PostLoop, &DT, &LI, &SE, nullptr, nullptr, true);
+  simplifyLoop(&L, &DT, &LI, &SE, nullptr, nullptr, true, nullptr);
+  simplifyLoop(PostLoop, &DT, &LI, &SE, nullptr, nullptr, true, nullptr);
 
   // Add new post-loop to loop pass manager.
   U.addSiblingLoops(PostLoop);

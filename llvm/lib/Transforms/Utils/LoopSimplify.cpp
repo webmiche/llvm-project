@@ -73,7 +73,7 @@ using namespace llvm;
 
 #define DEBUG_TYPE "loop-simplify"
 
-STATISTIC(NumNested  , "Number of nested loops split out");
+STATISTIC(NumNested, "Number of nested loops split out");
 
 // If the block isn't already, move the new block to right after some 'outside
 // block' block.  This prevents the preheader from being placed inside the loop
@@ -121,9 +121,9 @@ BasicBlock *llvm::InsertPreheaderForLoop(Loop *L, DominatorTree *DT,
   BasicBlock *Header = L->getHeader();
 
   // Compute the set of predecessors of the loop that are not in the loop.
-  SmallVector<BasicBlock*, 8> OutsideBlocks;
+  SmallVector<BasicBlock *, 8> OutsideBlocks;
   for (BasicBlock *P : predecessors(Header)) {
-    if (!L->contains(P)) {         // Coming in from outside the loop?
+    if (!L->contains(P)) { // Coming in from outside the loop?
       // If the loop is branched to from an indirect terminator, we won't
       // be able to fully transform the loop, because it prohibits
       // edge splitting.
@@ -173,7 +173,7 @@ static void addBlockAndPredsToSet(BasicBlock *InputBB, BasicBlock *StopBlock,
 static PHINode *findPHIToPartitionLoops(Loop *L, DominatorTree *DT,
                                         AssumptionCache *AC) {
   const DataLayout &DL = L->getHeader()->getModule()->getDataLayout();
-  for (BasicBlock::iterator I = L->getHeader()->begin(); isa<PHINode>(I); ) {
+  for (BasicBlock::iterator I = L->getHeader()->begin(); isa<PHINode>(I);) {
     PHINode *PN = cast<PHINode>(I);
     ++I;
     if (Value *V = simplifyInstruction(PN, {DL, nullptr, DT, AC})) {
@@ -185,8 +185,7 @@ static PHINode *findPHIToPartitionLoops(Loop *L, DominatorTree *DT,
 
     // Scan this PHI node looking for a use of the PHI node by itself.
     for (unsigned i = 0, e = PN->getNumIncomingValues(); i != e; ++i)
-      if (PN->getIncomingValue(i) == PN &&
-          L->contains(PN->getIncomingBlock(i)))
+      if (PN->getIncomingValue(i) == PN && L->contains(PN->getIncomingBlock(i)))
         // We found something tasty to remove.
         return PN;
   }
@@ -246,12 +245,13 @@ static Loop *separateNestedLoop(Loop *L, BasicBlock *Preheader,
   assert(!Header->isEHPad() && "Can't insert backedge to EH pad");
 
   PHINode *PN = findPHIToPartitionLoops(L, DT, AC);
-  if (!PN) return nullptr;  // No known way to partition.
+  if (!PN)
+    return nullptr; // No known way to partition.
 
   // Pull out all predecessors that have varying values in the loop.  This
   // handles the case when a PHI node has multiple instances of itself as
   // arguments.
-  SmallVector<BasicBlock*, 8> OuterLoopPreds;
+  SmallVector<BasicBlock *, 8> OuterLoopPreds;
   for (unsigned i = 0, e = PN->getNumIncomingValues(); i != e; ++i) {
     if (PN->getIncomingValue(i) != PN ||
         !L->contains(PN->getIncomingBlock(i))) {
@@ -305,10 +305,10 @@ static Loop *separateNestedLoop(Loop *L, BasicBlock *Preheader,
 
   // Scan all of the loop children of L, moving them to OuterLoop if they are
   // not part of the inner loop.
-  const std::vector<Loop*> &SubLoops = L->getSubLoops();
-  for (size_t I = 0; I != SubLoops.size(); )
+  const std::vector<Loop *> &SubLoops = L->getSubLoops();
+  for (size_t I = 0; I != SubLoops.size();)
     if (BlocksInL.count(SubLoops[I]->getHeader()))
-      ++I;   // Loop remains in L
+      ++I; // Loop remains in L
     else
       NewOuter->addChildLoop(L->removeChildLoop(SubLoops.begin() + I));
 
@@ -372,13 +372,14 @@ static BasicBlock *insertUniqueBackedgeBlock(Loop *L, BasicBlock *Preheader,
   assert(!Header->isEHPad() && "Can't insert backedge to EH pad");
 
   // Figure out which basic blocks contain back-edges to the loop header.
-  std::vector<BasicBlock*> BackedgeBlocks;
+  std::vector<BasicBlock *> BackedgeBlocks;
   for (BasicBlock *P : predecessors(Header)) {
     // Indirect edges cannot be split, so we must fail if we find one.
     if (isa<IndirectBrInst>(P->getTerminator()))
       return nullptr;
 
-    if (P != Preheader) BackedgeBlocks.push_back(P);
+    if (P != Preheader)
+      BackedgeBlocks.push_back(P);
   }
 
   // Create and insert the new backedge block...
@@ -399,7 +400,7 @@ static BasicBlock *insertUniqueBackedgeBlock(Loop *L, BasicBlock *Preheader,
   for (BasicBlock::iterator I = Header->begin(); isa<PHINode>(I); ++I) {
     PHINode *PN = cast<PHINode>(I);
     PHINode *NewPN = PHINode::Create(PN->getType(), BackedgeBlocks.size(),
-                                     PN->getName()+".be", BETerminator);
+                                     PN->getName() + ".be", BETerminator);
 
     // Loop over the PHI node, moving all entries except the one for the
     // preheader over to the new PHI node.
@@ -429,8 +430,8 @@ static BasicBlock *insertUniqueBackedgeBlock(Loop *L, BasicBlock *Preheader,
       PN->setIncomingBlock(0, PN->getIncomingBlock(PreheaderIdx));
     }
     // Nuke all entries except the zero'th.
-    for (unsigned i = 0, e = PN->getNumIncomingValues()-1; i != e; ++i)
-      PN->removeIncomingValue(e-i, false);
+    for (unsigned i = 0, e = PN->getNumIncomingValues() - 1; i != e; ++i)
+      PN->removeIncomingValue(e - i, false);
 
     // Finally, add the newly constructed PHI node as the entry for the BEBlock.
     PN->addIncoming(NewPN, BEBlock);
@@ -479,7 +480,8 @@ static BasicBlock *insertUniqueBackedgeBlock(Loop *L, BasicBlock *Preheader,
 static bool simplifyOneLoop(Loop *L, SmallVectorImpl<Loop *> &Worklist,
                             DominatorTree *DT, LoopInfo *LI,
                             ScalarEvolution *SE, AssumptionCache *AC,
-                            MemorySSAUpdater *MSSAU, bool PreserveLCSSA) {
+                            MemorySSAUpdater *MSSAU, bool PreserveLCSSA,
+                            OptimizationRemarkEmitter *ORE) {
   bool Changed = false;
   if (MSSAU && VerifyMemorySSA)
     MSSAU->getMemorySSA()->verifyMemorySSA();
@@ -494,7 +496,7 @@ ReprocessLoop:
     if (BB == L->getHeader())
       continue;
 
-    SmallPtrSet<BasicBlock*, 4> BadPreds;
+    SmallPtrSet<BasicBlock *, 4> BadPreds;
     for (BasicBlock *P : predecessors(BB))
       if (!L->contains(P))
         BadPreds.insert(P);
@@ -504,6 +506,11 @@ ReprocessLoop:
 
       LLVM_DEBUG(dbgs() << "LoopSimplify: Deleting edge from dead predecessor "
                         << P->getName() << "\n");
+      ORE->emit([&]() {
+        return OptimizationRemark(DEBUG_TYPE, "DeadPred", BB->getTerminator())
+               << "deleting edge from dead predecessor "
+               << llvm::ore::NV("Predecessor", P->getTerminator());
+      });
 
       // Zap the dead pred's terminator and replace it with unreachable.
       Instruction *TI = P->getTerminator();
@@ -519,7 +526,7 @@ ReprocessLoop:
   // If there are exiting blocks with branches on undef, resolve the undef in
   // the direction which will exit the loop. This will help simplify loop
   // trip count computations.
-  SmallVector<BasicBlock*, 8> ExitingBlocks;
+  SmallVector<BasicBlock *, 8> ExitingBlocks;
   L->getExitingBlocks(ExitingBlocks);
   for (BasicBlock *ExitingBlock : ExitingBlocks)
     if (BranchInst *BI = dyn_cast<BranchInst>(ExitingBlock->getTerminator()))
@@ -529,6 +536,11 @@ ReprocessLoop:
           LLVM_DEBUG(dbgs()
                      << "LoopSimplify: Resolving \"br i1 undef\" to exit in "
                      << ExitingBlock->getName() << "\n");
+          ORE->emit([&] {
+            return OptimizationRemark(DEBUG_TYPE, "UndefCond", BI)
+                   << "resolving \"br i1 undef\" to exit in "
+                   << ore::NV("ExitingBlock", ExitingBlock->getName());
+          });
 
           BI->setCondition(ConstantInt::get(Cond->getType(),
                                             !L->contains(BI->getSuccessor(0))));
@@ -596,9 +608,10 @@ ReprocessLoop:
   // down to 'X = phi [X, Y]', which should be replaced with 'Y'.
   PHINode *PN;
   for (BasicBlock::iterator I = L->getHeader()->begin();
-       (PN = dyn_cast<PHINode>(I++)); )
+       (PN = dyn_cast<PHINode>(I++));)
     if (Value *V = simplifyInstruction(PN, {DL, nullptr, DT, AC})) {
-      if (SE) SE->forgetValue(PN);
+      if (SE)
+        SE->forgetValue(PN);
       if (!PreserveLCSSA || LI->replacementPreservesLCSSAForm(PN, V)) {
         PN->replaceAllUsesWith(V);
         PN->eraseFromParent();
@@ -633,17 +646,21 @@ ReprocessLoop:
   if (HasUniqueExitBlock()) {
     for (unsigned i = 0, e = ExitingBlocks.size(); i != e; ++i) {
       BasicBlock *ExitingBlock = ExitingBlocks[i];
-      if (!ExitingBlock->getSinglePredecessor()) continue;
+      if (!ExitingBlock->getSinglePredecessor())
+        continue;
       BranchInst *BI = dyn_cast<BranchInst>(ExitingBlock->getTerminator());
-      if (!BI || !BI->isConditional()) continue;
+      if (!BI || !BI->isConditional())
+        continue;
       CmpInst *CI = dyn_cast<CmpInst>(BI->getCondition());
-      if (!CI || CI->getParent() != ExitingBlock) continue;
+      if (!CI || CI->getParent() != ExitingBlock)
+        continue;
 
       // Attempt to hoist out all instructions except for the
       // comparison and the branch.
       bool AllInvariant = true;
       bool AnyInvariant = false;
-      for (auto I = ExitingBlock->instructionsWithoutDebug().begin(); &*I != BI; ) {
+      for (auto I = ExitingBlock->instructionsWithoutDebug().begin();
+           &*I != BI;) {
         Instruction *Inst = &*I++;
         if (Inst == CI)
           continue;
@@ -656,7 +673,8 @@ ReprocessLoop:
       }
       if (AnyInvariant)
         Changed = true;
-      if (!AllInvariant) continue;
+      if (!AllInvariant)
+        continue;
 
       // The block has now been cleared of all instructions except for
       // a comparison and a conditional branch. SimplifyCFG may be able
@@ -668,6 +686,11 @@ ReprocessLoop:
       // update the dominator tree and delete it.
       LLVM_DEBUG(dbgs() << "LoopSimplify: Eliminating exiting block "
                         << ExitingBlock->getName() << "\n");
+      ORE->emit([&]() {
+        return OptimizationRemark(DEBUG_TYPE, "ElimExitingBlock", BI)
+               << "eliminating exiting block "
+               << ore::NV("ExitingBlock", ExitingBlock->getName());
+      });
 
       assert(pred_empty(ExitingBlock));
       Changed = true;
@@ -707,7 +730,8 @@ ReprocessLoop:
 
 bool llvm::simplifyLoop(Loop *L, DominatorTree *DT, LoopInfo *LI,
                         ScalarEvolution *SE, AssumptionCache *AC,
-                        MemorySSAUpdater *MSSAU, bool PreserveLCSSA) {
+                        MemorySSAUpdater *MSSAU, bool PreserveLCSSA,
+                        OptimizationRemarkEmitter *ORE) {
   bool Changed = false;
 
 #ifndef NDEBUG
@@ -735,55 +759,55 @@ bool llvm::simplifyLoop(Loop *L, DominatorTree *DT, LoopInfo *LI,
 
   while (!Worklist.empty())
     Changed |= simplifyOneLoop(Worklist.pop_back_val(), Worklist, DT, LI, SE,
-                               AC, MSSAU, PreserveLCSSA);
+                               AC, MSSAU, PreserveLCSSA, ORE);
 
   return Changed;
 }
 
 namespace {
-  struct LoopSimplify : public FunctionPass {
-    static char ID; // Pass identification, replacement for typeid
-    LoopSimplify() : FunctionPass(ID) {
-      initializeLoopSimplifyPass(*PassRegistry::getPassRegistry());
-    }
+struct LoopSimplify : public FunctionPass {
+  static char ID; // Pass identification, replacement for typeid
+  LoopSimplify() : FunctionPass(ID) {
+    initializeLoopSimplifyPass(*PassRegistry::getPassRegistry());
+  }
 
-    bool runOnFunction(Function &F) override;
+  bool runOnFunction(Function &F) override;
 
-    void getAnalysisUsage(AnalysisUsage &AU) const override {
-      AU.addRequired<AssumptionCacheTracker>();
+  void getAnalysisUsage(AnalysisUsage &AU) const override {
+    AU.addRequired<AssumptionCacheTracker>();
 
-      // We need loop information to identify the loops...
-      AU.addRequired<DominatorTreeWrapperPass>();
-      AU.addPreserved<DominatorTreeWrapperPass>();
+    // We need loop information to identify the loops...
+    AU.addRequired<DominatorTreeWrapperPass>();
+    AU.addPreserved<DominatorTreeWrapperPass>();
 
-      AU.addRequired<LoopInfoWrapperPass>();
-      AU.addPreserved<LoopInfoWrapperPass>();
+    AU.addRequired<LoopInfoWrapperPass>();
+    AU.addPreserved<LoopInfoWrapperPass>();
 
-      AU.addPreserved<BasicAAWrapperPass>();
-      AU.addPreserved<AAResultsWrapperPass>();
-      AU.addPreserved<GlobalsAAWrapperPass>();
-      AU.addPreserved<ScalarEvolutionWrapperPass>();
-      AU.addPreserved<SCEVAAWrapperPass>();
-      AU.addPreservedID(LCSSAID);
-      AU.addPreserved<DependenceAnalysisWrapperPass>();
-      AU.addPreservedID(BreakCriticalEdgesID);  // No critical edges added.
-      AU.addPreserved<BranchProbabilityInfoWrapperPass>();
-      AU.addPreserved<MemorySSAWrapperPass>();
-    }
+    AU.addPreserved<BasicAAWrapperPass>();
+    AU.addPreserved<AAResultsWrapperPass>();
+    AU.addPreserved<GlobalsAAWrapperPass>();
+    AU.addPreserved<ScalarEvolutionWrapperPass>();
+    AU.addPreserved<SCEVAAWrapperPass>();
+    AU.addPreservedID(LCSSAID);
+    AU.addPreserved<DependenceAnalysisWrapperPass>();
+    AU.addPreservedID(BreakCriticalEdgesID); // No critical edges added.
+    AU.addPreserved<BranchProbabilityInfoWrapperPass>();
+    AU.addPreserved<MemorySSAWrapperPass>();
+  }
 
-    /// verifyAnalysis() - Verify LoopSimplifyForm's guarantees.
-    void verifyAnalysis() const override;
-  };
-}
+  /// verifyAnalysis() - Verify LoopSimplifyForm's guarantees.
+  void verifyAnalysis() const override;
+};
+} // namespace
 
 char LoopSimplify::ID = 0;
 INITIALIZE_PASS_BEGIN(LoopSimplify, "loop-simplify",
-                "Canonicalize natural loops", false, false)
+                      "Canonicalize natural loops", false, false)
 INITIALIZE_PASS_DEPENDENCY(AssumptionCacheTracker)
 INITIALIZE_PASS_DEPENDENCY(DominatorTreeWrapperPass)
 INITIALIZE_PASS_DEPENDENCY(LoopInfoWrapperPass)
-INITIALIZE_PASS_END(LoopSimplify, "loop-simplify",
-                "Canonicalize natural loops", false, false)
+INITIALIZE_PASS_END(LoopSimplify, "loop-simplify", "Canonicalize natural loops",
+                    false, false)
 
 // Publicly exposed interface to pass...
 char &llvm::LoopSimplifyID = LoopSimplify::ID;
@@ -812,7 +836,8 @@ bool LoopSimplify::runOnFunction(Function &F) {
 
   // Simplify each loop nest in the function.
   for (auto *L : *LI)
-    Changed |= simplifyLoop(L, DT, LI, SE, AC, MSSAU.get(), PreserveLCSSA);
+    Changed |=
+        simplifyLoop(L, DT, LI, SE, AC, MSSAU.get(), PreserveLCSSA, nullptr);
 
 #ifndef NDEBUG
   if (PreserveLCSSA) {
@@ -832,18 +857,18 @@ PreservedAnalyses LoopSimplifyPass::run(Function &F,
   ScalarEvolution *SE = AM.getCachedResult<ScalarEvolutionAnalysis>(F);
   AssumptionCache *AC = &AM.getResult<AssumptionAnalysis>(F);
   auto *MSSAAnalysis = AM.getCachedResult<MemorySSAAnalysis>(F);
+  auto ORE = &AM.getResult<OptimizationRemarkEmitterAnalysis>(F);
   std::unique_ptr<MemorySSAUpdater> MSSAU;
   if (MSSAAnalysis) {
     auto *MSSA = &MSSAAnalysis->getMSSA();
     MSSAU = std::make_unique<MemorySSAUpdater>(MSSA);
   }
 
-
   // Note that we don't preserve LCSSA in the new PM, if you need it run LCSSA
   // after simplifying the loops. MemorySSA is preserved if it exists.
   for (auto *L : *LI)
-    Changed |=
-        simplifyLoop(L, DT, LI, SE, AC, MSSAU.get(), /*PreserveLCSSA*/ false);
+    Changed |= simplifyLoop(L, DT, LI, SE, AC, MSSAU.get(),
+                            /*PreserveLCSSA*/ false, ORE);
 
   if (!Changed)
     return PreservedAnalyses::all();
