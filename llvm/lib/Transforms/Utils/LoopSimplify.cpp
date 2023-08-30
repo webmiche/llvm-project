@@ -506,11 +506,13 @@ ReprocessLoop:
 
       LLVM_DEBUG(dbgs() << "LoopSimplify: Deleting edge from dead predecessor "
                         << P->getName() << "\n");
-      ORE->emit([&]() {
-        return OptimizationRemark(DEBUG_TYPE, "DeadPred", BB->getTerminator())
-               << "deleting edge from dead predecessor "
-               << llvm::ore::NV("Predecessor", P->getTerminator());
-      });
+      if (ORE) {
+        ORE->emit([&]() {
+          return OptimizationRemark(DEBUG_TYPE, "DeadPred", BB->getTerminator())
+                 << "deleting edge from dead predecessor "
+                 << llvm::ore::NV("Predecessor", P->getTerminator());
+        });
+      }
 
       // Zap the dead pred's terminator and replace it with unreachable.
       Instruction *TI = P->getTerminator();
@@ -536,11 +538,13 @@ ReprocessLoop:
           LLVM_DEBUG(dbgs()
                      << "LoopSimplify: Resolving \"br i1 undef\" to exit in "
                      << ExitingBlock->getName() << "\n");
-          ORE->emit([&] {
-            return OptimizationRemark(DEBUG_TYPE, "UndefCond", BI)
-                   << "resolving \"br i1 undef\" to exit in "
-                   << ore::NV("ExitingBlock", ExitingBlock->getName());
-          });
+          if (ORE) {
+            ORE->emit([&] {
+              return OptimizationRemark(DEBUG_TYPE, "UndefCond", BI)
+                     << "resolving \"br i1 undef\" to exit in "
+                     << ore::NV("ExitingBlock", ExitingBlock->getName());
+            });
+          }
 
           BI->setCondition(ConstantInt::get(Cond->getType(),
                                             !L->contains(BI->getSuccessor(0))));
@@ -686,11 +690,13 @@ ReprocessLoop:
       // update the dominator tree and delete it.
       LLVM_DEBUG(dbgs() << "LoopSimplify: Eliminating exiting block "
                         << ExitingBlock->getName() << "\n");
-      ORE->emit([&]() {
-        return OptimizationRemark(DEBUG_TYPE, "ElimExitingBlock", BI)
-               << "eliminating exiting block "
-               << ore::NV("ExitingBlock", ExitingBlock->getName());
-      });
+      if (ORE) {
+        ORE->emit([&]() {
+          return OptimizationRemark(DEBUG_TYPE, "ElimExitingBlock", BI)
+                 << "eliminating exiting block "
+                 << ore::NV("ExitingBlock", ExitingBlock->getName());
+        });
+      }
 
       assert(pred_empty(ExitingBlock));
       Changed = true;
