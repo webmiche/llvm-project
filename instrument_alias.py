@@ -763,7 +763,7 @@ class InstrumentAlias:
         #    True,
         # )
         # print("Time after may exploration: " + str(time.time() - self.start_time))
-        results = self.exploration(
+        results = self.genetic_search(
             files,
             False,
         )
@@ -1061,6 +1061,150 @@ class InstrumentAlias:
             cwd=self.exec_root,
             stdout=DEVNULL,
         )
+
+    def genetic_search(self, files: list[Path], take_may: bool):
+        description: Path = Path("may") if take_may else Path("std")
+        os.mkdir(Path("alias_queries/").joinpath(description))
+        os.mkdir(Path("res/").joinpath(description))
+
+        print("Track AA Queries " + str(description))
+        info_per_file_per_pass_per_func = {}
+        count_per_file = {}
+        with Pool() as p:
+            p.starmap(
+                self.compute_aa_trace,
+                [(f, take_may, description) for f in files],
+            )
+        for f in files:
+            aa_count, pass_list = self.parse_trace(
+                str(Path("alias_queries/").joinpath(description, f.with_suffix(".txt")))
+            )
+            info_per_file_per_pass_per_func[f] = (aa_count, pass_list)
+
+            count_func = {}
+            for k, v in aa_count.items():
+                for k2, v2 in v.items():
+                    if k2 not in count_func.keys():
+                        count_func[k2] = 0
+                    count_func[k2] += v2
+            count_per_file[f] = count_func
+
+        print("counts per function per file: " + str(count_per_file))
+        print("Time after AA Query measurement: " + str(time.time() - self.start_time))
+
+        results = {}
+
+        print("Start Exploration")
+        for file_name in count_per_file.keys():
+            print("***** Next file: " + str(file_name))
+            curr_results = {}
+            for function in count_per_file[file_name].keys():
+                print("==== Next function: " + function)
+                # self.function_encoding[function] = str(self.func_count)
+                self.func_count += 1
+                # curr_path: Path = self.instr_dir.joinpath(
+                #     Path(str(self.function_encoding[function]))
+                # )
+                # if not os.path.exists(curr_path):
+                #     os.makedirs(curr_path, exist_ok=True)
+
+                aa_count, pass_list = info_per_file_per_pass_per_func[file_name]
+                os.makedirs(
+                    str(self.instr_dir.joinpath(file_name).parent), exist_ok=True
+                )
+                import numpy
+                import pygad
+
+                function_inputs = [0] * count_per_file[file_name][function]
+                desired_output = 0
+
+                def fitness_func(ga_instance, solution, solution_idx):
+                    index_list = []
+                    for i, val in enumerate(solution):
+                        if val:
+                            index_list.append(i)
+                    i = 0
+                    self.run_step_single_func(
+                        file_name, i, index_list, function, take_may
+                    )
+                    count = self.assemble_and_measure_file(
+                        self.instr_dir.joinpath(
+                            file_name.parent, str(i) + str(file_name.stem) + ".bc"
+                        )
+                    )
+
+                    return -count
+
+                fitness_function = fitness_func
+                num_generations = 100
+                num_parents_mating = 4
+
+                init_range_low = 0
+                init_range_high = 1
+
+                initial_population = [function_inputs]
+                for i in range(num_parents_mating - 1):
+                    initial_population.append(
+                        numpy.random.randint(
+                            low=init_range_low,
+                            high=init_range_high + 1,
+                            size=count_per_file[file_name][function],
+                        )
+                    )
+
+                parent_selection_type = "tournament"
+
+                crossover_type = "two_points"
+
+                mutation_type = "random"
+                mutation_percent_genes = 10
+
+                ga_instance = pygad.GA(
+                    gene_type=int,
+                    gene_space=[0, 1],
+                    num_generations=num_generations,
+                    num_parents_mating=num_parents_mating,
+                    fitness_func=fitness_function,
+                    initial_population=initial_population,
+                    init_range_low=init_range_low,
+                    init_range_high=init_range_high,
+                    parent_selection_type=parent_selection_type,
+                    crossover_type=crossover_type,
+                    mutation_type=mutation_type,
+                    mutation_percent_genes=mutation_percent_genes,
+                )
+
+                ga_instance.run()
+
+                solution, solution_fitness, solution_idx = ga_instance.best_solution()
+                index_list = []
+                for i, val in enumerate(solution):
+                    if val:
+                        index_list.append(i)
+                print(
+                    "Parameters of the best solution : {solution}".format(
+                        solution=index_list
+                    )
+                )
+                print(
+                    "Fitness value of the best solution = {solution_fitness}".format(
+                        solution_fitness=solution_fitness
+                    )
+                )
+                curr_results[function] = index_list, solution_fitness
+
+            results[file_name] = curr_results
+            print(
+                "Time after exploration of "
+                + str(file_name)
+                + ": "
+                + str(time.time() - self.start_time)
+            )
+
+        print("found results: " + str(results))
+        print("time after exploration: " + str(time.time() - self.start_time))
+
+        return results
 
 
 @dataclass
