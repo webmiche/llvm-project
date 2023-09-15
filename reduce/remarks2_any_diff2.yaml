@@ -1,0 +1,242 @@
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 4, 
+                   Column: 10 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressCondExecuted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 5, 
+                   Column: 19 }
+Function:        price_out_impl
+Args:
+  - String:          failed to hoist load with loop-invariant address because load is conditionally executed
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressCondExecuted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 6, 
+                   Column: 7 }
+Function:        price_out_impl
+Args:
+  - String:          failed to hoist load with loop-invariant address because load is conditionally executed
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressCondExecuted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 6, 
+                   Column: 9 }
+Function:        price_out_impl
+Args:
+  - String:          failed to hoist load with loop-invariant address because load is conditionally executed
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 4, 
+                   Column: 10 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 5, 
+                   Column: 19 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            load
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 5, Column: 19 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 5, 
+                   Column: 19 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            sext
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 5, Column: 19 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 5, 
+                   Column: 19 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            inttoptr
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 5, Column: 19 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 5, 
+                   Column: 16 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 5, Column: 16 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 6, 
+                   Column: 7 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            load
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 6, Column: 7 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 6, 
+                   Column: 9 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            load
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 6, 
+                   Column: 7 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            sext
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 6, Column: 7 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 6, 
+                   Column: 7 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 6, Column: 7 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 4, 
+                   Column: 10 }
+Function:        price_out_impl
+Args:
+  - String:          'load of type '
+  - Type:            i32
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     store
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 6, Column: 12 }
+...
+--- !Passed
+Pass:            gvn
+Name:            LoadPRE
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 4, 
+                   Column: 10 }
+Function:        price_out_impl
+Args:
+  - String:          load eliminated by PRE
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 4, 
+                   Column: 10 }
+Function:        price_out_impl
+Args:
+  - String:          'load of type '
+  - Type:            i32
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     load
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 4, Column: 10 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     store
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 6, Column: 12 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 4, 
+                   Column: 10 }
+Function:        price_out_impl
+Args:
+  - String:          'load of type '
+  - Type:            i32
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     load
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 4, Column: 10 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     store
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 6, Column: 12 }
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 4, 
+                   Column: 10 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            loop-vectorize
+Name:            MissedDetails
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 4, 
+                   Column: 3 }
+Function:        price_out_impl
+Args:
+  - String:          loop not vectorized
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 4, 
+                   Column: 3 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 4, Column: 3 }
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 4, 
+                   Column: 10 }
+Function:        price_out_impl
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...

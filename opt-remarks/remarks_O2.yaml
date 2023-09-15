@@ -1,0 +1,281 @@
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 4, 
+                   Column: 10 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            load
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 4, Column: 10 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 4, 
+                   Column: 3 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 4, Column: 3 }
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressCondExecuted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 5, 
+                   Column: 19 }
+Function:        price_out_impl
+Args:
+  - String:          failed to hoist load with loop-invariant address because load is conditionally executed
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressCondExecuted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 6, 
+                   Column: 7 }
+Function:        price_out_impl
+Args:
+  - String:          failed to hoist load with loop-invariant address because load is conditionally executed
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressCondExecuted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 6, 
+                   Column: 9 }
+Function:        price_out_impl
+Args:
+  - String:          failed to hoist load with loop-invariant address because load is conditionally executed
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 5, 
+                   Column: 19 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            load
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 5, Column: 19 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 5, 
+                   Column: 19 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            sext
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 5, Column: 19 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 5, 
+                   Column: 19 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            inttoptr
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 5, Column: 19 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 5, 
+                   Column: 16 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 5, Column: 16 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 6, 
+                   Column: 7 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            load
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 6, Column: 7 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 6, 
+                   Column: 9 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            load
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 6, 
+                   Column: 7 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            sext
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 6, Column: 7 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 6, 
+                   Column: 7 }
+Function:        price_out_impl
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, 
+                       Line: 6, Column: 7 }
+...
+--- !Analysis
+Pass:            loop-vectorize
+Name:            NoInductionVariable
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 4, 
+                   Column: 3 }
+Function:        price_out_impl
+Args:
+  - String:          'loop not vectorized: '
+  - String:          loop induction variable could not be identified
+...
+--- !Analysis
+Pass:            loop-vectorize
+Name:            CantComputeNumberOfIterations
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 4, 
+                   Column: 3 }
+Function:        price_out_impl
+Args:
+  - String:          'loop not vectorized: '
+  - String:          could not determine number of loop iterations
+...
+--- !Missed
+Pass:            loop-vectorize
+Name:            MissedDetails
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 4, 
+                   Column: 3 }
+Function:        price_out_impl
+Args:
+  - String:          loop not vectorized
+...
+--- !Analysis
+Pass:            prologepilog
+Name:            StackSize
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 3, 
+                   Column: 0 }
+Function:        price_out_impl
+Args:
+  - NumStackBytes:   '0'
+  - String:          ' stack bytes in function'
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+Function:        price_out_impl
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      entry
+  - String:          "\n"
+  - String:          'cmpl	'
+  - String:          ': '
+  - INST_cmpl:       '1'
+  - String:          "\n"
+  - String:          j
+  - String:          ': '
+  - INST_j:          '1'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+Function:        price_out_impl
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      while.body.lr.ph
+  - String:          "\n"
+  - String:          'movq	'
+  - String:          ': '
+  - INST_movq:       '2'
+  - String:          "\n"
+  - String:          'movslq	'
+  - String:          ': '
+  - INST_movslq:     '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+Function:        price_out_impl
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      while.body
+  - String:          "\n"
+  - String:          'cmpq	'
+  - String:          ': '
+  - INST_cmpq:       '1'
+  - String:          "\n"
+  - String:          j
+  - String:          ': '
+  - INST_j:          '1'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 6, 
+                   Column: 12 }
+Function:        price_out_impl
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      if.then
+  - String:          "\n"
+  - String:          'jmp	'
+  - String:          ': '
+  - INST_jmp:        '1'
+  - String:          "\n"
+  - String:          'movq	'
+  - String:          ': '
+  - INST_movq:       '1'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 7, 
+                   Column: 1 }
+Function:        price_out_impl
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      while.end
+  - String:          "\n"
+  - String:          retq
+  - String:          ': '
+  - INST_retq:       '1'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionCount
+DebugLoc:        { File: implicit_preprocessed_try_all_any_diff.c, Line: 3, 
+                   Column: 0 }
+Function:        price_out_impl
+Args:
+  - NumInstructions: '11'
+  - String:          ' instructions in function'
+...

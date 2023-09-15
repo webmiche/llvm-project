@@ -1,87 +1,71 @@
-!Missed
+!Passed
 Added: false
 Args:
-- String: 'load of type '
-- Type: i32
-- String: ' not eliminated'
-- String: ' because it is clobbered by '
-- ClobberedBy: call
-  DebugLoc:
-    Column: 7
-    File: implicit_preprocessed_try_all.c
-    Line: 11
-DebugLoc:
-  Column: 10
-  File: implicit_preprocessed_try_all.c
-  Line: 9
-Function: price_out_impl
-Hotness: 0
-Name: LoadClobbered
-Pass: gvn
-max_hotness: 0
---- !Missed
-Added: true
-Args:
-- String: 'load of type '
-- Type: i32
-- String: ' not eliminated'
-- String: ' because it is clobbered by '
-- ClobberedBy: store
-  DebugLoc:
-    Column: 14
-    File: implicit_preprocessed_try_all.c
-    Line: 15
-DebugLoc:
-  Column: 10
-  File: implicit_preprocessed_try_all.c
-  Line: 9
-Function: price_out_impl
-Hotness: 0
-Name: LoadClobbered
-Pass: gvn
-max_hotness: 0
---- !Missed
-Added: true
-Args:
-- String: 'load of type '
-- Type: ptr
-- String: ' not eliminated'
-- String: ' in favor of '
+- String: 'hoisting '
 - DebugLoc:
-    Column: 9
-    File: implicit_preprocessed_try_all.c
-    Line: 10
-  OtherAccess: load
-- String: ' because it is clobbered by '
-- ClobberedBy: store
-  DebugLoc:
-    Column: 11
-    File: implicit_preprocessed_try_all.c
-    Line: 12
+    Column: 10
+    File: implicit_preprocessed_try_all_any_diff.c
+    Line: 4
+  Inst: load
 DebugLoc:
-  Column: 12
-  File: implicit_preprocessed_try_all.c
-  Line: 13
+  Column: 10
+  File: implicit_preprocessed_try_all_any_diff.c
+  Line: 4
 Function: price_out_impl
 Hotness: 0
-Name: LoadClobbered
-Pass: gvn
+Name: Hoisted
+Pass: licm
 max_hotness: 0
 --- !Passed
-Added: false
+Added: true
 Args:
 - String: load eliminated by PRE
 DebugLoc:
   Column: 10
-  File: implicit_preprocessed_try_all.c
-  Line: 9
+  File: implicit_preprocessed_try_all_any_diff.c
+  Line: 4
 Function: price_out_impl
 Hotness: 0
 Name: LoadPRE
 Pass: gvn
 max_hotness: 0
 --- !Missed
-Added: false
+Added: true
+Args:
+- String: failed to move load with loop-invariant address because the loop may invalidate
+    its value
+DebugLoc:
+  Column: 10
+  File: implicit_preprocessed_try_all_any_diff.c
+  Line: 4
+Function: price_out_impl
+Hotness: 0
+Name: LoadWithLoopInvariantAddressInvalidated
+Pass: licm
+max_hotness: 0
+--- !Missed
+Added: true
+Args:
+- String: 'load of type '
+- Type: i32
+- String: ' not eliminated'
+- String: ' because it is clobbered by '
+- ClobberedBy: store
+  DebugLoc:
+    Column: 12
+    File: implicit_preprocessed_try_all_any_diff.c
+    Line: 6
+DebugLoc:
+  Column: 10
+  File: implicit_preprocessed_try_all_any_diff.c
+  Line: 4
+Function: price_out_impl
+Hotness: 0
+Name: LoadClobbered
+Pass: gvn
+max_hotness: 0
+--- !Missed
+Added: true
 Args:
 - String: 'load of type '
 - Type: i32
@@ -89,149 +73,21 @@ Args:
 - String: ' in favor of '
 - DebugLoc:
     Column: 10
-    File: implicit_preprocessed_try_all.c
-    Line: 9
-  OtherAccess: load
-- String: ' because it is clobbered by '
-- ClobberedBy: call
-  DebugLoc:
-    Column: 7
-    File: implicit_preprocessed_try_all.c
-    Line: 11
-DebugLoc:
-  Column: 10
-  File: implicit_preprocessed_try_all.c
-  Line: 9
-Function: price_out_impl
-Hotness: 0
-Name: LoadClobbered
-Pass: gvn
-max_hotness: 0
---- !Missed
-Added: true
-Args:
-- String: 'load of type '
-- Type: ptr
-- String: ' not eliminated'
-- String: ' in favor of '
-- DebugLoc:
-    Column: 7
-    File: implicit_preprocessed_try_all.c
-    Line: 7
+    File: implicit_preprocessed_try_all_any_diff.c
+    Line: 4
   OtherAccess: load
 - String: ' because it is clobbered by '
 - ClobberedBy: store
   DebugLoc:
-    Column: 14
-    File: implicit_preprocessed_try_all.c
-    Line: 15
-DebugLoc:
-  Column: 9
-  File: implicit_preprocessed_try_all.c
-  Line: 10
-Function: price_out_impl
-Hotness: 0
-Name: LoadClobbered
-Pass: gvn
-max_hotness: 0
---- !Passed
-Added: false
-Args:
-- String: 'hoisting '
-- DebugLoc:
-    Column: 3
-    File: implicit_preprocessed_try_all.c
-    Line: 9
-  Inst: icmp
-DebugLoc:
-  Column: 3
-  File: implicit_preprocessed_try_all.c
-  Line: 9
-Function: price_out_impl
-Hotness: 0
-Name: Hoisted
-Pass: licm
-max_hotness: 0
---- !Passed
-Added: false
-Args:
-- String: 'load of type '
-- Type: ptr
-- String: ' eliminated'
-- String: ' in favor of '
-- InfavorOfValue: phi
-DebugLoc:
-  Column: 9
-  File: implicit_preprocessed_try_all.c
-  Line: 10
-Function: price_out_impl
-Hotness: 0
-Name: LoadElim
-Pass: gvn
-max_hotness: 0
---- !Missed
-Added: false
-Args:
-- String: 'load of type '
-- Type: ptr
-- String: ' not eliminated'
-- String: ' in favor of '
-- DebugLoc:
-    Column: 7
-    File: implicit_preprocessed_try_all.c
-    Line: 7
-  OtherAccess: load
-- String: ' because it is clobbered by '
-- ClobberedBy: call
-  DebugLoc:
-    Column: 7
-    File: implicit_preprocessed_try_all.c
-    Line: 11
-DebugLoc:
-  Column: 12
-  File: implicit_preprocessed_try_all.c
-  Line: 13
-Function: price_out_impl
-Hotness: 0
-Name: LoadClobbered
-Pass: gvn
-max_hotness: 0
---- !Missed
-Added: true
-Args:
-- String: 'load of type '
-- Type: i32
-- String: ' not eliminated'
-- String: ' because it is clobbered by '
-- ClobberedBy: store
-  DebugLoc:
-    Column: 11
-    File: implicit_preprocessed_try_all.c
-    Line: 12
+    Column: 12
+    File: implicit_preprocessed_try_all_any_diff.c
+    Line: 6
 DebugLoc:
   Column: 10
-  File: implicit_preprocessed_try_all.c
-  Line: 9
+  File: implicit_preprocessed_try_all_any_diff.c
+  Line: 4
 Function: price_out_impl
 Hotness: 0
 Name: LoadClobbered
 Pass: gvn
-max_hotness: 0
---- !Passed
-Added: true
-Args:
-- String: 'deleting edge from dead predecessor '
-- DebugLoc:
-    Column: 9
-    File: implicit_preprocessed_try_all.c
-    Line: 15
-  Predecessor: br
-DebugLoc:
-  Column: 3
-  File: implicit_preprocessed_try_all.c
-  Line: 9
-Function: price_out_impl
-Hotness: 0
-Name: DeadPred
-Pass: loop-simplify
 max_hotness: 0

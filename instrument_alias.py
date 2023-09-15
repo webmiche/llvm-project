@@ -5,7 +5,7 @@ from itertools import combinations
 import shutil
 import argparse
 from pathlib import Path, PosixPath
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from multiprocessing import Pool
 import sys
 import time
@@ -35,6 +35,9 @@ class InstrumentAlias:
     function_encoding: dict[str, str]
     opt_flag: str
     func_count: int = 0
+
+    num_binaries: int = 0
+    different_sizes: dict[str, set[int]] = field(default_factory=dict)
 
     def measure_outputsize(self, file: Path) -> int:
         cmd = [str(self.instr_path.joinpath("llvm-size")), str(file)]
@@ -85,7 +88,6 @@ class InstrumentAlias:
         take_may: bool,
     ):
         """Run the step with the given file name for the given function name."""
-
         cmd = [
             str(self.instr_path.joinpath("opt")),
             str(self.initial_dir.joinpath(file_name)),
@@ -166,6 +168,8 @@ class InstrumentAlias:
         for n in range(len(sample_list) + 1):
             list_combinations += list(combinations(sample_list, n))
 
+        self.num_binaries += len(list_combinations)
+
         list_combinations = [prefix_list + list(i) for i in list_combinations]
 
         # compile and measure
@@ -207,13 +211,13 @@ class InstrumentAlias:
         )
 
         for i in range(len(list_combinations)):
-            counts.append(
-                self.measure_outputsize(
-                    self.instr_dir.joinpath(
-                        file_name.parent, str(i) + str(file_name.stem) + ".o"
-                    )
+            size = self.measure_outputsize(
+                self.instr_dir.joinpath(
+                    file_name.parent, str(i) + str(file_name.stem) + ".o"
                 )
             )
+            counts.append(size)
+            self.different_sizes[str(file_name)].add(size)
             lists.append(list_combinations[i])
 
         print("exhaustive search candidates : " + str(list(set(counts))))
@@ -277,6 +281,8 @@ class InstrumentAlias:
                     ],
                 )
 
+            self.num_binaries += upper_bound - lower_bound
+
             print(
                 "greedy search, time after compilation in step "
                 + str(iteration_count)
@@ -308,13 +314,13 @@ class InstrumentAlias:
             )
 
             for i in range(lower_bound, upper_bound):
-                counts.append(
-                    self.measure_outputsize(
-                        self.instr_dir.joinpath(
-                            file_name.parent, str(i) + str(file_name.stem) + ".o"
-                        )
+                size = self.measure_outputsize(
+                    self.instr_dir.joinpath(
+                        file_name.parent, str(i) + str(file_name.stem) + ".o"
                     )
                 )
+                counts.append(size)
+                self.different_sizes[str(file_name)].add(size)
                 os.remove(
                     self.instr_dir.joinpath(
                         file_name.parent, str(i) + str(file_name.stem) + ".bc"
@@ -562,6 +568,7 @@ class InstrumentAlias:
 
         print("Start Exploration")
         for file_name in count_per_file.keys():
+            self.different_sizes[str(file_name)] = set()
             print("***** Next file: " + str(file_name))
             curr_results = {}
             for function in count_per_file[file_name].keys():
@@ -642,7 +649,6 @@ class InstrumentAlias:
                     + ": "
                     + str(time.time() - self.start_time)
                 )
-
             results[file_name] = curr_results
             print(
                 "Time after exploration of "
@@ -654,6 +660,10 @@ class InstrumentAlias:
         print("found results: " + str(results))
         print("time after exploration: " + str(time.time() - self.start_time))
 
+        for file_name in self.different_sizes.keys():
+            print("File: " + file_name)
+            print("Different sizes: " + str(len(self.different_sizes[file_name])))
+        print("Number of binaries: " + str(self.num_binaries))
         return results
 
     def generate_baseline(self):
@@ -665,6 +675,7 @@ class InstrumentAlias:
                 str(self.benchmark),
                 str(self.instr_path.joinpath("clang")),
                 "-bc",
+                "-g",
                 "--opt_level",
                 self.opt_flag,
             ],
@@ -1077,16 +1088,17 @@ class AAChecker:
         # compile with seq and without
         if len(self.sequence) > 1 and self.try_all:
             max_index = self.sequence[-1]
-            for i, comb in enumerate(
-                combinations(range(max_index + 1), len(self.sequence))
-            ):
-                self.aa_instr.run_step_single_func(
-                    self.file_path,
-                    i + 1,
-                    comb,
-                    self.function_name,
-                    False,
-                )
+            i = 0
+            for curr_len in range(1, len(self.sequence) + 1):
+                for comb in combinations(range(max_index + 1), curr_len):
+                    self.aa_instr.run_step_single_func(
+                        self.file_path,
+                        i + 1,
+                        comb,
+                        self.function_name,
+                        False,
+                    )
+                    i = i + 1
 
         else:
             for i in range(self.sequence[0] if self.try_all else 1):
@@ -1110,17 +1122,18 @@ class AAChecker:
         sizes = []
         if len(self.sequence) > 1 and self.try_all:
             max_index = self.sequence[-1]
-            for i, comb in enumerate(
-                combinations(range(max_index + 1), len(self.sequence))
-            ):
-                sizes.append(
-                    self.aa_instr.assemble_and_measure_file(
-                        self.aa_instr.instr_dir.joinpath(
-                            self.file_path.parent,
-                            str(i + 1) + str(self.file_path.stem) + ".bc",
+            i = 0
+            for curr_len in range(1, len(self.sequence) + 1):
+                for _ in combinations(range(max_index + 1), curr_len):
+                    sizes.append(
+                        self.aa_instr.assemble_and_measure_file(
+                            self.aa_instr.instr_dir.joinpath(
+                                self.file_path.parent,
+                                str(i + 1) + str(self.file_path.stem) + ".bc",
+                            )
                         )
                     )
-                )
+                    i = i + 1
         else:
             for i in range(self.sequence[0] if self.try_all else 1):
                 sizes.append(
@@ -1140,21 +1153,22 @@ class AAChecker:
         # delete files
         if len(self.sequence) > 1 and self.try_all:
             max_index = self.sequence[-1]
-            for i, comb in enumerate(
-                combinations(range(max_index + 1), len(self.sequence))
-            ):
-                os.remove(
-                    self.aa_instr.instr_dir.joinpath(
-                        self.file_path.parent,
-                        str(i + 1) + str(self.file_path.stem) + ".bc",
+            i = 0
+            for curr_len in range(1, len(self.sequence) + 1):
+                for _ in combinations(range(max_index + 1), curr_len):
+                    os.remove(
+                        self.aa_instr.instr_dir.joinpath(
+                            self.file_path.parent,
+                            str(i + 1) + str(self.file_path.stem) + ".bc",
+                        )
                     )
-                )
-                os.remove(
-                    self.aa_instr.instr_dir.joinpath(
-                        self.file_path.parent,
-                        str(i + 1) + str(self.file_path.stem) + ".o",
+                    os.remove(
+                        self.aa_instr.instr_dir.joinpath(
+                            self.file_path.parent,
+                            str(i + 1) + str(self.file_path.stem) + ".o",
+                        )
                     )
-                )
+                    i = i + 1
         else:
             for i in range(self.sequence[0] if self.try_all else 1):
                 os.remove(
@@ -1181,8 +1195,8 @@ class AAChecker:
             )
         )
 
-        # print("sizes: " + str(sizes))
-        # print(initial_size)
+        print("sizes: " + str(sizes))
+        print(initial_size)
         # compare sizes
         return any([self.size_diff <= initial_size - size for size in sizes])
 

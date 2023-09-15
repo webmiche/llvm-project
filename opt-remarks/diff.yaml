@@ -1,0 +1,31 @@
+!Missed
+Added: false
+Args:
+- String: loop not vectorized
+DebugLoc:
+  Column: 3
+  File: implicit_preprocessed_try_all_any_diff.c
+  Line: 4
+Function: price_out_impl
+Hotness: 0
+Name: MissedDetails
+Pass: loop-vectorize
+max_hotness: 0
+--- !Passed
+Added: true
+Args:
+- String: 'hoisting '
+- DebugLoc:
+    Column: 12
+    File: implicit_preprocessed_try_all_any_diff.c
+    Line: 6
+  Inst: store
+DebugLoc:
+  Column: 12
+  File: implicit_preprocessed_try_all_any_diff.c
+  Line: 6
+Function: price_out_impl
+Hotness: 0
+Name: Hoisted
+Pass: licm
+max_hotness: 0
