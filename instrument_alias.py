@@ -24,6 +24,21 @@ linked_libraries = {
 }
 
 
+def print_results_dict(results):
+    size_string = ""
+    seq_string = ""
+    for key, file_dict in results.items():
+        size_string += str(key) + "{ "
+        seq_string += str(key) + "{ "
+        for key in file_dict.keys():
+            size_string += str(key) + ": " + str(file_dict[key][1]) + ", "
+            seq_string += str(key) + ": " + str(file_dict[key][0]) + ", "
+        size_string += "} "
+        seq_string += "} "
+    print(size_string)
+    print(seq_string)
+
+
 @dataclass
 class InstrumentAlias:
     instr_path: Path
@@ -730,20 +745,7 @@ class InstrumentAlias:
                 + str(time.time() - self.start_time)
             )
         print("found results: ")
-        size_string = ""
-        for key, file_dict in results.items():
-            size_string += str(key) + "{ "
-            for key in file_dict.keys():
-                size_string += str(key) + ": " + str(file_dict[key][1]) + ", "
-            size_string += "} "
-        print(size_string)
-        seq_string = ""
-        for key, file_dict in results.items():
-            seq_string += str(key) + "{ "
-            for key in file_dict.keys():
-                seq_string += str(key) + ": " + str(file_dict[key][0]) + ", "
-            seq_string += "} "
-        print(seq_string)
+        print_results_dict(results)
         print("time after exploration: " + str(time.time() - self.start_time))
 
         return results
@@ -850,15 +852,20 @@ class InstrumentAlias:
 
         print("Time after file setup: " + str(time.time() - self.start_time))
 
-        # self.exploration(
-        #    files,
-        #    True,
-        # )
-        # print("Time after may exploration: " + str(time.time() - self.start_time))
-        results = self.genetic_search(
-            files,
-            False,
-        )
+        results = self.random_search(files, False, 1000)
+        print("Time after random exploration: " + str(time.time() - self.start_time))
+
+        for p in required_empty_paths:
+            if os.path.exists(p):
+                shutil.rmtree(p)
+            os.mkdir(p)
+
+        for d in dirs:
+            d = d.removeprefix(str(self.initial_dir) + "/")
+            os.makedirs(self.default_may_truth.joinpath("may", d), exist_ok=True)
+            os.makedirs(self.default_may_truth.joinpath("std", d), exist_ok=True)
+
+        results = self.genetic_search(files, False, 1)
         print("Time after genetic exploration: " + str(time.time() - self.start_time))
 
         for p in required_empty_paths:
@@ -889,21 +896,9 @@ class InstrumentAlias:
 
         print("Time after exploration: " + str(time.time() - self.start_time))
         results = new_results
+
         print("found results: ")
-        size_string = ""
-        for key, file_dict in results.items():
-            size_string += str(key) + "{ "
-            for key in file_dict.keys():
-                size_string += str(key) + ": " + str(file_dict[key][1]) + ", "
-            size_string += "} "
-        print(size_string)
-        seq_string = ""
-        for key, file_dict in results.items():
-            seq_string += str(key) + "{ "
-            for key in file_dict.keys():
-                seq_string += str(key) + ": " + str(file_dict[key][0]) + ", "
-            seq_string += "} "
-        print(seq_string)
+        print_results_dict(results)
         # filter empty lists
         for file_name, seq_per_func_dict in results.items():
             seq_per_func_dict = {
@@ -1217,7 +1212,117 @@ class InstrumentAlias:
 
         return -count * total_length - seq_length
 
-    def genetic_search(self, files: list[Path], take_may: bool):
+    def random_search(self, files: list[Path], take_may: bool, num_samples):
+        description: Path = Path("may") if take_may else Path("std")
+        os.mkdir(Path("alias_queries/").joinpath(description))
+        os.mkdir(Path("res/").joinpath(description))
+
+        print("Track AA Queries " + str(description))
+        info_per_file_per_pass_per_func = {}
+        count_per_file = {}
+        with Pool() as p:
+            p.starmap(
+                self.compute_aa_trace,
+                [(f, take_may, description) for f in files],
+            )
+        for f in files:
+            aa_count, pass_list = self.parse_trace(
+                str(Path("alias_queries/").joinpath(description, f.with_suffix(".txt")))
+            )
+            info_per_file_per_pass_per_func[f] = (aa_count, pass_list)
+
+            count_func = {}
+            for k, v in aa_count.items():
+                for k2, v2 in v.items():
+                    if k2 not in count_func.keys():
+                        count_func[k2] = 0
+                    count_func[k2] += v2
+            count_per_file[f] = count_func
+
+        print("counts per function per file: " + str(count_per_file))
+        print("Time after AA Query measurement: " + str(time.time() - self.start_time))
+
+        results = {}
+        func_count = 0
+        for file_name in count_per_file.keys():
+            func_count += len(count_per_file[file_name].keys())
+
+        print("Start Exploration")
+        for file_name in count_per_file.keys():
+            print("***** Next file: " + str(file_name))
+            curr_results = {}
+            for function in count_per_file[file_name].keys():
+                print("==== Next function: " + function)
+                # self.function_encoding[function] = str(self.func_count)
+                self.func_count += 1
+                # curr_path: Path = self.instr_dir.joinpath(
+                #     Path(str(self.function_encoding[function]))
+                # )
+                # if not os.path.exists(curr_path):
+                #     os.makedirs(curr_path, exist_ok=True)
+
+                os.makedirs(
+                    str(self.instr_dir.joinpath(file_name).parent), exist_ok=True
+                )
+
+                aa_count = count_per_file[file_name][function]
+                print("Number of AA Queries: " + str(aa_count))
+                function_inputs = [0] * aa_count
+
+                population = [function_inputs]
+                for i in range(min(aa_count - 1, num_samples // func_count)):
+                    population.append(
+                        numpy.random.randint(
+                            low=0,
+                            high=2,
+                            size=aa_count,
+                        )
+                    )
+
+                counts = []
+                for i, solution in enumerate(population):
+                    index_list = []
+                    for j, val in enumerate(solution):
+                        if val:
+                            index_list.append(j)
+
+                    total_length = len(solution)
+                    seq_length = len(index_list)
+                    self.run_step_single_func(
+                        file_name, i, index_list, function, take_may
+                    )
+                    count = self.assemble_and_measure_file(
+                        self.instr_dir.joinpath(
+                            file_name.parent, str(i) + str(file_name.stem) + ".bc"
+                        )
+                    )
+                    counts.append(count)
+
+                res_seq = []
+                for i, val in enumerate(population[counts.index(min(counts))]):
+                    if val:
+                        res_seq.append(i)
+                print("Distinct counts: " + str(list(set(counts))))
+                print("Found sequence: " + str(res_seq))
+                print("With size: " + str(min(counts)))
+
+                curr_results[function] = res_seq, min(counts)
+
+            results[file_name] = curr_results
+            print(
+                "Time after exploration of "
+                + str(file_name)
+                + ": "
+                + str(time.time() - self.start_time)
+            )
+
+        print("found results: ")
+        print_results_dict(results)
+        print("time after exploration: " + str(time.time() - self.start_time))
+
+        return results
+
+    def genetic_search(self, files: list[Path], take_may: bool, num_generations):
         description: Path = Path("may") if take_may else Path("std")
         os.mkdir(Path("alias_queries/").joinpath(description))
         os.mkdir(Path("res/").joinpath(description))
@@ -1272,7 +1377,6 @@ class InstrumentAlias:
                 function_inputs = [0] * aa_count
 
                 fitness_function = self.fitness_func
-                num_generations = 75
                 num_parents_mating = 4
 
                 self.file_name = file_name
@@ -1354,20 +1458,7 @@ class InstrumentAlias:
             )
 
         print("found results: ")
-        size_string = ""
-        for key, file_dict in results.items():
-            size_string += str(key) + "{ "
-            for key in file_dict.keys():
-                size_string += str(key) + ": " + str(file_dict[key][1]) + ", "
-            size_string += "} "
-        print(size_string)
-        seq_string = ""
-        for key, file_dict in results.items():
-            seq_string += str(key) + "{ "
-            for key in file_dict.keys():
-                seq_string += str(key) + ": " + str(file_dict[key][0]) + ", "
-            seq_string += "} "
-        print(seq_string)
+        print_results_dict(results)
         print("time after exploration: " + str(time.time() - self.start_time))
 
         return results
