@@ -86,7 +86,6 @@ class InstrumentAlias:
 
     file_name: str = ""
     function: str = ""
-    take_may = False
 
     def measure_outputsize(self, file: Path) -> int:
         cmd = [str(self.instr_path.joinpath("llvm-size")), str(file)]
@@ -311,14 +310,14 @@ class InstrumentAlias:
             upper_bound = min(count, curr_fixed + proc_count)
             if upper_bound == lower_bound:
                 break
-            print(
-                "greedy search, currently checking "
-                + str(lower_bound)
-                + " to "
-                + str(upper_bound)
-                + " out of "
-                + str(count)
-            )
+            # print(
+            #    "greedy search, currently checking "
+            #    + str(lower_bound)
+            #    + " to "
+            #    + str(upper_bound)
+            #    + " out of "
+            #    + str(count)
+            # )
 
             with Pool() as p:
                 p.starmap(
@@ -329,12 +328,12 @@ class InstrumentAlias:
                     ],
                 )
 
-            print(
-                "greedy search, time after compilation in step "
-                + str(iteration_count)
-                + " : "
-                + str(time.time() - self.start_time)
-            )
+            # print(
+            #    "greedy search, time after compilation in step "
+            #    + str(iteration_count)
+            #    + " : "
+            #    + str(time.time() - self.start_time)
+            # )
 
             with Pool() as p:
                 p.starmap(
@@ -352,12 +351,12 @@ class InstrumentAlias:
                     ],
                 )
 
-            print(
-                "greedy search, time after assembly in step "
-                + str(iteration_count)
-                + " : "
-                + str(time.time() - self.start_time)
-            )
+            # print(
+            #    "greedy search, time after assembly in step "
+            #    + str(iteration_count)
+            #    + " : "
+            #    + str(time.time() - self.start_time)
+            # )
 
             for i in range(lower_bound, upper_bound):
                 counts.append(
@@ -400,12 +399,12 @@ class InstrumentAlias:
 
             print("greedy search, new min: " + str(min_count))
             print("greedy search, current list: " + str(curr_list))
-            print(
-                "greedy search, time after step "
-                + str(iteration_count)
-                + " : "
-                + str(time.time() - self.start_time)
-            )
+            # print(
+            #    "greedy search, time after step "
+            #    + str(iteration_count)
+            #    + " : "
+            #    + str(time.time() - self.start_time)
+            # )
             iteration_count += 1
             curr_fixed = lower_bound + min_index + 1
 
@@ -615,55 +614,47 @@ class InstrumentAlias:
         os.remove("tmp_trace15.txt")
         return aa_count, pass_list
 
-    def compute_aa_trace(self, file_name, take_may, description) -> dict:
+    def compute_aa_trace(self, file_name, take_may=False) -> dict:
         os.makedirs(
-            self.default_may_truth.joinpath(description, file_name).parent,
+            self.default_may_truth.joinpath(file_name).parent,
             exist_ok=True,
         )
         os.makedirs(
-            Path("alias_queries/").joinpath(description, file_name).parent,
+            Path("alias_queries/").joinpath(file_name).parent,
             exist_ok=True,
         )
         cmd = [
             str(self.instr_path.joinpath("opt")),
             str(self.initial_dir.joinpath(file_name)),
             "-o",
-            str(self.default_may_truth.joinpath(description, file_name)),
+            str(self.default_may_truth.joinpath(file_name)),
             "--print-aa-per-func",
             "-" + self.opt_flag,
             "--print-pass-names",
         ] + (["--take_may"] if take_may else [])
         p = run(cmd, stdout=PIPE, stderr=DEVNULL, text=True, cwd=self.exec_root)
         with open(
-            str(
-                Path("alias_queries/").joinpath(
-                    description, file_name.with_suffix(".txt")
-                )
-            ),
+            str(Path("alias_queries/").joinpath(file_name.with_suffix(".txt"))),
             "w",
         ) as f:
             f.write(p.stdout)
 
-    def exploration(
+    def deterministic_exploration(
         self,
         files: list[Path],
         take_may: bool,
     ):
-        description: Path = Path("may") if take_may else Path("std")
-        os.mkdir(Path("alias_queries/").joinpath(description))
-        os.mkdir(Path("res/").joinpath(description))
-
-        print("Track AA Queries " + str(description))
+        print("Track AA Queries Deterministic " + str(take_may))
         info_per_file_per_pass_per_func = {}
         count_per_file = {}
         with Pool() as p:
             p.starmap(
                 self.compute_aa_trace,
-                [(f, take_may, description) for f in files],
+                [(f, take_may) for f in files],
             )
         for f in files:
             aa_count, pass_list = self.parse_trace(
-                str(Path("alias_queries/").joinpath(description, f.with_suffix(".txt")))
+                str(Path("alias_queries/").joinpath(f.with_suffix(".txt")))
             )
             info_per_file_per_pass_per_func[f] = (aa_count, pass_list)
 
@@ -832,7 +823,7 @@ class InstrumentAlias:
         for file_name in files:
             self.compile_composed(
                 file_name,
-                self.exec_root.joinpath(Path("res/"), "std"),
+                self.exec_root.joinpath(Path("res/")),
                 False,
                 str(
                     Path("composed_files/").joinpath(
@@ -841,16 +832,14 @@ class InstrumentAlias:
                 ),
             )
             self.assemble_and_measure_file(
-                self.exec_root.joinpath(Path("res/"), "std", file_name)
+                self.exec_root.joinpath(Path("res/"), file_name)
             )
 
         for file_name in files:
             output_name = file_name.with_suffix(".o")
-            size = self.measure_outputsize(
-                self.exec_root.joinpath("res/std/", output_name)
-            )
+            size = self.measure_outputsize(self.exec_root.joinpath("res/", output_name))
             true_size = self.assemble_and_measure_file(
-                self.default_may_truth.joinpath("std/", file_name)
+                self.default_may_truth.joinpath(file_name)
             )
             print(str(file_name) + ": " + str(size) + " vs " + str(true_size))
             os.makedirs(
@@ -859,7 +848,7 @@ class InstrumentAlias:
 
             cmd = [
                 "cp",
-                str(self.exec_root.joinpath("res/std/", output_name)),
+                str(self.exec_root.joinpath("res/", output_name)),
                 str(self.exec_root.joinpath("final_res/", output_name)),
             ]
             run(cmd, cwd=self.exec_root)
@@ -899,11 +888,23 @@ class InstrumentAlias:
             + "% improvement"
         )
 
+    def setup_directories(self, required_empty_paths: list[Path]):
+        dirs = [x[0] for x in os.walk(self.initial_dir)]
+
+        for p in required_empty_paths:
+            if os.path.exists(p):
+                shutil.rmtree(p)
+            os.mkdir(p)
+
+        for d in dirs:
+            d = d.removeprefix(str(self.initial_dir) + "/")
+            os.makedirs(self.default_may_truth.joinpath(d), exist_ok=True)
+
     def exploration_driver(
         self,
     ):
         print("Let's go!")
-        # self.generate_baseline()
+        self.generate_baseline()
 
         files = [
             Path(os.path.join(dirpath.removeprefix(str(self.initial_dir) + "/"), f))
@@ -936,8 +937,6 @@ class InstrumentAlias:
 
         print("Time after baseline: " + str(time.time() - self.start_time))
 
-        dirs = [x[0] for x in os.walk(self.initial_dir)]
-
         required_empty_paths = [
             self.instr_dir,
             Path("res/"),
@@ -947,69 +946,53 @@ class InstrumentAlias:
             Path("composed_files/"),
         ]
 
-        for p in required_empty_paths:
-            if os.path.exists(p):
-                shutil.rmtree(p)
-            os.mkdir(p)
+        results = []
 
-        for d in dirs:
-            d = d.removeprefix(str(self.initial_dir) + "/")
-            os.makedirs(self.default_may_truth.joinpath("may", d), exist_ok=True)
-            os.makedirs(self.default_may_truth.joinpath("std", d), exist_ok=True)
-
+        self.setup_directories(required_empty_paths)
         print("Time after file setup: " + str(time.time() - self.start_time))
 
-        results_random = self.random_search(files, False, 1000)
+        results_random = self.random_search(files, 2)
         self.evaluate_results(results_random, files)
+        results.append(results_random)
 
         print("Time after random exploration: " + str(time.time() - self.start_time))
 
-        for p in required_empty_paths:
-            if os.path.exists(p):
-                shutil.rmtree(p)
-            os.mkdir(p)
+        self.setup_directories(required_empty_paths)
+        print("Time after file setup: " + str(time.time() - self.start_time))
 
-        for d in dirs:
-            d = d.removeprefix(str(self.initial_dir) + "/")
-            os.makedirs(self.default_may_truth.joinpath("may", d), exist_ok=True)
-            os.makedirs(self.default_may_truth.joinpath("std", d), exist_ok=True)
-
-        results_genetic = self.genetic_search(files, False, 1)
+        results_genetic = self.genetic_search(files, 1)
         self.evaluate_results(results_genetic, files)
+        results.append(results_genetic)
+
         print("Time after genetic exploration: " + str(time.time() - self.start_time))
 
-        for p in required_empty_paths:
-            if os.path.exists(p):
-                shutil.rmtree(p)
-            os.mkdir(p)
+        self.setup_directories(required_empty_paths)
+        print("Time after file setup: " + str(time.time() - self.start_time))
 
-        for d in dirs:
-            d = d.removeprefix(str(self.initial_dir) + "/")
-            os.makedirs(self.default_may_truth.joinpath("may", d), exist_ok=True)
-            os.makedirs(self.default_may_truth.joinpath("std", d), exist_ok=True)
-
-        results_greedy = self.exploration(files, False)
+        results_greedy = self.deterministic_exploration(files, False)
         self.evaluate_results(results_greedy, files)
-        print("Time after std exploration: " + str(time.time() - self.start_time))
+        results.append(results_greedy)
 
+        print("Time after std exploration: " + str(time.time() - self.start_time))
         print("Time after exploration: " + str(time.time() - self.start_time))
-        results = min_dict_list([results_random, results_genetic, results_greedy])
+
+        best_results = min_dict_list(results)
 
         print("found results: ")
-        print_results_dict(results)
+        print_results_dict(best_results)
         # filter empty lists
-        for file_name, seq_per_func_dict in results.items():
+        for file_name, seq_per_func_dict in best_results.items():
             seq_per_func_dict = {
                 k: v for k, v in seq_per_func_dict.items() if v[0] != []
             }
-            results[file_name] = seq_per_func_dict
+            best_results[file_name] = seq_per_func_dict
 
-        for file_name, seq_per_func_dict in results.items():
+        for file_name, seq_per_func_dict in best_results.items():
             print("composing " + str(file_name) + " ...")
             if seq_per_func_dict == {}:
                 continue
             if len(seq_per_func_dict.keys()) < 10:
-                results[file_name] = self.find_composition_exhaustive(
+                best_results[file_name] = self.find_composition_exhaustive(
                     seq_per_func_dict, False, file_name
                 )
             else:
@@ -1017,7 +1000,7 @@ class InstrumentAlias:
 
         print("Time after filtering: " + str(time.time() - self.start_time))
 
-        self.evaluate_results(results, files)
+        self.evaluate_results(best_results, files)
 
         print("Total Time: " + str(time.time() - self.start_time))
 
@@ -1054,7 +1037,7 @@ class InstrumentAlias:
 
             self.compile_composed(
                 file_name,
-                self.exec_root.joinpath(Path("res/"), "std"),
+                self.exec_root.joinpath(Path("res/")),
                 False,
                 composed_file_name,
                 Path(
@@ -1067,7 +1050,6 @@ class InstrumentAlias:
             curr_size = self.assemble_and_measure_file(
                 self.exec_root.joinpath(
                     Path("res/"),
-                    "std",
                     Path(
                         str(file_name.with_suffix(""))
                         + "".join([str(x) for x in curr_comb])
@@ -1205,9 +1187,7 @@ class InstrumentAlias:
         total_length = len(solution)
         seq_length = len(index_list)
         i = os.getpid()
-        self.run_step_single_func(
-            self.file_name, i, index_list, self.function, self.take_may
-        )
+        self.run_step_single_func(self.file_name, i, index_list, self.function, False)
         count = self.assemble_and_measure_file(
             self.instr_dir.joinpath(
                 self.file_name.parent, str(i) + str(self.file_name.stem) + ".bc"
@@ -1216,22 +1196,18 @@ class InstrumentAlias:
 
         return -count * total_length - seq_length
 
-    def random_search(self, files: list[Path], take_may: bool, num_samples):
-        description: Path = Path("may") if take_may else Path("std")
-        os.mkdir(Path("alias_queries/").joinpath(description))
-        os.mkdir(Path("res/").joinpath(description))
-
-        print("Track AA Queries " + str(description))
+    def random_search(self, files: list[Path], num_samples):
+        print("Track AA Queries Random with " + str(num_samples) + " samples")
         info_per_file_per_pass_per_func = {}
         count_per_file = {}
         with Pool() as p:
-            p.starmap(
+            p.map(
                 self.compute_aa_trace,
-                [(f, take_may, description) for f in files],
+                files,
             )
         for f in files:
             aa_count, pass_list = self.parse_trace(
-                str(Path("alias_queries/").joinpath(description, f.with_suffix(".txt")))
+                str(Path("alias_queries/").joinpath(f.with_suffix(".txt")))
             )
             info_per_file_per_pass_per_func[f] = (aa_count, pass_list)
 
@@ -1257,13 +1233,6 @@ class InstrumentAlias:
             curr_results = {}
             for function in count_per_file[file_name].keys():
                 print("==== Next function: " + function)
-                # self.function_encoding[function] = str(self.func_count)
-                self.func_count += 1
-                # curr_path: Path = self.instr_dir.joinpath(
-                #     Path(str(self.function_encoding[function]))
-                # )
-                # if not os.path.exists(curr_path):
-                #     os.makedirs(curr_path, exist_ok=True)
 
                 os.makedirs(
                     str(self.instr_dir.joinpath(file_name).parent), exist_ok=True
@@ -1271,41 +1240,58 @@ class InstrumentAlias:
 
                 aa_count = count_per_file[file_name][function]
                 print("Number of AA Queries: " + str(aa_count))
-                function_inputs = [0] * aa_count
 
-                population = [function_inputs]
-                for i in range(min(aa_count - 1, num_samples // func_count)):
-                    population.append(
-                        numpy.random.randint(
-                            low=0,
-                            high=2,
-                            size=aa_count,
-                        )
+                curr_num_samples = max(min(aa_count - 1, num_samples // func_count), 1)
+                population = [[]]
+                for i in range(curr_num_samples):
+                    curr_list = numpy.random.randint(
+                        low=0,
+                        high=2,
+                        size=aa_count,
+                    )
+                    index_list = []
+                    for j, val in enumerate(curr_list):
+                        if val:
+                            index_list.append(j)
+                    population.append(index_list)
+
+                with Pool() as p:
+                    p.starmap(
+                        self.run_step_single_func,
+                        [
+                            (file_name, i, index_list, function, False)
+                            for i, index_list in enumerate(population)
+                        ],
+                    )
+
+                with Pool() as p:
+                    p.starmap(
+                        self.assemble_file,
+                        [
+                            (
+                                self.instr_dir.joinpath(
+                                    file_name.parent,
+                                    str(i) + str(file_name.stem) + ".bc",
+                                ),
+                                self.instr_dir.joinpath(
+                                    file_name.parent,
+                                    str(i) + str(file_name.stem) + ".o",
+                                ),
+                            )
+                            for i in range(curr_num_samples)
+                        ],
                     )
 
                 counts = []
-                for i, solution in enumerate(population):
-                    index_list = []
-                    for j, val in enumerate(solution):
-                        if val:
-                            index_list.append(j)
-
-                    total_length = len(solution)
-                    seq_length = len(index_list)
-                    self.run_step_single_func(
-                        file_name, i, index_list, function, take_may
-                    )
-                    count = self.assemble_and_measure_file(
+                for i in range(curr_num_samples):
+                    count = self.measure_outputsize(
                         self.instr_dir.joinpath(
-                            file_name.parent, str(i) + str(file_name.stem) + ".bc"
+                            file_name.parent, str(i) + str(file_name.stem) + ".o"
                         )
                     )
                     counts.append(count)
 
-                res_seq = []
-                for i, val in enumerate(population[counts.index(min(counts))]):
-                    if val:
-                        res_seq.append(i)
+                res_seq = population[counts.index(min(counts))]
                 print("Distinct counts: " + str(list(set(counts))))
                 print("Found sequence: " + str(res_seq))
                 print("With size: " + str(min(counts)))
@@ -1326,22 +1312,18 @@ class InstrumentAlias:
 
         return results
 
-    def genetic_search(self, files: list[Path], take_may: bool, num_generations):
-        description: Path = Path("may") if take_may else Path("std")
-        os.mkdir(Path("alias_queries/").joinpath(description))
-        os.mkdir(Path("res/").joinpath(description))
-
-        print("Track AA Queries " + str(description))
+    def genetic_search(self, files: list[Path], num_generations):
+        print("Track AA Queries Genetic with " + str(num_generations) + " generations")
         info_per_file_per_pass_per_func = {}
         count_per_file = {}
         with Pool() as p:
-            p.starmap(
+            p.map(
                 self.compute_aa_trace,
-                [(f, take_may, description) for f in files],
+                files,
             )
         for f in files:
             aa_count, pass_list = self.parse_trace(
-                str(Path("alias_queries/").joinpath(description, f.with_suffix(".txt")))
+                str(Path("alias_queries/").joinpath(f.with_suffix(".txt")))
             )
             info_per_file_per_pass_per_func[f] = (aa_count, pass_list)
 
@@ -1385,7 +1367,6 @@ class InstrumentAlias:
 
                 self.file_name = file_name
                 self.function = function
-                self.take_may = take_may
 
                 init_range_low = 0
                 init_range_high = 1
