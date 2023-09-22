@@ -39,6 +39,36 @@ def print_results_dict(results):
     print(seq_string)
 
 
+def min_dict_list(dicts) -> dict:
+    while len(dicts) > 1:
+        dicts = [min_dict(dicts[0], dicts[1])] + dicts[2:]
+
+    return dicts[0]
+
+
+def min_dict(dict_1, dict_2) -> dict:
+    new_results = {}
+    for file_name, file_dict in dict_1.items():
+        assert file_name in dict_2.keys()
+        file_dict_2 = dict_2[file_name]
+        new_results[file_name] = {}
+        for func_name, func_tuple in file_dict.items():
+            assert func_name in file_dict_2.keys()
+            func_tuple_2 = file_dict_2[func_name]
+
+            if func_tuple[1] < func_tuple_2[1]:
+                new_results[file_name][func_name] = func_tuple
+            elif func_tuple[1] == func_tuple_2[1]:
+                if len(func_tuple[0]) < len(func_tuple_2[0]):
+                    new_results[file_name][func_name] = func_tuple
+                else:
+                    new_results[file_name][func_name] = func_tuple_2
+            else:
+                new_results[file_name][func_name] = func_tuple_2
+
+    return new_results
+
+
 @dataclass
 class InstrumentAlias:
     instr_path: Path
@@ -684,7 +714,7 @@ class InstrumentAlias:
                         + " with max_query_index: "
                         + str(max_query_count)
                     )
-                    if aa_count[pass_name][function] < 9:
+                    if aa_count[pass_name][function] < 0:
                         new_seq, new_size = self.exhaustive_exploration(
                             file_name,
                             function,
@@ -792,6 +822,83 @@ class InstrumentAlias:
         run(cmd, cwd=self.exec_root, stdout=DEVNULL)
         self.assemble_and_measure_file(self.groundtruth_dir.joinpath(f))
 
+    def evaluate_results(
+        self,
+        results: dict,
+        files: list[Path],
+    ):
+        self.generate_composed_files(results)
+
+        for file_name in files:
+            self.compile_composed(
+                file_name,
+                self.exec_root.joinpath(Path("res/"), "std"),
+                False,
+                str(
+                    Path("composed_files/").joinpath(
+                        str(file_name.with_suffix("")) + "_composed.txt"
+                    )
+                ),
+            )
+            self.assemble_and_measure_file(
+                self.exec_root.joinpath(Path("res/"), "std", file_name)
+            )
+
+        for file_name in files:
+            output_name = file_name.with_suffix(".o")
+            size = self.measure_outputsize(
+                self.exec_root.joinpath("res/std/", output_name)
+            )
+            true_size = self.assemble_and_measure_file(
+                self.default_may_truth.joinpath("std/", file_name)
+            )
+            print(str(file_name) + ": " + str(size) + " vs " + str(true_size))
+            os.makedirs(
+                self.exec_root.joinpath("final_res/", output_name.parent), exist_ok=True
+            )
+
+            cmd = [
+                "cp",
+                str(self.exec_root.joinpath("res/std/", output_name)),
+                str(self.exec_root.joinpath("final_res/", output_name)),
+            ]
+            run(cmd, cwd=self.exec_root)
+
+        # linking:
+        cmd = (
+            [
+                str(self.instr_path.joinpath("clang")),
+                "-no-pie",
+                "-lstdc++",
+                "-lm",
+                "-o",
+                "final_res/linked.out",
+            ]
+            + [
+                ("-l" + link) if not link.startswith("-") else link
+                for link in linked_libraries.get(str(self.benchmark), [])
+            ]
+            + ["final_res/" + str(f.with_suffix(".o")) for f in files]
+        )
+        run(cmd, cwd=self.exec_root, stdout=DEVNULL)
+
+        print("Time after after composition: " + str(time.time() - self.start_time))
+
+        # measure linked file
+        res_size = self.measure_outputsize(
+            self.exec_root.joinpath("final_res/linked.out")
+        )
+        true_size = self.measure_outputsize(
+            self.groundtruth_dir.joinpath(self.benchmark, str(self.benchmark))
+        )
+
+        print("result: " + str(res_size) + " vs " + str(true_size))
+        print(
+            "meaning a "
+            + str(((true_size - res_size) / true_size) * 100)
+            + "% improvement"
+        )
+
     def exploration_driver(
         self,
     ):
@@ -852,7 +959,9 @@ class InstrumentAlias:
 
         print("Time after file setup: " + str(time.time() - self.start_time))
 
-        results = self.random_search(files, False, 1000)
+        results_random = self.random_search(files, False, 1000)
+        self.evaluate_results(results_random, files)
+
         print("Time after random exploration: " + str(time.time() - self.start_time))
 
         for p in required_empty_paths:
@@ -865,7 +974,8 @@ class InstrumentAlias:
             os.makedirs(self.default_may_truth.joinpath("may", d), exist_ok=True)
             os.makedirs(self.default_may_truth.joinpath("std", d), exist_ok=True)
 
-        results = self.genetic_search(files, False, 1)
+        results_genetic = self.genetic_search(files, False, 1)
+        self.evaluate_results(results_genetic, files)
         print("Time after genetic exploration: " + str(time.time() - self.start_time))
 
         for p in required_empty_paths:
@@ -878,24 +988,12 @@ class InstrumentAlias:
             os.makedirs(self.default_may_truth.joinpath("may", d), exist_ok=True)
             os.makedirs(self.default_may_truth.joinpath("std", d), exist_ok=True)
 
-        results_2 = self.exploration(files, False)
+        results_greedy = self.exploration(files, False)
+        self.evaluate_results(results_greedy, files)
         print("Time after std exploration: " + str(time.time() - self.start_time))
-        new_results = {}
-        for file_name, file_dict in results.items():
-            assert file_name in results_2.keys()
-            file_dict_2 = results_2[file_name]
-            new_results[file_name] = {}
-            for func_name, func_tuple in file_dict.items():
-                assert func_name in file_dict_2.keys()
-                func_tuple_2 = file_dict_2[func_name]
-
-                if func_tuple[1] < func_tuple_2[1]:
-                    new_results[file_name][func_name] = func_tuple
-                else:
-                    new_results[file_name][func_name] = func_tuple_2
 
         print("Time after exploration: " + str(time.time() - self.start_time))
-        results = new_results
+        results = min_dict_list([results_random, results_genetic, results_greedy])
 
         print("found results: ")
         print_results_dict(results)
@@ -919,102 +1017,8 @@ class InstrumentAlias:
 
         print("Time after filtering: " + str(time.time() - self.start_time))
 
-        self.generate_composed_files(results)
+        self.evaluate_results(results, files)
 
-        for file_name in files:
-            self.compile_composed(
-                file_name,
-                self.exec_root.joinpath(Path("res/"), "std"),
-                False,
-                str(
-                    Path("composed_files/").joinpath(
-                        str(file_name.with_suffix("")) + "_composed.txt"
-                    )
-                ),
-            )
-            self.assemble_and_measure_file(
-                self.exec_root.joinpath(Path("res/"), "std", file_name)
-            )
-
-        for file_name in files:
-            output_name = file_name.with_suffix(".o")
-            # may_size = self.measure_outputsize(
-            #    self.exec_root.joinpath("res/may/", output_name)
-            # )
-            std_size = self.measure_outputsize(
-                self.exec_root.joinpath("res/std/", output_name)
-            )
-
-            # true_may_size = self.assemble_and_measure_file(
-            #    self.default_may_truth.joinpath("may/", file_name)
-            # )
-            true_std_size = self.assemble_and_measure_file(
-                self.default_may_truth.joinpath("std/", file_name)
-            )
-            print(
-                str(file_name)
-                + ": "
-                # + str(may_size)
-                # + " vs "
-                # + str(true_may_size)
-                # + " and "
-                + str(std_size)
-                + " vs "
-                + str(true_std_size)
-            )
-            os.makedirs(
-                self.exec_root.joinpath("final_res/", output_name.parent), exist_ok=True
-            )
-            # sizes = [may_size, std_size, true_may_size, true_std_size]
-            sizes = [std_size, true_std_size]
-            curr_files = [
-                # self.exec_root.joinpath("res/may/", output_name),
-                self.exec_root.joinpath("res/std/", output_name),
-                # self.default_may_truth.joinpath("may/", output_name),
-                self.default_may_truth.joinpath("std/", output_name),
-            ]
-
-            cmd = [
-                "cp",
-                str(curr_files[sizes.index(min(sizes))]),
-                str(self.exec_root.joinpath("final_res/", output_name)),
-            ]
-            run(cmd, cwd=self.exec_root)
-
-        # linking:
-        cmd = (
-            [
-                str(self.instr_path.joinpath("clang")),
-                "-no-pie",
-                "-lstdc++",
-                "-lm",
-                "-o",
-                "final_res/linked.out",
-            ]
-            + [
-                ("-l" + link) if not link.startswith("-") else link
-                for link in linked_libraries.get(str(self.benchmark), [])
-            ]
-            + ["final_res/" + str(f.with_suffix(".o")) for f in files]
-        )
-        run(cmd, cwd=self.exec_root, stdout=DEVNULL)
-
-        print("Time after after composition: " + str(time.time() - self.start_time))
-
-        # measure linked file
-        res_size = self.measure_outputsize(
-            self.exec_root.joinpath("final_res/linked.out")
-        )
-        true_size = self.measure_outputsize(
-            self.groundtruth_dir.joinpath(self.benchmark, str(self.benchmark))
-        )
-
-        print("result: " + str(res_size) + " vs " + str(true_size))
-        print(
-            "meaning a "
-            + str(((true_size - res_size) / true_size) * 100)
-            + "% improvement"
-        )
         print("Total Time: " + str(time.time() - self.start_time))
 
         ## sanity check for correctness
