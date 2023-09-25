@@ -87,6 +87,9 @@ class InstrumentAlias:
     file_name: str = ""
     function: str = ""
 
+    num_compilations = 0
+    proc_count = 16
+
     def measure_outputsize(self, file: Path) -> int:
         cmd = [str(self.instr_path.joinpath("llvm-size")), str(file)]
         p = run(cmd, stdout=PIPE, stderr=PIPE, text=True)
@@ -220,7 +223,7 @@ class InstrumentAlias:
         list_combinations = [prefix_list + list(i) for i in list_combinations]
 
         # compile and measure
-        with Pool() as p:
+        with Pool(self.proc_count) as p:
             p.starmap(
                 self.run_step_single_func,
                 [
@@ -236,7 +239,7 @@ class InstrumentAlias:
 
         counts = []
         lists = []
-        with Pool() as p:
+        with Pool(self.proc_count) as p:
             p.starmap(
                 self.assemble_file,
                 [
@@ -301,13 +304,12 @@ class InstrumentAlias:
 
         iteration_count = 0
 
-        proc_count = 64
         curr_fixed = offset + 1
 
         while True:
             counts = []
             lower_bound = curr_fixed
-            upper_bound = min(count, curr_fixed + proc_count)
+            upper_bound = min(count, curr_fixed + self.proc_count)
             if upper_bound == lower_bound:
                 break
             # print(
@@ -319,7 +321,7 @@ class InstrumentAlias:
             #    + str(count)
             # )
 
-            with Pool() as p:
+            with Pool(self.proc_count) as p:
                 p.starmap(
                     self.run_step_single_func,
                     [
@@ -328,6 +330,8 @@ class InstrumentAlias:
                     ],
                 )
 
+            self.num_compilations += upper_bound - lower_bound
+
             # print(
             #    "greedy search, time after compilation in step "
             #    + str(iteration_count)
@@ -335,7 +339,7 @@ class InstrumentAlias:
             #    + str(time.time() - self.start_time)
             # )
 
-            with Pool() as p:
+            with Pool(self.proc_count) as p:
                 p.starmap(
                     self.assemble_file,
                     [
@@ -382,8 +386,8 @@ class InstrumentAlias:
             index_list = [(i, v) for i, v in enumerate(counts) if v < min_count]
 
             # No reduction occured, hence we are done
-            if index_list == [] and curr_fixed + proc_count < count:
-                curr_fixed += proc_count
+            if index_list == [] and curr_fixed + self.proc_count < count:
+                curr_fixed += self.proc_count
                 continue
             elif index_list == []:
                 break
@@ -523,7 +527,7 @@ class InstrumentAlias:
     def get_aa_count_per_file(
         self, take_may: bool, description: str, files: list[str]
     ) -> dict:
-        with Pool() as p:
+        with Pool(self.proc_count) as p:
             p.starmap(self.get_func_names, [(f, take_may, description) for f in files])
 
         count_per_file = {}
@@ -643,11 +647,12 @@ class InstrumentAlias:
         self,
         files: list[Path],
         take_may: bool,
+        exhaustive_threshhold: int = 0,
     ):
         print("Track AA Queries Deterministic " + str(take_may))
         info_per_file_per_pass_per_func = {}
         count_per_file = {}
-        with Pool() as p:
+        with Pool(self.proc_count) as p:
             p.starmap(
                 self.compute_aa_trace,
                 [(f, take_may) for f in files],
@@ -705,7 +710,7 @@ class InstrumentAlias:
                         + " with max_query_index: "
                         + str(max_query_count)
                     )
-                    if aa_count[pass_name][function] < 0:
+                    if aa_count[pass_name][function] < exhaustive_threshhold:
                         new_seq, new_size = self.exhaustive_exploration(
                             file_name,
                             function,
@@ -915,7 +920,7 @@ class InstrumentAlias:
         ]
 
         # compute baseline
-        with Pool() as p:
+        with Pool(self.proc_count) as p:
             p.map(self.compute_baseline_file, files)
 
         cmd = (
@@ -951,9 +956,38 @@ class InstrumentAlias:
         self.setup_directories(required_empty_paths)
         print("Time after file setup: " + str(time.time() - self.start_time))
 
-        results_random = self.random_search(files, 2)
+        results_random = self.random_search(files, 100)
         self.evaluate_results(results_random, files)
         results.append(results_random)
+
+        random_compilations = self.num_compilations
+        self.num_compilations = 0
+
+        print("Random used " + str(random_compilations) + " compilations")
+
+        self.setup_directories(required_empty_paths)
+        print("Time after file setup: " + str(time.time() - self.start_time))
+
+        results_greedy = self.deterministic_exploration(files, False)
+        self.evaluate_results(results_greedy, files)
+        results.append(results_greedy)
+
+        greedy_compilations = self.num_compilations
+        self.num_compilations = 0
+
+        print("Greedy used " + str(greedy_compilations) + " compilations")
+
+        self.setup_directories(required_empty_paths)
+        print("Time after file setup: " + str(time.time() - self.start_time))
+
+        results_random = self.random_search(files, greedy_compilations)
+        self.evaluate_results(results_random, files)
+        results.append(results_random)
+
+        random_compilations = self.num_compilations
+        self.num_compilations = 0
+
+        print("Random used " + str(random_compilations) + " compilations")
 
         print("Time after random exploration: " + str(time.time() - self.start_time))
 
@@ -964,14 +998,12 @@ class InstrumentAlias:
         self.evaluate_results(results_genetic, files)
         results.append(results_genetic)
 
+        genetic_compilations = self.num_compilations
+        self.num_compilations = 0
+
+        print("Genetic used " + str(genetic_compilations) + " compilations")
+
         print("Time after genetic exploration: " + str(time.time() - self.start_time))
-
-        self.setup_directories(required_empty_paths)
-        print("Time after file setup: " + str(time.time() - self.start_time))
-
-        results_greedy = self.deterministic_exploration(files, False)
-        self.evaluate_results(results_greedy, files)
-        results.append(results_greedy)
 
         print("Time after std exploration: " + str(time.time() - self.start_time))
         print("Time after exploration: " + str(time.time() - self.start_time))
@@ -1200,7 +1232,7 @@ class InstrumentAlias:
         print("Track AA Queries Random with " + str(num_samples) + " samples")
         info_per_file_per_pass_per_func = {}
         count_per_file = {}
-        with Pool() as p:
+        with Pool(self.proc_count) as p:
             p.map(
                 self.compute_aa_trace,
                 files,
@@ -1241,8 +1273,8 @@ class InstrumentAlias:
                 aa_count = count_per_file[file_name][function]
                 print("Number of AA Queries: " + str(aa_count))
 
-                curr_num_samples = max(min(aa_count - 1, num_samples // func_count), 1)
-                population = [[]]
+                curr_num_samples = min(aa_count, num_samples // func_count + 1)
+                population = []
                 for i in range(curr_num_samples):
                     curr_list = numpy.random.randint(
                         low=0,
@@ -1255,7 +1287,9 @@ class InstrumentAlias:
                             index_list.append(j)
                     population.append(index_list)
 
-                with Pool() as p:
+                self.num_compilations += len(population)
+
+                with Pool(self.proc_count) as p:
                     p.starmap(
                         self.run_step_single_func,
                         [
@@ -1264,7 +1298,7 @@ class InstrumentAlias:
                         ],
                     )
 
-                with Pool() as p:
+                with Pool(self.proc_count) as p:
                     p.starmap(
                         self.assemble_file,
                         [
@@ -1313,10 +1347,14 @@ class InstrumentAlias:
         return results
 
     def genetic_search(self, files: list[Path], num_generations):
-        print("Track AA Queries Genetic with " + str(num_generations) + " generations")
+        print(
+            "Track AA Queries Genetic with "
+            + str(num_generations)
+            + " generation exponent"
+        )
         info_per_file_per_pass_per_func = {}
         count_per_file = {}
-        with Pool() as p:
+        with Pool(self.proc_count) as p:
             p.map(
                 self.compute_aa_trace,
                 files,
@@ -1363,7 +1401,9 @@ class InstrumentAlias:
                 function_inputs = [0] * aa_count
 
                 fitness_function = self.fitness_func
-                num_parents_mating = 4
+                curr_num_generations = round(
+                    math.pow(math.sqrt(aa_count), num_generations)
+                )
 
                 self.file_name = file_name
                 self.function = function
@@ -1371,8 +1411,8 @@ class InstrumentAlias:
                 init_range_low = 0
                 init_range_high = 1
 
-                initial_population = [function_inputs]
-                for i in range(num_parents_mating + aa_count):
+                initial_population = []
+                for i in range(round(math.sqrt(aa_count))):
                     initial_population.append(
                         numpy.random.randint(
                             low=init_range_low,
@@ -1381,27 +1421,39 @@ class InstrumentAlias:
                         )
                     )
 
-                parent_selection_type = "tournament"
+                num_parents_mating = min(4, len(initial_population))
 
-                crossover_type = "two_points"
+                self.num_compilations += len(initial_population) * curr_num_generations
+
+                parent_selection_type = "sss"
+
+                crossover_type = "single_point"
 
                 mutation_type = "random"
                 mutation_percent_genes = 100 / aa_count
 
+                print(
+                    "Running GA with "
+                    + str(curr_num_generations)
+                    + " generations and "
+                    + str(num_parents_mating)
+                    + " parents and "
+                    + str(len(initial_population))
+                    + " initial population"
+                )
+
                 ga_instance = pygad.GA(
                     gene_type=int,
                     gene_space=[0, 1],
-                    num_generations=num_generations,
+                    num_generations=curr_num_generations,
                     num_parents_mating=num_parents_mating,
                     fitness_func=fitness_function,
                     initial_population=initial_population,
-                    init_range_low=init_range_low,
-                    init_range_high=init_range_high,
                     parent_selection_type=parent_selection_type,
                     crossover_type=crossover_type,
                     mutation_type=mutation_type,
                     mutation_percent_genes=mutation_percent_genes,
-                    parallel_processing=["process", 16],
+                    parallel_processing=["process", self.proc_count],
                 )
 
                 ga_instance.run()

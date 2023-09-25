@@ -63,6 +63,36 @@ def parse_file(f: Path):
     return strategy_dict
 
 
+def parse_multi_results(f: Path):
+    with open(f, "r") as file:
+        lines = file.readlines()
+
+        new_strat = ""
+        curr_list = []
+        strat_dict = {}
+        strat_dict[""] = []
+
+        for line in lines:
+            if line.startswith("Track AA Queries"):
+                new_strat = line.removeprefix("Track AA Queries ").strip()
+                curr_list = []
+            if line.__contains__(" vs ") and not line.startswith("result"):
+                old_size = int(line.split(" ")[-1].strip())
+                new_size = int(line.split(" ")[-3].strip())
+                curr_list.append((old_size, new_size))
+
+            if line.__contains__(" used "):
+                num_compilations = int(line.split(" ")[-2].strip())
+                strat_dict[new_strat] = curr_list, num_compilations
+
+                new_strat = ""
+                curr_list = []
+
+        strat_dict[""] = curr_list, 0
+        print(strat_dict)
+    return strat_dict
+
+
 def compute_time_per_step(strategy_dict):
     # compute time per step
     total = 0.0
@@ -227,40 +257,42 @@ if __name__ == "__main__":
 
     curr_folder = Path(args.input_folder)
     stat_folder = Path("results/stats/" + args.opt_flag + "/")
-    for benchmark in benchmarks:
-        initial_file = curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
-        stat_file = stat_folder.joinpath("stats_" + benchmark + ".txt")
-        try:
-            query_dict, counts_dict = parse_stats(initial_file)
-            file_dict = parse_sizes(initial_file)
-            old_size, new_size = parse_size_improvement(initial_file)
-            change_per_query = parse_change_per_query(initial_file, file_dict)
-            with open(stat_file, "w") as f:
-                f.write("counts per function per file: " + str(counts_dict) + "\n")
-                f.write("found results: " + str(query_dict) + "\n")
-                f.write("change per query: " + str(change_per_query) + "\n")
-                f.write("sizes per file: " + str(file_dict) + "\n")
-                f.write("result: " + str(old_size) + " vs " + str(new_size) + "\n")
+    parse_multi_results(curr_folder.joinpath("multi_styles_605.txt"))
 
-        except Exception as e:
-            print("failed: " + str(stat_file))
-            print(e)
-            continue
+    # for benchmark in benchmarks:
+    #    initial_file = curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
+    #    stat_file = stat_folder.joinpath("stats_" + benchmark + ".txt")
+    #    try:
+    #        query_dict, counts_dict = parse_stats(initial_file)
+    #        file_dict = parse_sizes(initial_file)
+    #        old_size, new_size = parse_size_improvement(initial_file)
+    #        change_per_query = parse_change_per_query(initial_file, file_dict)
+    #        with open(stat_file, "w") as f:
+    #            f.write("counts per function per file: " + str(counts_dict) + "\n")
+    #            f.write("found results: " + str(query_dict) + "\n")
+    #            f.write("change per query: " + str(change_per_query) + "\n")
+    #            f.write("sizes per file: " + str(file_dict) + "\n")
+    #            f.write("result: " + str(old_size) + " vs " + str(new_size) + "\n")
 
-    summed_time = 0.0
-    for benchmark in benchmarks:
-        print(benchmark)
-        try:
-            strategy_dict = parse_file(
-                curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
-            )
-            total_time, time_per_steps = compute_time_per_step(strategy_dict)
-            print("total time: " + str(total_time))
-            print("time per step: " + str(time_per_steps))
-            summed_time += float(total_time)
-        except Exception as e:
-            print("failed: " + str(benchmark))
-            print(e)
-            continue
+    #    except Exception as e:
+    #        print("failed: " + str(stat_file))
+    #        print(e)
+    #        continue
 
-    print("summed time: " + str(summed_time))
+    # summed_time = 0.0
+    # for benchmark in benchmarks:
+    #    print(benchmark)
+    #    try:
+    #        strategy_dict = parse_file(
+    #            curr_folder.joinpath("gen_res_" + benchmark + "_first_strat.txt")
+    #        )
+    #        total_time, time_per_steps = compute_time_per_step(strategy_dict)
+    #        print("total time: " + str(total_time))
+    #        print("time per step: " + str(time_per_steps))
+    #        summed_time += float(total_time)
+    #    except Exception as e:
+    #        print("failed: " + str(benchmark))
+    #        print(e)
+    #        continue
+
+    # print("summed time: " + str(summed_time))
