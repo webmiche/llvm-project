@@ -9,9 +9,8 @@ from dataclasses import dataclass
 from multiprocessing import Pool
 import sys
 import time
-import numpy
-import pygad
 import math
+import random
 
 # from specbuilder --> spec.py
 linked_libraries = {
@@ -219,6 +218,8 @@ class InstrumentAlias:
 
         for n in range(len(sample_list) + 1):
             list_combinations += list(combinations(sample_list, n))
+
+        self.num_compilations += len(list_combinations)
 
         list_combinations = [prefix_list + list(i) for i in list_combinations]
 
@@ -649,7 +650,9 @@ class InstrumentAlias:
         take_may: bool,
         exhaustive_threshhold: int = 0,
     ):
-        print("Track AA Queries Deterministic " + str(take_may))
+        print(
+            "Track AA Queries Deterministic (Exh: " + str(exhaustive_threshhold) + ")"
+        )
         info_per_file_per_pass_per_func = {}
         count_per_file = {}
         with Pool(self.proc_count) as p:
@@ -953,60 +956,23 @@ class InstrumentAlias:
 
         results = []
 
-        self.setup_directories(required_empty_paths)
-        print("Time after file setup: " + str(time.time() - self.start_time))
+        runs = [
+            lambda: self.random_search(files, 100),
+            lambda: self.random_search(files, 100, True),
+            lambda: self.deterministic_exploration(files, False, 0),
+            lambda: self.random_search(files, 60000),
+            lambda: self.deterministic_exploration(files, False, 13),
+        ]
 
-        results_random = self.random_search(files, 100)
-        self.evaluate_results(results_random, files)
-        results.append(results_random)
-
-        random_compilations = self.num_compilations
-        self.num_compilations = 0
-
-        print("Random used " + str(random_compilations) + " compilations")
-
-        self.setup_directories(required_empty_paths)
-        print("Time after file setup: " + str(time.time() - self.start_time))
-
-        results_greedy = self.deterministic_exploration(files, False)
-        self.evaluate_results(results_greedy, files)
-        results.append(results_greedy)
-
-        greedy_compilations = self.num_compilations
-        self.num_compilations = 0
-
-        print("Greedy used " + str(greedy_compilations) + " compilations")
-
-        self.setup_directories(required_empty_paths)
-        print("Time after file setup: " + str(time.time() - self.start_time))
-
-        results_random = self.random_search(files, greedy_compilations)
-        self.evaluate_results(results_random, files)
-        results.append(results_random)
-
-        random_compilations = self.num_compilations
-        self.num_compilations = 0
-
-        print("Random used " + str(random_compilations) + " compilations")
-
-        print("Time after random exploration: " + str(time.time() - self.start_time))
-
-        self.setup_directories(required_empty_paths)
-        print("Time after file setup: " + str(time.time() - self.start_time))
-
-        results_genetic = self.genetic_search(files, 1)
-        self.evaluate_results(results_genetic, files)
-        results.append(results_genetic)
-
-        genetic_compilations = self.num_compilations
-        self.num_compilations = 0
-
-        print("Genetic used " + str(genetic_compilations) + " compilations")
-
-        print("Time after genetic exploration: " + str(time.time() - self.start_time))
-
-        print("Time after std exploration: " + str(time.time() - self.start_time))
-        print("Time after exploration: " + str(time.time() - self.start_time))
+        for r in runs:
+            self.setup_directories(required_empty_paths)
+            print("Time after file setup: " + str(time.time() - self.start_time))
+            curr_results = r()
+            self.evaluate_results(curr_results, files)
+            results.append(curr_results)
+            print("Run used " + str(self.num_compilations) + " compilations")
+            self.num_compilations = 0
+            print("Time after exploration: " + str(time.time() - self.start_time))
 
         best_results = min_dict_list(results)
 
@@ -1228,8 +1194,13 @@ class InstrumentAlias:
 
         return -count * total_length - seq_length
 
-    def random_search(self, files: list[Path], num_samples):
-        print("Track AA Queries Random with " + str(num_samples) + " samples")
+    def random_search(self, files: list[Path], num_samples, with_default=False):
+        print(
+            "Track AA Queries Random with "
+            + str(num_samples)
+            + " samples"
+            + (" with default" if with_default else "")
+        )
         info_per_file_per_pass_per_func = {}
         count_per_file = {}
         with Pool(self.proc_count) as p:
@@ -1259,6 +1230,7 @@ class InstrumentAlias:
         for file_name in count_per_file.keys():
             func_count += len(count_per_file[file_name].keys())
 
+        curr_num_samples = num_samples // func_count
         print("Start Exploration")
         for file_name in count_per_file.keys():
             print("***** Next file: " + str(file_name))
@@ -1273,14 +1245,12 @@ class InstrumentAlias:
                 aa_count = count_per_file[file_name][function]
                 print("Number of AA Queries: " + str(aa_count))
 
-                curr_num_samples = min(aa_count, num_samples // func_count + 1)
                 population = []
-                for i in range(curr_num_samples):
-                    curr_list = numpy.random.randint(
-                        low=0,
-                        high=2,
-                        size=aa_count,
-                    )
+                if with_default:
+                    population.append([])
+
+                for _ in range(curr_num_samples):
+                    curr_list = [random.randint(0, 1) for _ in range(aa_count)]
                     index_list = []
                     for j, val in enumerate(curr_list):
                         if val:
@@ -1352,6 +1322,9 @@ class InstrumentAlias:
             + str(num_generations)
             + " generation exponent"
         )
+        import numpy
+        import pygad
+
         info_per_file_per_pass_per_func = {}
         count_per_file = {}
         with Pool(self.proc_count) as p:

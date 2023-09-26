@@ -1,10 +1,9 @@
 import matplotlib.pyplot as plt
 
-
 results = {
     "best subsequences": (
         [
-            (4639, 4403),
+            (4639, 4398),
             (1790, 1727),
             (535, 535),
             (579, 579),
@@ -16,27 +15,83 @@ results = {
             (1812, 1812),
             (319, 297),
             (1754, 1754),
+            (17913, 17561),
         ],
         0,
     ),
-    "Random with 100 samples": (
+    "Random 100 samples": (
         [
-            (4639, 4561),
+            (4639, 4528),
             (1790, 1857),
             (535, 535),
             (579, 579),
-            (1652, 1642),
+            (1652, 1644),
             (178, 178),
             (1239, 1239),
             (95, 95),
-            (781, 782),
+            (781, 779),
             (1812, 1812),
             (319, 297),
             (1754, 1754),
+            (17913, 17841),
         ],
-        98,
+        99,
     ),
-    "Deterministic": (
+    "Random 100 samples (precise)": (
+        [
+            (4639, 4468),
+            (1790, 1790),
+            (535, 535),
+            (579, 579),
+            (1652, 1652),
+            (178, 178),
+            (1239, 1239),
+            (95, 95),
+            (781, 781),
+            (1812, 1812),
+            (319, 305),
+            (1754, 1754),
+            (17913, 17733),
+        ],
+        132,
+    ),
+    "Random 3372 samples": (
+        [
+            (4639, 4410),
+            (1790, 1816),
+            (535, 535),
+            (579, 579),
+            (1652, 1635),
+            (178, 178),
+            (1239, 1239),
+            (95, 95),
+            (781, 772),
+            (1812, 1812),
+            (319, 297),
+            (1754, 1754),
+            (17661, 17613),
+        ],
+        3366,
+    ),
+    "Random 57910 samples": (
+        [
+            (4639, 4398),
+            (1790, 1812),
+            (535, 535),
+            (579, 579),
+            (1652, 1635),
+            (178, 178),
+            (1239, 1239),
+            (95, 95),
+            (781, 772),
+            (1812, 1812),
+            (319, 297),
+            (1754, 1754),
+            (17913, 17645),
+        ],
+        57882,
+    ),
+    "Deterministic (Exh: 0)": (
         [
             (4639, 4409),
             (1790, 1727),
@@ -50,42 +105,27 @@ results = {
             (1812, 1812),
             (319, 300),
             (1754, 1754),
+            (17913, 17581),
         ],
-        3790,
+        3372,
     ),
-    "Random with 3790 samples": (
+    "Deterministic (Exh: 13)": (
         [
-            (4639, 4407),
-            (1790, 1816),
+            (4639, 4400),
+            (1790, 1727),
             (535, 535),
             (579, 579),
             (1652, 1635),
             (178, 178),
             (1239, 1239),
             (95, 95),
-            (781, 772),
+            (781, 779),
             (1812, 1812),
-            (319, 297),
+            (319, 300),
             (1754, 1754),
+            (17913, 17573),
         ],
-        1731,
-    ),
-    "Genetic with 1 generation exponent": (
-        [
-            (4639, 4517),
-            (1790, 1795),
-            (535, 535),
-            (579, 579),
-            (1652, 1642),
-            (178, 178),
-            (1239, 1239),
-            (95, 95),
-            (781, 772),
-            (1812, 1812),
-            (319, 297),
-            (1754, 1754),
-        ],
-        3381,
+        26277,
     ),
 }
 
@@ -102,6 +142,7 @@ names = [
     "psimplex.bc",
     "pstart.bc",
     "spec_qsort/spec_qsort.bc",
+    "overall",
 ]
 
 
@@ -117,14 +158,13 @@ black = "#000000"
 white = "#ffffff"
 
 colors = [
-    light_blue,
-    light_green,
-    light_red,
-    dark_green,
     light_gray,
-    dark_blue,
+    light_red,
     dark_red,
-    dark_gray,
+    light_green,
+    dark_green,
+    light_blue,
+    dark_blue,
 ]
 
 
@@ -132,11 +172,11 @@ def plot():
     plt.figure(figsize=(10, 5))
     plt.title("Comparison of different styles for 605")
     plt.xlabel("Number of samples")
-    plt.ylabel("Difference (in %)")
+    plt.ylabel("Difference")
 
     x_values = []
-    for i in range(1, 13):
-        x_values.append(i * 7)
+    for i in range(1, 14):
+        x_values.append(i * 10)
 
     plt.xticks(x_values, names, rotation=45)
 
@@ -146,8 +186,7 @@ def plot():
         plt.bar(
             [x + i - 3 for x in x_values],
             sizes,
-            label=style
-            + (f" ({compilations} compilations)" if compilations > 0 else ""),
+            label=style + (f" ({compilations} comps)" if compilations > 0 else ""),
             color=colors[i],
         )
 

@@ -1,0 +1,2717 @@
+Let's go!
+Time after baseline: 1.0165345668792725
+Time after file setup: 1.0287575721740723
+Track AA Queries Random with 100 samples
+counts per function per file: {PosixPath('605/implicit.bc'): {'resize_prob': 43, 'insert_new_arc': 155, 'replace_weaker_arc': 171, 'price_out_impl': 634, 'suspend_impl': 85, 'refreshArcPointers': 35, 'refreshPositions': 8, 'marc_arcs': 82, 'calculate_max_redcost': 8, 'switch_arcs': 44, 'arc_compare': 14}, PosixPath('605/readmin.bc'): {'read_min': 623}, PosixPath('605/treeup.bc'): {'update_tree': 270}, PosixPath('605/output.bc'): {'write_circulations': 18}, PosixPath('605/mcfutil.bc'): {'refresh_neighbour_lists': 38, 'flow_cost': 82, 'getArcPosition': 6, 'flow_org_cost': 82, 'primal_feasible': 17, 'dual_feasible': 36}, PosixPath('605/pbla.bc'): {'primal_iminus': 65}, PosixPath('605/mcf.bc'): {'main': 5}, PosixPath('605/pflowup.bc'): {'primal_update_flow': 20}, PosixPath('605/pbeampp.bc'): {'primal_bea_mpp': 231, 'set_static_vars': 2, 'cost_compare': 14}, PosixPath('605/psimplex.bc'): {'markBaskets': 30, 'worker': 58, 'master': 205, 'primal_net_simplex': 10}, PosixPath('605/pstart.bc'): {'primal_start_artificial': 327}, PosixPath('605/spec_qsort/spec_qsort.bc'): {'swapfunc': 10, 'spec_qsort': 7}}
+Time after AA Query measurement: 1.3592486381530762
+Start Exploration
+***** Next file: 605/implicit.bc
+==== Next function: resize_prob
+Number of AA Queries: 43
+Distinct counts: [4640, 4639]
+Found sequence: [0, 2, 5, 6, 10, 11, 12, 13, 16, 17, 18, 21, 25, 31, 32, 34, 36, 38, 40]
+With size: 4639
+==== Next function: insert_new_arc
+Number of AA Queries: 155
+Distinct counts: [4635, 4639]
+Found sequence: [0, 1, 4, 6, 7, 9, 10, 12, 13, 15, 16, 17, 19, 23, 24, 25, 27, 28, 29, 30, 31, 32, 35, 36, 38, 40, 42, 43, 44, 46, 47, 48, 51, 52, 58, 60, 61, 62, 63, 66, 67, 68, 70, 72, 74, 75, 76, 80, 81, 87, 90, 91, 92, 94, 97, 99, 100, 101, 102, 106, 109, 110, 113, 116, 117, 118, 122, 125, 126, 127, 129, 131, 132, 133, 137, 139, 140, 141, 142, 147, 149, 150, 152]
+With size: 4635
+==== Next function: replace_weaker_arc
+Number of AA Queries: 171
+Distinct counts: [4648]
+Found sequence: [0, 3, 4, 7, 18, 20, 21, 22, 23, 27, 28, 29, 31, 34, 36, 37, 44, 46, 48, 49, 51, 53, 57, 60, 67, 71, 73, 76, 79, 80, 81, 84, 89, 94, 95, 96, 98, 99, 103, 104, 107, 108, 110, 115, 117, 118, 119, 121, 124, 125, 126, 128, 129, 131, 134, 135, 136, 137, 138, 139, 140, 141, 144, 145, 146, 147, 151, 152, 153, 154, 156, 157, 161, 164, 167, 169]
+With size: 4648
+==== Next function: price_out_impl
+Number of AA Queries: 634
+Distinct counts: [4500, 4517]
+Found sequence: [0, 3, 4, 5, 6, 8, 10, 11, 13, 14, 15, 21, 23, 28, 29, 31, 35, 36, 37, 38, 40, 42, 46, 49, 54, 58, 60, 62, 63, 65, 66, 67, 70, 72, 75, 78, 79, 82, 83, 91, 93, 98, 100, 101, 105, 107, 110, 111, 114, 115, 116, 117, 119, 120, 122, 123, 125, 126, 127, 131, 132, 134, 137, 138, 148, 151, 152, 153, 156, 158, 159, 160, 162, 165, 166, 168, 169, 170, 171, 173, 174, 182, 186, 187, 190, 191, 192, 194, 195, 198, 199, 201, 205, 207, 212, 217, 221, 222, 223, 224, 229, 232, 235, 236, 237, 239, 241, 244, 246, 247, 250, 251, 256, 257, 258, 260, 262, 263, 264, 265, 269, 272, 273, 276, 278, 279, 280, 283, 288, 289, 291, 293, 294, 296, 297, 300, 301, 302, 304, 307, 315, 317, 318, 319, 320, 326, 330, 331, 333, 335, 338, 341, 342, 343, 346, 347, 348, 350, 352, 353, 354, 360, 361, 363, 364, 365, 366, 367, 368, 370, 371, 374, 378, 379, 380, 381, 382, 385, 386, 387, 388, 389, 391, 393, 395, 396, 398, 399, 402, 403, 411, 415, 419, 421, 422, 424, 425, 426, 427, 431, 438, 439, 441, 442, 444, 445, 447, 449, 450, 452, 453, 454, 458, 459, 460, 462, 463, 464, 466, 468, 469, 470, 472, 474, 475, 478, 479, 480, 483, 486, 491, 492, 494, 496, 498, 499, 500, 503, 504, 505, 506, 509, 512, 514, 515, 516, 518, 519, 521, 522, 523, 527, 531, 533, 534, 536, 537, 539, 540, 543, 544, 545, 546, 547, 548, 549, 552, 553, 554, 556, 557, 559, 561, 563, 565, 570, 571, 574, 581, 582, 583, 584, 586, 589, 590, 591, 593, 594, 598, 601, 603, 606, 607, 608, 610, 612, 614, 620, 622, 627, 628, 631, 633]
+With size: 4500
+==== Next function: suspend_impl
+Number of AA Queries: 85
+Distinct counts: [4640, 4604, 4624, 4580]
+Found sequence: [0, 1, 2, 3, 4, 8, 14, 15, 16, 19, 22, 23, 25, 26, 32, 38, 39, 41, 43, 45, 48, 49, 51, 53, 54, 55, 56, 59, 64, 65, 68, 71, 72, 75, 76, 77, 78, 79, 80]
+With size: 4580
+==== Next function: refreshArcPointers
+Number of AA Queries: 35
+Distinct counts: [4639]
+Found sequence: [1, 2, 4, 5, 6, 7, 12, 22, 23, 24, 25, 26, 27, 30, 31, 33]
+With size: 4639
+==== Next function: refreshPositions
+Number of AA Queries: 8
+Distinct counts: [4639]
+Found sequence: [1, 2, 5, 6, 7]
+With size: 4639
+==== Next function: marc_arcs
+Number of AA Queries: 82
+Distinct counts: [4801, 4793, 4735]
+Found sequence: [1, 2, 3, 5, 8, 10, 16, 18, 19, 23, 24, 28, 29, 33, 34, 36, 37, 38, 39, 42, 43, 44, 46, 47, 48, 49, 50, 51, 52, 53, 56, 58, 59, 61, 62, 63, 66, 67, 69, 70, 71, 75, 77, 79, 80]
+With size: 4735
+==== Next function: calculate_max_redcost
+Number of AA Queries: 8
+Distinct counts: [4639]
+Found sequence: [0, 1, 2, 5, 6, 7]
+With size: 4639
+==== Next function: switch_arcs
+Number of AA Queries: 44
+Distinct counts: [4641, 4644]
+Found sequence: [0, 1, 3, 4, 5, 7, 8, 9, 12, 16, 17, 18, 19, 20, 22, 23, 26, 29, 30, 32, 33, 35, 37, 38, 40]
+With size: 4641
+==== Next function: arc_compare
+Number of AA Queries: 14
+Distinct counts: [4639]
+Found sequence: [0, 1, 2, 4, 8, 9, 10, 13]
+With size: 4639
+Time after exploration of 605/implicit.bc: 4.919252872467041
+***** Next file: 605/readmin.bc
+==== Next function: read_min
+Number of AA Queries: 623
+Distinct counts: [1857, 1868, 1870, 1847]
+Found sequence: [1, 2, 3, 6, 9, 18, 24, 25, 28, 29, 30, 31, 32, 33, 36, 37, 38, 39, 45, 50, 53, 54, 56, 57, 58, 61, 62, 73, 78, 81, 82, 83, 84, 86, 87, 88, 93, 96, 98, 100, 101, 102, 105, 107, 108, 109, 110, 111, 113, 115, 116, 117, 118, 119, 121, 122, 125, 126, 128, 129, 132, 135, 138, 139, 141, 142, 143, 148, 149, 151, 154, 155, 159, 164, 165, 166, 167, 168, 171, 174, 175, 177, 178, 179, 182, 184, 187, 189, 191, 193, 194, 196, 201, 203, 206, 207, 209, 212, 213, 214, 216, 217, 218, 220, 223, 224, 227, 228, 229, 230, 231, 232, 233, 235, 241, 242, 243, 249, 250, 251, 252, 253, 255, 256, 257, 258, 259, 260, 261, 264, 265, 270, 273, 274, 277, 278, 283, 285, 286, 287, 289, 290, 291, 292, 295, 299, 301, 303, 304, 305, 307, 311, 312, 314, 315, 316, 319, 320, 322, 323, 324, 325, 327, 330, 332, 334, 336, 337, 338, 342, 343, 345, 346, 350, 354, 355, 357, 358, 360, 361, 364, 365, 366, 369, 370, 371, 372, 374, 375, 377, 380, 381, 382, 384, 385, 386, 390, 393, 394, 396, 400, 401, 404, 406, 407, 410, 414, 415, 416, 418, 419, 421, 423, 428, 431, 432, 433, 435, 436, 437, 438, 439, 443, 444, 445, 446, 449, 453, 454, 456, 462, 464, 465, 466, 468, 469, 470, 472, 474, 475, 480, 481, 482, 484, 487, 489, 490, 493, 494, 495, 500, 502, 503, 504, 505, 506, 507, 511, 519, 521, 525, 526, 529, 530, 532, 535, 539, 540, 541, 543, 547, 557, 559, 560, 562, 567, 570, 571, 573, 575, 576, 581, 582, 585, 589, 590, 591, 594, 596, 598, 601, 606, 607, 608, 609, 610, 612, 618]
+With size: 1847
+Time after exploration of 605/readmin.bc: 5.10872220993042
+***** Next file: 605/treeup.bc
+==== Next function: update_tree
+Number of AA Queries: 270
+Distinct counts: [539, 535]
+Found sequence: [1, 4, 5, 6, 9, 10, 14, 23, 25, 28, 30, 31, 34, 36, 37, 41, 43, 44, 45, 48, 49, 50, 55, 57, 61, 62, 63, 64, 65, 66, 68, 70, 73, 75, 76, 80, 81, 83, 85, 87, 88, 91, 95, 97, 102, 103, 105, 107, 108, 109, 110, 111, 112, 113, 114, 115, 119, 120, 121, 123, 125, 128, 140, 142, 144, 146, 147, 148, 150, 151, 152, 154, 155, 157, 159, 161, 162, 163, 165, 166, 167, 169, 173, 174, 176, 179, 181, 186, 187, 190, 191, 192, 195, 197, 199, 200, 201, 203, 205, 210, 211, 213, 215, 216, 217, 218, 221, 222, 224, 225, 227, 228, 230, 232, 234, 235, 238, 239, 241, 245, 246, 249, 250, 253, 256, 257, 259, 262, 264, 266]
+With size: 535
+Time after exploration of 605/treeup.bc: 5.337077856063843
+***** Next file: 605/output.bc
+==== Next function: write_circulations
+Number of AA Queries: 18
+Distinct counts: [579]
+Found sequence: [0, 1, 2, 3, 4, 5, 6, 9, 12, 13, 15, 16]
+With size: 579
+Time after exploration of 605/output.bc: 5.5367491245269775
+***** Next file: 605/mcfutil.bc
+==== Next function: refresh_neighbour_lists
+Number of AA Queries: 38
+Distinct counts: [1652]
+Found sequence: [1, 2, 5, 9, 12, 13, 14, 18, 19, 20, 23, 27, 31, 32, 34, 37]
+With size: 1652
+==== Next function: flow_cost
+Number of AA Queries: 82
+Distinct counts: [1656, 1664, 1667, 1653]
+Found sequence: [1, 3, 4, 5, 7, 8, 9, 11, 12, 15, 17, 18, 19, 21, 22, 23, 25, 28, 29, 30, 31, 32, 33, 34, 35, 37, 39, 42, 45, 46, 47, 48, 51, 52, 53, 55, 56, 59, 61, 62, 63, 64, 66, 69, 72, 75, 77, 78]
+With size: 1653
+==== Next function: getArcPosition
+Number of AA Queries: 6
+Distinct counts: [1652]
+Found sequence: [1, 3]
+With size: 1652
+==== Next function: flow_org_cost
+Number of AA Queries: 82
+Distinct counts: [1649, 1642, 1651, 1658]
+Found sequence: [4, 6, 7, 8, 9, 10, 11, 12, 15, 16, 17, 18, 19, 20, 22, 23, 25, 26, 27, 28, 29, 30, 32, 36, 39, 44, 45, 51, 52, 59, 61, 65, 67, 68, 70, 71, 73, 75, 76, 77, 78, 79, 80]
+With size: 1642
+==== Next function: primal_feasible
+Number of AA Queries: 17
+Distinct counts: [1652]
+Found sequence: [2, 4, 5, 10, 13, 14]
+With size: 1652
+==== Next function: dual_feasible
+Number of AA Queries: 36
+Distinct counts: [1652]
+Found sequence: [0, 2, 3, 8, 10, 12, 19, 21, 30, 32, 34, 35]
+With size: 1652
+Time after exploration of 605/mcfutil.bc: 6.9329118728637695
+***** Next file: 605/pbla.bc
+==== Next function: primal_iminus
+Number of AA Queries: 65
+Distinct counts: [178]
+Found sequence: [0, 3, 4, 8, 12, 16, 17, 19, 20, 24, 25, 32, 34, 35, 38, 39, 40, 41, 46, 47, 48, 49, 50, 53, 54, 60, 61, 62]
+With size: 178
+Time after exploration of 605/pbla.bc: 7.1078855991363525
+***** Next file: 605/mcf.bc
+==== Next function: main
+Number of AA Queries: 5
+Distinct counts: [1239]
+Found sequence: [0, 1, 2]
+With size: 1239
+Time after exploration of 605/mcf.bc: 7.282620906829834
+***** Next file: 605/pflowup.bc
+==== Next function: primal_update_flow
+Number of AA Queries: 20
+Distinct counts: [95]
+Found sequence: [4, 7, 8, 12, 14, 15, 16, 17, 18]
+With size: 95
+Time after exploration of 605/pflowup.bc: 7.45913028717041
+***** Next file: 605/pbeampp.bc
+==== Next function: primal_bea_mpp
+Number of AA Queries: 231
+Distinct counts: [784, 777, 772, 775]
+Found sequence: [4, 5, 6, 7, 12, 13, 15, 16, 18, 20, 22, 25, 30, 31, 39, 41, 42, 43, 44, 47, 53, 54, 56, 57, 58, 59, 61, 63, 67, 70, 71, 73, 75, 78, 81, 82, 85, 86, 87, 89, 90, 91, 92, 94, 96, 98, 100, 104, 106, 107, 112, 113, 116, 123, 125, 126, 130, 132, 135, 136, 140, 141, 142, 146, 147, 151, 152, 164, 166, 169, 170, 171, 172, 174, 175, 177, 178, 180, 181, 182, 183, 184, 186, 188, 189, 192, 193, 199, 201, 202, 203, 208, 209, 210, 212, 215, 220, 225, 226, 227, 228, 229, 230]
+With size: 772
+==== Next function: set_static_vars
+Number of AA Queries: 2
+Distinct counts: [781]
+Found sequence: [0, 1]
+With size: 781
+==== Next function: cost_compare
+Number of AA Queries: 14
+Distinct counts: [781]
+Found sequence: [0, 1, 7, 8, 11, 12]
+With size: 781
+Time after exploration of 605/pbeampp.bc: 7.973109483718872
+***** Next file: 605/psimplex.bc
+==== Next function: markBaskets
+Number of AA Queries: 30
+Distinct counts: [1812]
+Found sequence: [1, 2, 3, 4, 7, 8, 10, 11, 14, 18, 19, 21, 24, 25, 26, 27, 28, 29]
+With size: 1812
+==== Next function: worker
+Number of AA Queries: 58
+Distinct counts: [1819, 1812]
+Found sequence: [0, 1, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 18, 21, 22, 23, 25, 27, 29, 33, 34, 35, 36, 37, 39, 40, 41, 43, 46, 47, 48, 49, 51, 57]
+With size: 1812
+==== Next function: master
+Number of AA Queries: 205
+Distinct counts: [1819, 1829, 1822]
+Found sequence: [2, 3, 5, 6, 7, 8, 12, 18, 19, 20, 23, 25, 27, 28, 29, 31, 32, 33, 35, 36, 37, 41, 42, 43, 44, 45, 46, 51, 52, 54, 55, 56, 60, 63, 64, 65, 66, 69, 70, 71, 73, 75, 81, 82, 83, 84, 85, 87, 88, 89, 90, 92, 93, 94, 95, 97, 100, 101, 102, 103, 106, 112, 113, 115, 119, 120, 125, 126, 131, 134, 140, 141, 142, 146, 148, 152, 154, 156, 159, 161, 162, 163, 164, 165, 166, 167, 168, 170, 172, 173, 174, 175, 176, 180, 184, 186, 189, 191, 193, 194, 195, 196, 200, 201]
+With size: 1819
+==== Next function: primal_net_simplex
+Number of AA Queries: 10
+Distinct counts: [1812]
+Found sequence: [0, 4, 6, 9]
+With size: 1812
+Time after exploration of 605/psimplex.bc: 8.618459939956665
+***** Next file: 605/pstart.bc
+==== Next function: primal_start_artificial
+Number of AA Queries: 327
+Distinct counts: [305, 297]
+Found sequence: [0, 5, 6, 7, 8, 10, 11, 12, 15, 20, 22, 23, 24, 25, 28, 31, 35, 36, 37, 46, 48, 49, 50, 56, 57, 61, 62, 67, 68, 72, 73, 75, 78, 80, 82, 85, 90, 92, 93, 94, 97, 100, 104, 106, 107, 108, 111, 112, 119, 121, 122, 123, 124, 125, 129, 130, 132, 135, 138, 139, 141, 149, 151, 152, 153, 154, 158, 160, 163, 164, 167, 171, 176, 180, 182, 184, 185, 189, 190, 191, 193, 197, 198, 200, 202, 203, 204, 205, 207, 209, 210, 213, 218, 219, 220, 222, 224, 225, 229, 231, 234, 235, 236, 237, 238, 239, 240, 242, 244, 245, 247, 249, 252, 253, 255, 257, 258, 260, 261, 263, 267, 269, 270, 271, 273, 274, 275, 277, 278, 284, 290, 291, 293, 294, 297, 298, 300, 303, 305, 306, 307, 308, 309, 310, 311, 312, 313, 318, 319, 320, 321, 323, 325, 326]
+With size: 297
+Time after exploration of 605/pstart.bc: 8.723581552505493
+***** Next file: 605/spec_qsort/spec_qsort.bc
+==== Next function: swapfunc
+Number of AA Queries: 10
+Distinct counts: [1754]
+Found sequence: [3, 4, 5, 6, 8, 9]
+With size: 1754
+==== Next function: spec_qsort
+Number of AA Queries: 7
+Distinct counts: [1754]
+Found sequence: [1, 2, 5]
+With size: 1754
+Time after exploration of 605/spec_qsort/spec_qsort.bc: 9.146356582641602
+found results: 
+605/implicit.bc{ resize_prob: 4639, insert_new_arc: 4635, replace_weaker_arc: 4648, price_out_impl: 4500, suspend_impl: 4580, refreshArcPointers: 4639, refreshPositions: 4639, marc_arcs: 4735, calculate_max_redcost: 4639, switch_arcs: 4641, arc_compare: 4639, } 605/readmin.bc{ read_min: 1847, } 605/treeup.bc{ update_tree: 535, } 605/output.bc{ write_circulations: 579, } 605/mcfutil.bc{ refresh_neighbour_lists: 1652, flow_cost: 1653, getArcPosition: 1652, flow_org_cost: 1642, primal_feasible: 1652, dual_feasible: 1652, } 605/pbla.bc{ primal_iminus: 178, } 605/mcf.bc{ main: 1239, } 605/pflowup.bc{ primal_update_flow: 95, } 605/pbeampp.bc{ primal_bea_mpp: 772, set_static_vars: 781, cost_compare: 781, } 605/psimplex.bc{ markBaskets: 1812, worker: 1812, master: 1819, primal_net_simplex: 1812, } 605/pstart.bc{ primal_start_artificial: 297, } 605/spec_qsort/spec_qsort.bc{ swapfunc: 1754, spec_qsort: 1754, } 
+605/implicit.bc{ resize_prob: [0, 2, 5, 6, 10, 11, 12, 13, 16, 17, 18, 21, 25, 31, 32, 34, 36, 38, 40], insert_new_arc: [0, 1, 4, 6, 7, 9, 10, 12, 13, 15, 16, 17, 19, 23, 24, 25, 27, 28, 29, 30, 31, 32, 35, 36, 38, 40, 42, 43, 44, 46, 47, 48, 51, 52, 58, 60, 61, 62, 63, 66, 67, 68, 70, 72, 74, 75, 76, 80, 81, 87, 90, 91, 92, 94, 97, 99, 100, 101, 102, 106, 109, 110, 113, 116, 117, 118, 122, 125, 126, 127, 129, 131, 132, 133, 137, 139, 140, 141, 142, 147, 149, 150, 152], replace_weaker_arc: [0, 3, 4, 7, 18, 20, 21, 22, 23, 27, 28, 29, 31, 34, 36, 37, 44, 46, 48, 49, 51, 53, 57, 60, 67, 71, 73, 76, 79, 80, 81, 84, 89, 94, 95, 96, 98, 99, 103, 104, 107, 108, 110, 115, 117, 118, 119, 121, 124, 125, 126, 128, 129, 131, 134, 135, 136, 137, 138, 139, 140, 141, 144, 145, 146, 147, 151, 152, 153, 154, 156, 157, 161, 164, 167, 169], price_out_impl: [0, 3, 4, 5, 6, 8, 10, 11, 13, 14, 15, 21, 23, 28, 29, 31, 35, 36, 37, 38, 40, 42, 46, 49, 54, 58, 60, 62, 63, 65, 66, 67, 70, 72, 75, 78, 79, 82, 83, 91, 93, 98, 100, 101, 105, 107, 110, 111, 114, 115, 116, 117, 119, 120, 122, 123, 125, 126, 127, 131, 132, 134, 137, 138, 148, 151, 152, 153, 156, 158, 159, 160, 162, 165, 166, 168, 169, 170, 171, 173, 174, 182, 186, 187, 190, 191, 192, 194, 195, 198, 199, 201, 205, 207, 212, 217, 221, 222, 223, 224, 229, 232, 235, 236, 237, 239, 241, 244, 246, 247, 250, 251, 256, 257, 258, 260, 262, 263, 264, 265, 269, 272, 273, 276, 278, 279, 280, 283, 288, 289, 291, 293, 294, 296, 297, 300, 301, 302, 304, 307, 315, 317, 318, 319, 320, 326, 330, 331, 333, 335, 338, 341, 342, 343, 346, 347, 348, 350, 352, 353, 354, 360, 361, 363, 364, 365, 366, 367, 368, 370, 371, 374, 378, 379, 380, 381, 382, 385, 386, 387, 388, 389, 391, 393, 395, 396, 398, 399, 402, 403, 411, 415, 419, 421, 422, 424, 425, 426, 427, 431, 438, 439, 441, 442, 444, 445, 447, 449, 450, 452, 453, 454, 458, 459, 460, 462, 463, 464, 466, 468, 469, 470, 472, 474, 475, 478, 479, 480, 483, 486, 491, 492, 494, 496, 498, 499, 500, 503, 504, 505, 506, 509, 512, 514, 515, 516, 518, 519, 521, 522, 523, 527, 531, 533, 534, 536, 537, 539, 540, 543, 544, 545, 546, 547, 548, 549, 552, 553, 554, 556, 557, 559, 561, 563, 565, 570, 571, 574, 581, 582, 583, 584, 586, 589, 590, 591, 593, 594, 598, 601, 603, 606, 607, 608, 610, 612, 614, 620, 622, 627, 628, 631, 633], suspend_impl: [0, 1, 2, 3, 4, 8, 14, 15, 16, 19, 22, 23, 25, 26, 32, 38, 39, 41, 43, 45, 48, 49, 51, 53, 54, 55, 56, 59, 64, 65, 68, 71, 72, 75, 76, 77, 78, 79, 80], refreshArcPointers: [1, 2, 4, 5, 6, 7, 12, 22, 23, 24, 25, 26, 27, 30, 31, 33], refreshPositions: [1, 2, 5, 6, 7], marc_arcs: [1, 2, 3, 5, 8, 10, 16, 18, 19, 23, 24, 28, 29, 33, 34, 36, 37, 38, 39, 42, 43, 44, 46, 47, 48, 49, 50, 51, 52, 53, 56, 58, 59, 61, 62, 63, 66, 67, 69, 70, 71, 75, 77, 79, 80], calculate_max_redcost: [0, 1, 2, 5, 6, 7], switch_arcs: [0, 1, 3, 4, 5, 7, 8, 9, 12, 16, 17, 18, 19, 20, 22, 23, 26, 29, 30, 32, 33, 35, 37, 38, 40], arc_compare: [0, 1, 2, 4, 8, 9, 10, 13], } 605/readmin.bc{ read_min: [1, 2, 3, 6, 9, 18, 24, 25, 28, 29, 30, 31, 32, 33, 36, 37, 38, 39, 45, 50, 53, 54, 56, 57, 58, 61, 62, 73, 78, 81, 82, 83, 84, 86, 87, 88, 93, 96, 98, 100, 101, 102, 105, 107, 108, 109, 110, 111, 113, 115, 116, 117, 118, 119, 121, 122, 125, 126, 128, 129, 132, 135, 138, 139, 141, 142, 143, 148, 149, 151, 154, 155, 159, 164, 165, 166, 167, 168, 171, 174, 175, 177, 178, 179, 182, 184, 187, 189, 191, 193, 194, 196, 201, 203, 206, 207, 209, 212, 213, 214, 216, 217, 218, 220, 223, 224, 227, 228, 229, 230, 231, 232, 233, 235, 241, 242, 243, 249, 250, 251, 252, 253, 255, 256, 257, 258, 259, 260, 261, 264, 265, 270, 273, 274, 277, 278, 283, 285, 286, 287, 289, 290, 291, 292, 295, 299, 301, 303, 304, 305, 307, 311, 312, 314, 315, 316, 319, 320, 322, 323, 324, 325, 327, 330, 332, 334, 336, 337, 338, 342, 343, 345, 346, 350, 354, 355, 357, 358, 360, 361, 364, 365, 366, 369, 370, 371, 372, 374, 375, 377, 380, 381, 382, 384, 385, 386, 390, 393, 394, 396, 400, 401, 404, 406, 407, 410, 414, 415, 416, 418, 419, 421, 423, 428, 431, 432, 433, 435, 436, 437, 438, 439, 443, 444, 445, 446, 449, 453, 454, 456, 462, 464, 465, 466, 468, 469, 470, 472, 474, 475, 480, 481, 482, 484, 487, 489, 490, 493, 494, 495, 500, 502, 503, 504, 505, 506, 507, 511, 519, 521, 525, 526, 529, 530, 532, 535, 539, 540, 541, 543, 547, 557, 559, 560, 562, 567, 570, 571, 573, 575, 576, 581, 582, 585, 589, 590, 591, 594, 596, 598, 601, 606, 607, 608, 609, 610, 612, 618], } 605/treeup.bc{ update_tree: [1, 4, 5, 6, 9, 10, 14, 23, 25, 28, 30, 31, 34, 36, 37, 41, 43, 44, 45, 48, 49, 50, 55, 57, 61, 62, 63, 64, 65, 66, 68, 70, 73, 75, 76, 80, 81, 83, 85, 87, 88, 91, 95, 97, 102, 103, 105, 107, 108, 109, 110, 111, 112, 113, 114, 115, 119, 120, 121, 123, 125, 128, 140, 142, 144, 146, 147, 148, 150, 151, 152, 154, 155, 157, 159, 161, 162, 163, 165, 166, 167, 169, 173, 174, 176, 179, 181, 186, 187, 190, 191, 192, 195, 197, 199, 200, 201, 203, 205, 210, 211, 213, 215, 216, 217, 218, 221, 222, 224, 225, 227, 228, 230, 232, 234, 235, 238, 239, 241, 245, 246, 249, 250, 253, 256, 257, 259, 262, 264, 266], } 605/output.bc{ write_circulations: [0, 1, 2, 3, 4, 5, 6, 9, 12, 13, 15, 16], } 605/mcfutil.bc{ refresh_neighbour_lists: [1, 2, 5, 9, 12, 13, 14, 18, 19, 20, 23, 27, 31, 32, 34, 37], flow_cost: [1, 3, 4, 5, 7, 8, 9, 11, 12, 15, 17, 18, 19, 21, 22, 23, 25, 28, 29, 30, 31, 32, 33, 34, 35, 37, 39, 42, 45, 46, 47, 48, 51, 52, 53, 55, 56, 59, 61, 62, 63, 64, 66, 69, 72, 75, 77, 78], getArcPosition: [1, 3], flow_org_cost: [4, 6, 7, 8, 9, 10, 11, 12, 15, 16, 17, 18, 19, 20, 22, 23, 25, 26, 27, 28, 29, 30, 32, 36, 39, 44, 45, 51, 52, 59, 61, 65, 67, 68, 70, 71, 73, 75, 76, 77, 78, 79, 80], primal_feasible: [2, 4, 5, 10, 13, 14], dual_feasible: [0, 2, 3, 8, 10, 12, 19, 21, 30, 32, 34, 35], } 605/pbla.bc{ primal_iminus: [0, 3, 4, 8, 12, 16, 17, 19, 20, 24, 25, 32, 34, 35, 38, 39, 40, 41, 46, 47, 48, 49, 50, 53, 54, 60, 61, 62], } 605/mcf.bc{ main: [0, 1, 2], } 605/pflowup.bc{ primal_update_flow: [4, 7, 8, 12, 14, 15, 16, 17, 18], } 605/pbeampp.bc{ primal_bea_mpp: [4, 5, 6, 7, 12, 13, 15, 16, 18, 20, 22, 25, 30, 31, 39, 41, 42, 43, 44, 47, 53, 54, 56, 57, 58, 59, 61, 63, 67, 70, 71, 73, 75, 78, 81, 82, 85, 86, 87, 89, 90, 91, 92, 94, 96, 98, 100, 104, 106, 107, 112, 113, 116, 123, 125, 126, 130, 132, 135, 136, 140, 141, 142, 146, 147, 151, 152, 164, 166, 169, 170, 171, 172, 174, 175, 177, 178, 180, 181, 182, 183, 184, 186, 188, 189, 192, 193, 199, 201, 202, 203, 208, 209, 210, 212, 215, 220, 225, 226, 227, 228, 229, 230], set_static_vars: [0, 1], cost_compare: [0, 1, 7, 8, 11, 12], } 605/psimplex.bc{ markBaskets: [1, 2, 3, 4, 7, 8, 10, 11, 14, 18, 19, 21, 24, 25, 26, 27, 28, 29], worker: [0, 1, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 18, 21, 22, 23, 25, 27, 29, 33, 34, 35, 36, 37, 39, 40, 41, 43, 46, 47, 48, 49, 51, 57], master: [2, 3, 5, 6, 7, 8, 12, 18, 19, 20, 23, 25, 27, 28, 29, 31, 32, 33, 35, 36, 37, 41, 42, 43, 44, 45, 46, 51, 52, 54, 55, 56, 60, 63, 64, 65, 66, 69, 70, 71, 73, 75, 81, 82, 83, 84, 85, 87, 88, 89, 90, 92, 93, 94, 95, 97, 100, 101, 102, 103, 106, 112, 113, 115, 119, 120, 125, 126, 131, 134, 140, 141, 142, 146, 148, 152, 154, 156, 159, 161, 162, 163, 164, 165, 166, 167, 168, 170, 172, 173, 174, 175, 176, 180, 184, 186, 189, 191, 193, 194, 195, 196, 200, 201], primal_net_simplex: [0, 4, 6, 9], } 605/pstart.bc{ primal_start_artificial: [0, 5, 6, 7, 8, 10, 11, 12, 15, 20, 22, 23, 24, 25, 28, 31, 35, 36, 37, 46, 48, 49, 50, 56, 57, 61, 62, 67, 68, 72, 73, 75, 78, 80, 82, 85, 90, 92, 93, 94, 97, 100, 104, 106, 107, 108, 111, 112, 119, 121, 122, 123, 124, 125, 129, 130, 132, 135, 138, 139, 141, 149, 151, 152, 153, 154, 158, 160, 163, 164, 167, 171, 176, 180, 182, 184, 185, 189, 190, 191, 193, 197, 198, 200, 202, 203, 204, 205, 207, 209, 210, 213, 218, 219, 220, 222, 224, 225, 229, 231, 234, 235, 236, 237, 238, 239, 240, 242, 244, 245, 247, 249, 252, 253, 255, 257, 258, 260, 261, 263, 267, 269, 270, 271, 273, 274, 275, 277, 278, 284, 290, 291, 293, 294, 297, 298, 300, 303, 305, 306, 307, 308, 309, 310, 311, 312, 313, 318, 319, 320, 321, 323, 325, 326], } 605/spec_qsort/spec_qsort.bc{ swapfunc: [3, 4, 5, 6, 8, 9], spec_qsort: [1, 2, 5], } 
+time after exploration: 9.14655351638794
+605/implicit.bc: 4544 vs 4639
+605/readmin.bc: 1847 vs 1790
+605/treeup.bc: 535 vs 535
+605/output.bc: 579 vs 579
+605/mcfutil.bc: 1643 vs 1652
+605/pbla.bc: 178 vs 178
+605/mcf.bc: 1239 vs 1239
+605/pflowup.bc: 95 vs 95
+605/pbeampp.bc: 772 vs 781
+605/psimplex.bc: 1819 vs 1812
+605/pstart.bc: 297 vs 319
+605/spec_qsort/spec_qsort.bc: 1754 vs 1754
+Time after after composition: 10.502713918685913
+result: 17845 vs 17913
+meaning a 0.37961257187517444% improvement
+Random used 130 compilations
+Time after file setup: 10.522111415863037
+Track AA Queries Deterministic False
+counts per function per file: {PosixPath('605/implicit.bc'): {'resize_prob': 43, 'insert_new_arc': 155, 'replace_weaker_arc': 171, 'price_out_impl': 634, 'suspend_impl': 85, 'refreshArcPointers': 35, 'refreshPositions': 8, 'marc_arcs': 82, 'calculate_max_redcost': 8, 'switch_arcs': 44, 'arc_compare': 14}, PosixPath('605/readmin.bc'): {'read_min': 623}, PosixPath('605/treeup.bc'): {'update_tree': 270}, PosixPath('605/output.bc'): {'write_circulations': 18}, PosixPath('605/mcfutil.bc'): {'refresh_neighbour_lists': 38, 'flow_cost': 82, 'getArcPosition': 6, 'flow_org_cost': 82, 'primal_feasible': 17, 'dual_feasible': 36}, PosixPath('605/pbla.bc'): {'primal_iminus': 65}, PosixPath('605/mcf.bc'): {'main': 5}, PosixPath('605/pflowup.bc'): {'primal_update_flow': 20}, PosixPath('605/pbeampp.bc'): {'primal_bea_mpp': 231, 'set_static_vars': 2, 'cost_compare': 14}, PosixPath('605/psimplex.bc'): {'markBaskets': 30, 'worker': 58, 'master': 205, 'primal_net_simplex': 10}, PosixPath('605/pstart.bc'): {'primal_start_artificial': 327}, PosixPath('605/spec_qsort/spec_qsort.bc'): {'swapfunc': 10, 'spec_qsort': 7}}
+Time after AA Query measurement: 10.79746675491333
+Start Exploration
+***** Next file: 605/implicit.bc
+==== Next function: resize_prob
+Running pass: InstCombinePass_4 with max_query_index: 2
+greedy search candidates: [4639]
+Pass: InstCombinePass_4 generated: [] with offset: -1 with count: 4639
+Running pass: EarlyCSEPass_14 with max_query_index: 10
+greedy search candidates: [4640, 4639]
+Pass: EarlyCSEPass_14 generated: [] with offset: 1 with count: 4639
+Running pass: FunctionToLoopPassAdaptor_9 with max_query_index: 26
+greedy search candidates: [4639]
+Pass: FunctionToLoopPassAdaptor_9 generated: [] with offset: 9 with count: 4639
+Running pass: GVNPass_3 with max_query_index: 42
+greedy search candidates: [4639]
+Pass: GVNPass_3 generated: [] with offset: 25 with count: 4639
+Running pass: DSEPass_3 with max_query_index: 43
+greedy search candidates: [4639]
+Pass: DSEPass_3 generated: [] with offset: 41 with count: 4639
+Time after exploration of resize_prob: 14.398528814315796
+==== Next function: insert_new_arc
+Running pass: InstCombinePass_5 with max_query_index: 1
+greedy search candidates: [4639]
+Pass: InstCombinePass_5 generated: [] with offset: -1 with count: 4639
+Running pass: EarlyCSEPass_15 with max_query_index: 7
+greedy search candidates: [4635, 4639]
+greedy search, new min: 4635
+greedy search, current list: [1]
+greedy search candidates: [4635]
+Pass: EarlyCSEPass_15 generated: [1] with offset: 0 with count: 4635
+Running pass: FunctionToLoopPassAdaptor_12 with max_query_index: 31
+greedy search candidates: [4635]
+greedy search candidates: [4635]
+Pass: FunctionToLoopPassAdaptor_12 generated: [1] with offset: 6 with count: 4635
+Running pass: GVNPass_4 with max_query_index: 38
+greedy search candidates: [4635]
+Pass: GVNPass_4 generated: [1] with offset: 30 with count: 4635
+Running pass: DSEPass_4 with max_query_index: 155
+greedy search candidates: [4635]
+greedy search candidates: [4635]
+greedy search candidates: [4635]
+greedy search candidates: [4635]
+greedy search candidates: [4635]
+greedy search candidates: [4635]
+greedy search candidates: [4635]
+greedy search candidates: [4635]
+Pass: DSEPass_4 generated: [1] with offset: 37 with count: 4635
+Time after exploration of insert_new_arc: 24.343505859375
+==== Next function: replace_weaker_arc
+Running pass: InstCombinePass_6 with max_query_index: 1
+greedy search candidates: [4639]
+Pass: InstCombinePass_6 generated: [] with offset: -1 with count: 4639
+Running pass: EarlyCSEPass_16 with max_query_index: 7
+greedy search candidates: [4648, 4639]
+Pass: EarlyCSEPass_16 generated: [] with offset: 0 with count: 4639
+Running pass: FunctionToLoopPassAdaptor_15 with max_query_index: 45
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+Pass: FunctionToLoopPassAdaptor_15 generated: [] with offset: 6 with count: 4639
+Running pass: GVNPass_5 with max_query_index: 54
+greedy search candidates: [4639]
+Pass: GVNPass_5 generated: [] with offset: 44 with count: 4639
+Running pass: DSEPass_5 with max_query_index: 171
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+Pass: DSEPass_5 generated: [] with offset: 53 with count: 4639
+Time after exploration of replace_weaker_arc: 35.247554540634155
+==== Next function: price_out_impl
+Running pass: InstCombinePass_9 with max_query_index: 6
+greedy search candidates: [4585, 4639, 4661, 4647]
+greedy search, new min: 4585
+greedy search, current list: [5]
+Pass: InstCombinePass_9 generated: [5] with offset: -1 with count: 4585
+Running pass: EarlyCSEPass_20 with max_query_index: 94
+greedy search candidates: [4585, 4590, 4528, 4532, 4602]
+greedy search, new min: 4532
+greedy search, current list: [5, 12]
+greedy search candidates: [4528, 4538, 4532, 4509]
+greedy search, new min: 4528
+greedy search, current list: [5, 12, 13]
+greedy search candidates: [4528, 4508, 4534]
+greedy search, new min: 4508
+greedy search, current list: [5, 12, 13, 22]
+greedy search candidates: [4514, 4508]
+greedy search candidates: [4508, 4495]
+greedy search, new min: 4495
+greedy search, current list: [5, 12, 13, 22, 39]
+greedy search candidates: [4491, 4494, 4495]
+greedy search, new min: 4491
+greedy search, current list: [5, 12, 13, 22, 39, 40]
+greedy search candidates: [4491]
+greedy search candidates: [4490, 4491, 4493]
+greedy search, new min: 4490
+greedy search, current list: [5, 12, 13, 22, 39, 40, 70]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+Pass: EarlyCSEPass_20 generated: [5, 12, 13, 22, 39, 40, 70] with offset: 5 with count: 4490
+Running pass: FunctionToLoopPassAdaptor_27 with max_query_index: 259
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+Pass: FunctionToLoopPassAdaptor_27 generated: [5, 12, 13, 22, 39, 40, 70] with offset: 93 with count: 4490
+Running pass: GVNPass_9 with max_query_index: 492
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+Pass: GVNPass_9 generated: [5, 12, 13, 22, 39, 40, 70] with offset: 258 with count: 4490
+Running pass: MemCpyOptPass_9 with max_query_index: 495
+greedy search candidates: [4490]
+Pass: MemCpyOptPass_9 generated: [5, 12, 13, 22, 39, 40, 70] with offset: 491 with count: 4490
+Running pass: DSEPass_9 with max_query_index: 618
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+greedy search candidates: [4490]
+Pass: DSEPass_9 generated: [5, 12, 13, 22, 39, 40, 70] with offset: 494 with count: 4490
+Running pass: FunctionToLoopPassAdaptor_29 with max_query_index: 621
+greedy search candidates: [4490]
+Pass: FunctionToLoopPassAdaptor_29 generated: [5, 12, 13, 22, 39, 40, 70] with offset: 617 with count: 4490
+Running pass: FunctionToLoopPassAdaptor_52 with max_query_index: 632
+greedy search candidates: [4490]
+Pass: FunctionToLoopPassAdaptor_52 generated: [5, 12, 13, 22, 39, 40, 70] with offset: 620 with count: 4490
+Time after exploration of price_out_impl: 76.35339903831482
+==== Next function: suspend_impl
+Running pass: InstCombinePass_10 with max_query_index: 2
+greedy search candidates: [4649, 4639]
+Pass: InstCombinePass_10 generated: [] with offset: -1 with count: 4639
+Running pass: EarlyCSEPass_21 with max_query_index: 15
+greedy search candidates: [4613, 4646, 4617, 4623, 4661, 4639]
+greedy search, new min: 4613
+greedy search, current list: [2]
+greedy search candidates: [4613, 4617, 4620, 4597, 4635]
+greedy search, new min: 4597
+greedy search, current list: [2, 6]
+greedy search candidates: [4619, 4604, 4597]
+Pass: EarlyCSEPass_21 generated: [2, 6] with offset: 1 with count: 4597
+Running pass: FunctionToLoopPassAdaptor_30 with max_query_index: 30
+greedy search candidates: [4577, 4597]
+greedy search, new min: 4577
+greedy search, current list: [2, 6, 28]
+greedy search candidates: [4577]
+Pass: FunctionToLoopPassAdaptor_30 generated: [2, 6, 28] with offset: 14 with count: 4577
+Running pass: MergedLoadStoreMotionPass_10 with max_query_index: 31
+greedy search candidates: [4577]
+Pass: MergedLoadStoreMotionPass_10 generated: [2, 6, 28] with offset: 29 with count: 4577
+Running pass: GVNPass_10 with max_query_index: 67
+greedy search candidates: [4576, 4577]
+greedy search, new min: 4576
+greedy search, current list: [2, 6, 28, 32]
+greedy search candidates: [4576]
+greedy search candidates: [4576]
+greedy search candidates: [4576]
+Pass: GVNPass_10 generated: [2, 6, 28, 32] with offset: 30 with count: 4576
+Running pass: DSEPass_10 with max_query_index: 122
+greedy search candidates: [4576]
+greedy search candidates: [4576]
+Pass: DSEPass_10 generated: [2, 6, 28, 32] with offset: 102 with count: 4576
+Running pass: FunctionToLoopPassAdaptor_32 with max_query_index: 123
+greedy search candidates: [4576]
+Pass: FunctionToLoopPassAdaptor_32 generated: [2, 6, 28, 32] with offset: 121 with count: 4576
+Time after exploration of suspend_impl: 87.22099995613098
+==== Next function: refreshArcPointers
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 11
+greedy search candidates: [4639]
+Pass: FunctionToLoopPassAdaptor_0 generated: [] with offset: -1 with count: 4639
+Running pass: GVNPass_0 with max_query_index: 35
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+Pass: GVNPass_0 generated: [] with offset: 10 with count: 4639
+Time after exploration of refreshArcPointers: 89.70995426177979
+==== Next function: refreshPositions
+Running pass: FunctionToLoopPassAdaptor_3 with max_query_index: 1
+greedy search candidates: [4639]
+Pass: FunctionToLoopPassAdaptor_3 generated: [] with offset: -1 with count: 4639
+Running pass: GVNPass_1 with max_query_index: 4
+greedy search candidates: [4639]
+Pass: GVNPass_1 generated: [] with offset: 0 with count: 4639
+Running pass: DSEPass_1 with max_query_index: 8
+greedy search candidates: [4639]
+Pass: DSEPass_1 generated: [] with offset: 3 with count: 4639
+Time after exploration of refreshPositions: 91.5991952419281
+==== Next function: marc_arcs
+Running pass: EarlyCSEPass_13 with max_query_index: 23
+greedy search candidates: [4736, 4738, 4742, 4636, 4639]
+greedy search, new min: 4636
+greedy search, current list: [0]
+greedy search candidates: [4640, 4737, 4739, 4636, 4735]
+greedy search candidates: [4636]
+Pass: EarlyCSEPass_13 generated: [0] with offset: -1 with count: 4636
+Running pass: FunctionToLoopPassAdaptor_6 with max_query_index: 35
+greedy search candidates: [4636]
+Pass: FunctionToLoopPassAdaptor_6 generated: [0] with offset: 22 with count: 4636
+Running pass: MergedLoadStoreMotionPass_2 with max_query_index: 36
+greedy search candidates: [4636]
+Pass: MergedLoadStoreMotionPass_2 generated: [0] with offset: 34 with count: 4636
+Running pass: GVNPass_2 with max_query_index: 76
+greedy search candidates: [4636, 4628]
+greedy search, new min: 4628
+greedy search, current list: [0, 49]
+greedy search candidates: [4628]
+greedy search candidates: [4628]
+Pass: GVNPass_2 generated: [0, 49] with offset: 35 with count: 4628
+Running pass: DSEPass_2 with max_query_index: 82
+greedy search candidates: [4628]
+Pass: DSEPass_2 generated: [0, 49] with offset: 73 with count: 4628
+Time after exploration of marc_arcs: 99.287118434906
+==== Next function: calculate_max_redcost
+Running pass: EarlyCSEPass_17 with max_query_index: 1
+greedy search candidates: [4639]
+Pass: EarlyCSEPass_17 generated: [] with offset: -1 with count: 4639
+Running pass: FunctionToLoopPassAdaptor_18 with max_query_index: 5
+greedy search candidates: [4639]
+Pass: FunctionToLoopPassAdaptor_18 generated: [] with offset: 0 with count: 4639
+Running pass: GVNPass_6 with max_query_index: 8
+greedy search candidates: [4639]
+Pass: GVNPass_6 generated: [] with offset: 4 with count: 4639
+Time after exploration of calculate_max_redcost: 101.22646927833557
+==== Next function: switch_arcs
+Running pass: FunctionToLoopPassAdaptor_21 with max_query_index: 4
+greedy search candidates: [4639]
+Pass: FunctionToLoopPassAdaptor_21 generated: [] with offset: -1 with count: 4639
+Running pass: GVNPass_7 with max_query_index: 44
+greedy search candidates: [4644, 4639]
+greedy search candidates: [4636, 4639]
+greedy search, new min: 4636
+greedy search, current list: [26]
+greedy search candidates: [4636]
+greedy search candidates: [4641]
+Pass: GVNPass_7 generated: [26] with offset: 3 with count: 4636
+Time after exploration of switch_arcs: 105.3653130531311
+==== Next function: arc_compare
+Running pass: GVNPass_8 with max_query_index: 14
+greedy search candidates: [4639]
+Pass: GVNPass_8 generated: [] with offset: -1 with count: 4639
+Time after exploration of arc_compare: 106.40559935569763
+Time after exploration of 605/implicit.bc: 106.40563249588013
+***** Next file: 605/readmin.bc
+==== Next function: read_min
+Running pass: InstCombinePass_0 with max_query_index: 23
+greedy search candidates: [1793, 1794, 1795, 1803, 1772, 1780, 1812, 1784, 1790]
+greedy search, new min: 1780
+greedy search, current list: [2]
+greedy search candidates: [1794, 1796, 1765, 1780, 1783, 1784, 1785]
+greedy search, new min: 1765
+greedy search, current list: [2, 10]
+greedy search candidates: [1769, 1765, 1815]
+Pass: InstCombinePass_0 generated: [2, 10] with offset: -1 with count: 1765
+Running pass: EarlyCSEPass_1 with max_query_index: 210
+greedy search candidates: [1765, 1766, 1769, 1748, 1756]
+greedy search, new min: 1748
+greedy search, current list: [2, 10, 27]
+greedy search candidates: [1752, 1740, 1748, 1751]
+greedy search, new min: 1740
+greedy search, current list: [2, 10, 27, 33]
+greedy search candidates: [1739, 1740, 1744, 1777, 1745]
+greedy search, new min: 1739
+greedy search, current list: [2, 10, 27, 33, 48]
+greedy search candidates: [1733, 1766, 1736, 1739, 1777, 1788]
+greedy search, new min: 1733
+greedy search, current list: [2, 10, 27, 33, 48, 56]
+greedy search candidates: [1730, 1733, 1737, 1740, 1747]
+greedy search, new min: 1730
+greedy search, current list: [2, 10, 27, 33, 48, 56, 62]
+greedy search candidates: [1792, 1730, 1734, 1778, 1757]
+greedy search candidates: [1730, 1732]
+greedy search candidates: [1744, 1730, 1727]
+greedy search, new min: 1727
+greedy search, current list: [2, 10, 27, 33, 48, 56, 62, 101]
+greedy search candidates: [1731, 1741, 1727]
+greedy search candidates: [1731, 1727]
+greedy search candidates: [1727]
+greedy search candidates: [1729, 1727]
+greedy search candidates: [1729, 1727]
+greedy search candidates: [1784, 1727]
+greedy search candidates: [1727]
+Pass: EarlyCSEPass_1 generated: [2, 10, 27, 33, 48, 56, 62, 101] with offset: 22 with count: 1727
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 313
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1728, 1727]
+greedy search candidates: [1767, 1727]
+Pass: FunctionToLoopPassAdaptor_0 generated: [2, 10, 27, 33, 48, 56, 62, 101] with offset: 209 with count: 1727
+Running pass: MergedLoadStoreMotionPass_0 with max_query_index: 317
+greedy search candidates: [1767]
+Pass: MergedLoadStoreMotionPass_0 generated: [2, 10, 27, 33, 48, 56, 62, 101] with offset: 312 with count: 1727
+Running pass: GVNPass_0 with max_query_index: 384
+greedy search candidates: [1727, 1767]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+Pass: GVNPass_0 generated: [2, 10, 27, 33, 48, 56, 62, 101] with offset: 316 with count: 1727
+Running pass: DSEPass_0 with max_query_index: 651
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+Pass: DSEPass_0 generated: [2, 10, 27, 33, 48, 56, 62, 101] with offset: 383 with count: 1727
+Running pass: FunctionToLoopPassAdaptor_2 with max_query_index: 652
+greedy search candidates: [1727]
+Pass: FunctionToLoopPassAdaptor_2 generated: [2, 10, 27, 33, 48, 56, 62, 101] with offset: 650 with count: 1727
+Time after exploration of read_min: 128.48212265968323
+Time after exploration of 605/readmin.bc: 128.4821355342865
+***** Next file: 605/treeup.bc
+==== Next function: update_tree
+Running pass: EarlyCSEPass_1 with max_query_index: 10
+greedy search candidates: [539, 535]
+Pass: EarlyCSEPass_1 generated: [] with offset: -1 with count: 535
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 161
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+Pass: FunctionToLoopPassAdaptor_0 generated: [] with offset: 9 with count: 535
+Running pass: MergedLoadStoreMotionPass_0 with max_query_index: 164
+greedy search candidates: [535]
+Pass: MergedLoadStoreMotionPass_0 generated: [] with offset: 160 with count: 535
+Running pass: GVNPass_0 with max_query_index: 202
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+Pass: GVNPass_0 generated: [] with offset: 163 with count: 535
+Running pass: DSEPass_0 with max_query_index: 260
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+Pass: DSEPass_0 generated: [] with offset: 201 with count: 535
+Running pass: FunctionToLoopPassAdaptor_4 with max_query_index: 270
+greedy search candidates: [535]
+Pass: FunctionToLoopPassAdaptor_4 generated: [] with offset: 259 with count: 535
+Time after exploration of update_tree: 133.99132013320923
+Time after exploration of 605/treeup.bc: 133.9913294315338
+***** Next file: 605/output.bc
+==== Next function: write_circulations
+Running pass: GVNPass_0 with max_query_index: 18
+greedy search candidates: [579]
+greedy search candidates: [579]
+Pass: GVNPass_0 generated: [] with offset: -1 with count: 579
+Time after exploration of write_circulations: 134.3611068725586
+Time after exploration of 605/output.bc: 134.36113166809082
+***** Next file: 605/mcfutil.bc
+==== Next function: refresh_neighbour_lists
+Running pass: InstCombinePass_0 with max_query_index: 3
+greedy search candidates: [1652]
+Pass: InstCombinePass_0 generated: [] with offset: -1 with count: 1652
+Running pass: EarlyCSEPass_9 with max_query_index: 7
+greedy search candidates: [1652]
+Pass: EarlyCSEPass_9 generated: [] with offset: 2 with count: 1652
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 15
+greedy search candidates: [1652]
+Pass: FunctionToLoopPassAdaptor_0 generated: [] with offset: 6 with count: 1652
+Running pass: GVNPass_0 with max_query_index: 32
+greedy search candidates: [1652]
+greedy search candidates: [1652]
+Pass: GVNPass_0 generated: [] with offset: 14 with count: 1652
+Running pass: DSEPass_0 with max_query_index: 38
+greedy search candidates: [1652]
+Pass: DSEPass_0 generated: [] with offset: 31 with count: 1652
+Time after exploration of refresh_neighbour_lists: 136.1991729736328
+==== Next function: flow_cost
+Running pass: EarlyCSEPass_10 with max_query_index: 13
+greedy search candidates: [1657, 1652, 1661, 1649]
+greedy search, new min: 1649
+greedy search, current list: [4]
+greedy search candidates: [1649, 1651]
+Pass: EarlyCSEPass_10 generated: [4] with offset: -1 with count: 1649
+Running pass: FunctionToLoopPassAdaptor_3 with max_query_index: 44
+greedy search candidates: [1649, 1645]
+greedy search, new min: 1645
+greedy search, current list: [4, 16]
+greedy search candidates: [1645]
+greedy search candidates: [1645, 1647]
+Pass: FunctionToLoopPassAdaptor_3 generated: [4, 16] with offset: 12 with count: 1645
+Running pass: MergedLoadStoreMotionPass_1 with max_query_index: 45
+greedy search candidates: [1645]
+Pass: MergedLoadStoreMotionPass_1 generated: [4, 16] with offset: 43 with count: 1645
+Running pass: GVNPass_1 with max_query_index: 83
+greedy search candidates: [1645]
+greedy search candidates: [1645]
+greedy search candidates: [1645]
+Pass: GVNPass_1 generated: [4, 16] with offset: 44 with count: 1645
+Time after exploration of flow_cost: 139.2403542995453
+==== Next function: getArcPosition
+Running pass: GVNPass_3 with max_query_index: 6
+greedy search candidates: [1652]
+Pass: GVNPass_3 generated: [] with offset: -1 with count: 1652
+Time after exploration of getArcPosition: 139.50494408607483
+==== Next function: flow_org_cost
+Running pass: EarlyCSEPass_14 with max_query_index: 13
+greedy search candidates: [1650, 1659, 1652, 1663]
+greedy search, new min: 1650
+greedy search, current list: [4]
+greedy search candidates: [1650, 1651]
+Pass: EarlyCSEPass_14 generated: [4] with offset: -1 with count: 1650
+Running pass: FunctionToLoopPassAdaptor_15 with max_query_index: 44
+greedy search candidates: [1650, 1642]
+greedy search, new min: 1642
+greedy search, current list: [4, 16]
+greedy search candidates: [1642]
+greedy search candidates: [1642, 1643]
+Pass: FunctionToLoopPassAdaptor_15 generated: [4, 16] with offset: 12 with count: 1642
+Running pass: MergedLoadStoreMotionPass_5 with max_query_index: 45
+greedy search candidates: [1642]
+Pass: MergedLoadStoreMotionPass_5 generated: [4, 16] with offset: 43 with count: 1642
+Running pass: GVNPass_5 with max_query_index: 83
+greedy search candidates: [1642]
+greedy search candidates: [1642]
+greedy search candidates: [1642]
+Pass: GVNPass_5 generated: [4, 16] with offset: 44 with count: 1642
+Time after exploration of flow_org_cost: 143.79570984840393
+==== Next function: primal_feasible
+Running pass: FunctionToLoopPassAdaptor_18 with max_query_index: 2
+greedy search candidates: [1652]
+Pass: FunctionToLoopPassAdaptor_18 generated: [] with offset: -1 with count: 1652
+Running pass: GVNPass_6 with max_query_index: 17
+greedy search candidates: [1652]
+Pass: GVNPass_6 generated: [] with offset: 1 with count: 1652
+Time after exploration of primal_feasible: 144.8184905052185
+==== Next function: dual_feasible
+Running pass: FunctionToLoopPassAdaptor_21 with max_query_index: 2
+greedy search candidates: [1652]
+Pass: FunctionToLoopPassAdaptor_21 generated: [] with offset: -1 with count: 1652
+Running pass: GVNPass_7 with max_query_index: 36
+greedy search candidates: [1652]
+greedy search candidates: [1652]
+greedy search candidates: [1652]
+Pass: GVNPass_7 generated: [] with offset: 1 with count: 1652
+Time after exploration of dual_feasible: 146.5721526145935
+Time after exploration of 605/mcfutil.bc: 146.57219576835632
+***** Next file: 605/pbla.bc
+==== Next function: primal_iminus
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 16
+greedy search candidates: [178]
+Pass: FunctionToLoopPassAdaptor_0 generated: [] with offset: -1 with count: 178
+Running pass: GVNPass_0 with max_query_index: 65
+greedy search candidates: [178]
+greedy search candidates: [178]
+greedy search candidates: [178]
+greedy search candidates: [178]
+Pass: GVNPass_0 generated: [] with offset: 15 with count: 178
+Time after exploration of primal_iminus: 148.2832314968109
+Time after exploration of 605/pbla.bc: 148.28325366973877
+***** Next file: 605/mcf.bc
+==== Next function: main
+Running pass: DSEPass_1 with max_query_index: 5
+greedy search candidates: [1239]
+Pass: DSEPass_1 generated: [] with offset: -1 with count: 1239
+Time after exploration of main: 148.57666087150574
+Time after exploration of 605/mcf.bc: 148.57672929763794
+***** Next file: 605/pflowup.bc
+==== Next function: primal_update_flow
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 14
+greedy search candidates: [95]
+Pass: FunctionToLoopPassAdaptor_0 generated: [] with offset: -1 with count: 95
+Running pass: MergedLoadStoreMotionPass_0 with max_query_index: 16
+greedy search candidates: [95]
+Pass: MergedLoadStoreMotionPass_0 generated: [] with offset: 13 with count: 95
+Running pass: GVNPass_0 with max_query_index: 20
+greedy search candidates: [95]
+Pass: GVNPass_0 generated: [] with offset: 15 with count: 95
+Time after exploration of primal_update_flow: 149.4798526763916
+Time after exploration of 605/pflowup.bc: 149.4798595905304
+***** Next file: 605/pbeampp.bc
+==== Next function: primal_bea_mpp
+Running pass: InstCombinePass_3 with max_query_index: 3
+greedy search candidates: [786, 781]
+Pass: InstCombinePass_3 generated: [] with offset: -1 with count: 781
+Running pass: EarlyCSEPass_7 with max_query_index: 18
+greedy search candidates: [780, 781]
+greedy search, new min: 780
+greedy search, current list: [3]
+greedy search candidates: [780]
+Pass: EarlyCSEPass_7 generated: [3] with offset: 2 with count: 780
+Running pass: FunctionToLoopPassAdaptor_9 with max_query_index: 108
+greedy search candidates: [780]
+greedy search candidates: [780]
+greedy search candidates: [779, 780]
+greedy search, new min: 779
+greedy search, current list: [3, 57]
+greedy search candidates: [779]
+greedy search candidates: [779]
+greedy search candidates: [779]
+greedy search candidates: [779]
+Pass: FunctionToLoopPassAdaptor_9 generated: [3, 57] with offset: 17 with count: 779
+Running pass: GVNPass_3 with max_query_index: 211
+greedy search candidates: [779]
+greedy search candidates: [779]
+greedy search candidates: [779]
+greedy search candidates: [779]
+greedy search candidates: [779]
+greedy search candidates: [779]
+greedy search candidates: [779]
+Pass: GVNPass_3 generated: [3, 57] with offset: 107 with count: 779
+Running pass: DSEPass_3 with max_query_index: 230
+greedy search candidates: [779]
+greedy search candidates: [779]
+Pass: DSEPass_3 generated: [3, 57] with offset: 210 with count: 779
+Running pass: FunctionToLoopPassAdaptor_11 with max_query_index: 231
+greedy search candidates: [779]
+Pass: FunctionToLoopPassAdaptor_11 generated: [3, 57] with offset: 229 with count: 779
+Time after exploration of primal_bea_mpp: 157.55409955978394
+==== Next function: set_static_vars
+Running pass: GVNPass_0 with max_query_index: 2
+greedy search candidates: [781]
+Pass: GVNPass_0 generated: [] with offset: -1 with count: 781
+Time after exploration of set_static_vars: 157.8916413784027
+==== Next function: cost_compare
+Running pass: GVNPass_2 with max_query_index: 14
+greedy search candidates: [781]
+Pass: GVNPass_2 generated: [] with offset: -1 with count: 781
+Time after exploration of cost_compare: 158.3591010570526
+Time after exploration of 605/pbeampp.bc: 158.35911536216736
+***** Next file: 605/psimplex.bc
+==== Next function: markBaskets
+Running pass: EarlyCSEPass_4 with max_query_index: 2
+greedy search candidates: [1812]
+Pass: EarlyCSEPass_4 generated: [] with offset: -1 with count: 1812
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 14
+greedy search candidates: [1812]
+Pass: FunctionToLoopPassAdaptor_0 generated: [] with offset: 1 with count: 1812
+Running pass: GVNPass_0 with max_query_index: 29
+greedy search candidates: [1812]
+Pass: GVNPass_0 generated: [] with offset: 13 with count: 1812
+Running pass: DSEPass_0 with max_query_index: 30
+greedy search candidates: [1812]
+Pass: DSEPass_0 generated: [] with offset: 28 with count: 1812
+Time after exploration of markBaskets: 160.12815523147583
+==== Next function: worker
+Running pass: EarlyCSEPass_5 with max_query_index: 2
+greedy search candidates: [1812]
+Pass: EarlyCSEPass_5 generated: [] with offset: -1 with count: 1812
+Running pass: FunctionToLoopPassAdaptor_3 with max_query_index: 17
+greedy search candidates: [1812]
+Pass: FunctionToLoopPassAdaptor_3 generated: [] with offset: 1 with count: 1812
+Running pass: GVNPass_1 with max_query_index: 53
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+Pass: GVNPass_1 generated: [] with offset: 16 with count: 1812
+Running pass: DSEPass_1 with max_query_index: 58
+greedy search candidates: [1812]
+Pass: DSEPass_1 generated: [] with offset: 52 with count: 1812
+Time after exploration of worker: 162.7140085697174
+==== Next function: master
+Running pass: EarlyCSEPass_6 with max_query_index: 12
+greedy search candidates: [1812]
+Pass: EarlyCSEPass_6 generated: [] with offset: -1 with count: 1812
+Running pass: FunctionToLoopPassAdaptor_6 with max_query_index: 76
+greedy search candidates: [1812, 1822]
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+Pass: FunctionToLoopPassAdaptor_6 generated: [] with offset: 11 with count: 1812
+Running pass: GVNPass_2 with max_query_index: 194
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+Pass: GVNPass_2 generated: [] with offset: 75 with count: 1812
+Running pass: DSEPass_2 with max_query_index: 205
+greedy search candidates: [1812]
+Pass: DSEPass_2 generated: [] with offset: 193 with count: 1812
+Time after exploration of master: 169.5109462738037
+==== Next function: primal_net_simplex
+Running pass: EarlyCSEPass_7 with max_query_index: 6
+greedy search candidates: [1812]
+Pass: EarlyCSEPass_7 generated: [] with offset: -1 with count: 1812
+Running pass: GVNPass_3 with max_query_index: 10
+greedy search candidates: [1812]
+Pass: GVNPass_3 generated: [] with offset: 5 with count: 1812
+Time after exploration of primal_net_simplex: 170.32842326164246
+Time after exploration of 605/psimplex.bc: 170.32844519615173
+***** Next file: 605/pstart.bc
+==== Next function: primal_start_artificial
+Running pass: EarlyCSEPass_1 with max_query_index: 24
+greedy search candidates: [308, 324]
+greedy search, new min: 308
+greedy search, current list: [0]
+greedy search candidates: [308, 300]
+greedy search, new min: 300
+greedy search, current list: [0, 15]
+greedy search candidates: [300]
+Pass: EarlyCSEPass_1 generated: [0, 15] with offset: -1 with count: 300
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 54
+greedy search candidates: [300]
+greedy search candidates: [297, 300]
+greedy search, new min: 297
+greedy search, current list: [0, 15, 51]
+greedy search candidates: [297]
+Pass: FunctionToLoopPassAdaptor_0 generated: [0, 15, 51] with offset: 23 with count: 297
+Running pass: GVNPass_0 with max_query_index: 81
+greedy search candidates: [297, 300]
+greedy search, new min: 297
+greedy search, current list: [0, 15, 51]
+greedy search candidates: [297]
+greedy search candidates: [297]
+Pass: GVNPass_0 generated: [0, 15, 51] with offset: 49 with count: 297
+Running pass: DSEPass_0 with max_query_index: 352
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+Pass: DSEPass_0 generated: [0, 15] with offset: 80 with count: 300
+Time after exploration of primal_start_artificial: 179.32016038894653
+Time after exploration of 605/pstart.bc: 179.3201925754547
+***** Next file: 605/spec_qsort/spec_qsort.bc
+==== Next function: swapfunc
+Running pass: FunctionToLoopPassAdaptor_1 with max_query_index: 2
+greedy search candidates: [1754]
+Pass: FunctionToLoopPassAdaptor_1 generated: [] with offset: -1 with count: 1754
+Running pass: GVNPass_0 with max_query_index: 8
+greedy search candidates: [1754]
+Pass: GVNPass_0 generated: [] with offset: 1 with count: 1754
+Running pass: LoopLoadEliminationPass_1 with max_query_index: 10
+greedy search candidates: [1754]
+Pass: LoopLoadEliminationPass_1 generated: [] with offset: 7 with count: 1754
+Time after exploration of swapfunc: 180.72618436813354
+==== Next function: spec_qsort
+Running pass: GVNPass_2 with max_query_index: 7
+greedy search candidates: [1754]
+Pass: GVNPass_2 generated: [] with offset: -1 with count: 1754
+Time after exploration of spec_qsort: 181.26915287971497
+Time after exploration of 605/spec_qsort/spec_qsort.bc: 181.26916432380676
+found results: 
+605/implicit.bc{ resize_prob: 4639, insert_new_arc: 4635, replace_weaker_arc: 4639, price_out_impl: 4490, suspend_impl: 4576, refreshArcPointers: 4639, refreshPositions: 4639, marc_arcs: 4628, calculate_max_redcost: 4639, switch_arcs: 4636, arc_compare: 4639, } 605/readmin.bc{ read_min: 1727, } 605/treeup.bc{ update_tree: 535, } 605/output.bc{ write_circulations: 579, } 605/mcfutil.bc{ refresh_neighbour_lists: 1652, flow_cost: 1645, getArcPosition: 1652, flow_org_cost: 1642, primal_feasible: 1652, dual_feasible: 1652, } 605/pbla.bc{ primal_iminus: 178, } 605/mcf.bc{ main: 1239, } 605/pflowup.bc{ primal_update_flow: 95, } 605/pbeampp.bc{ primal_bea_mpp: 779, set_static_vars: 781, cost_compare: 781, } 605/psimplex.bc{ markBaskets: 1812, worker: 1812, master: 1812, primal_net_simplex: 1812, } 605/pstart.bc{ primal_start_artificial: 300, } 605/spec_qsort/spec_qsort.bc{ swapfunc: 1754, spec_qsort: 1754, } 
+605/implicit.bc{ resize_prob: [], insert_new_arc: [1], replace_weaker_arc: [], price_out_impl: [5, 12, 13, 22, 39, 40, 70], suspend_impl: [2, 6, 28, 32], refreshArcPointers: [], refreshPositions: [], marc_arcs: [0, 49], calculate_max_redcost: [], switch_arcs: [26], arc_compare: [], } 605/readmin.bc{ read_min: [2, 10, 27, 33, 48, 56, 62, 101], } 605/treeup.bc{ update_tree: [], } 605/output.bc{ write_circulations: [], } 605/mcfutil.bc{ refresh_neighbour_lists: [], flow_cost: [4, 16], getArcPosition: [], flow_org_cost: [4, 16], primal_feasible: [], dual_feasible: [], } 605/pbla.bc{ primal_iminus: [], } 605/mcf.bc{ main: [], } 605/pflowup.bc{ primal_update_flow: [], } 605/pbeampp.bc{ primal_bea_mpp: [3, 57], set_static_vars: [], cost_compare: [], } 605/psimplex.bc{ markBaskets: [], worker: [], master: [], primal_net_simplex: [], } 605/pstart.bc{ primal_start_artificial: [0, 15], } 605/spec_qsort/spec_qsort.bc{ swapfunc: [], spec_qsort: [], } 
+time after exploration: 181.26925897598267
+605/implicit.bc: 4409 vs 4639
+605/readmin.bc: 1727 vs 1790
+605/treeup.bc: 535 vs 535
+605/output.bc: 579 vs 579
+605/mcfutil.bc: 1635 vs 1652
+605/pbla.bc: 178 vs 178
+605/mcf.bc: 1239 vs 1239
+605/pflowup.bc: 95 vs 95
+605/pbeampp.bc: 779 vs 781
+605/psimplex.bc: 1812 vs 1812
+605/pstart.bc: 300 vs 319
+605/spec_qsort/spec_qsort.bc: 1754 vs 1754
+Time after after composition: 183.3318145275116
+result: 17581 vs 17913
+meaning a 1.8534025568023225% improvement
+Greedy used 3790 compilations
+Time after file setup: 183.35305285453796
+Track AA Queries Random with 3790 samples
+counts per function per file: {PosixPath('605/implicit.bc'): {'resize_prob': 43, 'insert_new_arc': 155, 'replace_weaker_arc': 171, 'price_out_impl': 634, 'suspend_impl': 85, 'refreshArcPointers': 35, 'refreshPositions': 8, 'marc_arcs': 82, 'calculate_max_redcost': 8, 'switch_arcs': 44, 'arc_compare': 14}, PosixPath('605/readmin.bc'): {'read_min': 623}, PosixPath('605/treeup.bc'): {'update_tree': 270}, PosixPath('605/output.bc'): {'write_circulations': 18}, PosixPath('605/mcfutil.bc'): {'refresh_neighbour_lists': 38, 'flow_cost': 82, 'getArcPosition': 6, 'flow_org_cost': 82, 'primal_feasible': 17, 'dual_feasible': 36}, PosixPath('605/pbla.bc'): {'primal_iminus': 65}, PosixPath('605/mcf.bc'): {'main': 5}, PosixPath('605/pflowup.bc'): {'primal_update_flow': 20}, PosixPath('605/pbeampp.bc'): {'primal_bea_mpp': 231, 'set_static_vars': 2, 'cost_compare': 14}, PosixPath('605/psimplex.bc'): {'markBaskets': 30, 'worker': 58, 'master': 205, 'primal_net_simplex': 10}, PosixPath('605/pstart.bc'): {'primal_start_artificial': 327}, PosixPath('605/spec_qsort/spec_qsort.bc'): {'swapfunc': 10, 'spec_qsort': 7}}
+Time after AA Query measurement: 183.64807057380676
+Start Exploration
+***** Next file: 605/implicit.bc
+==== Next function: resize_prob
+Number of AA Queries: 43
+Distinct counts: [4640, 4639]
+Found sequence: [1, 6, 11, 12, 14, 15, 16, 18, 19, 21, 23, 24, 28, 34, 35, 39, 40, 42]
+With size: 4639
+==== Next function: insert_new_arc
+Number of AA Queries: 155
+Distinct counts: [4635, 4639]
+Found sequence: [0, 1, 2, 3, 4, 5, 9, 13, 14, 15, 16, 18, 21, 22, 23, 25, 26, 27, 30, 33, 34, 37, 38, 39, 40, 42, 44, 45, 46, 50, 54, 55, 56, 57, 61, 62, 64, 65, 66, 68, 73, 76, 77, 79, 80, 81, 83, 85, 86, 87, 88, 90, 93, 94, 97, 101, 102, 103, 104, 105, 106, 108, 109, 110, 112, 114, 115, 118, 119, 122, 123, 125, 127, 128, 129, 133, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 151, 152, 153]
+With size: 4635
+==== Next function: replace_weaker_arc
+Number of AA Queries: 171
+Distinct counts: [4648, 4639]
+Found sequence: [0, 5, 6, 8, 9, 11, 13, 15, 16, 17, 23, 27, 31, 33, 34, 36, 37, 38, 42, 44, 45, 48, 49, 52, 54, 55, 56, 64, 65, 67, 69, 70, 73, 74, 77, 79, 84, 87, 89, 90, 92, 93, 95, 96, 97, 100, 103, 106, 107, 115, 117, 118, 120, 121, 123, 124, 125, 126, 129, 130, 131, 135, 138, 139, 141, 143, 145, 152, 153, 154, 155, 156, 157, 160, 162, 163, 164, 165, 166, 167, 168, 169, 170]
+With size: 4639
+==== Next function: price_out_impl
+Number of AA Queries: 634
+Distinct counts: [4484, 4487, 4489, 4490, 4493, 4495, 4496, 4497, 4498, 4500, 4502, 4503, 4504, 4505, 4506, 4507, 4508, 4509, 4510, 4511, 4512, 4513, 4514, 4517, 4519]
+Found sequence: [1, 2, 4, 5, 6, 9, 14, 15, 18, 19, 20, 21, 24, 27, 28, 29, 31, 32, 33, 34, 35, 36, 37, 39, 40, 41, 44, 45, 48, 49, 54, 59, 60, 61, 64, 65, 66, 67, 68, 69, 74, 76, 77, 78, 79, 82, 83, 86, 88, 90, 94, 96, 97, 98, 99, 101, 102, 109, 112, 113, 115, 120, 121, 122, 126, 127, 128, 130, 133, 139, 140, 142, 143, 144, 146, 147, 150, 152, 156, 158, 159, 160, 161, 162, 166, 167, 168, 170, 171, 174, 178, 179, 183, 184, 185, 190, 197, 201, 202, 204, 205, 206, 207, 208, 209, 210, 214, 216, 217, 218, 219, 220, 224, 225, 226, 229, 230, 232, 233, 235, 236, 237, 238, 240, 244, 245, 249, 251, 253, 255, 256, 257, 258, 260, 261, 262, 265, 266, 267, 269, 273, 275, 277, 278, 281, 282, 283, 285, 286, 287, 290, 292, 294, 295, 296, 300, 301, 304, 309, 310, 313, 314, 315, 316, 317, 320, 321, 322, 325, 328, 329, 336, 337, 340, 341, 343, 344, 346, 347, 348, 353, 355, 356, 358, 359, 360, 362, 364, 365, 366, 372, 373, 375, 377, 382, 383, 384, 390, 391, 392, 393, 396, 398, 402, 404, 406, 410, 412, 414, 415, 416, 419, 420, 423, 426, 427, 433, 434, 437, 438, 439, 440, 441, 443, 446, 448, 449, 452, 454, 456, 458, 459, 463, 464, 465, 466, 468, 471, 472, 473, 475, 476, 477, 478, 481, 483, 484, 485, 486, 487, 490, 491, 493, 496, 502, 503, 504, 510, 513, 514, 515, 516, 519, 520, 521, 522, 524, 527, 529, 530, 531, 535, 539, 540, 543, 544, 548, 550, 551, 555, 556, 557, 559, 561, 562, 564, 565, 566, 568, 569, 571, 573, 575, 576, 578, 580, 581, 585, 586, 587, 589, 591, 596, 598, 599, 602, 603, 604, 608, 609, 614, 615, 617, 621, 623, 624, 626, 629, 631, 632]
+With size: 4484
+==== Next function: suspend_impl
+Number of AA Queries: 85
+Distinct counts: [4608, 4611, 4613, 4617, 4618, 4619, 4620, 4624, 4625, 4634, 4635, 4640, 4641, 4645, 4661, 4580, 4584, 4588, 4590, 4592, 4595, 4596, 4599, 4602, 4603, 4604]
+Found sequence: [0, 3, 4, 10, 19, 20, 21, 24, 25, 27, 28, 30, 34, 35, 36, 37, 38, 39, 40, 41, 45, 47, 48, 49, 52, 53, 58, 61, 62, 63, 65, 66, 69, 70, 71, 74, 75, 76, 77, 78, 79, 81, 84]
+With size: 4580
+==== Next function: refreshArcPointers
+Number of AA Queries: 35
+Distinct counts: [4639]
+Found sequence: [2, 3, 5, 6, 7, 8, 9, 14, 18, 19, 20, 21, 23, 29, 31, 32, 33]
+With size: 4639
+==== Next function: refreshPositions
+Number of AA Queries: 8
+Distinct counts: [4639]
+Found sequence: [1, 2, 4, 7]
+With size: 4639
+==== Next function: marc_arcs
+Number of AA Queries: 82
+Distinct counts: [4743, 4790, 4792, 4793, 4795, 4796, 4798, 4800, 4801, 4803, 4804, 4806, 4811, 4728, 4729, 4731, 4733, 4734, 4735]
+Found sequence: [1, 2, 3, 4, 5, 11, 12, 13, 14, 17, 18, 19, 21, 32, 33, 38, 39, 40, 41, 42, 45, 46, 48, 52, 53, 54, 55, 56, 60, 61, 62, 65, 66, 67, 68, 69, 70, 72, 76, 79, 80, 81]
+With size: 4728
+==== Next function: calculate_max_redcost
+Number of AA Queries: 8
+Distinct counts: [4639]
+Found sequence: [6, 7]
+With size: 4639
+==== Next function: switch_arcs
+Number of AA Queries: 44
+Distinct counts: [4641, 4644, 4636, 4639]
+Found sequence: [0, 1, 4, 5, 7, 8, 9, 10, 13, 15, 17, 18, 20, 21, 22, 23, 24, 26, 28, 30, 31, 34, 37, 42]
+With size: 4636
+==== Next function: arc_compare
+Number of AA Queries: 14
+Distinct counts: [4639]
+Found sequence: [1, 2, 3, 4, 7, 11, 12, 13]
+With size: 4639
+Time after exploration of 605/implicit.bc: 215.25086092948914
+***** Next file: 605/readmin.bc
+==== Next function: read_min
+Number of AA Queries: 623
+Distinct counts: [1827, 1833, 1836, 1837, 1840, 1841, 1842, 1846, 1847, 1850, 1851, 1853, 1854, 1856, 1857, 1858, 1859, 1860, 1861, 1862, 1863, 1865, 1866, 1867, 1868, 1869, 1870, 1871, 1872, 1874, 1875, 1876, 1877, 1878, 1879, 1880, 1881, 1882, 1883, 1885, 1886, 1889, 1890, 1891, 1892, 1894, 1895, 1897, 1898, 1899, 1902, 1904, 1906]
+Found sequence: [0, 2, 3, 5, 6, 7, 14, 16, 18, 19, 20, 21, 23, 24, 25, 29, 31, 32, 33, 34, 35, 37, 43, 45, 47, 48, 49, 50, 53, 55, 56, 61, 62, 67, 69, 70, 71, 72, 75, 76, 80, 81, 85, 87, 88, 91, 92, 93, 94, 95, 97, 99, 100, 101, 103, 105, 107, 109, 112, 113, 120, 123, 124, 126, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 142, 145, 147, 148, 149, 152, 155, 156, 158, 159, 160, 161, 163, 166, 175, 176, 177, 179, 181, 182, 184, 186, 187, 189, 190, 191, 192, 193, 197, 198, 202, 203, 207, 208, 209, 211, 215, 216, 218, 219, 221, 223, 224, 225, 228, 230, 231, 232, 233, 236, 244, 246, 247, 248, 249, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 264, 266, 271, 275, 276, 278, 280, 282, 283, 287, 292, 294, 299, 301, 302, 303, 304, 306, 307, 309, 310, 311, 316, 317, 318, 319, 320, 321, 322, 325, 327, 329, 332, 333, 336, 337, 338, 341, 342, 344, 346, 349, 351, 352, 354, 356, 357, 358, 360, 364, 366, 373, 374, 376, 378, 380, 381, 384, 388, 389, 391, 392, 393, 394, 395, 396, 399, 400, 401, 402, 407, 409, 410, 411, 412, 413, 415, 416, 418, 419, 420, 422, 423, 424, 428, 432, 434, 436, 437, 438, 441, 443, 444, 445, 447, 450, 453, 457, 460, 461, 463, 464, 465, 467, 470, 472, 473, 476, 477, 479, 483, 486, 487, 489, 490, 491, 495, 496, 501, 502, 507, 509, 511, 516, 518, 520, 521, 525, 529, 533, 535, 536, 540, 542, 543, 546, 554, 557, 560, 564, 567, 568, 569, 575, 583, 584, 585, 589, 593, 594, 595, 596, 597, 601, 602, 603, 605, 607, 608, 609, 611, 612, 617, 618, 619, 620, 622]
+With size: 1827
+Time after exploration of 605/readmin.bc: 217.72138142585754
+***** Next file: 605/treeup.bc
+==== Next function: update_tree
+Number of AA Queries: 270
+Distinct counts: [539, 535]
+Found sequence: [3, 6, 7, 10, 12, 17, 18, 19, 20, 22, 26, 27, 28, 29, 30, 31, 35, 36, 38, 40, 43, 47, 48, 52, 55, 58, 62, 63, 64, 66, 69, 71, 73, 74, 78, 80, 85, 86, 87, 89, 90, 93, 95, 99, 100, 102, 103, 105, 108, 109, 111, 112, 117, 118, 119, 121, 124, 126, 128, 129, 130, 132, 133, 134, 136, 137, 141, 144, 145, 146, 148, 152, 154, 159, 162, 163, 168, 169, 172, 173, 176, 178, 179, 182, 184, 187, 188, 190, 192, 194, 196, 198, 200, 201, 202, 204, 205, 206, 210, 212, 213, 214, 217, 220, 221, 225, 233, 234, 235, 236, 239, 242, 244, 245, 246, 248, 250, 252, 253, 259, 260, 264, 266, 269]
+With size: 535
+Time after exploration of 605/treeup.bc: 219.92887496948242
+***** Next file: 605/output.bc
+==== Next function: write_circulations
+Number of AA Queries: 18
+Distinct counts: [579]
+Found sequence: [1, 2, 4, 7, 9, 11, 13, 15, 16, 17]
+With size: 579
+Time after exploration of 605/output.bc: 220.3484582901001
+***** Next file: 605/mcfutil.bc
+==== Next function: refresh_neighbour_lists
+Number of AA Queries: 38
+Distinct counts: [1652]
+Found sequence: [0, 2, 3, 4, 5, 6, 7, 8, 11, 12, 13, 14, 16, 17, 18, 19, 21, 27, 28, 29, 30, 31, 32, 34, 36]
+With size: 1652
+==== Next function: flow_cost
+Number of AA Queries: 82
+Distinct counts: [1664, 1667, 1645, 1647, 1649, 1650, 1651, 1652, 1653, 1654, 1655, 1656, 1657, 1659, 1660, 1661, 1663]
+Found sequence: [5, 6, 7, 13, 15, 16, 17, 18, 19, 20, 25, 27, 28, 31, 33, 34, 35, 39, 46, 47, 48, 49, 53, 55, 56, 58, 59, 63, 65, 66, 69]
+With size: 1645
+==== Next function: getArcPosition
+Number of AA Queries: 6
+Distinct counts: [1652]
+Found sequence: [0, 2, 3, 4, 5]
+With size: 1652
+==== Next function: flow_org_cost
+Number of AA Queries: 82
+Distinct counts: [1665, 1669, 1642, 1644, 1649, 1650, 1651, 1652, 1653, 1655, 1657, 1658, 1659, 1661, 1663]
+Found sequence: [5, 8, 10, 13, 14, 17, 19, 20, 22, 23, 25, 27, 29, 30, 31, 35, 37, 40, 41, 42, 44, 45, 47, 48, 51, 53, 55, 59, 60, 62, 65, 66, 68, 69, 73, 76, 77, 78, 79, 81]
+With size: 1642
+==== Next function: primal_feasible
+Number of AA Queries: 17
+Distinct counts: [1652]
+Found sequence: [0, 4, 6, 8, 10, 11, 16]
+With size: 1652
+==== Next function: dual_feasible
+Number of AA Queries: 36
+Distinct counts: [1652]
+Found sequence: [0, 2, 5, 6, 7, 11, 12, 13, 14, 15, 16, 18, 21, 22, 23, 24, 25, 27, 29]
+With size: 1652
+Time after exploration of 605/mcfutil.bc: 227.25668454170227
+***** Next file: 605/pbla.bc
+==== Next function: primal_iminus
+Number of AA Queries: 65
+Distinct counts: [178]
+Found sequence: [0, 3, 8, 10, 12, 17, 19, 21, 26, 28, 30, 33, 36, 40, 43, 44, 45, 49, 50, 51, 54, 55, 57, 64]
+With size: 178
+Time after exploration of 605/pbla.bc: 228.18355774879456
+***** Next file: 605/mcf.bc
+==== Next function: main
+Number of AA Queries: 5
+Distinct counts: [1239]
+Found sequence: [0, 1]
+With size: 1239
+Time after exploration of 605/mcf.bc: 228.42028546333313
+***** Next file: 605/pflowup.bc
+==== Next function: primal_update_flow
+Number of AA Queries: 20
+Distinct counts: [95]
+Found sequence: [1, 5, 8, 9, 12, 14, 15, 16, 17]
+With size: 95
+Time after exploration of 605/pflowup.bc: 228.81325006484985
+***** Next file: 605/pbeampp.bc
+==== Next function: primal_bea_mpp
+Number of AA Queries: 231
+Distinct counts: [772, 775, 777, 779, 780, 782, 783, 784, 785, 786, 787, 790]
+Found sequence: [4, 5, 6, 8, 9, 14, 16, 19, 20, 24, 25, 27, 28, 29, 30, 33, 34, 35, 37, 39, 42, 44, 45, 47, 49, 50, 51, 53, 54, 56, 57, 58, 61, 62, 63, 64, 65, 66, 67, 69, 72, 73, 74, 77, 81, 83, 84, 86, 88, 89, 91, 92, 93, 97, 98, 101, 102, 103, 105, 109, 110, 112, 115, 116, 117, 119, 120, 121, 122, 124, 128, 129, 131, 134, 137, 138, 141, 142, 144, 145, 146, 147, 151, 154, 157, 160, 163, 164, 165, 169, 170, 171, 173, 174, 175, 180, 182, 183, 189, 190, 193, 195, 196, 197, 198, 199, 200, 201, 202, 203, 206, 207, 208, 210, 214, 215, 218, 221, 222, 224, 227, 229]
+With size: 772
+==== Next function: set_static_vars
+Number of AA Queries: 2
+Distinct counts: [781]
+Found sequence: [1]
+With size: 781
+==== Next function: cost_compare
+Number of AA Queries: 14
+Distinct counts: [781]
+Found sequence: [1, 3, 4, 5, 9, 10]
+With size: 781
+Time after exploration of 605/pbeampp.bc: 231.77733850479126
+***** Next file: 605/psimplex.bc
+==== Next function: markBaskets
+Number of AA Queries: 30
+Distinct counts: [1812]
+Found sequence: [2, 3, 4, 7, 8, 12, 14, 17, 19, 22, 23, 25, 28]
+With size: 1812
+==== Next function: worker
+Number of AA Queries: 58
+Distinct counts: [1819, 1812]
+Found sequence: [0, 1, 3, 4, 7, 8, 10, 14, 15, 18, 20, 24, 27, 28, 33, 34, 35, 36, 38, 40, 47, 49, 51, 52, 54, 55, 56, 57]
+With size: 1812
+==== Next function: master
+Number of AA Queries: 205
+Distinct counts: [1819, 1812, 1829, 1822]
+Found sequence: [1, 6, 14, 16, 19, 21, 22, 23, 24, 27, 34, 36, 37, 42, 44, 45, 46, 48, 49, 51, 52, 54, 56, 58, 59, 60, 65, 66, 67, 69, 70, 76, 77, 79, 82, 83, 84, 87, 88, 89, 90, 91, 92, 94, 95, 100, 101, 104, 107, 108, 110, 112, 114, 117, 119, 122, 123, 124, 125, 126, 127, 131, 132, 134, 135, 138, 144, 147, 148, 150, 151, 155, 156, 158, 160, 161, 162, 164, 165, 166, 167, 168, 169, 171, 178, 179, 181, 183, 185, 186, 187, 192, 193, 198, 199, 200, 202]
+With size: 1812
+==== Next function: primal_net_simplex
+Number of AA Queries: 10
+Distinct counts: [1812]
+Found sequence: [0, 6, 7, 9]
+With size: 1812
+Time after exploration of 605/psimplex.bc: 236.99853587150574
+***** Next file: 605/pstart.bc
+==== Next function: primal_start_artificial
+Number of AA Queries: 327
+Distinct counts: [297, 305]
+Found sequence: [0, 4, 8, 9, 10, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 28, 34, 39, 40, 42, 43, 47, 49, 50, 52, 53, 54, 56, 57, 60, 62, 64, 65, 66, 70, 71, 73, 75, 79, 83, 88, 90, 92, 93, 95, 98, 100, 101, 102, 103, 104, 110, 112, 113, 114, 120, 121, 123, 128, 129, 130, 132, 133, 138, 139, 142, 143, 145, 146, 147, 149, 151, 155, 157, 159, 160, 162, 163, 164, 165, 166, 168, 171, 172, 174, 175, 176, 177, 178, 181, 183, 185, 186, 187, 188, 189, 191, 192, 194, 195, 196, 201, 203, 206, 207, 212, 213, 214, 215, 217, 218, 219, 220, 221, 222, 223, 224, 231, 233, 235, 237, 238, 240, 241, 242, 243, 249, 252, 253, 254, 256, 259, 266, 267, 271, 272, 274, 279, 281, 284, 285, 286, 287, 288, 289, 291, 293, 295, 298, 299, 300, 301, 302, 304, 305, 307, 309, 310, 313, 317, 319, 321, 322, 323, 325]
+With size: 297
+Time after exploration of 605/pstart.bc: 238.93862080574036
+***** Next file: 605/spec_qsort/spec_qsort.bc
+==== Next function: swapfunc
+Number of AA Queries: 10
+Distinct counts: [1754]
+Found sequence: [0, 1, 3, 6, 7, 9]
+With size: 1754
+==== Next function: spec_qsort
+Number of AA Queries: 7
+Distinct counts: [1754]
+Found sequence: [0, 2, 3, 4, 5, 6]
+With size: 1754
+Time after exploration of 605/spec_qsort/spec_qsort.bc: 239.71973705291748
+found results: 
+605/implicit.bc{ resize_prob: 4639, insert_new_arc: 4635, replace_weaker_arc: 4639, price_out_impl: 4484, suspend_impl: 4580, refreshArcPointers: 4639, refreshPositions: 4639, marc_arcs: 4728, calculate_max_redcost: 4639, switch_arcs: 4636, arc_compare: 4639, } 605/readmin.bc{ read_min: 1827, } 605/treeup.bc{ update_tree: 535, } 605/output.bc{ write_circulations: 579, } 605/mcfutil.bc{ refresh_neighbour_lists: 1652, flow_cost: 1645, getArcPosition: 1652, flow_org_cost: 1642, primal_feasible: 1652, dual_feasible: 1652, } 605/pbla.bc{ primal_iminus: 178, } 605/mcf.bc{ main: 1239, } 605/pflowup.bc{ primal_update_flow: 95, } 605/pbeampp.bc{ primal_bea_mpp: 772, set_static_vars: 781, cost_compare: 781, } 605/psimplex.bc{ markBaskets: 1812, worker: 1812, master: 1812, primal_net_simplex: 1812, } 605/pstart.bc{ primal_start_artificial: 297, } 605/spec_qsort/spec_qsort.bc{ swapfunc: 1754, spec_qsort: 1754, } 
+605/implicit.bc{ resize_prob: [1, 6, 11, 12, 14, 15, 16, 18, 19, 21, 23, 24, 28, 34, 35, 39, 40, 42], insert_new_arc: [0, 1, 2, 3, 4, 5, 9, 13, 14, 15, 16, 18, 21, 22, 23, 25, 26, 27, 30, 33, 34, 37, 38, 39, 40, 42, 44, 45, 46, 50, 54, 55, 56, 57, 61, 62, 64, 65, 66, 68, 73, 76, 77, 79, 80, 81, 83, 85, 86, 87, 88, 90, 93, 94, 97, 101, 102, 103, 104, 105, 106, 108, 109, 110, 112, 114, 115, 118, 119, 122, 123, 125, 127, 128, 129, 133, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 151, 152, 153], replace_weaker_arc: [0, 5, 6, 8, 9, 11, 13, 15, 16, 17, 23, 27, 31, 33, 34, 36, 37, 38, 42, 44, 45, 48, 49, 52, 54, 55, 56, 64, 65, 67, 69, 70, 73, 74, 77, 79, 84, 87, 89, 90, 92, 93, 95, 96, 97, 100, 103, 106, 107, 115, 117, 118, 120, 121, 123, 124, 125, 126, 129, 130, 131, 135, 138, 139, 141, 143, 145, 152, 153, 154, 155, 156, 157, 160, 162, 163, 164, 165, 166, 167, 168, 169, 170], price_out_impl: [1, 2, 4, 5, 6, 9, 14, 15, 18, 19, 20, 21, 24, 27, 28, 29, 31, 32, 33, 34, 35, 36, 37, 39, 40, 41, 44, 45, 48, 49, 54, 59, 60, 61, 64, 65, 66, 67, 68, 69, 74, 76, 77, 78, 79, 82, 83, 86, 88, 90, 94, 96, 97, 98, 99, 101, 102, 109, 112, 113, 115, 120, 121, 122, 126, 127, 128, 130, 133, 139, 140, 142, 143, 144, 146, 147, 150, 152, 156, 158, 159, 160, 161, 162, 166, 167, 168, 170, 171, 174, 178, 179, 183, 184, 185, 190, 197, 201, 202, 204, 205, 206, 207, 208, 209, 210, 214, 216, 217, 218, 219, 220, 224, 225, 226, 229, 230, 232, 233, 235, 236, 237, 238, 240, 244, 245, 249, 251, 253, 255, 256, 257, 258, 260, 261, 262, 265, 266, 267, 269, 273, 275, 277, 278, 281, 282, 283, 285, 286, 287, 290, 292, 294, 295, 296, 300, 301, 304, 309, 310, 313, 314, 315, 316, 317, 320, 321, 322, 325, 328, 329, 336, 337, 340, 341, 343, 344, 346, 347, 348, 353, 355, 356, 358, 359, 360, 362, 364, 365, 366, 372, 373, 375, 377, 382, 383, 384, 390, 391, 392, 393, 396, 398, 402, 404, 406, 410, 412, 414, 415, 416, 419, 420, 423, 426, 427, 433, 434, 437, 438, 439, 440, 441, 443, 446, 448, 449, 452, 454, 456, 458, 459, 463, 464, 465, 466, 468, 471, 472, 473, 475, 476, 477, 478, 481, 483, 484, 485, 486, 487, 490, 491, 493, 496, 502, 503, 504, 510, 513, 514, 515, 516, 519, 520, 521, 522, 524, 527, 529, 530, 531, 535, 539, 540, 543, 544, 548, 550, 551, 555, 556, 557, 559, 561, 562, 564, 565, 566, 568, 569, 571, 573, 575, 576, 578, 580, 581, 585, 586, 587, 589, 591, 596, 598, 599, 602, 603, 604, 608, 609, 614, 615, 617, 621, 623, 624, 626, 629, 631, 632], suspend_impl: [0, 3, 4, 10, 19, 20, 21, 24, 25, 27, 28, 30, 34, 35, 36, 37, 38, 39, 40, 41, 45, 47, 48, 49, 52, 53, 58, 61, 62, 63, 65, 66, 69, 70, 71, 74, 75, 76, 77, 78, 79, 81, 84], refreshArcPointers: [2, 3, 5, 6, 7, 8, 9, 14, 18, 19, 20, 21, 23, 29, 31, 32, 33], refreshPositions: [1, 2, 4, 7], marc_arcs: [1, 2, 3, 4, 5, 11, 12, 13, 14, 17, 18, 19, 21, 32, 33, 38, 39, 40, 41, 42, 45, 46, 48, 52, 53, 54, 55, 56, 60, 61, 62, 65, 66, 67, 68, 69, 70, 72, 76, 79, 80, 81], calculate_max_redcost: [6, 7], switch_arcs: [0, 1, 4, 5, 7, 8, 9, 10, 13, 15, 17, 18, 20, 21, 22, 23, 24, 26, 28, 30, 31, 34, 37, 42], arc_compare: [1, 2, 3, 4, 7, 11, 12, 13], } 605/readmin.bc{ read_min: [0, 2, 3, 5, 6, 7, 14, 16, 18, 19, 20, 21, 23, 24, 25, 29, 31, 32, 33, 34, 35, 37, 43, 45, 47, 48, 49, 50, 53, 55, 56, 61, 62, 67, 69, 70, 71, 72, 75, 76, 80, 81, 85, 87, 88, 91, 92, 93, 94, 95, 97, 99, 100, 101, 103, 105, 107, 109, 112, 113, 120, 123, 124, 126, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 142, 145, 147, 148, 149, 152, 155, 156, 158, 159, 160, 161, 163, 166, 175, 176, 177, 179, 181, 182, 184, 186, 187, 189, 190, 191, 192, 193, 197, 198, 202, 203, 207, 208, 209, 211, 215, 216, 218, 219, 221, 223, 224, 225, 228, 230, 231, 232, 233, 236, 244, 246, 247, 248, 249, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 264, 266, 271, 275, 276, 278, 280, 282, 283, 287, 292, 294, 299, 301, 302, 303, 304, 306, 307, 309, 310, 311, 316, 317, 318, 319, 320, 321, 322, 325, 327, 329, 332, 333, 336, 337, 338, 341, 342, 344, 346, 349, 351, 352, 354, 356, 357, 358, 360, 364, 366, 373, 374, 376, 378, 380, 381, 384, 388, 389, 391, 392, 393, 394, 395, 396, 399, 400, 401, 402, 407, 409, 410, 411, 412, 413, 415, 416, 418, 419, 420, 422, 423, 424, 428, 432, 434, 436, 437, 438, 441, 443, 444, 445, 447, 450, 453, 457, 460, 461, 463, 464, 465, 467, 470, 472, 473, 476, 477, 479, 483, 486, 487, 489, 490, 491, 495, 496, 501, 502, 507, 509, 511, 516, 518, 520, 521, 525, 529, 533, 535, 536, 540, 542, 543, 546, 554, 557, 560, 564, 567, 568, 569, 575, 583, 584, 585, 589, 593, 594, 595, 596, 597, 601, 602, 603, 605, 607, 608, 609, 611, 612, 617, 618, 619, 620, 622], } 605/treeup.bc{ update_tree: [3, 6, 7, 10, 12, 17, 18, 19, 20, 22, 26, 27, 28, 29, 30, 31, 35, 36, 38, 40, 43, 47, 48, 52, 55, 58, 62, 63, 64, 66, 69, 71, 73, 74, 78, 80, 85, 86, 87, 89, 90, 93, 95, 99, 100, 102, 103, 105, 108, 109, 111, 112, 117, 118, 119, 121, 124, 126, 128, 129, 130, 132, 133, 134, 136, 137, 141, 144, 145, 146, 148, 152, 154, 159, 162, 163, 168, 169, 172, 173, 176, 178, 179, 182, 184, 187, 188, 190, 192, 194, 196, 198, 200, 201, 202, 204, 205, 206, 210, 212, 213, 214, 217, 220, 221, 225, 233, 234, 235, 236, 239, 242, 244, 245, 246, 248, 250, 252, 253, 259, 260, 264, 266, 269], } 605/output.bc{ write_circulations: [1, 2, 4, 7, 9, 11, 13, 15, 16, 17], } 605/mcfutil.bc{ refresh_neighbour_lists: [0, 2, 3, 4, 5, 6, 7, 8, 11, 12, 13, 14, 16, 17, 18, 19, 21, 27, 28, 29, 30, 31, 32, 34, 36], flow_cost: [5, 6, 7, 13, 15, 16, 17, 18, 19, 20, 25, 27, 28, 31, 33, 34, 35, 39, 46, 47, 48, 49, 53, 55, 56, 58, 59, 63, 65, 66, 69], getArcPosition: [0, 2, 3, 4, 5], flow_org_cost: [5, 8, 10, 13, 14, 17, 19, 20, 22, 23, 25, 27, 29, 30, 31, 35, 37, 40, 41, 42, 44, 45, 47, 48, 51, 53, 55, 59, 60, 62, 65, 66, 68, 69, 73, 76, 77, 78, 79, 81], primal_feasible: [0, 4, 6, 8, 10, 11, 16], dual_feasible: [0, 2, 5, 6, 7, 11, 12, 13, 14, 15, 16, 18, 21, 22, 23, 24, 25, 27, 29], } 605/pbla.bc{ primal_iminus: [0, 3, 8, 10, 12, 17, 19, 21, 26, 28, 30, 33, 36, 40, 43, 44, 45, 49, 50, 51, 54, 55, 57, 64], } 605/mcf.bc{ main: [0, 1], } 605/pflowup.bc{ primal_update_flow: [1, 5, 8, 9, 12, 14, 15, 16, 17], } 605/pbeampp.bc{ primal_bea_mpp: [4, 5, 6, 8, 9, 14, 16, 19, 20, 24, 25, 27, 28, 29, 30, 33, 34, 35, 37, 39, 42, 44, 45, 47, 49, 50, 51, 53, 54, 56, 57, 58, 61, 62, 63, 64, 65, 66, 67, 69, 72, 73, 74, 77, 81, 83, 84, 86, 88, 89, 91, 92, 93, 97, 98, 101, 102, 103, 105, 109, 110, 112, 115, 116, 117, 119, 120, 121, 122, 124, 128, 129, 131, 134, 137, 138, 141, 142, 144, 145, 146, 147, 151, 154, 157, 160, 163, 164, 165, 169, 170, 171, 173, 174, 175, 180, 182, 183, 189, 190, 193, 195, 196, 197, 198, 199, 200, 201, 202, 203, 206, 207, 208, 210, 214, 215, 218, 221, 222, 224, 227, 229], set_static_vars: [1], cost_compare: [1, 3, 4, 5, 9, 10], } 605/psimplex.bc{ markBaskets: [2, 3, 4, 7, 8, 12, 14, 17, 19, 22, 23, 25, 28], worker: [0, 1, 3, 4, 7, 8, 10, 14, 15, 18, 20, 24, 27, 28, 33, 34, 35, 36, 38, 40, 47, 49, 51, 52, 54, 55, 56, 57], master: [1, 6, 14, 16, 19, 21, 22, 23, 24, 27, 34, 36, 37, 42, 44, 45, 46, 48, 49, 51, 52, 54, 56, 58, 59, 60, 65, 66, 67, 69, 70, 76, 77, 79, 82, 83, 84, 87, 88, 89, 90, 91, 92, 94, 95, 100, 101, 104, 107, 108, 110, 112, 114, 117, 119, 122, 123, 124, 125, 126, 127, 131, 132, 134, 135, 138, 144, 147, 148, 150, 151, 155, 156, 158, 160, 161, 162, 164, 165, 166, 167, 168, 169, 171, 178, 179, 181, 183, 185, 186, 187, 192, 193, 198, 199, 200, 202], primal_net_simplex: [0, 6, 7, 9], } 605/pstart.bc{ primal_start_artificial: [0, 4, 8, 9, 10, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 28, 34, 39, 40, 42, 43, 47, 49, 50, 52, 53, 54, 56, 57, 60, 62, 64, 65, 66, 70, 71, 73, 75, 79, 83, 88, 90, 92, 93, 95, 98, 100, 101, 102, 103, 104, 110, 112, 113, 114, 120, 121, 123, 128, 129, 130, 132, 133, 138, 139, 142, 143, 145, 146, 147, 149, 151, 155, 157, 159, 160, 162, 163, 164, 165, 166, 168, 171, 172, 174, 175, 176, 177, 178, 181, 183, 185, 186, 187, 188, 189, 191, 192, 194, 195, 196, 201, 203, 206, 207, 212, 213, 214, 215, 217, 218, 219, 220, 221, 222, 223, 224, 231, 233, 235, 237, 238, 240, 241, 242, 243, 249, 252, 253, 254, 256, 259, 266, 267, 271, 272, 274, 279, 281, 284, 285, 286, 287, 288, 289, 291, 293, 295, 298, 299, 300, 301, 302, 304, 305, 307, 309, 310, 313, 317, 319, 321, 322, 323, 325], } 605/spec_qsort/spec_qsort.bc{ swapfunc: [0, 1, 3, 6, 7, 9], spec_qsort: [0, 2, 3, 4, 5, 6], } 
+time after exploration: 239.7201611995697
+605/implicit.bc: 4507 vs 4639
+605/readmin.bc: 1827 vs 1790
+605/treeup.bc: 535 vs 535
+605/output.bc: 579 vs 579
+605/mcfutil.bc: 1635 vs 1652
+605/pbla.bc: 178 vs 178
+605/mcf.bc: 1239 vs 1239
+605/pflowup.bc: 95 vs 95
+605/pbeampp.bc: 772 vs 781
+605/psimplex.bc: 1812 vs 1812
+605/pstart.bc: 297 vs 319
+605/spec_qsort/spec_qsort.bc: 1754 vs 1754
+Time after after composition: 241.85694575309753
+result: 17769 vs 17913
+meaning a 0.8038854463238989% improvement
+Random used 1739 compilations
+Time after random exploration: 241.86225867271423
+Time after file setup: 241.90994024276733
+Track AA Queries Genetic with 1 generation exponent
+counts per function per file: {PosixPath('605/implicit.bc'): {'resize_prob': 43, 'insert_new_arc': 155, 'replace_weaker_arc': 171, 'price_out_impl': 634, 'suspend_impl': 85, 'refreshArcPointers': 35, 'refreshPositions': 8, 'marc_arcs': 82, 'calculate_max_redcost': 8, 'switch_arcs': 44, 'arc_compare': 14}, PosixPath('605/readmin.bc'): {'read_min': 623}, PosixPath('605/treeup.bc'): {'update_tree': 270}, PosixPath('605/output.bc'): {'write_circulations': 18}, PosixPath('605/mcfutil.bc'): {'refresh_neighbour_lists': 38, 'flow_cost': 82, 'getArcPosition': 6, 'flow_org_cost': 82, 'primal_feasible': 17, 'dual_feasible': 36}, PosixPath('605/pbla.bc'): {'primal_iminus': 65}, PosixPath('605/mcf.bc'): {'main': 5}, PosixPath('605/pflowup.bc'): {'primal_update_flow': 20}, PosixPath('605/pbeampp.bc'): {'primal_bea_mpp': 231, 'set_static_vars': 2, 'cost_compare': 14}, PosixPath('605/psimplex.bc'): {'markBaskets': 30, 'worker': 58, 'master': 205, 'primal_net_simplex': 10}, PosixPath('605/pstart.bc'): {'primal_start_artificial': 327}, PosixPath('605/spec_qsort/spec_qsort.bc'): {'swapfunc': 10, 'spec_qsort': 7}}
+Time after AA Query measurement: 242.20893716812134
+Start Exploration
+***** Next file: 605/implicit.bc
+==== Next function: resize_prob
+Number of AA Queries: 43
+Running GA with 7 generations and 4 parents and 7 initial population
+Time after GA on resize_prob: 246.79274702072144
+Parameters of the best solution : [0, 2, 5, 6, 7, 8, 16, 21, 24, 27, 29, 40]
+Fitness value of the best solution = 4639
+==== Next function: insert_new_arc
+Number of AA Queries: 155
+Running GA with 12 generations and 4 parents and 12 initial population
+Time after GA on insert_new_arc: 255.24892139434814
+Parameters of the best solution : [1, 20, 21, 22, 25, 27, 28, 31, 32, 36, 38, 39, 41, 42, 43, 44, 46, 47, 50, 53, 54, 55, 58, 60, 61, 63, 67, 70, 71, 75, 79, 81, 82, 83, 91, 97, 101, 105, 111, 112, 115, 116, 118, 121, 122, 123, 129, 134, 135, 145, 146, 152]
+Fitness value of the best solution = 4635
+==== Next function: replace_weaker_arc
+Number of AA Queries: 171
+Running GA with 13 generations and 4 parents and 13 initial population
+Time after GA on replace_weaker_arc: 264.64264035224915
+Parameters of the best solution : [5, 7, 15, 16, 22, 26, 28, 35, 47, 49, 54, 55, 57, 59, 60, 62, 64, 69, 71, 73, 79, 83, 85, 86, 88, 89, 90, 91, 94, 95, 97, 98, 99, 105, 109, 110, 115, 116, 122, 124, 126, 131, 132, 135, 137, 139, 140, 147, 150, 151, 152, 153, 160, 161, 164]
+Fitness value of the best solution = 4639
+==== Next function: price_out_impl
+Number of AA Queries: 634
+Running GA with 25 generations and 4 parents and 25 initial population
+Time after GA on price_out_impl: 300.28857135772705
+Parameters of the best solution : [3, 4, 5, 7, 10, 19, 20, 21, 22, 25, 26, 31, 32, 35, 36, 37, 39, 43, 44, 45, 47, 52, 53, 59, 60, 61, 66, 67, 68, 69, 71, 72, 73, 74, 76, 77, 78, 79, 80, 83, 86, 89, 90, 96, 97, 98, 103, 104, 105, 108, 112, 114, 117, 119, 120, 123, 124, 130, 136, 137, 139, 140, 141, 142, 143, 144, 146, 147, 154, 155, 156, 157, 158, 161, 162, 163, 167, 168, 171, 175, 177, 178, 179, 187, 191, 192, 194, 199, 200, 204, 205, 207, 210, 212, 216, 226, 228, 232, 235, 239, 241, 244, 248, 252, 254, 256, 259, 260, 264, 267, 269, 270, 272, 273, 274, 275, 276, 277, 278, 279, 281, 283, 284, 285, 288, 290, 296, 297, 298, 306, 309, 310, 314, 320, 322, 326, 331, 334, 336, 338, 339, 340, 341, 345, 350, 352, 353, 355, 356, 357, 358, 361, 363, 368, 370, 375, 377, 379, 382, 383, 389, 396, 397, 400, 401, 405, 406, 408, 410, 413, 417, 418, 420, 422, 423, 425, 427, 429, 433, 434, 439, 442, 445, 448, 451, 453, 457, 459, 460, 462, 463, 465, 466, 468, 469, 473, 475, 480, 481, 482, 486, 488, 489, 491, 493, 494, 495, 499, 500, 510, 514, 515, 518, 521, 524, 528, 529, 530, 535, 536, 537, 538, 543, 544, 545, 546, 553, 554, 555, 556, 557, 558, 559, 560, 563, 567, 573, 574, 577, 578, 579, 580, 581, 582, 583, 585, 586, 587, 592, 594, 597, 601, 605, 609, 610, 612, 613, 615, 617, 619, 621, 622, 623, 624, 626]
+Fitness value of the best solution = 4484
+==== Next function: suspend_impl
+Number of AA Queries: 85
+Running GA with 9 generations and 4 parents and 9 initial population
+Time after GA on suspend_impl: 307.55152106285095
+Parameters of the best solution : [1, 3, 5, 7, 13, 18, 19, 20, 22, 23, 24, 25, 29, 30, 31, 32, 35, 36, 37, 41, 45, 46, 47, 51, 52, 56, 57, 58, 59, 60, 69, 70, 71, 72, 74, 79, 84]
+Fitness value of the best solution = 4580
+==== Next function: refreshArcPointers
+Number of AA Queries: 35
+Running GA with 6 generations and 4 parents and 6 initial population
+Time after GA on refreshArcPointers: 311.57022047042847
+Parameters of the best solution : [4, 5, 7, 11, 13, 18, 19, 21, 24, 27, 30, 32]
+Fitness value of the best solution = 4639
+==== Next function: refreshPositions
+Number of AA Queries: 8
+Running GA with 3 generations and 3 parents and 3 initial population
+Time after GA on refreshPositions: 313.840744972229
+Parameters of the best solution : [1, 2]
+Fitness value of the best solution = 4639
+==== Next function: marc_arcs
+Number of AA Queries: 82
+Running GA with 9 generations and 4 parents and 9 initial population
+Time after GA on marc_arcs: 320.9995951652527
+Parameters of the best solution : [0, 1, 5, 8, 9, 10, 11, 17, 18, 20, 21, 22, 25, 26, 27, 28, 29, 30, 31, 35, 36, 37, 39, 45, 48, 51, 52, 57, 61, 62, 67, 70, 74, 76, 79]
+Fitness value of the best solution = 4729
+==== Next function: calculate_max_redcost
+Number of AA Queries: 8
+Running GA with 3 generations and 3 parents and 3 initial population
+Time after GA on calculate_max_redcost: 323.1628608703613
+Parameters of the best solution : [1, 2, 5]
+Fitness value of the best solution = 4639
+==== Next function: switch_arcs
+Number of AA Queries: 44
+Running GA with 7 generations and 4 parents and 7 initial population
+Time after GA on switch_arcs: 328.2252354621887
+Parameters of the best solution : [0, 3, 6, 11, 13, 15, 18, 19, 22, 26, 28, 33, 35, 37, 38, 39, 42]
+Fitness value of the best solution = 4636
+==== Next function: arc_compare
+Number of AA Queries: 14
+Running GA with 4 generations and 4 parents and 4 initial population
+Time after GA on arc_compare: 330.84132194519043
+Parameters of the best solution : [1, 2, 3, 9, 10, 12]
+Fitness value of the best solution = 4639
+Time after exploration of 605/implicit.bc: 330.84148621559143
+***** Next file: 605/readmin.bc
+==== Next function: read_min
+Number of AA Queries: 623
+Running GA with 25 generations and 4 parents and 25 initial population
+Time after GA on read_min: 349.1572916507721
+Parameters of the best solution : [1, 4, 10, 14, 16, 17, 20, 22, 28, 32, 35, 45, 46, 47, 48, 50, 54, 55, 56, 58, 59, 60, 62, 64, 70, 71, 72, 74, 75, 82, 83, 86, 87, 88, 89, 90, 92, 93, 94, 96, 99, 101, 102, 103, 104, 105, 106, 108, 109, 112, 113, 114, 116, 118, 119, 120, 123, 128, 129, 130, 131, 133, 134, 136, 137, 138, 140, 141, 142, 144, 145, 147, 148, 150, 151, 155, 163, 167, 168, 170, 171, 172, 180, 189, 190, 193, 196, 198, 201, 206, 209, 210, 211, 215, 217, 220, 221, 222, 223, 227, 231, 232, 236, 238, 239, 241, 243, 245, 246, 247, 248, 249, 251, 253, 256, 258, 259, 261, 263, 265, 267, 268, 269, 272, 276, 282, 285, 287, 288, 289, 290, 292, 295, 297, 300, 301, 302, 305, 309, 310, 313, 314, 316, 317, 326, 328, 332, 333, 336, 337, 338, 340, 341, 344, 348, 351, 352, 353, 355, 359, 362, 368, 369, 370, 372, 375, 378, 379, 380, 381, 383, 384, 385, 386, 387, 389, 395, 399, 400, 401, 404, 405, 410, 414, 415, 416, 417, 419, 420, 426, 431, 432, 434, 436, 440, 441, 446, 448, 452, 455, 457, 459, 464, 467, 469, 471, 472, 476, 477, 478, 481, 483, 485, 487, 490, 492, 494, 497, 498, 499, 501, 502, 507, 510, 511, 512, 514, 515, 517, 521, 522, 528, 533, 534, 535, 537, 538, 541, 543, 544, 554, 557, 558, 562, 563, 565, 568, 572, 574, 576, 577, 578, 579, 581, 584, 585, 586, 590, 591, 592, 593, 594, 595, 597, 600, 601, 603, 606, 608, 609, 610, 611, 617, 619, 621, 622]
+Fitness value of the best solution = 1794
+Time after exploration of 605/readmin.bc: 349.1575047969818
+***** Next file: 605/treeup.bc
+==== Next function: update_tree
+Number of AA Queries: 270
+Running GA with 16 generations and 4 parents and 16 initial population
+Time after GA on update_tree: 356.080677986145
+Parameters of the best solution : [4, 5, 9, 11, 15, 19, 20, 21, 22, 23, 28, 32, 33, 34, 35, 40, 44, 48, 50, 51, 55, 56, 58, 63, 65, 66, 70, 74, 75, 76, 77, 79, 83, 84, 85, 88, 90, 91, 93, 101, 107, 108, 110, 111, 112, 114, 115, 124, 125, 134, 140, 146, 147, 149, 151, 154, 161, 163, 166, 167, 168, 171, 173, 175, 177, 182, 183, 185, 188, 190, 194, 195, 199, 200, 205, 208, 214, 215, 216, 220, 223, 224, 225, 226, 227, 229, 230, 233, 237, 238, 240, 250, 253, 261, 264, 266, 267]
+Fitness value of the best solution = 535
+Time after exploration of 605/treeup.bc: 356.08089542388916
+***** Next file: 605/output.bc
+==== Next function: write_circulations
+Number of AA Queries: 18
+Running GA with 4 generations and 4 parents and 4 initial population
+Time after GA on write_circulations: 357.3963894844055
+Parameters of the best solution : [2, 5, 7, 12, 17]
+Fitness value of the best solution = 579
+Time after exploration of 605/output.bc: 357.3965985774994
+***** Next file: 605/mcfutil.bc
+==== Next function: refresh_neighbour_lists
+Number of AA Queries: 38
+Running GA with 6 generations and 4 parents and 6 initial population
+Time after GA on refresh_neighbour_lists: 359.69959783554077
+Parameters of the best solution : [3, 5, 6, 8, 9, 10, 14, 17, 19, 20, 35, 37]
+Fitness value of the best solution = 1652
+==== Next function: flow_cost
+Number of AA Queries: 82
+Running GA with 9 generations and 4 parents and 9 initial population
+Time after GA on flow_cost: 363.5372951030731
+Parameters of the best solution : [5, 6, 7, 8, 11, 12, 15, 21, 22, 25, 29, 30, 32, 34, 39, 40, 43, 46, 47, 58, 61, 63, 70, 72, 76, 78, 81]
+Fitness value of the best solution = 1645
+==== Next function: getArcPosition
+Number of AA Queries: 6
+Running GA with 2 generations and 2 parents and 2 initial population
+Time after GA on getArcPosition: 364.62457370758057
+Parameters of the best solution : [1, 2]
+Fitness value of the best solution = 1652
+==== Next function: flow_org_cost
+Number of AA Queries: 82
+Running GA with 9 generations and 4 parents and 9 initial population
+Time after GA on flow_org_cost: 368.0733425617218
+Parameters of the best solution : [1, 2, 3, 4, 6, 10, 11, 13, 14, 17, 20, 23, 24, 26, 27, 29, 34, 35, 37, 39, 42, 45, 46, 47, 59, 61, 62, 70, 71, 74, 76, 81]
+Fitness value of the best solution = 1653
+==== Next function: primal_feasible
+Number of AA Queries: 17
+Running GA with 4 generations and 4 parents and 4 initial population
+Time after GA on primal_feasible: 369.63269662857056
+Parameters of the best solution : [0, 1, 5, 8, 12]
+Fitness value of the best solution = 1652
+==== Next function: dual_feasible
+Number of AA Queries: 36
+Running GA with 6 generations and 4 parents and 6 initial population
+Time after GA on dual_feasible: 371.9905161857605
+Parameters of the best solution : [1, 3, 5, 10, 15, 17, 20]
+Fitness value of the best solution = 1652
+Time after exploration of 605/mcfutil.bc: 371.9906687736511
+***** Next file: 605/pbla.bc
+==== Next function: primal_iminus
+Number of AA Queries: 65
+Running GA with 8 generations and 4 parents and 8 initial population
+Time after GA on primal_iminus: 374.1038908958435
+Parameters of the best solution : [2, 8, 10, 14, 19, 22, 23, 25, 33, 36, 51, 52, 60, 63]
+Fitness value of the best solution = 178
+Time after exploration of 605/pbla.bc: 374.1039402484894
+***** Next file: 605/mcf.bc
+==== Next function: main
+Number of AA Queries: 5
+Running GA with 2 generations and 2 parents and 2 initial population
+Time after GA on main: 374.9328374862671
+Parameters of the best solution : [0, 4]
+Fitness value of the best solution = 1239
+Time after exploration of 605/mcf.bc: 374.9329831600189
+***** Next file: 605/pflowup.bc
+==== Next function: primal_update_flow
+Number of AA Queries: 20
+Running GA with 4 generations and 4 parents and 4 initial population
+Time after GA on primal_update_flow: 376.0812785625458
+Parameters of the best solution : [3, 6, 8, 13, 15, 17]
+Fitness value of the best solution = 95
+Time after exploration of 605/pflowup.bc: 376.08135533332825
+***** Next file: 605/pbeampp.bc
+==== Next function: primal_bea_mpp
+Number of AA Queries: 231
+Running GA with 15 generations and 4 parents and 15 initial population
+Time after GA on primal_bea_mpp: 382.360591173172
+Parameters of the best solution : [5, 9, 13, 15, 16, 18, 19, 21, 23, 24, 27, 31, 32, 36, 42, 44, 45, 49, 52, 53, 54, 61, 62, 63, 64, 73, 75, 76, 77, 79, 84, 85, 86, 87, 93, 94, 96, 97, 98, 100, 103, 107, 110, 111, 113, 115, 118, 120, 129, 130, 131, 134, 140, 143, 146, 148, 153, 157, 159, 160, 163, 170, 172, 175, 176, 179, 184, 186, 189, 191, 196, 199, 201, 204, 205, 214, 217, 219, 220, 223, 224, 225, 226, 230]
+Fitness value of the best solution = 772
+==== Next function: set_static_vars
+Number of AA Queries: 2
+Running GA with 1 generations and 1 parents and 1 initial population
+Time after GA on set_static_vars: 382.60588479042053
+Parameters of the best solution : []
+Fitness value of the best solution = 781
+==== Next function: cost_compare
+Number of AA Queries: 14
+Running GA with 4 generations and 4 parents and 4 initial population
+Time after GA on cost_compare: 384.06598019599915
+Parameters of the best solution : [8]
+Fitness value of the best solution = 781
+Time after exploration of 605/pbeampp.bc: 384.06632113456726
+***** Next file: 605/psimplex.bc
+==== Next function: markBaskets
+Number of AA Queries: 30
+Running GA with 5 generations and 4 parents and 5 initial population
+Time after GA on markBaskets: 385.8686192035675
+Parameters of the best solution : [0, 2, 3, 6, 9, 11, 12, 21, 22, 26, 29]
+Fitness value of the best solution = 1812
+==== Next function: worker
+Number of AA Queries: 58
+Running GA with 8 generations and 4 parents and 8 initial population
+Time after GA on worker: 388.91759729385376
+Parameters of the best solution : [5, 8, 12, 13, 15, 19, 24, 26, 28, 29, 32, 34, 35, 40, 41, 44, 47, 51, 57]
+Fitness value of the best solution = 1812
+==== Next function: master
+Number of AA Queries: 205
+Running GA with 14 generations and 4 parents and 14 initial population
+Time after GA on master: 395.2817385196686
+Parameters of the best solution : [0, 4, 6, 7, 10, 11, 13, 16, 17, 20, 21, 22, 23, 24, 26, 27, 30, 31, 35, 59, 60, 62, 64, 66, 68, 69, 70, 74, 76, 78, 84, 86, 87, 93, 95, 96, 98, 100, 104, 105, 106, 108, 110, 111, 112, 114, 115, 125, 126, 127, 131, 135, 140, 144, 146, 149, 151, 154, 159, 160, 161, 168, 172, 173, 174, 175, 177, 181, 182, 183, 184, 189, 192, 199, 203]
+Fitness value of the best solution = 1812
+==== Next function: primal_net_simplex
+Number of AA Queries: 10
+Running GA with 3 generations and 3 parents and 3 initial population
+Time after GA on primal_net_simplex: 396.56434392929077
+Parameters of the best solution : [1, 2, 8, 9]
+Fitness value of the best solution = 1812
+Time after exploration of 605/psimplex.bc: 396.5647451877594
+***** Next file: 605/pstart.bc
+==== Next function: primal_start_artificial
+Number of AA Queries: 327
+Running GA with 18 generations and 4 parents and 18 initial population
+Time after GA on primal_start_artificial: 405.1337459087372
+Parameters of the best solution : [1, 3, 4, 5, 6, 14, 16, 17, 18, 19, 24, 25, 29, 30, 32, 39, 41, 44, 52, 54, 56, 62, 64, 66, 71, 72, 73, 75, 78, 80, 83, 87, 94, 97, 101, 102, 105, 106, 107, 108, 109, 110, 112, 113, 120, 121, 124, 135, 136, 139, 140, 141, 142, 147, 152, 157, 158, 159, 162, 164, 168, 173, 174, 180, 184, 190, 192, 204, 206, 207, 212, 216, 226, 229, 235, 236, 238, 239, 241, 242, 243, 245, 247, 250, 254, 257, 259, 261, 265, 270, 273, 280, 283, 284, 288, 291, 292, 293, 297, 298, 299, 301, 302, 311, 312, 318, 319, 320, 324, 326]
+Fitness value of the best solution = 297
+Time after exploration of 605/pstart.bc: 405.13403391838074
+***** Next file: 605/spec_qsort/spec_qsort.bc
+==== Next function: swapfunc
+Number of AA Queries: 10
+Running GA with 3 generations and 3 parents and 3 initial population
+Time after GA on swapfunc: 406.61517238616943
+Parameters of the best solution : [1, 2]
+Fitness value of the best solution = 1754
+==== Next function: spec_qsort
+Number of AA Queries: 7
+Running GA with 3 generations and 3 parents and 3 initial population
+Time after GA on spec_qsort: 408.05227398872375
+Parameters of the best solution : [1, 5]
+Fitness value of the best solution = 1754
+Time after exploration of 605/spec_qsort/spec_qsort.bc: 408.0524387359619
+found results: 
+605/implicit.bc{ resize_prob: 4639, insert_new_arc: 4635, replace_weaker_arc: 4639, price_out_impl: 4484, suspend_impl: 4580, refreshArcPointers: 4639, refreshPositions: 4639, marc_arcs: 4729, calculate_max_redcost: 4639, switch_arcs: 4636, arc_compare: 4639, } 605/readmin.bc{ read_min: 1794, } 605/treeup.bc{ update_tree: 535, } 605/output.bc{ write_circulations: 579, } 605/mcfutil.bc{ refresh_neighbour_lists: 1652, flow_cost: 1645, getArcPosition: 1652, flow_org_cost: 1653, primal_feasible: 1652, dual_feasible: 1652, } 605/pbla.bc{ primal_iminus: 178, } 605/mcf.bc{ main: 1239, } 605/pflowup.bc{ primal_update_flow: 95, } 605/pbeampp.bc{ primal_bea_mpp: 772, set_static_vars: 781, cost_compare: 781, } 605/psimplex.bc{ markBaskets: 1812, worker: 1812, master: 1812, primal_net_simplex: 1812, } 605/pstart.bc{ primal_start_artificial: 297, } 605/spec_qsort/spec_qsort.bc{ swapfunc: 1754, spec_qsort: 1754, } 
+605/implicit.bc{ resize_prob: [0, 2, 5, 6, 7, 8, 16, 21, 24, 27, 29, 40], insert_new_arc: [1, 20, 21, 22, 25, 27, 28, 31, 32, 36, 38, 39, 41, 42, 43, 44, 46, 47, 50, 53, 54, 55, 58, 60, 61, 63, 67, 70, 71, 75, 79, 81, 82, 83, 91, 97, 101, 105, 111, 112, 115, 116, 118, 121, 122, 123, 129, 134, 135, 145, 146, 152], replace_weaker_arc: [5, 7, 15, 16, 22, 26, 28, 35, 47, 49, 54, 55, 57, 59, 60, 62, 64, 69, 71, 73, 79, 83, 85, 86, 88, 89, 90, 91, 94, 95, 97, 98, 99, 105, 109, 110, 115, 116, 122, 124, 126, 131, 132, 135, 137, 139, 140, 147, 150, 151, 152, 153, 160, 161, 164], price_out_impl: [3, 4, 5, 7, 10, 19, 20, 21, 22, 25, 26, 31, 32, 35, 36, 37, 39, 43, 44, 45, 47, 52, 53, 59, 60, 61, 66, 67, 68, 69, 71, 72, 73, 74, 76, 77, 78, 79, 80, 83, 86, 89, 90, 96, 97, 98, 103, 104, 105, 108, 112, 114, 117, 119, 120, 123, 124, 130, 136, 137, 139, 140, 141, 142, 143, 144, 146, 147, 154, 155, 156, 157, 158, 161, 162, 163, 167, 168, 171, 175, 177, 178, 179, 187, 191, 192, 194, 199, 200, 204, 205, 207, 210, 212, 216, 226, 228, 232, 235, 239, 241, 244, 248, 252, 254, 256, 259, 260, 264, 267, 269, 270, 272, 273, 274, 275, 276, 277, 278, 279, 281, 283, 284, 285, 288, 290, 296, 297, 298, 306, 309, 310, 314, 320, 322, 326, 331, 334, 336, 338, 339, 340, 341, 345, 350, 352, 353, 355, 356, 357, 358, 361, 363, 368, 370, 375, 377, 379, 382, 383, 389, 396, 397, 400, 401, 405, 406, 408, 410, 413, 417, 418, 420, 422, 423, 425, 427, 429, 433, 434, 439, 442, 445, 448, 451, 453, 457, 459, 460, 462, 463, 465, 466, 468, 469, 473, 475, 480, 481, 482, 486, 488, 489, 491, 493, 494, 495, 499, 500, 510, 514, 515, 518, 521, 524, 528, 529, 530, 535, 536, 537, 538, 543, 544, 545, 546, 553, 554, 555, 556, 557, 558, 559, 560, 563, 567, 573, 574, 577, 578, 579, 580, 581, 582, 583, 585, 586, 587, 592, 594, 597, 601, 605, 609, 610, 612, 613, 615, 617, 619, 621, 622, 623, 624, 626], suspend_impl: [1, 3, 5, 7, 13, 18, 19, 20, 22, 23, 24, 25, 29, 30, 31, 32, 35, 36, 37, 41, 45, 46, 47, 51, 52, 56, 57, 58, 59, 60, 69, 70, 71, 72, 74, 79, 84], refreshArcPointers: [4, 5, 7, 11, 13, 18, 19, 21, 24, 27, 30, 32], refreshPositions: [1, 2], marc_arcs: [0, 1, 5, 8, 9, 10, 11, 17, 18, 20, 21, 22, 25, 26, 27, 28, 29, 30, 31, 35, 36, 37, 39, 45, 48, 51, 52, 57, 61, 62, 67, 70, 74, 76, 79], calculate_max_redcost: [1, 2, 5], switch_arcs: [0, 3, 6, 11, 13, 15, 18, 19, 22, 26, 28, 33, 35, 37, 38, 39, 42], arc_compare: [1, 2, 3, 9, 10, 12], } 605/readmin.bc{ read_min: [1, 4, 10, 14, 16, 17, 20, 22, 28, 32, 35, 45, 46, 47, 48, 50, 54, 55, 56, 58, 59, 60, 62, 64, 70, 71, 72, 74, 75, 82, 83, 86, 87, 88, 89, 90, 92, 93, 94, 96, 99, 101, 102, 103, 104, 105, 106, 108, 109, 112, 113, 114, 116, 118, 119, 120, 123, 128, 129, 130, 131, 133, 134, 136, 137, 138, 140, 141, 142, 144, 145, 147, 148, 150, 151, 155, 163, 167, 168, 170, 171, 172, 180, 189, 190, 193, 196, 198, 201, 206, 209, 210, 211, 215, 217, 220, 221, 222, 223, 227, 231, 232, 236, 238, 239, 241, 243, 245, 246, 247, 248, 249, 251, 253, 256, 258, 259, 261, 263, 265, 267, 268, 269, 272, 276, 282, 285, 287, 288, 289, 290, 292, 295, 297, 300, 301, 302, 305, 309, 310, 313, 314, 316, 317, 326, 328, 332, 333, 336, 337, 338, 340, 341, 344, 348, 351, 352, 353, 355, 359, 362, 368, 369, 370, 372, 375, 378, 379, 380, 381, 383, 384, 385, 386, 387, 389, 395, 399, 400, 401, 404, 405, 410, 414, 415, 416, 417, 419, 420, 426, 431, 432, 434, 436, 440, 441, 446, 448, 452, 455, 457, 459, 464, 467, 469, 471, 472, 476, 477, 478, 481, 483, 485, 487, 490, 492, 494, 497, 498, 499, 501, 502, 507, 510, 511, 512, 514, 515, 517, 521, 522, 528, 533, 534, 535, 537, 538, 541, 543, 544, 554, 557, 558, 562, 563, 565, 568, 572, 574, 576, 577, 578, 579, 581, 584, 585, 586, 590, 591, 592, 593, 594, 595, 597, 600, 601, 603, 606, 608, 609, 610, 611, 617, 619, 621, 622], } 605/treeup.bc{ update_tree: [4, 5, 9, 11, 15, 19, 20, 21, 22, 23, 28, 32, 33, 34, 35, 40, 44, 48, 50, 51, 55, 56, 58, 63, 65, 66, 70, 74, 75, 76, 77, 79, 83, 84, 85, 88, 90, 91, 93, 101, 107, 108, 110, 111, 112, 114, 115, 124, 125, 134, 140, 146, 147, 149, 151, 154, 161, 163, 166, 167, 168, 171, 173, 175, 177, 182, 183, 185, 188, 190, 194, 195, 199, 200, 205, 208, 214, 215, 216, 220, 223, 224, 225, 226, 227, 229, 230, 233, 237, 238, 240, 250, 253, 261, 264, 266, 267], } 605/output.bc{ write_circulations: [2, 5, 7, 12, 17], } 605/mcfutil.bc{ refresh_neighbour_lists: [3, 5, 6, 8, 9, 10, 14, 17, 19, 20, 35, 37], flow_cost: [5, 6, 7, 8, 11, 12, 15, 21, 22, 25, 29, 30, 32, 34, 39, 40, 43, 46, 47, 58, 61, 63, 70, 72, 76, 78, 81], getArcPosition: [1, 2], flow_org_cost: [1, 2, 3, 4, 6, 10, 11, 13, 14, 17, 20, 23, 24, 26, 27, 29, 34, 35, 37, 39, 42, 45, 46, 47, 59, 61, 62, 70, 71, 74, 76, 81], primal_feasible: [0, 1, 5, 8, 12], dual_feasible: [1, 3, 5, 10, 15, 17, 20], } 605/pbla.bc{ primal_iminus: [2, 8, 10, 14, 19, 22, 23, 25, 33, 36, 51, 52, 60, 63], } 605/mcf.bc{ main: [0, 4], } 605/pflowup.bc{ primal_update_flow: [3, 6, 8, 13, 15, 17], } 605/pbeampp.bc{ primal_bea_mpp: [5, 9, 13, 15, 16, 18, 19, 21, 23, 24, 27, 31, 32, 36, 42, 44, 45, 49, 52, 53, 54, 61, 62, 63, 64, 73, 75, 76, 77, 79, 84, 85, 86, 87, 93, 94, 96, 97, 98, 100, 103, 107, 110, 111, 113, 115, 118, 120, 129, 130, 131, 134, 140, 143, 146, 148, 153, 157, 159, 160, 163, 170, 172, 175, 176, 179, 184, 186, 189, 191, 196, 199, 201, 204, 205, 214, 217, 219, 220, 223, 224, 225, 226, 230], set_static_vars: [], cost_compare: [8], } 605/psimplex.bc{ markBaskets: [0, 2, 3, 6, 9, 11, 12, 21, 22, 26, 29], worker: [5, 8, 12, 13, 15, 19, 24, 26, 28, 29, 32, 34, 35, 40, 41, 44, 47, 51, 57], master: [0, 4, 6, 7, 10, 11, 13, 16, 17, 20, 21, 22, 23, 24, 26, 27, 30, 31, 35, 59, 60, 62, 64, 66, 68, 69, 70, 74, 76, 78, 84, 86, 87, 93, 95, 96, 98, 100, 104, 105, 106, 108, 110, 111, 112, 114, 115, 125, 126, 127, 131, 135, 140, 144, 146, 149, 151, 154, 159, 160, 161, 168, 172, 173, 174, 175, 177, 181, 182, 183, 184, 189, 192, 199, 203], primal_net_simplex: [1, 2, 8, 9], } 605/pstart.bc{ primal_start_artificial: [1, 3, 4, 5, 6, 14, 16, 17, 18, 19, 24, 25, 29, 30, 32, 39, 41, 44, 52, 54, 56, 62, 64, 66, 71, 72, 73, 75, 78, 80, 83, 87, 94, 97, 101, 102, 105, 106, 107, 108, 109, 110, 112, 113, 120, 121, 124, 135, 136, 139, 140, 141, 142, 147, 152, 157, 158, 159, 162, 164, 168, 173, 174, 180, 184, 190, 192, 204, 206, 207, 212, 216, 226, 229, 235, 236, 238, 239, 241, 242, 243, 245, 247, 250, 254, 257, 259, 261, 265, 270, 273, 280, 283, 284, 288, 291, 292, 293, 297, 298, 299, 301, 302, 311, 312, 318, 319, 320, 324, 326], } 605/spec_qsort/spec_qsort.bc{ swapfunc: [1, 2], spec_qsort: [1, 5], } 
+time after exploration: 408.0530047416687
+605/implicit.bc: 4508 vs 4639
+605/readmin.bc: 1794 vs 1790
+605/treeup.bc: 535 vs 535
+605/output.bc: 579 vs 579
+605/mcfutil.bc: 1646 vs 1652
+605/pbla.bc: 178 vs 178
+605/mcf.bc: 1239 vs 1239
+605/pflowup.bc: 95 vs 95
+605/pbeampp.bc: 772 vs 781
+605/psimplex.bc: 1812 vs 1812
+605/pstart.bc: 297 vs 319
+605/spec_qsort/spec_qsort.bc: 1754 vs 1754
+Time after after composition: 411.0111303329468
+result: 17753 vs 17913
+meaning a 0.8932060514709986% improvement
+Genetic used 3381 compilations
+Time after file setup: 411.2619559764862
+Track AA Queries Genetic with 2 generation exponent
+counts per function per file: {PosixPath('605/implicit.bc'): {'resize_prob': 43, 'insert_new_arc': 155, 'replace_weaker_arc': 171, 'price_out_impl': 634, 'suspend_impl': 85, 'refreshArcPointers': 35, 'refreshPositions': 8, 'marc_arcs': 82, 'calculate_max_redcost': 8, 'switch_arcs': 44, 'arc_compare': 14}, PosixPath('605/readmin.bc'): {'read_min': 623}, PosixPath('605/treeup.bc'): {'update_tree': 270}, PosixPath('605/output.bc'): {'write_circulations': 18}, PosixPath('605/mcfutil.bc'): {'refresh_neighbour_lists': 38, 'flow_cost': 82, 'getArcPosition': 6, 'flow_org_cost': 82, 'primal_feasible': 17, 'dual_feasible': 36}, PosixPath('605/pbla.bc'): {'primal_iminus': 65}, PosixPath('605/mcf.bc'): {'main': 5}, PosixPath('605/pflowup.bc'): {'primal_update_flow': 20}, PosixPath('605/pbeampp.bc'): {'primal_bea_mpp': 231, 'set_static_vars': 2, 'cost_compare': 14}, PosixPath('605/psimplex.bc'): {'markBaskets': 30, 'worker': 58, 'master': 205, 'primal_net_simplex': 10}, PosixPath('605/pstart.bc'): {'primal_start_artificial': 327}, PosixPath('605/spec_qsort/spec_qsort.bc'): {'swapfunc': 10, 'spec_qsort': 7}}
+Time after AA Query measurement: 411.6407914161682
+Start Exploration
+***** Next file: 605/implicit.bc
+==== Next function: resize_prob
+Number of AA Queries: 43
+Running GA with 43 generations and 4 parents and 7 initial population
+Time after GA on resize_prob: 431.43653202056885
+Parameters of the best solution : [26, 29]
+Fitness value of the best solution = 4639
+==== Next function: insert_new_arc
+Number of AA Queries: 155
+Running GA with 155 generations and 4 parents and 12 initial population
+Time after GA on insert_new_arc: 523.5491201877594
+Parameters of the best solution : [4]
+Fitness value of the best solution = 4635
+==== Next function: replace_weaker_arc
+Number of AA Queries: 171
+Running GA with 171 generations and 4 parents and 13 initial population
+Time after GA on replace_weaker_arc: 626.8276162147522
+Parameters of the best solution : [105]
+Fitness value of the best solution = 4639
+==== Next function: price_out_impl
+Number of AA Queries: 634
+Running GA with 634 generations and 4 parents and 25 initial population
+Time after GA on price_out_impl: 1380.6053321361542
+Parameters of the best solution : [4, 6, 9, 12, 17, 19, 20, 26, 34, 39, 40, 43, 45, 57, 63, 64, 65, 73, 74, 79, 82, 94, 134]
+Fitness value of the best solution = 4484
+==== Next function: suspend_impl
+Number of AA Queries: 85
+Running GA with 85 generations and 4 parents and 9 initial population
+Time after GA on suspend_impl: 1420.9202287197113
+Parameters of the best solution : [2, 15, 16, 20, 23, 25, 27, 34, 39, 56, 59, 66]
+Fitness value of the best solution = 4576
+==== Next function: refreshArcPointers
+Number of AA Queries: 35
+Running GA with 35 generations and 4 parents and 6 initial population
+Time after GA on refreshArcPointers: 1435.554272890091
+Parameters of the best solution : []
+Fitness value of the best solution = 4639
+==== Next function: refreshPositions
+Number of AA Queries: 8
+Running GA with 8 generations and 3 parents and 3 initial population
+Time after GA on refreshPositions: 1439.3454837799072
+Parameters of the best solution : [0, 2]
+Fitness value of the best solution = 4639
+==== Next function: marc_arcs
+Number of AA Queries: 82
+Running GA with 82 generations and 4 parents and 9 initial population
+Time after GA on marc_arcs: 1478.6478898525238
+Parameters of the best solution : [1, 15, 18, 23, 48, 50, 64, 75]
+Fitness value of the best solution = 4628
+==== Next function: calculate_max_redcost
+Number of AA Queries: 8
+Running GA with 8 generations and 3 parents and 3 initial population
+Time after GA on calculate_max_redcost: 1482.3385090827942
+Parameters of the best solution : [6]
+Fitness value of the best solution = 4639
+==== Next function: switch_arcs
+Number of AA Queries: 44
+Running GA with 44 generations and 4 parents and 7 initial population
+Time after GA on switch_arcs: 1501.542272567749
+Parameters of the best solution : [4, 26]
+Fitness value of the best solution = 4636
+==== Next function: arc_compare
+Number of AA Queries: 14
+Running GA with 14 generations and 4 parents and 4 initial population
+Time after GA on arc_compare: 1507.504225730896
+Parameters of the best solution : [2, 4, 6]
+Fitness value of the best solution = 4639
+Time after exploration of 605/implicit.bc: 1507.5044283866882
+***** Next file: 605/readmin.bc
+==== Next function: read_min
+Number of AA Queries: 623
+Running GA with 623 generations and 4 parents and 25 initial population
+Time after GA on read_min: 1867.2498698234558
+Parameters of the best solution : [0, 23, 24, 34, 39, 40, 41, 42, 46, 47, 52, 60, 66, 72, 76, 86, 88, 89, 90, 91, 92, 96, 101, 102, 106, 110, 114, 115, 116, 120, 126, 127, 128, 192, 224]
+Fitness value of the best solution = 1769
+Time after exploration of 605/readmin.bc: 1867.2499170303345
+***** Next file: 605/treeup.bc
+==== Next function: update_tree
+Number of AA Queries: 270
+Running GA with 270 generations and 4 parents and 16 initial population
+Time after GA on update_tree: 1944.6217222213745
+Parameters of the best solution : []
+Fitness value of the best solution = 535
+Time after exploration of 605/treeup.bc: 1944.6219828128815
+***** Next file: 605/output.bc
+==== Next function: write_circulations
+Number of AA Queries: 18
+Running GA with 18 generations and 4 parents and 4 initial population
+Time after GA on write_circulations: 1948.3336853981018
+Parameters of the best solution : [11, 14, 15]
+Fitness value of the best solution = 579
+Time after exploration of 605/output.bc: 1948.3337893486023
+***** Next file: 605/mcfutil.bc
+==== Next function: refresh_neighbour_lists
+Number of AA Queries: 38
+Running GA with 38 generations and 4 parents and 6 initial population
+Time after GA on refresh_neighbour_lists: 1958.2038996219635
+Parameters of the best solution : []
+Fitness value of the best solution = 1652
+==== Next function: flow_cost
+Number of AA Queries: 82
+Running GA with 82 generations and 4 parents and 9 initial population
+Time after GA on flow_cost: 1981.0656204223633
+Parameters of the best solution : [5, 17, 30, 47, 49]
+Fitness value of the best solution = 1645
+==== Next function: getArcPosition
+Number of AA Queries: 6
+Running GA with 6 generations and 2 parents and 2 initial population
+Time after GA on getArcPosition: 1982.2601420879364
+Parameters of the best solution : []
+Fitness value of the best solution = 1652
+==== Next function: flow_org_cost
+Number of AA Queries: 82
+Running GA with 82 generations and 4 parents and 9 initial population
+Time after GA on flow_org_cost: 2005.4477252960205
+Parameters of the best solution : [4, 7, 8, 9, 10, 11]
+Fitness value of the best solution = 1642
+==== Next function: primal_feasible
+Number of AA Queries: 17
+Running GA with 17 generations and 4 parents and 4 initial population
+Time after GA on primal_feasible: 2009.9102613925934
+Parameters of the best solution : [3, 7, 13, 16]
+Fitness value of the best solution = 1652
+==== Next function: dual_feasible
+Number of AA Queries: 36
+Running GA with 36 generations and 4 parents and 6 initial population
+Time after GA on dual_feasible: 2019.1870834827423
+Parameters of the best solution : [11, 30]
+Fitness value of the best solution = 1652
+Time after exploration of 605/mcfutil.bc: 2019.1871910095215
+***** Next file: 605/pbla.bc
+==== Next function: primal_iminus
+Number of AA Queries: 65
+Running GA with 65 generations and 4 parents and 8 initial population
+Time after GA on primal_iminus: 2031.8960008621216
+Parameters of the best solution : [13, 27]
+Fitness value of the best solution = 178
+Time after exploration of 605/pbla.bc: 2031.8961248397827
+***** Next file: 605/mcf.bc
+==== Next function: main
+Number of AA Queries: 5
+Running GA with 5 generations and 2 parents and 2 initial population
+Time after GA on main: 2032.8324301242828
+Parameters of the best solution : []
+Fitness value of the best solution = 1239
+Time after exploration of 605/mcf.bc: 2032.8325173854828
+***** Next file: 605/pflowup.bc
+==== Next function: primal_update_flow
+Number of AA Queries: 20
+Running GA with 20 generations and 4 parents and 4 initial population
+Time after GA on primal_update_flow: 2036.5567772388458
+Parameters of the best solution : [5, 8]
+Fitness value of the best solution = 95
+Time after exploration of 605/pflowup.bc: 2036.5569367408752
+***** Next file: 605/pbeampp.bc
+==== Next function: primal_bea_mpp
+Number of AA Queries: 231
+Running GA with 231 generations and 4 parents and 15 initial population
+Time after GA on primal_bea_mpp: 2102.556919336319
+Parameters of the best solution : [11, 32, 34, 35, 45]
+Fitness value of the best solution = 772
+==== Next function: set_static_vars
+Number of AA Queries: 2
+Running GA with 2 generations and 1 parents and 1 initial population
+Time after GA on set_static_vars: 2102.7807013988495
+Parameters of the best solution : [1]
+Fitness value of the best solution = 781
+==== Next function: cost_compare
+Number of AA Queries: 14
+Running GA with 14 generations and 4 parents and 4 initial population
+Time after GA on cost_compare: 2106.0795154571533
+Parameters of the best solution : [11, 12]
+Fitness value of the best solution = 781
+Time after exploration of 605/pbeampp.bc: 2106.0796921253204
+***** Next file: 605/psimplex.bc
+==== Next function: markBaskets
+Number of AA Queries: 30
+Running GA with 30 generations and 4 parents and 5 initial population
+Time after GA on markBaskets: 2113.2060418128967
+Parameters of the best solution : [8, 11, 12]
+Fitness value of the best solution = 1812
+==== Next function: worker
+Number of AA Queries: 58
+Running GA with 58 generations and 4 parents and 8 initial population
+Time after GA on worker: 2128.3600265979767
+Parameters of the best solution : []
+Fitness value of the best solution = 1812
+==== Next function: master
+Number of AA Queries: 205
+Running GA with 205 generations and 4 parents and 14 initial population
+Time after GA on master: 2190.1267120838165
+Parameters of the best solution : [174]
+Fitness value of the best solution = 1812
+==== Next function: primal_net_simplex
+Number of AA Queries: 10
+Running GA with 10 generations and 3 parents and 3 initial population
+Time after GA on primal_net_simplex: 2192.8782846927643
+Parameters of the best solution : [2, 7]
+Fitness value of the best solution = 1812
+Time after exploration of 605/psimplex.bc: 2192.87846159935
+***** Next file: 605/pstart.bc
+==== Next function: primal_start_artificial
+Number of AA Queries: 327
+Running GA with 327 generations and 4 parents and 18 initial population
+Time after GA on primal_start_artificial: 2313.881103038788
+Parameters of the best solution : [5, 6, 7, 8, 17, 21, 29]
+Fitness value of the best solution = 297
+Time after exploration of 605/pstart.bc: 2313.881348133087
+***** Next file: 605/spec_qsort/spec_qsort.bc
+==== Next function: swapfunc
+Number of AA Queries: 10
+Running GA with 10 generations and 3 parents and 3 initial population
+Time after GA on swapfunc: 2317.000597000122
+Parameters of the best solution : [4, 7]
+Fitness value of the best solution = 1754
+==== Next function: spec_qsort
+Number of AA Queries: 7
+Running GA with 7 generations and 3 parents and 3 initial population
+Time after GA on spec_qsort: 2319.3285040855408
+Parameters of the best solution : [6]
+Fitness value of the best solution = 1754
+Time after exploration of 605/spec_qsort/spec_qsort.bc: 2319.3287360668182
+found results: 
+605/implicit.bc{ resize_prob: 4639, insert_new_arc: 4635, replace_weaker_arc: 4639, price_out_impl: 4484, suspend_impl: 4576, refreshArcPointers: 4639, refreshPositions: 4639, marc_arcs: 4628, calculate_max_redcost: 4639, switch_arcs: 4636, arc_compare: 4639, } 605/readmin.bc{ read_min: 1769, } 605/treeup.bc{ update_tree: 535, } 605/output.bc{ write_circulations: 579, } 605/mcfutil.bc{ refresh_neighbour_lists: 1652, flow_cost: 1645, getArcPosition: 1652, flow_org_cost: 1642, primal_feasible: 1652, dual_feasible: 1652, } 605/pbla.bc{ primal_iminus: 178, } 605/mcf.bc{ main: 1239, } 605/pflowup.bc{ primal_update_flow: 95, } 605/pbeampp.bc{ primal_bea_mpp: 772, set_static_vars: 781, cost_compare: 781, } 605/psimplex.bc{ markBaskets: 1812, worker: 1812, master: 1812, primal_net_simplex: 1812, } 605/pstart.bc{ primal_start_artificial: 297, } 605/spec_qsort/spec_qsort.bc{ swapfunc: 1754, spec_qsort: 1754, } 
+605/implicit.bc{ resize_prob: [26, 29], insert_new_arc: [4], replace_weaker_arc: [105], price_out_impl: [4, 6, 9, 12, 17, 19, 20, 26, 34, 39, 40, 43, 45, 57, 63, 64, 65, 73, 74, 79, 82, 94, 134], suspend_impl: [2, 15, 16, 20, 23, 25, 27, 34, 39, 56, 59, 66], refreshArcPointers: [], refreshPositions: [0, 2], marc_arcs: [1, 15, 18, 23, 48, 50, 64, 75], calculate_max_redcost: [6], switch_arcs: [4, 26], arc_compare: [2, 4, 6], } 605/readmin.bc{ read_min: [0, 23, 24, 34, 39, 40, 41, 42, 46, 47, 52, 60, 66, 72, 76, 86, 88, 89, 90, 91, 92, 96, 101, 102, 106, 110, 114, 115, 116, 120, 126, 127, 128, 192, 224], } 605/treeup.bc{ update_tree: [], } 605/output.bc{ write_circulations: [11, 14, 15], } 605/mcfutil.bc{ refresh_neighbour_lists: [], flow_cost: [5, 17, 30, 47, 49], getArcPosition: [], flow_org_cost: [4, 7, 8, 9, 10, 11], primal_feasible: [3, 7, 13, 16], dual_feasible: [11, 30], } 605/pbla.bc{ primal_iminus: [13, 27], } 605/mcf.bc{ main: [], } 605/pflowup.bc{ primal_update_flow: [5, 8], } 605/pbeampp.bc{ primal_bea_mpp: [11, 32, 34, 35, 45], set_static_vars: [1], cost_compare: [11, 12], } 605/psimplex.bc{ markBaskets: [8, 11, 12], worker: [], master: [174], primal_net_simplex: [2, 7], } 605/pstart.bc{ primal_start_artificial: [5, 6, 7, 8, 17, 21, 29], } 605/spec_qsort/spec_qsort.bc{ swapfunc: [4, 7], spec_qsort: [6], } 
+time after exploration: 2319.3293178081512
+605/implicit.bc: 4403 vs 4639
+605/readmin.bc: 1769 vs 1790
+605/treeup.bc: 535 vs 535
+605/output.bc: 579 vs 579
+605/mcfutil.bc: 1635 vs 1652
+605/pbla.bc: 178 vs 178
+605/mcf.bc: 1239 vs 1239
+605/pflowup.bc: 95 vs 95
+605/pbeampp.bc: 772 vs 781
+605/psimplex.bc: 1812 vs 1812
+605/pstart.bc: 297 vs 319
+605/spec_qsort/spec_qsort.bc: 1754 vs 1754
+Time after after composition: 2322.338662624359
+result: 17609 vs 17913
+meaning a 1.6970914977948977% improvement
+Genetic used 57910 compilations
+Time after genetic exploration: 2322.3510932922363
+Time after file setup: 2325.37215256691
+Track AA Queries Deterministic False
+counts per function per file: {PosixPath('605/implicit.bc'): {'resize_prob': 43, 'insert_new_arc': 155, 'replace_weaker_arc': 171, 'price_out_impl': 634, 'suspend_impl': 85, 'refreshArcPointers': 35, 'refreshPositions': 8, 'marc_arcs': 82, 'calculate_max_redcost': 8, 'switch_arcs': 44, 'arc_compare': 14}, PosixPath('605/readmin.bc'): {'read_min': 623}, PosixPath('605/treeup.bc'): {'update_tree': 270}, PosixPath('605/output.bc'): {'write_circulations': 18}, PosixPath('605/mcfutil.bc'): {'refresh_neighbour_lists': 38, 'flow_cost': 82, 'getArcPosition': 6, 'flow_org_cost': 82, 'primal_feasible': 17, 'dual_feasible': 36}, PosixPath('605/pbla.bc'): {'primal_iminus': 65}, PosixPath('605/mcf.bc'): {'main': 5}, PosixPath('605/pflowup.bc'): {'primal_update_flow': 20}, PosixPath('605/pbeampp.bc'): {'primal_bea_mpp': 231, 'set_static_vars': 2, 'cost_compare': 14}, PosixPath('605/psimplex.bc'): {'markBaskets': 30, 'worker': 58, 'master': 205, 'primal_net_simplex': 10}, PosixPath('605/pstart.bc'): {'primal_start_artificial': 327}, PosixPath('605/spec_qsort/spec_qsort.bc'): {'swapfunc': 10, 'spec_qsort': 7}}
+Time after AA Query measurement: 2325.6950640678406
+Start Exploration
+***** Next file: 605/implicit.bc
+==== Next function: resize_prob
+Running pass: InstCombinePass_4 with max_query_index: 2
+exhaustive search, time after compilation : 2325.9719388484955
+exhaustive search, time after assembly : 2326.163328886032
+exhaustive search candidates : [4639]
+Pass: InstCombinePass_4 generated: [] with offset: -1 with count: 4639
+Running pass: EarlyCSEPass_14 with max_query_index: 10
+exhaustive search, time after compilation : 2334.0477616786957
+exhaustive search, time after assembly : 2338.3191888332367
+exhaustive search candidates : [4640, 4639]
+Pass: EarlyCSEPass_14 generated: [] with offset: 1 with count: 4639
+Running pass: FunctionToLoopPassAdaptor_9 with max_query_index: 26
+greedy search candidates: [4639]
+Pass: FunctionToLoopPassAdaptor_9 generated: [] with offset: 9 with count: 4639
+Running pass: GVNPass_3 with max_query_index: 42
+greedy search candidates: [4639]
+Pass: GVNPass_3 generated: [] with offset: 25 with count: 4639
+Running pass: DSEPass_3 with max_query_index: 43
+exhaustive search, time after compilation : 2342.3565196990967
+exhaustive search, time after assembly : 2342.557296514511
+exhaustive search candidates : [4639]
+Pass: DSEPass_3 generated: [] with offset: 41 with count: 4639
+Time after exploration of resize_prob: 2342.5679364204407
+==== Next function: insert_new_arc
+Running pass: InstCombinePass_5 with max_query_index: 1
+exhaustive search, time after compilation : 2342.871207714081
+exhaustive search, time after assembly : 2343.0557305812836
+exhaustive search candidates : [4639]
+Pass: InstCombinePass_5 generated: [] with offset: -1 with count: 4639
+Running pass: EarlyCSEPass_15 with max_query_index: 7
+exhaustive search, time after compilation : 2345.1444206237793
+exhaustive search, time after assembly : 2346.4625449180603
+exhaustive search candidates : [4635, 4639]
+Pass: EarlyCSEPass_15 generated: [1] with offset: 0 with count: 4635
+Running pass: FunctionToLoopPassAdaptor_12 with max_query_index: 31
+greedy search candidates: [4635]
+greedy search candidates: [4635]
+Pass: FunctionToLoopPassAdaptor_12 generated: [1] with offset: 6 with count: 4635
+Running pass: GVNPass_4 with max_query_index: 38
+exhaustive search, time after compilation : 2353.0614466667175
+exhaustive search, time after assembly : 2355.2340259552
+exhaustive search candidates : [4635]
+Pass: GVNPass_4 generated: [1] with offset: 30 with count: 4635
+Running pass: DSEPass_4 with max_query_index: 155
+greedy search candidates: [4635]
+greedy search candidates: [4635]
+greedy search candidates: [4635]
+greedy search candidates: [4635]
+greedy search candidates: [4635]
+greedy search candidates: [4635]
+greedy search candidates: [4635]
+greedy search candidates: [4635]
+Pass: DSEPass_4 generated: [1] with offset: 37 with count: 4635
+Time after exploration of insert_new_arc: 2363.5232570171356
+==== Next function: replace_weaker_arc
+Running pass: InstCombinePass_6 with max_query_index: 1
+exhaustive search, time after compilation : 2363.783096075058
+exhaustive search, time after assembly : 2363.9930074214935
+exhaustive search candidates : [4639]
+Pass: InstCombinePass_6 generated: [] with offset: -1 with count: 4639
+Running pass: EarlyCSEPass_16 with max_query_index: 7
+exhaustive search, time after compilation : 2366.0094356536865
+exhaustive search, time after assembly : 2367.1921923160553
+exhaustive search candidates : [4648, 4639]
+Pass: EarlyCSEPass_16 generated: [] with offset: 0 with count: 4639
+Running pass: FunctionToLoopPassAdaptor_15 with max_query_index: 45
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+Pass: FunctionToLoopPassAdaptor_15 generated: [] with offset: 6 with count: 4639
+Running pass: GVNPass_5 with max_query_index: 54
+exhaustive search, time after compilation : 2386.9766869544983
+exhaustive search, time after assembly : 2395.4573407173157
+exhaustive search candidates : [4639]
+Pass: GVNPass_5 generated: [] with offset: 44 with count: 4639
+Running pass: DSEPass_5 with max_query_index: 171
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+Pass: DSEPass_5 generated: [] with offset: 53 with count: 4639
+Time after exploration of replace_weaker_arc: 2405.0726647377014
+==== Next function: price_out_impl
+Running pass: InstCombinePass_9 with max_query_index: 6
+exhaustive search, time after compilation : 2407.010835170746
+exhaustive search, time after assembly : 2408.0999903678894
+exhaustive search candidates : [4647, 4583, 4585, 4575, 4593, 4661, 4669, 4639]
+Pass: InstCombinePass_9 generated: [4, 5] with offset: -1 with count: 4575
+Running pass: EarlyCSEPass_20 with max_query_index: 94
+greedy search candidates: [4580, 4522, 4526, 4592, 4575]
+greedy search, new min: 4526
+greedy search, current list: [4, 5, 12]
+greedy search candidates: [4522, 4532, 4526, 4506]
+greedy search, new min: 4522
+greedy search, current list: [4, 5, 12, 13]
+greedy search candidates: [4528, 4522, 4499]
+greedy search, new min: 4499
+greedy search, current list: [4, 5, 12, 13, 22]
+greedy search candidates: [4505, 4499]
+greedy search candidates: [4499, 4486]
+greedy search, new min: 4486
+greedy search, current list: [4, 5, 12, 13, 22, 39]
+greedy search candidates: [4482, 4485, 4486]
+greedy search, new min: 4482
+greedy search, current list: [4, 5, 12, 13, 22, 39, 40]
+greedy search candidates: [4482]
+greedy search candidates: [4481, 4482, 4484]
+greedy search, new min: 4481
+greedy search, current list: [4, 5, 12, 13, 22, 39, 40, 70]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+Pass: EarlyCSEPass_20 generated: [4, 5, 12, 13, 22, 39, 40, 70] with offset: 5 with count: 4481
+Running pass: FunctionToLoopPassAdaptor_27 with max_query_index: 259
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+Pass: FunctionToLoopPassAdaptor_27 generated: [4, 5, 12, 13, 22, 39, 40, 70] with offset: 93 with count: 4481
+Running pass: GVNPass_9 with max_query_index: 492
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+Pass: GVNPass_9 generated: [4, 5, 12, 13, 22, 39, 40, 70] with offset: 258 with count: 4481
+Running pass: MemCpyOptPass_9 with max_query_index: 495
+exhaustive search, time after compilation : 2445.48215675354
+exhaustive search, time after assembly : 2445.743239402771
+exhaustive search candidates : [4481]
+Pass: MemCpyOptPass_9 generated: [4, 5, 12, 13, 22, 39, 40, 70] with offset: 491 with count: 4481
+Running pass: DSEPass_9 with max_query_index: 618
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+greedy search candidates: [4481]
+Pass: DSEPass_9 generated: [4, 5, 12, 13, 22, 39, 40, 70] with offset: 494 with count: 4481
+Running pass: FunctionToLoopPassAdaptor_29 with max_query_index: 621
+exhaustive search, time after compilation : 2454.635059595108
+exhaustive search, time after assembly : 2454.8857221603394
+exhaustive search candidates : [4481]
+Pass: FunctionToLoopPassAdaptor_29 generated: [4, 5, 12, 13, 22, 39, 40, 70] with offset: 617 with count: 4481
+Running pass: FunctionToLoopPassAdaptor_52 with max_query_index: 632
+exhaustive search, time after compilation : 2519.031644821167
+exhaustive search, time after assembly : 2552.763918876648
+exhaustive search candidates : [4481]
+Pass: FunctionToLoopPassAdaptor_52 generated: [4, 5, 12, 13, 22, 39, 40, 70] with offset: 620 with count: 4481
+Time after exploration of price_out_impl: 2564.63400888443
+==== Next function: suspend_impl
+Running pass: InstCombinePass_10 with max_query_index: 2
+exhaustive search, time after compilation : 2564.911664247513
+exhaustive search, time after assembly : 2565.0913469791412
+exhaustive search candidates : [4649, 4639]
+Pass: InstCombinePass_10 generated: [] with offset: -1 with count: 4639
+Running pass: EarlyCSEPass_21 with max_query_index: 15
+exhaustive search, time after compilation : 2813.788589000702
+exhaustive search, time after assembly : 2945.791577100754
+exhaustive search candidates : [4640, 4608, 4613, 4646, 4645, 4617, 4619, 4620, 4623, 4624, 4661, 4597, 4630, 4601, 4635, 4604, 4639]
+Pass: EarlyCSEPass_21 generated: [2, 6] with offset: 1 with count: 4597
+Running pass: FunctionToLoopPassAdaptor_30 with max_query_index: 30
+greedy search candidates: [4577, 4597]
+greedy search, new min: 4577
+greedy search, current list: [2, 6, 28]
+greedy search candidates: [4577]
+Pass: FunctionToLoopPassAdaptor_30 generated: [2, 6, 28] with offset: 14 with count: 4577
+Running pass: MergedLoadStoreMotionPass_10 with max_query_index: 31
+exhaustive search, time after compilation : 2996.2597823143005
+exhaustive search, time after assembly : 2996.448215007782
+exhaustive search candidates : [4577]
+Pass: MergedLoadStoreMotionPass_10 generated: [2, 6, 28] with offset: 29 with count: 4577
+Running pass: GVNPass_10 with max_query_index: 67
+greedy search candidates: [4576, 4577]
+greedy search, new min: 4576
+greedy search, current list: [2, 6, 28, 32]
+greedy search candidates: [4576]
+greedy search candidates: [4576]
+greedy search candidates: [4576]
+Pass: GVNPass_10 generated: [2, 6, 28, 32] with offset: 30 with count: 4576
+Running pass: DSEPass_10 with max_query_index: 122
+greedy search candidates: [4576]
+greedy search candidates: [4576]
+Pass: DSEPass_10 generated: [2, 6, 28, 32] with offset: 102 with count: 4576
+Running pass: FunctionToLoopPassAdaptor_32 with max_query_index: 123
+exhaustive search, time after compilation : 3002.295033454895
+exhaustive search, time after assembly : 3002.501297712326
+exhaustive search candidates : [4576]
+Pass: FunctionToLoopPassAdaptor_32 generated: [2, 6, 28, 32] with offset: 121 with count: 4576
+Time after exploration of suspend_impl: 3002.510086774826
+==== Next function: refreshArcPointers
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 11
+exhaustive search, time after compilation : 3059.8086144924164
+exhaustive search, time after assembly : 3090.9579586982727
+exhaustive search candidates : [4639]
+Pass: FunctionToLoopPassAdaptor_0 generated: [] with offset: -1 with count: 4639
+Running pass: GVNPass_0 with max_query_index: 35
+greedy search candidates: [4639]
+greedy search candidates: [4639]
+Pass: GVNPass_0 generated: [] with offset: 10 with count: 4639
+Time after exploration of refreshArcPointers: 3105.065221786499
+==== Next function: refreshPositions
+Running pass: FunctionToLoopPassAdaptor_3 with max_query_index: 1
+exhaustive search, time after compilation : 3105.349025964737
+exhaustive search, time after assembly : 3105.5469286441803
+exhaustive search candidates : [4639]
+Pass: FunctionToLoopPassAdaptor_3 generated: [] with offset: -1 with count: 4639
+Running pass: GVNPass_1 with max_query_index: 4
+exhaustive search, time after compilation : 3105.933307170868
+exhaustive search, time after assembly : 3106.1164882183075
+exhaustive search candidates : [4639]
+Pass: GVNPass_1 generated: [] with offset: 0 with count: 4639
+Running pass: DSEPass_1 with max_query_index: 8
+exhaustive search, time after compilation : 3106.6877858638763
+exhaustive search, time after assembly : 3107.0417835712433
+exhaustive search candidates : [4639]
+Pass: DSEPass_1 generated: [] with offset: 3 with count: 4639
+Time after exploration of refreshPositions: 3107.102245092392
+==== Next function: marc_arcs
+Running pass: EarlyCSEPass_13 with max_query_index: 23
+greedy search candidates: [4736, 4738, 4742, 4636, 4639]
+greedy search, new min: 4636
+greedy search, current list: [0]
+greedy search candidates: [4640, 4737, 4739, 4636, 4735]
+greedy search candidates: [4636]
+Pass: EarlyCSEPass_13 generated: [0] with offset: -1 with count: 4636
+Running pass: FunctionToLoopPassAdaptor_6 with max_query_index: 35
+exhaustive search, time after compilation : 3227.4316029548645
+exhaustive search, time after assembly : 3289.900409221649
+exhaustive search candidates : [4636]
+Pass: FunctionToLoopPassAdaptor_6 generated: [0] with offset: 22 with count: 4636
+Running pass: MergedLoadStoreMotionPass_2 with max_query_index: 36
+exhaustive search, time after compilation : 3314.153828382492
+exhaustive search, time after assembly : 3314.3335616588593
+exhaustive search candidates : [4636]
+Pass: MergedLoadStoreMotionPass_2 generated: [0] with offset: 34 with count: 4636
+Running pass: GVNPass_2 with max_query_index: 76
+greedy search candidates: [4636, 4628]
+greedy search, new min: 4628
+greedy search, current list: [0, 49]
+greedy search candidates: [4628]
+greedy search candidates: [4628]
+Pass: GVNPass_2 generated: [0, 49] with offset: 35 with count: 4628
+Running pass: DSEPass_2 with max_query_index: 82
+exhaustive search, time after compilation : 3325.4422674179077
+exhaustive search, time after assembly : 3329.8143377304077
+exhaustive search candidates : [4628]
+Pass: DSEPass_2 generated: [0, 49] with offset: 73 with count: 4628
+Time after exploration of marc_arcs: 3330.9546961784363
+==== Next function: calculate_max_redcost
+Running pass: EarlyCSEPass_17 with max_query_index: 1
+exhaustive search, time after compilation : 3331.298664331436
+exhaustive search, time after assembly : 3331.511893749237
+exhaustive search candidates : [4639]
+Pass: EarlyCSEPass_17 generated: [] with offset: -1 with count: 4639
+Running pass: FunctionToLoopPassAdaptor_18 with max_query_index: 5
+exhaustive search, time after compilation : 3332.0611531734467
+exhaustive search, time after assembly : 3332.37104344368
+exhaustive search candidates : [4639]
+Pass: FunctionToLoopPassAdaptor_18 generated: [] with offset: 0 with count: 4639
+Running pass: GVNPass_6 with max_query_index: 8
+exhaustive search, time after compilation : 3332.846914768219
+exhaustive search, time after assembly : 3333.0302300453186
+exhaustive search candidates : [4639]
+Pass: GVNPass_6 generated: [] with offset: 4 with count: 4639
+Time after exploration of calculate_max_redcost: 3333.065906047821
+==== Next function: switch_arcs
+Running pass: FunctionToLoopPassAdaptor_21 with max_query_index: 4
+exhaustive search, time after compilation : 3333.5694382190704
+exhaustive search, time after assembly : 3333.8528656959534
+exhaustive search candidates : [4639]
+Pass: FunctionToLoopPassAdaptor_21 generated: [] with offset: -1 with count: 4639
+Running pass: GVNPass_7 with max_query_index: 44
+greedy search candidates: [4644, 4639]
+greedy search candidates: [4636, 4639]
+greedy search, new min: 4636
+greedy search, current list: [26]
+greedy search candidates: [4636]
+greedy search candidates: [4641]
+Pass: GVNPass_7 generated: [26] with offset: 3 with count: 4636
+Time after exploration of switch_arcs: 3338.0113945007324
+==== Next function: arc_compare
+Running pass: GVNPass_8 with max_query_index: 14
+exhaustive search, time after compilation : 3837.9036722183228
+exhaustive search, time after assembly : 4098.820444583893
+exhaustive search candidates : [4639]
+Pass: GVNPass_8 generated: [] with offset: -1 with count: 4639
+Time after exploration of arc_compare: 4197.49089717865
+Time after exploration of 605/implicit.bc: 4197.490952730179
+***** Next file: 605/readmin.bc
+==== Next function: read_min
+Running pass: InstCombinePass_0 with max_query_index: 23
+greedy search candidates: [1793, 1794, 1795, 1803, 1772, 1780, 1812, 1784, 1790]
+greedy search, new min: 1780
+greedy search, current list: [2]
+greedy search candidates: [1794, 1796, 1765, 1780, 1783, 1784, 1785]
+greedy search, new min: 1765
+greedy search, current list: [2, 10]
+greedy search candidates: [1769, 1765, 1815]
+Pass: InstCombinePass_0 generated: [2, 10] with offset: -1 with count: 1765
+Running pass: EarlyCSEPass_1 with max_query_index: 210
+greedy search candidates: [1765, 1766, 1769, 1748, 1756]
+greedy search, new min: 1748
+greedy search, current list: [2, 10, 27]
+greedy search candidates: [1752, 1740, 1748, 1751]
+greedy search, new min: 1740
+greedy search, current list: [2, 10, 27, 33]
+greedy search candidates: [1739, 1740, 1744, 1777, 1745]
+greedy search, new min: 1739
+greedy search, current list: [2, 10, 27, 33, 48]
+greedy search candidates: [1733, 1766, 1736, 1739, 1777, 1788]
+greedy search, new min: 1733
+greedy search, current list: [2, 10, 27, 33, 48, 56]
+greedy search candidates: [1730, 1733, 1737, 1740, 1747]
+greedy search, new min: 1730
+greedy search, current list: [2, 10, 27, 33, 48, 56, 62]
+greedy search candidates: [1792, 1730, 1734, 1778, 1757]
+greedy search candidates: [1730, 1732]
+greedy search candidates: [1744, 1730, 1727]
+greedy search, new min: 1727
+greedy search, current list: [2, 10, 27, 33, 48, 56, 62, 101]
+greedy search candidates: [1731, 1741, 1727]
+greedy search candidates: [1731, 1727]
+greedy search candidates: [1727]
+greedy search candidates: [1729, 1727]
+greedy search candidates: [1729, 1727]
+greedy search candidates: [1784, 1727]
+greedy search candidates: [1727]
+Pass: EarlyCSEPass_1 generated: [2, 10, 27, 33, 48, 56, 62, 101] with offset: 22 with count: 1727
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 313
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1728, 1727]
+greedy search candidates: [1767, 1727]
+Pass: FunctionToLoopPassAdaptor_0 generated: [2, 10, 27, 33, 48, 56, 62, 101] with offset: 209 with count: 1727
+Running pass: MergedLoadStoreMotionPass_0 with max_query_index: 317
+exhaustive search, time after compilation : 4212.931094408035
+exhaustive search, time after assembly : 4213.171195030212
+exhaustive search candidates : [1767, 1727]
+Pass: MergedLoadStoreMotionPass_0 generated: [2, 10, 27, 33, 48, 56, 62, 101] with offset: 312 with count: 1727
+Running pass: GVNPass_0 with max_query_index: 384
+greedy search candidates: [1727, 1767]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+Pass: GVNPass_0 generated: [2, 10, 27, 33, 48, 56, 62, 101] with offset: 316 with count: 1727
+Running pass: DSEPass_0 with max_query_index: 651
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+greedy search candidates: [1727]
+Pass: DSEPass_0 generated: [2, 10, 27, 33, 48, 56, 62, 101] with offset: 383 with count: 1727
+Running pass: FunctionToLoopPassAdaptor_2 with max_query_index: 652
+exhaustive search, time after compilation : 4226.481523036957
+exhaustive search, time after assembly : 4226.651148319244
+exhaustive search candidates : [1727]
+Pass: FunctionToLoopPassAdaptor_2 generated: [2, 10, 27, 33, 48, 56, 62, 101] with offset: 650 with count: 1727
+Time after exploration of read_min: 4226.663186073303
+Time after exploration of 605/readmin.bc: 4226.663196802139
+***** Next file: 605/treeup.bc
+==== Next function: update_tree
+Running pass: EarlyCSEPass_1 with max_query_index: 10
+exhaustive search, time after compilation : 4236.558500289917
+exhaustive search, time after assembly : 4244.277765274048
+exhaustive search candidates : [539, 535]
+Pass: EarlyCSEPass_1 generated: [] with offset: -1 with count: 535
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 161
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+Pass: FunctionToLoopPassAdaptor_0 generated: [] with offset: 9 with count: 535
+Running pass: MergedLoadStoreMotionPass_0 with max_query_index: 164
+exhaustive search, time after compilation : 4252.921417713165
+exhaustive search, time after assembly : 4252.967649459839
+exhaustive search candidates : [535]
+Pass: MergedLoadStoreMotionPass_0 generated: [] with offset: 160 with count: 535
+Running pass: GVNPass_0 with max_query_index: 202
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+Pass: GVNPass_0 generated: [] with offset: 163 with count: 535
+Running pass: DSEPass_0 with max_query_index: 260
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+greedy search candidates: [535]
+Pass: DSEPass_0 generated: [] with offset: 201 with count: 535
+Running pass: FunctionToLoopPassAdaptor_4 with max_query_index: 270
+exhaustive search, time after compilation : 60008.89225769043
+exhaustive search, time after assembly : 60011.895268678665
+exhaustive search candidates : [535]
+Pass: FunctionToLoopPassAdaptor_4 generated: [] with offset: 259 with count: 535
+Time after exploration of update_tree: 60013.25856924057
+Time after exploration of 605/treeup.bc: 60013.258580207825
+***** Next file: 605/output.bc
+==== Next function: write_circulations
+Running pass: GVNPass_0 with max_query_index: 18
+greedy search candidates: [579]
+greedy search candidates: [579]
+Pass: GVNPass_0 generated: [] with offset: -1 with count: 579
+Time after exploration of write_circulations: 60013.54457759857
+Time after exploration of 605/output.bc: 60013.54458642006
+***** Next file: 605/mcfutil.bc
+==== Next function: refresh_neighbour_lists
+Running pass: InstCombinePass_0 with max_query_index: 3
+exhaustive search, time after compilation : 60013.63400697708
+exhaustive search, time after assembly : 60013.697003126144
+exhaustive search candidates : [1652]
+Pass: InstCombinePass_0 generated: [] with offset: -1 with count: 1652
+Running pass: EarlyCSEPass_9 with max_query_index: 7
+exhaustive search, time after compilation : 60013.83907866478
+exhaustive search, time after assembly : 60013.937331438065
+exhaustive search candidates : [1652]
+Pass: EarlyCSEPass_9 generated: [] with offset: 2 with count: 1652
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 15
+exhaustive search, time after compilation : 60015.42706775665
+exhaustive search, time after assembly : 60018.69683265686
+exhaustive search candidates : [1652]
+Pass: FunctionToLoopPassAdaptor_0 generated: [] with offset: 6 with count: 1652
+Running pass: GVNPass_0 with max_query_index: 32
+greedy search candidates: [1652]
+greedy search candidates: [1652]
+Pass: GVNPass_0 generated: [] with offset: 14 with count: 1652
+Running pass: DSEPass_0 with max_query_index: 38
+exhaustive search, time after compilation : 60023.10311102867
+exhaustive search, time after assembly : 60024.09656238556
+exhaustive search candidates : [1652]
+Pass: DSEPass_0 generated: [] with offset: 31 with count: 1652
+Time after exploration of refresh_neighbour_lists: 60024.42676639557
+==== Next function: flow_cost
+Running pass: EarlyCSEPass_10 with max_query_index: 13
+exhaustive search, time after compilation : 60132.57910037041
+exhaustive search, time after assembly : 60219.9680685997
+exhaustive search candidates : [1664, 1667, 1645, 1647, 1648, 1649, 1650, 1651, 1652, 1653, 1654, 1655, 1656, 1657, 1658, 1659, 1660, 1661, 1663]
+Pass: EarlyCSEPass_10 generated: [4, 5, 6, 12] with offset: -1 with count: 1645
+Running pass: FunctionToLoopPassAdaptor_3 with max_query_index: 44
+greedy search candidates: [1645]
+greedy search candidates: [1645, 1647]
+Pass: FunctionToLoopPassAdaptor_3 generated: [4, 5, 6, 12] with offset: 12 with count: 1645
+Running pass: MergedLoadStoreMotionPass_1 with max_query_index: 45
+exhaustive search, time after compilation : 60246.26353645325
+exhaustive search, time after assembly : 60246.431614398956
+exhaustive search candidates : [1645]
+Pass: MergedLoadStoreMotionPass_1 generated: [4, 5, 6, 12] with offset: 43 with count: 1645
+Running pass: GVNPass_1 with max_query_index: 82
+greedy search candidates: [1645]
+greedy search candidates: [1645]
+greedy search candidates: [1645]
+Pass: GVNPass_1 generated: [4, 5, 6, 12] with offset: 44 with count: 1645
+Time after exploration of flow_cost: 60248.22461247444
+==== Next function: getArcPosition
+Running pass: GVNPass_3 with max_query_index: 6
+exhaustive search, time after compilation : 60249.193346977234
+exhaustive search, time after assembly : 60250.07330775261
+exhaustive search candidates : [1652]
+Pass: GVNPass_3 generated: [] with offset: -1 with count: 1652
+Time after exploration of getArcPosition: 60250.33230423927
+==== Next function: flow_org_cost
+Running pass: EarlyCSEPass_14 with max_query_index: 13
+exhaustive search, time after compilation : 60340.79628992081
+exhaustive search, time after assembly : 60414.17112779617
+exhaustive search candidates : [1665, 1669, 1642, 1643, 1644, 1647, 1649, 1650, 1651, 1652, 1653, 1655, 1657, 1658, 1659, 1661, 1663]
+Pass: EarlyCSEPass_14 generated: [4, 5, 6, 12] with offset: -1 with count: 1642
+Running pass: FunctionToLoopPassAdaptor_15 with max_query_index: 44
+greedy search candidates: [1642]
+greedy search candidates: [1642, 1643]
+Pass: FunctionToLoopPassAdaptor_15 generated: [4, 5, 6, 12] with offset: 12 with count: 1642
+Running pass: MergedLoadStoreMotionPass_5 with max_query_index: 45
+exhaustive search, time after compilation : 60443.70741200447
+exhaustive search, time after assembly : 60443.83871436119
+exhaustive search candidates : [1642]
+Pass: MergedLoadStoreMotionPass_5 generated: [4, 5, 6, 12] with offset: 43 with count: 1642
+Running pass: GVNPass_5 with max_query_index: 82
+greedy search candidates: [1642]
+greedy search candidates: [1642]
+greedy search candidates: [1642]
+Pass: GVNPass_5 generated: [4, 5, 6, 12] with offset: 44 with count: 1642
+Time after exploration of flow_org_cost: 60445.83182787895
+==== Next function: primal_feasible
+Running pass: FunctionToLoopPassAdaptor_18 with max_query_index: 2
+exhaustive search, time after compilation : 60446.00671339035
+exhaustive search, time after assembly : 60446.17572569847
+exhaustive search candidates : [1652]
+Pass: FunctionToLoopPassAdaptor_18 generated: [] with offset: -1 with count: 1652
+Running pass: GVNPass_6 with max_query_index: 17
+greedy search candidates: [1652]
+Pass: GVNPass_6 generated: [] with offset: 1 with count: 1652
+Time after exploration of primal_feasible: 60446.90173149109
+==== Next function: dual_feasible
+Running pass: FunctionToLoopPassAdaptor_21 with max_query_index: 2
+exhaustive search, time after compilation : 60447.13631725311
+exhaustive search, time after assembly : 60447.33282971382
+exhaustive search candidates : [1652]
+Pass: FunctionToLoopPassAdaptor_21 generated: [] with offset: -1 with count: 1652
+Running pass: GVNPass_7 with max_query_index: 36
+greedy search candidates: [1652]
+greedy search candidates: [1652]
+greedy search candidates: [1652]
+Pass: GVNPass_7 generated: [] with offset: 1 with count: 1652
+Time after exploration of dual_feasible: 60449.309156894684
+Time after exploration of 605/mcfutil.bc: 60449.30920433998
+***** Next file: 605/pbla.bc
+==== Next function: primal_iminus
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 16
+greedy search candidates: [178]
+Pass: FunctionToLoopPassAdaptor_0 generated: [] with offset: -1 with count: 178
+Running pass: GVNPass_0 with max_query_index: 65
+greedy search candidates: [178]
+greedy search candidates: [178]
+greedy search candidates: [178]
+greedy search candidates: [178]
+Pass: GVNPass_0 generated: [] with offset: 15 with count: 178
+Time after exploration of primal_iminus: 60452.159786224365
+Time after exploration of 605/pbla.bc: 60452.159802913666
+***** Next file: 605/mcf.bc
+==== Next function: main
+Running pass: DSEPass_1 with max_query_index: 5
+exhaustive search, time after compilation : 60452.52023720741
+exhaustive search, time after assembly : 60452.962629556656
+exhaustive search candidates : [1239]
+Pass: DSEPass_1 generated: [] with offset: -1 with count: 1239
+Time after exploration of main: 60453.088101148605
+Time after exploration of 605/mcf.bc: 60453.08810997009
+***** Next file: 605/pflowup.bc
+==== Next function: primal_update_flow
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 14
+exhaustive search, time after compilation : 60556.79316949844
+exhaustive search, time after assembly : 60616.9801902771
+exhaustive search candidates : [95]
+Pass: FunctionToLoopPassAdaptor_0 generated: [] with offset: -1 with count: 95
+Running pass: MergedLoadStoreMotionPass_0 with max_query_index: 16
+exhaustive search, time after compilation : 60647.76964712143
+exhaustive search, time after assembly : 60647.80879831314
+exhaustive search candidates : [95]
+Pass: MergedLoadStoreMotionPass_0 generated: [] with offset: 13 with count: 95
+Running pass: GVNPass_0 with max_query_index: 20
+exhaustive search, time after compilation : 60647.88245654106
+exhaustive search, time after assembly : 60647.94343495369
+exhaustive search candidates : [95]
+Pass: GVNPass_0 generated: [] with offset: 15 with count: 95
+Time after exploration of primal_update_flow: 60647.96652293205
+Time after exploration of 605/pflowup.bc: 60647.9665312767
+***** Next file: 605/pbeampp.bc
+==== Next function: primal_bea_mpp
+Running pass: InstCombinePass_3 with max_query_index: 3
+exhaustive search, time after compilation : 60648.04364514351
+exhaustive search, time after assembly : 60648.09466910362
+exhaustive search candidates : [786, 781, 791]
+Pass: InstCombinePass_3 generated: [] with offset: -1 with count: 781
+Running pass: EarlyCSEPass_7 with max_query_index: 18
+greedy search candidates: [780, 781]
+greedy search, new min: 780
+greedy search, current list: [3]
+greedy search candidates: [780]
+Pass: EarlyCSEPass_7 generated: [3] with offset: 2 with count: 780
+Running pass: FunctionToLoopPassAdaptor_9 with max_query_index: 108
+greedy search candidates: [780]
+greedy search candidates: [780]
+greedy search candidates: [779, 780]
+greedy search, new min: 779
+greedy search, current list: [3, 57]
+greedy search candidates: [779]
+greedy search candidates: [779]
+greedy search candidates: [779]
+greedy search candidates: [779]
+Pass: FunctionToLoopPassAdaptor_9 generated: [3, 57] with offset: 17 with count: 779
+Running pass: GVNPass_3 with max_query_index: 211
+greedy search candidates: [779]
+greedy search candidates: [779]
+greedy search candidates: [779]
+greedy search candidates: [779]
+greedy search candidates: [779]
+greedy search candidates: [779]
+greedy search candidates: [779]
+Pass: GVNPass_3 generated: [3, 57] with offset: 107 with count: 779
+Running pass: DSEPass_3 with max_query_index: 230
+greedy search candidates: [779]
+greedy search candidates: [779]
+Pass: DSEPass_3 generated: [3, 57] with offset: 210 with count: 779
+Running pass: FunctionToLoopPassAdaptor_11 with max_query_index: 231
+exhaustive search, time after compilation : 60652.57462358475
+exhaustive search, time after assembly : 60652.62192964554
+exhaustive search candidates : [779]
+Pass: FunctionToLoopPassAdaptor_11 generated: [3, 57] with offset: 229 with count: 779
+Time after exploration of primal_bea_mpp: 60652.625285863876
+==== Next function: set_static_vars
+Running pass: GVNPass_0 with max_query_index: 2
+exhaustive search, time after compilation : 60652.69116353989
+exhaustive search, time after assembly : 60652.74520587921
+exhaustive search candidates : [781]
+Pass: GVNPass_0 generated: [] with offset: -1 with count: 781
+Time after exploration of set_static_vars: 60652.75377488136
+==== Next function: cost_compare
+Running pass: GVNPass_2 with max_query_index: 14
+exhaustive search, time after compilation : 60751.76223182678
+exhaustive search, time after assembly : 60826.35954928398
+exhaustive search candidates : [781]
+Pass: GVNPass_2 generated: [] with offset: -1 with count: 781
+Time after exploration of cost_compare: 60854.488773822784
+Time after exploration of 605/pbeampp.bc: 60854.48878645897
+***** Next file: 605/psimplex.bc
+==== Next function: markBaskets
+Running pass: EarlyCSEPass_4 with max_query_index: 2
+exhaustive search, time after compilation : 60854.56264972687
+exhaustive search, time after assembly : 60854.613401412964
+exhaustive search candidates : [1812]
+Pass: EarlyCSEPass_4 generated: [] with offset: -1 with count: 1812
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 14
+exhaustive search, time after compilation : 60883.76219987869
+exhaustive search, time after assembly : 60904.10800743103
+exhaustive search candidates : [1812]
+Pass: FunctionToLoopPassAdaptor_0 generated: [] with offset: 1 with count: 1812
+Running pass: GVNPass_0 with max_query_index: 29
+greedy search candidates: [1812]
+Pass: GVNPass_0 generated: [] with offset: 13 with count: 1812
+Running pass: DSEPass_0 with max_query_index: 30
+exhaustive search, time after compilation : 60910.64208030701
+exhaustive search, time after assembly : 60910.68806576729
+exhaustive search candidates : [1812]
+Pass: DSEPass_0 generated: [] with offset: 28 with count: 1812
+Time after exploration of markBaskets: 60910.69249677658
+==== Next function: worker
+Running pass: EarlyCSEPass_5 with max_query_index: 2
+exhaustive search, time after compilation : 60910.75325965881
+exhaustive search, time after assembly : 60910.80396294594
+exhaustive search candidates : [1812]
+Pass: EarlyCSEPass_5 generated: [] with offset: -1 with count: 1812
+Running pass: FunctionToLoopPassAdaptor_3 with max_query_index: 17
+greedy search candidates: [1812]
+Pass: FunctionToLoopPassAdaptor_3 generated: [] with offset: 1 with count: 1812
+Running pass: GVNPass_1 with max_query_index: 53
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+Pass: GVNPass_1 generated: [] with offset: 16 with count: 1812
+Running pass: DSEPass_1 with max_query_index: 58
+exhaustive search, time after compilation : 60912.20650243759
+exhaustive search, time after assembly : 60912.40169548988
+exhaustive search candidates : [1812]
+Pass: DSEPass_1 generated: [] with offset: 52 with count: 1812
+Time after exploration of worker: 60912.475735902786
+==== Next function: master
+Running pass: EarlyCSEPass_6 with max_query_index: 12
+exhaustive search, time after compilation : 60943.81400322914
+exhaustive search, time after assembly : 60974.642404556274
+exhaustive search candidates : [1812, 1822]
+Pass: EarlyCSEPass_6 generated: [] with offset: -1 with count: 1812
+Running pass: FunctionToLoopPassAdaptor_6 with max_query_index: 76
+greedy search candidates: [1812, 1822]
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+Pass: FunctionToLoopPassAdaptor_6 generated: [] with offset: 11 with count: 1812
+Running pass: GVNPass_2 with max_query_index: 194
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+greedy search candidates: [1812]
+Pass: GVNPass_2 generated: [] with offset: 75 with count: 1812
+Running pass: DSEPass_2 with max_query_index: 205
+exhaustive search, time after compilation : 61011.77353620529
+exhaustive search, time after assembly : 61027.36933898926
+exhaustive search candidates : [1812]
+Pass: DSEPass_2 generated: [] with offset: 193 with count: 1812
+Time after exploration of master: 61033.866179943085
+==== Next function: primal_net_simplex
+Running pass: EarlyCSEPass_7 with max_query_index: 6
+exhaustive search, time after compilation : 61034.45257663727
+exhaustive search, time after assembly : 61034.96745967865
+exhaustive search candidates : [1812]
+Pass: EarlyCSEPass_7 generated: [] with offset: -1 with count: 1812
+Running pass: GVNPass_3 with max_query_index: 10
+exhaustive search, time after compilation : 61035.319244384766
+exhaustive search, time after assembly : 61035.47682762146
+exhaustive search candidates : [1812]
+Pass: GVNPass_3 generated: [] with offset: 5 with count: 1812
+Time after exploration of primal_net_simplex: 61035.51944279671
+Time after exploration of 605/psimplex.bc: 61035.51945090294
+***** Next file: 605/pstart.bc
+==== Next function: primal_start_artificial
+Running pass: EarlyCSEPass_1 with max_query_index: 24
+greedy search candidates: [308, 324]
+greedy search, new min: 308
+greedy search, current list: [0]
+greedy search candidates: [308, 300]
+greedy search, new min: 300
+greedy search, current list: [0, 15]
+greedy search candidates: [300]
+Pass: EarlyCSEPass_1 generated: [0, 15] with offset: -1 with count: 300
+Running pass: FunctionToLoopPassAdaptor_0 with max_query_index: 54
+greedy search candidates: [300]
+greedy search candidates: [297, 300]
+greedy search, new min: 297
+greedy search, current list: [0, 15, 51]
+greedy search candidates: [297]
+Pass: FunctionToLoopPassAdaptor_0 generated: [0, 15, 51] with offset: 23 with count: 297
+Running pass: GVNPass_0 with max_query_index: 81
+greedy search candidates: [297, 300]
+greedy search, new min: 297
+greedy search, current list: [0, 15, 51]
+greedy search candidates: [297]
+greedy search candidates: [297]
+Pass: GVNPass_0 generated: [0, 15, 51] with offset: 49 with count: 297
+Running pass: DSEPass_0 with max_query_index: 352
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+greedy search candidates: [300]
+Pass: DSEPass_0 generated: [0, 15] with offset: 80 with count: 300
+Time after exploration of primal_start_artificial: 61045.04766821861
+Time after exploration of 605/pstart.bc: 61045.04769396782
+***** Next file: 605/spec_qsort/spec_qsort.bc
+==== Next function: swapfunc
+Running pass: FunctionToLoopPassAdaptor_1 with max_query_index: 2
+exhaustive search, time after compilation : 61045.26352977753
+exhaustive search, time after assembly : 61045.381163835526
+exhaustive search candidates : [1754]
+Pass: FunctionToLoopPassAdaptor_1 generated: [] with offset: -1 with count: 1754
+Running pass: GVNPass_0 with max_query_index: 8
+exhaustive search, time after compilation : 61046.52912521362
+exhaustive search, time after assembly : 61047.129010915756
+exhaustive search candidates : [1754]
+Pass: GVNPass_0 generated: [] with offset: 1 with count: 1754
+Running pass: LoopLoadEliminationPass_1 with max_query_index: 10
+exhaustive search, time after compilation : 61047.47352695465
+exhaustive search, time after assembly : 61047.59069061279
+exhaustive search candidates : [1754]
+Pass: LoopLoadEliminationPass_1 generated: [] with offset: 7 with count: 1754
+Time after exploration of swapfunc: 61047.60584974289
+==== Next function: spec_qsort
+Running pass: GVNPass_2 with max_query_index: 7
+exhaustive search, time after compilation : 61049.662632226944
+exhaustive search, time after assembly : 61050.861117601395
+exhaustive search candidates : [1754]
+Pass: GVNPass_2 generated: [] with offset: -1 with count: 1754
+Time after exploration of spec_qsort: 61051.16088962555
+Time after exploration of 605/spec_qsort/spec_qsort.bc: 61051.16089844704
+found results: 
+605/implicit.bc{ resize_prob: 4639, insert_new_arc: 4635, replace_weaker_arc: 4639, price_out_impl: 4481, suspend_impl: 4576, refreshArcPointers: 4639, refreshPositions: 4639, marc_arcs: 4628, calculate_max_redcost: 4639, switch_arcs: 4636, arc_compare: 4639, } 605/readmin.bc{ read_min: 1727, } 605/treeup.bc{ update_tree: 535, } 605/output.bc{ write_circulations: 579, } 605/mcfutil.bc{ refresh_neighbour_lists: 1652, flow_cost: 1645, getArcPosition: 1652, flow_org_cost: 1642, primal_feasible: 1652, dual_feasible: 1652, } 605/pbla.bc{ primal_iminus: 178, } 605/mcf.bc{ main: 1239, } 605/pflowup.bc{ primal_update_flow: 95, } 605/pbeampp.bc{ primal_bea_mpp: 779, set_static_vars: 781, cost_compare: 781, } 605/psimplex.bc{ markBaskets: 1812, worker: 1812, master: 1812, primal_net_simplex: 1812, } 605/pstart.bc{ primal_start_artificial: 300, } 605/spec_qsort/spec_qsort.bc{ swapfunc: 1754, spec_qsort: 1754, } 
+605/implicit.bc{ resize_prob: [], insert_new_arc: [1], replace_weaker_arc: [], price_out_impl: [4, 5, 12, 13, 22, 39, 40, 70], suspend_impl: [2, 6, 28, 32], refreshArcPointers: [], refreshPositions: [], marc_arcs: [0, 49], calculate_max_redcost: [], switch_arcs: [26], arc_compare: [], } 605/readmin.bc{ read_min: [2, 10, 27, 33, 48, 56, 62, 101], } 605/treeup.bc{ update_tree: [], } 605/output.bc{ write_circulations: [], } 605/mcfutil.bc{ refresh_neighbour_lists: [], flow_cost: [4, 5, 6, 12], getArcPosition: [], flow_org_cost: [4, 5, 6, 12], primal_feasible: [], dual_feasible: [], } 605/pbla.bc{ primal_iminus: [], } 605/mcf.bc{ main: [], } 605/pflowup.bc{ primal_update_flow: [], } 605/pbeampp.bc{ primal_bea_mpp: [3, 57], set_static_vars: [], cost_compare: [], } 605/psimplex.bc{ markBaskets: [], worker: [], master: [], primal_net_simplex: [], } 605/pstart.bc{ primal_start_artificial: [0, 15], } 605/spec_qsort/spec_qsort.bc{ swapfunc: [], spec_qsort: [], } 
+time after exploration: 61051.16102838516
+605/implicit.bc: 4400 vs 4639
+605/readmin.bc: 1727 vs 1790
+605/treeup.bc: 535 vs 535
+605/output.bc: 579 vs 579
+605/mcfutil.bc: 1635 vs 1652
+605/pbla.bc: 178 vs 178
+605/mcf.bc: 1239 vs 1239
+605/pflowup.bc: 95 vs 95
+605/pbeampp.bc: 779 vs 781
+605/psimplex.bc: 1812 vs 1812
+605/pstart.bc: 300 vs 319
+605/spec_qsort/spec_qsort.bc: 1754 vs 1754
+Time after after composition: 61053.21255993843
+result: 17573 vs 17913
+meaning a 1.8980628593758722% improvement
+Greedy used 3372 compilations
+Time after file setup: 61056.24507379532
+Track AA Queries Random with 57910 samples
+counts per function per file: {PosixPath('605/implicit.bc'): {'resize_prob': 43, 'insert_new_arc': 155, 'replace_weaker_arc': 171, 'price_out_impl': 634, 'suspend_impl': 85, 'refreshArcPointers': 35, 'refreshPositions': 8, 'marc_arcs': 82, 'calculate_max_redcost': 8, 'switch_arcs': 44, 'arc_compare': 14}, PosixPath('605/readmin.bc'): {'read_min': 623}, PosixPath('605/treeup.bc'): {'update_tree': 270}, PosixPath('605/output.bc'): {'write_circulations': 18}, PosixPath('605/mcfutil.bc'): {'refresh_neighbour_lists': 38, 'flow_cost': 82, 'getArcPosition': 6, 'flow_org_cost': 82, 'primal_feasible': 17, 'dual_feasible': 36}, PosixPath('605/pbla.bc'): {'primal_iminus': 65}, PosixPath('605/mcf.bc'): {'main': 5}, PosixPath('605/pflowup.bc'): {'primal_update_flow': 20}, PosixPath('605/pbeampp.bc'): {'primal_bea_mpp': 231, 'set_static_vars': 2, 'cost_compare': 14}, PosixPath('605/psimplex.bc'): {'markBaskets': 30, 'worker': 58, 'master': 205, 'primal_net_simplex': 10}, PosixPath('605/pstart.bc'): {'primal_start_artificial': 327}, PosixPath('605/spec_qsort/spec_qsort.bc'): {'swapfunc': 10, 'spec_qsort': 7}}
+Time after AA Query measurement: 61056.498010873795
+Start Exploration
+***** Next file: 605/implicit.bc
+==== Next function: resize_prob
+Number of AA Queries: 43
+Distinct counts: [4640, 4639]
+Found sequence: [0, 1, 3, 6, 8, 9, 11, 12, 14, 15, 16, 20, 23, 24, 26, 28, 31, 32, 35, 37, 40, 42]
+With size: 4639
+==== Next function: insert_new_arc
+Number of AA Queries: 155
+Distinct counts: [4635, 4639]
+Found sequence: [1, 2, 5, 7, 9, 10, 12, 13, 14, 15, 17, 18, 20, 21, 25, 28, 31, 32, 37, 38, 39, 40, 43, 47, 49, 52, 53, 54, 56, 59, 60, 63, 65, 66, 67, 68, 71, 72, 73, 74, 75, 77, 78, 79, 80, 81, 82, 83, 84, 86, 87, 89, 91, 93, 94, 95, 96, 97, 98, 99, 100, 101, 103, 104, 105, 106, 107, 108, 109, 110, 111, 115, 116, 117, 122, 123, 125, 126, 128, 129, 130, 131, 132, 133, 134, 142, 143, 148, 149, 153, 154]
+With size: 4635
+==== Next function: replace_weaker_arc
+Number of AA Queries: 171
+Distinct counts: [4648, 4639]
+Found sequence: [0, 5, 6, 9, 10, 12, 13, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 28, 30, 31, 34, 36, 38, 42, 43, 44, 47, 50, 51, 56, 59, 65, 67, 71, 72, 77, 80, 81, 82, 84, 85, 86, 87, 88, 89, 91, 95, 99, 101, 102, 103, 104, 106, 107, 108, 109, 110, 116, 122, 124, 125, 130, 134, 135, 136, 137, 142, 143, 145, 147, 149, 150, 158, 160, 161, 162, 163, 164, 166, 167, 168, 169, 170]
+With size: 4639
+==== Next function: price_out_impl
+Number of AA Queries: 634
+Distinct counts: [4608, 4484, 4485, 4487, 4488, 4489, 4490, 4491, 4492, 4493, 4494, 4495, 4496, 4497, 4498, 4499, 4500, 4501, 4502, 4503, 4504, 4505, 4506, 4507, 4508, 4509, 4510, 4511, 4512, 4513, 4514, 4515, 4516, 4517, 4518, 4519, 4520, 4522, 4523, 4525, 4544, 4552, 4557, 4596, 4603, 4479]
+Found sequence: [1, 3, 4, 5, 12, 14, 15, 17, 19, 20, 25, 26, 27, 31, 32, 33, 34, 36, 37, 38, 39, 40, 41, 46, 47, 51, 52, 53, 54, 55, 60, 64, 65, 66, 68, 69, 70, 72, 73, 74, 76, 78, 80, 82, 85, 89, 97, 98, 102, 103, 104, 106, 109, 114, 119, 120, 121, 122, 126, 131, 132, 134, 135, 138, 140, 144, 146, 148, 149, 150, 153, 157, 158, 159, 162, 163, 164, 166, 168, 169, 170, 172, 174, 175, 176, 178, 180, 184, 185, 188, 189, 190, 192, 193, 194, 195, 197, 199, 201, 204, 206, 208, 210, 211, 212, 214, 219, 222, 223, 226, 228, 230, 234, 236, 242, 244, 245, 251, 252, 253, 256, 260, 264, 265, 268, 270, 271, 272, 273, 274, 277, 286, 287, 288, 290, 291, 292, 296, 299, 302, 305, 307, 308, 309, 310, 311, 313, 317, 318, 319, 321, 322, 324, 326, 327, 328, 332, 336, 339, 341, 344, 346, 347, 348, 349, 350, 352, 355, 359, 361, 365, 366, 369, 370, 373, 374, 375, 380, 381, 382, 385, 387, 389, 391, 400, 402, 403, 405, 406, 407, 409, 413, 415, 416, 418, 419, 425, 428, 429, 430, 431, 434, 435, 436, 437, 438, 439, 442, 444, 446, 447, 448, 454, 455, 456, 457, 459, 461, 462, 463, 466, 467, 468, 472, 474, 475, 477, 478, 479, 481, 483, 484, 485, 486, 489, 491, 492, 493, 495, 498, 499, 500, 505, 506, 507, 509, 510, 515, 519, 520, 521, 527, 532, 533, 538, 540, 541, 542, 545, 549, 551, 552, 556, 557, 558, 559, 561, 562, 564, 569, 572, 573, 580, 581, 583, 586, 587, 588, 590, 591, 593, 595, 600, 601, 602, 604, 609, 610, 614, 615, 616, 619, 621, 625, 626, 631, 633]
+With size: 4479
+==== Next function: suspend_impl
+Number of AA Queries: 85
+Distinct counts: [4608, 4611, 4616, 4618, 4619, 4620, 4624, 4625, 4629, 4632, 4634, 4640, 4645, 4661, 4576, 4580, 4581, 4584, 4588, 4590, 4595, 4596, 4601, 4603, 4604]
+Found sequence: [0, 2, 11, 13, 14, 20, 24, 26, 30, 31, 32, 35, 36, 37, 40, 42, 44, 45, 47, 50, 52, 57, 58, 60, 62, 63, 67, 68, 69, 73, 74, 76, 78, 79, 81, 82, 83, 84]
+With size: 4576
+==== Next function: refreshArcPointers
+Number of AA Queries: 35
+Distinct counts: [4639]
+Found sequence: [4, 5, 6, 11, 12, 15, 17, 18, 20, 21, 22, 24, 27, 30, 31, 33, 34]
+With size: 4639
+==== Next function: refreshPositions
+Number of AA Queries: 8
+Distinct counts: [4639]
+Found sequence: [1, 3, 4, 6]
+With size: 4639
+==== Next function: marc_arcs
+Number of AA Queries: 82
+Distinct counts: [4800, 4737, 4801, 4803, 4733, 4632, 4734, 4731, 4792, 4729, 4790, 4635, 4793, 4795, 4796, 4797, 4798, 4735]
+Found sequence: [0, 1, 13, 15, 16, 19, 20, 22, 29, 31, 37, 39, 40, 41, 42, 43, 46, 47, 49, 50, 52, 55, 59, 68, 72, 74, 76, 77, 78, 80, 81]
+With size: 4632
+==== Next function: calculate_max_redcost
+Number of AA Queries: 8
+Distinct counts: [4639]
+Found sequence: [1, 6]
+With size: 4639
+==== Next function: switch_arcs
+Number of AA Queries: 44
+Distinct counts: [4641, 4636, 4644, 4639]
+Found sequence: [1, 2, 3, 4, 6, 7, 8, 10, 13, 14, 15, 16, 17, 19, 20, 21, 22, 25, 26, 27, 29, 32, 33, 34, 35, 39, 40]
+With size: 4636
+==== Next function: arc_compare
+Number of AA Queries: 14
+Distinct counts: [4639]
+Found sequence: [2, 3, 7, 8, 9, 10, 12, 13]
+With size: 4639
+Time after exploration of 605/implicit.bc: 61114.59262371063
+***** Next file: 605/readmin.bc
+==== Next function: read_min
+Number of AA Queries: 623
+Distinct counts: [1814, 1815, 1817, 1821, 1822, 1825, 1827, 1829, 1831, 1833, 1835, 1836, 1837, 1840, 1841, 1842, 1843, 1844, 1845, 1846, 1847, 1848, 1849, 1850, 1851, 1852, 1853, 1854, 1855, 1856, 1857, 1858, 1859, 1860, 1861, 1862, 1863, 1864, 1865, 1866, 1867, 1868, 1869, 1870, 1871, 1872, 1873, 1874, 1875, 1876, 1877, 1878, 1879, 1880, 1881, 1882, 1883, 1884, 1885, 1886, 1887, 1888, 1889, 1890, 1891, 1892, 1893, 1894, 1895, 1896, 1897, 1898, 1899, 1900, 1901, 1902, 1903, 1904, 1905, 1906, 1907, 1910, 1911, 1912, 1913]
+Found sequence: [2, 8, 11, 14, 15, 17, 18, 19, 20, 23, 24, 25, 26, 28, 29, 31, 34, 35, 38, 40, 44, 49, 50, 51, 52, 53, 55, 59, 60, 61, 63, 64, 66, 67, 70, 71, 72, 73, 80, 81, 82, 83, 84, 87, 89, 91, 92, 96, 98, 100, 101, 102, 109, 111, 112, 115, 117, 119, 123, 125, 126, 128, 131, 132, 137, 140, 141, 143, 147, 150, 151, 153, 154, 157, 158, 159, 162, 171, 173, 175, 176, 178, 179, 180, 182, 184, 186, 190, 193, 194, 198, 200, 201, 202, 203, 206, 208, 212, 213, 214, 215, 217, 218, 219, 220, 221, 228, 229, 230, 234, 237, 238, 240, 241, 242, 244, 246, 247, 249, 251, 252, 256, 257, 259, 262, 267, 268, 270, 271, 274, 277, 280, 283, 285, 286, 289, 290, 291, 293, 295, 300, 301, 307, 308, 309, 311, 312, 313, 314, 315, 318, 322, 324, 326, 328, 329, 331, 332, 335, 337, 343, 345, 347, 348, 349, 350, 356, 357, 359, 361, 364, 366, 369, 370, 373, 378, 383, 384, 386, 388, 390, 391, 392, 393, 394, 396, 403, 404, 407, 409, 411, 412, 417, 422, 423, 424, 425, 428, 433, 436, 437, 438, 440, 443, 447, 448, 452, 454, 457, 458, 460, 463, 464, 465, 467, 468, 471, 472, 473, 474, 477, 478, 480, 481, 482, 483, 484, 485, 487, 491, 500, 502, 505, 506, 507, 511, 513, 514, 515, 517, 518, 519, 520, 522, 523, 525, 526, 530, 532, 534, 536, 538, 539, 541, 544, 545, 546, 547, 549, 550, 552, 553, 554, 556, 558, 560, 562, 563, 564, 565, 566, 567, 570, 573, 575, 576, 579, 581, 583, 584, 586, 587, 589, 590, 591, 592, 593, 594, 599, 600, 601, 602, 603, 604, 607, 609, 610, 611, 613, 614, 615, 618, 622]
+With size: 1814
+Time after exploration of 605/readmin.bc: 61126.42958521843
+***** Next file: 605/treeup.bc
+==== Next function: update_tree
+Number of AA Queries: 270
+Distinct counts: [539, 535]
+Found sequence: [2, 4, 5, 9, 10, 13, 16, 17, 18, 19, 21, 23, 24, 25, 26, 29, 33, 39, 40, 42, 45, 47, 48, 49, 50, 51, 53, 54, 58, 59, 60, 61, 62, 63, 69, 70, 71, 75, 78, 79, 81, 84, 85, 87, 88, 92, 93, 94, 103, 104, 106, 108, 109, 110, 111, 113, 114, 115, 116, 117, 119, 124, 125, 127, 131, 136, 137, 138, 141, 142, 145, 146, 147, 149, 152, 155, 156, 157, 158, 161, 164, 165, 166, 169, 171, 174, 175, 183, 184, 185, 186, 187, 190, 191, 193, 194, 196, 197, 199, 200, 201, 202, 204, 205, 210, 215, 217, 218, 219, 221, 225, 227, 228, 233, 234, 236, 237, 238, 239, 245, 246, 247, 250, 251, 253, 255, 256, 257, 258, 259, 260, 261, 263, 264, 267, 268, 269]
+With size: 535
+Time after exploration of 605/treeup.bc: 61130.44426369667
+***** Next file: 605/output.bc
+==== Next function: write_circulations
+Number of AA Queries: 18
+Distinct counts: [579]
+Found sequence: [0, 4, 9, 10, 11, 12, 14, 16, 17]
+With size: 579
+Time after exploration of 605/output.bc: 61130.80395531654
+***** Next file: 605/mcfutil.bc
+==== Next function: refresh_neighbour_lists
+Number of AA Queries: 38
+Distinct counts: [1652]
+Found sequence: [0, 4, 6, 8, 9, 10, 11, 13, 15, 17, 18, 19, 20, 22, 23, 25, 28, 34, 35, 37]
+With size: 1652
+==== Next function: flow_cost
+Number of AA Queries: 82
+Distinct counts: [1664, 1667, 1648, 1650, 1652, 1653, 1654, 1655, 1656, 1657, 1658, 1659, 1660, 1661, 1663]
+Found sequence: [6, 9, 11, 12, 13, 15, 18, 22, 23, 28, 30, 31, 34, 35, 39, 43, 46, 47, 48, 50, 51, 53, 54, 55, 56, 57, 59, 60, 61, 62, 63, 69, 71, 73, 74, 75, 80]
+With size: 1648
+==== Next function: getArcPosition
+Number of AA Queries: 6
+Distinct counts: [1652]
+Found sequence: [0, 4, 5]
+With size: 1652
+==== Next function: flow_org_cost
+Number of AA Queries: 82
+Distinct counts: [1665, 1669, 1642, 1647, 1649, 1650, 1651, 1652, 1653, 1655, 1657, 1658, 1659, 1661]
+Found sequence: [5, 6, 9, 10, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 26, 29, 31, 33, 37, 38, 40, 42, 43, 46, 47, 51, 52, 53, 55, 56, 58, 60, 63, 64, 65, 66, 67, 68, 69, 71, 72, 73, 74, 75, 77, 78, 80]
+With size: 1642
+==== Next function: primal_feasible
+Number of AA Queries: 17
+Distinct counts: [1652]
+Found sequence: [0, 2, 4, 5, 7, 9, 10, 13, 14, 16]
+With size: 1652
+==== Next function: dual_feasible
+Number of AA Queries: 36
+Distinct counts: [1652]
+Found sequence: [0, 1, 5, 9, 10, 16, 17, 18, 19, 20, 22, 23, 25, 26, 27, 28, 29, 30, 32, 33, 35]
+With size: 1652
+Time after exploration of 605/mcfutil.bc: 61137.045664548874
+***** Next file: 605/pbla.bc
+==== Next function: primal_iminus
+Number of AA Queries: 65
+Distinct counts: [178]
+Found sequence: [3, 6, 8, 10, 11, 13, 14, 18, 19, 21, 22, 23, 24, 29, 30, 31, 32, 36, 37, 41, 42, 44, 45, 46, 49, 52, 54, 55, 56, 61, 62, 63]
+With size: 178
+Time after exploration of 605/pbla.bc: 61137.971762657166
+***** Next file: 605/mcf.bc
+==== Next function: main
+Number of AA Queries: 5
+Distinct counts: [1239]
+Found sequence: [3]
+With size: 1239
+Time after exploration of 605/mcf.bc: 61138.152794361115
+***** Next file: 605/pflowup.bc
+==== Next function: primal_update_flow
+Number of AA Queries: 20
+Distinct counts: [95]
+Found sequence: [0, 2, 3, 7, 9, 10, 12, 14, 15, 16, 19]
+With size: 95
+Time after exploration of 605/pflowup.bc: 61138.50221300125
+***** Next file: 605/pbeampp.bc
+==== Next function: primal_bea_mpp
+Number of AA Queries: 231
+Distinct counts: [772, 775, 777, 779, 780, 782, 783, 784, 785, 786, 787, 789, 790]
+Found sequence: [0, 6, 7, 16, 19, 20, 22, 23, 25, 26, 27, 29, 31, 33, 37, 38, 41, 43, 50, 52, 53, 54, 55, 57, 64, 65, 66, 69, 70, 72, 73, 75, 76, 77, 80, 84, 85, 87, 91, 98, 103, 104, 106, 107, 108, 110, 111, 112, 115, 116, 118, 119, 121, 122, 124, 125, 128, 133, 139, 143, 145, 149, 151, 156, 158, 160, 161, 163, 164, 167, 168, 169, 171, 172, 173, 174, 175, 181, 182, 183, 185, 186, 188, 189, 190, 192, 193, 195, 196, 197, 203, 205, 209, 210, 215, 217, 220, 221, 222, 227, 228, 230]
+With size: 772
+==== Next function: set_static_vars
+Number of AA Queries: 2
+Distinct counts: [781]
+Found sequence: [1]
+With size: 781
+==== Next function: cost_compare
+Number of AA Queries: 14
+Distinct counts: [781]
+Found sequence: [0, 1, 2, 3, 7, 8, 10, 11, 12]
+With size: 781
+Time after exploration of 605/pbeampp.bc: 61143.23763465881
+***** Next file: 605/psimplex.bc
+==== Next function: markBaskets
+Number of AA Queries: 30
+Distinct counts: [1812]
+Found sequence: [2, 3, 6, 8, 10, 14, 17, 18, 19, 21, 23, 24, 29]
+With size: 1812
+==== Next function: worker
+Number of AA Queries: 58
+Distinct counts: [1819, 1812]
+Found sequence: [0, 2, 4, 5, 6, 8, 11, 14, 15, 17, 25, 26, 29, 30, 33, 34, 37, 38, 39, 43, 45, 48, 49, 50, 54, 55]
+With size: 1812
+==== Next function: master
+Number of AA Queries: 205
+Distinct counts: [1819, 1812, 1829, 1822]
+Found sequence: [0, 3, 8, 9, 10, 11, 13, 14, 15, 16, 18, 19, 21, 22, 23, 24, 25, 26, 27, 32, 34, 38, 41, 44, 47, 48, 51, 52, 53, 61, 65, 66, 67, 69, 70, 71, 73, 75, 76, 78, 80, 82, 84, 85, 87, 90, 93, 95, 97, 98, 100, 101, 102, 103, 104, 107, 108, 111, 114, 116, 118, 119, 124, 125, 126, 127, 130, 132, 136, 137, 138, 141, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 159, 160, 161, 165, 166, 167, 168, 172, 175, 181, 183, 185, 188, 191, 195, 196, 197, 198, 199, 202, 204]
+With size: 1812
+==== Next function: primal_net_simplex
+Number of AA Queries: 10
+Distinct counts: [1812]
+Found sequence: [0, 5, 6, 8]
+With size: 1812
+Time after exploration of 605/psimplex.bc: 61149.62018489838
+***** Next file: 605/pstart.bc
+==== Next function: primal_start_artificial
+Number of AA Queries: 327
+Distinct counts: [297, 308, 300, 305]
+Found sequence: [0, 2, 4, 5, 7, 9, 11, 12, 13, 14, 16, 19, 20, 21, 23, 29, 30, 31, 32, 33, 34, 35, 38, 39, 41, 42, 44, 47, 54, 55, 57, 59, 60, 61, 62, 63, 64, 65, 67, 68, 69, 70, 73, 74, 75, 76, 80, 83, 94, 95, 97, 101, 102, 104, 105, 106, 109, 111, 112, 114, 117, 118, 122, 124, 125, 129, 131, 132, 133, 139, 144, 147, 148, 149, 153, 163, 168, 170, 171, 172, 173, 176, 177, 178, 179, 181, 183, 186, 187, 188, 191, 194, 198, 200, 204, 205, 209, 211, 214, 215, 218, 220, 222, 227, 228, 229, 230, 231, 233, 236, 237, 240, 241, 242, 243, 244, 245, 248, 249, 250, 251, 252, 254, 255, 256, 257, 258, 260, 261, 264, 265, 267, 269, 271, 276, 277, 278, 279, 281, 283, 286, 287, 288, 290, 291, 292, 294, 295, 296, 297, 298, 299, 303, 305, 306, 308, 310, 311, 314, 315, 316, 320, 321, 322, 323]
+With size: 297
+Time after exploration of 605/pstart.bc: 61153.943103551865
+***** Next file: 605/spec_qsort/spec_qsort.bc
+==== Next function: swapfunc
+Number of AA Queries: 10
+Distinct counts: [1754]
+Found sequence: [1, 2, 4, 6, 7, 8]
+With size: 1754
+==== Next function: spec_qsort
+Number of AA Queries: 7
+Distinct counts: [1754]
+Found sequence: [0, 2, 3, 4, 5]
+With size: 1754
+Time after exploration of 605/spec_qsort/spec_qsort.bc: 61154.614620923996
+found results: 
+605/implicit.bc{ resize_prob: 4639, insert_new_arc: 4635, replace_weaker_arc: 4639, price_out_impl: 4479, suspend_impl: 4576, refreshArcPointers: 4639, refreshPositions: 4639, marc_arcs: 4632, calculate_max_redcost: 4639, switch_arcs: 4636, arc_compare: 4639, } 605/readmin.bc{ read_min: 1814, } 605/treeup.bc{ update_tree: 535, } 605/output.bc{ write_circulations: 579, } 605/mcfutil.bc{ refresh_neighbour_lists: 1652, flow_cost: 1648, getArcPosition: 1652, flow_org_cost: 1642, primal_feasible: 1652, dual_feasible: 1652, } 605/pbla.bc{ primal_iminus: 178, } 605/mcf.bc{ main: 1239, } 605/pflowup.bc{ primal_update_flow: 95, } 605/pbeampp.bc{ primal_bea_mpp: 772, set_static_vars: 781, cost_compare: 781, } 605/psimplex.bc{ markBaskets: 1812, worker: 1812, master: 1812, primal_net_simplex: 1812, } 605/pstart.bc{ primal_start_artificial: 297, } 605/spec_qsort/spec_qsort.bc{ swapfunc: 1754, spec_qsort: 1754, } 
+605/implicit.bc{ resize_prob: [0, 1, 3, 6, 8, 9, 11, 12, 14, 15, 16, 20, 23, 24, 26, 28, 31, 32, 35, 37, 40, 42], insert_new_arc: [1, 2, 5, 7, 9, 10, 12, 13, 14, 15, 17, 18, 20, 21, 25, 28, 31, 32, 37, 38, 39, 40, 43, 47, 49, 52, 53, 54, 56, 59, 60, 63, 65, 66, 67, 68, 71, 72, 73, 74, 75, 77, 78, 79, 80, 81, 82, 83, 84, 86, 87, 89, 91, 93, 94, 95, 96, 97, 98, 99, 100, 101, 103, 104, 105, 106, 107, 108, 109, 110, 111, 115, 116, 117, 122, 123, 125, 126, 128, 129, 130, 131, 132, 133, 134, 142, 143, 148, 149, 153, 154], replace_weaker_arc: [0, 5, 6, 9, 10, 12, 13, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 28, 30, 31, 34, 36, 38, 42, 43, 44, 47, 50, 51, 56, 59, 65, 67, 71, 72, 77, 80, 81, 82, 84, 85, 86, 87, 88, 89, 91, 95, 99, 101, 102, 103, 104, 106, 107, 108, 109, 110, 116, 122, 124, 125, 130, 134, 135, 136, 137, 142, 143, 145, 147, 149, 150, 158, 160, 161, 162, 163, 164, 166, 167, 168, 169, 170], price_out_impl: [1, 3, 4, 5, 12, 14, 15, 17, 19, 20, 25, 26, 27, 31, 32, 33, 34, 36, 37, 38, 39, 40, 41, 46, 47, 51, 52, 53, 54, 55, 60, 64, 65, 66, 68, 69, 70, 72, 73, 74, 76, 78, 80, 82, 85, 89, 97, 98, 102, 103, 104, 106, 109, 114, 119, 120, 121, 122, 126, 131, 132, 134, 135, 138, 140, 144, 146, 148, 149, 150, 153, 157, 158, 159, 162, 163, 164, 166, 168, 169, 170, 172, 174, 175, 176, 178, 180, 184, 185, 188, 189, 190, 192, 193, 194, 195, 197, 199, 201, 204, 206, 208, 210, 211, 212, 214, 219, 222, 223, 226, 228, 230, 234, 236, 242, 244, 245, 251, 252, 253, 256, 260, 264, 265, 268, 270, 271, 272, 273, 274, 277, 286, 287, 288, 290, 291, 292, 296, 299, 302, 305, 307, 308, 309, 310, 311, 313, 317, 318, 319, 321, 322, 324, 326, 327, 328, 332, 336, 339, 341, 344, 346, 347, 348, 349, 350, 352, 355, 359, 361, 365, 366, 369, 370, 373, 374, 375, 380, 381, 382, 385, 387, 389, 391, 400, 402, 403, 405, 406, 407, 409, 413, 415, 416, 418, 419, 425, 428, 429, 430, 431, 434, 435, 436, 437, 438, 439, 442, 444, 446, 447, 448, 454, 455, 456, 457, 459, 461, 462, 463, 466, 467, 468, 472, 474, 475, 477, 478, 479, 481, 483, 484, 485, 486, 489, 491, 492, 493, 495, 498, 499, 500, 505, 506, 507, 509, 510, 515, 519, 520, 521, 527, 532, 533, 538, 540, 541, 542, 545, 549, 551, 552, 556, 557, 558, 559, 561, 562, 564, 569, 572, 573, 580, 581, 583, 586, 587, 588, 590, 591, 593, 595, 600, 601, 602, 604, 609, 610, 614, 615, 616, 619, 621, 625, 626, 631, 633], suspend_impl: [0, 2, 11, 13, 14, 20, 24, 26, 30, 31, 32, 35, 36, 37, 40, 42, 44, 45, 47, 50, 52, 57, 58, 60, 62, 63, 67, 68, 69, 73, 74, 76, 78, 79, 81, 82, 83, 84], refreshArcPointers: [4, 5, 6, 11, 12, 15, 17, 18, 20, 21, 22, 24, 27, 30, 31, 33, 34], refreshPositions: [1, 3, 4, 6], marc_arcs: [0, 1, 13, 15, 16, 19, 20, 22, 29, 31, 37, 39, 40, 41, 42, 43, 46, 47, 49, 50, 52, 55, 59, 68, 72, 74, 76, 77, 78, 80, 81], calculate_max_redcost: [1, 6], switch_arcs: [1, 2, 3, 4, 6, 7, 8, 10, 13, 14, 15, 16, 17, 19, 20, 21, 22, 25, 26, 27, 29, 32, 33, 34, 35, 39, 40], arc_compare: [2, 3, 7, 8, 9, 10, 12, 13], } 605/readmin.bc{ read_min: [2, 8, 11, 14, 15, 17, 18, 19, 20, 23, 24, 25, 26, 28, 29, 31, 34, 35, 38, 40, 44, 49, 50, 51, 52, 53, 55, 59, 60, 61, 63, 64, 66, 67, 70, 71, 72, 73, 80, 81, 82, 83, 84, 87, 89, 91, 92, 96, 98, 100, 101, 102, 109, 111, 112, 115, 117, 119, 123, 125, 126, 128, 131, 132, 137, 140, 141, 143, 147, 150, 151, 153, 154, 157, 158, 159, 162, 171, 173, 175, 176, 178, 179, 180, 182, 184, 186, 190, 193, 194, 198, 200, 201, 202, 203, 206, 208, 212, 213, 214, 215, 217, 218, 219, 220, 221, 228, 229, 230, 234, 237, 238, 240, 241, 242, 244, 246, 247, 249, 251, 252, 256, 257, 259, 262, 267, 268, 270, 271, 274, 277, 280, 283, 285, 286, 289, 290, 291, 293, 295, 300, 301, 307, 308, 309, 311, 312, 313, 314, 315, 318, 322, 324, 326, 328, 329, 331, 332, 335, 337, 343, 345, 347, 348, 349, 350, 356, 357, 359, 361, 364, 366, 369, 370, 373, 378, 383, 384, 386, 388, 390, 391, 392, 393, 394, 396, 403, 404, 407, 409, 411, 412, 417, 422, 423, 424, 425, 428, 433, 436, 437, 438, 440, 443, 447, 448, 452, 454, 457, 458, 460, 463, 464, 465, 467, 468, 471, 472, 473, 474, 477, 478, 480, 481, 482, 483, 484, 485, 487, 491, 500, 502, 505, 506, 507, 511, 513, 514, 515, 517, 518, 519, 520, 522, 523, 525, 526, 530, 532, 534, 536, 538, 539, 541, 544, 545, 546, 547, 549, 550, 552, 553, 554, 556, 558, 560, 562, 563, 564, 565, 566, 567, 570, 573, 575, 576, 579, 581, 583, 584, 586, 587, 589, 590, 591, 592, 593, 594, 599, 600, 601, 602, 603, 604, 607, 609, 610, 611, 613, 614, 615, 618, 622], } 605/treeup.bc{ update_tree: [2, 4, 5, 9, 10, 13, 16, 17, 18, 19, 21, 23, 24, 25, 26, 29, 33, 39, 40, 42, 45, 47, 48, 49, 50, 51, 53, 54, 58, 59, 60, 61, 62, 63, 69, 70, 71, 75, 78, 79, 81, 84, 85, 87, 88, 92, 93, 94, 103, 104, 106, 108, 109, 110, 111, 113, 114, 115, 116, 117, 119, 124, 125, 127, 131, 136, 137, 138, 141, 142, 145, 146, 147, 149, 152, 155, 156, 157, 158, 161, 164, 165, 166, 169, 171, 174, 175, 183, 184, 185, 186, 187, 190, 191, 193, 194, 196, 197, 199, 200, 201, 202, 204, 205, 210, 215, 217, 218, 219, 221, 225, 227, 228, 233, 234, 236, 237, 238, 239, 245, 246, 247, 250, 251, 253, 255, 256, 257, 258, 259, 260, 261, 263, 264, 267, 268, 269], } 605/output.bc{ write_circulations: [0, 4, 9, 10, 11, 12, 14, 16, 17], } 605/mcfutil.bc{ refresh_neighbour_lists: [0, 4, 6, 8, 9, 10, 11, 13, 15, 17, 18, 19, 20, 22, 23, 25, 28, 34, 35, 37], flow_cost: [6, 9, 11, 12, 13, 15, 18, 22, 23, 28, 30, 31, 34, 35, 39, 43, 46, 47, 48, 50, 51, 53, 54, 55, 56, 57, 59, 60, 61, 62, 63, 69, 71, 73, 74, 75, 80], getArcPosition: [0, 4, 5], flow_org_cost: [5, 6, 9, 10, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 26, 29, 31, 33, 37, 38, 40, 42, 43, 46, 47, 51, 52, 53, 55, 56, 58, 60, 63, 64, 65, 66, 67, 68, 69, 71, 72, 73, 74, 75, 77, 78, 80], primal_feasible: [0, 2, 4, 5, 7, 9, 10, 13, 14, 16], dual_feasible: [0, 1, 5, 9, 10, 16, 17, 18, 19, 20, 22, 23, 25, 26, 27, 28, 29, 30, 32, 33, 35], } 605/pbla.bc{ primal_iminus: [3, 6, 8, 10, 11, 13, 14, 18, 19, 21, 22, 23, 24, 29, 30, 31, 32, 36, 37, 41, 42, 44, 45, 46, 49, 52, 54, 55, 56, 61, 62, 63], } 605/mcf.bc{ main: [3], } 605/pflowup.bc{ primal_update_flow: [0, 2, 3, 7, 9, 10, 12, 14, 15, 16, 19], } 605/pbeampp.bc{ primal_bea_mpp: [0, 6, 7, 16, 19, 20, 22, 23, 25, 26, 27, 29, 31, 33, 37, 38, 41, 43, 50, 52, 53, 54, 55, 57, 64, 65, 66, 69, 70, 72, 73, 75, 76, 77, 80, 84, 85, 87, 91, 98, 103, 104, 106, 107, 108, 110, 111, 112, 115, 116, 118, 119, 121, 122, 124, 125, 128, 133, 139, 143, 145, 149, 151, 156, 158, 160, 161, 163, 164, 167, 168, 169, 171, 172, 173, 174, 175, 181, 182, 183, 185, 186, 188, 189, 190, 192, 193, 195, 196, 197, 203, 205, 209, 210, 215, 217, 220, 221, 222, 227, 228, 230], set_static_vars: [1], cost_compare: [0, 1, 2, 3, 7, 8, 10, 11, 12], } 605/psimplex.bc{ markBaskets: [2, 3, 6, 8, 10, 14, 17, 18, 19, 21, 23, 24, 29], worker: [0, 2, 4, 5, 6, 8, 11, 14, 15, 17, 25, 26, 29, 30, 33, 34, 37, 38, 39, 43, 45, 48, 49, 50, 54, 55], master: [0, 3, 8, 9, 10, 11, 13, 14, 15, 16, 18, 19, 21, 22, 23, 24, 25, 26, 27, 32, 34, 38, 41, 44, 47, 48, 51, 52, 53, 61, 65, 66, 67, 69, 70, 71, 73, 75, 76, 78, 80, 82, 84, 85, 87, 90, 93, 95, 97, 98, 100, 101, 102, 103, 104, 107, 108, 111, 114, 116, 118, 119, 124, 125, 126, 127, 130, 132, 136, 137, 138, 141, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 159, 160, 161, 165, 166, 167, 168, 172, 175, 181, 183, 185, 188, 191, 195, 196, 197, 198, 199, 202, 204], primal_net_simplex: [0, 5, 6, 8], } 605/pstart.bc{ primal_start_artificial: [0, 2, 4, 5, 7, 9, 11, 12, 13, 14, 16, 19, 20, 21, 23, 29, 30, 31, 32, 33, 34, 35, 38, 39, 41, 42, 44, 47, 54, 55, 57, 59, 60, 61, 62, 63, 64, 65, 67, 68, 69, 70, 73, 74, 75, 76, 80, 83, 94, 95, 97, 101, 102, 104, 105, 106, 109, 111, 112, 114, 117, 118, 122, 124, 125, 129, 131, 132, 133, 139, 144, 147, 148, 149, 153, 163, 168, 170, 171, 172, 173, 176, 177, 178, 179, 181, 183, 186, 187, 188, 191, 194, 198, 200, 204, 205, 209, 211, 214, 215, 218, 220, 222, 227, 228, 229, 230, 231, 233, 236, 237, 240, 241, 242, 243, 244, 245, 248, 249, 250, 251, 252, 254, 255, 256, 257, 258, 260, 261, 264, 265, 267, 269, 271, 276, 277, 278, 279, 281, 283, 286, 287, 288, 290, 291, 292, 294, 295, 296, 297, 298, 299, 303, 305, 306, 308, 310, 311, 314, 315, 316, 320, 321, 322, 323], } 605/spec_qsort/spec_qsort.bc{ swapfunc: [1, 2, 4, 6, 7, 8], spec_qsort: [0, 2, 3, 4, 5], } 
+time after exploration: 61154.61524415016
+605/implicit.bc: 4402 vs 4639
+605/readmin.bc: 1814 vs 1790
+605/treeup.bc: 535 vs 535
+605/output.bc: 579 vs 579
+605/mcfutil.bc: 1638 vs 1652
+605/pbla.bc: 178 vs 178
+605/mcf.bc: 1239 vs 1239
+605/pflowup.bc: 95 vs 95
+605/pbeampp.bc: 772 vs 781
+605/psimplex.bc: 1812 vs 1812
+605/pstart.bc: 297 vs 319
+605/spec_qsort/spec_qsort.bc: 1754 vs 1754
+Time after after composition: 61156.66708493233
+result: 17657 vs 17913
+meaning a 1.429129682353598% improvement
+Random used 3435 compilations
+Time after std exploration: 61156.675780534744
+Time after exploration: 61156.67578339577
+found results: 
+605/implicit.bc{ resize_prob: 4639, insert_new_arc: 4635, replace_weaker_arc: 4639, price_out_impl: 4479, suspend_impl: 4576, refreshArcPointers: 4639, refreshPositions: 4639, marc_arcs: 4628, calculate_max_redcost: 4639, switch_arcs: 4636, arc_compare: 4639, } 605/readmin.bc{ read_min: 1727, } 605/treeup.bc{ update_tree: 535, } 605/output.bc{ write_circulations: 579, } 605/mcfutil.bc{ refresh_neighbour_lists: 1652, flow_cost: 1645, getArcPosition: 1652, flow_org_cost: 1642, primal_feasible: 1652, dual_feasible: 1652, } 605/pbla.bc{ primal_iminus: 178, } 605/mcf.bc{ main: 1239, } 605/pflowup.bc{ primal_update_flow: 95, } 605/pbeampp.bc{ primal_bea_mpp: 772, set_static_vars: 781, cost_compare: 781, } 605/psimplex.bc{ markBaskets: 1812, worker: 1812, master: 1812, primal_net_simplex: 1812, } 605/pstart.bc{ primal_start_artificial: 297, } 605/spec_qsort/spec_qsort.bc{ swapfunc: 1754, spec_qsort: 1754, } 
+605/implicit.bc{ resize_prob: [], insert_new_arc: [1], replace_weaker_arc: [], price_out_impl: [1, 3, 4, 5, 12, 14, 15, 17, 19, 20, 25, 26, 27, 31, 32, 33, 34, 36, 37, 38, 39, 40, 41, 46, 47, 51, 52, 53, 54, 55, 60, 64, 65, 66, 68, 69, 70, 72, 73, 74, 76, 78, 80, 82, 85, 89, 97, 98, 102, 103, 104, 106, 109, 114, 119, 120, 121, 122, 126, 131, 132, 134, 135, 138, 140, 144, 146, 148, 149, 150, 153, 157, 158, 159, 162, 163, 164, 166, 168, 169, 170, 172, 174, 175, 176, 178, 180, 184, 185, 188, 189, 190, 192, 193, 194, 195, 197, 199, 201, 204, 206, 208, 210, 211, 212, 214, 219, 222, 223, 226, 228, 230, 234, 236, 242, 244, 245, 251, 252, 253, 256, 260, 264, 265, 268, 270, 271, 272, 273, 274, 277, 286, 287, 288, 290, 291, 292, 296, 299, 302, 305, 307, 308, 309, 310, 311, 313, 317, 318, 319, 321, 322, 324, 326, 327, 328, 332, 336, 339, 341, 344, 346, 347, 348, 349, 350, 352, 355, 359, 361, 365, 366, 369, 370, 373, 374, 375, 380, 381, 382, 385, 387, 389, 391, 400, 402, 403, 405, 406, 407, 409, 413, 415, 416, 418, 419, 425, 428, 429, 430, 431, 434, 435, 436, 437, 438, 439, 442, 444, 446, 447, 448, 454, 455, 456, 457, 459, 461, 462, 463, 466, 467, 468, 472, 474, 475, 477, 478, 479, 481, 483, 484, 485, 486, 489, 491, 492, 493, 495, 498, 499, 500, 505, 506, 507, 509, 510, 515, 519, 520, 521, 527, 532, 533, 538, 540, 541, 542, 545, 549, 551, 552, 556, 557, 558, 559, 561, 562, 564, 569, 572, 573, 580, 581, 583, 586, 587, 588, 590, 591, 593, 595, 600, 601, 602, 604, 609, 610, 614, 615, 616, 619, 621, 625, 626, 631, 633], suspend_impl: [2, 6, 28, 32], refreshArcPointers: [], refreshPositions: [], marc_arcs: [0, 49], calculate_max_redcost: [], switch_arcs: [26], arc_compare: [], } 605/readmin.bc{ read_min: [2, 10, 27, 33, 48, 56, 62, 101], } 605/treeup.bc{ update_tree: [], } 605/output.bc{ write_circulations: [], } 605/mcfutil.bc{ refresh_neighbour_lists: [], flow_cost: [4, 16], getArcPosition: [], flow_org_cost: [4, 16], primal_feasible: [], dual_feasible: [], } 605/pbla.bc{ primal_iminus: [], } 605/mcf.bc{ main: [], } 605/pflowup.bc{ primal_update_flow: [], } 605/pbeampp.bc{ primal_bea_mpp: [11, 32, 34, 35, 45], set_static_vars: [], cost_compare: [], } 605/psimplex.bc{ markBaskets: [], worker: [], master: [], primal_net_simplex: [], } 605/pstart.bc{ primal_start_artificial: [5, 6, 7, 8, 17, 21, 29], } 605/spec_qsort/spec_qsort.bc{ swapfunc: [], spec_qsort: [], } 
+composing 605/implicit.bc ...
+composing 605/readmin.bc ...
+composing 605/treeup.bc ...
+composing 605/output.bc ...
+composing 605/mcfutil.bc ...
+composing 605/pbla.bc ...
+composing 605/mcf.bc ...
+composing 605/pflowup.bc ...
+composing 605/pbeampp.bc ...
+composing 605/psimplex.bc ...
+composing 605/pstart.bc ...
+composing 605/spec_qsort/spec_qsort.bc ...
+Time after filtering: 61165.664549827576
+605/implicit.bc: 4398 vs 4639
+605/readmin.bc: 1727 vs 1790
+605/treeup.bc: 535 vs 535
+605/output.bc: 579 vs 579
+605/mcfutil.bc: 1635 vs 1652
+605/pbla.bc: 178 vs 178
+605/mcf.bc: 1239 vs 1239
+605/pflowup.bc: 95 vs 95
+605/pbeampp.bc: 772 vs 781
+605/psimplex.bc: 1812 vs 1812
+605/pstart.bc: 297 vs 319
+605/spec_qsort/spec_qsort.bc: 1754 vs 1754
+Time after after composition: 61167.434720277786
+result: 17561 vs 17913
+meaning a 1.9650533132361974% improvement
+Total Time: 61167.44185638428
