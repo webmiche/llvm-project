@@ -23,6 +23,16 @@ linked_libraries = {
 }
 
 
+def print_results_inner_dict(results):
+    size_string = ""
+    seq_string = ""
+    for key, func_tuple in results.items():
+        size_string += str(key) + ": " + str(func_tuple[1]) + ", "
+        seq_string += str(key) + ": " + str(func_tuple[0]) + ", "
+    print(size_string)
+    print(seq_string)
+
+
 def print_results_dict(results):
     size_string = ""
     seq_string = ""
@@ -36,6 +46,32 @@ def print_results_dict(results):
         seq_string += "} "
     print(size_string)
     print(seq_string)
+
+
+def min_inner_dict_list(dicts) -> dict:
+    while len(dicts) > 1:
+        dicts = [min_inner_dict(dicts[0], dicts[1])] + dicts[2:]
+
+    return dicts[0]
+
+
+def min_inner_dict(dict_1, dict_2) -> dict:
+    new_results = {}
+    for func_name, func_tuple in dict_1.items():
+        assert func_name in dict_2.keys()
+        func_tuple_2 = dict_2[func_name]
+
+        if func_tuple[1] < func_tuple_2[1]:
+            new_results[func_name] = func_tuple
+        elif func_tuple[1] == func_tuple_2[1]:
+            if len(func_tuple[0]) < len(func_tuple_2[0]):
+                new_results[func_name] = func_tuple
+            else:
+                new_results[func_name] = func_tuple_2
+        else:
+            new_results[func_name] = func_tuple_2
+
+    return new_results
 
 
 def min_dict_list(dicts) -> dict:
@@ -828,6 +864,18 @@ class InstrumentAlias:
     ):
         self.generate_composed_files(results)
 
+        for file_name in [f for f in files if f not in results.keys()]:
+            os.makedirs(
+                Path("composed_files/").joinpath(file_name).parent, exist_ok=True
+            )
+            with open(
+                Path("composed_files/").joinpath(
+                    str(file_name.with_suffix("")) + "_composed.txt"
+                ),
+                "w",
+            ) as f:
+                f.write("0")
+
         for file_name in files:
             self.compile_composed(
                 file_name,
@@ -849,7 +897,8 @@ class InstrumentAlias:
             true_size = self.assemble_and_measure_file(
                 self.default_may_truth.joinpath(file_name)
             )
-            print(str(file_name) + ": " + str(size) + " vs " + str(true_size))
+            if file_name in results.keys():
+                print(str(file_name) + ": " + str(size) + " vs " + str(true_size))
             os.makedirs(
                 self.exec_root.joinpath("final_res/", output_name.parent), exist_ok=True
             )
@@ -950,31 +999,56 @@ class InstrumentAlias:
             Path("res/"),
             Path("alias_queries/"),
             Path("final_res/"),
-            self.default_may_truth,
             Path("composed_files/"),
         ]
 
+        info_per_file_per_pass_per_func = {}
+        count_per_file = {}
+        with Pool(self.proc_count) as p:
+            p.map(
+                self.compute_aa_trace,
+                files,
+            )
+
+        for f in files:
+            aa_count, pass_list = self.parse_trace(
+                str(Path("alias_queries/").joinpath(f.with_suffix(".txt")))
+            )
+            info_per_file_per_pass_per_func[f] = (aa_count, pass_list)
+
+            count_func = {}
+            for k, v in aa_count.items():
+                for k2, v2 in v.items():
+                    if k2 not in count_func.keys():
+                        count_func[k2] = 0
+                    count_func[k2] += v2
+            count_per_file[f] = count_func
+
+        print("counts per function per file: " + str(count_per_file))
         results = []
 
         runs = [
-            lambda: self.random_search(files, 100),
-            lambda: self.random_search(files, 100, True),
-            lambda: self.deterministic_exploration(files, False, 0),
-            lambda: self.random_search(files, 60000),
-            lambda: self.deterministic_exploration(files, False, 13),
+            (lambda x, y: self.random_search(100, x, y), "Random 100"),
+            (lambda x, y: self.random_search(100, x, y, True), "Random 100 (precise)"),
+            # (lambda: self.deterministic_exploration(files, False, 0), "Deterministic (Exh: 0)"),
+            # (lambda: self.random_search(files, 60000),"Random 60000"),
+            # (lambda: self.deterministic_exploration(files, False, 13), "Deterministic (Exh: 13)"),
         ]
 
-        for r in runs:
-            self.setup_directories(required_empty_paths)
-            print("Time after file setup: " + str(time.time() - self.start_time))
-            curr_results = r()
-            self.evaluate_results(curr_results, files)
-            results.append(curr_results)
-            print("Run used " + str(self.num_compilations) + " compilations")
-            self.num_compilations = 0
-            print("Time after exploration: " + str(time.time() - self.start_time))
-
-        best_results = min_dict_list(results)
+        best_results = {}
+        for file_name in count_per_file.keys():
+            curr_result_list = []
+            for run_func, name in runs:
+                print("Running " + name + " on " + str(file_name))
+                self.setup_directories(required_empty_paths)
+                curr_results = run_func(count_per_file[file_name], file_name)
+                eval_dict = {file_name: curr_results}
+                self.evaluate_results(eval_dict, files)
+                print("Run used " + str(self.num_compilations) + " compilations")
+                self.num_compilations = 0
+                print("Time after exploration: " + str(time.time() - self.start_time))
+                curr_result_list.append(curr_results)
+            best_results[file_name] = min_inner_dict_list(curr_result_list)
 
         print("found results: ")
         print_results_dict(best_results)
@@ -1194,124 +1268,96 @@ class InstrumentAlias:
 
         return -count * total_length - seq_length
 
-    def random_search(self, files: list[Path], num_samples, with_default=False):
+    def random_search(self, num_samples, count_per_func, file_name, with_default=False):
         print(
-            "Track AA Queries Random with "
+            "Random with "
             + str(num_samples)
             + " samples"
             + (" with default" if with_default else "")
         )
-        info_per_file_per_pass_per_func = {}
-        count_per_file = {}
-        with Pool(self.proc_count) as p:
-            p.map(
-                self.compute_aa_trace,
-                files,
-            )
-        for f in files:
-            aa_count, pass_list = self.parse_trace(
-                str(Path("alias_queries/").joinpath(f.with_suffix(".txt")))
-            )
-            info_per_file_per_pass_per_func[f] = (aa_count, pass_list)
 
-            count_func = {}
-            for k, v in aa_count.items():
-                for k2, v2 in v.items():
-                    if k2 not in count_func.keys():
-                        count_func[k2] = 0
-                    count_func[k2] += v2
-            count_per_file[f] = count_func
-
-        print("counts per function per file: " + str(count_per_file))
         print("Time after AA Query measurement: " + str(time.time() - self.start_time))
 
         results = {}
         func_count = 0
-        for file_name in count_per_file.keys():
-            func_count += len(count_per_file[file_name].keys())
+        func_count += len(count_per_func.keys())
 
         curr_num_samples = num_samples // func_count
         print("Start Exploration")
-        for file_name in count_per_file.keys():
-            print("***** Next file: " + str(file_name))
-            curr_results = {}
-            for function in count_per_file[file_name].keys():
-                print("==== Next function: " + function)
+        for function in count_per_func.keys():
+            print("==== Next function: " + function)
 
-                os.makedirs(
-                    str(self.instr_dir.joinpath(file_name).parent), exist_ok=True
+            os.makedirs(str(self.instr_dir.joinpath(file_name).parent), exist_ok=True)
+
+            aa_count = count_per_func[function]
+            print("Number of AA Queries: " + str(aa_count))
+
+            population = []
+            if with_default:
+                population.append([])
+
+            for _ in range(curr_num_samples):
+                curr_list = [random.randint(0, 1) for _ in range(aa_count)]
+                index_list = []
+                for j, val in enumerate(curr_list):
+                    if val:
+                        index_list.append(j)
+                population.append(index_list)
+
+            self.num_compilations += len(population)
+
+            with Pool(self.proc_count) as p:
+                p.starmap(
+                    self.run_step_single_func,
+                    [
+                        (file_name, i, index_list, function, False)
+                        for i, index_list in enumerate(population)
+                    ],
                 )
 
-                aa_count = count_per_file[file_name][function]
-                print("Number of AA Queries: " + str(aa_count))
-
-                population = []
-                if with_default:
-                    population.append([])
-
-                for _ in range(curr_num_samples):
-                    curr_list = [random.randint(0, 1) for _ in range(aa_count)]
-                    index_list = []
-                    for j, val in enumerate(curr_list):
-                        if val:
-                            index_list.append(j)
-                    population.append(index_list)
-
-                self.num_compilations += len(population)
-
-                with Pool(self.proc_count) as p:
-                    p.starmap(
-                        self.run_step_single_func,
-                        [
-                            (file_name, i, index_list, function, False)
-                            for i, index_list in enumerate(population)
-                        ],
-                    )
-
-                with Pool(self.proc_count) as p:
-                    p.starmap(
-                        self.assemble_file,
-                        [
-                            (
-                                self.instr_dir.joinpath(
-                                    file_name.parent,
-                                    str(i) + str(file_name.stem) + ".bc",
-                                ),
-                                self.instr_dir.joinpath(
-                                    file_name.parent,
-                                    str(i) + str(file_name.stem) + ".o",
-                                ),
-                            )
-                            for i in range(curr_num_samples)
-                        ],
-                    )
-
-                counts = []
-                for i in range(curr_num_samples):
-                    count = self.measure_outputsize(
-                        self.instr_dir.joinpath(
-                            file_name.parent, str(i) + str(file_name.stem) + ".o"
+            with Pool(self.proc_count) as p:
+                p.starmap(
+                    self.assemble_file,
+                    [
+                        (
+                            self.instr_dir.joinpath(
+                                file_name.parent,
+                                str(i) + str(file_name.stem) + ".bc",
+                            ),
+                            self.instr_dir.joinpath(
+                                file_name.parent,
+                                str(i) + str(file_name.stem) + ".o",
+                            ),
                         )
+                        for i in range(curr_num_samples)
+                    ],
+                )
+
+            counts = []
+            for i in range(curr_num_samples):
+                count = self.measure_outputsize(
+                    self.instr_dir.joinpath(
+                        file_name.parent, str(i) + str(file_name.stem) + ".o"
                     )
-                    counts.append(count)
+                )
+                counts.append(count)
 
-                res_seq = population[counts.index(min(counts))]
-                print("Distinct counts: " + str(list(set(counts))))
-                print("Found sequence: " + str(res_seq))
-                print("With size: " + str(min(counts)))
+            res_seq = population[counts.index(min(counts))]
+            print("Distinct counts: " + str(list(set(counts))))
+            print("Found sequence: " + str(res_seq))
+            print("With size: " + str(min(counts)))
 
-                curr_results[function] = res_seq, min(counts)
+            results[function] = res_seq, min(counts)
 
-            results[file_name] = curr_results
-            print(
-                "Time after exploration of "
-                + str(file_name)
-                + ": "
-                + str(time.time() - self.start_time)
-            )
+        print(
+            "Time after exploration of "
+            + str(file_name)
+            + ": "
+            + str(time.time() - self.start_time)
+        )
 
         print("found results: ")
-        print_results_dict(results)
+        print_results_inner_dict(results)
         print("time after exploration: " + str(time.time() - self.start_time))
 
         return results
