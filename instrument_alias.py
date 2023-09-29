@@ -682,138 +682,104 @@ class InstrumentAlias:
 
     def deterministic_exploration(
         self,
-        files: list[Path],
+        info_per_pass_per_func,
+        pass_list,
+        file_name: Path,
         take_may: bool,
         exhaustive_threshhold: int = 0,
     ):
-        print(
-            "Track AA Queries Deterministic (Exh: " + str(exhaustive_threshhold) + ")"
-        )
-        info_per_file_per_pass_per_func = {}
-        count_per_file = {}
-        with Pool(self.proc_count) as p:
-            p.starmap(
-                self.compute_aa_trace,
-                [(f, take_may) for f in files],
-            )
-        for f in files:
-            aa_count, pass_list = self.parse_trace(
-                str(Path("alias_queries/").joinpath(f.with_suffix(".txt")))
-            )
-            info_per_file_per_pass_per_func[f] = (aa_count, pass_list)
-
-            count_func = {}
-            for k, v in aa_count.items():
-                for k2, v2 in v.items():
-                    if k2 not in count_func.keys():
-                        count_func[k2] = 0
-                    count_func[k2] += v2
-            count_per_file[f] = count_func
-
-        print("counts per function per file: " + str(count_per_file))
-        print("Time after AA Query measurement: " + str(time.time() - self.start_time))
-
         results = {}
 
-        print("Start Exploration")
-        for file_name in count_per_file.keys():
-            print("***** Next file: " + str(file_name))
-            curr_results = {}
-            for function in count_per_file[file_name].keys():
-                print("==== Next function: " + function)
-                # self.function_encoding[function] = str(self.func_count)
-                self.func_count += 1
-                # curr_path: Path = self.instr_dir.joinpath(
-                #     Path(str(self.function_encoding[function]))
-                # )
-                # if not os.path.exists(curr_path):
-                #     os.makedirs(curr_path, exist_ok=True)
+        functions = []
+        for k, v in info_per_pass_per_func.items():
+            for k2, v2 in v.items():
+                if k2 not in functions:
+                    functions.append(k2)
 
-                aa_count, pass_list = info_per_file_per_pass_per_func[file_name]
+        curr_results = {}
+        for function in functions:
+            print("==== Next function: " + function)
+            # self.function_encoding[function] = str(self.func_count)
+            self.func_count += 1
+            # curr_path: Path = self.instr_dir.joinpath(
+            #     Path(str(self.function_encoding[function]))
+            # )
+            # if not os.path.exists(curr_path):
+            #     os.makedirs(curr_path, exist_ok=True)
 
-                curr_seq = []
-                curr_offset = -1
-                old_size = -1
-                new_size = -1
-                for pass_name in pass_list:
-                    if pass_name.startswith("BitcodeWriterPass") or not aa_count[
-                        pass_name
-                    ].get(function):
-                        continue
+            curr_seq = []
+            curr_offset = -1
+            old_size = -1
+            new_size = -1
+            aa_count = info_per_pass_per_func
+            for pass_name in pass_list:
+                if pass_name.startswith("BitcodeWriterPass") or not aa_count[
+                    pass_name
+                ].get(function):
+                    continue
 
-                    old_size = new_size
-                    max_query_count = curr_offset + aa_count[pass_name][function] + 1
-                    print(
-                        "Running pass: "
-                        + pass_name
-                        + " with max_query_index: "
-                        + str(max_query_count)
-                    )
-                    if aa_count[pass_name][function] < exhaustive_threshhold:
-                        new_seq, new_size = self.exhaustive_exploration(
-                            file_name,
-                            function,
-                            max_query_count,
-                            take_may,
-                            curr_seq,
-                            curr_offset,
-                        )
-                    else:
-                        new_seq, new_size = self.greedy_exploration(
-                            file_name,
-                            function,
-                            max_query_count,
-                            take_may,
-                            False,
-                            curr_seq,
-                            curr_offset,
-                        )
-                    print(
-                        "Pass: "
-                        + pass_name
-                        + " generated: "
-                        + str(new_seq)
-                        + " with offset: "
-                        + str(curr_offset)
-                        + " with count: "
-                        + str(new_size)
-                    )
-                    if new_size == old_size:
-                        new_seq = curr_seq
-                    if len(new_seq) != len(curr_seq):
-                        aa_count, _ = self.get_aa_count_per_pass_with_seq_and_func(
-                            file_name, curr_seq, function
-                        )
-
-                    new_seq = [
-                        i
-                        for i in new_seq
-                        if i < curr_offset + aa_count[pass_name][function] + 1
-                    ]
-                    curr_seq = new_seq
-                    curr_offset += aa_count[pass_name][function]
-
-                curr_results[function] = curr_seq, new_size
-
+                old_size = new_size
+                max_query_count = curr_offset + aa_count[pass_name][function] + 1
                 print(
-                    "Time after exploration of "
-                    + function
-                    + ": "
-                    + str(time.time() - self.start_time)
+                    "Running pass: "
+                    + pass_name
+                    + " with max_query_index: "
+                    + str(max_query_count)
                 )
+                if aa_count[pass_name][function] <= exhaustive_threshhold:
+                    new_seq, new_size = self.exhaustive_exploration(
+                        file_name,
+                        function,
+                        max_query_count,
+                        take_may,
+                        curr_seq,
+                        curr_offset,
+                    )
+                else:
+                    new_seq, new_size = self.greedy_exploration(
+                        file_name,
+                        function,
+                        max_query_count,
+                        take_may,
+                        False,
+                        curr_seq,
+                        curr_offset,
+                    )
+                print(
+                    "Pass: "
+                    + pass_name
+                    + " generated: "
+                    + str(new_seq)
+                    + " with offset: "
+                    + str(curr_offset)
+                    + " with count: "
+                    + str(new_size)
+                )
+                if new_size == old_size:
+                    new_seq = curr_seq
+                if len(new_seq) != len(curr_seq):
+                    aa_count, _ = self.get_aa_count_per_pass_with_seq_and_func(
+                        file_name, curr_seq, function
+                    )
 
-            results[file_name] = curr_results
-            print(
-                "Time after exploration of "
-                + str(file_name)
-                + ": "
-                + str(time.time() - self.start_time)
-            )
-        print("found results: ")
-        print_results_dict(results)
-        print("time after exploration: " + str(time.time() - self.start_time))
+                new_seq = [
+                    i
+                    for i in new_seq
+                    if i < curr_offset + aa_count[pass_name][function] + 1
+                ]
+                curr_seq = new_seq
+                curr_offset += aa_count[pass_name][function]
 
-        return results
+            curr_results[function] = curr_seq, new_size
+
+            # print(
+            #    "Time after exploration of "
+            #    + function
+            #    + ": "
+            #    + str(time.time() - self.start_time)
+            # )
+
+        return curr_results
 
     def generate_baseline(self):
         run(
@@ -855,9 +821,39 @@ class InstrumentAlias:
             str(self.initial_dir.joinpath(f)),
         ]
         run(cmd, cwd=self.exec_root, stdout=DEVNULL)
-        self.assemble_and_measure_file(self.groundtruth_dir.joinpath(f))
+        self.assemble_file(
+            self.groundtruth_dir.joinpath(f),
+            self.groundtruth_dir.joinpath(f.with_suffix(".o")),
+        )
 
     def evaluate_results(
+        self,
+        results: dict,
+    ):
+        self.generate_composed_files(results)
+
+        for file_name in results.keys():
+            self.compile_composed(
+                file_name,
+                self.exec_root.joinpath(Path("res/")),
+                False,
+                str(
+                    Path("composed_files/").joinpath(
+                        str(file_name.with_suffix("")) + "_composed.txt"
+                    )
+                ),
+            )
+            size = self.assemble_and_measure_file(
+                self.exec_root.joinpath(Path("res/"), file_name)
+            )
+
+            output_name = file_name.with_suffix(".o")
+            true_size = self.assemble_and_measure_file(
+                self.default_may_truth.joinpath(file_name)
+            )
+            print(str(file_name) + ": " + str(size) + " vs " + str(true_size))
+
+    def evaluate_results_full(
         self,
         results: dict,
         files: list[Path],
@@ -887,8 +883,9 @@ class InstrumentAlias:
                     )
                 ),
             )
-            self.assemble_and_measure_file(
-                self.exec_root.joinpath(Path("res/"), file_name)
+            self.assemble_file(
+                self.exec_root.joinpath(Path("res/"), file_name),
+                self.exec_root.joinpath(Path("res/"), file_name.with_suffix(".o")),
             )
 
         for file_name in files:
@@ -1027,23 +1024,55 @@ class InstrumentAlias:
         print("counts per function per file: " + str(count_per_file))
         results = []
 
+        def random_search_driver(num_samples: int):
+            return lambda count_per_pass_per_func, pass_list, file_name: self.random_search(
+                num_samples, count_per_pass_per_func, file_name
+            ), "Random " + str(
+                num_samples
+            )
+
+        def precise_random_search_driver(num_samples: int):
+            return (
+                lambda count_per_pass_per_func, pass_list, file_name: self.random_search(
+                    num_samples, count_per_pass_per_func, file_name, True
+                ),
+                "Random " + str(num_samples) + " (precise)",
+            )
+
+        def deterministic_exploration_driver(
+            exhaustive_threshhold: int = 0,
+        ):
+            return (
+                lambda count_per_pass_per_func, pass_list, file_name: self.deterministic_exploration(
+                    count_per_pass_per_func,
+                    pass_list,
+                    file_name,
+                    False,
+                    exhaustive_threshhold,
+                ),
+                "Deterministic (Exh: " + str(exhaustive_threshhold) + ")",
+            )
+
         runs = [
-            (lambda x, y: self.random_search(100, x, y), "Random 100"),
-            (lambda x, y: self.random_search(100, x, y, True), "Random 100 (precise)"),
-            # (lambda: self.deterministic_exploration(files, False, 0), "Deterministic (Exh: 0)"),
-            # (lambda: self.random_search(files, 60000),"Random 60000"),
-            # (lambda: self.deterministic_exploration(files, False, 13), "Deterministic (Exh: 13)"),
+            random_search_driver(100),
+            precise_random_search_driver(100),
+            deterministic_exploration_driver(0),
+            # random_search_driver(1000),
+            deterministic_exploration_driver(10),
         ]
 
         best_results = {}
-        for file_name in count_per_file.keys():
+        for file_name in files:
             curr_result_list = []
             for run_func, name in runs:
                 print("Running " + name + " on " + str(file_name))
                 self.setup_directories(required_empty_paths)
-                curr_results = run_func(count_per_file[file_name], file_name)
+                count_per_pass_per_func, pass_list = info_per_file_per_pass_per_func[
+                    file_name
+                ]
+                curr_results = run_func(count_per_pass_per_func, pass_list, file_name)
                 eval_dict = {file_name: curr_results}
-                self.evaluate_results(eval_dict, files)
+                self.evaluate_results(eval_dict)
                 print("Run used " + str(self.num_compilations) + " compilations")
                 self.num_compilations = 0
                 print("Time after exploration: " + str(time.time() - self.start_time))
@@ -1072,7 +1101,7 @@ class InstrumentAlias:
 
         print("Time after filtering: " + str(time.time() - self.start_time))
 
-        self.evaluate_results(best_results, files)
+        self.evaluate_results_full(best_results, files)
 
         print("Total Time: " + str(time.time() - self.start_time))
 
@@ -1268,13 +1297,26 @@ class InstrumentAlias:
 
         return -count * total_length - seq_length
 
-    def random_search(self, num_samples, count_per_func, file_name, with_default=False):
+    def random_search(
+        self,
+        num_samples,
+        info_per_pass_per_func,
+        file_name,
+        with_default=False,
+    ):
         print(
             "Random with "
             + str(num_samples)
             + " samples"
             + (" with default" if with_default else "")
         )
+
+        count_per_func = {}
+        for k, v in info_per_pass_per_func.items():
+            for k2, v2 in v.items():
+                if k2 not in count_per_func.keys():
+                    count_per_func[k2] = 0
+                count_per_func[k2] += v2
 
         print("Time after AA Query measurement: " + str(time.time() - self.start_time))
 
