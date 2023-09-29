@@ -925,7 +925,7 @@ class InstrumentAlias:
         )
         run(cmd, cwd=self.exec_root, stdout=DEVNULL)
 
-        print("Time after after composition: " + str(time.time() - self.start_time))
+        # print("Time after after composition: " + str(time.time() - self.start_time))
 
         # measure linked file
         res_size = self.measure_outputsize(
@@ -957,7 +957,6 @@ class InstrumentAlias:
     def exploration_driver(
         self,
     ):
-        print("Let's go!")
         self.generate_baseline()
 
         files = [
@@ -989,7 +988,7 @@ class InstrumentAlias:
         )
         run(cmd, cwd=self.exec_root)
 
-        print("Time after baseline: " + str(time.time() - self.start_time))
+        # print("Time after baseline: " + str(time.time() - self.start_time))
 
         required_empty_paths = [
             self.instr_dir,
@@ -1021,7 +1020,7 @@ class InstrumentAlias:
                     count_func[k2] += v2
             count_per_file[f] = count_func
 
-        print("counts per function per file: " + str(count_per_file))
+        # print("counts per function per file: " + str(count_per_file))
         results = []
 
         def random_search_driver(num_samples: int):
@@ -1055,10 +1054,8 @@ class InstrumentAlias:
 
         runs = [
             random_search_driver(100),
-            precise_random_search_driver(100),
-            deterministic_exploration_driver(0),
-            # random_search_driver(1000),
-            deterministic_exploration_driver(10),
+            random_search_driver(1000),
+            deterministic_exploration_driver(5),
         ]
 
         best_results = {}
@@ -1073,9 +1070,9 @@ class InstrumentAlias:
                 curr_results = run_func(count_per_pass_per_func, pass_list, file_name)
                 eval_dict = {file_name: curr_results}
                 self.evaluate_results(eval_dict)
-                print("Run used " + str(self.num_compilations) + " compilations")
+                # print("Run used " + str(self.num_compilations) + " compilations")
                 self.num_compilations = 0
-                print("Time after exploration: " + str(time.time() - self.start_time))
+                # print("Time after exploration: " + str(time.time() - self.start_time))
                 curr_result_list.append(curr_results)
             best_results[file_name] = min_inner_dict_list(curr_result_list)
 
@@ -1099,11 +1096,11 @@ class InstrumentAlias:
             else:
                 print("Could not compose " + str(file_name) + " due to number of funcs")
 
-        print("Time after filtering: " + str(time.time() - self.start_time))
+        # print("Time after filtering: " + str(time.time() - self.start_time))
 
         self.evaluate_results_full(best_results, files)
 
-        print("Total Time: " + str(time.time() - self.start_time))
+        # print("Total Time: " + str(time.time() - self.start_time))
 
         ## sanity check for correctness
         # cmd = ["./final_res/linked.out", "run/605_run/inp.in", "1>&2"]
@@ -1304,13 +1301,6 @@ class InstrumentAlias:
         file_name,
         with_default=False,
     ):
-        print(
-            "Random with "
-            + str(num_samples)
-            + " samples"
-            + (" with default" if with_default else "")
-        )
-
         count_per_func = {}
         for k, v in info_per_pass_per_func.items():
             for k2, v2 in v.items():
@@ -1318,21 +1308,18 @@ class InstrumentAlias:
                     count_per_func[k2] = 0
                 count_per_func[k2] += v2
 
-        print("Time after AA Query measurement: " + str(time.time() - self.start_time))
-
         results = {}
         func_count = 0
         func_count += len(count_per_func.keys())
 
-        curr_num_samples = num_samples // func_count
-        print("Start Exploration")
+        curr_num_samples = max(num_samples // func_count, 1)
         for function in count_per_func.keys():
-            print("==== Next function: " + function)
+            # print("==== Next function: " + function)
 
             os.makedirs(str(self.instr_dir.joinpath(file_name).parent), exist_ok=True)
 
             aa_count = count_per_func[function]
-            print("Number of AA Queries: " + str(aa_count))
+            # print("Number of AA Queries: " + str(aa_count))
 
             population = []
             if with_default:
@@ -1385,22 +1372,22 @@ class InstrumentAlias:
                 counts.append(count)
 
             res_seq = population[counts.index(min(counts))]
-            print("Distinct counts: " + str(list(set(counts))))
-            print("Found sequence: " + str(res_seq))
-            print("With size: " + str(min(counts)))
+            # print("Counts: " + str(counts))
+            # print("Distinct counts: " + str(list(set(counts))))
+            # print("Found sequence: " + str(res_seq))
+            # print("Minimum: " + str(min(counts)))
 
             results[function] = res_seq, min(counts)
 
-        print(
-            "Time after exploration of "
-            + str(file_name)
-            + ": "
-            + str(time.time() - self.start_time)
-        )
+        # print(
+        #    "Time after exploration of "
+        #    + str(file_name)
+        #    + ": "
+        #    + str(time.time() - self.start_time)
+        # )
 
-        print("found results: ")
-        print_results_inner_dict(results)
-        print("time after exploration: " + str(time.time() - self.start_time))
+        # print("found results: ")
+        # print_results_inner_dict(results)
 
         return results
 
