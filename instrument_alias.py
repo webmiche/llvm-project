@@ -11,6 +11,7 @@ import sys
 import time
 import math
 import random
+import numpy
 
 # from specbuilder --> spec.py
 linked_libraries = {
@@ -124,6 +125,7 @@ class InstrumentAlias:
 
     num_compilations = 0
     proc_count = 16
+    distinct_hashes = {}
 
     def measure_outputsize(self, file: Path) -> int:
         cmd = [str(self.instr_path.joinpath("llvm-size")), str(file)]
@@ -755,8 +757,6 @@ class InstrumentAlias:
                     + " with count: "
                     + str(new_size)
                 )
-                if new_size == old_size:
-                    new_seq = curr_seq
                 if len(new_seq) != len(curr_seq):
                     aa_count, _ = self.get_aa_count_per_pass_with_seq_and_func(
                         file_name, curr_seq, function
@@ -1049,13 +1049,20 @@ class InstrumentAlias:
                     False,
                     exhaustive_threshhold,
                 ),
-                "Deterministic (Exh: " + str(exhaustive_threshhold) + ")",
+                "Local Tuning (Exh: " + str(exhaustive_threshhold) + ")",
+            )
+
+        def imprecise_exploration_driver():
+            return (
+                lambda count_per_pass_per_func, pass_list, file_name: self.imprecise_search(
+                    count_per_pass_per_func, file_name
+                ),
+                "Imprecise",
             )
 
         runs = [
-            random_search_driver(100),
-            random_search_driver(1000),
-            deterministic_exploration_driver(5),
+            random_search_driver(10000),
+            imprecise_exploration_driver(),
         ]
 
         best_results = {}
@@ -1070,8 +1077,13 @@ class InstrumentAlias:
                 curr_results = run_func(count_per_pass_per_func, pass_list, file_name)
                 eval_dict = {file_name: curr_results}
                 self.evaluate_results(eval_dict)
-                # print("Run used " + str(self.num_compilations) + " compilations")
+                print("Run used " + str(self.num_compilations) + " compilations")
                 self.num_compilations = 0
+                num_distinct_hashes = {
+                    k: len(v) for k, v in self.distinct_hashes.items()
+                }
+                print("Found hashes:" + str(num_distinct_hashes))
+                self.distinct_hashes = {}
                 # print("Time after exploration: " + str(time.time() - self.start_time))
                 curr_result_list.append(curr_results)
             best_results[file_name] = min_inner_dict_list(curr_result_list)
@@ -1100,7 +1112,7 @@ class InstrumentAlias:
 
         self.evaluate_results_full(best_results, files)
 
-        # print("Total Time: " + str(time.time() - self.start_time))
+        print("Total Time: " + str(time.time() - self.start_time))
 
         ## sanity check for correctness
         # cmd = ["./final_res/linked.out", "run/605_run/inp.in", "1>&2"]
@@ -1294,12 +1306,10 @@ class InstrumentAlias:
 
         return -count * total_length - seq_length
 
-    def random_search(
+    def imprecise_search(
         self,
-        num_samples,
         info_per_pass_per_func,
         file_name,
-        with_default=False,
     ):
         count_per_func = {}
         for k, v in info_per_pass_per_func.items():
@@ -1309,17 +1319,55 @@ class InstrumentAlias:
                 count_per_func[k2] += v2
 
         results = {}
-        func_count = 0
-        func_count += len(count_per_func.keys())
 
-        curr_num_samples = max(num_samples // func_count, 1)
         for function in count_per_func.keys():
-            # print("==== Next function: " + function)
+            print("==== Next function: " + function)
+
+            os.makedirs(str(self.instr_dir.joinpath(file_name).parent), exist_ok=True)
+            aa_count = count_per_func[function]
+            self.run_step_single_func(
+                file_name, 0, list(range(aa_count)), function, False
+            )
+
+            size = self.assemble_and_measure_file(
+                self.instr_dir.joinpath(
+                    file_name.parent, str(0) + str(file_name.stem) + ".bc"
+                )
+            )
+            print("Imprecise size: " + str(size))
+
+            results[function] = list(range(aa_count)), size
+
+        return results
+
+    def random_search(
+        self,
+        num_samples,
+        info_per_pass_per_func,
+        file_name,
+        with_default=False,
+    ):
+        count_per_func = {}
+        total_counts = 0
+        for k, v in info_per_pass_per_func.items():
+            for k2, v2 in v.items():
+                if k2 not in count_per_func.keys():
+                    count_per_func[k2] = 0
+                count_per_func[k2] += v2
+                total_counts += v2
+
+        results = {}
+        max_results = {}
+
+        for function in count_per_func.keys():
+            print("==== Next function: " + function)
 
             os.makedirs(str(self.instr_dir.joinpath(file_name).parent), exist_ok=True)
 
             aa_count = count_per_func[function]
-            # print("Number of AA Queries: " + str(aa_count))
+            curr_num_samples = max(round(num_samples * aa_count / total_counts), 1)
+            print("Number of AA Queries: " + str(aa_count))
+            print("Number of samples: " + str(curr_num_samples))
 
             population = []
             if with_default:
@@ -1363,19 +1411,39 @@ class InstrumentAlias:
                 )
 
             counts = []
+            self.distinct_hashes[function] = set()
             for i in range(curr_num_samples):
-                count = self.measure_outputsize(
-                    self.instr_dir.joinpath(
-                        file_name.parent, str(i) + str(file_name.stem) + ".o"
-                    )
+                obj_file_name = self.instr_dir.joinpath(
+                    file_name.parent, str(i) + str(file_name.stem) + ".o"
                 )
+                count = self.measure_outputsize(obj_file_name)
                 counts.append(count)
+                # import hashlib
+
+                # BUF_SIZE = 65536  # lets read stuff in 64kb chunks!
+                # sha1 = hashlib.sha1()
+
+                # with open(obj_file_name, "rb") as f:
+                #    while True:
+                #        data = f.read(BUF_SIZE)
+                #        if not data:
+                #            break
+                #        sha1.update(data)
+
+                # hash_value = sha1.hexdigest()
+                # self.distinct_hashes[function].add(hash_value)
 
             res_seq = population[counts.index(min(counts))]
-            # print("Counts: " + str(counts))
+            print("Counts: " + str(counts))
+
+            # print("Deviation: " + str(numpy.std(counts)))
+            # print("Number of distinct counts: " + str(len(list(set(counts)))))
             # print("Distinct counts: " + str(list(set(counts))))
             # print("Found sequence: " + str(res_seq))
-            # print("Minimum: " + str(min(counts)))
+            print("Minimum: " + str(min(counts)))
+            print("Maximum: " + str(max(counts)))
+
+            max_results[function] = population[counts.index(max(counts))], max(counts)
 
             results[function] = res_seq, min(counts)
 
@@ -1388,6 +1456,10 @@ class InstrumentAlias:
 
         # print("found results: ")
         # print_results_inner_dict(results)
+
+        print("Running Random " + str(num_samples) + " max on " + str(file_name))
+        self.evaluate_results({file_name: max_results})
+        print("Running Random " + str(num_samples) + " on " + str(file_name))
 
         return results
 

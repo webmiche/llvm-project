@@ -19,6 +19,31 @@ white = "#ffffff"
 opt_flag = "Oz"
 
 
+def plot_func_per_file(res_dict):
+    func_per_file = {}
+    for file_name, func_dict in res_dict.items():
+        func_per_file[file_name.removeprefix("PosixPath('").removesuffix("')")] = list(
+            func_dict.keys()
+        )
+
+    # plot number of functions per file
+    ax = plt.figure(figsize=(6, 3)).gca()
+    ax.yaxis.get_major_locator().set_params(integer=True)
+    plt.xticks(
+        ticks=range(len(func_per_file.keys())),
+        labels=[x.split("/")[-1].split(".")[0] for x in func_per_file.keys()],
+        rotation=45,
+    )
+    values = [len(x) for x in func_per_file.values()]
+    plt.bar(range(len(func_per_file.keys())), values, color=light_blue, edgecolor=black)
+    plt.xlabel("File")
+    plt.ylabel("Number of functions")
+    plt.title("Number of functions per file")
+    plt.tight_layout()
+    plt.savefig("results/func_per_file.pdf")
+    plt.show()
+
+
 def filter_non_changes(res_dict):
     filtered_dict = {}
     for f in res_dict:
@@ -521,17 +546,18 @@ benchmarks = [
     "602",
 ]
 if __name__ == "__main__":
-    for benchmark in benchmarks:
-        print(benchmark)
-        try:
-            print_relevant_size_stats(benchmark)
-            print_relevant_query_stats(benchmark)
-            print_influence_small_func(benchmark, 20)
-            print_biggest_change(benchmark)
-            print_biggest_first_change(benchmark)
-        except Exception as e:
-            print(e)
-            continue
+    # for benchmark in benchmarks:
+    #    print(benchmark)
+    #    try:
+    #        print_relevant_size_stats(benchmark)
+    #        print_relevant_query_stats(benchmark)
+    #        print_influence_small_func(benchmark, 20)
+    #        print_biggest_change(benchmark)
+    #        print_biggest_first_change(benchmark)
+    #    except Exception as e:
+    #        print(e)
+    #        continue
 
-    plot_query_per_pass_and_func(benchmarks)
-    plot_queries_per_passname()
+    # plot_query_per_pass_and_func(benchmarks)
+    # plot_queries_per_passname()
+    # plot_func_per_file(parse_counts_dict("results/stats/Oz/stats_605.txt"))
