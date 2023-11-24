@@ -65,7 +65,8 @@ colors = [
 
 
 def plot_sizes(size_per_file):
-    plt.figure(figsize=(16, 8))
+    print(size_per_file)
+    plt.figure(figsize=(8, 4))
     plt.ylabel("Size decrease in %")
     # disable upper and right axis
     ax = plt.gca()
@@ -110,7 +111,7 @@ def plot_sizes(size_per_file):
     strat_order = [
         "Imprecise",
         "Random 10000",
-        "Local Tuning (Exh: 0)",
+        "Deterministic (Exh: 13)",
         "Overall",
     ]
     for i, strat in enumerate(strat_order):
@@ -146,23 +147,23 @@ def plot_sizes(size_per_file):
                 continue
             plt.text(
                 x,
-                max(0, y + min_size + 0.01),
+                max(0, y + min_size) + 0.1,
                 str(round(y + min_size, 1)),
                 ha="center",
-                fontsize=7,
+                fontsize=9,
             )
         plt.legend()
         # plt.title("Achieved size per strategy on " + benchmark_name)
         plt.xticks(position, labels, rotation=45)
-        plt.savefig("sizes_" + benchmark_name + "_" + str(i) + ".png")
+        plt.savefig("sizes_" + benchmark_name + "_" + str(i) + ".pdf")
 
     plt.legend()
     plt.tight_layout()
-    plt.savefig("sizes_" + benchmark_name + ".png")
+    plt.savefig("sizes_" + benchmark_name + ".pdf")
 
 
 if __name__ == "__main__":
-    size_dict = parse_sizes("tmp.txt")
+    size_dict = parse_sizes("tmp_605_random_deter_all.txt")
     print(size_dict)
 
     plot_sizes(size_dict)

@@ -205,7 +205,7 @@ def parse(file_name: str):
         )
 
 
-def export_legend(legend, filename="legend.png"):
+def export_legend(legend, filename="legend.pdf"):
     fig = legend.figure
     fig.canvas.draw()
     bbox = legend.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
@@ -222,9 +222,15 @@ def plot_counts(counts_dict, alias_queries):
     plt.figure(figsize=(16, 8))
     # increase font size
     plt.rcParams.update({"font.size": 22})
-    for func_name in [
-        "flow_cost",
-    ]:  # counts_dict.keys():
+    for func_name in counts_dict.keys():
+        # [
+        #    "flow_cost",
+        #    "arc_compare",
+        #    "primal_bea_mpp",
+        #    "price_out_impl",
+        #    "read_min",
+        #    "marc_arcs",
+        # ]:  # counts_dict.keys():
         print("Plotting " + func_name)
         counts = np.array(counts_dict[func_name])
 
@@ -290,7 +296,7 @@ def plot_counts(counts_dict, alias_queries):
         )
         plt.title(func_name + " (" + str(num_queries) + " queries)")
         plt.tight_layout()
-        plt.savefig("plots/" + func_name + ".png")
+        plt.savefig("plots/" + func_name + ".pdf")
         plt.clf()
 
     f = lambda m, c, ls: plt.plot([], [], marker=m, color=c, ls=ls)[0]
@@ -314,7 +320,7 @@ def plot_counts(counts_dict, alias_queries):
         framealpha=1,
         frameon=False,
     )
-    export_legend(legend, "plots/legend.png")
+    export_legend(legend, "plots/legend.pdf")
 
 
 def plot_dev(counts_dict, alias_queries):
@@ -360,14 +366,15 @@ def plot_dev(counts_dict, alias_queries):
 
     # layout tight
     plt.tight_layout()
-    plt.savefig("deviation.png")
+    plt.savefig("deviation.pdf")
 
 
 def plot_hash_num(num_hashes_dict, alias_queries):
+    print(num_hashes_dict)
     # set figure size to 10x10
     plt.figure(figsize=(16, 8))
     plt.rcParams.update({"font.size": 22})
-    plt.title("Number of Unique Hashes per Number of Queries")
+    plt.title("Number of Unique Hashes per Number of Queries (10000 random sequences)")
     # disable upper and right axis
     ax = plt.gca()
     ax.spines["right"].set_visible(False)
@@ -408,7 +415,7 @@ def plot_hash_num(num_hashes_dict, alias_queries):
     plt.ylabel("Number of Unique Hashes")
     plt.legend(loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=3)
     plt.tight_layout()
-    plt.savefig("hashes.png")
+    plt.savefig("hashes.pdf")
 
 
 if __name__ == "__main__":
@@ -419,8 +426,8 @@ if __name__ == "__main__":
         alias_queries,
         num_distinct_counts,
         num_hashes_dict,
-    ) = parse("tmp_605_1000_randoms.txt")
+    ) = parse("tmp_actual_10000.txt")
 
-    plot_counts(counts_dict, alias_queries)
-    # plot_hash_num(num_hashes_dict, alias_queries)
+    # plot_counts(counts_dict, alias_queries)
+    plot_hash_num(num_hashes_dict, alias_queries)
     # plot_dev(counts_dict, alias_queries)

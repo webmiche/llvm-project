@@ -1038,6 +1038,14 @@ class InstrumentAlias:
                 "Random " + str(num_samples) + " (precise)",
             )
 
+        def specific_random_search_driver(num_samples: int):
+            return (
+                lambda count_per_pass_per_func, pass_list, file_name: self.random_search(
+                    num_samples, count_per_pass_per_func, file_name, overall=False
+                ),
+                "Random " + str(num_samples) + " (specific)",
+            )
+
         def deterministic_exploration_driver(
             exhaustive_threshhold: int = 0,
         ):
@@ -1061,8 +1069,7 @@ class InstrumentAlias:
             )
 
         runs = [
-            random_search_driver(10000),
-            imprecise_exploration_driver(),
+            specific_random_search_driver(10000),
         ]
 
         best_results = {}
@@ -1346,6 +1353,7 @@ class InstrumentAlias:
         info_per_pass_per_func,
         file_name,
         with_default=False,
+        overall=True,
     ):
         count_per_func = {}
         total_counts = 0
@@ -1365,7 +1373,11 @@ class InstrumentAlias:
             os.makedirs(str(self.instr_dir.joinpath(file_name).parent), exist_ok=True)
 
             aa_count = count_per_func[function]
-            curr_num_samples = max(round(num_samples * aa_count / total_counts), 1)
+            curr_num_samples = (
+                max(round(num_samples * aa_count / total_counts), 1)
+                if overall
+                else num_samples
+            )
             print("Number of AA Queries: " + str(aa_count))
             print("Number of samples: " + str(curr_num_samples))
 
@@ -1418,20 +1430,20 @@ class InstrumentAlias:
                 )
                 count = self.measure_outputsize(obj_file_name)
                 counts.append(count)
-                # import hashlib
+                import hashlib
 
-                # BUF_SIZE = 65536  # lets read stuff in 64kb chunks!
-                # sha1 = hashlib.sha1()
+                BUF_SIZE = 65536  # lets read stuff in 64kb chunks!
+                sha1 = hashlib.sha1()
 
-                # with open(obj_file_name, "rb") as f:
-                #    while True:
-                #        data = f.read(BUF_SIZE)
-                #        if not data:
-                #            break
-                #        sha1.update(data)
+                with open(obj_file_name, "rb") as f:
+                    while True:
+                        data = f.read(BUF_SIZE)
+                        if not data:
+                            break
+                        sha1.update(data)
 
-                # hash_value = sha1.hexdigest()
-                # self.distinct_hashes[function].add(hash_value)
+                hash_value = sha1.hexdigest()
+                self.distinct_hashes[function].add(hash_value)
 
             res_seq = population[counts.index(min(counts))]
             print("Counts: " + str(counts))
