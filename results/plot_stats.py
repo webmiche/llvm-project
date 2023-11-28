@@ -468,7 +468,7 @@ def plot_query_per_pass():
 
 
 def plot_queries_per_passname():
-    counts = parse_dicts("aa_per_pass.txt")
+    counts = parse_dicts("tmp_all_O3_aa_per_pass.txt")
     counts_per_pass = {}
     for file_dict in counts:
         for file_name, pass_dict in file_dict.items():
@@ -489,7 +489,7 @@ def plot_queries_per_passname():
         "JumpThreadingPass_",
         "LoopLoadEliminationPass_",
     ]
-    for pass_name in pass_names:
+    for pass_name in counts_per_pass.keys():
         print(
             pass_name
             + ": "
@@ -507,12 +507,13 @@ def plot_queries_per_passname():
         light_gray,
         dark_gray,
         black,
+        white,
     ]
     # plot distribution per pass
     plt.figure(figsize=(20, 10))
-    plt.xlim(1, 100000)
-    plt.ylim(0.7, 10000)
-    for i, pass_name in enumerate(pass_names):
+    # plt.xlim(1, 100000)
+    # plt.ylim(0.7, 10000)
+    for i, pass_name in enumerate(counts_per_pass.keys()):
         plt.xscale(value="log")
         plt.yscale(value="log")
         values = counts_per_pass[pass_name]
@@ -520,7 +521,7 @@ def plot_queries_per_passname():
         plt.hist(
             values,
             bins=logbins,
-            color=colors[i],
+            color=colors[i % 9],
             edgecolor=black,
             linewidth=1.2,
         )
@@ -559,5 +560,5 @@ if __name__ == "__main__":
     #        continue
 
     # plot_query_per_pass_and_func(benchmarks)
-    # plot_queries_per_passname()
+    plot_queries_per_passname()
     # plot_func_per_file(parse_counts_dict("results/stats/Oz/stats_605.txt"))

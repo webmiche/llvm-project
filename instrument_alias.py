@@ -180,6 +180,7 @@ class InstrumentAlias:
         cmd = [
             str(self.instr_path.joinpath("opt")),
             str(self.initial_dir.joinpath(file_name)),
+            "--print-aa-per-func",
             "-o",
             str(
                 self.instr_dir.joinpath(
@@ -194,11 +195,13 @@ class InstrumentAlias:
             + "-".join([str(i) for i in index_list]),
         ] + (["--take_may"] if take_may else [])
         # print(" ".join(cmd))
-        run(
+        p = run(
             cmd,
             cwd=self.exec_root,
-            stdout=DEVNULL,
+            stdout=PIPE,
+            text=True,
         )
+        return len(p.stdout.split("\n"))
 
     def run_step(
         self,
@@ -452,74 +455,6 @@ class InstrumentAlias:
             curr_fixed = lower_bound + min_index + 1
 
         return curr_list, min_count
-
-    def ml_exploration(
-        self,
-        file_name: Path,
-        function_name: str,
-        count: int,
-        take_may: bool,
-        prefix_list,
-        offset: int = 0,
-    ):
-        os.makedirs(str(self.instr_dir.joinpath(file_name).parent), exist_ok=True)
-        curr_list: list = prefix_list.copy()
-
-        function_inputs = [0] * count
-
-        self.function = function_name
-        self.file_name = file_name
-        self.take_may = take_may
-
-        fitness_function = self.fitness_func
-        num_generations = count
-        num_parents_mating = 4
-
-        init_range_low = 0
-        init_range_high = 1
-
-        initial_population = [function_inputs]
-        for i in range(num_parents_mating - 1):
-            initial_population.append(
-                numpy.random.randint(
-                    low=init_range_low,
-                    high=init_range_high + 1,
-                    size=count,
-                )
-            )
-
-        parent_selection_type = "tournament"
-
-        crossover_type = "two_points"
-
-        mutation_type = "random"
-        mutation_percent_genes = 10
-
-        ga_instance = pygad.GA(
-            gene_type=int,
-            gene_space=[0, 1],
-            num_generations=num_generations,
-            num_parents_mating=num_parents_mating,
-            fitness_func=fitness_function,
-            initial_population=initial_population,
-            init_range_low=init_range_low,
-            init_range_high=init_range_high,
-            parent_selection_type=parent_selection_type,
-            crossover_type=crossover_type,
-            mutation_type=mutation_type,
-            mutation_percent_genes=mutation_percent_genes,
-            parallel_processing=["process", 10],
-        )
-
-        ga_instance.run()
-
-        solution, solution_fitness, solution_idx = ga_instance.best_solution()
-        index_list = []
-        for i, val in enumerate(solution):
-            if val:
-                index_list.append(i)
-
-        return index_list, -solution_fitness
 
     def get_func_names(self, f: Path, take_may: bool, description: str) -> list[str]:
         os.makedirs(
@@ -1041,7 +976,11 @@ class InstrumentAlias:
         def specific_random_search_driver(num_samples: int):
             return (
                 lambda count_per_pass_per_func, pass_list, file_name: self.random_search(
-                    num_samples, count_per_pass_per_func, file_name, overall=False
+                    num_samples,
+                    count_per_pass_per_func,
+                    file_name,
+                    overall=False,
+                    exact=True,
                 ),
                 "Random " + str(num_samples) + " (specific)",
             )
@@ -1069,7 +1008,7 @@ class InstrumentAlias:
             )
 
         runs = [
-            specific_random_search_driver(10000),
+            specific_random_search_driver(100),
         ]
 
         best_results = {}
@@ -1104,19 +1043,6 @@ class InstrumentAlias:
             }
             best_results[file_name] = seq_per_func_dict
 
-        for file_name, seq_per_func_dict in best_results.items():
-            print("composing " + str(file_name) + " ...")
-            if seq_per_func_dict == {}:
-                continue
-            if len(seq_per_func_dict.keys()) < 10:
-                best_results[file_name] = self.find_composition_exhaustive(
-                    seq_per_func_dict, False, file_name
-                )
-            else:
-                print("Could not compose " + str(file_name) + " due to number of funcs")
-
-        # print("Time after filtering: " + str(time.time() - self.start_time))
-
         self.evaluate_results_full(best_results, files)
 
         print("Total Time: " + str(time.time() - self.start_time))
@@ -1126,71 +1052,6 @@ class InstrumentAlias:
         # p = run(" ".join(cmd), cwd=exec_root, shell=True)
 
         # print(p.returncode)
-
-    def find_composition_exhaustive(self, seq_dict, take_may, file_name):
-        # filter empty lists
-
-        indices = list(range(len(seq_dict.keys())))
-        index_combinations = []
-        for n in range(len(indices) + 1):
-            index_combinations += list(combinations(indices, n))
-
-        min_size = -1
-        min_comb = None
-        for curr_comb in index_combinations:
-            curr_dict = {}
-            for i, (key, seq) in enumerate(seq_dict.items()):
-                if i in curr_comb:
-                    curr_dict[key] = seq
-
-            composed_file_name = Path("composed_files/").joinpath(
-                # name_suffix,
-                str(file_name.with_suffix(""))
-                + "".join([str(x) for x in curr_comb])
-                + "_composed.txt",
-            )
-
-            self.generate_composed_file(composed_file_name, curr_dict)
-
-            self.compile_composed(
-                file_name,
-                self.exec_root.joinpath(Path("res/")),
-                False,
-                composed_file_name,
-                Path(
-                    str(file_name.with_suffix(""))
-                    + "".join([str(x) for x in curr_comb])
-                    + ".bc"
-                ),
-            )
-
-            curr_size = self.assemble_and_measure_file(
-                self.exec_root.joinpath(
-                    Path("res/"),
-                    Path(
-                        str(file_name.with_suffix(""))
-                        + "".join([str(x) for x in curr_comb])
-                        + ".bc"
-                    ),
-                ),
-            )
-            if min_size == -1 or curr_size < min_size:
-                min_size = curr_size
-                min_comb = curr_comb
-
-        if any([x != y for x, y in zip(min_comb, index_combinations[-1])]):
-            print(
-                "=== Exhaustive composition found new optimal solution with size "
-                + str(min_size)
-                + " and combo "
-                + str(min_comb)
-                + " ==="
-            )
-        min_dict = {}
-        for i, (key, seq) in enumerate(seq_dict.items()):
-            if i in min_comb:
-                min_dict[key] = seq
-        return min_dict
 
     def parse_trace(self, trace_file):
         curr_pass = ""
@@ -1295,24 +1156,6 @@ class InstrumentAlias:
             stdout=DEVNULL,
         )
 
-    def fitness_func(self, ga_instance, solution, solution_idx):
-        index_list = []
-        for i, val in enumerate(solution):
-            if val:
-                index_list.append(i)
-
-        total_length = len(solution)
-        seq_length = len(index_list)
-        i = os.getpid()
-        self.run_step_single_func(self.file_name, i, index_list, self.function, False)
-        count = self.assemble_and_measure_file(
-            self.instr_dir.joinpath(
-                self.file_name.parent, str(i) + str(self.file_name.stem) + ".bc"
-            )
-        )
-
-        return -count * total_length - seq_length
-
     def imprecise_search(
         self,
         info_per_pass_per_func,
@@ -1347,6 +1190,15 @@ class InstrumentAlias:
 
         return results
 
+    def map_func(self, index, index_list, population):
+        ret = self.run_step_single_func(
+            self.file_name, index, index_list, self.function, False
+        )
+        population[index] = tuple(index_list[:ret])
+
+    file_name = None
+    function = None
+
     def random_search(
         self,
         num_samples,
@@ -1354,6 +1206,7 @@ class InstrumentAlias:
         file_name,
         with_default=False,
         overall=True,
+        exact=False,
     ):
         count_per_func = {}
         total_counts = 0
@@ -1385,24 +1238,34 @@ class InstrumentAlias:
             if with_default:
                 population.append([])
 
-            for _ in range(curr_num_samples):
-                curr_list = [random.randint(0, 1) for _ in range(aa_count)]
-                index_list = []
-                for j, val in enumerate(curr_list):
-                    if val:
-                        index_list.append(j)
-                population.append(index_list)
+            self.file_name = file_name
+            self.function = function
+
+            while len(population) < curr_num_samples:
+                # generate remaining samples
+                for _ in range(curr_num_samples - len(population)):
+                    curr_list = tuple(random.randint(0, 1) for _ in range(aa_count))
+                    index_list = []
+                    for j, val in enumerate(curr_list):
+                        if val:
+                            index_list.append(j)
+                    population.append(tuple(index_list))
+
+                with Pool(self.proc_count) as p:
+                    p.starmap(
+                        self.map_func,
+                        (
+                            (i, index_list, population)
+                            for i, index_list in enumerate(population)
+                        ),
+                    )
+
+                if exact:
+                    print("bef: " + str(len(population)))
+                    population = list(set(population))
+                    print("Uniqued: " + str(len(population)))
 
             self.num_compilations += len(population)
-
-            with Pool(self.proc_count) as p:
-                p.starmap(
-                    self.run_step_single_func,
-                    [
-                        (file_name, i, index_list, function, False)
-                        for i, index_list in enumerate(population)
-                    ],
-                )
 
             with Pool(self.proc_count) as p:
                 p.starmap(
@@ -1472,163 +1335,6 @@ class InstrumentAlias:
         print("Running Random " + str(num_samples) + " max on " + str(file_name))
         self.evaluate_results({file_name: max_results})
         print("Running Random " + str(num_samples) + " on " + str(file_name))
-
-        return results
-
-    def genetic_search(self, files: list[Path], num_generations):
-        print(
-            "Track AA Queries Genetic with "
-            + str(num_generations)
-            + " generation exponent"
-        )
-        import numpy
-        import pygad
-
-        info_per_file_per_pass_per_func = {}
-        count_per_file = {}
-        with Pool(self.proc_count) as p:
-            p.map(
-                self.compute_aa_trace,
-                files,
-            )
-        for f in files:
-            aa_count, pass_list = self.parse_trace(
-                str(Path("alias_queries/").joinpath(f.with_suffix(".txt")))
-            )
-            info_per_file_per_pass_per_func[f] = (aa_count, pass_list)
-
-            count_func = {}
-            for k, v in aa_count.items():
-                for k2, v2 in v.items():
-                    if k2 not in count_func.keys():
-                        count_func[k2] = 0
-                    count_func[k2] += v2
-            count_per_file[f] = count_func
-
-        print("counts per function per file: " + str(count_per_file))
-        print("Time after AA Query measurement: " + str(time.time() - self.start_time))
-
-        results = {}
-
-        print("Start Exploration")
-        for file_name in count_per_file.keys():
-            print("***** Next file: " + str(file_name))
-            curr_results = {}
-            for function in count_per_file[file_name].keys():
-                print("==== Next function: " + function)
-                # self.function_encoding[function] = str(self.func_count)
-                self.func_count += 1
-                # curr_path: Path = self.instr_dir.joinpath(
-                #     Path(str(self.function_encoding[function]))
-                # )
-                # if not os.path.exists(curr_path):
-                #     os.makedirs(curr_path, exist_ok=True)
-
-                os.makedirs(
-                    str(self.instr_dir.joinpath(file_name).parent), exist_ok=True
-                )
-
-                aa_count = count_per_file[file_name][function]
-                print("Number of AA Queries: " + str(aa_count))
-                function_inputs = [0] * aa_count
-
-                fitness_function = self.fitness_func
-                curr_num_generations = round(
-                    math.pow(math.sqrt(aa_count), num_generations)
-                )
-
-                self.file_name = file_name
-                self.function = function
-
-                init_range_low = 0
-                init_range_high = 1
-
-                initial_population = []
-                for i in range(round(math.sqrt(aa_count))):
-                    initial_population.append(
-                        numpy.random.randint(
-                            low=init_range_low,
-                            high=init_range_high + 1,
-                            size=count_per_file[file_name][function],
-                        )
-                    )
-
-                num_parents_mating = min(4, len(initial_population))
-
-                self.num_compilations += len(initial_population) * curr_num_generations
-
-                parent_selection_type = "sss"
-
-                crossover_type = "single_point"
-
-                mutation_type = "random"
-                mutation_percent_genes = 100 / aa_count
-
-                print(
-                    "Running GA with "
-                    + str(curr_num_generations)
-                    + " generations and "
-                    + str(num_parents_mating)
-                    + " parents and "
-                    + str(len(initial_population))
-                    + " initial population"
-                )
-
-                ga_instance = pygad.GA(
-                    gene_type=int,
-                    gene_space=[0, 1],
-                    num_generations=curr_num_generations,
-                    num_parents_mating=num_parents_mating,
-                    fitness_func=fitness_function,
-                    initial_population=initial_population,
-                    parent_selection_type=parent_selection_type,
-                    crossover_type=crossover_type,
-                    mutation_type=mutation_type,
-                    mutation_percent_genes=mutation_percent_genes,
-                    parallel_processing=["process", self.proc_count],
-                )
-
-                ga_instance.run()
-
-                solution, solution_fitness, solution_idx = ga_instance.best_solution()
-                result_size = -solution_fitness // len(solution)
-                index_list = []
-                for i, val in enumerate(solution):
-                    if val:
-                        index_list.append(i)
-                print(
-                    "Time after GA on "
-                    + function
-                    + ": "
-                    + str(time.time() - self.start_time)
-                )
-                print(
-                    "Parameters of the best solution : {solution}".format(
-                        solution=index_list
-                    )
-                )
-                print(
-                    "Fitness value of the best solution = {solution_fitness}".format(
-                        solution_fitness=result_size
-                    ),
-                    flush=True,
-                )
-
-                # ga_instance.plot_fitness()
-
-                curr_results[function] = index_list, result_size
-
-            results[file_name] = curr_results
-            print(
-                "Time after exploration of "
-                + str(file_name)
-                + ": "
-                + str(time.time() - self.start_time)
-            )
-
-        print("found results: ")
-        print_results_dict(results)
-        print("time after exploration: " + str(time.time() - self.start_time))
 
         return results
 
@@ -1899,7 +1605,7 @@ if __name__ == "__main__":
                         Path(instr_dir),
                         time.time(),
                         {},
-                        "Oz",
+                        "O3",
                     ).get_aa_per_pass()
                 )
                 continue
@@ -1925,16 +1631,33 @@ if __name__ == "__main__":
                 print(e)
                 continue
     else:
-        InstrumentAlias(
-            Path(args.instr_path),
-            Path(args.exec_root),
-            Path(args.specbuild_dir),
-            Path(args.benchmark),
-            Path(initial_dir),
-            Path(groundtruth_dir),
-            Path(default_may_truth),
-            Path(instr_dir),
-            time.time(),
-            {},
-            "Oz",
-        ).exploration_driver()
+        if args.aa_per_pass:
+            print(
+                InstrumentAlias(
+                    Path(args.instr_path),
+                    Path(args.exec_root),
+                    Path(args.specbuild_dir),
+                    Path(args.benchmark),
+                    Path(initial_dir),
+                    Path(groundtruth_dir),
+                    Path(default_may_truth),
+                    Path(instr_dir),
+                    time.time(),
+                    {},
+                    "Oz",
+                ).get_aa_per_pass()
+            )
+        else:
+            InstrumentAlias(
+                Path(args.instr_path),
+                Path(args.exec_root),
+                Path(args.specbuild_dir),
+                Path(args.benchmark),
+                Path(initial_dir),
+                Path(groundtruth_dir),
+                Path(default_may_truth),
+                Path(instr_dir),
+                time.time(),
+                {},
+                "Oz",
+            ).exploration_driver()
