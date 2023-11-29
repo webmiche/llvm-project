@@ -426,7 +426,7 @@ if __name__ == "__main__":
         alias_queries,
         num_distinct_counts,
         num_hashes_dict,
-    ) = parse("tmp_actual_10000.txt")
+    ) = parse("tmp_605_oz_actuall_10000.txt")
 
     # plot_counts(counts_dict, alias_queries)
     plot_hash_num(num_hashes_dict, alias_queries)

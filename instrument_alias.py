@@ -1008,7 +1008,7 @@ class InstrumentAlias:
             )
 
         runs = [
-            specific_random_search_driver(100),
+            specific_random_search_driver(10000),
         ]
 
         best_results = {}
@@ -1194,7 +1194,7 @@ class InstrumentAlias:
         ret = self.run_step_single_func(
             self.file_name, index, index_list, self.function, False
         )
-        population[index] = tuple(index_list[:ret])
+        population[index] = tuple(filter(lambda x: x <= ret, index_list))
 
     file_name = None
     function = None
@@ -1241,6 +1241,8 @@ class InstrumentAlias:
             self.file_name = file_name
             self.function = function
 
+            last_len = -1
+
             while len(population) < curr_num_samples:
                 # generate remaining samples
                 for _ in range(curr_num_samples - len(population)):
@@ -1255,8 +1257,11 @@ class InstrumentAlias:
                     p.starmap(
                         self.map_func,
                         (
-                            (i, index_list, population)
-                            for i, index_list in enumerate(population)
+                            [
+                                (i, index_list, population)
+                                for i, index_list in enumerate(population)
+                                if i >= last_len
+                            ]
                         ),
                     )
 
@@ -1264,6 +1269,14 @@ class InstrumentAlias:
                     print("bef: " + str(len(population)))
                     population = list(set(population))
                     print("Uniqued: " + str(len(population)))
+                    if aa_count < 20 and len(population) >= math.pow(2, aa_count):
+                        print("All combinations found, stopping")
+                        break
+
+                if last_len == len(population):
+                    print("No new samples generated, stopping")
+                    break
+                last_len = len(population)
 
             self.num_compilations += len(population)
 
@@ -1659,5 +1672,5 @@ if __name__ == "__main__":
                 Path(instr_dir),
                 time.time(),
                 {},
-                "Oz",
+                "O3",
             ).exploration_driver()
