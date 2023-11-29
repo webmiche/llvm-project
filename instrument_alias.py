@@ -177,23 +177,26 @@ class InstrumentAlias:
     ):
         """Run the step with the given file name for the given function name."""
 
-        cmd = [
-            str(self.instr_path.joinpath("opt")),
-            str(self.initial_dir.joinpath(file_name)),
-            "--print-aa-per-func",
-            "-o",
-            str(
-                self.instr_dir.joinpath(
-                    file_name.parent, str(index) + str(file_name.stem) + ".bc"
-                )
-            ),
-            "-" + self.opt_flag,
-            "--aafunc=" + function_name,
-            "--aasequence="
-            + str(len(index_list))
-            + "-"
-            + "-".join([str(i) for i in index_list]),
-        ] + (["--take_may"] if take_may else [])
+        cmd = (
+            [
+                str(self.instr_path.joinpath("opt")),
+                str(self.initial_dir.joinpath(file_name)),
+                "--print-aa-per-func",
+                "-o",
+                str(
+                    self.instr_dir.joinpath(
+                        file_name.parent, str(index) + str(file_name.stem) + ".bc"
+                    )
+                ),
+                "-" + self.opt_flag,
+                "--aasequence="
+                + str(len(index_list))
+                + "-"
+                + "-".join([str(i) for i in index_list]),
+            ]
+            + (["--take_may"] if take_may else [])
+            + (["--aafunc=" + function_name] if function_name else [])
+        )
         # print(" ".join(cmd))
         p = run(
             cmd,
@@ -1008,7 +1011,7 @@ class InstrumentAlias:
             )
 
         runs = [
-            specific_random_search_driver(10000),
+            specific_random_search_driver(100),
         ]
 
         best_results = {}
@@ -1155,6 +1158,176 @@ class InstrumentAlias:
             cwd=self.exec_root,
             stdout=DEVNULL,
         )
+
+    def get_hash(self, obj_file_name: Path):
+        import hashlib
+
+        BUF_SIZE = 65536  # lets read stuff in 64kb chunks!
+        sha1 = hashlib.sha1()
+
+        with open(obj_file_name, "rb") as f:
+            while True:
+                data = f.read(BUF_SIZE)
+                if not data:
+                    break
+                sha1.update(data)
+
+        hash_value = sha1.hexdigest()
+        return hash_value
+
+    def maximal_relaxation_single_file(
+        self,
+        count_per_func,
+        file_name: Path,
+    ):
+        os.makedirs(str(self.instr_dir.joinpath(file_name).parent), exist_ok=True)
+        total_count = sum(count_per_func.values())
+        print("Total count: " + str(total_count))
+
+        self.run_step_single_func(
+            file_name,
+            0,
+            [],
+            None,
+            False,
+        )
+        self.assemble_file(
+            self.instr_dir.joinpath(
+                file_name.parent, str(0) + str(file_name.stem) + ".bc"
+            ),
+            self.instr_dir.joinpath(
+                file_name.parent, str(0) + str(file_name.stem) + ".o"
+            ),
+        )
+
+        original_hash = self.get_hash(
+            self.instr_dir.joinpath(
+                file_name.parent, str(0) + str(file_name.stem) + ".o"
+            )
+        )
+
+        lower_bound = 0
+        upper_bound = total_count
+        curr_fixed = 0
+        curr_list = []
+
+        while True:
+            hashes = [0] * self.proc_count
+            lower_bound = curr_fixed
+            upper_bound = min(total_count, curr_fixed + self.proc_count)
+            # print("==== Next range: " + str(lower_bound) + " - " + str(upper_bound))
+            # print("==== Current list: " + str(curr_list))
+            if lower_bound == upper_bound:
+                break
+
+            with Pool(self.proc_count) as p:
+                p.starmap(
+                    self.run_step_single_func,
+                    [
+                        (
+                            file_name,
+                            i,
+                            curr_list + list(range(lower_bound, i + 1)),
+                            None,
+                            False,
+                        )
+                        for i in range(lower_bound, upper_bound)
+                    ],
+                )
+
+            with Pool(self.proc_count) as p:
+                p.starmap(
+                    self.assemble_file,
+                    [
+                        (
+                            self.instr_dir.joinpath(
+                                file_name.parent, str(i) + str(file_name.stem) + ".bc"
+                            ),
+                            self.instr_dir.joinpath(
+                                file_name.parent, str(i) + str(file_name.stem) + ".o"
+                            ),
+                        )
+                        for i in range(lower_bound, upper_bound)
+                    ],
+                )
+
+            for i in range(lower_bound, upper_bound):
+                curr_hash = self.get_hash(
+                    self.instr_dir.joinpath(
+                        file_name.parent, str(i) + str(file_name.stem) + ".o"
+                    )
+                )
+                # print(
+                #    "Hash: "
+                #    + str(curr_hash)
+                #    + " for "
+                #    + str(i)
+                #    + " vs "
+                #    + str(original_hash)
+                # )
+                if curr_hash != original_hash:
+                    # print("Change detected at " + str(i))
+                    curr_fixed = i + 1
+                    break
+
+                curr_list.append(i)
+                curr_fixed = i + 1
+
+        print("Final list: " + str(curr_list))
+        print("with size: " + str(len(curr_list)) + " of " + str(total_count))
+
+    def maximal_relaxation(
+        self,
+    ):
+        self.generate_baseline()
+
+        files = [
+            Path(os.path.join(dirpath.removeprefix(str(self.initial_dir) + "/"), f))
+            for (dirpath, dirnames, filenames) in os.walk(
+                self.initial_dir.joinpath(self.benchmark)
+            )
+            for f in filenames
+        ]
+
+        # compute baseline
+        with Pool(self.proc_count) as p:
+            p.map(self.compute_baseline_file, files)
+
+        required_empty_paths = [
+            self.instr_dir,
+            Path("res/"),
+            Path("alias_queries/"),
+            Path("final_res/"),
+            Path("composed_files/"),
+        ]
+
+        info_per_file_per_pass_per_func = {}
+        count_per_file = {}
+        with Pool(self.proc_count) as p:
+            p.map(
+                self.compute_aa_trace,
+                files,
+            )
+
+        for f in files:
+            aa_count, pass_list = self.parse_trace(
+                str(Path("alias_queries/").joinpath(f.with_suffix(".txt")))
+            )
+            info_per_file_per_pass_per_func[f] = (aa_count, pass_list)
+
+            count_func = {}
+            for k, v in aa_count.items():
+                for k2, v2 in v.items():
+                    if k2 not in count_func.keys():
+                        count_func[k2] = 0
+                    count_func[k2] += v2
+            count_per_file[f] = count_func
+
+        for file_name in files:
+            print("==== Next file: " + str(file_name))
+            self.setup_directories(required_empty_paths)
+
+            self.maximal_relaxation_single_file(count_per_file[file_name], file_name)
 
     def imprecise_search(
         self,
@@ -1555,6 +1728,14 @@ if __name__ == "__main__":
         default=False,
     )
 
+    arg_parser.add_argument(
+        "--maximal_relaxation",
+        type=bool,
+        nargs="?",
+        help="maximize relaxations",
+        default=False,
+    )
+
     args = arg_parser.parse_args()
     p = run(["git", "rev-parse", "HEAD"], cwd=args.exec_root, stdout=PIPE)
 
@@ -1586,6 +1767,22 @@ if __name__ == "__main__":
         ).is_valid():
             exit(0)
         exit(1)
+
+    if args.maximal_relaxation:
+        InstrumentAlias(
+            Path(args.instr_path),
+            Path(args.exec_root),
+            Path(args.specbuild_dir),
+            Path(args.benchmark),
+            Path(initial_dir),
+            Path(groundtruth_dir),
+            Path(default_may_truth),
+            Path(instr_dir),
+            time.time(),
+            {},
+            "O3",
+        ).maximal_relaxation()
+        exit(0)
 
     benchmarks = [
         "619",
@@ -1672,5 +1869,5 @@ if __name__ == "__main__":
                 Path(instr_dir),
                 time.time(),
                 {},
-                "O3",
+                "Oz",
             ).exploration_driver()

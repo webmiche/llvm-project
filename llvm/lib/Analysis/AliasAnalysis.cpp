@@ -247,12 +247,9 @@ AliasResult instrumented_alias(const llvm::Value *ptr1, const llvm::Value *ptr2,
       return default_res;
     }
 
-    if (AAFunction != "" && func_name != AAFunction) {
-      decisionCache[pr] = true;
-      return default_res;
+    if (func_name != AAFunction) {
+      llvm::outs() << "==== " << func_name << " " << Result << "\n";
     }
-
-    llvm::outs() << "==== " << func_name << " " << Result << "\n";
   }
 
   if (AASequence != "" || AliasResultFile != "") {
@@ -262,7 +259,6 @@ AliasResult instrumented_alias(const llvm::Value *ptr1, const llvm::Value *ptr2,
     }
 
     if (AASequence != "" and status == -1) {
-      assert(AAFunction != "");
       int len = stoi(AASequence.substr(0, AASequence.find("-")));
       if (len == 0) {
         decisionCache[pr] = true;
@@ -281,7 +277,14 @@ AliasResult instrumented_alias(const llvm::Value *ptr1, const llvm::Value *ptr2,
         curr_seq = curr_seq.substr(curr_seq.find("-") + 1);
       }
 
-      std::string curr_func_name = AAFunction;
+      std::string curr_func_name;
+      if (AAFunction != "") {
+        curr_func_name = AAFunction;
+      } else {
+        curr_func_name = "";
+      }
+      llvm::outs() << "Parsign AASequence with func name " << curr_func_name
+                   << "\n";
       std::pair<std::string, uint64_t> curr_pair =
           std::make_pair(curr_func_name, len);
       indeces_len_map->insert(curr_pair);
@@ -323,13 +326,21 @@ AliasResult instrumented_alias(const llvm::Value *ptr1, const llvm::Value *ptr2,
       }
     }
 
+    if (AAFunction == "") {
+      func_name = "";
+    }
+
+    llvm::outs() << "func_name: " << func_name << "\n";
+
     if (change_indeces_map->find(func_name) != change_indeces_map->end()) {
+      llvm::outs() << "found func_name\n";
       auto len = indeces_len_map->at(func_name);
       auto curr_index = current_indeces_map->at(func_name);
       auto curr_array = change_indeces_map->at(func_name);
       current_indeces_map->at(func_name) = curr_index + 1;
       for (size_t i = 0; i < len; i++) {
         if (curr_array[i] == curr_index) {
+          llvm::outs() << "found index\n";
           decisionCache[pr] = false;
           return other_res;
         }
