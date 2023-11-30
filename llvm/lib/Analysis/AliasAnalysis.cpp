@@ -73,6 +73,17 @@ static cl::opt<bool> EnableAATrace("aa-trace", cl::Hidden, cl::init(false));
 static const bool EnableAATrace = false;
 #endif
 
+enum class AARelax { None, All, MustAndPartial, No };
+
+static cl::opt<AARelax> AARelaxation(
+    "aa-relaxation", cl::Hidden, cl::init(AARelax::None),
+    cl::desc("Relax the results of alias analysis passes"),
+    cl::values(clEnumValN(AARelax::None, "none", "No relaxation"),
+               clEnumValN(AARelax::All, "all", "Relax all results"),
+               clEnumValN(AARelax::MustAndPartial, "must",
+                          "Relax must-alias and partial-alias results"),
+               clEnumValN(AARelax::No, "no", "Relax no alias results")));
+
 AAResults::AAResults(AAResults &&Arg)
     : TLI(Arg.TLI), AAs(std::move(Arg.AAs)), AADeps(std::move(Arg.AADeps)) {}
 
@@ -143,6 +154,20 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
     else
       ++NumMayAlias;
   }
+
+  if (Result == AliasResult::MayAlias || AARelaxation == AARelax::None)
+    return Result;
+
+  if (AARelaxation == AARelax::All)
+    return AliasResult::MayAlias;
+
+  if (AARelaxation == AARelax::MustAndPartial &&
+      (Result == AliasResult::PartialAlias || Result == AliasResult::MustAlias))
+    return AliasResult::MayAlias;
+
+  if (AARelaxation == AARelax::No && Result == AliasResult::NoAlias)
+    return AliasResult::MayAlias;
+
   return Result;
 }
 
