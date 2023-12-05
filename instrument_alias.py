@@ -1768,22 +1768,6 @@ if __name__ == "__main__":
             exit(0)
         exit(1)
 
-    if args.maximal_relaxation:
-        InstrumentAlias(
-            Path(args.instr_path),
-            Path(args.exec_root),
-            Path(args.specbuild_dir),
-            Path(args.benchmark),
-            Path(initial_dir),
-            Path(groundtruth_dir),
-            Path(default_may_truth),
-            Path(instr_dir),
-            time.time(),
-            {},
-            "O3",
-        ).maximal_relaxation()
-        exit(0)
-
     benchmarks = [
         "619",
         "605",
@@ -1798,7 +1782,6 @@ if __name__ == "__main__":
         "623",
         "602",
     ]
-    allowed_benchmarks = ["605", "619", "631", "641"]
     if args.benchmark == "all":
         for i in benchmarks:
             if args.aa_per_pass:
@@ -1823,7 +1806,7 @@ if __name__ == "__main__":
             print("=============== running benchmark " + i + " ===============")
             print(p.stdout.decode("utf-8"))
             args.benchmark = i
-            try:
+            if args.maximal_relaxation:
                 InstrumentAlias(
                     Path(args.instr_path),
                     Path(args.exec_root),
@@ -1835,12 +1818,44 @@ if __name__ == "__main__":
                     Path(instr_dir),
                     time.time(),
                     {},
-                    "Oz",
-                ).exploration_driver()
-            except Exception as e:
-                print(e)
+                    "O3",
+                ).maximal_relaxation()
                 continue
+            else:
+                try:
+                    InstrumentAlias(
+                        Path(args.instr_path),
+                        Path(args.exec_root),
+                        Path(args.specbuild_dir),
+                        Path(args.benchmark),
+                        Path(initial_dir),
+                        Path(groundtruth_dir),
+                        Path(default_may_truth),
+                        Path(instr_dir),
+                        time.time(),
+                        {},
+                        "Oz",
+                    ).exploration_driver()
+                except Exception as e:
+                    print(e)
+                    continue
+
     else:
+        if args.maximal_relaxation:
+            InstrumentAlias(
+                Path(args.instr_path),
+                Path(args.exec_root),
+                Path(args.specbuild_dir),
+                Path(args.benchmark),
+                Path(initial_dir),
+                Path(groundtruth_dir),
+                Path(default_may_truth),
+                Path(instr_dir),
+                time.time(),
+                {},
+                "O3",
+            ).maximal_relaxation()
+            exit(0)
         if args.aa_per_pass:
             print(
                 InstrumentAlias(
