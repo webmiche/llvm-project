@@ -42,6 +42,7 @@
 #include "llvm/IR/Instructions.h"
 #include "llvm/IR/Type.h"
 #include "llvm/IR/Value.h"
+#include "llvm/IR/ValueHandle.h"
 #include "llvm/InitializePasses.h"
 #include "llvm/Pass.h"
 #include "llvm/Support/AtomicOrdering.h"
@@ -49,15 +50,20 @@
 #include "llvm/Support/CommandLine.h"
 #include <algorithm>
 #include <cassert>
+#include <fstream>
 #include <functional>
+#include <iostream>
 #include <iterator>
+#include <map>
+
+#include "llvm/Passes/StandardInstrumentations.h"
 
 #define DEBUG_TYPE "aa"
 
 using namespace llvm;
 
-STATISTIC(NumNoAlias,   "Number of NoAlias results");
-STATISTIC(NumMayAlias,  "Number of MayAlias results");
+STATISTIC(NumNoAlias, "Number of NoAlias results");
+STATISTIC(NumMayAlias, "Number of MayAlias results");
 STATISTIC(NumMustAlias, "Number of MustAlias results");
 
 namespace llvm {
@@ -108,6 +114,249 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
   return alias(LocA, LocB, AAQIP, nullptr);
 }
 
+static const Function *getParent(const Value *V) {
+  if (const Instruction *inst = dyn_cast<Instruction>(V)) {
+    if (!inst->getParent())
+      return nullptr;
+    return inst->getParent()->getParent();
+  }
+
+  if (const Argument *arg = dyn_cast<Argument>(V))
+    return arg->getParent();
+
+  return nullptr;
+}
+
+static cl::opt<std::string> AliasResultFile("arfile", cl::init(""));
+
+static size_t num_funcs = 0;
+
+// Status of aa instrumentation. -1 means not alloced, 0 means running, 1 means
+// freed.
+static int64_t status = -1;
+
+static std::map<std::string, uint64_t *> *change_indeces_map;
+static std::map<std::string, uint64_t> *current_indeces_map;
+static std::map<std::string, uint64_t> *indeces_len_map;
+
+// Query cache. If the entry is true, return default.
+static std::map<std::pair<const Value *const, const Value *const>, bool>
+    decisionCache;
+static std::map<const Value *, WeakVH *> value_to_weakvh;
+
+static cl::opt<bool> print_aa_func_names("print-aa-func-names",
+                                         cl::init(false));
+
+static cl::opt<bool> take_may("take_may", cl::init(false));
+static cl::opt<bool> print_aliases("print-aa-per-func", cl::init(false));
+static int first = -1;
+
+// length first, then all the queries
+static cl::opt<std::string> AASequence("aasequence", cl::init(""));
+static cl::opt<std::string> AAFunction("aafunc", cl::init(""));
+
+STATISTIC(NumberOfAACacheHits, "Number of AA cache hits");
+STATISTIC(NumberOfAAQueries, "Number of AA queries");
+
+std::vector<std::string> printed_funcs;
+
+AliasResult instrumented_alias(const llvm::Value *ptr1, const llvm::Value *ptr2,
+                               AliasResult Result) {
+  const Function *F1 = getParent(ptr1);
+
+  if (!F1)
+    return Result;
+
+  AliasResult default_res = Result;
+  AliasResult other_res = AliasResult::MayAlias;
+
+  if (take_may) {
+    other_res = default_res;
+    default_res = AliasResult::MayAlias;
+  }
+
+  if (Result == AliasResult::MayAlias) {
+    return default_res;
+  }
+
+  WeakVH *vh1;
+  if (value_to_weakvh.find(ptr1) != value_to_weakvh.end()) {
+    // llvm::outs() << "found ptr1\n";
+    vh1 = value_to_weakvh[ptr1];
+  } else {
+    // llvm::outs() << "not found ptr1\n";
+    vh1 = new WeakVH((Value *)ptr1);
+    value_to_weakvh[ptr1] = vh1;
+  }
+  if (!*vh1) {
+    // invalidate cache
+    for (auto itr = decisionCache.begin(); itr != decisionCache.end();) {
+      if (itr->first.first == ptr1 || itr->first.second == ptr1) {
+        itr = decisionCache.erase(itr);
+      } else {
+        ++itr;
+      }
+    }
+    // llvm::outs() << "vh1 is null\n";
+    vh1 = new WeakVH((Value *)ptr1);
+    value_to_weakvh[ptr1] = vh1;
+  }
+
+  WeakVH *vh2;
+  if (value_to_weakvh.find(ptr2) != value_to_weakvh.end()) {
+    vh2 = value_to_weakvh[ptr2];
+  } else {
+    vh2 = new WeakVH((Value *)ptr2);
+    value_to_weakvh[ptr2] = vh2;
+  }
+  if (!*vh2) {
+    // invalidate cache
+    for (auto itr = decisionCache.begin(); itr != decisionCache.end();) {
+      if (itr->first.first == ptr2 || itr->first.second == ptr2) {
+        itr = decisionCache.erase(itr);
+      } else {
+        ++itr;
+      }
+    }
+    // llvm::outs() << "vh2 is null\n";
+    vh2 = new WeakVH((Value *)ptr2);
+    value_to_weakvh[ptr2] = vh2;
+  }
+
+  std::pair<const Value *const, const Value *const> pr(*vh1, *vh2);
+  if (decisionCache.find(pr) != decisionCache.end()) {
+    NumberOfAACacheHits++;
+    if (decisionCache[pr]) {
+      return default_res;
+    }
+    return other_res;
+  }
+
+  if (print_aa_func_names) {
+    std::string func_name = F1->getName().str();
+    if (std::find(printed_funcs.begin(), printed_funcs.end(), func_name) ==
+        printed_funcs.end()) {
+      llvm::outs() << func_name << "\n";
+      printed_funcs.push_back(func_name);
+    }
+  }
+
+  if (print_aliases) {
+    std::string func_name = F1->getName().str();
+    if (Result == AliasResult::MayAlias) {
+      return default_res;
+    }
+
+    if (func_name != AAFunction) {
+      llvm::outs() << "==== " << func_name << " " << Result << "\n";
+    }
+  }
+
+  if (AASequence != "" || AliasResultFile != "") {
+    std::string func_name = F1->getName().str();
+    if (Result == AliasResult::MayAlias) {
+      return Result;
+    }
+
+    if (AASequence != "" and status == -1) {
+      int len = stoi(AASequence.substr(0, AASequence.find("-")));
+      if (len == 0) {
+        decisionCache[pr] = true;
+        return default_res;
+      }
+      change_indeces_map = new std::map<std::string, uint64_t *>();
+      current_indeces_map = new std::map<std::string, uint64_t>();
+      indeces_len_map = new std::map<std::string, uint64_t>();
+      num_funcs = 1;
+      status = 0;
+
+      std::string curr_seq = AASequence.substr(AASequence.find("-") + 1);
+      uint64_t *curr_array = (uint64_t *)malloc(sizeof(uint64_t) * len);
+      for (int i = 0; i < len; i++) {
+        curr_array[i] = stoi(curr_seq.substr(0, curr_seq.find("-")));
+        curr_seq = curr_seq.substr(curr_seq.find("-") + 1);
+      }
+
+      std::string curr_func_name;
+      if (AAFunction != "") {
+        curr_func_name = AAFunction;
+      } else {
+        curr_func_name = "";
+      }
+      std::pair<std::string, uint64_t> curr_pair =
+          std::make_pair(curr_func_name, len);
+      indeces_len_map->insert(curr_pair);
+      current_indeces_map->insert({curr_func_name, 0});
+      change_indeces_map->insert({curr_func_name, curr_array});
+    }
+
+    if (AliasResultFile != "" and status == -1) {
+      // Allocate map, parse file
+      status = 0;
+      std::ifstream f(AliasResultFile);
+      change_indeces_map = new std::map<std::string, uint64_t *>();
+      current_indeces_map = new std::map<std::string, uint64_t>();
+      indeces_len_map = new std::map<std::string, uint64_t>();
+
+      if (f.is_open()) {
+        // parse and store change_indeces
+        llvm::outs() << "reading file\n";
+        f >> num_funcs;
+        std::string curr_func_name;
+        int is_func_name = 0;
+        if (num_funcs == 0) {
+          curr_func_name = "";
+          num_funcs = 1;
+          is_func_name = 1;
+        }
+        for (size_t i = 0; i < num_funcs; i++) {
+          if (is_func_name == 0) {
+            f >> curr_func_name;
+          }
+          llvm::outs() << "reading func name: " + curr_func_name + "\n";
+          size_t curr_func_change_indeces_len;
+          f >> curr_func_change_indeces_len;
+          uint64_t *curr_array = (uint64_t *)malloc(
+              sizeof(uint64_t) * curr_func_change_indeces_len);
+          std::pair<std::string, uint64_t> curr_pair =
+              std::make_pair(curr_func_name, curr_func_change_indeces_len);
+          indeces_len_map->insert(curr_pair);
+          for (size_t j = 0; j < curr_func_change_indeces_len; j++) {
+            std::string input;
+            f >> input;
+            curr_array[j] = stoi(input);
+          }
+          current_indeces_map->insert({curr_func_name, 0});
+          change_indeces_map->insert({curr_func_name, curr_array});
+        }
+      } else {
+        assert(false);
+      }
+    }
+
+    if (AAFunction == "") {
+      func_name = "";
+    }
+
+    if (change_indeces_map->find(func_name) != change_indeces_map->end()) {
+      auto len = indeces_len_map->at(func_name);
+      auto curr_index = current_indeces_map->at(func_name);
+      auto curr_array = change_indeces_map->at(func_name);
+      current_indeces_map->at(func_name) = curr_index + 1;
+      for (size_t i = 0; i < len; i++) {
+        if (curr_array[i] == curr_index) {
+          decisionCache[pr] = false;
+          return other_res;
+        }
+      }
+    }
+    decisionCache[pr] = true;
+    return default_res;
+  }
+  decisionCache[pr] = true;
+  return default_res;
+}
+
 AliasResult AAResults::alias(const MemoryLocation &LocA,
                              const MemoryLocation &LocB, AAQueryInfo &AAQI,
                              const Instruction *CtxI) {
@@ -116,8 +365,8 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
   if (EnableAATrace) {
     for (unsigned I = 0; I < AAQI.Depth; ++I)
       dbgs() << "  ";
-    dbgs() << "Start " << *LocA.Ptr << " @ " << LocA.Size << ", "
-           << *LocB.Ptr << " @ " << LocB.Size << "\n";
+    dbgs() << "Start " << *LocA.Ptr << " @ " << LocA.Size << ", " << *LocB.Ptr
+           << " @ " << LocB.Size << "\n";
   }
 
   AAQI.Depth++;
@@ -127,12 +376,18 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
       break;
   }
   AAQI.Depth--;
+  NumberOfAAQueries++;
+
+  if (print_aa_func_names || print_aliases || AASequence != "" ||
+      AliasResultFile != "") {
+    Result = instrumented_alias(LocA.Ptr, LocB.Ptr, Result);
+  }
 
   if (EnableAATrace) {
     for (unsigned I = 0; I < AAQI.Depth; ++I)
       dbgs() << "  ";
-    dbgs() << "End " << *LocA.Ptr << " @ " << LocA.Size << ", "
-           << *LocB.Ptr << " @ " << LocB.Size << " = " << Result << "\n";
+    dbgs() << "End " << *LocA.Ptr << " @ " << LocA.Size << ", " << *LocB.Ptr
+           << " @ " << LocB.Size << " = " << Result << "\n";
   }
 
   if (AAQI.Depth == 0) {
@@ -584,7 +839,8 @@ ModRefInfo AAResults::getModRefInfo(const AtomicCmpXchgInst *CX,
 ModRefInfo AAResults::getModRefInfo(const AtomicRMWInst *RMW,
                                     const MemoryLocation &Loc,
                                     AAQueryInfo &AAQI) {
-  // Acquire/Release atomicrmw has properties that matter for arbitrary addresses.
+  // Acquire/Release atomicrmw has properties that matter for arbitrary
+  // addresses.
   if (isStrongerThanMonotonic(RMW->getOrdering()))
     return ModRefInfo::ModRef;
 
@@ -646,8 +902,7 @@ ModRefInfo AAResults::getModRefInfo(const Instruction *I,
 /// with a smarter AA in place, this test is just wasting compile time.
 ModRefInfo AAResults::callCapturesBefore(const Instruction *I,
                                          const MemoryLocation &MemLoc,
-                                         DominatorTree *DT,
-                                         AAQueryInfo &AAQI) {
+                                         DominatorTree *DT, AAQueryInfo &AAQI) {
   if (!DT)
     return ModRefInfo::ModRef;
 
@@ -718,7 +973,7 @@ bool AAResults::canInstructionRangeModRef(const Instruction &I1,
          "Instructions not in same basic block!");
   BasicBlock::const_iterator I = I1.getIterator();
   BasicBlock::const_iterator E = I2.getIterator();
-  ++E;  // Convert from inclusive to exclusive range.
+  ++E; // Convert from inclusive to exclusive range.
 
   for (; I != E; ++I) // Check every instruction in range
     if (isModOrRefSet(getModRefInfo(&*I, Loc) & Mode))
