@@ -198,12 +198,50 @@ class InstrumentAlias:
             + (["--aafunc=" + function_name] if function_name else [])
         )
         # print(" ".join(cmd))
-        p = run(
-            cmd,
-            cwd=self.exec_root,
-            stdout=PIPE,
-            text=True,
-        )
+        try:
+            p = run(
+                cmd,
+                cwd=self.exec_root,
+                stdout=PIPE,
+                text=True,
+            )
+        except OSError:
+            # write AASequence to file
+            aafile_name = "aa_sequence" + str(index) + ".txt"
+            with open(aafile_name, "w") as f:
+                string_to_write = "1\n" if function_name else "0\n"
+                if function_name:
+                    string_to_write += function_name + "\n"
+                string_to_write += str(len(index_list)) + "\n"
+                string_to_write += "\n".join([str(i) for i in index_list])
+                f.write(string_to_write)
+
+            cmd = (
+                [
+                    str(self.instr_path.joinpath("opt")),
+                    str(self.initial_dir.joinpath(file_name)),
+                    "--print-aa-per-func",
+                    "-o",
+                    str(
+                        self.instr_dir.joinpath(
+                            file_name.parent, str(index) + str(file_name.stem) + ".bc"
+                        )
+                    ),
+                    "--arfile",
+                    aafile_name,
+                    "-" + self.opt_flag,
+                ]
+                + (["--take_may"] if take_may else [])
+                + (["--aafunc=" + function_name] if function_name else [])
+            )
+            print(" ".join(cmd))
+            p = run(
+                cmd,
+                cwd=self.exec_root,
+                stdout=PIPE,
+                text=True,
+            )
+
         return len(p.stdout.split("\n"))
 
     def run_step(

@@ -300,10 +300,20 @@ AliasResult instrumented_alias(const llvm::Value *ptr1, const llvm::Value *ptr2,
 
       if (f.is_open()) {
         // parse and store change_indeces
+        llvm::outs() << "reading file\n";
         f >> num_funcs;
+        std::string curr_func_name;
+        int is_func_name = 0;
+        if (num_funcs == 0) {
+          curr_func_name = "";
+          num_funcs = 1;
+          is_func_name = 1;
+        }
         for (size_t i = 0; i < num_funcs; i++) {
-          std::string curr_func_name;
-          f >> curr_func_name;
+          if (is_func_name == 0) {
+            f >> curr_func_name;
+          }
+          llvm::outs() << "reading func name: " + curr_func_name + "\n";
           size_t curr_func_change_indeces_len;
           f >> curr_func_change_indeces_len;
           uint64_t *curr_array = (uint64_t *)malloc(
