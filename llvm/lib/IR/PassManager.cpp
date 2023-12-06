@@ -9,11 +9,16 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/ADT/DenseMapInfo.h"
 #include "llvm/IR/PassManagerImpl.h"
+#include "llvm/Support/CommandLine.h"
 #include <optional>
 
 using namespace llvm;
 
 namespace llvm {
+
+static cl::opt<bool> PrintPassNames("print-pass-names", cl::init(false));
+bool print_pass_names() { return PrintPassNames; }
+
 // Explicit template instantiations and specialization defininitions for core
 // template typedefs.
 template class AllAnalysesOn<Module>;
