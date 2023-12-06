@@ -15,10 +15,6 @@
 using namespace llvm;
 
 namespace llvm {
-
-static cl::opt<bool> PrintPassNames("print-pass-names", cl::init(false));
-bool print_pass_names() { return PrintPassNames; }
-
 // Explicit template instantiations and specialization defininitions for core
 // template typedefs.
 template class AllAnalysesOn<Module>;
