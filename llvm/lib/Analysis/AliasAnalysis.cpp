@@ -73,6 +73,55 @@ static cl::opt<bool> EnableAATrace("aa-trace", cl::Hidden, cl::init(false));
 static const bool EnableAATrace = false;
 #endif
 
+enum class AARelaxMode { Precise, All, Must, Partial, No };
+
+static cl::opt<AARelaxMode> AARelaxation(
+    "aa-relaxation", cl::Hidden, cl::init(AARelaxMode::Precise),
+    cl::desc("Relax the results of alias analysis"),
+    cl::values(clEnumValN(AARelaxMode::Precise, "precise", "No relaxation"),
+               clEnumValN(AARelaxMode::All, "all", "Relax all results"),
+               clEnumValN(AARelaxMode::Partial, "partial",
+                          "Relax partial-alias results"),
+               clEnumValN(AARelaxMode::Must, "must",
+                          "Relax must-alias results"),
+               clEnumValN(AARelaxMode::No, "no", "Relax no alias results")));
+
+namespace {
+AliasResult relaxAliasResult(AliasResult Result) {
+
+  if (Result == AliasResult::MayAlias)
+    // We can't relax MayAlias
+    return Result;
+
+  switch (AARelaxation) {
+  case AARelaxMode::Precise:
+    // We don't want to relax
+    return Result;
+  case AARelaxMode::All:
+    // We relax everything
+    return AliasResult::MayAlias;
+  case AARelaxMode::Must:
+    // We only relax MustAlias
+    if (Result == AliasResult::MustAlias)
+      return AliasResult::MayAlias;
+    break;
+  case AARelaxMode::Partial:
+    // We only relax PartialAlias
+    if (Result == AliasResult::PartialAlias)
+      return AliasResult::MayAlias;
+    break;
+  case AARelaxMode::No:
+    // We only relax NoAlias
+    if (Result == AliasResult::NoAlias)
+      return AliasResult::MayAlias;
+    break;
+  }
+
+  return Result;
+}
+
+} // namespace
+
 AAResults::AAResults(AAResults &&Arg)
     : TLI(Arg.TLI), AAs(std::move(Arg.AAs)), AADeps(std::move(Arg.AADeps)) {}
 
@@ -143,7 +192,7 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
     else
       ++NumMayAlias;
   }
-  return Result;
+  return relaxAliasResult(Result);
 }
 
 ModRefInfo AAResults::getModRefInfoMask(const MemoryLocation &Loc,
