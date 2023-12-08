@@ -216,8 +216,9 @@ static cl::opt<std::string> AliasResultFile("arfile", cl::init(""));
 STATISTIC(NumberOfAACacheHits, "Number of AA cache hits");
 STATISTIC(NumberOfAAQueries, "Number of AA queries");
 
-AliasResult instrumented_alias(const llvm::Value *ptr1, const llvm::Value *ptr2,
-                               AliasResult Result) {
+AliasResult relaxSpecificAliasResult(const llvm::Value *ptr1,
+                                     const llvm::Value *ptr2,
+                                     AliasResult Result) {
   if (Result == AliasResult::MayAlias) {
     return Result;
   }
@@ -225,7 +226,7 @@ AliasResult instrumented_alias(const llvm::Value *ptr1, const llvm::Value *ptr2,
   WeakVH vh1 = findWeakVH(ptr1);
   WeakVH vh2 = findWeakVH(ptr2);
 
-  struct PtrPair pr(vh1, vh2);
+  PtrPair pr(vh1, vh2);
   if (decisionCache.find(pr) != decisionCache.end()) {
     NumberOfAACacheHits++;
     if (decisionCache[pr] == AARelax::Relax) {
@@ -259,7 +260,7 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
   NumberOfAAQueries++;
 
   if (AliasResultFile != "") {
-    return instrumented_alias(LocA.Ptr, LocB.Ptr, Result);
+    return relaxSpecificAliasResult(LocA.Ptr, LocB.Ptr, Result);
   }
 
   if (EnableAATrace) {
