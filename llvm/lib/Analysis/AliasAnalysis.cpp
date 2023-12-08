@@ -42,6 +42,7 @@
 #include "llvm/IR/Instructions.h"
 #include "llvm/IR/Type.h"
 #include "llvm/IR/Value.h"
+#include "llvm/IR/ValueHandle.h"
 #include "llvm/InitializePasses.h"
 #include "llvm/Pass.h"
 #include "llvm/Support/AtomicOrdering.h"
@@ -51,6 +52,7 @@
 #include <cassert>
 #include <functional>
 #include <iterator>
+#include <map>
 
 #define DEBUG_TYPE "aa"
 
@@ -157,6 +159,84 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
   return alias(LocA, LocB, AAQIP, nullptr);
 }
 
+struct PtrPair {
+  const Value *Ptr1;
+  const Value *Ptr2;
+  PtrPair(const Value *Ptr1, const Value *Ptr2) : Ptr1(Ptr1), Ptr2(Ptr2) {}
+  bool operator==(const PtrPair &other) const {
+    return std::tie(Ptr1, Ptr2) == std::tie(other.Ptr1, other.Ptr2);
+  }
+  bool operator<(const PtrPair &other) const {
+    return std::tie(Ptr1, Ptr2) < std::tie(other.Ptr1, other.Ptr2);
+  }
+};
+
+enum class AARelax {
+  Relax,
+  NoRelax,
+};
+
+// Query cache. If the entry is true, return default.
+static std::map<struct PtrPair, AARelax> decisionCache;
+// Map Value pointers to WeakVH pointers
+static std::map<const Value *, WeakVH> value_to_weakvh;
+
+// For a given Pointer, find the pointer to its WeakVH and write it to vh. If it
+// does not exist yet, create it. If it is valid, use the existing one. If it is
+// invalid (i.e. there used to be another value where ptr is now), invalidate
+// the cache and create a new one.
+WeakVH findWeakVH(const Value *const ptr) {
+  WeakVH vh;
+
+  // find or create the weakvh
+  if (value_to_weakvh.find(ptr) != value_to_weakvh.end()) {
+    vh = value_to_weakvh[ptr];
+  } else {
+    vh = WeakVH((Value *)ptr);
+    value_to_weakvh[ptr] = vh;
+  }
+
+  // if the weakvh is invalid, invalidate the cache and create a new one
+  if (!vh) {
+    // invalidate cache
+    for (auto itr = decisionCache.begin(); itr != decisionCache.end();) {
+      if (itr->first.Ptr1 == ptr || itr->first.Ptr2 == ptr) {
+        itr = decisionCache.erase(itr);
+      } else {
+        ++itr;
+      }
+    }
+    vh = WeakVH((Value *)ptr);
+    value_to_weakvh[ptr] = vh;
+  }
+  return vh;
+}
+
+static cl::opt<std::string> AliasResultFile("arfile", cl::init(""));
+STATISTIC(NumberOfAACacheHits, "Number of AA cache hits");
+STATISTIC(NumberOfAAQueries, "Number of AA queries");
+
+AliasResult instrumented_alias(const llvm::Value *ptr1, const llvm::Value *ptr2,
+                               AliasResult Result) {
+  if (Result == AliasResult::MayAlias) {
+    return Result;
+  }
+
+  WeakVH vh1 = findWeakVH(ptr1);
+  WeakVH vh2 = findWeakVH(ptr2);
+
+  struct PtrPair pr(vh1, vh2);
+  if (decisionCache.find(pr) != decisionCache.end()) {
+    NumberOfAACacheHits++;
+    if (decisionCache[pr] == AARelax::Relax) {
+      return AliasResult::MayAlias;
+    }
+    return Result;
+  }
+  decisionCache[pr] = AARelax::NoRelax;
+  return Result;
+}
+
 AliasResult AAResults::alias(const MemoryLocation &LocA,
                              const MemoryLocation &LocB, AAQueryInfo &AAQI,
                              const Instruction *CtxI) {
@@ -176,6 +256,11 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
       break;
   }
   AAQI.Depth--;
+  NumberOfAAQueries++;
+
+  if (AliasResultFile != "") {
+    return instrumented_alias(LocA.Ptr, LocB.Ptr, Result);
+  }
 
   if (EnableAATrace) {
     for (unsigned I = 0; I < AAQI.Depth; ++I)
