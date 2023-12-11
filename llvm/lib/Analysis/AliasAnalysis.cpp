@@ -281,8 +281,8 @@ public:
   }
 };
 
-class AAInstrumentation *getAAInstrumentation() {
-  static class AAInstrumentation AARelaxation(CmdLineAASequence);
+AAInstrumentation *getAAInstrumentation() {
+  static AAInstrumentation AARelaxation(CmdLineAASequence);
   return &AARelaxation;
 }
 
