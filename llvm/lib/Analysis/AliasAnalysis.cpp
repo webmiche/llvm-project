@@ -245,10 +245,10 @@ STATISTIC(NumberOfAAQueries, "Number of AA queries");
 static cl::opt<std::string> CmdLineAASequence("aasequence", cl::init(""));
 
 class AAInstrumentation {
+
 private:
   // The array of indices to be relaxed.
   std::vector<uint64_t> Sequence;
-
   size_t CurrIndex = 0;
 
 public:
@@ -264,7 +264,7 @@ public:
     std::string CurrSeq =
         AASequenceString.substr(AASequenceString.find("-") + 1);
     Sequence.reserve(Len);
-    for (size_t i = 0; i < Len; i++) {
+    for (size_t I = 0; I < Len; I++) {
       Sequence.push_back(stoi(CurrSeq.substr(0, CurrSeq.find("-"))));
       CurrSeq = CurrSeq.substr(CurrSeq.find("-") + 1);
     }
