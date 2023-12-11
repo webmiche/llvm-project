@@ -247,35 +247,33 @@ static cl::opt<std::string> CmdLineAASequence("aasequence", cl::init(""));
 class AAInstrumentation {
 private:
   // The array of indices to be relaxed.
-  uint64_t *Sequence;
-  size_t Len = 0;
+  std::vector<uint64_t> Sequence;
 
   size_t CurrIndex = 0;
 
 public:
   AAInstrumentation(std::string &AASequenceString) {
     if (AASequenceString == "") {
-      Sequence = nullptr;
-      Len = 0;
       return;
     }
-    Len = stoi(AASequenceString.substr(0, AASequenceString.find("-")));
+    uint64_t Len = stoi(AASequenceString.substr(0, AASequenceString.find("-")));
     if (Len == 0) {
       return;
     }
 
     std::string curr_seq =
         AASequenceString.substr(AASequenceString.find("-") + 1);
-    Sequence = (uint64_t *)malloc(sizeof(uint64_t) * Len);
+    Sequence.reserve(Len);
     for (size_t i = 0; i < Len; i++) {
-      Sequence[i] = stoi(curr_seq.substr(0, curr_seq.find("-")));
+      Sequence.push_back(stoi(curr_seq.substr(0, curr_seq.find("-"))));
       curr_seq = curr_seq.substr(curr_seq.find("-") + 1);
     }
-    std::sort(Sequence, Sequence + Len);
+    std::sort(Sequence.begin(), Sequence.end());
   };
 
   bool isAAIndexToRelax(uint64_t index) {
-    if (Len > 0 && Sequence[CurrIndex] == index) {
+    if (Sequence.size() > 0 && Sequence.size() > CurrIndex &&
+        Sequence[CurrIndex] == index) {
       CurrIndex++;
       return true;
     }
