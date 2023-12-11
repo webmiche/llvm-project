@@ -238,12 +238,65 @@ static cl::opt<std::string> AliasResultFile("arfile", cl::init(""));
 STATISTIC(NumberOfAACacheHits, "Number of AA cache hits");
 STATISTIC(NumberOfAAQueries, "Number of AA queries");
 
+// Encodes the sequence of AA results to relax. The sequence is encoded as a
+// sequence of numbers delimited by a "-". The first number n encodes how many
+// numbers will follow. The next n numbers encode indices of AA queries to
+// relax.
+static cl::opt<std::string> CmdLineAASequence("aasequence", cl::init(""));
+
+class AAInstrumentation {
+
+private:
+  // The array of indices to be relaxed.
+  std::vector<uint64_t> Sequence;
+  size_t CurrIndex = 0;
+
+public:
+  AAInstrumentation(std::string &AASequenceString) {
+    if (AASequenceString == "") {
+      return;
+    }
+    uint64_t Len = stoi(AASequenceString.substr(0, AASequenceString.find("-")));
+    if (Len == 0) {
+      return;
+    }
+
+    std::string CurrSeq =
+        AASequenceString.substr(AASequenceString.find("-") + 1);
+    Sequence.reserve(Len);
+    for (size_t I = 0; I < Len; I++) {
+      Sequence.push_back(stoi(CurrSeq.substr(0, CurrSeq.find("-"))));
+      CurrSeq = CurrSeq.substr(CurrSeq.find("-") + 1);
+    }
+    std::sort(Sequence.begin(), Sequence.end());
+  };
+
+  bool isAAIndexToRelax(uint64_t Index) {
+    if (Sequence.size() > 0 && Sequence.size() > CurrIndex &&
+        Sequence[CurrIndex] == Index) {
+      CurrIndex++;
+      return true;
+    }
+    return false;
+  }
+};
+
+AAInstrumentation *getAAInstrumentation() {
+  static AAInstrumentation AARelaxation(CmdLineAASequence);
+  return &AARelaxation;
+}
+
+// Count the number of AA queries that have occured so far.
+static int CurrAAIndex = 0;
+
 AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
                                      const llvm::Value *Ptr2,
                                      AliasResult Result) {
   if (Result == AliasResult::MayAlias) {
     return Result;
   }
+
+  auto *AAInstrumentation = getAAInstrumentation();
 
   WeakVH VH1 = AACache.findWeakVH(Ptr1);
   WeakVH VH2 = AACache.findWeakVH(Ptr2);
@@ -256,6 +309,13 @@ AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
     }
     return Result;
   }
+
+  if (AAInstrumentation->isAAIndexToRelax(CurrAAIndex)) {
+    CurrAAIndex++;
+    return AACache.updateCacheAndReturn(Pr, AARelax::Relax,
+                                        AliasResult::MayAlias);
+  }
+  CurrAAIndex++;
   return AACache.updateCacheAndReturn(Pr, AARelax::NoRelax, Result);
 }
 
@@ -280,7 +340,7 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
   AAQI.Depth--;
   NumberOfAAQueries++;
 
-  if (AliasResultFile != "") {
+  if ((AliasResultFile != "") | (CmdLineAASequence != "")) {
     return relaxSpecificAliasResult(LocA.Ptr, LocB.Ptr, Result);
   }
 
