@@ -212,6 +212,18 @@ WeakVH findWeakVH(const Value *const ptr) {
   return vh;
 }
 
+bool isPairCached(PtrPair &pr) {
+  return decisionCache.find(pr) != decisionCache.end();
+}
+
+AliasResult updateCacheAndReturn(PtrPair &pr, AARelax decision,
+                                 AliasResult result) {
+  decisionCache[pr] = decision;
+  return result;
+}
+
+bool isPairRelaxed(PtrPair &pr) { return decisionCache[pr] == AARelax::Relax; }
+
 static cl::opt<std::string> AliasResultFile("arfile", cl::init(""));
 STATISTIC(NumberOfAACacheHits, "Number of AA cache hits");
 STATISTIC(NumberOfAAQueries, "Number of AA queries");
@@ -227,15 +239,14 @@ AliasResult relaxSpecificAliasResult(const llvm::Value *ptr1,
   WeakVH vh2 = findWeakVH(ptr2);
 
   PtrPair pr(vh1, vh2);
-  if (decisionCache.find(pr) != decisionCache.end()) {
+  if (isPairCached(pr)) {
     NumberOfAACacheHits++;
-    if (decisionCache[pr] == AARelax::Relax) {
+    if (isPairRelaxed(pr)) {
       return AliasResult::MayAlias;
     }
     return Result;
   }
-  decisionCache[pr] = AARelax::NoRelax;
-  return Result;
+  return updateCacheAndReturn(pr, AARelax::NoRelax, Result);
 }
 
 AliasResult AAResults::alias(const MemoryLocation &LocA,
