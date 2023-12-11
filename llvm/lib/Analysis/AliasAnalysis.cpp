@@ -176,77 +176,89 @@ enum class AARelax {
   NoRelax,
 };
 
-// Query cache. If the entry is true, return default.
-static std::map<struct PtrPair, AARelax> decisionCache;
-// Map Value pointers to WeakVH pointers
-static std::map<const Value *, WeakVH> value_to_weakvh;
+class AADecisionCache {
 
-// For a given Pointer, find the pointer to its WeakVH and write it to vh. If it
-// does not exist yet, create it. If it is valid, use the existing one. If it is
-// invalid (i.e. there used to be another value where ptr is now), invalidate
-// the cache and create a new one.
-WeakVH findWeakVH(const Value *const ptr) {
-  WeakVH vh;
-
-  // find or create the weakvh
-  if (value_to_weakvh.find(ptr) != value_to_weakvh.end()) {
-    vh = value_to_weakvh[ptr];
-  } else {
-    vh = WeakVH((Value *)ptr);
-    value_to_weakvh[ptr] = vh;
+public:
+  AADecisionCache() {
+    DecisionCache = std::map<struct PtrPair, AARelax>();
+    ValueToWeakVH = std::map<const Value *, WeakVH>();
   }
+  // Query cache. If the entry is true, return default.
+  static std::map<struct PtrPair, AARelax> DecisionCache;
+  // Map Value pointers to WeakVH pointers
+  static std::map<const Value *, WeakVH> ValueToWeakVH;
 
-  // if the weakvh is invalid, invalidate the cache and create a new one
-  if (!vh) {
-    // invalidate cache
-    for (auto itr = decisionCache.begin(); itr != decisionCache.end();) {
-      if (itr->first.Ptr1 == ptr || itr->first.Ptr2 == ptr) {
-        itr = decisionCache.erase(itr);
-      } else {
-        ++itr;
-      }
+  // For a given Pointer, find the pointer to its WeakVH and write it to vh. If
+  // it does not exist yet, create it. If it is valid, use the existing one. If
+  // it is invalid (i.e. there used to be another value where ptr is now),
+  // invalidate the cache and create a new one.
+  WeakVH findWeakVH(const Value *const Ptr) {
+    WeakVH VH;
+
+    // find or create the weakvh
+    if (ValueToWeakVH.find(Ptr) != ValueToWeakVH.end()) {
+      VH = ValueToWeakVH[Ptr];
+    } else {
+      VH = WeakVH((Value *)Ptr);
+      ValueToWeakVH[Ptr] = VH;
     }
-    vh = WeakVH((Value *)ptr);
-    value_to_weakvh[ptr] = vh;
+
+    // if the weakvh is invalid, invalidate the cache and create a new one
+    if (!VH) {
+      // invalidate cache
+      for (auto Itr = DecisionCache.begin(); Itr != DecisionCache.end();) {
+        if (Itr->first.Ptr1 == Ptr || Itr->first.Ptr2 == Ptr) {
+          Itr = DecisionCache.erase(Itr);
+        } else {
+          ++Itr;
+        }
+      }
+      VH = WeakVH((Value *)Ptr);
+      ValueToWeakVH[Ptr] = VH;
+    }
+    return VH;
   }
-  return vh;
-}
 
-bool isPairCached(PtrPair &pr) {
-  return decisionCache.find(pr) != decisionCache.end();
-}
+  bool isPairCached(PtrPair &Pr) {
+    return DecisionCache.find(Pr) != DecisionCache.end();
+  }
 
-AliasResult updateCacheAndReturn(PtrPair &pr, AARelax decision,
-                                 AliasResult result) {
-  decisionCache[pr] = decision;
-  return result;
-}
+  AliasResult updateCacheAndReturn(PtrPair &Pr, AARelax Decision,
+                                   AliasResult Result) {
+    DecisionCache[Pr] = Decision;
+    return Result;
+  }
 
-bool isPairRelaxed(PtrPair &pr) { return decisionCache[pr] == AARelax::Relax; }
+  bool isPairRelaxed(PtrPair &Pr) {
+    return DecisionCache[Pr] == AARelax::Relax;
+  }
+};
+
+static class AADecisionCache Cache = AADecisionCache();
 
 static cl::opt<std::string> AliasResultFile("arfile", cl::init(""));
 STATISTIC(NumberOfAACacheHits, "Number of AA cache hits");
 STATISTIC(NumberOfAAQueries, "Number of AA queries");
 
-AliasResult relaxSpecificAliasResult(const llvm::Value *ptr1,
-                                     const llvm::Value *ptr2,
+AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
+                                     const llvm::Value *Ptr2,
                                      AliasResult Result) {
   if (Result == AliasResult::MayAlias) {
     return Result;
   }
 
-  WeakVH vh1 = findWeakVH(ptr1);
-  WeakVH vh2 = findWeakVH(ptr2);
+  WeakVH VH1 = Cache.findWeakVH(Ptr1);
+  WeakVH VH2 = Cache.findWeakVH(Ptr2);
 
-  PtrPair pr(vh1, vh2);
-  if (isPairCached(pr)) {
+  PtrPair Pr(VH1, VH2);
+  if (Cache.isPairCached(Pr)) {
     NumberOfAACacheHits++;
-    if (isPairRelaxed(pr)) {
+    if (Cache.isPairRelaxed(Pr)) {
       return AliasResult::MayAlias;
     }
     return Result;
   }
-  return updateCacheAndReturn(pr, AARelax::NoRelax, Result);
+  return Cache.updateCacheAndReturn(Pr, AARelax::NoRelax, Result);
 }
 
 AliasResult AAResults::alias(const MemoryLocation &LocA,
