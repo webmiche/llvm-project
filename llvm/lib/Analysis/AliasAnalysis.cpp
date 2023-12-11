@@ -58,8 +58,8 @@
 
 using namespace llvm;
 
-STATISTIC(NumNoAlias,   "Number of NoAlias results");
-STATISTIC(NumMayAlias,  "Number of MayAlias results");
+STATISTIC(NumNoAlias, "Number of NoAlias results");
+STATISTIC(NumMayAlias, "Number of MayAlias results");
 STATISTIC(NumMustAlias, "Number of MustAlias results");
 
 namespace llvm {
@@ -163,11 +163,11 @@ struct PtrPair {
   const Value *Ptr1;
   const Value *Ptr2;
   PtrPair(const Value *Ptr1, const Value *Ptr2) : Ptr1(Ptr1), Ptr2(Ptr2) {}
-  bool operator==(const PtrPair &other) const {
-    return std::tie(Ptr1, Ptr2) == std::tie(other.Ptr1, other.Ptr2);
+  bool operator==(const PtrPair &Other) const {
+    return std::tie(Ptr1, Ptr2) == std::tie(Other.Ptr1, Other.Ptr2);
   }
-  bool operator<(const PtrPair &other) const {
-    return std::tie(Ptr1, Ptr2) < std::tie(other.Ptr1, other.Ptr2);
+  bool operator<(const PtrPair &Other) const {
+    return std::tie(Ptr1, Ptr2) < std::tie(Other.Ptr1, Other.Ptr2);
   }
 };
 
@@ -177,16 +177,14 @@ enum class AARelax {
 };
 
 class AADecisionCache {
+private:
+  // Query cache. If the entry is true, return default.
+  std::map<struct PtrPair, AARelax> DecisionCache;
+  // Map Value pointers to WeakVH pointers
+  std::map<const Value *, WeakVH> ValueToWeakVH;
 
 public:
-  AADecisionCache() {
-    DecisionCache = std::map<struct PtrPair, AARelax>();
-    ValueToWeakVH = std::map<const Value *, WeakVH>();
-  }
-  // Query cache. If the entry is true, return default.
-  static std::map<struct PtrPair, AARelax> DecisionCache;
-  // Map Value pointers to WeakVH pointers
-  static std::map<const Value *, WeakVH> ValueToWeakVH;
+  AADecisionCache() = default;
 
   // For a given Pointer, find the pointer to its WeakVH and write it to vh. If
   // it does not exist yet, create it. If it is valid, use the existing one. If
@@ -199,7 +197,7 @@ public:
     if (ValueToWeakVH.find(Ptr) != ValueToWeakVH.end()) {
       VH = ValueToWeakVH[Ptr];
     } else {
-      VH = WeakVH((Value *)Ptr);
+      VH = WeakVH(const_cast<Value *>(Ptr));
       ValueToWeakVH[Ptr] = VH;
     }
 
@@ -213,7 +211,7 @@ public:
           ++Itr;
         }
       }
-      VH = WeakVH((Value *)Ptr);
+      VH = WeakVH(const_cast<Value *>(Ptr));
       ValueToWeakVH[Ptr] = VH;
     }
     return VH;
@@ -234,7 +232,7 @@ public:
   }
 };
 
-static class AADecisionCache Cache = AADecisionCache();
+static AADecisionCache AACache;
 
 static cl::opt<std::string> AliasResultFile("arfile", cl::init(""));
 STATISTIC(NumberOfAACacheHits, "Number of AA cache hits");
@@ -247,18 +245,18 @@ AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
     return Result;
   }
 
-  WeakVH VH1 = Cache.findWeakVH(Ptr1);
-  WeakVH VH2 = Cache.findWeakVH(Ptr2);
+  WeakVH VH1 = AACache.findWeakVH(Ptr1);
+  WeakVH VH2 = AACache.findWeakVH(Ptr2);
 
   PtrPair Pr(VH1, VH2);
-  if (Cache.isPairCached(Pr)) {
+  if (AACache.isPairCached(Pr)) {
     NumberOfAACacheHits++;
-    if (Cache.isPairRelaxed(Pr)) {
+    if (AACache.isPairRelaxed(Pr)) {
       return AliasResult::MayAlias;
     }
     return Result;
   }
-  return Cache.updateCacheAndReturn(Pr, AARelax::NoRelax, Result);
+  return AACache.updateCacheAndReturn(Pr, AARelax::NoRelax, Result);
 }
 
 AliasResult AAResults::alias(const MemoryLocation &LocA,
@@ -269,8 +267,8 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
   if (EnableAATrace) {
     for (unsigned I = 0; I < AAQI.Depth; ++I)
       dbgs() << "  ";
-    dbgs() << "Start " << *LocA.Ptr << " @ " << LocA.Size << ", "
-           << *LocB.Ptr << " @ " << LocB.Size << "\n";
+    dbgs() << "Start " << *LocA.Ptr << " @ " << LocA.Size << ", " << *LocB.Ptr
+           << " @ " << LocB.Size << "\n";
   }
 
   AAQI.Depth++;
@@ -289,8 +287,8 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
   if (EnableAATrace) {
     for (unsigned I = 0; I < AAQI.Depth; ++I)
       dbgs() << "  ";
-    dbgs() << "End " << *LocA.Ptr << " @ " << LocA.Size << ", "
-           << *LocB.Ptr << " @ " << LocB.Size << " = " << Result << "\n";
+    dbgs() << "End " << *LocA.Ptr << " @ " << LocA.Size << ", " << *LocB.Ptr
+           << " @ " << LocB.Size << " = " << Result << "\n";
   }
 
   if (AAQI.Depth == 0) {
@@ -742,7 +740,8 @@ ModRefInfo AAResults::getModRefInfo(const AtomicCmpXchgInst *CX,
 ModRefInfo AAResults::getModRefInfo(const AtomicRMWInst *RMW,
                                     const MemoryLocation &Loc,
                                     AAQueryInfo &AAQI) {
-  // Acquire/Release atomicrmw has properties that matter for arbitrary addresses.
+  // Acquire/Release atomicrmw has properties that matter for arbitrary
+  // addresses.
   if (isStrongerThanMonotonic(RMW->getOrdering()))
     return ModRefInfo::ModRef;
 
@@ -804,8 +803,7 @@ ModRefInfo AAResults::getModRefInfo(const Instruction *I,
 /// with a smarter AA in place, this test is just wasting compile time.
 ModRefInfo AAResults::callCapturesBefore(const Instruction *I,
                                          const MemoryLocation &MemLoc,
-                                         DominatorTree *DT,
-                                         AAQueryInfo &AAQI) {
+                                         DominatorTree *DT, AAQueryInfo &AAQI) {
   if (!DT)
     return ModRefInfo::ModRef;
 
@@ -876,7 +874,7 @@ bool AAResults::canInstructionRangeModRef(const Instruction &I1,
          "Instructions not in same basic block!");
   BasicBlock::const_iterator I = I1.getIterator();
   BasicBlock::const_iterator E = I2.getIterator();
-  ++E;  // Convert from inclusive to exclusive range.
+  ++E; // Convert from inclusive to exclusive range.
 
   for (; I != E; ++I) // Check every instruction in range
     if (isModOrRefSet(getModRefInfo(&*I, Loc) & Mode))
