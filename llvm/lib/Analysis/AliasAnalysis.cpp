@@ -250,6 +250,8 @@ private:
   uint64_t *Sequence;
   size_t Len = 0;
 
+  size_t CurrIndex = 0;
+
 public:
   AAInstrumentation(std::string &AASequenceString) {
     if (AASequenceString == "") {
@@ -269,13 +271,13 @@ public:
       Sequence[i] = stoi(curr_seq.substr(0, curr_seq.find("-")));
       curr_seq = curr_seq.substr(curr_seq.find("-") + 1);
     }
+    std::sort(Sequence, Sequence + Len);
   };
 
   bool isAAIndexToRelax(uint64_t index) {
-    for (size_t i = 0; i < Len; i++) {
-      if (Sequence[i] == index) {
-        return true;
-      }
+    if (Len > 0 && Sequence[CurrIndex] == index) {
+      CurrIndex++;
+      return true;
     }
     return false;
   }
