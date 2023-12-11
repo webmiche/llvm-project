@@ -261,19 +261,19 @@ public:
       return;
     }
 
-    std::string curr_seq =
+    std::string CurrSeq =
         AASequenceString.substr(AASequenceString.find("-") + 1);
     Sequence.reserve(Len);
     for (size_t i = 0; i < Len; i++) {
-      Sequence.push_back(stoi(curr_seq.substr(0, curr_seq.find("-"))));
-      curr_seq = curr_seq.substr(curr_seq.find("-") + 1);
+      Sequence.push_back(stoi(CurrSeq.substr(0, CurrSeq.find("-"))));
+      CurrSeq = CurrSeq.substr(CurrSeq.find("-") + 1);
     }
     std::sort(Sequence.begin(), Sequence.end());
   };
 
-  bool isAAIndexToRelax(uint64_t index) {
+  bool isAAIndexToRelax(uint64_t Index) {
     if (Sequence.size() > 0 && Sequence.size() > CurrIndex &&
-        Sequence[CurrIndex] == index) {
+        Sequence[CurrIndex] == Index) {
       CurrIndex++;
       return true;
     }
@@ -287,7 +287,7 @@ AAInstrumentation *getAAInstrumentation() {
 }
 
 // Count the number of AA queries that have occured so far.
-static int curr_aa_index = 0;
+static int CurrAAIndex = 0;
 
 AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
                                      const llvm::Value *Ptr2,
@@ -310,12 +310,12 @@ AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
     return Result;
   }
 
-  if (AAInstrumentation->isAAIndexToRelax(curr_aa_index)) {
-    curr_aa_index++;
+  if (AAInstrumentation->isAAIndexToRelax(CurrAAIndex)) {
+    CurrAAIndex++;
     return AACache.updateCacheAndReturn(Pr, AARelax::Relax,
                                         AliasResult::MayAlias);
   }
-  curr_aa_index++;
+  CurrAAIndex++;
   return AACache.updateCacheAndReturn(Pr, AARelax::NoRelax, Result);
 }
 
