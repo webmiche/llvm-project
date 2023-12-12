@@ -53,6 +53,7 @@
 #include <functional>
 #include <iterator>
 #include <map>
+#include <sstream>
 
 #define DEBUG_TYPE "aa"
 
@@ -264,12 +265,19 @@ public:
     std::string CurrSeq =
         AASequenceString.substr(AASequenceString.find("-") + 1);
     Sequence.reserve(Len);
-    for (size_t I = 0; I < Len; I++) {
-      Sequence.push_back(stoi(CurrSeq.substr(0, CurrSeq.find("-"))));
-      CurrSeq = CurrSeq.substr(CurrSeq.find("-") + 1);
-    }
+    Sequence = splitString(CurrSeq);
     std::sort(Sequence.begin(), Sequence.end());
   };
+
+  std::vector<uint64_t> splitString(std::string SequenceString) {
+    std::vector<uint64_t> Result;
+    std::stringstream SS(SequenceString);
+    std::string Item;
+    while (std::getline(SS, Item, '-')) {
+      Result.push_back(stoi(Item));
+    }
+    return Result;
+  }
 
   bool isAAIndexToRelax(uint64_t Index) {
     if (Sequence.size() > 0 && Sequence.size() > CurrIndex &&
