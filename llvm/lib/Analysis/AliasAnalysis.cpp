@@ -292,20 +292,20 @@ public:
 };
 
 AAInstrumentation *getAAInstrumentation() {
-  std::string aa_string;
+  std::string AAString;
   if (AliasResultFile != "") {
-    std::ifstream f(AliasResultFile);
-    if (f) {
-      std::ostringstream ss;
-      ss << f.rdbuf();
-      aa_string = ss.str();
+    std::ifstream F(AliasResultFile);
+    if (F) {
+      std::ostringstream SS;
+      SS << F.rdbuf();
+      AAString = SS.str();
     } else {
       assert("Could not open file" && false);
     }
   } else {
-    aa_string = CmdLineAASequence;
+    AAString = CmdLineAASequence;
   }
-  static AAInstrumentation AARelaxation(aa_string);
+  static AAInstrumentation AARelaxation(AAString);
   return &AARelaxation;
 }
 
