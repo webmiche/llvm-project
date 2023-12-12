@@ -459,8 +459,8 @@ ModRefInfo AAResults::getModRefInfo(const CallBase *Call,
   ModRefInfo OtherMR = ME.getWithoutLoc(IRMemLocation::ArgMem).getModRef();
   if ((ArgMR | OtherMR) != OtherMR) {
     // Refine the modref info for argument memory. We only bother to do this
-    // if ArgMR is not a subset of OtherMR, otherwise this won't have an
-    // impact on the final result.
+    // if ArgMR is not a subset of OtherMR, otherwise this won't have an impact
+    // on the final result.
     ModRefInfo AllArgsMask = ModRefInfo::NoModRef;
     for (const auto &I : llvm::enumerate(Call->args())) {
       const Value *Arg = I.value();
