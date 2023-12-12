@@ -262,17 +262,17 @@ public:
       return;
     }
 
-    std::string CurrSeq =
-        AASequenceString.substr(AASequenceString.find("-") + 1);
-    Sequence.reserve(Len);
-    Sequence = splitString(CurrSeq);
+    Sequence = splitString(AASequenceString, Len);
     std::sort(Sequence.begin(), Sequence.end());
   };
 
-  std::vector<uint64_t> splitString(std::string SequenceString) {
+  std::vector<uint64_t> splitString(std::string &SequenceString, uint64_t Len) {
     std::vector<uint64_t> Result;
-    std::stringstream SS(SequenceString);
     std::string Item;
+    Result.reserve(Len);
+
+    std::string CurrSeq = SequenceString.substr(SequenceString.find("-") + 1);
+    std::stringstream SS(CurrSeq);
     while (std::getline(SS, Item, '-')) {
       Result.push_back(stoi(Item));
     }
