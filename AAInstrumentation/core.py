@@ -1,10 +1,3 @@
-from __future__ import annotations
-from subprocess import Popen, PIPE, run, DEVNULL
-import os
-import argparse
-from pathlib import Path, PosixPath
-from dataclasses import dataclass
-
 """
     This file contains the core functionality of the AAInstrumentation tool.
     Specific kinds of instrumentation will inherit from AAInstrumentationDriver
@@ -12,46 +5,38 @@ from dataclasses import dataclass
 """
 
 
+from __future__ import annotations
+from subprocess import Popen, PIPE, run, DEVNULL
+import os
+import argparse
+from pathlib import Path, PosixPath
+from dataclasses import dataclass
+import sys
+
+
 @dataclass
 class AAInstrumentationDriver:
-
-    """
-    This class is the base class for all instrumentation drivers. It
+    """This class is the base class for all instrumentation drivers. It
     contains the common functionality, like generating the baseline,
     evaluating results, run a single instrumented compilation, etc. In
     particular, this contains class variables for all the paths that have to
     be specified to run the instrumentation on different machines and
     benchmarks.
+
+    Attributes:
+        instr_path: The path to the instrumented opt, clang, and llc binaries.
+        exec_root: The directory where the instrumentation will be run.
+        specbuild_dir: The path to the specbuilder.
+        benchmark: The spec benchmark that is currently being instrumented.
+        initial_dir: The directory where the initial .bc files are located.
+        opt_flag: The optimization level to be used on all compilations.
     """
 
-    """
-    The path to the instrumented opt, clang, and llc binaries.
-    """
     instr_path: Path
-
-    """
-    The directory where the instrumentation will be run.
-    """
     exec_root: Path
-
-    """
-    The path to the specbuilder.
-    """
     specbuild_dir: Path
-
-    """
-    The spec benchmark that is currently being instrumented.
-    """
     benchmark: Path
-
-    """
-    The directory where the initial .bc files are located.
-    """
     initial_dir: Path
-
-    """
-    The optimization level to be used on all compilations.
-    """
     opt_flag: str
 
     def generate_baseline(self):
@@ -91,7 +76,6 @@ if __name__ == "__main__":
         type=str,
         nargs="?",
         help="path to instrumentation directory with llc, clang and opt",
-        default="/home/michel/ETH/AST/llvm-project/build_instr/bin",
     )
 
     arg_parser.add_argument(
@@ -99,7 +83,6 @@ if __name__ == "__main__":
         type=str,
         nargs="?",
         help="root for execution",
-        default="/home/michel/ETH/AST/llvm-project/",
     )
 
     arg_parser.add_argument(
@@ -107,7 +90,6 @@ if __name__ == "__main__":
         type=str,
         nargs="?",
         help="path to specbuilder",
-        default="/home/michel/ETH/AST/specbuilder/",
     )
 
     arg_parser.add_argument(
@@ -118,12 +100,14 @@ if __name__ == "__main__":
         default="605",
     )
 
-    args = arg_parser.parse_args()
+    with open("AAInstrumentation/config.txt", "r") as config_file:
+        args = arg_parser.parse_args(config_file.read().splitlines() + sys.argv[1:])
     instr_path = Path(args.instr_path)
     exec_root = Path(args.exec_root)
     specbuild_dir = Path(args.specbuild_dir)
     benchmark = Path(args.benchmark)
     initial_dir = Path("naive_start/")
+    print(args)
 
     AAInstrumentationDriver(
         instr_path,
