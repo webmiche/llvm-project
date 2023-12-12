@@ -257,17 +257,17 @@ public:
     if (AASequenceString == "") {
       return;
     }
-    uint64_t Len = stoi(AASequenceString.substr(0, AASequenceString.find("-")));
-    if (Len == 0) {
-      return;
-    }
 
-    Sequence = splitString(AASequenceString, Len);
+    Sequence = parseString(AASequenceString);
     std::sort(Sequence.begin(), Sequence.end());
   };
 
-  std::vector<uint64_t> splitString(std::string &SequenceString, uint64_t Len) {
+  std::vector<uint64_t> parseString(std::string &SequenceString) {
+    uint64_t Len = stoi(SequenceString.substr(0, SequenceString.find("-")));
     std::vector<uint64_t> Result;
+    if (Len == 0) {
+      return Result;
+    }
     std::string Item;
     Result.reserve(Len);
 
@@ -445,11 +445,11 @@ ModRefInfo AAResults::getModRefInfo(const CallBase *Call,
       return ModRefInfo::NoModRef;
   }
 
-  // Try to refine the mod-ref info further using other API entry points to the
-  // aggregate set of AA results.
+  // Try to refine the mod-ref info further using other API entry points to
+  // the aggregate set of AA results.
 
-  // We can completely ignore inaccessible memory here, because MemoryLocations
-  // can only reference accessible memory.
+  // We can completely ignore inaccessible memory here, because
+  // MemoryLocations can only reference accessible memory.
   auto ME = getMemoryEffects(Call, AAQI)
                 .getWithoutLoc(IRMemLocation::InaccessibleMem);
   if (ME.doesNotAccessMemory())
@@ -459,8 +459,8 @@ ModRefInfo AAResults::getModRefInfo(const CallBase *Call,
   ModRefInfo OtherMR = ME.getWithoutLoc(IRMemLocation::ArgMem).getModRef();
   if ((ArgMR | OtherMR) != OtherMR) {
     // Refine the modref info for argument memory. We only bother to do this
-    // if ArgMR is not a subset of OtherMR, otherwise this won't have an impact
-    // on the final result.
+    // if ArgMR is not a subset of OtherMR, otherwise this won't have an
+    // impact on the final result.
     ModRefInfo AllArgsMask = ModRefInfo::NoModRef;
     for (const auto &I : llvm::enumerate(Call->args())) {
       const Value *Arg = I.value();
@@ -478,8 +478,8 @@ ModRefInfo AAResults::getModRefInfo(const CallBase *Call,
   Result &= ArgMR | OtherMR;
 
   // Apply the ModRef mask. This ensures that if Loc is a constant memory
-  // location, we take into account the fact that the call definitely could not
-  // modify the memory location.
+  // location, we take into account the fact that the call definitely could
+  // not modify the memory location.
   if (!isNoModRef(Result))
     Result &= getModRefInfoMask(Loc);
 
@@ -498,8 +498,8 @@ ModRefInfo AAResults::getModRefInfo(const CallBase *Call1,
       return ModRefInfo::NoModRef;
   }
 
-  // Try to refine the mod-ref info further using other API entry points to the
-  // aggregate set of AA results.
+  // Try to refine the mod-ref info further using other API entry points to
+  // the aggregate set of AA results.
 
   // If Call1 or Call2 are readnone, they don't interact.
   auto Call1B = getMemoryEffects(Call1, AAQI);
@@ -560,8 +560,9 @@ ModRefInfo AAResults::getModRefInfo(const CallBase *Call1,
     return R;
   }
 
-  // If Call1 only accesses memory through arguments, check if Call2 references
-  // any of the memory referenced by Call1's arguments. If not, return NoModRef.
+  // If Call1 only accesses memory through arguments, check if Call2
+  // references any of the memory referenced by Call1's arguments. If not,
+  // return NoModRef.
   if (Call1B.onlyAccessesArgPointees()) {
     if (!Call1B.doesAccessArgPointees())
       return ModRefInfo::NoModRef;
@@ -790,7 +791,8 @@ ModRefInfo AAResults::getModRefInfo(const CatchReturnInst *CatchRet,
 ModRefInfo AAResults::getModRefInfo(const AtomicCmpXchgInst *CX,
                                     const MemoryLocation &Loc,
                                     AAQueryInfo &AAQI) {
-  // Acquire/Release cmpxchg has properties that matter for arbitrary addresses.
+  // Acquire/Release cmpxchg has properties that matter for arbitrary
+  // addresses.
   if (isStrongerThanMonotonic(CX->getSuccessOrdering()))
     return ModRefInfo::ModRef;
 
@@ -815,8 +817,8 @@ ModRefInfo AAResults::getModRefInfo(const AtomicRMWInst *RMW,
 
   if (Loc.Ptr) {
     AliasResult AR = alias(MemoryLocation::get(RMW), Loc, AAQI, RMW);
-    // If the atomicrmw address does not alias the location, it does not access
-    // it.
+    // If the atomicrmw address does not alias the location, it does not
+    // access it.
     if (AR == AliasResult::NoAlias)
       return ModRefInfo::NoModRef;
   }
@@ -1005,8 +1007,8 @@ bool AAResultsWrapperPass::runOnFunction(Function &F) {
   // AAResults object because in the legacy pass manager, each instance
   // of these will refer to the *same* immutable analyses, registering and
   // unregistering themselves with them. We need to carefully tear down the
-  // previous object first, in this case replacing it with an empty one, before
-  // registering new results.
+  // previous object first, in this case replacing it with an empty one,
+  // before registering new results.
   AAR.reset(
       new AAResults(getAnalysis<TargetLibraryInfoWrapperPass>().getTLI(F)));
 
@@ -1044,8 +1046,8 @@ void AAResultsWrapperPass::getAnalysisUsage(AnalysisUsage &AU) const {
 
   // We also need to mark all the alias analysis passes we will potentially
   // probe in runOnFunction as used here to ensure the legacy pass manager
-  // preserves them. This hard coding of lists of alias analyses is specific to
-  // the legacy pass manager.
+  // preserves them. This hard coding of lists of alias analyses is specific
+  // to the legacy pass manager.
   AU.addUsedIfAvailable<ScopedNoAliasAAWrapperPass>();
   AU.addUsedIfAvailable<TypeBasedAAWrapperPass>();
   AU.addUsedIfAvailable<GlobalsAAWrapperPass>();
@@ -1102,8 +1104,8 @@ bool llvm::isEscapeSource(const Value *V) {
   // The inttoptr case works because isNonEscapingLocalObject considers all
   // means of converting or equating a pointer to an int (ptrtoint, ptr store
   // which could be followed by an integer load, ptr<->int compare) as
-  // escaping, and objects located at well-known addresses via platform-specific
-  // means cannot be considered non-escaping local objects.
+  // escaping, and objects located at well-known addresses via
+  // platform-specific means cannot be considered non-escaping local objects.
   if (isa<IntToPtrInst>(V))
     return true;
 
