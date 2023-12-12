@@ -498,8 +498,8 @@ ModRefInfo AAResults::getModRefInfo(const CallBase *Call1,
       return ModRefInfo::NoModRef;
   }
 
-  // Try to refine the mod-ref info further using other API entry points to
-  // the aggregate set of AA results.
+  // Try to refine the mod-ref info further using other API entry points to the
+  // aggregate set of AA results.
 
   // If Call1 or Call2 are readnone, they don't interact.
   auto Call1B = getMemoryEffects(Call1, AAQI);
