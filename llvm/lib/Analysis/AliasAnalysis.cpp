@@ -53,6 +53,7 @@
 #include <functional>
 #include <iterator>
 #include <map>
+#include <sstream>
 
 #define DEBUG_TYPE "aa"
 
@@ -256,20 +257,27 @@ public:
     if (AASequenceString == "") {
       return;
     }
-    uint64_t Len = stoi(AASequenceString.substr(0, AASequenceString.find("-")));
-    if (Len == 0) {
-      return;
-    }
 
-    std::string CurrSeq =
-        AASequenceString.substr(AASequenceString.find("-") + 1);
-    Sequence.reserve(Len);
-    for (size_t I = 0; I < Len; I++) {
-      Sequence.push_back(stoi(CurrSeq.substr(0, CurrSeq.find("-"))));
-      CurrSeq = CurrSeq.substr(CurrSeq.find("-") + 1);
-    }
-    std::sort(Sequence.begin(), Sequence.end());
+    Sequence = parseString(AASequenceString);
   };
+
+  std::vector<uint64_t> parseString(std::string &SequenceString) {
+    uint64_t Len = stoi(SequenceString.substr(0, SequenceString.find("-")));
+    std::vector<uint64_t> Result;
+    if (Len == 0) {
+      return Result;
+    }
+    std::string Item;
+    Result.reserve(Len);
+
+    std::string CurrSeq = SequenceString.substr(SequenceString.find("-") + 1);
+    std::stringstream SS(CurrSeq);
+    while (std::getline(SS, Item, '-')) {
+      Result.push_back(stoi(Item));
+    }
+    std::sort(Result.begin(), Result.end());
+    return Result;
+  }
 
   bool isAAIndexToRelax(uint64_t Index) {
     if (Sequence.size() > 0 && Sequence.size() > CurrIndex &&
