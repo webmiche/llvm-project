@@ -259,7 +259,6 @@ public:
     }
 
     Sequence = parseString(AASequenceString);
-    std::sort(Sequence.begin(), Sequence.end());
   };
 
   std::vector<uint64_t> parseString(std::string &SequenceString) {
@@ -276,6 +275,7 @@ public:
     while (std::getline(SS, Item, '-')) {
       Result.push_back(stoi(Item));
     }
+    std::sort(Result.begin(), Result.end());
     return Result;
   }
 
