@@ -50,7 +50,9 @@
 #include "llvm/Support/CommandLine.h"
 #include <algorithm>
 #include <cassert>
+#include <fstream>
 #include <functional>
+#include <iostream>
 #include <iterator>
 #include <map>
 #include <sstream>
@@ -290,7 +292,20 @@ public:
 };
 
 AAInstrumentation *getAAInstrumentation() {
-  static AAInstrumentation AARelaxation(CmdLineAASequence);
+  std::string aa_string;
+  if (AliasResultFile != "") {
+    std::ifstream f(AliasResultFile);
+    if (f) {
+      std::ostringstream ss;
+      ss << f.rdbuf();
+      aa_string = ss.str();
+    } else {
+      assert("Could not open file" && false);
+    }
+  } else {
+    aa_string = CmdLineAASequence;
+  }
+  static AAInstrumentation AARelaxation(aa_string);
   return &AARelaxation;
 }
 
