@@ -107,7 +107,6 @@ if __name__ == "__main__":
     specbuild_dir = Path(args.specbuild_dir)
     benchmark = Path(args.benchmark)
     initial_dir = Path("naive_start/")
-    print(args)
 
     AAInstrumentationDriver(
         instr_path,
