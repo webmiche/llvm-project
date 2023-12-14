@@ -1,0 +1,6 @@
+--instr_path
+/home/michel/ETH/AST/llvm-project/build_new_instr/bin
+--exec_root
+/home/michel/ETH/AST/llvm-project/
+--specbuild_dir
+/home/michel/ETH/AST/specbuilder/
