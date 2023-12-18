@@ -308,6 +308,8 @@ AAInstrumentation *getAAInstrumentation() {
   return &AARelaxation;
 }
 
+STATISTIC(NumberOfRelaxableAAQueries, "Number of relaxable AA queries");
+
 // Count the number of AA queries that have occured so far.
 static int CurrAAIndex = 0;
 
@@ -331,6 +333,8 @@ AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
     }
     return Result;
   }
+
+  NumberOfRelaxableAAQueries++;
 
   if (AAInstrumentation->isAAIndexToRelax(CurrAAIndex)) {
     CurrAAIndex++;
