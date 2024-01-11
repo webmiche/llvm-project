@@ -74,17 +74,14 @@ class AAInstrumentationDriver:
         """Get the baseline files."""
 
         files = [
-            Path(os.path.join(dirpath.removeprefix(str(self.initial_dir) + "/"), f))
-            for (dirpath, dirnames, filenames) in os.walk(
-                self.initial_dir.joinpath(self.benchmark)
-            )
-            for f in filenames
+            file.relative_to(self.initial_dir)
+            for file in (self.initial_dir / self.benchmark).rglob("*.bc")
         ]
 
         return files
 
     def measure_outputsize(self, file: Path) -> int:
-        cmd = [str(self.instr_path.joinpath("llvm-size")), str(file)]
+        cmd = [str(self.instr_path / "llvm-size"), str(file)]
         p = run(cmd, stdout=PIPE, stderr=PIPE, text=True)
         if p.stderr != "":
             raise Exception("Error in measuring output size for " + str(file))
@@ -97,7 +94,7 @@ class AAInstrumentationDriver:
         """Assemble the file."""
 
         cmd = [
-            str(self.instr_path.joinpath("llc")),
+            str(self.instr_path / "llc"),
             "-O2",
             str(file_name),
             "-o",
@@ -119,20 +116,26 @@ class AAInstrumentationDriver:
     def run_step_single_func(
         self,
         file_name: Path,
-        index: int,
+        name_prefix: int,
         index_list: list[int],
     ):
-        """Run the step with the given file name."""
+        """Perform one run of the instrumentation.
+
+        Args:
+            file_name: The name of the file to be instrumented.
+            name_prefix: The prefix to be used for the output file.
+            index_list: The list of indices to be instrumented.
+        """
 
         cmd = [
-            str(self.instr_path.joinpath("opt")),
-            str(self.initial_dir.joinpath(file_name)),
+            str(self.instr_path / "opt"),
+            str(self.initial_dir / file_name),
             "-stats",
             "-o",
             str(
-                self.instr_dir.joinpath(
-                    file_name.parent, str(index) + str(file_name.stem) + ".bc"
-                )
+                self.instr_dir
+                / file_name.parent
+                / Path(str(name_prefix) + str(file_name.stem) + ".bc")
             ),
             "-" + self.opt_flag,
             "--aasequence="
@@ -153,8 +156,8 @@ class AAInstrumentationDriver:
         """Get the number of candidates for a given file."""
 
         cmd = [
-            str(self.instr_path.joinpath("opt")),
-            str(self.initial_dir.joinpath(file_name)),
+            str(self.instr_path / "opt"),
+            str(self.initial_dir / file_name),
             "-stats",
             "-" + self.opt_flag,
             "--aasequence=0-",
@@ -166,6 +169,7 @@ class AAInstrumentationDriver:
             cwd=self.exec_root,
             stderr=PIPE,
             text=True,
+            check=True,
         )
         for line in p.stderr.split("\n"):
             if "Number of queries that are not cached and not MayAlias" in line:
@@ -243,5 +247,5 @@ if __name__ == "__main__":
     print(count_per_file)
     for file in files:
         driver.run_step_single_func(file, 0, [1, 2, 3])
-        file_name = initial_dir.joinpath(file)
+        file_name = initial_dir / file
         print(file_name, driver.assemble_and_measure_file(file_name))
