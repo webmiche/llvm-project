@@ -29,6 +29,8 @@ class AAInstrumentationDriver:
         specbuild_dir: The path to the specbuilder.
         benchmark: The spec benchmark that is currently being instrumented.
         initial_dir: The directory where the initial .bc files are located.
+        instr_dir: The directory where all intermediate .bc files will be
+            stored.
         opt_flag: The optimization level to be used on all compilations.
     """
 
@@ -37,6 +39,7 @@ class AAInstrumentationDriver:
     specbuild_dir: Path
     benchmark: Path
     initial_dir: Path
+    instr_dir: Path
     opt_flag: str
 
     def generate_baseline(self):
@@ -66,6 +69,123 @@ class AAInstrumentationDriver:
             stdout=DEVNULL,
             stderr=DEVNULL,
         )
+
+    def get_baseline_files(self) -> list[str]:
+        """Get the baseline files."""
+
+        files = [
+            file.relative_to(self.initial_dir)
+            for file in (self.initial_dir / self.benchmark).rglob("*.bc")
+        ]
+
+        return files
+
+    def measure_outputsize(self, file: Path) -> int:
+        cmd = [str(self.instr_path / "llvm-size"), str(file)]
+        p = run(cmd, stdout=PIPE, stderr=PIPE, text=True)
+        if p.stderr != "":
+            raise Exception("Error in measuring output size for " + str(file))
+        second_line = p.stdout.split("\n")[1]
+        line_list = second_line.split("\t")
+        # The other results are more info on where size is: text, data, bss
+        return int(line_list[0])
+
+    def assemble_file(self, file_name: Path, obj_file_name: Path):
+        """Assemble the file."""
+
+        cmd = [
+            str(self.instr_path / "llc"),
+            "-O2",
+            str(file_name),
+            "-o",
+            str(obj_file_name),
+            "-filetype=obj",
+        ]
+        run(
+            cmd,
+        )
+
+    def assemble_and_measure_file(self, file_name: Path) -> int:
+        """Measure a given file by compiling to an object file."""
+
+        obj_file_name = file_name.with_suffix(".o")
+        self.assemble_file(file_name, obj_file_name)
+
+        return self.measure_outputsize(obj_file_name)
+
+    def run_step_single_func(
+        self,
+        file_name: Path,
+        name_prefix: int,
+        index_list: list[int],
+    ):
+        """Perform one run of the instrumentation.
+
+        Args:
+            file_name: The name of the file to be instrumented.
+            name_prefix: The prefix to be used for the output file.
+            index_list: The list of indices to be instrumented.
+        """
+
+        cmd = [
+            str(self.instr_path / "opt"),
+            str(self.initial_dir / file_name),
+            "-stats",
+            "-o",
+            str(
+                self.instr_dir
+                / file_name.parent
+                / Path(str(name_prefix) + str(file_name.stem) + ".bc")
+            ),
+            "-" + self.opt_flag,
+            "--aasequence="
+            + str(len(index_list))
+            + "-"
+            + "-".join([str(i) for i in index_list]),
+        ]
+        print(" ".join(cmd))
+        p = run(
+            cmd,
+            cwd=self.exec_root,
+            stdout=DEVNULL,
+            stderr=DEVNULL,
+            text=True,
+        )
+
+    def get_candidate_count(self, file_name: Path) -> int:
+        """Get the number of candidates for a given file."""
+
+        cmd = [
+            str(self.instr_path / "opt"),
+            str(self.initial_dir / file_name),
+            "-stats",
+            "-" + self.opt_flag,
+            "--aasequence=0-",
+            "-o",
+            "/dev/null",
+        ]
+        p = run(
+            cmd,
+            cwd=self.exec_root,
+            stderr=PIPE,
+            text=True,
+            check=True,
+        )
+        for line in p.stderr.split("\n"):
+            if "Number of queries that are not cached and not MayAlias" in line:
+                print(line)
+                return int(line.split()[0])
+        raise Exception("Error in getting candidate count for " + str(file_name))
+
+    def get_candidates_per_file(self, files: list[str]) -> dict:
+        """Get the number of relaxation candidates per file."""
+
+        count_per_file = {}
+
+        for file in files:
+            count_per_file[file] = self.get_candidate_count(Path(file))
+
+        return count_per_file
 
 
 if __name__ == "__main__":
@@ -107,12 +227,25 @@ if __name__ == "__main__":
     specbuild_dir = Path(args.specbuild_dir)
     benchmark = Path(args.benchmark)
     initial_dir = Path("naive_start/")
+    instr_dir = Path("aafiles/")
 
-    AAInstrumentationDriver(
+    driver = AAInstrumentationDriver(
         instr_path,
         exec_root,
         specbuild_dir,
         benchmark,
         initial_dir,
+        instr_dir,
         "Oz",
-    ).generate_baseline()
+    )
+    driver.generate_baseline()
+
+    files = driver.get_baseline_files()
+
+    count_per_file = driver.get_candidates_per_file(files)
+
+    print(count_per_file)
+    for file in files:
+        driver.run_step_single_func(file, 0, [1, 2, 3])
+        file_name = initial_dir / file
+        print(file_name, driver.assemble_and_measure_file(file_name))
