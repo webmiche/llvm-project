@@ -67,6 +67,117 @@ class AAInstrumentationDriver:
             stderr=DEVNULL,
         )
 
+    def get_baseline_files(self) -> list[str]:
+        """Get the baseline files."""
+
+        files = [
+            Path(os.path.join(dirpath.removeprefix(str(self.initial_dir) + "/"), f))
+            for (dirpath, dirnames, filenames) in os.walk(
+                self.initial_dir.joinpath(self.benchmark)
+            )
+            for f in filenames
+        ]
+
+        return files
+
+    def measure_outputsize(self, file: Path) -> int:
+        cmd = [str(self.instr_path.joinpath("llvm-size")), str(file)]
+        p = run(cmd, stdout=PIPE, stderr=PIPE, text=True)
+        if p.stderr != "":
+            raise Exception("Error in measuring output size for " + str(file))
+        second_line = p.stdout.split("\n")[1]
+        line_list = second_line.split("\t")
+        # The other results are more info on where size is: text, data, bss
+        return int(line_list[0])
+
+    def assemble_file(self, file_name: Path, obj_file_name: Path):
+        """Assemble the file."""
+
+        cmd = [
+            str(self.instr_path.joinpath("llc")),
+            "-O2",
+            str(file_name),
+            "-o",
+            str(obj_file_name),
+            "-filetype=obj",
+        ]
+        run(
+            cmd,
+        )
+
+    def assemble_and_measure_file(self, file_name: Path) -> int:
+        """Measure a given file by compiling to an object file."""
+
+        obj_file_name = file_name.with_suffix(".o")
+        self.assemble_file(file_name, obj_file_name)
+
+        return self.measure_outputsize(obj_file_name)
+
+    def run_step_single_func(
+        self,
+        file_name: Path,
+        index: int,
+        index_list: list[int],
+    ):
+        """Run the step with the given file name."""
+
+        cmd = [
+            str(self.instr_path.joinpath("opt")),
+            str(self.initial_dir.joinpath(file_name)),
+            "-stats",
+            "-o",
+            str(
+                self.instr_dir.joinpath(
+                    file_name.parent, str(index) + str(file_name.stem) + ".bc"
+                )
+            ),
+            "-" + self.opt_flag,
+            "--aasequence="
+            + str(len(index_list))
+            + "-"
+            + "-".join([str(i) for i in index_list]),
+        ]
+        p = run(
+            cmd,
+            cwd=self.exec_root,
+            stdout=PIPE,
+            text=True,
+        )
+
+    def get_candidate_count(self, file_name: Path) -> int:
+        """Get the number of candidates for a given file."""
+
+        cmd = [
+            str(self.instr_path.joinpath("opt")),
+            str(self.initial_dir.joinpath(file_name)),
+            "-stats",
+            "-" + self.opt_flag,
+            "--aasequence=0-",
+            "-o",
+            "/dev/null",
+        ]
+        p = run(
+            cmd,
+            cwd=self.exec_root,
+            stderr=PIPE,
+            text=True,
+        )
+        for line in p.stderr.split("\n"):
+            if "Number of queries that are not cached and not MayAlias" in line:
+                print(line)
+                return int(line.split()[0])
+        raise Exception("Error in getting candidate count for " + str(file_name))
+
+    def get_candidates_per_file(self, files: list[str]) -> dict:
+        """Get the number of relaxation candidates per file."""
+
+        count_per_file = {}
+
+        for file in files:
+            count_per_file[file] = self.get_candidate_count(Path(file))
+
+        return count_per_file
+
 
 if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser()
@@ -108,11 +219,21 @@ if __name__ == "__main__":
     benchmark = Path(args.benchmark)
     initial_dir = Path("naive_start/")
 
-    AAInstrumentationDriver(
+    driver = AAInstrumentationDriver(
         instr_path,
         exec_root,
         specbuild_dir,
         benchmark,
         initial_dir,
         "Oz",
-    ).generate_baseline()
+    )
+    driver.generate_baseline()
+
+    files = driver.get_baseline_files()
+
+    count_per_file = driver.get_candidates_per_file(files)
+
+    print(count_per_file)
+    for file in files:
+        file_name = initial_dir.joinpath(file)
+        print(file_name, driver.assemble_and_measure_file(file_name))
