@@ -217,7 +217,7 @@ class AAInstrumentationDriver:
             + "-"
             + "-".join([str(i) for i in index_list]),
         ]
-        print(" ".join(cmd))
+        # print(" ".join(cmd))
         p = run(
             cmd,
             cwd=self.exec_root,
@@ -247,7 +247,6 @@ class AAInstrumentationDriver:
         )
         for line in p.stderr.split("\n"):
             if "Number of queries that are not cached and not MayAlias" in line:
-                print(line)
                 return int(line.split()[0])
         raise Exception("Error in getting candidate count for " + str(file_name))
 
