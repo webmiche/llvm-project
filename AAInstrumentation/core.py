@@ -12,6 +12,39 @@ import argparse
 from pathlib import Path, PosixPath
 from dataclasses import dataclass
 import sys
+import shutil
+import hashlib
+
+
+def register_arguments():
+    """Register the arguments for the instrumentation."""
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument(
+        "--instr_path",
+        type=str,
+        nargs="?",
+        help="path to instrumentation directory with llc, clang and opt",
+    )
+    arg_parser.add_argument(
+        "--exec_root",
+        type=str,
+        nargs="?",
+        help="root for execution",
+    )
+    arg_parser.add_argument(
+        "--specbuild_dir",
+        type=str,
+        nargs="?",
+        help="path to specbuilder",
+    )
+    arg_parser.add_argument(
+        "--benchmark",
+        type=str,
+        nargs="?",
+        help="benchmark to run",
+        default="605",
+    )
+    return arg_parser
 
 
 @dataclass
@@ -31,7 +64,10 @@ class AAInstrumentationDriver:
         initial_dir: The directory where the initial .bc files are located.
         instr_dir: The directory where all intermediate .bc files will be
             stored.
+        groundtruth_dir: The directory where the groundtruth .bc files will be
+            stored.
         opt_flag: The optimization level to be used on all compilations.
+        proc_count: The number of processes available.
     """
 
     instr_path: Path
@@ -40,7 +76,9 @@ class AAInstrumentationDriver:
     benchmark: Path
     initial_dir: Path
     instr_dir: Path
+    groundtruth_dir: Path
     opt_flag: str
+    proc_count: int
 
     def generate_baseline(self):
         run(
@@ -79,6 +117,42 @@ class AAInstrumentationDriver:
         ]
 
         return files
+
+    def compile_baseline_file(self, f: Path):
+        os.makedirs(self.exec_root / self.groundtruth_dir / f.parent, exist_ok=True)
+        cmd = [
+            str(self.instr_path / "opt"),
+            "-" + self.opt_flag,
+            "-o",
+            str(self.groundtruth_dir / f),
+            str(self.initial_dir / f),
+        ]
+        run(cmd, cwd=self.exec_root, stdout=DEVNULL)
+        self.assemble_file(
+            self.groundtruth_dir / f,
+            self.groundtruth_dir / f.with_suffix(".o"),
+        )
+
+    def setup_directories(self, required_empty_paths: list[Path]):
+        """Setup the directories for the instrumentation. " """
+        for p in required_empty_paths:
+            if os.path.exists(p):
+                shutil.rmtree(p)
+            os.mkdir(p)
+
+    def get_hash(self, obj_file_name: Path):
+        BUF_SIZE = 65536  # lets read stuff in 64kb chunks!
+        sha1 = hashlib.sha1()
+
+        with open(obj_file_name, "rb") as f:
+            while True:
+                data = f.read(BUF_SIZE)
+                if not data:
+                    break
+                sha1.update(data)
+
+        hash_value = sha1.hexdigest()
+        return hash_value
 
     def measure_outputsize(self, file: Path) -> int:
         cmd = [str(self.instr_path / "llvm-size"), str(file)]
@@ -189,36 +263,7 @@ class AAInstrumentationDriver:
 
 
 if __name__ == "__main__":
-    arg_parser = argparse.ArgumentParser()
-
-    arg_parser.add_argument(
-        "--instr_path",
-        type=str,
-        nargs="?",
-        help="path to instrumentation directory with llc, clang and opt",
-    )
-
-    arg_parser.add_argument(
-        "--exec_root",
-        type=str,
-        nargs="?",
-        help="root for execution",
-    )
-
-    arg_parser.add_argument(
-        "--specbuild_dir",
-        type=str,
-        nargs="?",
-        help="path to specbuilder",
-    )
-
-    arg_parser.add_argument(
-        "--benchmark",
-        type=str,
-        nargs="?",
-        help="benchmark to run",
-        default="605",
-    )
+    arg_parser = register_arguments()
 
     with open("AAInstrumentation/config.txt", "r") as config_file:
         args = arg_parser.parse_args(config_file.read().splitlines() + sys.argv[1:])
@@ -228,6 +273,7 @@ if __name__ == "__main__":
     benchmark = Path(args.benchmark)
     initial_dir = Path("naive_start/")
     instr_dir = Path("aafiles/")
+    groundtruth_dir = Path("groundtruth/")
 
     driver = AAInstrumentationDriver(
         instr_path,
@@ -236,7 +282,9 @@ if __name__ == "__main__":
         benchmark,
         initial_dir,
         instr_dir,
+        groundtruth_dir,
         "Oz",
+        8,
     )
     driver.generate_baseline()
 
