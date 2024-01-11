@@ -369,7 +369,7 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
   NumberOfAAQueries++;
 
   if ((AliasResultFile != "") | (CmdLineAASequence != "")) {
-    return relaxSpecificAliasResult(LocA.Ptr, LocB.Ptr, Result);
+    Result = relaxSpecificAliasResult(LocA.Ptr, LocB.Ptr, Result);
   }
 
   if (EnableAATrace) {
@@ -379,6 +379,7 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
            << " @ " << LocB.Size << " = " << Result << "\n";
   }
 
+  Result = relaxAliasResult(Result);
   if (AAQI.Depth == 0) {
     if (Result == AliasResult::NoAlias)
       ++NumNoAlias;
@@ -387,7 +388,7 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
     else
       ++NumMayAlias;
   }
-  return relaxAliasResult(Result);
+  return Result;
 }
 
 ModRefInfo AAResults::getModRefInfoMask(const MemoryLocation &Loc,
