@@ -29,6 +29,8 @@ class AAInstrumentationDriver:
         specbuild_dir: The path to the specbuilder.
         benchmark: The spec benchmark that is currently being instrumented.
         initial_dir: The directory where the initial .bc files are located.
+        instr_dir: The directory where all intermediate .bc files will be
+            stored.
         opt_flag: The optimization level to be used on all compilations.
     """
 
@@ -37,6 +39,7 @@ class AAInstrumentationDriver:
     specbuild_dir: Path
     benchmark: Path
     initial_dir: Path
+    instr_dir: Path
     opt_flag: str
 
     def generate_baseline(self):
@@ -137,10 +140,12 @@ class AAInstrumentationDriver:
             + "-"
             + "-".join([str(i) for i in index_list]),
         ]
+        print(" ".join(cmd))
         p = run(
             cmd,
             cwd=self.exec_root,
-            stdout=PIPE,
+            stdout=DEVNULL,
+            stderr=DEVNULL,
             text=True,
         )
 
@@ -218,6 +223,7 @@ if __name__ == "__main__":
     specbuild_dir = Path(args.specbuild_dir)
     benchmark = Path(args.benchmark)
     initial_dir = Path("naive_start/")
+    instr_dir = Path("aafiles/")
 
     driver = AAInstrumentationDriver(
         instr_path,
@@ -225,6 +231,7 @@ if __name__ == "__main__":
         specbuild_dir,
         benchmark,
         initial_dir,
+        instr_dir,
         "Oz",
     )
     driver.generate_baseline()
@@ -235,5 +242,6 @@ if __name__ == "__main__":
 
     print(count_per_file)
     for file in files:
+        driver.run_step_single_func(file, 0, [1, 2, 3])
         file_name = initial_dir.joinpath(file)
         print(file_name, driver.assemble_and_measure_file(file_name))
