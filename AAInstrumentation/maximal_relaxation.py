@@ -162,15 +162,41 @@ class LogMaximalRelaxationDriver(MaximalRelaxationDriver):
 
         self.original_hash = self.get_groundtruth_hash(file_name)
 
-        prefix = self.rec_relax(
-            file_name,
-            [],
-            0,
-            candidate_count,
-        )
+        curr_prefix = []
+        lower_bound = 0
+        upper_bound = candidate_count
+
+        while True:
+            prefix = self.rec_relax(
+                file_name,
+                curr_prefix,
+                lower_bound,
+                upper_bound,
+            )
+
+            new_count = self.get_candidate_count(file_name, prefix)
+            curr_prefix = prefix
+
+            print("New count: " + str(new_count))
+            print("New prefix: " + str(prefix))
+
+            if new_count < candidate_count:
+                for i in range(new_count, candidate_count):
+                    assert i in prefix
+
+                prefix = [i for i in prefix if i < new_count]
+                print("New prefix: " + str(prefix))
+                upper_bound = new_count
+                break
+
+            if new_count == upper_bound:
+                break
+
+            lower_bound = len(prefix)
+            upper_bound = new_count
 
         print("Final list: " + str(prefix))
-        print("with size: " + str(len(prefix)) + " of " + str(candidate_count))
+        print("with size: " + str(len(prefix)) + " of " + str(upper_bound))
 
     def rec_relax(
         self,

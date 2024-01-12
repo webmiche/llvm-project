@@ -226,18 +226,24 @@ class AAInstrumentationDriver:
             text=True,
         )
 
-    def get_candidate_count(self, file_name: Path) -> int:
-        """Get the number of candidates for a given file."""
+    def get_candidate_count(self, file_name: Path, prefix: list[int] = []) -> int:
+        """Get the number of candidates for a given file with a given prefix."""
 
         cmd = [
             str(self.instr_path / "opt"),
             str(self.initial_dir / file_name),
             "-stats",
             "-" + self.opt_flag,
-            "--aasequence=0-",
             "-o",
             "/dev/null",
-        ]
+        ] + (
+            [
+                "--aasequence="
+                + str(len(prefix))
+                + "-"
+                + "-".join([str(i) for i in prefix])
+            ]
+        )
         p = run(
             cmd,
             cwd=self.exec_root,
