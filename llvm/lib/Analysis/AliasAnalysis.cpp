@@ -349,8 +349,8 @@ AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
   return AACache.updateCacheAndReturn(Pr, AARelax::NoRelax, Result);
 }
 
-static cl::opt<bool> InstrumentAARecursively("--instrument-aa-recursively",
-                                             False);
+static cl::opt<bool> InstrumentAARecursively("instrument-aa-recursively",
+                                             cl::init(false));
 
 AliasResult AAResults::alias(const MemoryLocation &LocA,
                              const MemoryLocation &LocB, AAQueryInfo &AAQI,
@@ -372,11 +372,11 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
   }
   AAQI.Depth--;
 
-  if (((AliasResultFile != "") | (CmdLineAASequence != "")))
-    &((not InstrumentAARecursively and AAQI.Depth == 0) |
-      InstrumentAARecursively) {
-      Result = relaxSpecificAliasResult(LocA.Ptr, LocB.Ptr, Result);
-    }
+  if (((AliasResultFile != "") | (CmdLineAASequence != "")) &
+      (((not InstrumentAARecursively) and (AAQI.Depth == 0)) |
+       InstrumentAARecursively)) {
+    Result = relaxSpecificAliasResult(LocA.Ptr, LocB.Ptr, Result);
+  }
 
   if (EnableAATrace) {
     for (unsigned I = 0; I < AAQI.Depth; ++I)
