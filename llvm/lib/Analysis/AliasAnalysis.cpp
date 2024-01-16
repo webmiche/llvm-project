@@ -373,8 +373,7 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
   AAQI.Depth--;
 
   if (((AliasResultFile != "") | (CmdLineAASequence != "")) &
-      (((not InstrumentAARecursively) and (AAQI.Depth == 0)) |
-       InstrumentAARecursively)) {
+      ((AAQI.Depth == 0) | InstrumentAARecursively)) {
     Result = relaxSpecificAliasResult(LocA.Ptr, LocB.Ptr, Result);
   }
 
