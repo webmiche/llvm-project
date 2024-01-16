@@ -6,10 +6,13 @@ import subprocess
 import hashlib
 import argparse
 import sys
+from dataclasses import dataclass
 
 
+@dataclass
 class MaximalRelaxationDriver(AAInstrumentationDriver):
-    original_hash: str
+    original_hash: str = 0
+    instrument_aa_recursively: bool = False
 
     def get_groundtruth_hash(self, file_name: Path):
         """Returns the hash of the groundtruth file."""
@@ -18,6 +21,7 @@ class MaximalRelaxationDriver(AAInstrumentationDriver):
             file_name,
             0,
             [],
+            self.instrument_aa_recursively,
         )
         self.assemble_file(
             self.instr_dir.joinpath(
@@ -47,6 +51,7 @@ class MaximalRelaxationDriver(AAInstrumentationDriver):
             file_name,
             i,
             prefix + list(range(lower_bound, i)),
+            self.instrument_aa_recursively,
         )
 
         self.assemble_file(
@@ -77,7 +82,9 @@ class MaximalRelaxationDriver(AAInstrumentationDriver):
             Path("composed_files/"),
         ]
 
-        count_per_file = self.get_candidates_per_file(files)
+        count_per_file = self.get_candidates_per_file(
+            files, self.instrument_aa_recursively
+        )
 
         for file_name in files:
             print("==== Next file: " + str(file_name))
@@ -114,7 +121,11 @@ class MaximalRelaxationDriver(AAInstrumentationDriver):
                 upper_bound,
             )
 
-            new_count = self.get_candidate_count(file_name, prefix)
+            new_count = self.get_candidate_count(
+                file_name,
+                prefix,
+                self.instrument_aa_recursively,
+            )
             curr_prefix = prefix
 
             print("New count: " + str(new_count))
@@ -206,7 +217,7 @@ class LogMaximalRelaxationDriver(MaximalRelaxationDriver):
         lower_bound,
         upper_bound,
     ):
-        self.rec_relax(file_name, prefix, lower_bound, upper_bound)
+        return self.rec_relax(file_name, prefix, lower_bound, upper_bound)
 
     def rec_relax(
         self,
@@ -294,5 +305,7 @@ if __name__ == "__main__":
         groundtruth_dir,
         "Oz",
         8,
+        -1,
+        args.instrument_recursively,
     )
     driver.maximal_relaxation()

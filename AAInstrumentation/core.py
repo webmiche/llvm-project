@@ -44,6 +44,11 @@ def register_arguments():
         help="benchmark to run",
         default="605",
     )
+    arg_parser.add_argument(
+        "--instrument_recursively",
+        action="store_true",
+        help="instrument all AA queries recursively",
+    )
     return arg_parser
 
 
@@ -192,6 +197,7 @@ class AAInstrumentationDriver:
         file_name: Path,
         name_prefix: int,
         index_list: list[int],
+        instrument_recursively=False,
     ):
         """Perform one run of the instrumentation.
 
@@ -217,6 +223,8 @@ class AAInstrumentationDriver:
             + "-"
             + "-".join([str(i) for i in index_list]),
         ]
+        if instrument_recursively:
+            cmd.append("--instrument-aa-recursively")
         # print(" ".join(cmd))
         p = run(
             cmd,
@@ -226,7 +234,9 @@ class AAInstrumentationDriver:
             text=True,
         )
 
-    def get_candidate_count(self, file_name: Path, prefix: list[int] = []) -> int:
+    def get_candidate_count(
+        self, file_name: Path, prefix: list[int] = [], instrument_recursively=False
+    ) -> int:
         """Get the number of candidates for a given file with a given prefix."""
 
         cmd = [
@@ -236,14 +246,14 @@ class AAInstrumentationDriver:
             "-" + self.opt_flag,
             "-o",
             "/dev/null",
-        ] + (
-            [
-                "--aasequence="
-                + str(len(prefix))
-                + "-"
-                + "-".join([str(i) for i in prefix])
-            ]
-        )
+        ] + [
+            "--aasequence="
+            + str(len(prefix))
+            + "-"
+            + "-".join([str(i) for i in prefix])
+        ]
+        if instrument_recursively:
+            cmd.append("--instrument-aa-recursively")
         p = run(
             cmd,
             cwd=self.exec_root,
@@ -256,13 +266,17 @@ class AAInstrumentationDriver:
                 return int(line.split()[0])
         raise Exception("Error in getting candidate count for " + str(file_name))
 
-    def get_candidates_per_file(self, files: list[str]) -> dict:
+    def get_candidates_per_file(
+        self, files: list[str], instrument_aa_recursively: bool = False
+    ) -> dict:
         """Get the number of relaxation candidates per file."""
 
         count_per_file = {}
 
         for file in files:
-            count_per_file[file] = self.get_candidate_count(Path(file))
+            count_per_file[file] = self.get_candidate_count(
+                Path(file), instrument_recursively=instrument_aa_recursively
+            )
 
         return count_per_file
 
