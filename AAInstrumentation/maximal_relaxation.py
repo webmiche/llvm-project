@@ -7,6 +7,7 @@ import hashlib
 import argparse
 import sys
 from dataclasses import dataclass
+from abc import abstractmethod
 
 
 @dataclass
@@ -14,23 +15,20 @@ class MaximalRelaxationDriver(AAInstrumentationDriver):
     original_hash: str = 0
     instrument_aa_recursively: bool = False
 
+    @abstractmethod
+    def relax(
+        self,
+        file_name: Path,
+        prefix,
+        lower_bound,
+        upper_bound,
+    ):
+        """Relaxes the queries from [lower_bound, upper_bound), with the prefix."""
+        raise NotImplementedError
+
     def get_groundtruth_hash(self, file_name: Path):
         """Returns the hash of the groundtruth file."""
-
-        self.run_step_single_func(
-            file_name,
-            0,
-            [],
-            self.instrument_aa_recursively,
-        )
-        self.assemble_file(
-            self.instr_dir.joinpath(
-                file_name.parent, str(0) + str(file_name.stem) + ".bc"
-            ),
-            self.instr_dir.joinpath(
-                file_name.parent, str(0) + str(file_name.stem) + ".o"
-            ),
-        )
+        self.run_and_assemble_file(file_name, 0, [], self.instrument_aa_recursively)
 
         return self.get_hash(
             self.instr_dir.joinpath(
@@ -47,20 +45,12 @@ class MaximalRelaxationDriver(AAInstrumentationDriver):
     ):
         """Runs the instrumentation with the queries in prefix relaxed as
         well as the queries from lower_bound to i."""
-        self.run_step_single_func(
+
+        self.run_and_assemble_file(
             file_name,
             i,
             prefix + list(range(lower_bound, i)),
             self.instrument_aa_recursively,
-        )
-
-        self.assemble_file(
-            self.instr_dir.joinpath(
-                file_name.parent, str(i) + str(file_name.stem) + ".bc"
-            ),
-            self.instr_dir.joinpath(
-                file_name.parent, str(i) + str(file_name.stem) + ".o"
-            ),
         )
 
     def maximal_relaxation(
@@ -85,11 +75,10 @@ class MaximalRelaxationDriver(AAInstrumentationDriver):
         count_per_file = self.get_candidates_per_file(
             files, self.instrument_aa_recursively
         )
+        self.setup_directories(required_empty_paths)
 
         for file_name in files:
             print("==== Next file: " + str(file_name))
-            self.setup_directories(required_empty_paths)
-
             self.maximal_relaxation_single_file(count_per_file[file_name], file_name)
 
     def maximal_relaxation_single_file(
@@ -109,41 +98,47 @@ class MaximalRelaxationDriver(AAInstrumentationDriver):
 
         self.original_hash = self.get_groundtruth_hash(file_name)
 
-        curr_prefix = []
+        prefix = []
         lower_bound = 0
         upper_bound = candidate_count
 
         while True:
+            # Try to relax as many queries as possible
             prefix = self.relax(
                 file_name,
-                curr_prefix,
+                prefix,
                 lower_bound,
                 upper_bound,
             )
 
+            # how many queries are actually occuring now
             new_count = self.get_candidate_count(
                 file_name,
                 prefix,
                 self.instrument_aa_recursively,
             )
-            curr_prefix = prefix
 
             print("New count: " + str(new_count))
 
             if new_count < upper_bound:
+                # if there are fewer queries than before, (sanity) check that
+                # all indices that do not correspond to queries are in the prefix
                 for i in range(new_count, upper_bound):
                     assert i in prefix
 
+                # If so, remove them from the prefix
                 prefix = [i for i in prefix if i < new_count]
                 print("New prefix: " + str(prefix))
                 upper_bound = new_count
                 break
 
             if new_count == upper_bound:
+                # If there are equally many queries, we are done
                 break
 
             print("New prefix: " + str(prefix))
 
+            # If there are more queries, we try to relax the new ones
             lower_bound = len(prefix)
             upper_bound = new_count
 
@@ -279,13 +274,13 @@ if __name__ == "__main__":
 
     with open("AAInstrumentation/config.txt", "r") as config_file:
         args = arg_parser.parse_args(config_file.read().splitlines() + sys.argv[1:])
-    instr_path = Path(args.instr_path)
-    exec_root = Path(args.exec_root)
-    specbuild_dir = Path(args.specbuild_dir)
-    benchmark = Path(args.benchmark)
-    initial_dir = Path("naive_start/")
-    instr_dir = Path("aafiles/")
-    groundtruth_dir = Path("groundtruth/")
+    instr_path = args.instr_path
+    exec_root = args.exec_root
+    specbuild_dir = args.specbuild_dir
+    benchmark = args.benchmark
+    initial_dir = args.initial_dir
+    instr_dir = args.instr_dir
+    groundtruth_dir = args.groundtruth_dir
 
     maximal_relaxation_class = None
     if args.style == "log":
@@ -304,7 +299,7 @@ if __name__ == "__main__":
         instr_dir,
         groundtruth_dir,
         "Oz",
-        8,
+        args.proc_count,
         -1,
         args.instrument_recursively,
     )

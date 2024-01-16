@@ -21,25 +21,25 @@ def register_arguments():
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument(
         "--instr_path",
-        type=str,
+        type=Path,
         nargs="?",
         help="path to instrumentation directory with llc, clang and opt",
     )
     arg_parser.add_argument(
         "--exec_root",
-        type=str,
+        type=Path,
         nargs="?",
         help="root for execution",
     )
     arg_parser.add_argument(
         "--specbuild_dir",
-        type=str,
+        type=Path,
         nargs="?",
         help="path to specbuilder",
     )
     arg_parser.add_argument(
         "--benchmark",
-        type=str,
+        type=Path,
         nargs="?",
         help="benchmark to run",
         default="605",
@@ -48,6 +48,31 @@ def register_arguments():
         "--instrument_recursively",
         action="store_true",
         help="instrument all AA queries recursively",
+    )
+    arg_parser.add_argument(
+        "--proc_count",
+        type=int,
+        nargs="?",
+        help="number of processes to use",
+        default=8,
+    )
+    arg_parser.add_argument(
+        "--initial_dir",
+        type=Path,
+        nargs="?",
+        help="directory with initial .bc files",
+    )
+    arg_parser.add_argument(
+        "--instr_dir",
+        type=Path,
+        nargs="?",
+        help="directory with instrumented .bc files",
+    )
+    arg_parser.add_argument(
+        "--groundtruth_dir",
+        type=Path,
+        nargs="?",
+        help="directory with groundtruth .bc files",
     )
     return arg_parser
 
@@ -124,7 +149,7 @@ class AAInstrumentationDriver:
         return files
 
     def compile_baseline_file(self, f: Path):
-        os.makedirs(self.exec_root / self.groundtruth_dir / f.parent, exist_ok=True)
+        (self.exec_root / self.groundtruth_dir / f.parent).mkdir(exist_ok=True)
         cmd = [
             str(self.instr_path / "opt"),
             "-" + self.opt_flag,
@@ -169,9 +194,11 @@ class AAInstrumentationDriver:
         # The other results are more info on where size is: text, data, bss
         return int(line_list[0])
 
-    def assemble_file(self, file_name: Path, obj_file_name: Path):
+    def assemble_file(self, file_name: Path, obj_file_name: Path = None):
         """Assemble the file."""
 
+        if obj_file_name is None:
+            obj_file_name = file_name.with_suffix(".o")
         cmd = [
             str(self.instr_path / "llc"),
             "-O2",
@@ -191,6 +218,23 @@ class AAInstrumentationDriver:
         self.assemble_file(file_name, obj_file_name)
 
         return self.measure_outputsize(obj_file_name)
+
+    def run_and_assemble_file(
+        self,
+        file_name: Path,
+        name_prefix: int,
+        index_list: list[int],
+        instrument_recursively=False,
+    ):
+        """Run a single function and assemble the result."""
+        self.run_step_single_func(
+            file_name, name_prefix, index_list, instrument_recursively
+        )
+        self.assemble_file(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".bc")
+        )
 
     def run_step_single_func(
         self,
@@ -286,13 +330,13 @@ if __name__ == "__main__":
 
     with open("AAInstrumentation/config.txt", "r") as config_file:
         args = arg_parser.parse_args(config_file.read().splitlines() + sys.argv[1:])
-    instr_path = Path(args.instr_path)
-    exec_root = Path(args.exec_root)
-    specbuild_dir = Path(args.specbuild_dir)
-    benchmark = Path(args.benchmark)
-    initial_dir = Path("naive_start/")
-    instr_dir = Path("aafiles/")
-    groundtruth_dir = Path("groundtruth/")
+    instr_path = args.instr_path
+    exec_root = args.exec_root
+    specbuild_dir = args.specbuild_dir
+    benchmark = args.benchmark
+    initial_dir = args.initial_dir
+    instr_dir = args.instr_dir
+    groundtruth_dir = args.groundtruth_dir
 
     driver = AAInstrumentationDriver(
         instr_path,
@@ -303,7 +347,7 @@ if __name__ == "__main__":
         instr_dir,
         groundtruth_dir,
         "Oz",
-        8,
+        args.proc_count,
     )
     driver.generate_baseline()
 
