@@ -223,6 +223,8 @@ class LogMaximalRelaxationDriver(MaximalRelaxationDriver):
     ) -> list[int]:
         """Recursivle relaxes the queries from [lower_bound, upper_bound), with
         the prefix."""
+        if prefix:
+            assert prefix[-1] < lower_bound
         if lower_bound == upper_bound:
             return prefix
 
