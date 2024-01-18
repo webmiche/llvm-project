@@ -4,3 +4,9 @@
 /home/michel/ETH/AST/llvm-project/
 --specbuild_dir
 /home/michel/ETH/AST/specbuilder/
+--initial_dir
+naive_start/
+--instr_dir
+aafiles/
+--groundtruth_dir
+groundtruth/

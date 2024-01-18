@@ -12,6 +12,69 @@ import argparse
 from pathlib import Path, PosixPath
 from dataclasses import dataclass
 import sys
+import shutil
+import hashlib
+
+
+def register_arguments():
+    """Register the arguments for the instrumentation."""
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument(
+        "--instr_path",
+        type=Path,
+        nargs="?",
+        help="path to instrumentation directory with llc, clang and opt",
+    )
+    arg_parser.add_argument(
+        "--exec_root",
+        type=Path,
+        nargs="?",
+        help="root for execution",
+    )
+    arg_parser.add_argument(
+        "--specbuild_dir",
+        type=Path,
+        nargs="?",
+        help="path to specbuilder",
+    )
+    arg_parser.add_argument(
+        "--benchmark",
+        type=Path,
+        nargs="?",
+        help="benchmark to run",
+        default="605",
+    )
+    arg_parser.add_argument(
+        "--instrument_recursively",
+        action="store_true",
+        help="instrument all AA queries recursively",
+    )
+    arg_parser.add_argument(
+        "--proc_count",
+        type=int,
+        nargs="?",
+        help="number of processes to use",
+        default=8,
+    )
+    arg_parser.add_argument(
+        "--initial_dir",
+        type=Path,
+        nargs="?",
+        help="directory with initial .bc files",
+    )
+    arg_parser.add_argument(
+        "--instr_dir",
+        type=Path,
+        nargs="?",
+        help="directory with instrumented .bc files",
+    )
+    arg_parser.add_argument(
+        "--groundtruth_dir",
+        type=Path,
+        nargs="?",
+        help="directory with groundtruth .bc files",
+    )
+    return arg_parser
 
 
 @dataclass
@@ -31,7 +94,10 @@ class AAInstrumentationDriver:
         initial_dir: The directory where the initial .bc files are located.
         instr_dir: The directory where all intermediate .bc files will be
             stored.
+        groundtruth_dir: The directory where the groundtruth .bc files will be
+            stored.
         opt_flag: The optimization level to be used on all compilations.
+        proc_count: The number of processes available.
     """
 
     instr_path: Path
@@ -40,7 +106,9 @@ class AAInstrumentationDriver:
     benchmark: Path
     initial_dir: Path
     instr_dir: Path
+    groundtruth_dir: Path
     opt_flag: str
+    proc_count: int
 
     def generate_baseline(self):
         run(
@@ -80,6 +148,42 @@ class AAInstrumentationDriver:
 
         return files
 
+    def compile_baseline_file(self, f: Path):
+        (self.exec_root / self.groundtruth_dir / f.parent).mkdir(exist_ok=True)
+        cmd = [
+            str(self.instr_path / "opt"),
+            "-" + self.opt_flag,
+            "-o",
+            str(self.groundtruth_dir / f),
+            str(self.initial_dir / f),
+        ]
+        run(cmd, cwd=self.exec_root, stdout=DEVNULL)
+        self.assemble_file(
+            self.groundtruth_dir / f,
+            self.groundtruth_dir / f.with_suffix(".o"),
+        )
+
+    def setup_directories(self, required_empty_paths: list[Path]):
+        """Setup the directories for the instrumentation. " """
+        for p in required_empty_paths:
+            if os.path.exists(p):
+                shutil.rmtree(p)
+            os.mkdir(p)
+
+    def get_hash(self, obj_file_name: Path):
+        BUF_SIZE = 65536  # lets read stuff in 64kb chunks!
+        sha1 = hashlib.sha1()
+
+        with open(obj_file_name, "rb") as f:
+            while True:
+                data = f.read(BUF_SIZE)
+                if not data:
+                    break
+                sha1.update(data)
+
+        hash_value = sha1.hexdigest()
+        return hash_value
+
     def measure_outputsize(self, file: Path) -> int:
         cmd = [str(self.instr_path / "llvm-size"), str(file)]
         p = run(cmd, stdout=PIPE, stderr=PIPE, text=True)
@@ -90,9 +194,11 @@ class AAInstrumentationDriver:
         # The other results are more info on where size is: text, data, bss
         return int(line_list[0])
 
-    def assemble_file(self, file_name: Path, obj_file_name: Path):
+    def assemble_file(self, file_name: Path, obj_file_name: Path = None):
         """Assemble the file."""
 
+        if obj_file_name is None:
+            obj_file_name = file_name.with_suffix(".o")
         cmd = [
             str(self.instr_path / "llc"),
             "-O2",
@@ -113,11 +219,29 @@ class AAInstrumentationDriver:
 
         return self.measure_outputsize(obj_file_name)
 
+    def run_and_assemble_file(
+        self,
+        file_name: Path,
+        name_prefix: int,
+        index_list: list[int],
+        instrument_recursively=False,
+    ):
+        """Run a single function and assemble the result."""
+        self.run_step_single_func(
+            file_name, name_prefix, index_list, instrument_recursively
+        )
+        self.assemble_file(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".bc")
+        )
+
     def run_step_single_func(
         self,
         file_name: Path,
         name_prefix: int,
         index_list: list[int],
+        instrument_recursively=False,
     ):
         """Perform one run of the instrumentation.
 
@@ -143,7 +267,9 @@ class AAInstrumentationDriver:
             + "-"
             + "-".join([str(i) for i in index_list]),
         ]
-        print(" ".join(cmd))
+        if instrument_recursively:
+            cmd.append("--instrument-aa-recursively")
+        # print(" ".join(cmd))
         p = run(
             cmd,
             cwd=self.exec_root,
@@ -152,18 +278,26 @@ class AAInstrumentationDriver:
             text=True,
         )
 
-    def get_candidate_count(self, file_name: Path) -> int:
-        """Get the number of candidates for a given file."""
+    def get_candidate_count(
+        self, file_name: Path, prefix: list[int] = [], instrument_recursively=False
+    ) -> int:
+        """Get the number of candidates for a given file with a given prefix."""
 
         cmd = [
             str(self.instr_path / "opt"),
             str(self.initial_dir / file_name),
             "-stats",
             "-" + self.opt_flag,
-            "--aasequence=0-",
             "-o",
             "/dev/null",
+        ] + [
+            "--aasequence="
+            + str(len(prefix))
+            + "-"
+            + "-".join([str(i) for i in prefix])
         ]
+        if instrument_recursively:
+            cmd.append("--instrument-aa-recursively")
         p = run(
             cmd,
             cwd=self.exec_root,
@@ -173,61 +307,36 @@ class AAInstrumentationDriver:
         )
         for line in p.stderr.split("\n"):
             if "Number of queries that are not cached and not MayAlias" in line:
-                print(line)
                 return int(line.split()[0])
         raise Exception("Error in getting candidate count for " + str(file_name))
 
-    def get_candidates_per_file(self, files: list[str]) -> dict:
+    def get_candidates_per_file(
+        self, files: list[str], instrument_aa_recursively: bool = False
+    ) -> dict:
         """Get the number of relaxation candidates per file."""
 
         count_per_file = {}
 
         for file in files:
-            count_per_file[file] = self.get_candidate_count(Path(file))
+            count_per_file[file] = self.get_candidate_count(
+                Path(file), instrument_recursively=instrument_aa_recursively
+            )
 
         return count_per_file
 
 
 if __name__ == "__main__":
-    arg_parser = argparse.ArgumentParser()
-
-    arg_parser.add_argument(
-        "--instr_path",
-        type=str,
-        nargs="?",
-        help="path to instrumentation directory with llc, clang and opt",
-    )
-
-    arg_parser.add_argument(
-        "--exec_root",
-        type=str,
-        nargs="?",
-        help="root for execution",
-    )
-
-    arg_parser.add_argument(
-        "--specbuild_dir",
-        type=str,
-        nargs="?",
-        help="path to specbuilder",
-    )
-
-    arg_parser.add_argument(
-        "--benchmark",
-        type=str,
-        nargs="?",
-        help="benchmark to run",
-        default="605",
-    )
+    arg_parser = register_arguments()
 
     with open("AAInstrumentation/config.txt", "r") as config_file:
         args = arg_parser.parse_args(config_file.read().splitlines() + sys.argv[1:])
-    instr_path = Path(args.instr_path)
-    exec_root = Path(args.exec_root)
-    specbuild_dir = Path(args.specbuild_dir)
-    benchmark = Path(args.benchmark)
-    initial_dir = Path("naive_start/")
-    instr_dir = Path("aafiles/")
+    instr_path = args.instr_path
+    exec_root = args.exec_root
+    specbuild_dir = args.specbuild_dir
+    benchmark = args.benchmark
+    initial_dir = args.initial_dir
+    instr_dir = args.instr_dir
+    groundtruth_dir = args.groundtruth_dir
 
     driver = AAInstrumentationDriver(
         instr_path,
@@ -236,7 +345,9 @@ if __name__ == "__main__":
         benchmark,
         initial_dir,
         instr_dir,
+        groundtruth_dir,
         "Oz",
+        args.proc_count,
     )
     driver.generate_baseline()
 
