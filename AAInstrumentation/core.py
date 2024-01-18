@@ -251,7 +251,11 @@ class AAInstrumentationDriver:
             index_list: The list of indices to be instrumented.
         """
 
-        cmd = [
+        aa_sequence_string = (
+            str(len(index_list)) + "-" + "-".join([str(i) for i in index_list])
+        )
+
+        base_cmd = [
             str(self.instr_path / "opt"),
             str(self.initial_dir / file_name),
             "-stats",
@@ -262,21 +266,36 @@ class AAInstrumentationDriver:
                 / Path(str(name_prefix) + str(file_name.stem) + ".bc")
             ),
             "-" + self.opt_flag,
-            "--aasequence="
-            + str(len(index_list))
-            + "-"
-            + "-".join([str(i) for i in index_list]),
         ]
         if instrument_recursively:
-            cmd.append("--instrument-aa-recursively")
-        # print(" ".join(cmd))
-        p = run(
-            cmd,
-            cwd=self.exec_root,
-            stdout=DEVNULL,
-            stderr=DEVNULL,
-            text=True,
-        )
+            base_cmd.append("--instrument-aa-recursively")
+        try:
+            cmd = base_cmd + ["--aasequence=" + aa_sequence_string]
+            print(" ".join(cmd))
+            p = run(
+                cmd,
+                cwd=self.exec_root,
+                stdout=DEVNULL,
+                stderr=DEVNULL,
+                text=True,
+            )
+        # It can happen that the aa_sequence is too long for the command line.
+        # In this case, we write the sequence to a file and pass the file name
+        # to opt.
+        except OSError:
+            aafile_name = "aa_sequence" + str(name_prefix) + ".txt"
+            with open(aafile_name, "w") as f:
+                f.write(aa_sequence_string)
+
+            cmd = base_cmd + ["--aasequencefile=" + aafile_name]
+            print(" ".join(cmd))
+            p = run(
+                cmd,
+                cwd=self.exec_root,
+                stdout=DEVNULL,
+                stderr=DEVNULL,
+                text=True,
+            )
 
     def get_candidate_count(
         self, file_name: Path, prefix: list[int] = [], instrument_recursively=False
