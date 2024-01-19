@@ -38,12 +38,18 @@ class OptimizerDriver(AAInstrumentationDriver):
         files = self.get_baseline_files()
 
         candidates_per_file = self.get_candidates_per_file(files)
+
+        precise_sizes = {}
+        for file_ in files:
+            precise_sizes[file_] = self.run_assemble_and_measure_file(file_, 0, [])
+
         for optimizer in self.optimizers:
             for file_ in files:
                 print(f"Optimizing {file_} with {optimizer.description}")
                 print(f"Number of candidates: {candidates_per_file[file_]}")
                 current_minimum = optimizer.optimize(file_, candidates_per_file[file_])
                 print(f"Minimum size: {current_minimum}")
+                print(f"Compared to precise size: {precise_sizes[file_]}")
 
 
 class Optimizer(AAInstrumentationDriver):
