@@ -184,6 +184,20 @@ class AAInstrumentationDriver:
         hash_value = sha1.hexdigest()
         return hash_value
 
+    def run_assemble_and_get_hash(
+        self,
+        file_name: Path,
+        name_prefix: int,
+        index_list: list[int],
+    ):
+        self.run_and_assemble_file(file_name, name_prefix, index_list)
+
+        return self.get_hash(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".o")
+        )
+
     def measure_outputsize(self, file: Path) -> int:
         cmd = [str(self.instr_path / "llvm-size"), str(file)]
         p = run(cmd, stdout=PIPE, stderr=PIPE, text=True)
