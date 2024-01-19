@@ -117,7 +117,7 @@ class AAInstrumentationDriver:
                 "build",
                 str(self.initial_dir),
                 str(self.benchmark),
-                str(self.instr_path.joinpath("clang")),
+                str(self.instr_path / Path("clang")),
                 "-bc",
                 "--opt_level",
                 self.opt_flag,
@@ -236,6 +236,23 @@ class AAInstrumentationDriver:
             / Path(str(name_prefix) + str(file_name.stem) + ".bc")
         )
 
+    def run_assemble_and_measure_file(
+        self,
+        file_name: Path,
+        name_prefix: int,
+        index_list: list[int],
+        instrument_recursively=False,
+    ) -> int:
+        """Run a single function, assemble the result, and measure the output size."""
+        self.run_and_assemble_file(
+            file_name, name_prefix, index_list, instrument_recursively
+        )
+        return self.measure_outputsize(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".o")
+        )
+
     def run_step_single_func(
         self,
         file_name: Path,
@@ -250,6 +267,7 @@ class AAInstrumentationDriver:
             name_prefix: The prefix to be used for the output file.
             index_list: The list of indices to be instrumented.
         """
+        (self.instr_dir / file_name.parent).mkdir(parents=True, exist_ok=True)
 
         aa_sequence_string = (
             str(len(index_list)) + "-" + "-".join([str(i) for i in index_list])
