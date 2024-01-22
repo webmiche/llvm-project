@@ -59,10 +59,10 @@ class Optimizer(AAInstrumentationDriver):
         pass
 
 
-class ImpreciseOptimizer(Optimizer):
+class ImpreciseBaseline(Optimizer):
     """
-    This class implements the imprecise search algorithm. It is used as a
-    baseline for the other optimizers.
+    This class implements the imprecise baseline. Essentially, it runs the
+    instrumentation with fully imprecise AAInformation.
     """
 
     description = "Imprecise search"
