@@ -65,7 +65,7 @@ class ImpreciseBaseline(Optimizer):
     instrumentation with fully imprecise AAInformation.
     """
 
-    description = "Imprecise search"
+    description = "Imprecise Baseline"
 
     def optimize(self, file_name: Path, num_candidates: int) -> int:
         return self.run_assemble_and_measure_file(
