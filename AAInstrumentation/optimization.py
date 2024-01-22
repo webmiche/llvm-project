@@ -97,6 +97,6 @@ if __name__ == "__main__":
         groundtruth_dir,
         "Oz",
         args.proc_count,
-        [ImpreciseOptimizer],
+        [ImpreciseBaseline],
     )
     driver.run()
