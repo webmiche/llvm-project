@@ -8,22 +8,24 @@ import random
 
 @dataclass
 class UniqueHashesDriver(AAInstrumentationDriver):
+    """
+    This class implements the unique hashes experiment. In particular, it
+    exposes a method that, given a file, the number of candidate queries, and the
+    number of runs, returns the number of unique hashes that are generated
+    from `num_runs` many random AA query sequences.
+    """
+
+    random_seed: int = 0
+
     def get_num_unique_hashes(
         self,
         file_name: Path,
         num_candidates: int,
         num_runs: int,
     ) -> int:
-        population = []
+        random.seed(self.random_seed)
+        population = self.get_n_random_sequences(num_candidates, num_runs)
         distinct_hashes = set()
-
-        for _ in range(num_runs):
-            curr_list = tuple(random.randint(0, 1) for _ in range(num_candidates))
-            index_list = []
-            for j, val in enumerate(curr_list):
-                if val:
-                    index_list.append(j)
-            population.append(tuple(index_list))
 
         for i, sample in enumerate(population):
             curr_hash = self.run_assemble_and_get_hash(file_name, i, sample)
@@ -64,4 +66,4 @@ if __name__ == "__main__":
     for file, num_candidates in candidates_per_file.items():
         print(f"{file}: {num_candidates}")
         unique_hashes = driver.get_num_unique_hashes(file, num_candidates, 100)
-        print(f"Unique hashes: {unique_hashes}")
+        print(f"Unique hashes: {unique_hashes} of 100 runs")
