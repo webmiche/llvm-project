@@ -93,7 +93,6 @@ class MaximalRelaxationDriver(AAInstrumentationDriver):
             candidate_count: The number of candidates to consider.
             file_name: The name of the file to run the algorithm on.
         """
-        os.makedirs(str((self.instr_dir / file_name).parent), exist_ok=True)
         print("Number of candidates: " + str(candidate_count))
 
         self.original_hash = self.get_groundtruth_hash(file_name)
