@@ -14,6 +14,7 @@ from dataclasses import dataclass
 import sys
 import shutil
 import hashlib
+import random
 
 
 def register_arguments():
@@ -183,6 +184,20 @@ class AAInstrumentationDriver:
 
         hash_value = sha1.hexdigest()
         return hash_value
+
+    def run_assemble_and_get_hash(
+        self,
+        file_name: Path,
+        name_prefix: int,
+        index_list: list[int],
+    ):
+        self.run_and_assemble_file(file_name, name_prefix, index_list)
+
+        return self.get_hash(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".o")
+        )
 
     def measure_outputsize(self, file: Path) -> int:
         cmd = [str(self.instr_path / "llvm-size"), str(file)]
@@ -360,6 +375,22 @@ class AAInstrumentationDriver:
             )
 
         return count_per_file
+
+    def get_random_sequence(self, num_candidates: int) -> list[int]:
+        """Get a random sequence of AA queries."""
+        sequence = [random.randint(0, 1) for _ in range(num_candidates)]
+        index_list = []
+        for j, val in enumerate(sequence):
+            if val:
+                index_list.append(j)
+        return tuple(index_list)
+
+    def get_n_random_sequences(self, num_candidates: int, num_runs: int) -> list[tuple]:
+        """Get n random sequences of AA queries."""
+        population = []
+        for _ in range(num_runs):
+            population.append(self.get_random_sequence(num_candidates))
+        return population
 
 
 if __name__ == "__main__":
