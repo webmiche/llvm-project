@@ -117,7 +117,7 @@ class AAInstrumentationDriver:
                 "build",
                 str(self.initial_dir),
                 str(self.benchmark),
-                str(self.instr_path / Path("clang")),
+                str(self.instr_path / "clang"),
                 "-bc",
                 "--opt_level",
                 self.opt_flag,
@@ -243,7 +243,8 @@ class AAInstrumentationDriver:
         index_list: list[int],
         instrument_recursively=False,
     ) -> int:
-        """Run a single function, assemble the result, and measure the output size."""
+        """Run a round of instrumentation, assemble the result, and measure the
+        output size."""
         self.run_and_assemble_file(
             file_name, name_prefix, index_list, instrument_recursively
         )
@@ -289,7 +290,6 @@ class AAInstrumentationDriver:
             base_cmd.append("--instrument-aa-recursively")
         try:
             cmd = base_cmd + ["--aasequence=" + aa_sequence_string]
-            print(" ".join(cmd))
             p = run(
                 cmd,
                 cwd=self.exec_root,
@@ -306,7 +306,7 @@ class AAInstrumentationDriver:
                 f.write(aa_sequence_string)
 
             cmd = base_cmd + ["--aasequencefile=" + aafile_name]
-            print(" ".join(cmd))
+            # print(" ".join(cmd))
             p = run(
                 cmd,
                 cwd=self.exec_root,
