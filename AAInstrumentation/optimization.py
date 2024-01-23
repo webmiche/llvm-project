@@ -107,6 +107,38 @@ def random_factory(num_runs: int):
     return lambda driver: RandomOptimizer(driver, num_runs)
 
 
+class AutoTuningOptimizer(Optimizer):
+    """
+    This class implements the local Autotuner. It aims to optimize the size of
+    the final binary by sequentially trying out the queries in the compilation.
+    If a query reduces the size, it is fied to imprecise for all following
+    queries.
+    """
+
+    def __init__(self, driver: OptimizerDriver):
+        super().__init__(driver)
+
+    description = "AutoTuner"
+
+    def optimize(self, file_name: Path, num_candidates: int) -> int:
+        prefix = []
+        curr_size = self.driver.run_assemble_and_measure_file(file_name, 0, [])
+
+        for i in range(num_candidates):
+            new_size = self.driver.run_assemble_and_measure_file(
+                file_name, i, prefix + [i]
+            )
+            if new_size < curr_size:
+                curr_size = new_size
+                prefix.append(i)
+
+        return curr_size
+
+
+def autotuner_factory():
+    return lambda driver: AutoTuningOptimizer(driver)
+
+
 if __name__ == "__main__":
     arg_parser = register_arguments()
 
@@ -132,5 +164,11 @@ if __name__ == "__main__":
         "Oz",
         args.proc_count,
     )
-    driver.register_optimizers([imprecise_factory(), random_factory(100)])
+    driver.register_optimizers(
+        [
+            imprecise_factory(),
+            random_factory(100),
+            autotuner_factory(),
+        ]
+    )
     driver.run()
