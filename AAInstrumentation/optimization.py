@@ -15,23 +15,18 @@ from abc import abstractmethod
 class OptimizerDriver(AAInstrumentationDriver):
     optimizers: list[Optimizer] | None = None
 
-    def __post_init__(self):
-        optimizer_list = []
-        for optimizer in self.optimizers:
-            optimizer_list.append(
-                optimizer(
-                    self.instr_path,
-                    self.exec_root,
-                    self.specbuild_dir,
-                    self.benchmark,
-                    self.initial_dir,
-                    self.instr_dir,
-                    self.groundtruth_dir,
-                    self.opt_flag,
-                    self.proc_count,
-                )
-            )
-        self.optimizers = optimizer_list
+    def register_optimizer(
+        self, optimizer_factory: Callable[OptimizerDriver, Optimizer]
+    ):
+        if self.optimizers is None:
+            self.optimizers = []
+        self.optimizers.append(optimizer_factory(self))
+
+    def register_optimizers(
+        self, optimizer_factories: list[Callable[OptimizerDriver, Optimizer]]
+    ):
+        for optimizer_factory in optimizer_factories:
+            self.register_optimizer(optimizer_factory)
 
     def run(self):
         self.generate_baseline()
@@ -43,16 +38,19 @@ class OptimizerDriver(AAInstrumentationDriver):
         for file_ in files:
             precise_sizes[file_] = self.run_assemble_and_measure_file(file_, 0, [])
 
-        for optimizer in self.optimizers:
-            for file_ in files:
-                print(f"Optimizing {file_} with {optimizer.description}")
-                print(f"Number of candidates: {candidates_per_file[file_]}")
+        for file_ in files:
+            print(f"Optimizing {file_}")
+            print(f"Number of candidates: {candidates_per_file[file_]}")
+            print(f"Baseline: {precise_sizes[file_]}")
+            for optimizer in self.optimizers:
                 current_minimum = optimizer.optimize(file_, candidates_per_file[file_])
-                print(f"Minimum size: {current_minimum}")
-                print(f"Compared to precise size: {precise_sizes[file_]}")
+                print(f"{optimizer.description}: {current_minimum}")
 
 
-class Optimizer(AAInstrumentationDriver):
+@dataclass
+class Optimizer:
+    driver: OptimizerDriver
+
     @abstractmethod
     def optimize(self, file_name: Path, num_candidates: int) -> int:
         """Applies the optimization to the file_name, and returns minimumm size."""
@@ -65,12 +63,48 @@ class ImpreciseBaseline(Optimizer):
     instrumentation with fully imprecise AAInformation.
     """
 
+    def __init__(self, driver: OptimizerDriver):
+        super().__init__(driver)
+
     description = "Imprecise Baseline"
 
     def optimize(self, file_name: Path, num_candidates: int) -> int:
-        return self.run_assemble_and_measure_file(
+        return self.driver.run_assemble_and_measure_file(
             file_name, 0, list(range(num_candidates))
         )
+
+
+def imprecise_factory():
+    return lambda driver: ImpreciseBaseline(driver)
+
+
+class RandomOptimizer(Optimizer):
+    """
+    This class implements the random optimizer. It randomly chooses a set of
+    candidates, runs the instrumentation with that set, and returns the minimum
+    size encountered.
+    """
+
+    def __init__(self, driver: OptimizerDriver, num_runs: int):
+        super().__init__(driver)
+        self.num_runs = num_runs
+
+    description = "Random Optimizer"
+    num_runs: int = 0
+
+    def optimize(self, file_name: Path, num_candidates: int) -> int:
+        population = self.driver.get_n_random_sequences(num_candidates, self.num_runs)
+        sizes = []
+        for i, sample in enumerate(population):
+            sizes.append(
+                self.driver.run_assemble_and_measure_file(file_name, i, sample)
+            )
+
+        return min(sizes)
+
+
+def random_factory(num_runs: int):
+    return lambda driver: RandomOptimizer(driver, num_runs)
 
 
 if __name__ == "__main__":
@@ -97,6 +131,6 @@ if __name__ == "__main__":
         groundtruth_dir,
         "Oz",
         args.proc_count,
-        [ImpreciseBaseline],
     )
+    driver.register_optimizers([imprecise_factory(), random_factory(100)])
     driver.run()
