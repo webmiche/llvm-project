@@ -519,7 +519,7 @@ public:
 
       PreservedAnalyses PassPA = Pass->run(IR, AM, ExtraArgs...);
       if (printPassNames()) {
-        llvm::outs() << "*** Pass: " << Pass->name() << " ***\n";
+        llvm::dbgs() << "*** Pass: " << Pass->name() << " ***\n";
       }
 
       // Update the analysis manager as each pass runs and potentially

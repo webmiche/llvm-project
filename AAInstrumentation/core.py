@@ -269,6 +269,9 @@ class AAInstrumentationDriver:
             / Path(str(name_prefix) + str(file_name.stem) + ".o")
         )
 
+    def get_aa_string_from_indices(self, index_list: list[int]) -> str:
+        return str(len(index_list)) + "-" + "-".join([str(i) for i in index_list])
+
     def run_step_single_func(
         self,
         file_name: Path,
@@ -285,9 +288,7 @@ class AAInstrumentationDriver:
         """
         (self.instr_dir / file_name.parent).mkdir(parents=True, exist_ok=True)
 
-        aa_sequence_string = (
-            str(len(index_list)) + "-" + "-".join([str(i) for i in index_list])
-        )
+        aa_sequence_string = self.get_aa_string_from_indices(index_list)
 
         base_cmd = [
             str(self.instr_path / "opt"),
@@ -342,12 +343,7 @@ class AAInstrumentationDriver:
             "-" + self.opt_flag,
             "-o",
             "/dev/null",
-        ] + [
-            "--aasequence="
-            + str(len(prefix))
-            + "-"
-            + "-".join([str(i) for i in prefix])
-        ]
+        ] + ["--aasequence=" + self.get_aa_string_from_indices(prefix)]
         if instrument_recursively:
             cmd.append("--instrument-aa-recursively")
         p = run(
@@ -392,6 +388,102 @@ class AAInstrumentationDriver:
             population.append(self.get_random_sequence(num_candidates))
         return population
 
+    def get_queries_per_pass(
+        self, file_name: Path, index_list: list[int] = [], instrument_recursively=False
+    ) -> dict[str, dict[str, int]]:
+        """
+        Given a file and a list of indices, returns a dictionary mapping passes
+        to AA counts. The AA results are are themselves a dictionary mapping
+        AAResults (such as MayAlias) to number of occurences.
+        """
+        aa_sequence_string = self.get_aa_string_from_indices(index_list)
+        cmd = [
+            str(self.instr_path / "opt"),
+            str(self.initial_dir / file_name),
+            "--aa-trace",
+            "-" + self.opt_flag,
+            "--print-pass-names",
+            "-disable-output",
+        ]
+        if instrument_recursively:
+            cmd.append("--instrument-aa-recursively")
+
+        cmd += ["--aasequence=" + aa_sequence_string]
+        p = run(
+            cmd,
+            cwd=self.exec_root,
+            stdout=DEVNULL,
+            stderr=PIPE,
+            text=True,
+        )
+
+        return self.parse_aa_trace(p.stderr, instrument_recursively)
+
+    def parse_aa_trace(
+        self, aa_trace, instrument_recursively=False
+    ) -> dict[str, dict[str, int]]:
+        """
+        Given an aa trace, returns a dictionary mapping passes to AA counts.
+        Lines starting with *** are pass and have the form `*** Pass:
+        <pass-name> ***`. Other lines are from the AA trace and have the form `{
+        } {End|Start} <ptr1> <ptr2> [<AAResult>] [(off <num>)]`. The AAResult is
+        there if it is the end of a query. Recursive queries have whitespace in
+        front of them. The AAqueries before a pass are the queries that are run
+        during it.
+        """
+        pass_dict = {}
+
+        curr_dict = {"MayAlias": 0, "PartialAlias": 0, "MustAlias": 0, "NoAlias": 0}
+        aa_trace_lines = aa_trace.split("\n")
+        pass_counts = {}
+        for i, line in enumerate(aa_trace_lines):
+            if line.startswith("*** "):
+                # This is a pass line
+                pass_name = line.removeprefix("*** Pass: ").removesuffix(" ***")
+                if any([curr_dict[key] > 0 for key in curr_dict.keys()]):
+                    pass_index = pass_counts.get(pass_name, 0)
+                    pass_counts[pass_name] = pass_index + 1
+                    pass_dict[str(pass_index) + pass_name] = curr_dict
+                curr_dict = {
+                    "MayAlias": 0,
+                    "PartialAlias": 0,
+                    "MustAlias": 0,
+                    "NoAlias": 0,
+                }
+            elif "End" in line and (instrument_recursively or not line.startswith(" ")):
+                if not (
+                    "MayAlias" in line
+                    or "NoAlias" in line
+                    or "MustAlias" in line
+                    or "PartialAlias" in line
+                ):
+                    # This is a query on a pointer with a multi-line description.
+                    for j, next_line in enumerate(aa_trace_lines[i + 1 :]):
+                        if "LocationSize::beforeOrAfterPointer" in next_line:
+                            break
+
+                    if not (
+                        "MayAlias" in aa_trace_lines[i]
+                        or "NoAlias" in aa_trace_lines[i]
+                        or "MustAlias" in aa_trace_lines[i]
+                        or "PartialAlias" in aa_trace_lines[i]
+                    ):
+                        # This is a query on two pointers with a multi-line description.
+                        for j, next_line in enumerate(aa_trace_lines[j + i + 1 :]):
+                            if "LocationSize::beforeOrAfterPointer" in next_line:
+                                break
+
+                    i = i + j
+                    line = next_line
+
+                AAResult = line.split()[-1]
+                if AAResult.endswith(")"):
+                    # This is the PartialAlias with an offset case.
+                    AAResult = line.split()[-3]
+                curr_dict[AAResult] += 1
+
+        return pass_dict
+
 
 if __name__ == "__main__":
     arg_parser = register_arguments()
@@ -423,8 +515,29 @@ if __name__ == "__main__":
 
     count_per_file = driver.get_candidates_per_file(files)
 
-    print(count_per_file)
     for file in files:
-        driver.run_step_single_func(file, 0, [1, 2, 3])
-        file_name = initial_dir / file
-        print(file_name, driver.assemble_and_measure_file(file_name))
+        queries = driver.get_queries_per_pass(file, [0, 1, 2])
+        relaxed_queries = driver.get_queries_per_pass(file)
+        if all(
+            [
+                relaxed_queries[pass_name]["MayAlias"] == queries[pass_name]["MayAlias"]
+                for pass_name in relaxed_queries.keys()
+            ]
+            + [
+                relaxed_queries[pass_name]["PartialAlias"]
+                == queries[pass_name]["PartialAlias"]
+                for pass_name in relaxed_queries.keys()
+            ]
+            + [
+                relaxed_queries[pass_name]["MustAlias"]
+                == queries[pass_name]["MustAlias"]
+                for pass_name in relaxed_queries.keys()
+            ]
+            + [
+                relaxed_queries[pass_name]["NoAlias"] == queries[pass_name]["NoAlias"]
+                for pass_name in relaxed_queries.keys()
+            ]
+        ):
+            print(file)
+            print(queries)
+            print(relaxed_queries)
