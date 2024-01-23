@@ -4,6 +4,7 @@ import sys
 from pathlib import Path
 from typing import Dict, List
 import random
+import math
 
 
 @dataclass
@@ -24,12 +25,60 @@ class UniqueHashesDriver(AAInstrumentationDriver):
         num_runs: int,
     ) -> int:
         random.seed(self.random_seed)
-        population = self.get_n_random_sequences(num_candidates, num_runs)
+        full_population = set()
         distinct_hashes = set()
+        last_len = -1
 
-        for i, sample in enumerate(population):
-            curr_hash = self.run_assemble_and_get_hash(file_name, i, sample)
-            distinct_hashes.add(curr_hash)
+        while len(full_population) < num_runs:
+            # It can be the case that some of the random sequences we generate
+            # are actually the same since changing AA queries can lead to fewer
+            # queries being present. Therefore, we loop here until we have enough
+            # sequences that are actually unique runs.
+
+            # We always at least generate 20 new sequences. This tries to make
+            # sure that we give the experiment a chance to generate new sequences
+            # if we are close to the end.
+            population = self.get_n_random_sequences(
+                num_candidates, max(num_runs - len(full_population), 20)
+            )
+
+            for i, sample in enumerate(population):
+                # Check how many queries actually occur in this compilation.
+                new_num_candidates = self.get_candidate_count(file_name, sample)
+                actual_sample = sample[:new_num_candidates]
+
+                # If we have already seen this sequence, then we don't need to
+                # compute the hash again.
+                if not actual_sample in full_population:
+                    curr_hash = self.run_assemble_and_get_hash(file_name, i, sample)
+                    full_population.add(actual_sample)
+                    distinct_hashes.add(curr_hash)
+
+            if num_candidates < 20 and math.pow(2, num_candidates) <= len(
+                full_population
+            ):
+                # There are at most 2^num_candidates possible sequences so once
+                # we have generated that many, we can stop. The limit of 20 is
+                # to not have a Python crash due to the math.pow function. Here,
+                # we are assuming that we never call this function with more
+                # than 2^20 num_runs, which I think is a reasonable assumption.
+                break
+
+            if len(full_population) == last_len:
+                # We are not generating any new sequences, so we should stop.
+                print(
+                    f"Warning: only {len(full_population)} unique sequences generated"
+                    f" out of {num_runs} attempts and no new sequences are being"
+                    f" generated."
+                )
+                break
+            if len(full_population) < num_runs:
+                print(
+                    f"Warning: only {len(full_population)} unique sequences generated"
+                    f" out of {num_runs} attempts. Trying again."
+                )
+
+            last_len = len(full_population)
 
         return len(distinct_hashes)
 
