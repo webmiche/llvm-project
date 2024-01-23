@@ -43,15 +43,25 @@ class UniqueHashesDriver(AAInstrumentationDriver):
             )
 
             for i, sample in enumerate(population):
-                curr_hash = self.run_assemble_and_get_hash(file_name, i, sample)
+                # Check how many queries actually occur in this compilation.
                 new_num_candidates = self.get_candidate_count(file_name, sample)
-                full_population.add(sample)
-                distinct_hashes.add(curr_hash)
+                actual_sample = sample[:new_num_candidates]
+
+                # If we have already seen this sequence, then we don't need to
+                # compute the hash again.
+                if not actual_sample in full_population:
+                    curr_hash = self.run_assemble_and_get_hash(file_name, i, sample)
+                    full_population.add(actual_sample)
+                    distinct_hashes.add(curr_hash)
 
             if num_candidates < 20 and math.pow(2, num_candidates) <= len(
                 full_population
             ):
-                # We have generated all possible sequences, so we can stop.
+                # There are at most 2^num_candidates possible sequences so once
+                # we have generated that many, we can stop. The limit of 20 is
+                # to not have a Python crash due to the math.pow function. Here,
+                # we are assuming that we never call this function with more
+                # than 2^20 num_runs, which I think is a reasonable assumption.
                 break
 
             if len(full_population) == last_len:
