@@ -132,6 +132,5 @@ if __name__ == "__main__":
         "Oz",
         args.proc_count,
     )
-    RandomOptimizer(driver, 100)
     driver.register_optimizers([imprecise_factory(), random_factory(100)])
     driver.run()
