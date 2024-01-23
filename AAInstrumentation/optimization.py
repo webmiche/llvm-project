@@ -9,6 +9,8 @@ import argparse
 import sys
 from dataclasses import dataclass
 from abc import abstractmethod
+import random
+import time
 
 
 @dataclass
@@ -43,8 +45,11 @@ class OptimizerDriver(AAInstrumentationDriver):
             print(f"Number of candidates: {candidates_per_file[file_]}")
             print(f"Baseline: {precise_sizes[file_]}")
             for optimizer in self.optimizers:
+                start_time = time.time()
                 current_minimum = optimizer.optimize(file_, candidates_per_file[file_])
-                print(f"{optimizer.description}: {current_minimum}")
+                print(
+                    f"{optimizer.description}: {current_minimum} in {time.time() - start_time}s"
+                )
 
 
 @dataclass
@@ -85,14 +90,17 @@ class RandomOptimizer(Optimizer):
     size encountered.
     """
 
-    def __init__(self, driver: OptimizerDriver, num_runs: int):
+    def __init__(self, driver: OptimizerDriver, num_runs: int, seed: int = 0):
         super().__init__(driver)
         self.num_runs = num_runs
+        self.seed = seed
 
     description = "Random Optimizer"
     num_runs: int = 0
+    seed: int = 0
 
     def optimize(self, file_name: Path, num_candidates: int) -> int:
+        random.seed(self.seed)
         population = self.driver.get_n_random_sequences(num_candidates, self.num_runs)
         sizes = []
         for i, sample in enumerate(population):
@@ -103,8 +111,41 @@ class RandomOptimizer(Optimizer):
         return min(sizes)
 
 
-def random_factory(num_runs: int):
-    return lambda driver: RandomOptimizer(driver, num_runs)
+def random_factory(num_runs: int, seed: int = 0):
+    return lambda driver: RandomOptimizer(driver, num_runs, seed)
+
+
+class ParallelRandomOptimizer(Optimizer):
+    """
+    This class implements the random optimizer in a parallel way. It randomly
+    chooses a set of candidates, runs the instrumentation with that set, and
+    returns the minimum size encountered.
+    """
+
+    def __init__(self, driver: OptimizerDriver, num_runs: int, seed: int = 0):
+        super().__init__(driver)
+        self.num_runs = num_runs
+        self.seed = seed
+
+    description = "Parallel Random Optimizer"
+    num_runs: int = 0
+    seed: int = 0
+
+    def optimize(self, file_name: Path, num_candidates: int) -> int:
+        random.seed(self.seed)
+        population = self.driver.get_n_random_sequences(num_candidates, self.num_runs)
+        sizes = []
+        with Pool(self.driver.proc_count) as pool:
+            sizes = pool.starmap(
+                self.driver.run_assemble_and_measure_file,
+                [(file_name, i, sample) for i, sample in enumerate(population)],
+            )
+
+        return min(sizes)
+
+
+def parallel_random_factory(num_runs: int, seed: int = 0):
+    return lambda driver: ParallelRandomOptimizer(driver, num_runs, seed)
 
 
 class AutoTuningOptimizer(Optimizer):
@@ -167,7 +208,7 @@ if __name__ == "__main__":
     driver.register_optimizers(
         [
             imprecise_factory(),
-            random_factory(100),
+            parallel_random_factory(100),
             autotuner_factory(),
         ]
     )
