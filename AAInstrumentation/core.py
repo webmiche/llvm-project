@@ -15,9 +15,9 @@ import sys
 import shutil
 import hashlib
 import random
+from typing import TypeAlias
 
-AASequence = list[int]
-IterationUpdate = tuple[AASequence, int, int]
+AASequence: TypeAlias = list[int]
 
 
 def register_arguments():

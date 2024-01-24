@@ -11,6 +11,7 @@ from dataclasses import dataclass
 from abc import abstractmethod
 import random
 import time
+from typing import TypeAlias
 
 
 @dataclass
@@ -180,9 +181,9 @@ def autotuner_factory():
     return lambda driver: AutoTuningOptimizer(driver)
 
 
-index = int
-size = int
-IterationUpdate = tuple[AASequence, index, size]
+index: TypeAlias = int
+size: TypeAlias = int
+IterationUpdate: TypeAlias = tuple[AASequence, index, size]
 
 
 class ParallelLocalAutotuner(Optimizer):
