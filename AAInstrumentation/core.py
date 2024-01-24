@@ -15,6 +15,9 @@ import sys
 import shutil
 import hashlib
 import random
+from typing import TypeAlias
+
+AASequence: TypeAlias = list[int]
 
 
 def register_arguments():
