@@ -1,4 +1,4 @@
-from core import AAInstrumentationDriver, register_arguments
+from core import AAInstrumentationDriver, register_arguments, AASequence, index
 from multiprocessing import Pool
 import os
 from pathlib import Path
@@ -12,7 +12,7 @@ from abc import abstractmethod
 
 @dataclass
 class MaximalRelaxationDriver(AAInstrumentationDriver):
-    original_hash: str = 0
+    original_hash: str = ""
     instrument_aa_recursively: bool = False
 
     @abstractmethod
@@ -20,8 +20,8 @@ class MaximalRelaxationDriver(AAInstrumentationDriver):
         self,
         file_name: Path,
         prefix,
-        lower_bound,
-        upper_bound,
+        total_lower_bound,
+        total_upper_bound,
     ):
         """Relaxes the queries from [lower_bound, upper_bound), with the prefix."""
         raise NotImplementedError
@@ -38,10 +38,10 @@ class MaximalRelaxationDriver(AAInstrumentationDriver):
 
     def relax_one_index(
         self,
-        prefix: list[int],
+        prefix: AASequence,
         file_name: Path,
-        lower_bound: int,
-        i: int,
+        lower_bound: index,
+        i: index,
     ):
         """Runs the instrumentation with the queries in prefix relaxed as
         well as the queries from lower_bound to i."""
@@ -152,7 +152,7 @@ class SequentialMaximalRelaxationDriver(MaximalRelaxationDriver):
         prefix,
         total_lower_bound,
         total_upper_bound,
-    ):
+    ) -> AASequence:
         """
         This function works batch-wise. It starts with a batch with size
         proc_count and checks if all of the queries can be relaxed. If so, it
@@ -208,10 +208,10 @@ class LogMaximalRelaxationDriver(MaximalRelaxationDriver):
         self,
         file_name: Path,
         prefix,
-        lower_bound,
-        upper_bound,
-    ):
-        return self.rec_relax(file_name, prefix, lower_bound, upper_bound)
+        total_lower_bound,
+        total_upper_bound,
+    ) -> AASequence:
+        return self.rec_relax(file_name, prefix, total_lower_bound, total_upper_bound)
 
     def rec_relax(
         self,
@@ -219,7 +219,7 @@ class LogMaximalRelaxationDriver(MaximalRelaxationDriver):
         prefix,
         lower_bound,
         upper_bound,
-    ) -> list[int]:
+    ) -> AASequence:
         """Recursivle relaxes the queries from [lower_bound, upper_bound), with
         the prefix."""
         if prefix:
@@ -301,7 +301,7 @@ if __name__ == "__main__":
         groundtruth_dir,
         "Oz",
         args.proc_count,
-        -1,
+        "",
         args.instrument_recursively,
     )
     driver.maximal_relaxation()

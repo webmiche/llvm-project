@@ -1,5 +1,5 @@
 from __future__ import annotations
-from core import AAInstrumentationDriver, register_arguments, AASequence
+from core import AAInstrumentationDriver, register_arguments, AASequence, index, size
 from multiprocessing import Pool
 import os
 from pathlib import Path
@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from abc import abstractmethod
 import random
 import time
-from typing import TypeAlias
+from typing import TypeAlias, Callable
 
 
 @dataclass
@@ -19,14 +19,14 @@ class OptimizerDriver(AAInstrumentationDriver):
     optimizers: list[Optimizer] | None = None
 
     def register_optimizer(
-        self, optimizer_factory: Callable[OptimizerDriver, Optimizer]
+        self, optimizer_factory: Callable[[OptimizerDriver], Optimizer]
     ):
         if self.optimizers is None:
             self.optimizers = []
         self.optimizers.append(optimizer_factory(self))
 
     def register_optimizers(
-        self, optimizer_factories: list[Callable[OptimizerDriver, Optimizer]]
+        self, optimizer_factories: list[Callable[[OptimizerDriver], Optimizer]]
     ):
         for optimizer_factory in optimizer_factories:
             self.register_optimizer(optimizer_factory)
@@ -45,6 +45,7 @@ class OptimizerDriver(AAInstrumentationDriver):
             print(f"Optimizing {file_}")
             print(f"Number of candidates: {candidates_per_file[file_]}")
             print(f"Baseline: {precise_sizes[file_]}")
+            assert self.optimizers is not None
             for optimizer in self.optimizers:
                 start_time = time.time()
                 current_minimum = optimizer.optimize(file_, candidates_per_file[file_])
@@ -56,9 +57,10 @@ class OptimizerDriver(AAInstrumentationDriver):
 @dataclass
 class Optimizer:
     driver: OptimizerDriver
+    description: str = "Optimizer"
 
     @abstractmethod
-    def optimize(self, file_name: Path, num_candidates: int) -> int:
+    def optimize(self, file_name: Path, num_candidates: size) -> size:
         """Applies the optimization to the file_name, and returns minimumm size."""
         pass
 
@@ -74,7 +76,7 @@ class ImpreciseBaseline(Optimizer):
 
     description = "Imprecise Baseline"
 
-    def optimize(self, file_name: Path, num_candidates: int) -> int:
+    def optimize(self, file_name: Path, num_candidates: size) -> size:
         return self.driver.run_assemble_and_measure_file(
             file_name, 0, list(range(num_candidates))
         )
@@ -91,16 +93,16 @@ class RandomOptimizer(Optimizer):
     size encountered.
     """
 
-    def __init__(self, driver: OptimizerDriver, num_runs: int, seed: int = 0):
+    def __init__(self, driver: OptimizerDriver, num_runs: size, seed: int = 0):
         super().__init__(driver)
         self.num_runs = num_runs
         self.seed = seed
 
     description = "Random Optimizer"
-    num_runs: int = 0
+    num_runs: size = 0
     seed: int = 0
 
-    def optimize(self, file_name: Path, num_candidates: int) -> int:
+    def optimize(self, file_name: Path, num_candidates: size) -> size:
         random.seed(self.seed)
         population = self.driver.get_n_random_sequences(num_candidates, self.num_runs)
         sizes = []
@@ -112,7 +114,7 @@ class RandomOptimizer(Optimizer):
         return min(sizes)
 
 
-def random_factory(num_runs: int, seed: int = 0):
+def random_factory(num_runs: size, seed: int = 0):
     return lambda driver: RandomOptimizer(driver, num_runs, seed)
 
 
@@ -123,16 +125,16 @@ class ParallelRandomOptimizer(Optimizer):
     returns the minimum size encountered.
     """
 
-    def __init__(self, driver: OptimizerDriver, num_runs: int, seed: int = 0):
+    def __init__(self, driver: OptimizerDriver, num_runs: size, seed: int = 0):
         super().__init__(driver)
         self.num_runs = num_runs
         self.seed = seed
 
     description = "Parallel Random Optimizer"
-    num_runs: int = 0
+    num_runs: size = 0
     seed: int = 0
 
-    def optimize(self, file_name: Path, num_candidates: int) -> int:
+    def optimize(self, file_name: Path, num_candidates: size) -> size:
         random.seed(self.seed)
         population = self.driver.get_n_random_sequences(num_candidates, self.num_runs)
         sizes = []
@@ -145,7 +147,7 @@ class ParallelRandomOptimizer(Optimizer):
         return min(sizes)
 
 
-def parallel_random_factory(num_runs: int, seed: int = 0):
+def parallel_random_factory(num_runs: size, seed: int = 0):
     return lambda driver: ParallelRandomOptimizer(driver, num_runs, seed)
 
 
@@ -162,7 +164,7 @@ class AutoTuningOptimizer(Optimizer):
 
     description = "AutoTuner"
 
-    def optimize(self, file_name: Path, num_candidates: int) -> int:
+    def optimize(self, file_name: Path, num_candidates: size) -> size:
         prefix = []
         curr_size = self.driver.run_assemble_and_measure_file(file_name, 0, [])
 
@@ -181,8 +183,6 @@ def autotuner_factory():
     return lambda driver: AutoTuningOptimizer(driver)
 
 
-index: TypeAlias = int
-size: TypeAlias = int
 IterationUpdate: TypeAlias = tuple[AASequence, index, size]
 
 
