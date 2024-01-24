@@ -17,7 +17,9 @@ import hashlib
 import random
 from typing import TypeAlias
 
-AASequence: TypeAlias = list[int]
+index: TypeAlias = int
+size: TypeAlias = int
+AASequence: TypeAlias = list[index]
 
 
 def register_arguments():
@@ -55,7 +57,7 @@ def register_arguments():
     )
     arg_parser.add_argument(
         "--proc_count",
-        type=int,
+        type=size,
         nargs="?",
         help="number of processes to use",
         default=8,
@@ -112,7 +114,7 @@ class AAInstrumentationDriver:
     instr_dir: Path
     groundtruth_dir: Path
     opt_flag: str
-    proc_count: int
+    proc_count: size
 
     def generate_baseline(self):
         run(
@@ -142,7 +144,7 @@ class AAInstrumentationDriver:
             stderr=DEVNULL,
         )
 
-    def get_baseline_files(self) -> list[str]:
+    def get_baseline_files(self) -> list[Path]:
         """Get the baseline files."""
 
         files = [
@@ -192,7 +194,7 @@ class AAInstrumentationDriver:
         self,
         file_name: Path,
         name_prefix: int,
-        index_list: list[int],
+        index_list: list[index],
     ):
         self.run_and_assemble_file(file_name, name_prefix, index_list)
 
@@ -202,7 +204,7 @@ class AAInstrumentationDriver:
             / Path(str(name_prefix) + str(file_name.stem) + ".o")
         )
 
-    def measure_outputsize(self, file: Path) -> int:
+    def measure_outputsize(self, file: Path) -> size:
         cmd = [str(self.instr_path / "llvm-size"), str(file)]
         p = run(cmd, stdout=PIPE, stderr=PIPE, text=True)
         if p.stderr != "":
@@ -212,7 +214,7 @@ class AAInstrumentationDriver:
         # The other results are more info on where size is: text, data, bss
         return int(line_list[0])
 
-    def assemble_file(self, file_name: Path, obj_file_name: Path = None):
+    def assemble_file(self, file_name: Path, obj_file_name: Path | None = None):
         """Assemble the file."""
 
         if obj_file_name is None:
@@ -229,7 +231,7 @@ class AAInstrumentationDriver:
             cmd,
         )
 
-    def assemble_and_measure_file(self, file_name: Path) -> int:
+    def assemble_and_measure_file(self, file_name: Path) -> size:
         """Measure a given file by compiling to an object file."""
 
         obj_file_name = file_name.with_suffix(".o")
@@ -241,7 +243,7 @@ class AAInstrumentationDriver:
         self,
         file_name: Path,
         name_prefix: int,
-        index_list: list[int],
+        index_list: list[index],
         instrument_recursively=False,
     ):
         """Run a single function and assemble the result."""
@@ -258,9 +260,9 @@ class AAInstrumentationDriver:
         self,
         file_name: Path,
         name_prefix: int,
-        index_list: list[int],
+        index_list: list[index],
         instrument_recursively=False,
-    ) -> int:
+    ) -> size:
         """Run a round of instrumentation, assemble the result, and measure the
         output size."""
         self.run_and_assemble_file(
@@ -272,14 +274,14 @@ class AAInstrumentationDriver:
             / Path(str(name_prefix) + str(file_name.stem) + ".o")
         )
 
-    def get_aa_string_from_indices(self, index_list: list[int]) -> str:
+    def get_aa_string_from_indices(self, index_list: list[index]) -> str:
         return str(len(index_list)) + "-" + "-".join([str(i) for i in index_list])
 
     def run_step_single_func(
         self,
         file_name: Path,
         name_prefix: int,
-        index_list: list[int],
+        index_list: list[index],
         instrument_recursively=False,
     ):
         """Perform one run of the instrumentation.
@@ -335,8 +337,8 @@ class AAInstrumentationDriver:
             )
 
     def get_candidate_count(
-        self, file_name: Path, prefix: list[int] = [], instrument_recursively=False
-    ) -> int:
+        self, file_name: Path, prefix: list[index] = [], instrument_recursively=False
+    ) -> size:
         """Get the number of candidates for a given file with a given prefix."""
 
         cmd = [
@@ -362,7 +364,7 @@ class AAInstrumentationDriver:
         raise Exception("Error in getting candidate count for " + str(file_name))
 
     def get_candidates_per_file(
-        self, files: list[str], instrument_aa_recursively: bool = False
+        self, files: list[Path], instrument_aa_recursively: bool = False
     ) -> dict:
         """Get the number of relaxation candidates per file."""
 
@@ -375,16 +377,18 @@ class AAInstrumentationDriver:
 
         return count_per_file
 
-    def get_random_sequence(self, num_candidates: int) -> list[int]:
+    def get_random_sequence(self, num_candidates: size) -> AASequence:
         """Get a random sequence of AA queries."""
         sequence = [random.randint(0, 1) for _ in range(num_candidates)]
         index_list = []
         for j, val in enumerate(sequence):
             if val:
                 index_list.append(j)
-        return tuple(index_list)
+        return index_list
 
-    def get_n_random_sequences(self, num_candidates: int, num_runs: int) -> list[tuple]:
+    def get_n_random_sequences(
+        self, num_candidates: size, num_runs: size
+    ) -> list[AASequence]:
         """Get n random sequences of AA queries."""
         population = []
         for _ in range(num_runs):
@@ -392,8 +396,11 @@ class AAInstrumentationDriver:
         return population
 
     def get_queries_per_pass(
-        self, file_name: Path, index_list: list[int] = [], instrument_recursively=False
-    ) -> dict[str, dict[str, int]]:
+        self,
+        file_name: Path,
+        index_list: list[index] = [],
+        instrument_recursively=False,
+    ) -> dict[str, dict[str, size]]:
         """
         Given a file and a list of indices, returns a dictionary mapping passes
         to AA counts. The AA results are are themselves a dictionary mapping
@@ -424,7 +431,7 @@ class AAInstrumentationDriver:
 
     def parse_aa_trace(
         self, aa_trace, instrument_recursively=False
-    ) -> dict[str, dict[str, int]]:
+    ) -> dict[str, dict[str, size]]:
         """
         Given an aa trace, returns a dictionary mapping passes to AA counts.
         Lines starting with *** are pass and have the form `*** Pass:
@@ -460,6 +467,8 @@ class AAInstrumentationDriver:
                     or "MustAlias" in line
                     or "PartialAlias" in line
                 ):
+                    j = 0
+                    next_line = line
                     # This is a query on a pointer with a multi-line description.
                     for j, next_line in enumerate(aa_trace_lines[i + 1 :]):
                         if "LocationSize::beforeOrAfterPointer" in next_line:
