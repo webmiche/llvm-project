@@ -180,6 +180,71 @@ def autotuner_factory():
     return lambda driver: AutoTuningOptimizer(driver)
 
 
+class ParallelAutotuner(Optimizer):
+    """
+    This class implements the local Autotuner in a parallel way. It aims to
+    optimize the size of the final binary by sequentially trying out the queries
+    in the compilation. If a query reduces the size, it is fied to imprecise for
+    all following queries.
+
+    This implementation is parallelized in that it proceeds batch-wise. For a
+    given batch, each individual query is relaxed in parallel. If no query
+    reduces the size, the next batch is tried. If query Q reduces the size, the
+    next batch is started with Q relaxed and from the index of Q. If multiple
+    queries reduce the size, the first one is treated as Q in the previous case.
+
+    """
+
+    def __init__(self, driver: OptimizerDriver):
+        super().__init__(driver)
+        self.batch_size = driver.proc_count
+
+    description = "Parallel AutoTuner"
+    batch_size: int = 0
+
+    def handle_batch_from_index(
+        self, file_name: Path, prefix: list[int], index: int
+    ) -> list[int]:
+        sizes = []
+        with Pool(self.batch_size) as pool:
+            sizes = pool.starmap(
+                self.driver.run_assemble_and_measure_file,
+                [
+                    (file_name, i, prefix + [i])
+                    for i in range(index, index + self.batch_size)
+                ],
+            )
+
+        return sizes
+
+    def update_iteration(
+        self, file_name: Path, prefix: list[int], index: int, current_minimum: int
+    ) -> tuple[list[int], int, int]:
+        sizes = self.handle_batch_from_index(file_name, prefix, index)
+
+        for i, size in enumerate(sizes):
+            if size < current_minimum:
+                return prefix + [index + i], index + i, size
+
+        return prefix, index + self.batch_size, current_minimum
+
+    def optimize(self, file_name: Path, num_candidates: int) -> int:
+        prefix = []
+        curr_size = self.driver.run_assemble_and_measure_file(file_name, 0, [])
+        curr_index = 0
+
+        while curr_index < num_candidates:
+            prefix, curr_index, curr_size = self.update_iteration(
+                file_name, prefix, curr_index, curr_size
+            )
+
+        return curr_size
+
+
+def parallel_autotuner_factory():
+    return lambda driver: ParallelAutotuner(driver)
+
+
 if __name__ == "__main__":
     arg_parser = register_arguments()
 
@@ -209,7 +274,7 @@ if __name__ == "__main__":
         [
             imprecise_factory(),
             parallel_random_factory(100),
-            autotuner_factory(),
+            parallel_autotuner_factory(),
         ]
     )
     driver.run()
