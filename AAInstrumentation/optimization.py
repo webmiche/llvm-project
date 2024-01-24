@@ -1,5 +1,5 @@
 from __future__ import annotations
-from core import AAInstrumentationDriver, register_arguments
+from core import AAInstrumentationDriver, register_arguments, AASequence
 from multiprocessing import Pool
 import os
 from pathlib import Path
@@ -180,11 +180,16 @@ def autotuner_factory():
     return lambda driver: AutoTuningOptimizer(driver)
 
 
-class ParallelAutotuner(Optimizer):
+index = int
+size = int
+IterationUpdate = tuple[AASequence, index, size]
+
+
+class ParallelLocalAutotuner(Optimizer):
     """
     This class implements the local Autotuner in a parallel way. It aims to
     optimize the size of the final binary by sequentially trying out the queries
-    in the compilation. If a query reduces the size, it is fied to imprecise for
+    in the compilation. If a query reduces the size, it is fixed to imprecise for
     all following queries.
 
     This implementation is parallelized in that it proceeds batch-wise. For a
@@ -200,11 +205,11 @@ class ParallelAutotuner(Optimizer):
         self.batch_size = driver.proc_count
 
     description = "Parallel AutoTuner"
-    batch_size: int = 0
+    batch_size: size = 0
 
     def handle_batch_from_index(
-        self, file_name: Path, prefix: list[int], index: int
-    ) -> list[int]:
+        self, file_name: Path, prefix: AASequence, index: index
+    ) -> AASequence:
         sizes = []
         with Pool(self.batch_size) as pool:
             sizes = pool.starmap(
@@ -218,8 +223,8 @@ class ParallelAutotuner(Optimizer):
         return sizes
 
     def update_iteration(
-        self, file_name: Path, prefix: list[int], index: int, current_minimum: int
-    ) -> tuple[list[int], int, int]:
+        self, file_name: Path, prefix: AASequence, index: index, current_minimum: size
+    ) -> IterationUpdate:
         sizes = self.handle_batch_from_index(file_name, prefix, index)
 
         for i, size in enumerate(sizes):
@@ -228,7 +233,7 @@ class ParallelAutotuner(Optimizer):
 
         return prefix, index + self.batch_size, current_minimum
 
-    def optimize(self, file_name: Path, num_candidates: int) -> int:
+    def optimize(self, file_name: Path, num_candidates: size) -> size:
         prefix = []
         curr_size = self.driver.run_assemble_and_measure_file(file_name, 0, [])
         curr_index = 0
@@ -241,8 +246,8 @@ class ParallelAutotuner(Optimizer):
         return curr_size
 
 
-def parallel_autotuner_factory():
-    return lambda driver: ParallelAutotuner(driver)
+def parallel_local_autotuner_factory():
+    return lambda driver: ParallelLocalAutotuner(driver)
 
 
 if __name__ == "__main__":
@@ -274,7 +279,7 @@ if __name__ == "__main__":
         [
             imprecise_factory(),
             parallel_random_factory(100),
-            parallel_autotuner_factory(),
+            parallel_local_autotuner_factory(),
         ]
     )
     driver.run()

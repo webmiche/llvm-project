@@ -16,6 +16,9 @@ import shutil
 import hashlib
 import random
 
+AASequence = list[int]
+IterationUpdate = tuple[AASequence, int, int]
+
 
 def register_arguments():
     """Register the arguments for the instrumentation."""
