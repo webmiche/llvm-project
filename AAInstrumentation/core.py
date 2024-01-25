@@ -358,10 +358,11 @@ class AAInstrumentationDriver:
             text=True,
             check=True,
         )
-        for line in p.stderr.split("\n"):
+        lines = p.stderr.split("\n")
+        for line in lines:
             if "Number of queries that are not cached and not MayAlias" in line:
                 return int(line.split()[0])
-        raise Exception("Error in getting candidate count for " + str(file_name))
+        return 0
 
     def get_candidates_per_file(
         self, files: list[Path], instrument_aa_recursively: bool = False
