@@ -1,9 +1,16 @@
 from __future__ import annotations
-from core import AAInstrumentationDriver, register_arguments, AASequence, index, size
+from core import (
+    AAInstrumentationDriver,
+    register_arguments,
+    AASequence,
+    index,
+    size,
+    linked_libraries,
+)
 from multiprocessing import Pool
 import os
 from pathlib import Path
-import subprocess
+from subprocess import run, DEVNULL
 import hashlib
 import argparse
 import sys
@@ -32,6 +39,12 @@ class OptimizerDriver(AAInstrumentationDriver):
             self.register_optimizer(optimizer_factory)
 
     def run(self):
+        required_empty_paths = [
+            self.instr_dir,
+            Path("res/"),
+        ]
+        self.setup_directories(required_empty_paths)
+
         self.generate_baseline()
         files = self.get_baseline_files()
 
@@ -41,17 +54,80 @@ class OptimizerDriver(AAInstrumentationDriver):
         for file_ in files:
             precise_sizes[file_] = self.run_assemble_and_measure_file(file_, 0, [])
 
+        minima = {}
+
         for file_ in files:
             print(f"Optimizing {file_}")
             print(f"Number of candidates: {candidates_per_file[file_]}")
             print(f"Baseline: {precise_sizes[file_]}")
             assert self.optimizers is not None
+            current_minimum = None
+            current_prefix = None
             for optimizer in self.optimizers:
                 start_time = time.time()
-                current_minimum = optimizer.optimize(file_, candidates_per_file[file_])
-                print(
-                    f"{optimizer.description}: {current_minimum} in {time.time() - start_time}s"
+                new_min, new_prefix = optimizer.optimize(
+                    file_, candidates_per_file[file_]
                 )
+                print(
+                    f"{optimizer.description}: {new_min} in {time.time() - start_time}s"
+                )
+                if current_minimum is None or new_min < current_minimum:
+                    current_minimum = new_min
+                    current_prefix = new_prefix
+
+            minima[file_] = current_minimum, current_prefix
+
+        self.full_evaluation(minima)
+
+    def full_evaluation(self, minima: dict[Path, tuple[size, AASequence]]):
+        Path("res/").mkdir(parents=True, exist_ok=True)
+        print(minima)
+
+        object_files = []
+        # Compiling the minima
+        print("Minima:")
+        for file_, (size, sequence) in minima.items():
+            print(f"{file_}: {size} bytes with {sequence}")
+            self.run_and_assemble_file(file_, "res_", sequence)
+            result_path = (
+                self.instr_dir / file_.parent / Path("res_" + str(file_.stem) + ".o")
+            )
+            end_path = (
+                self.exec_root
+                / Path("res")
+                / file_.parent
+                / Path("res_" + str(file_.stem) + ".o")
+            )
+            end_path.parent.mkdir(parents=True, exist_ok=True)
+            cmd = ["mv", result_path, end_path]
+            run(cmd, cwd=self.exec_root, check=True)
+            object_files.append(end_path)
+
+        # Linking the minima
+        print("Linking:")
+        cmd = (
+            [
+                str(self.instr_path.joinpath("clang")),
+                "-no-pie",
+                "-lstdc++",
+                "-lm",
+                "-o",
+                "res/linked.out",
+            ]
+            + [
+                ("-l" + link) if not link.startswith("-") else link
+                for link in linked_libraries.get(str(self.benchmark), [])
+            ]
+            + object_files
+        )
+        run(cmd, cwd=self.exec_root, stdout=DEVNULL)
+
+        # Measuring the minima
+        total_size = self.measure_outputsize(Path("res/linked.out"))
+        baseline_size = self.measure_outputsize(
+            Path("baseline/" / self.benchmark / str(self.benchmark))
+        )
+        print(f"Total size: {total_size} bytes vs {baseline_size} bytes")
 
 
 @dataclass
@@ -60,7 +136,9 @@ class Optimizer:
     description: str = "Optimizer"
 
     @abstractmethod
-    def optimize(self, file_name: Path, num_candidates: size) -> size:
+    def optimize(
+        self, file_name: Path, num_candidates: size
+    ) -> tuple[size, AASequence]:
         """Applies the optimization to the file_name, and returns minimumm size."""
         pass
 
@@ -75,10 +153,12 @@ class ImpreciseBaseline(Optimizer):
         super().__init__(driver)
         self.description = "Imprecise Baseline"
 
-    def optimize(self, file_name: Path, num_candidates: size) -> size:
+    def optimize(
+        self, file_name: Path, num_candidates: size
+    ) -> tuple[size, AASequence]:
         return self.driver.run_assemble_and_measure_file(
             file_name, 0, list(range(num_candidates))
-        )
+        ), list(range(num_candidates))
 
 
 def imprecise_factory():
@@ -101,7 +181,9 @@ class RandomOptimizer(Optimizer):
     num_runs: size = 0
     seed: int = 0
 
-    def optimize(self, file_name: Path, num_candidates: size) -> size:
+    def optimize(
+        self, file_name: Path, num_candidates: size
+    ) -> tuple[size, AASequence]:
         random.seed(self.seed)
         population = self.driver.get_n_random_sequences(num_candidates, self.num_runs)
         sizes = []
@@ -110,7 +192,7 @@ class RandomOptimizer(Optimizer):
                 self.driver.run_assemble_and_measure_file(file_name, i, sample)
             )
 
-        return min(sizes)
+        return min(sizes), population[sizes.index(min(sizes))]
 
 
 def random_factory(num_runs: size, seed: int = 0):
@@ -133,7 +215,9 @@ class ParallelRandomOptimizer(Optimizer):
     num_runs: size = 0
     seed: int = 0
 
-    def optimize(self, file_name: Path, num_candidates: size) -> size:
+    def optimize(
+        self, file_name: Path, num_candidates: size
+    ) -> tuple[size, AASequence]:
         random.seed(self.seed)
         population = self.driver.get_n_random_sequences(num_candidates, self.num_runs)
         sizes = []
@@ -143,7 +227,7 @@ class ParallelRandomOptimizer(Optimizer):
                 [(file_name, i, sample) for i, sample in enumerate(population)],
             )
 
-        return min(sizes)
+        return min(sizes), population[sizes.index(min(sizes))]
 
 
 def parallel_random_factory(num_runs: size, seed: int = 0):
@@ -162,7 +246,9 @@ class AutoTuningOptimizer(Optimizer):
         super().__init__(driver)
         self.description = "AutoTuner"
 
-    def optimize(self, file_name: Path, num_candidates: size) -> size:
+    def optimize(
+        self, file_name: Path, num_candidates: size
+    ) -> tuple[size, AASequence]:
         prefix = []
         curr_size = self.driver.run_assemble_and_measure_file(file_name, 0, [])
 
@@ -174,7 +260,7 @@ class AutoTuningOptimizer(Optimizer):
                 curr_size = new_size
                 prefix.append(i)
 
-        return curr_size
+        return curr_size, prefix
 
 
 def autotuner_factory():
@@ -232,7 +318,9 @@ class ParallelLocalAutotuner(Optimizer):
 
         return prefix, index + self.batch_size, current_minimum
 
-    def optimize(self, file_name: Path, num_candidates: size) -> size:
+    def optimize(
+        self, file_name: Path, num_candidates: size
+    ) -> tuple[size, AASequence]:
         prefix = []
         curr_size = self.driver.run_assemble_and_measure_file(file_name, 0, [])
         curr_index = 0
@@ -242,7 +330,7 @@ class ParallelLocalAutotuner(Optimizer):
                 file_name, prefix, curr_index, curr_size
             )
 
-        return curr_size
+        return curr_size, prefix
 
 
 def parallel_local_autotuner_factory():

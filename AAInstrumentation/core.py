@@ -22,6 +22,17 @@ size: TypeAlias = int
 AASequence: TypeAlias = list[index]
 
 
+# from specbuilder --> spec.py
+linked_libraries = {
+    "600": ["m"],
+    "602": ["-Wl,--allow-multiple-definition"],
+    "619": ["m"],
+    "625": ["m"],
+    "638": ["m"],
+    "644": ["m"],
+}
+
+
 def register_arguments():
     """Register the arguments for the instrumentation."""
     arg_parser = argparse.ArgumentParser()
