@@ -77,16 +77,25 @@ class OptimizerDriver(AAInstrumentationDriver):
 
             minima[file_] = current_minimum, current_prefix
 
-        self.full_evaluation(minima)
+        self.link_dict(minima, Path("res") / self.benchmark / self.benchmark)
+        new_size = self.measure_outputsize(
+            Path("res") / self.benchmark / self.benchmark
+        )
+        baseline_size = self.measure_outputsize(
+            Path("baseline") / self.benchmark / self.benchmark
+        )
+        print(f"Baseline: {baseline_size}")
+        print(f"New: {new_size}")
 
-    def full_evaluation(self, minima: dict[Path, tuple[size, AASequence]]):
-        Path("res/").mkdir(parents=True, exist_ok=True)
-        print(minima)
+    def link_dict(
+        self, result_dict: dict[Path, tuple[size, AASequence]], final_path: Path
+    ):
+        final_path.parent.mkdir(parents=True, exist_ok=True)
 
         object_files = []
         # Compiling the minima
         print("Minima:")
-        for file_, (size, sequence) in minima.items():
+        for file_, (size, sequence) in result_dict.items():
             print(f"{file_}: {size} bytes with {sequence}")
             self.run_and_assemble_file(file_, "res_", sequence)
             result_path = (
@@ -112,22 +121,15 @@ class OptimizerDriver(AAInstrumentationDriver):
                 "-lstdc++",
                 "-lm",
                 "-o",
-                "res/linked.out",
+                str(final_path),
             ]
             + [
                 ("-l" + link) if not link.startswith("-") else link
                 for link in linked_libraries.get(str(self.benchmark), [])
             ]
-            + object_files
+            + [str(f) for f in object_files]
         )
         run(cmd, cwd=self.exec_root, stdout=DEVNULL)
-
-        # Measuring the minima
-        total_size = self.measure_outputsize(Path("res/linked.out"))
-        baseline_size = self.measure_outputsize(
-            Path("baseline/" / self.benchmark / str(self.benchmark))
-        )
-        print(f"Total size: {total_size} bytes vs {baseline_size} bytes")
 
 
 @dataclass
