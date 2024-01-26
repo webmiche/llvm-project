@@ -73,8 +73,7 @@ class ImpreciseBaseline(Optimizer):
 
     def __init__(self, driver: OptimizerDriver):
         super().__init__(driver)
-
-    description = "Imprecise Baseline"
+        self.description = "Imprecise Baseline"
 
     def optimize(self, file_name: Path, num_candidates: size) -> size:
         return self.driver.run_assemble_and_measure_file(
@@ -97,8 +96,8 @@ class RandomOptimizer(Optimizer):
         super().__init__(driver)
         self.num_runs = num_runs
         self.seed = seed
+        self.description = f"Random Optimizer ({num_runs} runs)"
 
-    description = "Random Optimizer"
     num_runs: size = 0
     seed: int = 0
 
@@ -129,8 +128,8 @@ class ParallelRandomOptimizer(Optimizer):
         super().__init__(driver)
         self.num_runs = num_runs
         self.seed = seed
+        self.description = f"Parallel Random Optimizer ({num_runs} runs)"
 
-    description = "Parallel Random Optimizer"
     num_runs: size = 0
     seed: int = 0
 
@@ -161,8 +160,7 @@ class AutoTuningOptimizer(Optimizer):
 
     def __init__(self, driver: OptimizerDriver):
         super().__init__(driver)
-
-    description = "AutoTuner"
+        self.description = "AutoTuner"
 
     def optimize(self, file_name: Path, num_candidates: size) -> size:
         prefix = []
@@ -204,8 +202,8 @@ class ParallelLocalAutotuner(Optimizer):
     def __init__(self, driver: OptimizerDriver):
         super().__init__(driver)
         self.batch_size = driver.proc_count
+        self.description = "Parallel Local Autotuner"
 
-    description = "Parallel AutoTuner"
     batch_size: size = 0
 
     def handle_batch_from_index(
