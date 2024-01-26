@@ -1,0 +1,13 @@
+Running benchmark 619 with Oz
+Optimizing 619/lbm.bc
+Number of candidates: 2807
+Baseline: 12087
+Optimizer: 12159 in 0.23285174369812012s
+Optimizer: 12127 in 7.310937166213989s
+Optimizer: 12087 in 18.630385160446167s
+Optimizing 619/main.bc
+Number of candidates: 89
+Baseline: 1767
+Optimizer: 1747 in 0.057518720626831055s
+Optimizer: 1747 in 1.254181146621704s
+Optimizer: 1747 in 0.5104665756225586s

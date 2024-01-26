@@ -1,0 +1,73 @@
+Running benchmark 605 with Oz
+Optimizing 605/pflowup.bc
+Number of candidates: 6
+Baseline: 95
+Optimizer: 95 in 0.04600811004638672s
+Optimizer: 95 in 0.8814051151275635s
+Optimizer: 95 in 0.1704270839691162s
+Optimizing 605/treeup.bc
+Number of candidates: 159
+Baseline: 535
+Optimizer: 539 in 0.0571901798248291s
+Optimizer: 535 in 1.2327537536621094s
+Optimizer: 535 in 0.4861631393432617s
+Optimizing 605/pbeampp.bc
+Number of candidates: 175
+Baseline: 774
+Optimizer: 790 in 0.07045292854309082s
+Optimizer: 772 in 1.400019884109497s
+Optimizer: 772 in 0.6936953067779541s
+Optimizing 605/pbla.bc
+Number of candidates: 51
+Baseline: 178
+Optimizer: 178 in 0.043586015701293945s
+Optimizer: 178 in 0.999584436416626s
+Optimizer: 178 in 0.18550777435302734s
+Optimizing 605/mcf.bc
+Number of candidates: 13
+Baseline: 1239
+Optimizer: 1239 in 0.0545499324798584s
+Optimizer: 1239 in 1.034097671508789s
+Optimizer: 1239 in 0.1970500946044922s
+Optimizing 605/psimplex.bc
+Number of candidates: 367
+Baseline: 1812
+Optimizer: 1843 in 0.08388352394104004s
+Optimizer: 1812 in 1.7759718894958496s
+Optimizer: 1812 in 1.1307430267333984s
+Optimizing 605/readmin.bc
+Number of candidates: 620
+Baseline: 1790
+Optimizer: 1904 in 0.07906389236450195s
+Optimizer: 1816 in 1.9597337245941162s
+Optimizer: 1744 in 2.719862461090088s
+Optimizing 605/mcfutil.bc
+Number of candidates: 197
+Baseline: 1647
+Optimizer: 1657 in 0.08554577827453613s
+Optimizer: 1640 in 1.7765710353851318s
+Optimizer: 1634 in 1.0193634033203125s
+Optimizing 605/output.bc
+Number of candidates: 15
+Baseline: 579
+Optimizer: 579 in 0.056702375411987305s
+Optimizer: 579 in 1.0521650314331055s
+Optimizer: 579 in 0.19908475875854492s
+Optimizing 605/implicit.bc
+Number of candidates: 1165
+Baseline: 4639
+Optimizer: 4636 in 0.14825677871704102s
+Optimizer: 4471 in 3.9852006435394287s
+Optimizer: 4409 in 8.440196514129639s
+Optimizing 605/pstart.bc
+Number of candidates: 323
+Baseline: 319
+Optimizer: 297 in 0.05262279510498047s
+Optimizer: 297 in 1.2735002040863037s
+Optimizer: 297 in 1.1356730461120605s
+Optimizing 605/spec_qsort/spec_qsort.bc
+Number of candidates: 3
+Baseline: 1754
+Optimizer: 1754 in 0.08524131774902344s
+Optimizer: 1754 in 1.7205233573913574s
+Optimizer: 1754 in 0.2781541347503662s

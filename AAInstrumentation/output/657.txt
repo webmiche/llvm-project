@@ -1,0 +1,541 @@
+Running benchmark 657 with Oz
+Optimizing 657/spec.bc
+Number of candidates: 27
+Baseline: 2478
+Optimizer: 2499 in 0.06847810745239258s
+Optimizer: 2478 in 1.3400676250457764s
+Optimizer: 2478 in 0.23681116104125977s
+Optimizing 657/pxz.bc
+Number of candidates: 0
+Baseline: 0
+Optimizer: 0 in 0.03264927864074707s
+Optimizer: 0 in 0.7683289051055908s
+Optimizer: 0 in 0.031235694885253906s
+Optimizing 657/spec_xz.bc
+Number of candidates: 58
+Baseline: 2521
+Optimizer: 2509 in 0.06613588333129883s
+Optimizer: 2505 in 1.3893818855285645s
+Optimizer: 2505 in 0.39748525619506836s
+Optimizing 657/common/tuklib_progname.bc
+Number of candidates: 0
+Baseline: 58
+Optimizer: 58 in 0.03417849540710449s
+Optimizer: 58 in 0.824347972869873s
+Optimizer: 58 in 0.042313575744628906s
+Optimizing 657/common/tuklib_physmem.bc
+Number of candidates: 0
+Baseline: 51
+Optimizer: 51 in 0.04373574256896973s
+Optimizer: 51 in 0.8323032855987549s
+Optimizer: 51 in 0.04143834114074707s
+Optimizing 657/common/tuklib_cpucores.bc
+Number of candidates: 0
+Baseline: 51
+Optimizer: 51 in 0.03789544105529785s
+Optimizer: 51 in 0.8390023708343506s
+Optimizer: 51 in 0.039772987365722656s
+Optimizing 657/common/tuklib_mbstr_width.bc
+Number of candidates: 0
+Baseline: 75
+Optimizer: 75 in 0.0433659553527832s
+Optimizer: 75 in 0.8565409183502197s
+Optimizer: 75 in 0.03862333297729492s
+Optimizing 657/common/tuklib_exit.bc
+Number of candidates: 0
+Baseline: 54
+Optimizer: 54 in 0.040682077407836914s
+Optimizer: 54 in 0.8414449691772461s
+Optimizer: 54 in 0.041589975357055664s
+Optimizing 657/common/tuklib_open_stdxxx.bc
+Number of candidates: 0
+Baseline: 49
+Optimizer: 49 in 0.03946995735168457s
+Optimizer: 49 in 0.8216221332550049s
+Optimizer: 49 in 0.0420231819152832s
+Optimizing 657/common/tuklib_mbstr_fw.bc
+Number of candidates: 1
+Baseline: 124
+Optimizer: 124 in 0.04149818420410156s
+Optimizer: 124 in 0.8889510631561279s
+Optimizer: 124 in 0.17532110214233398s
+Optimizing 657/liblzma/rangecoder/price_table.bc
+Number of candidates: 0
+Baseline: 128
+Optimizer: 128 in 0.03274202346801758s
+Optimizer: 128 in 0.7641968727111816s
+Optimizer: 128 in 0.03839302062988281s
+Optimizing 657/liblzma/simple/x86.bc
+Number of candidates: 25
+Baseline: 708
+Optimizer: 712 in 0.0669701099395752s
+Optimizer: 708 in 1.3021209239959717s
+Optimizer: 708 in 0.2362213134765625s
+Optimizing 657/liblzma/simple/simple_encoder.bc
+Number of candidates: 12
+Baseline: 101
+Optimizer: 101 in 0.04512476921081543s
+Optimizer: 101 in 0.9288032054901123s
+Optimizer: 101 in 0.17591547966003418s
+Optimizing 657/liblzma/simple/ia64.bc
+Number of candidates: 1
+Baseline: 711
+Optimizer: 711 in 0.06320834159851074s
+Optimizer: 711 in 1.202847957611084s
+Optimizer: 711 in 0.21811556816101074s
+Optimizing 657/liblzma/simple/arm.bc
+Number of candidates: 7
+Baseline: 291
+Optimizer: 291 in 0.05278205871582031s
+Optimizer: 291 in 1.052060842514038s
+Optimizer: 291 in 0.19903349876403809s
+Optimizing 657/liblzma/simple/simple_coder.bc
+Number of candidates: 138
+Baseline: 1592
+Optimizer: 1670 in 0.06883788108825684s
+Optimizer: 1592 in 1.44288969039917s
+Optimizer: 1589 in 0.5947318077087402s
+Optimizing 657/liblzma/simple/simple_decoder.bc
+Number of candidates: 1
+Baseline: 196
+Optimizer: 196 in 0.05078268051147461s
+Optimizer: 196 in 0.9018969535827637s
+Optimizer: 196 in 0.18408656120300293s
+Optimizing 657/liblzma/simple/sparc.bc
+Number of candidates: 7
+Baseline: 398
+Optimizer: 396 in 0.05630373954772949s
+Optimizer: 396 in 1.094801664352417s
+Optimizer: 398 in 0.20336580276489258s
+Optimizing 657/liblzma/simple/powerpc.bc
+Number of candidates: 11
+Baseline: 373
+Optimizer: 366 in 0.05921053886413574s
+Optimizer: 366 in 1.077526569366455s
+Optimizer: 366 in 0.35356855392456055s
+Optimizing 657/liblzma/simple/armthumb.bc
+Number of candidates: 11
+Baseline: 360
+Optimizer: 360 in 0.055284738540649414s
+Optimizer: 360 in 1.0526721477508545s
+Optimizer: 360 in 0.2056581974029541s
+Optimizing 657/liblzma/lz/lz_encoder_mf.bc
+Number of candidates: 976
+Baseline: 4668
+Optimizer: 4688 in 0.1700756549835205s
+Optimizer: 4636 in 4.378682613372803s
+Optimizer: 4627 in 6.491466522216797s
+Optimizing 657/liblzma/lz/lz_decoder.bc
+Number of candidates: 273
+Baseline: 1570
+Optimizer: 1668 in 0.07545614242553711s
+Optimizer: 1566 in 1.6618540287017822s
+Optimizer: 1564 in 1.1387858390808105s
+Optimizing 657/liblzma/lz/lz_encoder.bc
+Number of candidates: 1016
+Baseline: 2239
+Optimizer: 2323 in 0.09562015533447266s
+Optimizer: 2236 in 2.6992948055267334s
+Optimizer: 2220 in 4.286209344863892s
+Optimizing 657/liblzma/common/common.bc
+Number of candidates: 594
+Baseline: 1893
+Optimizer: 2005 in 0.08843088150024414s
+Optimizer: 1891 in 2.135687828063965s
+Optimizer: 1859 in 2.3894946575164795s
+Optimizing 657/liblzma/common/alone_decoder.bc
+Number of candidates: 360
+Baseline: 1285
+Optimizer: 1334 in 0.07375836372375488s
+Optimizer: 1267 in 1.6545734405517578s
+Optimizer: 1252 in 2.1137404441833496s
+Optimizing 657/liblzma/common/block_header_decoder.bc
+Number of candidates: 35
+Baseline: 631
+Optimizer: 632 in 0.05605053901672363s
+Optimizer: 626 in 1.1861541271209717s
+Optimizer: 626 in 0.370635986328125s
+Optimizing 657/liblzma/common/stream_buffer_decoder.bc
+Number of candidates: 30
+Baseline: 485
+Optimizer: 494 in 0.0480954647064209s
+Optimizer: 485 in 0.9972419738769531s
+Optimizer: 485 in 0.18268108367919922s
+Optimizing 657/liblzma/common/block_util.bc
+Number of candidates: 7
+Baseline: 346
+Optimizer: 346 in 0.04723358154296875s
+Optimizer: 346 in 1.0256216526031494s
+Optimizer: 346 in 0.1809685230255127s
+Optimizing 657/liblzma/common/index_encoder.bc
+Number of candidates: 96
+Baseline: 1350
+Optimizer: 1306 in 0.06961488723754883s
+Optimizer: 1297 in 1.3754827976226807s
+Optimizer: 1302 in 0.904193639755249s
+Optimizing 657/liblzma/common/vli_decoder.bc
+Number of candidates: 25
+Baseline: 389
+Optimizer: 234 in 0.04465508460998535s
+Optimizer: 234 in 1.0359776020050049s
+Optimizer: 285 in 0.7731237411499023s
+Optimizing 657/liblzma/common/filter_buffer_decoder.bc
+Number of candidates: 36
+Baseline: 550
+Optimizer: 550 in 0.050783395767211914s
+Optimizer: 550 in 0.9958879947662354s
+Optimizer: 550 in 0.19132494926452637s
+Optimizing 657/liblzma/common/stream_buffer_encoder.bc
+Number of candidates: 25
+Baseline: 714
+Optimizer: 709 in 0.058159589767456055s
+Optimizer: 709 in 1.0921387672424316s
+Optimizer: 714 in 0.20160436630249023s
+Optimizing 657/liblzma/common/easy_buffer_encoder.bc
+Number of candidates: 0
+Baseline: 214
+Optimizer: 214 in 0.03780508041381836s
+Optimizer: 214 in 0.8713877201080322s
+Optimizer: 214 in 0.04630541801452637s
+Optimizing 657/liblzma/common/filter_common.bc
+Number of candidates: 87
+Baseline: 1415
+Optimizer: 1442 in 0.07627153396606445s
+Optimizer: 1398 in 1.5890581607818604s
+Optimizer: 1391 in 0.6170697212219238s
+Optimizing 657/liblzma/common/easy_preset.bc
+Number of candidates: 3
+Baseline: 116
+Optimizer: 116 in 0.044300079345703125s
+Optimizer: 116 in 0.8803400993347168s
+Optimizer: 116 in 0.18832659721374512s
+Optimizing 657/liblzma/common/stream_encoder.bc
+Number of candidates: 411
+Baseline: 1973
+Optimizer: 2083 in 0.07543373107910156s
+Optimizer: 1975 in 1.8412513732910156s
+Optimizer: 1968 in 1.5105009078979492s
+Optimizing 657/liblzma/common/filter_flags_decoder.bc
+Number of candidates: 3
+Baseline: 235
+Optimizer: 235 in 0.045922040939331055s
+Optimizer: 235 in 0.918511152267456s
+Optimizer: 235 in 0.17703700065612793s
+Optimizing 657/liblzma/common/stream_flags_decoder.bc
+Number of candidates: 2
+Baseline: 423
+Optimizer: 423 in 0.04710793495178223s
+Optimizer: 423 in 0.9903552532196045s
+Optimizer: 423 in 0.19479990005493164s
+Optimizing 657/liblzma/common/index_decoder.bc
+Number of candidates: 228
+Baseline: 1956
+Optimizer: 1951 in 0.06883430480957031s
+Optimizer: 1941 in 1.6515841484069824s
+Optimizer: 1951 in 0.9803121089935303s
+Optimizing 657/liblzma/common/index_hash.bc
+Number of candidates: 191
+Baseline: 1664
+Optimizer: 1647 in 0.07355022430419922s
+Optimizer: 1643 in 1.6112291812896729s
+Optimizer: 1659 in 0.9811022281646729s
+Optimizing 657/liblzma/common/stream_flags_common.bc
+Number of candidates: 12
+Baseline: 192
+Optimizer: 192 in 0.0443110466003418s
+Optimizer: 192 in 0.9478802680969238s
+Optimizer: 192 in 0.18569231033325195s
+Optimizing 657/liblzma/common/block_decoder.bc
+Number of candidates: 170
+Baseline: 1274
+Optimizer: 1324 in 0.06774377822875977s
+Optimizer: 1262 in 1.4290473461151123s
+Optimizer: 1259 in 0.7483289241790771s
+Optimizing 657/liblzma/common/auto_decoder.bc
+Number of candidates: 79
+Baseline: 1043
+Optimizer: 1105 in 0.05667448043823242s
+Optimizer: 1041 in 1.2561872005462646s
+Optimizer: 1041 in 0.37613701820373535s
+Optimizing 657/liblzma/common/stream_decoder.bc
+Number of candidates: 471
+Baseline: 2124
+Optimizer: 2175 in 0.08882379531860352s
+Optimizer: 2121 in 2.015796422958374s
+Optimizer: 2112 in 1.8131554126739502s
+Optimizing 657/liblzma/common/vli_size.bc
+Number of candidates: 0
+Baseline: 74
+Optimizer: 74 in 0.04371047019958496s
+Optimizer: 74 in 0.8812251091003418s
+Optimizer: 74 in 0.04155540466308594s
+Optimizing 657/liblzma/common/easy_decoder_memusage.bc
+Number of candidates: 0
+Baseline: 96
+Optimizer: 96 in 0.03943181037902832s
+Optimizer: 96 in 0.8838627338409424s
+Optimizer: 96 in 0.039731502532958984s
+Optimizing 657/liblzma/common/block_buffer_encoder.bc
+Number of candidates: 179
+Baseline: 1333
+Optimizer: 1333 in 0.07481670379638672s
+Optimizer: 1333 in 1.6103034019470215s
+Optimizer: 1333 in 0.6064302921295166s
+Optimizing 657/liblzma/common/block_encoder.bc
+Number of candidates: 136
+Baseline: 1183
+Optimizer: 1258 in 0.06445121765136719s
+Optimizer: 1183 in 1.343761682510376s
+Optimizer: 1177 in 0.6878440380096436s
+Optimizing 657/liblzma/common/hardware_physmem.bc
+Number of candidates: 0
+Baseline: 53
+Optimizer: 53 in 0.042075157165527344s
+Optimizer: 53 in 0.8345904350280762s
+Optimizer: 53 in 0.04460263252258301s
+Optimizing 657/liblzma/common/filter_buffer_encoder.bc
+Number of candidates: 13
+Baseline: 372
+Optimizer: 372 in 0.04646801948547363s
+Optimizer: 372 in 0.9391236305236816s
+Optimizer: 372 in 0.17821025848388672s
+Optimizing 657/liblzma/common/easy_encoder_memusage.bc
+Number of candidates: 0
+Baseline: 96
+Optimizer: 96 in 0.040799856185913086s
+Optimizer: 96 in 0.8628530502319336s
+Optimizer: 96 in 0.04519224166870117s
+Optimizing 657/liblzma/common/vli_encoder.bc
+Number of candidates: 19
+Baseline: 213
+Optimizer: 184 in 0.04903817176818848s
+Optimizer: 181 in 0.9864273071289062s
+Optimizer: 185 in 0.45861101150512695s
+Optimizing 657/liblzma/common/filter_flags_encoder.bc
+Number of candidates: 3
+Baseline: 358
+Optimizer: 358 in 0.04634809494018555s
+Optimizer: 358 in 0.9683518409729004s
+Optimizer: 358 in 0.1906299591064453s
+Optimizing 657/liblzma/common/filter_decoder.bc
+Number of candidates: 6
+Baseline: 775
+Optimizer: 779 in 0.056092023849487305s
+Optimizer: 775 in 1.061784029006958s
+Optimizer: 775 in 0.19617319107055664s
+Optimizing 657/liblzma/common/index.bc
+Number of candidates: 1053
+Baseline: 5205
+Optimizer: 5189 in 0.16482114791870117s
+Optimizer: 5176 in 4.1839072704315186s
+Optimizer: 5172 in 6.0747294425964355s
+Optimizing 657/liblzma/common/block_buffer_decoder.bc
+Number of candidates: 10
+Baseline: 433
+Optimizer: 430 in 0.04841470718383789s
+Optimizer: 430 in 0.9588079452514648s
+Optimizer: 433 in 0.17551398277282715s
+Optimizing 657/liblzma/common/block_header_encoder.bc
+Number of candidates: 45
+Baseline: 679
+Optimizer: 680 in 0.06416940689086914s
+Optimizer: 672 in 1.2471354007720947s
+Optimizer: 672 in 0.37349843978881836s
+Optimizing 657/liblzma/common/easy_encoder.bc
+Number of candidates: 0
+Baseline: 132
+Optimizer: 132 in 0.03458547592163086s
+Optimizer: 132 in 0.8673501014709473s
+Optimizer: 132 in 0.039164066314697266s
+Optimizing 657/liblzma/common/alone_encoder.bc
+Number of candidates: 138
+Baseline: 872
+Optimizer: 921 in 0.060532331466674805s
+Optimizer: 872 in 1.2914676666259766s
+Optimizer: 870 in 0.5241177082061768s
+Optimizing 657/liblzma/common/filter_encoder.bc
+Number of candidates: 39
+Baseline: 1266
+Optimizer: 1275 in 0.06544661521911621s
+Optimizer: 1266 in 1.2868008613586426s
+Optimizer: 1266 in 0.22388577461242676s
+Optimizing 657/liblzma/common/stream_flags_encoder.bc
+Number of candidates: 48
+Baseline: 365
+Optimizer: 365 in 0.05222654342651367s
+Optimizer: 365 in 1.0417108535766602s
+Optimizer: 365 in 0.19254684448242188s
+Optimizing 657/liblzma/check/crc64_table.bc
+Number of candidates: 0
+Baseline: 8192
+Optimizer: 8192 in 0.03660011291503906s
+Optimizer: 8192 in 0.7727415561676025s
+Optimizer: 8192 in 0.03948640823364258s
+Optimizing 657/liblzma/check/check.bc
+Number of candidates: 0
+Baseline: 354
+Optimizer: 354 in 0.053082942962646484s
+Optimizer: 354 in 0.9667477607727051s
+Optimizer: 354 in 0.04921722412109375s
+Optimizing 657/liblzma/check/crc32_fast.bc
+Number of candidates: 33
+Baseline: 367
+Optimizer: 367 in 0.05604815483093262s
+Optimizer: 367 in 1.1031994819641113s
+Optimizer: 367 in 0.20588374137878418s
+Optimizing 657/liblzma/check/sha256.bc
+Number of candidates: 673
+Baseline: 4482
+Optimizer: 4325 in 0.22327184677124023s
+Optimizer: 4208 in 5.371183156967163s
+Optimizer: 4482 in 4.817687273025513s
+Optimizing 657/liblzma/check/crc32_table.bc
+Number of candidates: 0
+Baseline: 8192
+Optimizer: 8192 in 0.027907848358154297s
+Optimizer: 8192 in 0.772721529006958s
+Optimizer: 8192 in 0.039568424224853516s
+Optimizing 657/liblzma/check/crc64_fast.bc
+Number of candidates: 13
+Baseline: 272
+Optimizer: 272 in 0.05463886260986328s
+Optimizer: 272 in 1.0438497066497803s
+Optimizer: 272 in 0.1987903118133545s
+Optimizing 657/liblzma/lzma/lzma_encoder_optimum_normal.bc
+Number of candidates: 2512
+Baseline: 6733
+Optimizer: 6664 in 0.2958540916442871s
+Optimizer: 6578 in 8.452144622802734s
+Optimizer: 6666 in 22.01408362388611s
+Optimizing 657/liblzma/lzma/fastpos_table.bc
+Number of candidates: 0
+Baseline: 8192
+Optimizer: 8192 in 0.039771318435668945s
+Optimizer: 8192 in 0.7979464530944824s
+Optimizer: 8192 in 0.03594493865966797s
+Optimizing 657/liblzma/lzma/lzma_decoder.bc
+Number of candidates: 1056
+Baseline: 16152
+Optimizer: 15869 in 0.513350248336792s
+Optimizer: 15420 in 12.723820209503174s
+Optimizer: 15658 in 16.811690092086792s
+Optimizing 657/liblzma/lzma/lzma2_decoder.bc
+Number of candidates: 562
+Baseline: 1408
+Optimizer: 1440 in 0.07220244407653809s
+Optimizer: 1401 in 1.8700315952301025s
+Optimizer: 1401 in 1.9869771003723145s
+Optimizing 657/liblzma/lzma/lzma_encoder.bc
+Number of candidates: 1457
+Baseline: 5284
+Optimizer: 5315 in 0.19313931465148926s
+Optimizer: 5255 in 5.204173564910889s
+Optimizer: 5250 in 9.552258968353271s
+Optimizing 657/liblzma/lzma/lzma2_encoder.bc
+Number of candidates: 940
+Baseline: 1881
+Optimizer: 1835 in 0.08728623390197754s
+Optimizer: 1802 in 2.463247060775757s
+Optimizer: 1815 in 3.857225179672241s
+Optimizing 657/liblzma/lzma/lzma_encoder_presets.bc
+Number of candidates: 313
+Baseline: 310
+Optimizer: 310 in 0.04865550994873047s
+Optimizer: 304 in 1.1960530281066895s
+Optimizer: 304 in 1.004920482635498s
+Optimizing 657/liblzma/lzma/lzma_encoder_optimum_fast.bc
+Number of candidates: 75
+Baseline: 1030
+Optimizer: 1035 in 0.07687234878540039s
+Optimizer: 1029 in 1.5885426998138428s
+Optimizer: 1029 in 0.4449295997619629s
+Optimizing 657/liblzma/delta/delta_decoder.bc
+Number of candidates: 24
+Baseline: 384
+Optimizer: 389 in 0.053414344787597656s
+Optimizer: 384 in 1.0285286903381348s
+Optimizer: 384 in 0.19386506080627441s
+Optimizing 657/liblzma/delta/delta_common.bc
+Number of candidates: 31
+Baseline: 419
+Optimizer: 467 in 0.04828691482543945s
+Optimizer: 419 in 1.0180528163909912s
+Optimizer: 419 in 0.19405102729797363s
+Optimizing 657/liblzma/delta/delta_encoder.bc
+Number of candidates: 64
+Baseline: 564
+Optimizer: 506 in 0.06184840202331543s
+Optimizer: 506 in 1.18753981590271s
+Optimizer: 519 in 0.8233413696289062s
+Optimizing 657/spec_mem_io/spec_mem_io.bc
+Number of candidates: 194
+Baseline: 12167
+Optimizer: 12177 in 0.1775503158569336s
+Optimizer: 12145 in 3.9637813568115234s
+Optimizer: 12146 in 2.155777931213379s
+Optimizing 657/sha-2/sha512.bc
+Number of candidates: 451
+Baseline: 2853
+Optimizer: 2871 in 0.11417388916015625s
+Optimizer: 2839 in 2.6421055793762207s
+Optimizer: 2810 in 3.0053799152374268s
+Optimizing 657/xz/options.bc
+Number of candidates: 32
+Baseline: 2245
+Optimizer: 2260 in 0.06707763671875s
+Optimizer: 2239 in 1.403531551361084s
+Optimizer: 2239 in 0.5751330852508545s
+Optimizing 657/xz/signals.bc
+Number of candidates: 0
+Baseline: 108
+Optimizer: 108 in 0.0463409423828125s
+Optimizer: 108 in 0.8567802906036377s
+Optimizer: 108 in 0.03812599182128906s
+Optimizing 657/xz/hardware.bc
+Number of candidates: 7
+Baseline: 337
+Optimizer: 337 in 0.04520440101623535s
+Optimizer: 337 in 0.9899837970733643s
+Optimizer: 337 in 0.19130587577819824s
+Optimizing 657/xz/args.bc
+Number of candidates: 0
+Baseline: 8
+Optimizer: 8 in 0.03754734992980957s
+Optimizer: 8 in 0.7682943344116211s
+Optimizer: 8 in 0.03678631782531738s
+Optimizing 657/xz/file_io.bc
+Number of candidates: 83
+Baseline: 2037
+Optimizer: 2037 in 0.08341741561889648s
+Optimizer: 2037 in 1.6522295475006104s
+Optimizer: 2037 in 0.4503653049468994s
+Optimizing 657/xz/util.bc
+Number of candidates: 16
+Baseline: 1847
+Optimizer: 1850 in 0.06878399848937988s
+Optimizer: 1847 in 1.4689385890960693s
+Optimizer: 1847 in 0.2501034736633301s
+Optimizing 657/xz/main.bc
+Number of candidates: 0
+Baseline: 81
+Optimizer: 81 in 0.04465031623840332s
+Optimizer: 81 in 0.8630771636962891s
+Optimizer: 81 in 0.04506540298461914s
+Optimizing 657/xz/list.bc
+Number of candidates: 1374
+Baseline: 8568
+Optimizer: 8586 in 0.16716480255126953s
+Optimizer: 8533 in 4.6182861328125s
+Optimizer: 8538 in 7.437614679336548s
+Optimizing 657/xz/coder.bc
+Number of candidates: 138
+Baseline: 3453
+Optimizer: 3429 in 0.1080477237701416s
+Optimizer: 3417 in 2.2267837524414062s
+Optimizer: 3422 in 1.652766227722168s
+Optimizing 657/xz/message.bc
+Number of candidates: 33
+Baseline: 7393
+Optimizer: 7393 in 0.07473373413085938s
+Optimizer: 7393 in 1.6098337173461914s
+Optimizer: 7393 in 0.27148866653442383s

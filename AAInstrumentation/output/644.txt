@@ -1,0 +1,121 @@
+Running benchmark 644 with Oz
+Optimizing 644/memutil.bc
+Number of candidates: 7
+Baseline: 1343
+Optimizer: 1351 in 0.06511569023132324s
+Optimizer: 1343 in 1.2944605350494385s
+Optimizer: 1343 in 0.232086181640625s
+Optimizing 644/chirvol.bc
+Number of candidates: 103
+Baseline: 634
+Optimizer: 634 in 0.04358935356140137s
+Optimizer: 634 in 1.1021924018859863s
+Optimizer: 634 in 0.3374478816986084s
+Optimizing 644/select_atoms.bc
+Number of candidates: 676
+Baseline: 4691
+Optimizer: 4592 in 0.1853320598602295s
+Optimizer: 4567 in 4.590418577194214s
+Optimizer: 4613 in 6.546168088912964s
+Optimizing 644/molio.bc
+Number of candidates: 4187
+Baseline: 12719
+Optimizer: 12470 in 0.37429070472717285s
+Optimizer: 12450 in 11.1216561794281s
+Optimizer: 12583 in 45.15055060386658s
+Optimizing 644/binpos.bc
+Number of candidates: 21
+Baseline: 1048
+Optimizer: 1010 in 0.05984640121459961s
+Optimizer: 1006 in 1.1644606590270996s
+Optimizer: 1037 in 0.3622303009033203s
+Optimizing 644/reslib.bc
+Number of candidates: 3198
+Baseline: 12815
+Optimizer: 12921 in 0.2515556812286377s
+Optimizer: 12816 in 7.996461868286133s
+Optimizer: 12785 in 24.772910594940186s
+Optimizing 644/traceback.bc
+Number of candidates: 0
+Baseline: 312
+Optimizer: 312 in 0.04975080490112305s
+Optimizer: 312 in 0.9354133605957031s
+Optimizer: 312 in 0.049224853515625s
+Optimizing 644/database.bc
+Number of candidates: 581
+Baseline: 14410
+Optimizer: 14464 in 0.273392915725708s
+Optimizer: 14409 in 6.231414556503296s
+Optimizer: 14394 in 6.123140811920166s
+Optimizing 644/nabmd.bc
+Number of candidates: 135
+Baseline: 1515
+Optimizer: 1518 in 0.06046891212463379s
+Optimizer: 1517 in 1.2444219589233398s
+Optimizer: 1512 in 0.658322811126709s
+Optimizing 644/rand2.bc
+Number of candidates: 1
+Baseline: 389
+Optimizer: 389 in 0.0457615852355957s
+Optimizer: 389 in 0.9963114261627197s
+Optimizer: 389 in 0.185469388961792s
+Optimizing 644/molutil.bc
+Number of candidates: 5267
+Baseline: 18745
+Optimizer: 18577 in 0.44289088249206543s
+Optimizer: 18498 in 14.001016855239868s
+Optimizer: 18524 in 77.09558176994324s
+Optimizing 644/errormsg.bc
+Number of candidates: 3
+Baseline: 431
+Optimizer: 431 in 0.04582786560058594s
+Optimizer: 431 in 0.933762788772583s
+Optimizer: 431 in 0.17857718467712402s
+Optimizing 644/sff.bc
+Number of candidates: 6437
+Baseline: 28722
+Optimizer: 28888 in 0.4355485439300537s
+Optimizer: 28704 in 14.6646409034729s
+Optimizer: 28476 in 88.9860212802887s
+Optimizing 644/prm.bc
+Number of candidates: 8258
+Baseline: 17782
+Optimizer: 17541 in 0.3543369770050049s
+Optimizer: 17519 in 13.878405332565308s
+Optimizer: 17514 in 86.61491203308105s
+Optimizing 644/nblist.bc
+Number of candidates: 371
+Baseline: 4072
+Optimizer: 4065 in 0.1398012638092041s
+Optimizer: 4023 in 3.1582484245300293s
+Optimizer: 4049 in 3.1553092002868652s
+Optimizing 644/regex-alpha/regcomp.bc
+Number of candidates: 2287
+Baseline: 13218
+Optimizer: 13253 in 0.3439137935638428s
+Optimizer: 13100 in 9.326617002487183s
+Optimizer: 13043 in 29.104002237319946s
+Optimizing 644/regex-alpha/regerror.bc
+Number of candidates: 27
+Baseline: 1436
+Optimizer: 1436 in 0.055245399475097656s
+Optimizer: 1436 in 1.0673627853393555s
+Optimizer: 1436 in 0.19266009330749512s
+Optimizing 644/regex-alpha/regfree.bc
+Number of candidates: 6
+Baseline: 135
+Optimizer: 135 in 0.04166293144226074s
+Optimizer: 135 in 0.9290988445281982s
+Optimizer: 135 in 0.1734480857849121s
+Optimizing 644/regex-alpha/regexec.bc
+Number of candidates: 2532
+Baseline: 11789
+Optimizer: 11944 in 0.38060975074768066s
+Optimizer: 11656 in 10.19703459739685s
+Optimizer: 11727 in 29.658637046813965s
+Optimizing 644/specrand/specrand.bc
+Number of candidates: 48
+Baseline: 1453
+Optimizer: 1481 in 0.06768298149108887s
+Optimizer: 1435 in 1.4559404850006104s
+Optimizer: 1435 in 0.5982258319854736s

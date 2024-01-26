@@ -1,0 +1,127 @@
+Running benchmark 641 with Oz
+Optimizing 641/SGFTree.bc
+Number of candidates: 663
+Baseline: 12351
+Optimizer: 12317 in 0.3392045497894287s
+Optimizer: 12317 in 8.087949752807617s
+Optimizer: 12317 in 10.604496002197266s
+Optimizing 641/GameState.bc
+Number of candidates: 345
+Baseline: 7543
+Optimizer: 7511 in 0.24169445037841797s
+Optimizer: 7509 in 5.532803058624268s
+Optimizer: 7509 in 5.9199378490448s
+Optimizing 641/FullBoard.bc
+Number of candidates: 297
+Baseline: 2795
+Optimizer: 2845 in 0.12525677680969238s
+Optimizer: 2757 in 2.6346657276153564s
+Optimizer: 2757 in 2.277272939682007s
+Optimizing 641/GTP.bc
+Number of candidates: 2495
+Baseline: 16659
+Optimizer: 16767 in 0.40332674980163574s
+Optimizer: 16682 in 10.919137716293335s
+Optimizer: 16653 in 29.021870851516724s
+Optimizing 641/MCOTable.bc
+Number of candidates: 26
+Baseline: 1453
+Optimizer: 1458 in 0.09833717346191406s
+Optimizer: 1450 in 1.8824265003204346s
+Optimizer: 1450 in 0.5072622299194336s
+Optimizing 641/FastState.bc
+Number of candidates: 400
+Baseline: 8832
+Optimizer: 8834 in 0.2558867931365967s
+Optimizer: 8820 in 5.792126893997192s
+Optimizer: 8820 in 4.815516471862793s
+Optimizing 641/Random.bc
+Number of candidates: 27
+Baseline: 369
+Optimizer: 365 in 0.05543375015258789s
+Optimizer: 355 in 1.0154285430908203s
+Optimizer: 369 in 0.21436357498168945s
+Optimizing 641/FastBoard.bc
+Number of candidates: 4670
+Baseline: 31165
+Optimizer: 30723 in 0.9449102878570557s
+Optimizer: 30530 in 23.469539642333984s
+Optimizer: 30625 in 146.19627904891968s
+Optimizing 641/KoState.bc
+Number of candidates: 152
+Baseline: 3484
+Optimizer: 3458 in 0.13412690162658691s
+Optimizer: 3449 in 2.926581621170044s
+Optimizer: 3449 in 1.7826154232025146s
+Optimizing 641/Zobrist.bc
+Number of candidates: 0
+Baseline: 312
+Optimizer: 312 in 0.0554351806640625s
+Optimizer: 312 in 1.0093064308166504s
+Optimizer: 312 in 0.056974172592163086s
+Optimizing 641/SMP.bc
+Number of candidates: 0
+Baseline: 139
+Optimizer: 139 in 0.04628109931945801s
+Optimizer: 139 in 0.8717179298400879s
+Optimizer: 139 in 0.04327034950256348s
+Optimizing 641/Matcher.bc
+Number of candidates: 167
+Baseline: 2829
+Optimizer: 2842 in 0.13666415214538574s
+Optimizer: 2826 in 2.9927494525909424s
+Optimizer: 2826 in 1.204820156097412s
+Optimizing 641/Leela.bc
+Number of candidates: 297
+Baseline: 3436
+Optimizer: 3570 in 0.13844561576843262s
+Optimizer: 3488 in 3.2130908966064453s
+Optimizer: 3436 in 1.5610136985778809s
+Optimizing 641/Timing.bc
+Number of candidates: 0
+Baseline: 72
+Optimizer: 72 in 0.040804386138916016s
+Optimizer: 72 in 0.8486299514770508s
+Optimizer: 72 in 0.03602099418640137s
+Optimizing 641/UCTNode.bc
+Number of candidates: 576
+Baseline: 12426
+Optimizer: 12826 in 0.3678250312805176s
+Optimizer: 12468 in 8.115435123443604s
+Optimizer: 12411 in 7.573803186416626s
+Optimizing 641/TimeControl.bc
+Number of candidates: 68
+Baseline: 1142
+Optimizer: 1156 in 0.06847643852233887s
+Optimizer: 1142 in 1.355102300643921s
+Optimizer: 1142 in 0.3948657512664795s
+Optimizing 641/UCTSearch.bc
+Number of candidates: 168
+Baseline: 7382
+Optimizer: 7382 in 0.18588805198669434s
+Optimizer: 7382 in 4.055349111557007s
+Optimizer: 7382 in 1.2555878162384033s
+Optimizing 641/SGFParser.bc
+Number of candidates: 263
+Baseline: 6215
+Optimizer: 6243 in 0.20972776412963867s
+Optimizer: 6213 in 4.740551471710205s
+Optimizer: 6213 in 2.1923930644989014s
+Optimizing 641/Playout.bc
+Number of candidates: 34
+Baseline: 2299
+Optimizer: 2299 in 0.09743142127990723s
+Optimizer: 2299 in 2.0474143028259277s
+Optimizer: 2299 in 0.31177616119384766s
+Optimizing 641/Utils.bc
+Number of candidates: 2
+Baseline: 913
+Optimizer: 913 in 0.050218820571899414s
+Optimizer: 913 in 1.0232231616973877s
+Optimizer: 913 in 0.19220185279846191s
+Optimizing 641/TTable.bc
+Number of candidates: 20
+Baseline: 1615
+Optimizer: 1621 in 0.08430767059326172s
+Optimizer: 1615 in 1.7662019729614258s
+Optimizer: 1615 in 0.28558921813964844s

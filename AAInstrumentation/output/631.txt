@@ -1,0 +1,121 @@
+Running benchmark 631 with Oz
+Optimizing 631/make.bc
+Number of candidates: 3077
+Baseline: 3018
+Optimizer: 2992 in 0.10206127166748047s
+Optimizer: 2932 in 4.499469995498657s
+Optimizer: 2942 in 12.97329068183899s
+Optimizing 631/epd.bc
+Number of candidates: 398
+Baseline: 3235
+Optimizer: 3230 in 0.10741567611694336s
+Optimizer: 3230 in 2.3886547088623047s
+Optimizer: 3230 in 1.864248514175415s
+Optimizing 631/generate.bc
+Number of candidates: 2416
+Baseline: 7009
+Optimizer: 7184 in 0.21859979629516602s
+Optimizer: 7028 in 6.869733572006226s
+Optimizer: 7003 in 17.092277765274048s
+Optimizing 631/board.bc
+Number of candidates: 17
+Baseline: 575
+Optimizer: 575 in 0.06033205986022949s
+Optimizer: 575 in 1.114297866821289s
+Optimizer: 575 in 0.22050118446350098s
+Optimizing 631/initp.bc
+Number of candidates: 86
+Baseline: 205
+Optimizer: 205 in 0.04537653923034668s
+Optimizer: 205 in 0.9384968280792236s
+Optimizer: 205 in 0.31759119033813477s
+Optimizing 631/bitboard.bc
+Number of candidates: 5894
+Baseline: 4937
+Optimizer: 5088 in 0.20674824714660645s
+Optimizer: 4947 in 9.127731561660767s
+Optimizer: 4785 in 42.39204525947571s
+Optimizing 631/neval.bc
+Number of candidates: 3304
+Baseline: 6241
+Optimizer: 6203 in 0.23932504653930664s
+Optimizer: 6173 in 7.876867294311523s
+Optimizer: 6173 in 23.516812086105347s
+Optimizing 631/search.bc
+Number of candidates: 1885
+Baseline: 16173
+Optimizer: 16219 in 0.403961181640625s
+Optimizer: 15974 in 10.261844873428345s
+Optimizer: 15958 in 26.868268728256226s
+Optimizing 631/draw.bc
+Number of candidates: 112
+Baseline: 366
+Optimizer: 364 in 0.058496713638305664s
+Optimizer: 362 in 1.1837193965911865s
+Optimizer: 362 in 0.49831271171569824s
+Optimizing 631/state.bc
+Number of candidates: 0
+Baseline: 0
+Optimizer: 0 in 0.037281036376953125s
+Optimizer: 0 in 0.7716944217681885s
+Optimizer: 0 in 0.03621363639831543s
+Optimizing 631/attacks.bc
+Number of candidates: 182
+Baseline: 1127
+Optimizer: 1127 in 0.06700277328491211s
+Optimizer: 1127 in 1.3926596641540527s
+Optimizer: 1127 in 0.5478546619415283s
+Optimizing 631/sjeng.bc
+Number of candidates: 177
+Baseline: 466
+Optimizer: 466 in 0.04874539375305176s
+Optimizer: 466 in 1.0607430934906006s
+Optimizer: 466 in 0.46576809883117676s
+Optimizing 631/moves.bc
+Number of candidates: 30
+Baseline: 1421
+Optimizer: 1421 in 0.09907031059265137s
+Optimizer: 1421 in 2.050276279449463s
+Optimizer: 1421 in 0.30967164039611816s
+Optimizing 631/pawn.bc
+Number of candidates: 1378
+Baseline: 3065
+Optimizer: 2949 in 0.15511012077331543s
+Optimizer: 2943 in 4.366649866104126s
+Optimizer: 2999 in 7.848336219787598s
+Optimizing 631/endgame.bc
+Number of candidates: 5127
+Baseline: 3506
+Optimizer: 3553 in 0.15056848526000977s
+Optimizer: 3483 in 6.9695940017700195s
+Optimizer: 3491 in 22.04540777206421s
+Optimizing 631/bits.bc
+Number of candidates: 0
+Baseline: 326
+Optimizer: 326 in 0.04981541633605957s
+Optimizer: 326 in 0.9982054233551025s
+Optimizer: 326 in 0.04686546325683594s
+Optimizing 631/preproc.bc
+Number of candidates: 48
+Baseline: 3212
+Optimizer: 3212 in 0.054686784744262695s
+Optimizer: 3212 in 1.195580244064331s
+Optimizer: 3212 in 0.21023273468017578s
+Optimizing 631/utils.bc
+Number of candidates: 553
+Baseline: 10314
+Optimizer: 10335 in 0.20954155921936035s
+Optimizer: 10288 in 4.890292167663574s
+Optimizer: 10297 in 4.0088419914245605s
+Optimizing 631/see.bc
+Number of candidates: 354
+Baseline: 893
+Optimizer: 860 in 0.06278491020202637s
+Optimizer: 860 in 1.55230712890625s
+Optimizer: 860 in 1.2046825885772705s
+Optimizing 631/ttable.bc
+Number of candidates: 199
+Baseline: 1756
+Optimizer: 1749 in 0.08896446228027344s
+Optimizer: 1727 in 1.8999862670898438s
+Optimizer: 1727 in 1.6402034759521484s
