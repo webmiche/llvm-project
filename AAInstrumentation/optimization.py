@@ -97,9 +97,9 @@ class OptimizerDriver(AAInstrumentationDriver):
         print("Minima:")
         for file_, (size, sequence) in result_dict.items():
             print(f"{file_}: {size} bytes with {sequence}")
-            self.run_and_assemble_file(file_, "res_", sequence)
+            self.run_and_assemble_file(file_, 0, sequence)
             result_path = (
-                self.instr_dir / file_.parent / Path("res_" + str(file_.stem) + ".o")
+                self.instr_dir / file_.parent / Path("0" + str(file_.stem) + ".o")
             )
             end_path = (
                 self.exec_root
