@@ -20,6 +20,8 @@ from typing import TypeAlias
 index: TypeAlias = int
 size: TypeAlias = int
 AASequence: TypeAlias = list[index]
+AATraceInfo: TypeAlias = tuple[dict[str, dict[str, size]], list[str]]
+AATraceDiff: TypeAlias = dict[str, dict[str, size]]
 
 
 # from specbuilder --> spec.py
@@ -412,11 +414,12 @@ class AAInstrumentationDriver:
         file_name: Path,
         index_list: list[index] = [],
         instrument_recursively=False,
-    ) -> dict[str, dict[str, size]]:
+    ) -> AATraceInfo:
         """
         Given a file and a list of indices, returns a dictionary mapping passes
-        to AA counts. The AA results are are themselves a dictionary mapping
-        AAResults (such as MayAlias) to number of occurences.
+        to AA counts and a list with the sequence passes occured in. The AA
+        results are are themselves a dictionary mapping AAResults (such as
+        MayAlias) to number of occurences.
         """
         aa_sequence_string = self.get_aa_string_from_indices(index_list)
         cmd = [
@@ -441,31 +444,31 @@ class AAInstrumentationDriver:
 
         return self.parse_aa_trace(p.stderr, instrument_recursively)
 
-    def parse_aa_trace(
-        self, aa_trace, instrument_recursively=False
-    ) -> dict[str, dict[str, size]]:
+    def parse_aa_trace(self, aa_trace, instrument_recursively=False) -> AATraceInfo:
         """
-        Given an aa trace, returns a dictionary mapping passes to AA counts.
-        Lines starting with *** are pass and have the form `*** Pass:
-        <pass-name> ***`. Other lines are from the AA trace and have the form `{
-        } {End|Start} <ptr1> <ptr2> [<AAResult>] [(off <num>)]`. The AAResult is
-        there if it is the end of a query. Recursive queries have whitespace in
-        front of them. The AAqueries before a pass are the queries that are run
-        during it.
+        Given an aa trace, returns a dictionary mapping passes to AA counts and
+        a list containing the dequence of passes that occured. Lines starting
+        with *** are pass and have the form `*** Pass: <pass-name> ***`. Other
+        lines are from the AA trace and have the form `{ } {End|Start} <ptr1>
+        <ptr2> [<AAResult>] [(off <num>)]`. The AAResult is there if it is the
+        end of a query. Recursive queries have whitespace in front of them. The
+        AAqueries before a pass are the queries that are run during it.
         """
         pass_dict = {}
 
         curr_dict = {"MayAlias": 0, "PartialAlias": 0, "MustAlias": 0, "NoAlias": 0}
         aa_trace_lines = aa_trace.split("\n")
         pass_counts = {}
+        pass_list = []
         for i, line in enumerate(aa_trace_lines):
             if line.startswith("*** "):
                 # This is a pass line
                 pass_name = line.removeprefix("*** Pass: ").removesuffix(" ***")
-                if any([curr_dict[key] > 0 for key in curr_dict.keys()]):
-                    pass_index = pass_counts.get(pass_name, 0)
-                    pass_counts[pass_name] = pass_index + 1
-                    pass_dict[str(pass_index) + pass_name] = curr_dict
+                pass_index = pass_counts.get(pass_name, 0)
+                pass_counts[pass_name] = pass_index + 1
+                new_pass_name = str(pass_index) + pass_name
+                pass_dict[new_pass_name] = curr_dict
+                pass_list.append(new_pass_name)
                 curr_dict = {
                     "MayAlias": 0,
                     "PartialAlias": 0,
@@ -506,7 +509,48 @@ class AAInstrumentationDriver:
                     AAResult = line.split()[-3]
                 curr_dict[AAResult] += 1
 
-        return pass_dict
+        return pass_dict, pass_list
+
+    def diff_aa_trace_info(self, info1: AATraceInfo, info2: AATraceInfo) -> AATraceDiff:
+        query_dict1, pass_list1 = info1
+        query_dict2, pass_list2 = info2
+
+        pass_diff_1 = [
+            pass_name for pass_name in pass_list1 if not pass_name in pass_list2
+        ]
+        pass_diff_2 = [
+            pass_name for pass_name in pass_list2 if not pass_name in pass_list1
+        ]
+
+        if pass_diff_1 != [] or pass_diff_2 != []:
+            return None
+
+        query_diff = {}
+        for pass_name in pass_list1:
+            for AAResult in query_dict1[pass_name].keys():
+                if query_dict1[pass_name][AAResult] != query_dict2[pass_name][AAResult]:
+                    query_diff[pass_name] = query_diff.get(pass_name, {})
+                    query_diff[pass_name][AAResult] = (
+                        query_dict1[pass_name][AAResult]
+                        - query_dict2[pass_name][AAResult]
+                    )
+
+        return query_diff
+
+    def get_diff_aa_trace_info(
+        self,
+        file_name: Path,
+        index_list1: list[index],
+        index_list2: list[index],
+        instrument_recursively=False,
+    ) -> AATraceDiff:
+        info1 = self.get_queries_per_pass(
+            file_name, index_list1, instrument_recursively
+        )
+        info2 = self.get_queries_per_pass(
+            file_name, index_list2, instrument_recursively
+        )
+        return self.diff_aa_trace_info(info1, info2)
 
 
 if __name__ == "__main__":
@@ -540,28 +584,11 @@ if __name__ == "__main__":
     count_per_file = driver.get_candidates_per_file(files)
 
     for file in files:
-        queries = driver.get_queries_per_pass(file, [0, 1, 2])
-        relaxed_queries = driver.get_queries_per_pass(file)
-        if all(
-            [
-                relaxed_queries[pass_name]["MayAlias"] == queries[pass_name]["MayAlias"]
-                for pass_name in relaxed_queries.keys()
-            ]
-            + [
-                relaxed_queries[pass_name]["PartialAlias"]
-                == queries[pass_name]["PartialAlias"]
-                for pass_name in relaxed_queries.keys()
-            ]
-            + [
-                relaxed_queries[pass_name]["MustAlias"]
-                == queries[pass_name]["MustAlias"]
-                for pass_name in relaxed_queries.keys()
-            ]
-            + [
-                relaxed_queries[pass_name]["NoAlias"] == queries[pass_name]["NoAlias"]
-                for pass_name in relaxed_queries.keys()
-            ]
-        ):
-            print(file)
-            print(queries)
-            print(relaxed_queries)
+        for i in range(3):
+            for j in range(i, 3):
+                if i != j:
+                    diff = driver.get_diff_aa_trace_info(
+                        file, [i], [j], instrument_recursively=False
+                    )
+                    if diff is not None:
+                        print(file, i, j, diff)
