@@ -425,7 +425,7 @@ class AAInstrumentationDriver:
         cmd = [
             str(self.instr_path / "opt"),
             str(self.initial_dir / file_name),
-            "--aa-trace",
+            "--aa-candidate-trace",
             "-" + self.opt_flag,
             "--print-pass-names",
             "-disable-output",
@@ -449,10 +449,9 @@ class AAInstrumentationDriver:
         Given an aa trace, returns a dictionary mapping passes to AA counts and
         a list containing the dequence of passes that occured. Lines starting
         with *** are pass and have the form `*** Pass: <pass-name> ***`. Other
-        lines are from the AA trace and have the form `{ } {End|Start} <ptr1>
-        <ptr2> [<AAResult>] [(off <num>)]`. The AAResult is there if it is the
-        end of a query. Recursive queries have whitespace in front of them. The
-        AAqueries before a pass are the queries that are run during it.
+        lines are from the AA trace and consists only of the result. Recursive
+        queries have whitespace in front of them. The AAqueries before a pass
+        are the queries that are run during it.
         """
         pass_dict = {}
 
@@ -475,39 +474,14 @@ class AAInstrumentationDriver:
                     "MustAlias": 0,
                     "NoAlias": 0,
                 }
-            elif "End" in line and (instrument_recursively or not line.startswith(" ")):
-                if not (
-                    "MayAlias" in line
-                    or "NoAlias" in line
-                    or "MustAlias" in line
-                    or "PartialAlias" in line
-                ):
-                    j = 0
-                    next_line = line
-                    # This is a query on a pointer with a multi-line description.
-                    for j, next_line in enumerate(aa_trace_lines[i + 1 :]):
-                        if "LocationSize::beforeOrAfterPointer" in next_line:
-                            break
-
-                    if not (
-                        "MayAlias" in aa_trace_lines[i]
-                        or "NoAlias" in aa_trace_lines[i]
-                        or "MustAlias" in aa_trace_lines[i]
-                        or "PartialAlias" in aa_trace_lines[i]
-                    ):
-                        # This is a query on two pointers with a multi-line description.
-                        for j, next_line in enumerate(aa_trace_lines[j + i + 1 :]):
-                            if "LocationSize::beforeOrAfterPointer" in next_line:
-                                break
-
-                    i = i + j
-                    line = next_line
-
-                AAResult = line.split()[-1]
-                if AAResult.endswith(")"):
-                    # This is the PartialAlias with an offset case.
-                    AAResult = line.split()[-3]
-                curr_dict[AAResult] += 1
+            elif instrument_recursively or not line.startswith(" "):
+                line = line.strip()
+                if any([res in line for res in curr_dict.keys()]):
+                    AAResult = line.split()[-1]
+                    if AAResult.endswith(")"):
+                        # This is the PartialAlias with an offset case.
+                        AAResult = line.split()[-3]
+                    curr_dict[AAResult] += 1
 
         return pass_dict, pass_list
 
@@ -597,10 +571,8 @@ if __name__ == "__main__":
 
     for file in files:
         for i in range(3):
-            for j in range(i, 3):
-                if i != j:
-                    diff = driver.get_diff_aa_trace_info(
-                        file, [i], [j], instrument_recursively=False
-                    )
-                    if diff is not None:
-                        print(file, i, j, diff)
+            diff = driver.get_diff_aa_trace_info(
+                file, [i], [], instrument_recursively=False
+            )
+            if diff is not None:
+                print(file, i, diff)
