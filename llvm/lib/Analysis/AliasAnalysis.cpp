@@ -321,8 +321,11 @@ static int CurrAAIndex = 0;
 
 AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
                                      const llvm::Value *Ptr2,
-                                     AliasResult Result) {
+                                     AliasResult Result, AAQueryInfo &AAQI) {
   if (Result == AliasResult::MayAlias) {
+    for (unsigned I = 0; I < AAQI.Depth; ++I)
+      dbgs() << "  ";
+    dbgs() << Result << "\n";
     return Result;
   }
 
@@ -347,7 +350,7 @@ AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
   if (EnableAACandidateTrace) {
     for (unsigned I = 0; I < AAQI.Depth; ++I)
       dbgs() << "  ";
-    dbgs() << "End " << Result << "\n";
+    dbgs() << Result << "\n";
   }
 
   if (AAInstrumentation->isAAIndexToRelax(CurrAAIndex)) {
@@ -384,13 +387,13 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
 
   if (((AliasResultFile != "") || (CmdLineAASequence != "")) &&
       ((AAQI.Depth == 0) || InstrumentAARecursively)) {
-    Result = relaxSpecificAliasResult(LocA.Ptr, LocB.Ptr, Result);
+    Result = relaxSpecificAliasResult(LocA.Ptr, LocB.Ptr, Result, AAQI);
   }
 
   if (EnableOverallAATrace) {
     for (unsigned I = 0; I < AAQI.Depth; ++I)
       dbgs() << "  ";
-    dbgs() << "End " << Result << "\n";
+    dbgs() << Result << "\n";
   }
 
   if (EnableAATrace) {
