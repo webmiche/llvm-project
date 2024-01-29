@@ -1,4 +1,4 @@
-from core import AAInstrumentationDriver, register_arguments, AASequence, index
+from core import AAInstrumentationDriver, register_arguments, AASequence, index, size
 from multiprocessing import Pool
 import os
 from pathlib import Path
@@ -9,6 +9,20 @@ import sys
 from dataclasses import dataclass
 from abc import abstractmethod
 
+"""
+This file implements the maximal relaxation experiment. There are two variants
+of this experiment: overall and individual. The overall variant tries to
+relax as many queries as possible with keeping relaxable queries imprecise, whereas
+the individual variant keeps relaxable queries precise. The class hierarchy looks as follows:
+
+                                                MaximalRelaxationDriver
+                        |                                                               |
+            OverallRelaxationDriver                                             IndividualRelaxationDriver
+            |                              |                                            |
+LogMaximalRelaxationDriver SequentialMaximalRelaxationDriver                SequentialIndividualRelaxationDriver
+
+"""
+
 
 @dataclass
 class MaximalRelaxationDriver(AAInstrumentationDriver):
@@ -16,14 +30,15 @@ class MaximalRelaxationDriver(AAInstrumentationDriver):
     instrument_aa_recursively: bool = False
 
     @abstractmethod
-    def relax(
+    def maximal_relaxation_single_file(
         self,
+        candidate_count,
         file_name: Path,
-        prefix,
-        total_lower_bound,
-        total_upper_bound,
     ):
-        """Relaxes the queries from [lower_bound, upper_bound), with the prefix."""
+        """
+        Dispatches to individual relaxation or overall relaxation depending on
+        the driver.
+        """
         raise NotImplementedError
 
     def get_groundtruth_hash(self, file_name: Path):
@@ -34,23 +49,6 @@ class MaximalRelaxationDriver(AAInstrumentationDriver):
             self.instr_dir.joinpath(
                 file_name.parent, str(0) + str(file_name.stem) + ".o"
             )
-        )
-
-    def relax_one_index(
-        self,
-        prefix: AASequence,
-        file_name: Path,
-        lower_bound: index,
-        i: index,
-    ):
-        """Runs the instrumentation with the queries in prefix relaxed as
-        well as the queries from lower_bound to i."""
-
-        self.run_and_assemble_file(
-            file_name,
-            i,
-            prefix + list(range(lower_bound, i)),
-            self.instrument_aa_recursively,
         )
 
     def maximal_relaxation(
@@ -80,6 +78,37 @@ class MaximalRelaxationDriver(AAInstrumentationDriver):
         for file_name in files:
             print("==== Next file: " + str(file_name))
             self.maximal_relaxation_single_file(count_per_file[file_name], file_name)
+
+
+@dataclass
+class OverallRelaxationDriver(MaximalRelaxationDriver):
+    @abstractmethod
+    def relax(
+        self,
+        file_name: Path,
+        prefix,
+        total_lower_bound,
+        total_upper_bound,
+    ) -> AASequence:
+        """Relaxes the queries from [lower_bound, upper_bound), with the prefix."""
+        raise NotImplementedError
+
+    def relax_one_index(
+        self,
+        prefix: AASequence,
+        file_name: Path,
+        lower_bound: index,
+        i: index,
+    ):
+        """Runs the instrumentation with the queries in prefix relaxed as
+        well as the queries from lower_bound to i."""
+
+        self.run_and_assemble_file(
+            file_name,
+            i,
+            prefix + list(range(lower_bound, i)),
+            self.instrument_aa_recursively,
+        )
 
     def maximal_relaxation_single_file(
         self,
@@ -145,7 +174,7 @@ class MaximalRelaxationDriver(AAInstrumentationDriver):
         print("with size: " + str(len(prefix)) + " of " + str(upper_bound))
 
 
-class SequentialMaximalRelaxationDriver(MaximalRelaxationDriver):
+class SequentialMaximalRelaxationDriver(OverallRelaxationDriver):
     def relax(
         self,
         file_name: Path,
@@ -203,7 +232,7 @@ class SequentialMaximalRelaxationDriver(MaximalRelaxationDriver):
         return prefix
 
 
-class LogMaximalRelaxationDriver(MaximalRelaxationDriver):
+class LogMaximalRelaxationDriver(OverallRelaxationDriver):
     def relax(
         self,
         file_name: Path,
@@ -263,13 +292,73 @@ class LogMaximalRelaxationDriver(MaximalRelaxationDriver):
         )
 
 
+class IndividualRelaxationDriver(MaximalRelaxationDriver):
+    """
+    This driver implements the individual relaxation approach. For each query,
+    it relaxes the query and checks if the hash changes. All other queries are
+    left precise.
+    """
+
+    @abstractmethod
+    def get_relaxable_queries(self, file_name: Path, candidate_count: size) -> size:
+        raise NotImplementedError
+
+    def maximal_relaxation_single_file(
+        self,
+        candidate_count,
+        file_name: Path,
+    ):
+        """Returns the maximum number of queries that can be relaxed without
+        impact on the result.
+
+        Args:
+            candidate_count: The number of candidates to consider.
+            file_name: The name of the file to run the algorithm on.
+        """
+        print("Number of candidates: " + str(candidate_count))
+
+        self.original_hash = self.get_groundtruth_hash(file_name)
+
+        relaxable_count = self.get_relaxable_queries(file_name, candidate_count)
+        print("Number of relaxable queries: " + str(relaxable_count))
+
+
+class SequentialIndividualRelaxationDriver(IndividualRelaxationDriver):
+    """
+    This driver implements the individual relaxation approach. Queries are
+    checked sequentially.
+    """
+
+    def get_relaxable_queries(self, file_name: Path, candidate_count: size) -> size:
+        num_relaxable = 0
+        hashes = []
+        with Pool(self.proc_count) as p:
+            hashes = p.starmap(
+                self.run_assemble_and_get_hash,
+                [
+                    (
+                        file_name,
+                        i,
+                        [i],
+                    )
+                    for i in range(candidate_count)
+                ],
+            )
+
+        for i, curr_hash in enumerate(hashes):
+            if curr_hash == self.original_hash:
+                num_relaxable += 1
+
+        return num_relaxable
+
+
 if __name__ == "__main__":
     arg_parser = register_arguments()
 
     arg_parser.add_argument(
         "--style",
         type=str,
-        default="log",
+        default="log_overall",
         help="The style of maximal relaxation to use. Either log or sequential.",
     )
 
@@ -284,10 +373,12 @@ if __name__ == "__main__":
     groundtruth_dir = args.groundtruth_dir
 
     maximal_relaxation_class = None
-    if args.style == "log":
+    if args.style == "log_overall":
         maximal_relaxation_class = LogMaximalRelaxationDriver
-    elif args.style == "sequential":
+    elif args.style == "sequential_overall":
         maximal_relaxation_class = SequentialMaximalRelaxationDriver
+    elif args.style == "sequential_individual":
+        maximal_relaxation_class = SequentialIndividualRelaxationDriver
     else:
         raise Exception("Unknown style: " + args.style)
 
