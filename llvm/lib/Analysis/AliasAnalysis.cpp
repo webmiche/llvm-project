@@ -73,6 +73,10 @@ cl::opt<bool> DisableBasicAA("disable-basic-aa", cl::Hidden, cl::init(false));
 #ifndef NDEBUG
 /// Print a trace of alias analysis queries and their results.
 static cl::opt<bool> EnableAATrace("aa-trace", cl::Hidden, cl::init(false));
+static cl::opt<bool> EnableOverallAATrace("aa-trace-overall", cl::Hidden,
+                                          cl::init(false));
+static cl::opt<bool> EnableAACandidateTrace("aa-candidate-trace", cl::Hidden,
+                                            cl::init(false));
 #else
 static const bool EnableAATrace = false;
 #endif
@@ -317,8 +321,11 @@ static int CurrAAIndex = 0;
 
 AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
                                      const llvm::Value *Ptr2,
-                                     AliasResult Result) {
+                                     AliasResult Result, AAQueryInfo &AAQI) {
   if (Result == AliasResult::MayAlias) {
+    for (unsigned I = 0; I < AAQI.Depth; ++I)
+      dbgs() << "  ";
+    dbgs() << Result << "\n";
     return Result;
   }
 
@@ -339,6 +346,12 @@ AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
   }
 
   NumberOfRelaxationCandidates++;
+
+  if (EnableAACandidateTrace) {
+    for (unsigned I = 0; I < AAQI.Depth; ++I)
+      dbgs() << "  ";
+    dbgs() << Result << "\n";
+  }
 
   if (AAInstrumentation->isAAIndexToRelax(CurrAAIndex)) {
     CurrAAIndex++;
@@ -374,7 +387,13 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
 
   if (((AliasResultFile != "") || (CmdLineAASequence != "")) &&
       ((AAQI.Depth == 0) || InstrumentAARecursively)) {
-    Result = relaxSpecificAliasResult(LocA.Ptr, LocB.Ptr, Result);
+    Result = relaxSpecificAliasResult(LocA.Ptr, LocB.Ptr, Result, AAQI);
+  }
+
+  if (EnableOverallAATrace) {
+    for (unsigned I = 0; I < AAQI.Depth; ++I)
+      dbgs() << "  ";
+    dbgs() << Result << "\n";
   }
 
   if (EnableAATrace) {
