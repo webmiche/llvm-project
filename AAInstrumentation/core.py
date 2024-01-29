@@ -511,7 +511,14 @@ class AAInstrumentationDriver:
 
         return pass_dict, pass_list
 
-    def diff_aa_trace_info(self, info1: AATraceInfo, info2: AATraceInfo) -> AATraceDiff:
+    def diff_aa_trace_info(
+        self, info1: AATraceInfo, info2: AATraceInfo
+    ) -> AATraceDiff | None:
+        """
+        Given two AA trace infos, returns a dictionary mapping passes to the
+        difference in their AA counts. If the two AATraceInfos do not agree in
+        their pass lists, then None is returned.
+        """
         query_dict1, pass_list1 = info1
         query_dict2, pass_list2 = info2
 
@@ -543,7 +550,12 @@ class AAInstrumentationDriver:
         index_list1: list[index],
         index_list2: list[index],
         instrument_recursively=False,
-    ) -> AATraceDiff:
+    ) -> AATraceDiff | None:
+        """
+        Given a file and two lists of indices, returns the AATraceDiff between
+        the two lists. If the two lists do not agree in their pass lists, then
+        None is returned.
+        """
         info1 = self.get_queries_per_pass(
             file_name, index_list1, instrument_recursively
         )
