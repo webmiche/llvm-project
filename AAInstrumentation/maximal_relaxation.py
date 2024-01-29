@@ -32,12 +32,16 @@ class MaximalRelaxationDriver(AAInstrumentationDriver):
     @abstractmethod
     def maximal_relaxation_single_file(
         self,
-        candidate_count,
+        candidate_count: size,
         file_name: Path,
     ):
         """
         Dispatches to individual relaxation or overall relaxation depending on
         the driver.
+
+        Args:
+            candidate_count: The number of candidates to consider.
+            file_name: The name of the file to run the algorithm on.
         """
         raise NotImplementedError
 
