@@ -486,34 +486,37 @@ class AAInstrumentationDriver:
         return pass_dict, pass_list
 
     def diff_aa_trace_info(
-        self, info1: AATraceInfo, info2: AATraceInfo
+        self, base_info: AATraceInfo, contrast_info: AATraceInfo
     ) -> AATraceDiff | None:
         """
         Given two AA trace infos, returns a dictionary mapping passes to the
         difference in their AA counts. If the two AATraceInfos do not agree in
         their pass lists, then None is returned.
+
+        If there is an additional query in the contrast_info, then the count
+        will be positive.
         """
-        query_dict1, pass_list1 = info1
-        query_dict2, pass_list2 = info2
+        base_dict, base_passes = base_info
+        contrast_dict, contrast_passes = contrast_info
 
         pass_diff_1 = [
-            pass_name for pass_name in pass_list1 if not pass_name in pass_list2
+            pass_name for pass_name in base_passes if not pass_name in contrast_passes
         ]
         pass_diff_2 = [
-            pass_name for pass_name in pass_list2 if not pass_name in pass_list1
+            pass_name for pass_name in contrast_passes if not pass_name in base_passes
         ]
 
         if pass_diff_1 != [] or pass_diff_2 != []:
             return None
 
         query_diff = {}
-        for pass_name in pass_list1:
-            for AAResult in query_dict1[pass_name].keys():
-                if query_dict1[pass_name][AAResult] != query_dict2[pass_name][AAResult]:
+        for pass_name in base_passes:
+            for AAResult in base_dict[pass_name].keys():
+                if base_dict[pass_name][AAResult] != contrast_dict[pass_name][AAResult]:
                     query_diff[pass_name] = query_diff.get(pass_name, {})
                     query_diff[pass_name][AAResult] = (
-                        query_dict1[pass_name][AAResult]
-                        - query_dict2[pass_name][AAResult]
+                        contrast_dict[pass_name][AAResult]
+                        - base_dict[pass_name][AAResult]
                     )
 
         return query_diff
@@ -521,8 +524,8 @@ class AAInstrumentationDriver:
     def get_diff_aa_trace_info(
         self,
         file_name: Path,
-        index_list1: list[index],
-        index_list2: list[index],
+        base_list: list[index],
+        contrast_list: list[index],
         instrument_recursively=False,
     ) -> AATraceDiff | None:
         """
@@ -530,13 +533,13 @@ class AAInstrumentationDriver:
         the two lists. If the two lists do not agree in their pass lists, then
         None is returned.
         """
-        info1 = self.get_queries_per_pass(
-            file_name, index_list1, instrument_recursively
+        base_info = self.get_queries_per_pass(
+            file_name, base_list, instrument_recursively
         )
-        info2 = self.get_queries_per_pass(
-            file_name, index_list2, instrument_recursively
+        contrast_info = self.get_queries_per_pass(
+            file_name, contrast_list, instrument_recursively
         )
-        return self.diff_aa_trace_info(info1, info2)
+        return self.diff_aa_trace_info(base_info, contrast_info)
 
 
 if __name__ == "__main__":

@@ -324,7 +324,7 @@ class IndividualRelaxationDriver(MaximalRelaxationDriver):
         self.original_hash = self.get_groundtruth_hash(file_name)
 
         relaxable_count = self.get_relaxable_queries(file_name, candidate_count)
-        print("Number of relaxable queries: " + str(relaxable_count))
+        print("with size: " + str(relaxable_count) + " of " + str(candidate_count))
 
 
 class SequentialIndividualRelaxationDriver(IndividualRelaxationDriver):
