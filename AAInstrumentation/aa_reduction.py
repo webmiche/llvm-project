@@ -3,6 +3,7 @@ from typing import List, Callable
 from dataclasses import dataclass
 from pathlib import Path
 import sys
+from abc import abstractmethod
 
 
 @dataclass
@@ -51,6 +52,21 @@ class SequenceStableCheck(AAChecker):
         return self.size_criteria(base_size, new_size)
 
 
+@dataclass
+class SequenceStableSmallerCheck(SequenceStableCheck):
+    """
+    This class implements a reduction check with stable sequence, i.e., the
+    sequence of relaxed AA queries does not change, but the size difference
+    can be any.
+
+    Class members:
+    - sequence: The sequence of AA queries
+    """
+
+    def size_criteria(self, base_size, new_size) -> bool:
+        return new_size < base_size
+
+
 if __name__ == "__main__":
     arg_parser = register_arguments()
 
@@ -81,7 +97,7 @@ if __name__ == "__main__":
     instr_dir = args.instr_dir
     groundtruth_dir = args.groundtruth_dir
 
-    stable_check = SequenceStableCheck(
+    stable_check = SequenceStableSmallerCheck(
         instr_path,
         exec_root,
         specbuild_dir,
