@@ -19,10 +19,12 @@ class AAChecker(AAInstrumentationDriver):
     Class members:
     - file_name: The file to apply the sequence to
     - size_diff: The difference in size that is acceptable
+    - sequence: The sequence of AA queries
     """
 
     file_name: Path
     size_diff: int
+    sequence: List[int]
 
     def size_criteria(self, base_size, new_size) -> bool:
         return new_size + self.size_diff <= base_size
@@ -37,13 +39,7 @@ class SequenceStableCheck(AAChecker):
     """
     This class implements a reduction check with stable sequence, i.e., the
     sequence of relaxed AA queries does not change.
-
-
-    Class members:
-    - sequence: The sequence of AA queries
     """
-
-    sequence: List[int]
 
     def check(self) -> bool:
         base_size = self.run_assemble_and_measure_file(self.file_name, 0, [])
@@ -58,13 +54,35 @@ class SequenceStableSmallerCheck(SequenceStableCheck):
     This class implements a reduction check with stable sequence, i.e., the
     sequence of relaxed AA queries does not change, but the size difference
     can be any.
-
-    Class members:
-    - sequence: The sequence of AA queries
     """
 
     def size_criteria(self, base_size, new_size) -> bool:
         return new_size < base_size
+
+
+@dataclass
+class FirstQueryChangeCheck(AAChecker):
+    """
+    This class implements a reduction check that tries all queries that are
+    smaller than the first query in the sequence.
+    """
+
+    def check(self) -> bool:
+        base_size = self.run_assemble_and_measure_file(self.file_name, 0, [])
+        sizes = []
+        for i in range(self.sequence[0] + 1):
+            sizes.append(self.run_assemble_and_measure_file(self.file_name, 0, [i]))
+
+        return any(self.size_criteria(base_size, size) for size in sizes)
+
+
+@dataclass
+class FirstQueryChangeSmallerCheck(FirstQueryChangeCheck, SequenceStableSmallerCheck):
+    """
+    This class implements a reduction check that tries all queries that are
+    smaller than the first query in the sequence, and the size difference
+    can be any.
+    """
 
 
 if __name__ == "__main__":
@@ -97,7 +115,7 @@ if __name__ == "__main__":
     instr_dir = args.instr_dir
     groundtruth_dir = args.groundtruth_dir
 
-    stable_check = SequenceStableSmallerCheck(
+    stable_check = FirstQueryChangeSmallerCheck(
         instr_path,
         exec_root,
         specbuild_dir,
