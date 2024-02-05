@@ -335,7 +335,8 @@ class AAInstrumentationDriver:
         # In this case, we write the sequence to a file and pass the file name
         # to opt.
         except OSError:
-            aafile_name = "aa_sequence" + str(name_prefix) + ".txt"
+            Path("aa_sequences").mkdir(exist_ok=True)
+            aafile_name = "aa_sequences/" + str(file_name.stem) + "aa_sequence" + str(name_prefix) + ".txt"
             with open(aafile_name, "w") as f:
                 f.write(aa_sequence_string)
 

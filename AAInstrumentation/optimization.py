@@ -42,6 +42,7 @@ class OptimizerDriver(AAInstrumentationDriver):
         required_empty_paths = [
             self.instr_dir,
             Path("res/"),
+            Path("aa_sequences/"),
         ]
         self.setup_directories(required_empty_paths)
 
