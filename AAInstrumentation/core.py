@@ -340,7 +340,7 @@ class AAInstrumentationDriver:
             with open(aafile_name, "w") as f:
                 f.write(aa_sequence_string)
 
-            cmd = base_cmd + ["--aasequencefile=" + aafile_name]
+            cmd = base_cmd + ["--arfile=" + aafile_name]
             # print(" ".join(cmd))
             p = run(
                 cmd,
