@@ -349,6 +349,7 @@ class AAInstrumentationDriver:
                 stderr=DEVNULL,
                 text=True,
             )
+            os.remove(aafile_name)
 
     def get_candidate_count(
         self, file_name: Path, prefix: list[index] = [], instrument_recursively=False
