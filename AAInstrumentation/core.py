@@ -211,11 +211,23 @@ class AAInstrumentationDriver:
     ):
         self.run_and_assemble_file(file_name, name_prefix, index_list)
 
-        return self.get_hash(
+        hash_string = self.get_hash(
             self.instr_dir
             / file_name.parent
             / Path(str(name_prefix) + str(file_name.stem) + ".o")
         )
+        os.remove(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".o")
+        )
+        os.remove(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".bc")
+        )
+
+        return hash_string
 
     def measure_outputsize(self, file: Path) -> size:
         cmd = [str(self.instr_path / "llvm-size"), str(file)]
@@ -281,11 +293,22 @@ class AAInstrumentationDriver:
         self.run_and_assemble_file(
             file_name, name_prefix, index_list, instrument_recursively
         )
-        return self.measure_outputsize(
+        size = self.measure_outputsize(
             self.instr_dir
             / file_name.parent
             / Path(str(name_prefix) + str(file_name.stem) + ".o")
         )
+        os.remove(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".o")
+        )
+        os.remove(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".bc")
+        )
+        return size
 
     def get_aa_string_from_indices(self, index_list: list[index]) -> str:
         return str(len(index_list)) + "-" + "-".join([str(i) for i in index_list])
