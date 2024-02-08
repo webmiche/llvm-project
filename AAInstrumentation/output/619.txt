@@ -1,0 +1,19 @@
+Running benchmark 619 with Oz
+Optimizing 619/lbm.bc
+Number of candidates: 2807
+Baseline: 12087
+Imprecise Baseline: 12159 in 0.29329490661621094s
+Parallel Random Optimizer (1000 runs): 12127 in 8.250449180603027s
+Parallel Local Autotuner: 12087 in 20.01110529899597s
+Optimizing 619/main.bc
+Number of candidates: 89
+Baseline: 1767
+Imprecise Baseline: 1747 in 0.07265377044677734s
+Parallel Random Optimizer (1000 runs): 1747 in 2.2659599781036377s
+Parallel Local Autotuner: 1747 in 0.9545049667358398s
+Minima:
+619/lbm.bc: 12087 bytes with []
+619/main.bc: 1747 bytes with [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88]
+Linking:
+Baseline: 16079
+New: 16047
