@@ -375,27 +375,46 @@ class AAInstrumentationDriver:
             os.remove(aafile_name)
 
     def get_candidate_count(
-        self, file_name: Path, prefix: list[index] = [], instrument_recursively=False
+        self, file_name: Path, prefix: list[index] = [], instrument_recursively=False, name_prefix: int = 0
     ) -> size:
         """Get the number of candidates for a given file with a given prefix."""
 
-        cmd = [
+        aa_string = self.get_aa_string_from_indices(prefix)
+        base_cmd = [
             str(self.instr_path / "opt"),
             str(self.initial_dir / file_name),
             "-stats",
             "-" + self.opt_flag,
             "-o",
             "/dev/null",
-        ] + ["--aasequence=" + self.get_aa_string_from_indices(prefix)]
+        ]
         if instrument_recursively:
             cmd.append("--instrument-aa-recursively")
-        p = run(
-            cmd,
-            cwd=self.exec_root,
-            stderr=PIPE,
-            text=True,
-            check=True,
-        )
+        try:
+            cmd = base_cmd + ["--aasequence=" + aa_string]
+            p = run(
+                cmd,
+                cwd=self.exec_root,
+                stderr=PIPE,
+                text=True,
+                check=True,
+            )
+        except OSError:
+            Path("aa_sequences").mkdir(exist_ok=True)
+            aafile_name = "aa_sequences/" + str(file_name.stem) + "aa_sequence" + str(name_prefix) + ".txt"
+            with open(aafile_name, "w") as f:
+                f.write(aa_string)
+
+            cmd = base_cmd + ["--arfile=" + aafile_name]
+            p = run(
+                cmd,
+                cwd=self.exec_root,
+                stderr=PIPE,
+                text=True,
+                check=True,
+            )
+            os.remove(aafile_name)
+
         lines = p.stderr.split("\n")
         for line in lines:
             if "Number of queries that are not cached and not MayAlias" in line:

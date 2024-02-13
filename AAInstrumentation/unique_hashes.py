@@ -44,7 +44,7 @@ class UniqueHashesDriver(AAInstrumentationDriver):
 
             for i, sample in enumerate(population):
                 # Check how many queries actually occur in this compilation.
-                new_num_candidates = self.get_candidate_count(file_name, sample)
+                new_num_candidates = self.get_candidate_count(file_name, sample, name_prefix=i)
                 actual_sample = tuple(sample[:new_num_candidates])
 
                 # If we have already seen this sequence, then we don't need to
