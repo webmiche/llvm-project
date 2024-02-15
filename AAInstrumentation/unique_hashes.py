@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Dict, List
 import random
 import math
+from multiprocessing import Pool
 
 
 @dataclass
@@ -17,6 +18,31 @@ class UniqueHashesDriver(AAInstrumentationDriver):
     """
 
     random_seed: int = 0
+
+    def handle_population(
+        self,
+        file_name: Path,
+        population: List[List[int]],
+        full_population: set,
+        distinct_hashes: set,
+    ) -> None:
+        """
+        Given a population of random sequences, this method runs the assembly
+        process for each sequence and adds the resulting hash to the set of
+        distinct hashes. It also adds the sequence to the set of full population
+        if it is not already present.
+        """
+        for i, sample in enumerate(population):
+            # Check how many queries actually occur in this compilation.
+            new_num_candidates = self.get_candidate_count(file_name, sample, name_prefix=i)
+            actual_sample = tuple(sample[:new_num_candidates])
+
+            # If we have already seen this sequence, then we don't need to
+            # compute the hash again.
+            if not actual_sample in full_population:
+                curr_hash = self.run_assemble_and_get_hash(file_name, i, sample)
+                full_population.add(actual_sample)
+                distinct_hashes.add(curr_hash)
 
     def get_num_unique_hashes(
         self,
@@ -42,17 +68,7 @@ class UniqueHashesDriver(AAInstrumentationDriver):
                 num_candidates, max(num_runs - len(full_population), 20)
             )
 
-            for i, sample in enumerate(population):
-                # Check how many queries actually occur in this compilation.
-                new_num_candidates = self.get_candidate_count(file_name, sample, name_prefix=i)
-                actual_sample = tuple(sample[:new_num_candidates])
-
-                # If we have already seen this sequence, then we don't need to
-                # compute the hash again.
-                if not actual_sample in full_population:
-                    curr_hash = self.run_assemble_and_get_hash(file_name, i, sample)
-                    full_population.add(actual_sample)
-                    distinct_hashes.add(curr_hash)
+            self.handle_population(file_name, population, full_population, distinct_hashes)
 
             if num_candidates < 20 and math.pow(2, num_candidates) <= len(
                 full_population
@@ -82,6 +98,68 @@ class UniqueHashesDriver(AAInstrumentationDriver):
 
         return len(distinct_hashes)
 
+@dataclass
+class ParallelUniqueHashesDriver(UniqueHashesDriver):
+    """
+    This class implements the unique hashes experiment. In particular, it
+    exposes a method that, given a file, the number of candidate queries, and the
+    number of runs, returns the number of unique hashes that are generated
+    from `num_runs` many random AA query sequences.
+
+    This class is a parallel version of the UniqueHashesDriver. In particular,
+    it uses a parallel version of the `handle_population` method.
+    """
+
+    random_seed: int = 0
+
+    def truncate_sequence(self, file_name: Path, sample: List[int], name_prefix: int) -> tuple[int]:
+        """
+        Given a sequence of AA queries, this method returns the number of
+        queries that actually occur in the compilation. This is useful to
+        truncate the sequence to avoid running unnecessary queries.
+        """
+        count = self.get_candidate_count(file_name, sample, name_prefix=name_prefix)
+        return tuple(sample[:count])
+
+    def handle_population(
+        self,
+        file_name: Path,
+        population: List[List[int]],
+        full_population: set,
+        distinct_hashes: set,
+    ) -> None:
+        """
+        Given a population of random sequences, this method runs the assembly
+        process for each sequence and adds the resulting hash to the set of
+        distinct hashes. It also adds the sequence to the set of full population
+        if it is not already present.
+        """
+
+        # truncate the sequences
+        with Pool(self.proc_count) as pool:
+            sequences = pool.starmap(
+                self.truncate_sequence,
+                [(file_name, sample, i) for i, sample in enumerate(population)],
+            )
+
+        # remove duplicates
+        sequences = list(set(sequences))
+
+        # remove the sequences that we have already seen
+        new_sequences = [seq for seq in sequences if not seq in full_population]
+
+        # run the assembly process for the new sequences
+        with Pool(self.proc_count) as pool:
+            hashes = pool.starmap(
+                self.run_assemble_and_get_hash,
+                [(file_name, i, sample) for i, sample in enumerate(new_sequences)],
+            )
+
+        # add the new sequences to the full population
+        full_population.update(new_sequences)
+
+        # add the new hashes to the set of distinct hashes
+        distinct_hashes.update(hashes)
 
 if __name__ == "__main__":
     arg_parser = register_arguments()
@@ -96,7 +174,7 @@ if __name__ == "__main__":
     instr_dir = args.instr_dir
     groundtruth_dir = args.groundtruth_dir
 
-    driver = UniqueHashesDriver(
+    driver = ParallelUniqueHashesDriver(
         instr_path,
         exec_root,
         specbuild_dir,
