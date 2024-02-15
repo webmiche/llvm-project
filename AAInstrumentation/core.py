@@ -168,7 +168,7 @@ class AAInstrumentationDriver:
         return files
 
     def compile_baseline_file(self, f: Path):
-        (self.exec_root / self.groundtruth_dir / f.parent).mkdir(exist_ok=True)
+        (self.exec_root / self.groundtruth_dir / f.parent).mkdir(exist_ok=True, parents=True)
         cmd = [
             str(self.instr_path / "opt"),
             "-" + self.opt_flag,
