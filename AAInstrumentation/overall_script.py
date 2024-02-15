@@ -8,7 +8,7 @@ from optimization import (
 from maximal_relaxation import (
     SequentialIndividualRelaxationDriver,
 )
-from unique_hashes import UniqueHashesDriver
+from unique_hashes import ParallelUniqueHashesDriver
 from core import register_arguments
 import sys
 from pathlib import Path
@@ -66,7 +66,7 @@ def run_unique_hashes_experiment(instr_path, exec_root, specbuild_dir, initial_d
     for benchmark in benchmarks:
         sys.stdout = open(f"AAInstrumentation/output/{benchmark}.txt", "w")
         print(f"Running benchmark {benchmark} with Oz")
-        driver = UniqueHashesDriver(
+        driver = ParallelUniqueHashesDriver(
             instr_path,
             exec_root,
             specbuild_dir,
