@@ -323,9 +323,11 @@ AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
                                      const llvm::Value *Ptr2,
                                      AliasResult Result, AAQueryInfo &AAQI) {
   if (Result == AliasResult::MayAlias) {
-    for (unsigned I = 0; I < AAQI.Depth; ++I)
-      dbgs() << "  ";
-    dbgs() << Result << "\n";
+    if (EnableAACandidateTrace) {
+      for (unsigned I = 0; I < AAQI.Depth; ++I)
+        dbgs() << "  ";
+      dbgs() << Result << "\n";
+    }
     return Result;
   }
 
