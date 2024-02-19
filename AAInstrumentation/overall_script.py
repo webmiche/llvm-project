@@ -84,7 +84,7 @@ def run_unique_hashes_experiment(instr_path, exec_root, specbuild_dir, initial_d
         candidates_per_file = driver.get_candidates_per_file(files)
         for file, num_candidates in candidates_per_file.items():
             print(f"{file}: {num_candidates}")
-            unique_hashes = driver.get_num_unique_hashes(file, num_candidates, 100)
+            unique_hashes = driver.get_num_unique_hashes(file, num_candidates, 10000)
             print(f"Unique hashes: {unique_hashes} of 100 runs")
 
 
