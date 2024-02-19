@@ -1,0 +1,64 @@
+Running benchmark 641 with Oz
+==== Next file: 641/SGFTree.bc
+Number of candidates: 663
+with size: 655 of 663
+==== Next file: 641/GameState.bc
+Number of candidates: 345
+with size: 336 of 345
+==== Next file: 641/FullBoard.bc
+Number of candidates: 297
+with size: 289 of 297
+==== Next file: 641/GTP.bc
+Number of candidates: 2495
+with size: 2476 of 2495
+==== Next file: 641/MCOTable.bc
+Number of candidates: 26
+with size: 23 of 26
+==== Next file: 641/FastState.bc
+Number of candidates: 400
+with size: 391 of 400
+==== Next file: 641/Random.bc
+Number of candidates: 27
+with size: 23 of 27
+==== Next file: 641/FastBoard.bc
+Number of candidates: 4670
+with size: 4162 of 4670
+==== Next file: 641/KoState.bc
+Number of candidates: 152
+with size: 146 of 152
+==== Next file: 641/Zobrist.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 641/SMP.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 641/Matcher.bc
+Number of candidates: 167
+with size: 164 of 167
+==== Next file: 641/Leela.bc
+Number of candidates: 297
+with size: 276 of 297
+==== Next file: 641/Timing.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 641/UCTNode.bc
+Number of candidates: 576
+with size: 533 of 576
+==== Next file: 641/TimeControl.bc
+Number of candidates: 68
+with size: 67 of 68
+==== Next file: 641/UCTSearch.bc
+Number of candidates: 168
+with size: 168 of 168
+==== Next file: 641/SGFParser.bc
+Number of candidates: 263
+with size: 256 of 263
+==== Next file: 641/Playout.bc
+Number of candidates: 34
+with size: 34 of 34
+==== Next file: 641/Utils.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 641/TTable.bc
+Number of candidates: 20
+with size: 19 of 20

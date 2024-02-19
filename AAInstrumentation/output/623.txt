@@ -1,0 +1,2272 @@
+Running benchmark 623 with Oz
+==== Next file: 623/SchemaInfo.bc
+Number of candidates: 341
+with size: 332 of 341
+==== Next file: 623/ASCIIRangeFactory.bc
+Number of candidates: 5
+with size: 5 of 5
+==== Next file: 623/PSVIAttributeList.bc
+Number of candidates: 290
+with size: 277 of 290
+==== Next file: 623/ElementDefinitionImpl.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 623/Win32TransService2.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanSourceTreeTextIWS.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 623/EntityReferenceImpl.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 623/XercesDocumentBridge.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/AttributeListImpl.bc
+Number of candidates: 1277
+with size: 1262 of 1277
+==== Next file: 623/Wrapper4InputSource.bc
+Number of candidates: 16
+with size: 16 of 16
+==== Next file: 623/XNumberBase.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 623/DOMString.bc
+Number of candidates: 340
+with size: 292 of 340
+==== Next file: 623/PanicHandler.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/NodeIteratorImpl.bc
+Number of candidates: 159
+with size: 159 of 159
+==== Next file: 623/XObjectResultTreeFragProxyText.bc
+Number of candidates: 61
+with size: 61 of 61
+==== Next file: 623/TreeWalker.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DoubleSupport.bc
+Number of candidates: 436
+with size: 421 of 436
+==== Next file: 623/XSpan.bc
+Number of candidates: 12
+with size: 12 of 12
+==== Next file: 623/XalanProcessingInstruction.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DOMParser.bc
+Number of candidates: 716
+with size: 704 of 716
+==== Next file: 623/AttrNSImpl.bc
+Number of candidates: 148
+with size: 148 of 148
+==== Next file: 623/VariablesStack.bc
+Number of candidates: 992
+with size: 976 of 992
+==== Next file: 623/XPathConstructionContext.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 623/XalanEncodingPropertyCache.bc
+Number of candidates: 13
+with size: 13 of 13
+==== Next file: 623/XercesDocumentWrapper.bc
+Number of candidates: 1091
+with size: 1064 of 1091
+==== Next file: 623/XercesCommentBridge.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanSourceTreeDocument.bc
+Number of candidates: 4166
+with size: 4090 of 4166
+==== Next file: 623/XalanDecimalFormatSymbols.bc
+Number of candidates: 544
+with size: 535 of 544
+==== Next file: 623/DOMDocumentTypeImpl.bc
+Number of candidates: 121
+with size: 121 of 121
+==== Next file: 623/XalanSourceTreeTextIWSAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/StylesheetRoot.bc
+Number of candidates: 5007
+with size: 4909 of 5007
+==== Next file: 623/WFXMLScanner.bc
+Number of candidates: 1738
+with size: 1675 of 1738
+==== Next file: 623/IC_KeyRef.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 623/XSSimpleTypeDefinition.bc
+Number of candidates: 277
+with size: 270 of 277
+==== Next file: 623/FunctionDifference.bc
+Number of candidates: 75
+with size: 75 of 75
+==== Next file: 623/DOMException.bc
+Number of candidates: 68
+with size: 65 of 68
+==== Next file: 623/IC_Unique.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/TextImpl.bc
+Number of candidates: 20
+with size: 20 of 20
+==== Next file: 623/RefCountedImpl.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 623/IGXMLScanner2.bc
+Number of candidates: 3486
+with size: 3389 of 3486
+==== Next file: 623/ReaderMgr.bc
+Number of candidates: 1235
+with size: 1161 of 1235
+==== Next file: 623/DTDValidator.bc
+Number of candidates: 441
+with size: 429 of 441
+==== Next file: 623/FormatterToXercesDOM.bc
+Number of candidates: 455
+with size: 446 of 455
+==== Next file: 623/XPathFactory.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/ElemApplyTemplates.bc
+Number of candidates: 72
+with size: 72 of 72
+==== Next file: 623/XalanOutputStreamPrintWriter.bc
+Number of candidates: 394
+with size: 387 of 394
+==== Next file: 623/NodeSorter.bc
+Number of candidates: 2969
+with size: 2903 of 2969
+==== Next file: 623/NamespaceScope.bc
+Number of candidates: 98
+with size: 83 of 98
+==== Next file: 623/FunctionIntersection.bc
+Number of candidates: 63
+with size: 63 of 63
+==== Next file: 623/XalanParsedSource.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XMLMsgLoader.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 623/DocumentFragmentImpl.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanParsedURI.bc
+Number of candidates: 555
+with size: 544 of 555
+==== Next file: 623/AbstractNumericValidator.bc
+Number of candidates: 14
+with size: 14 of 14
+==== Next file: 623/XNodeSetResultTreeFragProxy.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 623/PSVIItem.bc
+Number of candidates: 43
+with size: 43 of 43
+==== Next file: 623/StdBinInputStream.bc
+Number of candidates: 5
+with size: 5 of 5
+==== Next file: 623/NodeImpl.bc
+Number of candidates: 151
+with size: 150 of 151
+==== Next file: 623/DateDatatypeValidator.bc
+Number of candidates: 9
+with size: 9 of 9
+==== Next file: 623/HexBin.bc
+Number of candidates: 47
+with size: 47 of 47
+==== Next file: 623/DOMCharacterDataImpl.bc
+Number of candidates: 102
+with size: 98 of 102
+==== Next file: 623/XercesLiaisonXalanDOMStringPool.bc
+Number of candidates: 11
+with size: 11 of 11
+==== Next file: 623/XalanSourceTreeElementANS.bc
+Number of candidates: 20
+with size: 20 of 20
+==== Next file: 623/XNumberAllocator.bc
+Number of candidates: 271
+with size: 258 of 271
+==== Next file: 623/XalanSourceTreeElementANSAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/LocalFileInputSource.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 623/XercesNodeListBridge.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DOM_Node.bc
+Number of candidates: 39
+with size: 39 of 39
+==== Next file: 623/XalanEntityReference.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DOMStringPool.bc
+Number of candidates: 37
+with size: 35 of 37
+==== Next file: 623/XSDDOMParser.bc
+Number of candidates: 489
+with size: 477 of 489
+==== Next file: 623/StylesheetHandler.bc
+Number of candidates: 8938
+with size: 8773 of 8938
+==== Next file: 623/XalanDefaultParsedSource.bc
+Number of candidates: 44
+with size: 44 of 44
+==== Next file: 623/ProblemListener.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanElemVariableAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/XercesCDATASectionBridge.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/OutputContextStack.bc
+Number of candidates: 1240
+with size: 1211 of 1240
+==== Next file: 623/XMLParserLiaison.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanCAPI.bc
+Number of candidates: 58
+with size: 57 of 58
+==== Next file: 623/XStringCachedAllocator.bc
+Number of candidates: 271
+with size: 258 of 271
+==== Next file: 623/XalanBitmap.bc
+Number of candidates: 469
+with size: 462 of 469
+==== Next file: 623/FunctionUnparsedEntityURI.bc
+Number of candidates: 26
+with size: 26 of 26
+==== Next file: 623/XMLDTDDescriptionImpl.bc
+Number of candidates: 25
+with size: 25 of 25
+==== Next file: 623/FunctionConcat.bc
+Number of candidates: 65
+with size: 65 of 65
+==== Next file: 623/DOMImplementationRegistry.bc
+Number of candidates: 132
+with size: 123 of 132
+==== Next file: 623/XalanNumberFormat.bc
+Number of candidates: 507
+with size: 488 of 507
+==== Next file: 623/BMPattern.bc
+Number of candidates: 189
+with size: 171 of 189
+==== Next file: 623/FunctionSystemProperty.bc
+Number of candidates: 119
+with size: 119 of 119
+==== Next file: 623/XalanQName.bc
+Number of candidates: 91
+with size: 91 of 91
+==== Next file: 623/XercesToXalanNodeMap.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XMLEntityDecl.bc
+Number of candidates: 100
+with size: 93 of 100
+==== Next file: 623/XercesElementWrapper.bc
+Number of candidates: 76
+with size: 76 of 76
+==== Next file: 623/SchemaElementDecl.bc
+Number of candidates: 413
+with size: 402 of 413
+==== Next file: 623/XalanText.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DoubleDatatypeValidator.bc
+Number of candidates: 175
+with size: 165 of 175
+==== Next file: 623/XSAnnotation.bc
+Number of candidates: 34
+with size: 34 of 34
+==== Next file: 623/FunctionString.bc
+Number of candidates: 35
+with size: 35 of 35
+==== Next file: 623/ElemWhen.bc
+Number of candidates: 41
+with size: 41 of 41
+==== Next file: 623/MonthDatatypeValidator.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 623/DecimalDatatypeValidator.bc
+Number of candidates: 439
+with size: 426 of 439
+==== Next file: 623/XUtil.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 623/XPathEvaluator.bc
+Number of candidates: 135
+with size: 135 of 135
+==== Next file: 623/ProcessingInstructionImpl.bc
+Number of candidates: 27
+with size: 27 of 27
+==== Next file: 623/ElementPrefixResolverProxy.bc
+Number of candidates: 436
+with size: 427 of 436
+==== Next file: 623/MonthDayDatatypeValidator.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 623/XMLElementDecl.bc
+Number of candidates: 24
+with size: 24 of 24
+==== Next file: 623/XalanEXSLTSet.bc
+Number of candidates: 149
+with size: 149 of 149
+==== Next file: 623/XalanNode.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DOMSupport.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DOM_Comment.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XMLString.bc
+Number of candidates: 431
+with size: 419 of 431
+==== Next file: 623/XPathAllocator.bc
+Number of candidates: 142
+with size: 136 of 142
+==== Next file: 623/Base64BinaryDatatypeValidator.bc
+Number of candidates: 5
+with size: 5 of 5
+==== Next file: 623/XalanDOMStringHashTable.bc
+Number of candidates: 796
+with size: 773 of 796
+==== Next file: 623/XSLTProcessorEnvSupportDefault.bc
+Number of candidates: 68
+with size: 67 of 68
+==== Next file: 623/XalanSourceTreeElementNA.bc
+Number of candidates: 10
+with size: 10 of 10
+==== Next file: 623/KeyTable.bc
+Number of candidates: 2673
+with size: 2612 of 2673
+==== Next file: 623/XUnknown.bc
+Number of candidates: 70
+with size: 70 of 70
+==== Next file: 623/XalanElemTextLiteralAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/DOMChildNode.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 623/XalanElemLiteralResultAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/DOMSupportException.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XMLRegisterCleanup.bc
+Number of candidates: 21
+with size: 19 of 21
+==== Next file: 623/XalanSourceTreeDOMSupport.bc
+Number of candidates: 10
+with size: 10 of 10
+==== Next file: 623/XMLDeclImpl.bc
+Number of candidates: 18
+with size: 18 of 18
+==== Next file: 623/HPCCDefs.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XStringAllocator.bc
+Number of candidates: 271
+with size: 258 of 271
+==== Next file: 623/RegularExpression.bc
+Number of candidates: 1589
+with size: 1524 of 1589
+==== Next file: 623/DOMErrorImpl.bc
+Number of candidates: 48
+with size: 48 of 48
+==== Next file: 623/SchemaGrammar.bc
+Number of candidates: 713
+with size: 674 of 713
+==== Next file: 623/AbstractNumericFacetValidator.bc
+Number of candidates: 579
+with size: 564 of 579
+==== Next file: 623/NamedNodeMapAttributeList.bc
+Number of candidates: 33
+with size: 33 of 33
+==== Next file: 623/CDATASectionImpl.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanMessageLoader.bc
+Number of candidates: 124
+with size: 124 of 124
+==== Next file: 623/UnionDatatypeValidator.bc
+Number of candidates: 293
+with size: 289 of 293
+==== Next file: 623/XPathExecutionContextDefault.bc
+Number of candidates: 1776
+with size: 1742 of 1776
+==== Next file: 623/DStringPool.bc
+Number of candidates: 30
+with size: 29 of 30
+==== Next file: 623/XMLChTranscoder.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanSourceTreeElement.bc
+Number of candidates: 68
+with size: 68 of 68
+==== Next file: 623/XalanSourceTreeInit.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DOMCDATASectionImpl.bc
+Number of candidates: 30
+with size: 30 of 30
+==== Next file: 623/XNodeSet.bc
+Number of candidates: 25
+with size: 25 of 25
+==== Next file: 623/XSDElementNSImpl.bc
+Number of candidates: 12
+with size: 12 of 12
+==== Next file: 623/XercesElementWildcard.bc
+Number of candidates: 18
+with size: 18 of 18
+==== Next file: 623/XercesXPath.bc
+Number of candidates: 1319
+with size: 1285 of 1319
+==== Next file: 623/XercesTreeWalker.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XMLEBCDICTranscoder390.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/AbstractStringValidator.bc
+Number of candidates: 571
+with size: 563 of 571
+==== Next file: 623/XalanSourceTreeElementAAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/DOMStringHelper.bc
+Number of candidates: 1062
+with size: 1045 of 1062
+==== Next file: 623/SAXException.bc
+Number of candidates: 13
+with size: 13 of 13
+==== Next file: 623/XercesNamedNodeMapBridge.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanFileOutputStream.bc
+Number of candidates: 65
+with size: 65 of 65
+==== Next file: 623/FunctionSubstring.bc
+Number of candidates: 76
+with size: 76 of 76
+==== Next file: 623/XalanSimplePrefixResolver.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 623/NullPrintWriter.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/IRIXPlatformUtils.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DTDAttDef.bc
+Number of candidates: 30
+with size: 30 of 30
+==== Next file: 623/XercesDOMWrapperException.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/ElemIf.bc
+Number of candidates: 76
+with size: 75 of 76
+==== Next file: 623/XMLASCIITranscoder390.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 623/XSNamespaceItem.bc
+Number of candidates: 395
+with size: 383 of 395
+==== Next file: 623/XalanElemAttributeAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/PlatformSupportInit.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/FloatDatatypeValidator.bc
+Number of candidates: 181
+with size: 171 of 181
+==== Next file: 623/XMLUTF8Transcoder.bc
+Number of candidates: 151
+with size: 144 of 151
+==== Next file: 623/FunctionFunctionAvailable.bc
+Number of candidates: 16
+with size: 16 of 16
+==== Next file: 623/XSDErrorReporter.bc
+Number of candidates: 19
+with size: 16 of 19
+==== Next file: 623/PlatformUtils.bc
+Number of candidates: 37
+with size: 37 of 37
+==== Next file: 623/Stylesheet.bc
+Number of candidates: 9972
+with size: 9740 of 9972
+==== Next file: 623/XercesDOMImplementationBridge.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanUTF16Transcoder.bc
+Number of candidates: 10
+with size: 10 of 10
+==== Next file: 623/NamedNodeMapImpl.bc
+Number of candidates: 252
+with size: 242 of 252
+==== Next file: 623/XSComplexTypeDefinition.bc
+Number of candidates: 211
+with size: 203 of 211
+==== Next file: 623/DayDatatypeValidator.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 623/InMemMsgLoader.bc
+Number of candidates: 11
+with size: 11 of 11
+==== Next file: 623/PrefixResolver.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanSourceTreeElementNANS.bc
+Number of candidates: 20
+with size: 20 of 20
+==== Next file: 623/CountersTable.bc
+Number of candidates: 841
+with size: 825 of 841
+==== Next file: 623/NLSHandler.bc
+Number of candidates: 36
+with size: 36 of 36
+==== Next file: 623/XMLSupportInit.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/SGXMLScanner.bc
+Number of candidates: 5273
+with size: 5133 of 5273
+==== Next file: 623/XalanEXSLTMath.bc
+Number of candidates: 659
+with size: 656 of 659
+==== Next file: 623/DOMLocatorImpl.bc
+Number of candidates: 18
+with size: 18 of 18
+==== Next file: 623/XSObjectFactory.bc
+Number of candidates: 1644
+with size: 1565 of 1644
+==== Next file: 623/XercesProcessingInstructionWrapper.bc
+Number of candidates: 42
+with size: 42 of 42
+==== Next file: 623/XalanElemTextAllocator.bc
+Number of candidates: 214
+with size: 203 of 214
+==== Next file: 623/XalanDOMStringAllocator.bc
+Number of candidates: 150
+with size: 144 of 150
+==== Next file: 623/ICUResHandler.bc
+Number of candidates: 42
+with size: 41 of 42
+==== Next file: 623/HexBinaryDatatypeValidator.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XercesDOMWrapperParsedSource.bc
+Number of candidates: 16
+with size: 16 of 16
+==== Next file: 623/XMLDouble.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/FunctionStartsWith.bc
+Number of candidates: 26
+with size: 26 of 26
+==== Next file: 623/XalanSourceTreeComment.bc
+Number of candidates: 79
+with size: 79 of 79
+==== Next file: 623/XProtoType.bc
+Number of candidates: 22
+with size: 22 of 22
+==== Next file: 623/ModifierToken.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 623/BlockRangeFactory.bc
+Number of candidates: 12
+with size: 12 of 12
+==== Next file: 623/FunctionNodeSet.bc
+Number of candidates: 88
+with size: 86 of 88
+==== Next file: 623/XMLIBM1047Transcoder390.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/FormatterListener.bc
+Number of candidates: 14
+with size: 14 of 14
+==== Next file: 623/NodeNameTreeWalker.bc
+Number of candidates: 793
+with size: 777 of 793
+==== Next file: 623/XalanNLSMessageLoader.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XSLTProcessorException.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanXMLChar.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XercesTextWrapper.bc
+Number of candidates: 30
+with size: 30 of 30
+==== Next file: 623/XalanEmptyNamedNodeMap.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DOMBuilderImpl.bc
+Number of candidates: 280
+with size: 270 of 280
+==== Next file: 623/XTemplateSerializer.bc
+Number of candidates: 5125
+with size: 4810 of 5125
+==== Next file: 623/XercesParserLiaison.bc
+Number of candidates: 1780
+with size: 1743 of 1780
+==== Next file: 623/XML256TableTranscoder.bc
+Number of candidates: 17
+with size: 16 of 17
+==== Next file: 623/XalanDocumentFragment.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/ComplexTypeInfo.bc
+Number of candidates: 1630
+with size: 1600 of 1630
+==== Next file: 623/URLInputSource.bc
+Number of candidates: 5
+with size: 4 of 5
+==== Next file: 623/DOMElementImpl.bc
+Number of candidates: 116
+with size: 113 of 116
+==== Next file: 623/XSParticle.bc
+Number of candidates: 17
+with size: 17 of 17
+==== Next file: 623/XResultTreeFragAllocator.bc
+Number of candidates: 271
+with size: 258 of 271
+==== Next file: 623/XSObject.bc
+Number of candidates: 10
+with size: 10 of 10
+==== Next file: 623/XStringReferenceAllocator.bc
+Number of candidates: 271
+with size: 258 of 271
+==== Next file: 623/XercesAttributeBridgeAllocator.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/IC_Selector.bc
+Number of candidates: 66
+with size: 66 of 66
+==== Next file: 623/DOMRangeException.bc
+Number of candidates: 4
+with size: 4 of 4
+==== Next file: 623/DOM_Document.bc
+Number of candidates: 24
+with size: 24 of 24
+==== Next file: 623/SAX2XMLReaderImpl.bc
+Number of candidates: 1050
+with size: 1021 of 1050
+==== Next file: 623/ElemNumber.bc
+Number of candidates: 3629
+with size: 3582 of 3629
+==== Next file: 623/XMLScanner.bc
+Number of candidates: 3076
+with size: 2946 of 3076
+==== Next file: 623/Writer.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/StylesheetExecutionContext.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/StdInInputSource.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 623/XalanSourceTreeElementNANSAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/DOM_XMLDecl.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 623/FunctionNormalizeSpace.bc
+Number of candidates: 434
+with size: 427 of 434
+==== Next file: 623/XalanAttr.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/ElemOtherwise.bc
+Number of candidates: 7
+with size: 7 of 7
+==== Next file: 623/XSAttributeUse.bc
+Number of candidates: 13
+with size: 13 of 13
+==== Next file: 623/XalanDOMStringCache.bc
+Number of candidates: 566
+with size: 550 of 566
+==== Next file: 623/ElemChoose.bc
+Number of candidates: 36
+with size: 35 of 36
+==== Next file: 623/XObjectResultTreeFragProxyBase.bc
+Number of candidates: 8
+with size: 8 of 8
+==== Next file: 623/MemoryManagerArrayImpl.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/AttributesImpl.bc
+Number of candidates: 1072
+with size: 1058 of 1072
+==== Next file: 623/XalanOutputStream.bc
+Number of candidates: 946
+with size: 930 of 946
+==== Next file: 623/XalanSourceTreeElementNAAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/XalanEXSLTDateTime.bc
+Number of candidates: 195
+with size: 195 of 195
+==== Next file: 623/Wrapper4DOMInputSource.bc
+Number of candidates: 16
+with size: 16 of 16
+==== Next file: 623/FunctionKey.bc
+Number of candidates: 110
+with size: 108 of 110
+==== Next file: 623/XNodeSetAllocator.bc
+Number of candidates: 271
+with size: 258 of 271
+==== Next file: 623/SelectionEvent.bc
+Number of candidates: 86
+with size: 86 of 86
+==== Next file: 623/XML88591Transcoder.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 623/XPathConstructionContextDefault.bc
+Number of candidates: 10
+with size: 10 of 10
+==== Next file: 623/DOMXPathException.bc
+Number of candidates: 14
+with size: 14 of 14
+==== Next file: 623/ExecutionContext.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 623/XalanElement.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/FormatterToHTML.bc
+Number of candidates: 1159
+with size: 1141 of 1159
+==== Next file: 623/XMLDateTime.bc
+Number of candidates: 837
+with size: 776 of 837
+==== Next file: 623/XalanSourceTreeTextAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/BinMemInputStream.bc
+Number of candidates: 33
+with size: 31 of 33
+==== Next file: 623/NCNameDatatypeValidator.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 623/ElemMessage.bc
+Number of candidates: 36
+with size: 36 of 36
+==== Next file: 623/XalanNodeListDummy.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanDefaultDocumentBuilder.bc
+Number of candidates: 18
+with size: 18 of 18
+==== Next file: 623/SchemaValidator.bc
+Number of candidates: 2027
+with size: 1981 of 2027
+==== Next file: 623/DOMAttrMapImpl.bc
+Number of candidates: 312
+with size: 298 of 312
+==== Next file: 623/XercesDOMWalker.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/ElemForEach.bc
+Number of candidates: 1041
+with size: 1028 of 1041
+==== Next file: 623/XStringCached.bc
+Number of candidates: 456
+with size: 447 of 456
+==== Next file: 623/DOMStringPrintWriter.bc
+Number of candidates: 444
+with size: 444 of 444
+==== Next file: 623/SubstitutionGroupComparator.bc
+Number of candidates: 120
+with size: 120 of 120
+==== Next file: 623/XNumber.bc
+Number of candidates: 32
+with size: 32 of 32
+==== Next file: 623/DOMNormalizer.bc
+Number of candidates: 770
+with size: 733 of 770
+==== Next file: 623/ElemForwardCompatible.bc
+Number of candidates: 17
+with size: 17 of 17
+==== Next file: 623/CharacterDataImpl.bc
+Number of candidates: 33
+with size: 33 of 33
+==== Next file: 623/XMLReader.bc
+Number of candidates: 1547
+with size: 1478 of 1547
+==== Next file: 623/XPathMatcherStack.bc
+Number of candidates: 156
+with size: 151 of 156
+==== Next file: 623/DOMTextImpl.bc
+Number of candidates: 35
+with size: 35 of 35
+==== Next file: 623/Win32TransService.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DOM_Notation.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 623/IDREFDatatypeValidator.bc
+Number of candidates: 5
+with size: 5 of 5
+==== Next file: 623/XercesElementBridgeAllocator.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/GCCDefs.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XercesCommentWrapper.bc
+Number of candidates: 40
+with size: 40 of 40
+==== Next file: 623/GeneralAttributeCheck.bc
+Number of candidates: 2710
+with size: 2700 of 2710
+==== Next file: 623/GrammarResolver.bc
+Number of candidates: 730
+with size: 701 of 730
+==== Next file: 623/StringPool.bc
+Number of candidates: 259
+with size: 251 of 259
+==== Next file: 623/FormatterStringLengthCounter.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 623/XMLUri.bc
+Number of candidates: 648
+with size: 620 of 648
+==== Next file: 623/XMLUTF16Transcoder.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 623/Constants.bc
+Number of candidates: 53
+with size: 53 of 53
+==== Next file: 623/FunctionSubstringBefore.bc
+Number of candidates: 47
+with size: 47 of 47
+==== Next file: 623/YearMonthDatatypeValidator.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 623/ParserForXMLSchema.bc
+Number of candidates: 154
+with size: 152 of 154
+==== Next file: 623/VecAttributesImpl.bc
+Number of candidates: 132
+with size: 128 of 132
+==== Next file: 623/XalanDOMStringReusableAllocator.bc
+Number of candidates: 221
+with size: 210 of 221
+==== Next file: 623/XalanElemElementAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/XNull.bc
+Number of candidates: 53
+with size: 53 of 53
+==== Next file: 623/XMLFormatter.bc
+Number of candidates: 843
+with size: 842 of 843
+==== Next file: 623/DOMDocumentImpl.bc
+Number of candidates: 1443
+with size: 1372 of 1443
+==== Next file: 623/SAX2Handler.bc
+Number of candidates: 158
+with size: 158 of 158
+==== Next file: 623/DOM_NodeFilter.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XObject.bc
+Number of candidates: 537
+with size: 525 of 537
+==== Next file: 623/DOMSupportDefault.bc
+Number of candidates: 437
+with size: 428 of 437
+==== Next file: 623/XMLSchemaDescription.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/IdentityConstraint.bc
+Number of candidates: 75
+with size: 71 of 75
+==== Next file: 623/XSAttributeGroupDefinition.bc
+Number of candidates: 33
+with size: 33 of 33
+==== Next file: 623/NamespacesHandler.bc
+Number of candidates: 3613
+with size: 3539 of 3613
+==== Next file: 623/IconvTransService.bc
+Number of candidates: 51
+with size: 50 of 51
+==== Next file: 623/XalanQNameByValue.bc
+Number of candidates: 530
+with size: 521 of 530
+==== Next file: 623/ElemAttributeSet.bc
+Number of candidates: 42
+with size: 42 of 42
+==== Next file: 623/UnicodeRangeFactory.bc
+Number of candidates: 237
+with size: 237 of 237
+==== Next file: 623/AIXPlatformUtils.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XercesCDATASectionWrapper.bc
+Number of candidates: 40
+with size: 40 of 40
+==== Next file: 623/CMAny.bc
+Number of candidates: 64
+with size: 64 of 64
+==== Next file: 623/XTokenNumberAdapterAllocator.bc
+Number of candidates: 271
+with size: 258 of 271
+==== Next file: 623/FormatterToDeprecatedXercesDOM.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XercesDOMParsedSource.bc
+Number of candidates: 39
+with size: 39 of 39
+==== Next file: 623/DOM_NodeList.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 623/SchemaAttDef.bc
+Number of candidates: 374
+with size: 372 of 374
+==== Next file: 623/DOM_Element.bc
+Number of candidates: 23
+with size: 23 of 23
+==== Next file: 623/HashXMLCh.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 623/XercesDOMFormatterWalker.bc
+Number of candidates: 10
+with size: 10 of 10
+==== Next file: 623/ElemEmpty.bc
+Number of candidates: 12
+with size: 12 of 12
+==== Next file: 623/TracerEvent.bc
+Number of candidates: 38
+with size: 38 of 38
+==== Next file: 623/XPathProcessorImpl.bc
+Number of candidates: 3724
+with size: 3652 of 3724
+==== Next file: 623/XalanEXSLTString.bc
+Number of candidates: 834
+with size: 822 of 834
+==== Next file: 623/FieldValueMap.bc
+Number of candidates: 324
+with size: 309 of 324
+==== Next file: 623/ElemFallback.bc
+Number of candidates: 9
+with size: 9 of 9
+==== Next file: 623/XalanDOMString.bc
+Number of candidates: 1220
+with size: 1194 of 1220
+==== Next file: 623/BinFileOutputStream.bc
+Number of candidates: 26
+with size: 26 of 26
+==== Next file: 623/DateTimeValidator.bc
+Number of candidates: 182
+with size: 172 of 182
+==== Next file: 623/XalanDocument.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanSourceTreeDocumentFragment.bc
+Number of candidates: 36
+with size: 36 of 36
+==== Next file: 623/XSTypeDefinition.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 623/TreeWalkerImpl.bc
+Number of candidates: 87
+with size: 87 of 87
+==== Next file: 623/BinOutputStream.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/SAXParseException.bc
+Number of candidates: 71
+with size: 71 of 71
+==== Next file: 623/FunctionDistinct.bc
+Number of candidates: 1621
+with size: 1583 of 1621
+==== Next file: 623/XalanFileUtility.bc
+Number of candidates: 4188
+with size: 4094 of 4188
+==== Next file: 623/RangeTokenMap.bc
+Number of candidates: 349
+with size: 333 of 349
+==== Next file: 623/XalanSourceTreeElementA.bc
+Number of candidates: 47
+with size: 47 of 47
+==== Next file: 623/TopLevelArg.bc
+Number of candidates: 28
+with size: 28 of 28
+==== Next file: 623/XercesDOMImplementationWrapper.bc
+Number of candidates: 22
+with size: 22 of 22
+==== Next file: 623/XMLUni.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XMLScannerResolver.bc
+Number of candidates: 7
+with size: 7 of 7
+==== Next file: 623/XPathProcessor.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 623/XObjectTypeCallback.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 623/MemBufFormatTarget.bc
+Number of candidates: 33
+with size: 33 of 33
+==== Next file: 623/XBoolean.bc
+Number of candidates: 27
+with size: 27 of 27
+==== Next file: 623/ElemTemplateElement.bc
+Number of candidates: 617
+with size: 608 of 617
+==== Next file: 623/DOMNamedNodeMapImpl.bc
+Number of candidates: 252
+with size: 247 of 252
+==== Next file: 623/XalanNamedNodeMap.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/FunctionElementAvailable.bc
+Number of candidates: 16
+with size: 16 of 16
+==== Next file: 623/DOMSupportInit.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/ElemCallTemplate.bc
+Number of candidates: 60
+with size: 60 of 60
+==== Next file: 623/XercesProcessingInstructionBridge.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XObjectFactoryDefault.bc
+Number of candidates: 1988
+with size: 1950 of 1988
+==== Next file: 623/XalanHTMLElementsProperties.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 623/XStringAdapterAllocator.bc
+Number of candidates: 271
+with size: 258 of 271
+==== Next file: 623/XalanMemoryManagerDefault.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XercesDocumentTypeWrapper.bc
+Number of candidates: 48
+with size: 48 of 48
+==== Next file: 623/TransService.bc
+Number of candidates: 300
+with size: 286 of 300
+==== Next file: 623/XToken.bc
+Number of candidates: 75
+with size: 75 of 75
+==== Next file: 623/XSModelGroup.bc
+Number of candidates: 8
+with size: 8 of 8
+==== Next file: 623/ExtensionNSHandler.bc
+Number of candidates: 1265
+with size: 1240 of 1265
+==== Next file: 623/XalanSourceTreeContentHandler.bc
+Number of candidates: 1181
+with size: 1160 of 1181
+==== Next file: 623/PrintWriter.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 623/XercesNamedNodeMapAttributeList.bc
+Number of candidates: 9
+with size: 9 of 9
+==== Next file: 623/DOM_NodeIterator.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/CharToken.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 623/XalanSourceTreeDocumentAllocator.bc
+Number of candidates: 271
+with size: 258 of 271
+==== Next file: 623/DOMNodeIDMap.bc
+Number of candidates: 66
+with size: 57 of 66
+==== Next file: 623/IDDatatypeValidator.bc
+Number of candidates: 5
+with size: 5 of 5
+==== Next file: 623/ExtensionFunctionHandler.bc
+Number of candidates: 1674
+with size: 1640 of 1674
+==== Next file: 623/XalanNodeList.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/OpFactory.bc
+Number of candidates: 128
+with size: 121 of 128
+==== Next file: 623/NodeVector.bc
+Number of candidates: 28
+with size: 23 of 28
+==== Next file: 623/XalanInMemoryMessageLoader.bc
+Number of candidates: 20
+with size: 20 of 20
+==== Next file: 623/SunCCDefs.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/SchemaAttDefList.bc
+Number of candidates: 248
+with size: 245 of 248
+==== Next file: 623/InMemHandler.bc
+Number of candidates: 55
+with size: 55 of 55
+==== Next file: 623/KVStringPair.bc
+Number of candidates: 70
+with size: 70 of 70
+==== Next file: 623/DOM_DOMException.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DateTimeDatatypeValidator.bc
+Number of candidates: 9
+with size: 9 of 9
+==== Next file: 623/XalanDiagnosticMemoryManager.bc
+Number of candidates: 1499
+with size: 1472 of 1499
+==== Next file: 623/DOMImplementationImpl.bc
+Number of candidates: 28
+with size: 25 of 28
+==== Next file: 623/XercesNotationBridge.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/CMBinaryOp.bc
+Number of candidates: 128
+with size: 122 of 128
+==== Next file: 623/ValueStoreCache.bc
+Number of candidates: 569
+with size: 535 of 569
+==== Next file: 623/DOMTypeInfoImpl.bc
+Number of candidates: 182
+with size: 182 of 182
+==== Next file: 623/XMLUniCharacter.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XPathSymbols.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/IC_Field.bc
+Number of candidates: 60
+with size: 54 of 60
+==== Next file: 623/ElemAttribute.bc
+Number of candidates: 837
+with size: 828 of 837
+==== Next file: 623/XercesDocumentFragmentBridge.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/NOTATIONDatatypeValidator.bc
+Number of candidates: 39
+with size: 38 of 39
+==== Next file: 623/FunctionID.bc
+Number of candidates: 547
+with size: 538 of 547
+==== Next file: 623/XMLAttr.bc
+Number of candidates: 136
+with size: 126 of 136
+==== Next file: 623/XalanSourceTreeCommentAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/CSetDefs.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/MemBufInputSource.bc
+Number of candidates: 30
+with size: 30 of 30
+==== Next file: 623/XalanStdOutputStream.bc
+Number of candidates: 464
+with size: 455 of 464
+==== Next file: 623/XalanToXercesTranscoderWrapper.bc
+Number of candidates: 16
+with size: 16 of 16
+==== Next file: 623/XMLWin1252Transcoder.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/FunctionHasSameNodes.bc
+Number of candidates: 36
+with size: 36 of 36
+==== Next file: 623/XMLBuffer.bc
+Number of candidates: 19
+with size: 19 of 19
+==== Next file: 623/XalanEXSLTCommon.bc
+Number of candidates: 70
+with size: 69 of 70
+==== Next file: 623/RegxParser.bc
+Number of candidates: 639
+with size: 616 of 639
+==== Next file: 623/XalanNumberingResourceBundle.bc
+Number of candidates: 1315
+with size: 1296 of 1315
+==== Next file: 623/PSVIAttribute.bc
+Number of candidates: 66
+with size: 66 of 66
+==== Next file: 623/XNodeSetNodeProxy.bc
+Number of candidates: 8
+with size: 8 of 8
+==== Next file: 623/XObjectFactory.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 623/ENTITYDatatypeValidator.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 623/MsgFileOutputStream.bc
+Number of candidates: 19
+with size: 19 of 19
+==== Next file: 623/AnySimpleTypeDatatypeValidator.bc
+Number of candidates: 34
+with size: 34 of 34
+==== Next file: 623/ElemText.bc
+Number of candidates: 16
+with size: 16 of 16
+==== Next file: 623/XercesWrapperNavigatorAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/XalanQNameByReference.bc
+Number of candidates: 10
+with size: 10 of 10
+==== Next file: 623/ParentNode.bc
+Number of candidates: 406
+with size: 391 of 406
+==== Next file: 623/ElemPI.bc
+Number of candidates: 73
+with size: 71 of 73
+==== Next file: 623/DOMCommentImpl.bc
+Number of candidates: 30
+with size: 30 of 30
+==== Next file: 623/XercesElementBridge.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XercesAttrBridge.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanSourceTreeDocumentFragmentAllocator.bc
+Number of candidates: 273
+with size: 260 of 273
+==== Next file: 623/StringDatatypeValidator.bc
+Number of candidates: 29
+with size: 28 of 29
+==== Next file: 623/XalanDOMException.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 623/TraceListener.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/FunctionFormatNumber.bc
+Number of candidates: 43
+with size: 43 of 43
+==== Next file: 623/XMLChar.bc
+Number of candidates: 28
+with size: 28 of 28
+==== Next file: 623/AttrMapImpl.bc
+Number of candidates: 5
+with size: 5 of 5
+==== Next file: 623/MutableNodeRefList.bc
+Number of candidates: 704
+with size: 688 of 704
+==== Next file: 623/LocalFileFormatTarget.bc
+Number of candidates: 44
+with size: 44 of 44
+==== Next file: 623/XalanExtensions.bc
+Number of candidates: 17
+with size: 17 of 17
+==== Next file: 623/XSValue.bc
+Number of candidates: 3398
+with size: 3386 of 3398
+==== Next file: 623/XMLEBCDICTranscoder.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XSLTInit.bc
+Number of candidates: 10
+with size: 10 of 10
+==== Next file: 623/RangeToken.bc
+Number of candidates: 501
+with size: 439 of 501
+==== Next file: 623/StylesheetConstructionContext.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DOMEntityReferenceImpl.bc
+Number of candidates: 17
+with size: 17 of 17
+==== Next file: 623/XResultTreeFrag.bc
+Number of candidates: 74
+with size: 73 of 74
+==== Next file: 623/XalanSourceTreeAttributeNSAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/ElemLiteralResult.bc
+Number of candidates: 177
+with size: 177 of 177
+==== Next file: 623/XercesEntityWrapper.bc
+Number of candidates: 50
+with size: 50 of 50
+==== Next file: 623/DOMAttrImpl.bc
+Number of candidates: 229
+with size: 223 of 229
+==== Next file: 623/XMLBufferMgr.bc
+Number of candidates: 65
+with size: 57 of 65
+==== Next file: 623/DTDEntityDecl.bc
+Number of candidates: 7
+with size: 7 of 7
+==== Next file: 623/URISupport.bc
+Number of candidates: 402
+with size: 394 of 402
+==== Next file: 623/ValidationContextImpl.bc
+Number of candidates: 183
+with size: 176 of 183
+==== Next file: 623/XalanElemEmptyAllocator.bc
+Number of candidates: 214
+with size: 203 of 214
+==== Next file: 623/XMLRefInfo.bc
+Number of candidates: 26
+with size: 26 of 26
+==== Next file: 623/FunctionNamespaceURI.bc
+Number of candidates: 33
+with size: 33 of 33
+==== Next file: 623/Function.bc
+Number of candidates: 63
+with size: 63 of 63
+==== Next file: 623/XPathExecutionContext.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 623/XercesDocumentTypeBridge.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XPathFunctionTable.bc
+Number of candidates: 73
+with size: 73 of 73
+==== Next file: 623/XSerializeEngine.bc
+Number of candidates: 675
+with size: 655 of 675
+==== Next file: 623/FormatterTreeWalker.bc
+Number of candidates: 42
+with size: 42 of 42
+==== Next file: 623/XalanXPathException.bc
+Number of candidates: 8
+with size: 8 of 8
+==== Next file: 623/DTDAttDefList.bc
+Number of candidates: 182
+with size: 179 of 182
+==== Next file: 623/Resettable.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DOMWriterImpl.bc
+Number of candidates: 525
+with size: 493 of 525
+==== Next file: 623/SolarisPlatformUtils.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanElemApplyTemplatesAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/FormatterToDOM.bc
+Number of candidates: 423
+with size: 414 of 423
+==== Next file: 623/XalanMatchPatternDataAllocator.bc
+Number of candidates: 154
+with size: 148 of 154
+==== Next file: 623/GenerateEvent.bc
+Number of candidates: 14
+with size: 14 of 14
+==== Next file: 623/DOM_ProcessingInstruction.bc
+Number of candidates: 5
+with size: 5 of 5
+==== Next file: 623/DOM_CharacterData.bc
+Number of candidates: 8
+with size: 8 of 8
+==== Next file: 623/XalanElemTemplateAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/XercesTextWrapperAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/XPathInit.bc
+Number of candidates: 12
+with size: 11 of 12
+==== Next file: 623/FunctionContains.bc
+Number of candidates: 18
+with size: 18 of 18
+==== Next file: 623/SAX2XMLFilterImpl.bc
+Number of candidates: 108
+with size: 99 of 108
+==== Next file: 623/XalanAVTPartSimpleAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/ElemStack.bc
+Number of candidates: 917
+with size: 766 of 917
+==== Next file: 623/XMLException.bc
+Number of candidates: 160
+with size: 157 of 160
+==== Next file: 623/DOMDocumentFragmentImpl.bc
+Number of candidates: 8
+with size: 8 of 8
+==== Next file: 623/RangeImpl.bc
+Number of candidates: 708
+with size: 700 of 708
+==== Next file: 623/YearDatatypeValidator.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 623/DOMNotationImpl.bc
+Number of candidates: 72
+with size: 72 of 72
+==== Next file: 623/XSModel.bc
+Number of candidates: 1924
+with size: 1843 of 1924
+==== Next file: 623/DOM_Entity.bc
+Number of candidates: 11
+with size: 11 of 11
+==== Next file: 623/AbstractDOMParser.bc
+Number of candidates: 1068
+with size: 1047 of 1068
+==== Next file: 623/XalanTransformerProblemListener.bc
+Number of candidates: 12
+with size: 12 of 12
+==== Next file: 623/FieldActivator.bc
+Number of candidates: 213
+with size: 201 of 213
+==== Next file: 623/XSModelGroupDefinition.bc
+Number of candidates: 29
+with size: 29 of 29
+==== Next file: 623/XObjectResultTreeFragProxy.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/TimeDatatypeValidator.bc
+Number of candidates: 9
+with size: 9 of 9
+==== Next file: 623/ElemSort.bc
+Number of candidates: 304
+with size: 304 of 304
+==== Next file: 623/StylesheetConstructionContextDefault.bc
+Number of candidates: 3251
+with size: 3121 of 3251
+==== Next file: 623/XMLAbstractDoubleFloat.bc
+Number of candidates: 193
+with size: 183 of 193
+==== Next file: 623/IC_Key.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/FormatterToXML.bc
+Number of candidates: 1351
+with size: 1330 of 1351
+==== Next file: 623/ElemComment.bc
+Number of candidates: 23
+with size: 21 of 23
+==== Next file: 623/XalanAVTPartXPathAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/DefaultPanicHandler.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanSourceTreeAttr.bc
+Number of candidates: 23
+with size: 23 of 23
+==== Next file: 623/ConcatToken.bc
+Number of candidates: 4
+with size: 4 of 4
+==== Next file: 623/DOM_DOMImplementation.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 623/NodeRefListBase.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/ElemDecimalFormat.bc
+Number of candidates: 960
+with size: 951 of 960
+==== Next file: 623/XMLWin1252Transcoder390.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/StdOutFormatTarget.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanDOMStringPool.bc
+Number of candidates: 83
+with size: 79 of 83
+==== Next file: 623/BooleanDatatypeValidator.bc
+Number of candidates: 131
+with size: 127 of 131
+==== Next file: 623/XalanTransformer.bc
+Number of candidates: 3104
+with size: 3040 of 3104
+==== Next file: 623/XSAttributeDeclaration.bc
+Number of candidates: 44
+with size: 44 of 44
+==== Next file: 623/XSWildcard.bc
+Number of candidates: 310
+with size: 294 of 310
+==== Next file: 623/FunctionSubstringAfter.bc
+Number of candidates: 46
+with size: 46 of 46
+==== Next file: 623/XPathEnvSupportDefault.bc
+Number of candidates: 4571
+with size: 4478 of 4571
+==== Next file: 623/XalanEntity.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/CommentImpl.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanAVTAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/XMLGrammarDescription.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 623/XMLValidator.bc
+Number of candidates: 155
+with size: 150 of 155
+==== Next file: 623/AVTPartXPath.bc
+Number of candidates: 20
+with size: 19 of 20
+==== Next file: 623/DTDGrammar.bc
+Number of candidates: 347
+with size: 301 of 347
+==== Next file: 623/MixedContentModel.bc
+Number of candidates: 633
+with size: 614 of 633
+==== Next file: 623/Op.bc
+Number of candidates: 257
+with size: 250 of 257
+==== Next file: 623/XercesNamedNodeMapWrapper.bc
+Number of candidates: 26
+with size: 26 of 26
+==== Next file: 623/XalanCharacterData.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DOM_CDATASection.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/MIPSproDefs.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XString.bc
+Number of candidates: 14
+with size: 14 of 14
+==== Next file: 623/ResultNamespacesStack.bc
+Number of candidates: 2483
+with size: 2426 of 2483
+==== Next file: 623/SynchronizedStringPool.bc
+Number of candidates: 44
+with size: 44 of 44
+==== Next file: 623/ParenToken.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 623/XTokenStringAdapter.bc
+Number of candidates: 8
+with size: 8 of 8
+==== Next file: 623/XPathFactoryDefault.bc
+Number of candidates: 1389
+with size: 1362 of 1389
+==== Next file: 623/DOMConfigurationImpl.bc
+Number of candidates: 26
+with size: 26 of 26
+==== Next file: 623/XMLRangeFactory.bc
+Number of candidates: 84
+with size: 84 of 84
+==== Next file: 623/XMLSupportException.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XSLException.bc
+Number of candidates: 26
+with size: 26 of 26
+==== Next file: 623/DocumentImpl.bc
+Number of candidates: 867
+with size: 837 of 867
+==== Next file: 623/XalanXMLSerializerFactory.bc
+Number of candidates: 1777
+with size: 1746 of 1777
+==== Next file: 623/XMLStringTokenizer.bc
+Number of candidates: 260
+with size: 242 of 260
+==== Next file: 623/Base64.bc
+Number of candidates: 116
+with size: 107 of 116
+==== Next file: 623/XSMultiValueFacet.bc
+Number of candidates: 138
+with size: 131 of 138
+==== Next file: 623/ValueStore.bc
+Number of candidates: 539
+with size: 513 of 539
+==== Next file: 623/Win32MsgLoader.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XPathMatcher.bc
+Number of candidates: 575
+with size: 553 of 575
+==== Next file: 623/Grammar.bc
+Number of candidates: 5
+with size: 5 of 5
+==== Next file: 623/XStringBase.bc
+Number of candidates: 5
+with size: 4 of 5
+==== Next file: 623/XMLURL.bc
+Number of candidates: 980
+with size: 919 of 980
+==== Next file: 623/ElemParam.bc
+Number of candidates: 11
+with size: 11 of 11
+==== Next file: 623/AVTPartSimple.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 623/XalanElemValueOfAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/XalanNamespacesStack.bc
+Number of candidates: 2574
+with size: 2517 of 2574
+==== Next file: 623/XalanComment.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XStringReference.bc
+Number of candidates: 13
+with size: 13 of 13
+==== Next file: 623/XSLTProcessor.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XercesWrapperToXalanNodeMap.bc
+Number of candidates: 1234
+with size: 1209 of 1234
+==== Next file: 623/DOM_Attr.bc
+Number of candidates: 5
+with size: 5 of 5
+==== Next file: 623/XalanSourceTreeWrapperParsedSource.bc
+Number of candidates: 14
+with size: 14 of 14
+==== Next file: 623/ContentSpecNode.bc
+Number of candidates: 264
+with size: 253 of 264
+==== Next file: 623/XalanTranscodingServices.bc
+Number of candidates: 25
+with size: 25 of 25
+==== Next file: 623/XMLASCIITranscoder.bc
+Number of candidates: 12
+with size: 12 of 12
+==== Next file: 623/XalanDocumentFragmentNodeRefListBaseProxy.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 623/XSElementDeclaration.bc
+Number of candidates: 146
+with size: 129 of 146
+==== Next file: 623/AVT.bc
+Number of candidates: 703
+with size: 692 of 703
+==== Next file: 623/NodeIDMap.bc
+Number of candidates: 69
+with size: 62 of 69
+==== Next file: 623/BinInputStream.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/ChildNode.bc
+Number of candidates: 21
+with size: 21 of 21
+==== Next file: 623/ElemValueOf.bc
+Number of candidates: 182
+with size: 180 of 182
+==== Next file: 623/DGXMLScanner.bc
+Number of candidates: 2495
+with size: 2428 of 2495
+==== Next file: 623/StringToken.bc
+Number of candidates: 7
+with size: 7 of 7
+==== Next file: 623/XalanEXSLTDynamic.bc
+Number of candidates: 27
+with size: 27 of 27
+==== Next file: 623/DOMAttrNSImpl.bc
+Number of candidates: 85
+with size: 83 of 85
+==== Next file: 623/XercesWrapperHelper.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 623/XalanNullOutputStream.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XercesDOMException.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/ElemApplyImport.bc
+Number of candidates: 7
+with size: 7 of 7
+==== Next file: 623/XalanDocumentPrefixResolver.bc
+Number of candidates: 1686
+with size: 1651 of 1686
+==== Next file: 623/DOMServices.bc
+Number of candidates: 196
+with size: 196 of 196
+==== Next file: 623/XercesAttrWrapperAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/Mutexes.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DOMParentNode.bc
+Number of candidates: 387
+with size: 364 of 387
+==== Next file: 623/PSVIElement.bc
+Number of candidates: 97
+with size: 97 of 97
+==== Next file: 623/DomMemDebug.bc
+Number of candidates: 272
+with size: 272 of 272
+==== Next file: 623/DOMNodeVector.bc
+Number of candidates: 20
+with size: 15 of 20
+==== Next file: 623/DOMProcessingInstructionImpl.bc
+Number of candidates: 48
+with size: 48 of 48
+==== Next file: 623/ElemTextLiteral.bc
+Number of candidates: 18
+with size: 18 of 18
+==== Next file: 623/XalanDocumentType.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XSFacet.bc
+Number of candidates: 10
+with size: 10 of 10
+==== Next file: 623/DOM_DocumentFragment.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanICUMessageLoader.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/ElemElement.bc
+Number of candidates: 580
+with size: 571 of 580
+==== Next file: 623/FormatterToNull.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DOMNodeListImpl.bc
+Number of candidates: 11
+with size: 11 of 11
+==== Next file: 623/XalanMemoryManagement.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/FormatterToSourceTree.bc
+Number of candidates: 1202
+with size: 1181 of 1202
+==== Next file: 623/XalanFStreamOutputStream.bc
+Number of candidates: 446
+with size: 437 of 446
+==== Next file: 623/MemoryManagerImpl.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanXMLFileReporter.bc
+Number of candidates: 1932
+with size: 1898 of 1932
+==== Next file: 623/DOMRangeImpl.bc
+Number of candidates: 873
+with size: 861 of 873
+==== Next file: 623/FunctionEvaluate.bc
+Number of candidates: 67
+with size: 67 of 67
+==== Next file: 623/XSIDCDefinition.bc
+Number of candidates: 160
+with size: 153 of 160
+==== Next file: 623/XercesNodeListWrapper.bc
+Number of candidates: 13
+with size: 13 of 13
+==== Next file: 623/XalanSourceTreeAttrNS.bc
+Number of candidates: 12
+with size: 12 of 12
+==== Next file: 623/IdentityConstraintHandler.bc
+Number of candidates: 153
+with size: 140 of 153
+==== Next file: 623/XercesDOMParser.bc
+Number of candidates: 189
+with size: 180 of 189
+==== Next file: 623/XMLInitializer.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XMLBigDecimal.bc
+Number of candidates: 224
+with size: 215 of 224
+==== Next file: 623/ElemCopyOf.bc
+Number of candidates: 140
+with size: 139 of 140
+==== Next file: 623/DurationDatatypeValidator.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 623/UnionToken.bc
+Number of candidates: 246
+with size: 232 of 246
+==== Next file: 623/AVTPart.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/ElemExtensionCall.bc
+Number of candidates: 13
+with size: 13 of 13
+==== Next file: 623/ElementImpl.bc
+Number of candidates: 169
+with size: 165 of 169
+==== Next file: 623/ContentLeafNameTypeVector.bc
+Number of candidates: 50
+with size: 50 of 50
+==== Next file: 623/XStringAdapter.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 623/XMLNumber.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanCompiledStylesheetDefault.bc
+Number of candidates: 21
+with size: 21 of 21
+==== Next file: 623/XMLFloat.bc
+Number of candidates: 8
+with size: 8 of 8
+==== Next file: 623/DOMElementNSImpl.bc
+Number of candidates: 109
+with size: 106 of 109
+==== Next file: 623/FunctionLang.bc
+Number of candidates: 130
+with size: 130 of 130
+==== Next file: 623/Token.bc
+Number of candidates: 33
+with size: 32 of 33
+==== Next file: 623/XercesAttrWrapper.bc
+Number of candidates: 33
+with size: 33 of 33
+==== Next file: 623/DatatypeValidatorFactory.bc
+Number of candidates: 612
+with size: 588 of 612
+==== Next file: 623/TraverseSchema.bc
+Number of candidates: 9913
+with size: 9567 of 9913
+==== Next file: 623/ConditionToken.bc
+Number of candidates: 11
+with size: 11 of 11
+==== Next file: 623/XMLUTF8Transcoder390.bc
+Number of candidates: 140
+with size: 133 of 140
+==== Next file: 623/NotationImpl.bc
+Number of candidates: 19
+with size: 19 of 19
+==== Next file: 623/XalanCDataSection.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XSLTEngineImpl.bc
+Number of candidates: 3048
+with size: 3008 of 3048
+==== Next file: 623/XalanElemAttributeSetAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/AnyURIDatatypeValidator.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XercesTextBridgeAllocator.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanSourceTreeProcessingInstructionAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/FormatterToText.bc
+Number of candidates: 519
+with size: 510 of 519
+==== Next file: 623/XercesEntityReferenceWrapper.bc
+Number of candidates: 41
+with size: 41 of 41
+==== Next file: 623/XMemory.bc
+Number of candidates: 4
+with size: 4 of 4
+==== Next file: 623/NodeSortKey.bc
+Number of candidates: 191
+with size: 191 of 191
+==== Next file: 623/NameDatatypeValidator.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 623/EncodingValidator.bc
+Number of candidates: 98
+with size: 89 of 98
+==== Next file: 623/DOM_DocumentType.bc
+Number of candidates: 10
+with size: 10 of 10
+==== Next file: 623/XMLBigInteger.bc
+Number of candidates: 87
+with size: 85 of 87
+==== Next file: 623/DOMEntityImpl.bc
+Number of candidates: 165
+with size: 165 of 165
+==== Next file: 623/XMLNotationDecl.bc
+Number of candidates: 50
+with size: 47 of 50
+==== Next file: 623/VecAttrListImpl.bc
+Number of candidates: 42
+with size: 42 of 42
+==== Next file: 623/XMLAttDefList.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanMsgLib.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/SAXParser.bc
+Number of candidates: 612
+with size: 599 of 612
+==== Next file: 623/BinFileInputStream.bc
+Number of candidates: 29
+with size: 29 of 29
+==== Next file: 623/XTokenStringAdapterAllocator.bc
+Number of candidates: 271
+with size: 258 of 271
+==== Next file: 623/DeepNodeListImpl.bc
+Number of candidates: 33
+with size: 33 of 33
+==== Next file: 623/ElemTemplate.bc
+Number of candidates: 140
+with size: 140 of 140
+==== Next file: 623/XML256TableTranscoder390.bc
+Number of candidates: 15
+with size: 15 of 15
+==== Next file: 623/NodeListImpl.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DOM_EntityReference.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/AttrImpl.bc
+Number of candidates: 454
+with size: 449 of 454
+==== Next file: 623/XMLIBM1140Transcoder.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/BinMemOutputStream.bc
+Number of candidates: 36
+with size: 36 of 36
+==== Next file: 623/ElemCopy.bc
+Number of candidates: 12
+with size: 12 of 12
+==== Next file: 623/XTokenNumberAdapter.bc
+Number of candidates: 8
+with size: 8 of 8
+==== Next file: 623/XalanNodeListSurrogate.bc
+Number of candidates: 5
+with size: 5 of 5
+==== Next file: 623/XercesEntityReferenceBridge.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanDOMInit.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DOM_Range.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/AllContentModel.bc
+Number of candidates: 588
+with size: 557 of 588
+==== Next file: 623/SimpleContentModel.bc
+Number of candidates: 375
+with size: 358 of 375
+==== Next file: 623/DOM_TreeWalker.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 623/XalanSourceTreeText.bc
+Number of candidates: 73
+with size: 73 of 73
+==== Next file: 623/DFAContentModel.bc
+Number of candidates: 2272
+with size: 2235 of 2272
+==== Next file: 623/DOMTreeWalkerImpl.bc
+Number of candidates: 125
+with size: 123 of 125
+==== Next file: 623/XMLIBM1140Transcoder390.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XercesBridgeNavigator.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanTransformerOutputStream.bc
+Number of candidates: 18
+with size: 18 of 18
+==== Next file: 623/XMLCanRepGroup.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/FunctionGenerateID.bc
+Number of candidates: 42
+with size: 42 of 42
+==== Next file: 623/XMLContentModel.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/ElemUse.bc
+Number of candidates: 39
+with size: 39 of 39
+==== Next file: 623/XPathExpression.bc
+Number of candidates: 1436
+with size: 1400 of 1436
+==== Next file: 623/DOM_RangeException.bc
+Number of candidates: 4
+with size: 4 of 4
+==== Next file: 623/XercesDOMSupport.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/FunctionTranslate.bc
+Number of candidates: 396
+with size: 389 of 396
+==== Next file: 623/ElementNSImpl.bc
+Number of candidates: 121
+with size: 121 of 121
+==== Next file: 623/XalanSourceTreeAttributeAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/FunctionDocument.bc
+Number of candidates: 616
+with size: 607 of 616
+==== Next file: 623/ListDatatypeValidator.bc
+Number of candidates: 153
+with size: 152 of 153
+==== Next file: 623/EntityImpl.bc
+Number of candidates: 44
+with size: 44 of 44
+==== Next file: 623/HeaderDummy.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/Match.bc
+Number of candidates: 44
+with size: 39 of 44
+==== Next file: 623/StringTokenizer.bc
+Number of candidates: 87
+with size: 86 of 87
+==== Next file: 623/XPathEnvSupport.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/TokenFactory.bc
+Number of candidates: 145
+with size: 125 of 145
+==== Next file: 623/DOMNodeIteratorImpl.bc
+Number of candidates: 313
+with size: 312 of 313
+==== Next file: 623/XalanSourceTreeHelper.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DTDScanner.bc
+Number of candidates: 3239
+with size: 3120 of 3239
+==== Next file: 623/XSAXMLScanner.bc
+Number of candidates: 943
+with size: 905 of 943
+==== Next file: 623/XSLTInputSource.bc
+Number of candidates: 55
+with size: 55 of 55
+==== Next file: 623/SchemaSymbols.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XMLDTDDescription.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XPath.bc
+Number of candidates: 2291
+with size: 2259 of 2291
+==== Next file: 623/XSDLocator.bc
+Number of candidates: 7
+with size: 7 of 7
+==== Next file: 623/XalanUTF8Writer.bc
+Number of candidates: 21
+with size: 21 of 21
+==== Next file: 623/ElemVariable.bc
+Number of candidates: 586
+with size: 578 of 586
+==== Next file: 623/XercesElementWrapperAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/XalanQNameByValueAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/XalanUTF16Writer.bc
+Number of candidates: 21
+with size: 21 of 21
+==== Next file: 623/BitSet.bc
+Number of candidates: 73
+with size: 52 of 73
+==== Next file: 623/DOM_Text.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 623/XMLIBM1047Transcoder.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanExe.bc
+Number of candidates: 801
+with size: 787 of 801
+==== Next file: 623/ElemWithParam.bc
+Number of candidates: 148
+with size: 147 of 148
+==== Next file: 623/XalanMatchPatternData.bc
+Number of candidates: 9
+with size: 9 of 9
+==== Next file: 623/XalanElemCallTemplateAllocator.bc
+Number of candidates: 143
+with size: 137 of 143
+==== Next file: 623/XMLGrammarPoolImpl.bc
+Number of candidates: 378
+with size: 368 of 378
+==== Next file: 623/HPPlatformUtils.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/QNameDatatypeValidator.bc
+Number of candidates: 39
+with size: 38 of 39
+==== Next file: 623/XMLSchemaDescriptionImpl.bc
+Number of candidates: 234
+with size: 224 of 234
+==== Next file: 623/Win32PlatformUtils.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XPathParserException.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XML88591Transcoder390.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 623/Dummy.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/IGXMLScanner.bc
+Number of candidates: 4028
+with size: 3937 of 4028
+==== Next file: 623/XSLTProcessorEnvSupport.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XercesTextBridge.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XalanXMLSerializerBase.bc
+Number of candidates: 140
+with size: 140 of 140
+==== Next file: 623/XNodeSetBase.bc
+Number of candidates: 33
+with size: 33 of 33
+==== Next file: 623/CMUnaryOp.bc
+Number of candidates: 95
+with size: 89 of 95
+==== Next file: 623/DOMNodeImpl.bc
+Number of candidates: 76
+with size: 72 of 76
+==== Next file: 623/DOMDeepNodeListImpl.bc
+Number of candidates: 57
+with size: 57 of 57
+==== Next file: 623/XercesGroupInfo.bc
+Number of candidates: 167
+with size: 162 of 167
+==== Next file: 623/XMLRecognizer.bc
+Number of candidates: 19
+with size: 18 of 19
+==== Next file: 623/RangeFactory.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 623/LinuxPlatformUtils.bc
+Number of candidates: 73
+with size: 73 of 73
+==== Next file: 623/DocumentTypeImpl.bc
+Number of candidates: 101
+with size: 101 of 101
+==== Next file: 623/XSNotationDeclaration.bc
+Number of candidates: 17
+with size: 17 of 17
+==== Next file: 623/TraceListenerDefault.bc
+Number of candidates: 238
+with size: 238 of 238
+==== Next file: 623/XercesAttGroupInfo.bc
+Number of candidates: 98
+with size: 98 of 98
+==== Next file: 623/FunctionCurrent.bc
+Number of candidates: 14
+with size: 14 of 14
+==== Next file: 623/NodeRefList.bc
+Number of candidates: 454
+with size: 444 of 454
+==== Next file: 623/XalanSpaceNodeTester.bc
+Number of candidates: 5
+with size: 5 of 5
+==== Next file: 623/XercesEntityBridge.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/InputSource.bc
+Number of candidates: 62
+with size: 62 of 62
+==== Next file: 623/DOM_NamedNodeMap.bc
+Number of candidates: 48
+with size: 47 of 48
+==== Next file: 623/XalanNotation.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XPathFactoryBlock.bc
+Number of candidates: 21
+with size: 18 of 21
+==== Next file: 623/XalanDOMImplementation.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/DTDElementDecl.bc
+Number of candidates: 468
+with size: 446 of 468
+==== Next file: 623/XalanReferenceCountedObject.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 623/XNodeSetNodeProxyAllocator.bc
+Number of candidates: 271
+with size: 258 of 271
+==== Next file: 623/XSLTResultTarget.bc
+Number of candidates: 24
+with size: 24 of 24
+==== Next file: 623/XercesDOM_NodeHack.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/XercesNotationWrapper.bc
+Number of candidates: 42
+with size: 42 of 42
+==== Next file: 623/XPathCAPI.bc
+Number of candidates: 85
+with size: 84 of 85
+==== Next file: 623/StylesheetExecutionContextDefault.bc
+Number of candidates: 10747
+with size: 10549 of 10747
+==== Next file: 623/DatatypeValidator.bc
+Number of candidates: 309
+with size: 305 of 309
+==== Next file: 623/FileHandleImpl.bc
+Number of candidates: 33
+with size: 21 of 33
+==== Next file: 623/XMLUCSTranscoder.bc
+Number of candidates: 14
+with size: 13 of 14
+==== Next file: 623/RegxUtil.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 623/ProblemListenerDefault.bc
+Number of candidates: 44
+with size: 44 of 44
+==== Next file: 623/XalanSourceTreeParserLiaison.bc
+Number of candidates: 1499
+with size: 1469 of 1499
+==== Next file: 623/QName.bc
+Number of candidates: 229
+with size: 225 of 229
+==== Next file: 623/XalanSourceTreeProcessingInstruction.bc
+Number of candidates: 41
+with size: 41 of 41
+==== Next file: 623/XMLAttDef.bc
+Number of candidates: 124
+with size: 121 of 124
+==== Next file: 623/XercesBridgeHelper.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 623/ClosureToken.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 623/XercesWrapperNavigator.bc
+Number of candidates: 127
+with size: 127 of 127
+==== Next file: 623/HashPtr.bc
+Number of candidates: 0
+with size: 0 of 0

@@ -1,0 +1,37 @@
+Running benchmark 605 with Oz
+==== Next file: 605/pflowup.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 605/treeup.bc
+Number of candidates: 159
+with size: 158 of 159
+==== Next file: 605/pbeampp.bc
+Number of candidates: 175
+with size: 166 of 175
+==== Next file: 605/pbla.bc
+Number of candidates: 51
+with size: 51 of 51
+==== Next file: 605/mcf.bc
+Number of candidates: 13
+with size: 13 of 13
+==== Next file: 605/psimplex.bc
+Number of candidates: 367
+with size: 362 of 367
+==== Next file: 605/readmin.bc
+Number of candidates: 620
+with size: 520 of 620
+==== Next file: 605/mcfutil.bc
+Number of candidates: 197
+with size: 183 of 197
+==== Next file: 605/output.bc
+Number of candidates: 15
+with size: 15 of 15
+==== Next file: 605/implicit.bc
+Number of candidates: 1165
+with size: 1045 of 1165
+==== Next file: 605/pstart.bc
+Number of candidates: 323
+with size: 303 of 323
+==== Next file: 605/spec_qsort/spec_qsort.bc
+Number of candidates: 3
+with size: 3 of 3

@@ -1,0 +1,1162 @@
+Running benchmark 602 with Oz
+==== Next file: 602/diagnostic.bc
+Number of candidates: 995
+with size: 992 of 995
+==== Next file: 602/decContext.bc
+Number of candidates: 29
+with size: 29 of 29
+==== Next file: 602/alloca.bc
+Number of candidates: 15
+with size: 15 of 15
+==== Next file: 602/tree-ssa-loop-unswitch.bc
+Number of candidates: 366
+with size: 361 of 366
+==== Next file: 602/reload.bc
+Number of candidates: 20352
+with size: 20126 of 20352
+==== Next file: 602/debug.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/tree-chrec.bc
+Number of candidates: 545
+with size: 523 of 545
+==== Next file: 602/cgraphunit.bc
+Number of candidates: 1495
+with size: 1452 of 1495
+==== Next file: 602/c-omp.bc
+Number of candidates: 128
+with size: 118 of 128
+==== Next file: 602/make-relative-prefix.bc
+Number of candidates: 99
+with size: 92 of 99
+==== Next file: 602/dce.bc
+Number of candidates: 1742
+with size: 1729 of 1742
+==== Next file: 602/regcprop.bc
+Number of candidates: 1120
+with size: 1098 of 1120
+==== Next file: 602/tree-ssa-structalias.bc
+Number of candidates: 10146
+with size: 9944 of 10146
+==== Next file: 602/tree-dfa.bc
+Number of candidates: 510
+with size: 498 of 510
+==== Next file: 602/dbxout.bc
+Number of candidates: 1821
+with size: 1780 of 1821
+==== Next file: 602/sese.bc
+Number of candidates: 1399
+with size: 1380 of 1399
+==== Next file: 602/tree-ssa-ifcombine.bc
+Number of candidates: 987
+with size: 983 of 987
+==== Next file: 602/options.bc
+Number of candidates: 82371
+with size: 82371 of 82371
+==== Next file: 602/getopt1.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/graphite-poly.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/print-tree.bc
+Number of candidates: 463
+with size: 449 of 463
+==== Next file: 602/unlink-if-ordinary.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 602/double-int.bc
+Number of candidates: 64
+with size: 64 of 64
+==== Next file: 602/tree-switch-conversion.bc
+Number of candidates: 1663
+with size: 1659 of 1663
+==== Next file: 602/langhooks.bc
+Number of candidates: 81
+with size: 75 of 81
+==== Next file: 602/tree-ssa-address.bc
+Number of candidates: 645
+with size: 624 of 645
+==== Next file: 602/tree-ssa-loop-ch.bc
+Number of candidates: 426
+with size: 418 of 426
+==== Next file: 602/regex.bc
+Number of candidates: 1881
+with size: 1773 of 1881
+==== Next file: 602/tree-ssa.bc
+Number of candidates: 1143
+with size: 1090 of 1143
+==== Next file: 602/safe-ctype.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/partition.bc
+Number of candidates: 27
+with size: 27 of 27
+==== Next file: 602/ipa-type-escape.bc
+Number of candidates: 879
+with size: 855 of 879
+==== Next file: 602/fwprop.bc
+Number of candidates: 925
+with size: 885 of 925
+==== Next file: 602/expmed.bc
+Number of candidates: 3114
+with size: 3050 of 3114
+==== Next file: 602/tree-ssa-operands.bc
+Number of candidates: 1775
+with size: 1721 of 1775
+==== Next file: 602/tree-ssa-loop-im.bc
+Number of candidates: 4933
+with size: 4896 of 4933
+==== Next file: 602/c-lang.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/sdbout.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/c-decl.bc
+Number of candidates: 13307
+with size: 13095 of 13307
+==== Next file: 602/tree-ssanames.bc
+Number of candidates: 259
+with size: 249 of 259
+==== Next file: 602/insn-recog.bc
+Number of candidates: 27644
+with size: 27581 of 27644
+==== Next file: 602/tracer.bc
+Number of candidates: 667
+with size: 662 of 667
+==== Next file: 602/bb-reorder.bc
+Number of candidates: 6652
+with size: 6604 of 6652
+==== Next file: 602/cfgbuild.bc
+Number of candidates: 1200
+with size: 1178 of 1200
+==== Next file: 602/sel-sched.bc
+Number of candidates: 17428
+with size: 17203 of 17428
+==== Next file: 602/ira-emit.bc
+Number of candidates: 4087
+with size: 4036 of 4087
+==== Next file: 602/cpp_symtab.bc
+Number of candidates: 217
+with size: 208 of 217
+==== Next file: 602/tree-ssa-uncprop.bc
+Number of candidates: 1017
+with size: 1007 of 1017
+==== Next file: 602/vasprintf.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/varray.bc
+Number of candidates: 11
+with size: 11 of 11
+==== Next file: 602/calls.bc
+Number of candidates: 3240
+with size: 3172 of 3240
+==== Next file: 602/jump.bc
+Number of candidates: 348
+with size: 336 of 348
+==== Next file: 602/host-ieee64.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/varasm.bc
+Number of candidates: 2031
+with size: 1962 of 2031
+==== Next file: 602/fdmatch.bc
+Number of candidates: 9
+with size: 9 of 9
+==== Next file: 602/c-parser.bc
+Number of candidates: 3064
+with size: 2996 of 3064
+==== Next file: 602/decNumber.bc
+Number of candidates: 4949
+with size: 4773 of 4949
+==== Next file: 602/fixed-value.bc
+Number of candidates: 1272
+with size: 1244 of 1272
+==== Next file: 602/tree-eh.bc
+Number of candidates: 3843
+with size: 3750 of 3843
+==== Next file: 602/tree-phinodes.bc
+Number of candidates: 157
+with size: 153 of 157
+==== Next file: 602/lto-cgraph.bc
+Number of candidates: 581
+with size: 575 of 581
+==== Next file: 602/tree-ssa-threadedge.bc
+Number of candidates: 383
+with size: 375 of 383
+==== Next file: 602/tree-object-size.bc
+Number of candidates: 1286
+with size: 1261 of 1286
+==== Next file: 602/rtl-error.bc
+Number of candidates: 12
+with size: 12 of 12
+==== Next file: 602/vmsdbgout.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/tree-ssa-threadupdate.bc
+Number of candidates: 2068
+with size: 2035 of 2068
+==== Next file: 602/ira-lives.bc
+Number of candidates: 2126
+with size: 1996 of 2126
+==== Next file: 602/resource.bc
+Number of candidates: 1136
+with size: 1096 of 1136
+==== Next file: 602/opts.bc
+Number of candidates: 4084
+with size: 4041 of 4084
+==== Next file: 602/function.bc
+Number of candidates: 3908
+with size: 3857 of 3908
+==== Next file: 602/cfgloopanal.bc
+Number of candidates: 566
+with size: 551 of 566
+==== Next file: 602/combine-stack-adj.bc
+Number of candidates: 273
+with size: 271 of 273
+==== Next file: 602/var-tracking.bc
+Number of candidates: 8404
+with size: 8254 of 8404
+==== Next file: 602/md5.bc
+Number of candidates: 234
+with size: 233 of 234
+==== Next file: 602/cgraphbuild.bc
+Number of candidates: 143
+with size: 136 of 143
+==== Next file: 602/ira.bc
+Number of candidates: 4906
+with size: 4821 of 4906
+==== Next file: 602/stor-layout.bc
+Number of candidates: 1184
+with size: 1158 of 1184
+==== Next file: 602/cpp_directives.bc
+Number of candidates: 1526
+with size: 1469 of 1526
+==== Next file: 602/cp-demangle.bc
+Number of candidates: 1294
+with size: 1186 of 1294
+==== Next file: 602/genrtl.bc
+Number of candidates: 334
+with size: 334 of 334
+==== Next file: 602/ipa-prop.bc
+Number of candidates: 1377
+with size: 1367 of 1377
+==== Next file: 602/tree-vect-stmts.bc
+Number of candidates: 4005
+with size: 3511 of 4005
+==== Next file: 602/tree-ssa-copyrename.bc
+Number of candidates: 134
+with size: 129 of 134
+==== Next file: 602/c-semantics.bc
+Number of candidates: 51
+with size: 51 of 51
+==== Next file: 602/tree-ssa-math-opts.bc
+Number of candidates: 957
+with size: 923 of 957
+==== Next file: 602/pointer-set.bc
+Number of candidates: 103
+with size: 93 of 103
+==== Next file: 602/gimple.bc
+Number of candidates: 7097
+with size: 7034 of 7097
+==== Next file: 602/stub-objc.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/tree-loop-distribution.bc
+Number of candidates: 6037
+with size: 5992 of 6037
+==== Next file: 602/cse.bc
+Number of candidates: 5904
+with size: 5791 of 5904
+==== Next file: 602/tree-outof-ssa.bc
+Number of candidates: 2285
+with size: 2268 of 2285
+==== Next file: 602/coverage.bc
+Number of candidates: 930
+with size: 914 of 930
+==== Next file: 602/sort.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 602/rtlanal.bc
+Number of candidates: 1049
+with size: 1017 of 1049
+==== Next file: 602/cpp_line-map.bc
+Number of candidates: 349
+with size: 342 of 349
+==== Next file: 602/tree-ssa-live.bc
+Number of candidates: 1789
+with size: 1724 of 1789
+==== Next file: 602/lcm.bc
+Number of candidates: 1619
+with size: 1612 of 1619
+==== Next file: 602/tree-loop-linear.bc
+Number of candidates: 1288
+with size: 1267 of 1288
+==== Next file: 602/filename_cmp.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/tree-iterator.bc
+Number of candidates: 84
+with size: 77 of 84
+==== Next file: 602/hashtab.bc
+Number of candidates: 481
+with size: 474 of 481
+==== Next file: 602/getopt.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/ifcvt.bc
+Number of candidates: 5157
+with size: 5073 of 5157
+==== Next file: 602/make-temp-file.bc
+Number of candidates: 7
+with size: 6 of 7
+==== Next file: 602/reorg.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/cgraph.bc
+Number of candidates: 1623
+with size: 1560 of 1623
+==== Next file: 602/c-cppbuiltin.bc
+Number of candidates: 772
+with size: 768 of 772
+==== Next file: 602/modulo-sched.bc
+Number of candidates: 5880
+with size: 5829 of 5880
+==== Next file: 602/tree-vect-data-refs.bc
+Number of candidates: 1587
+with size: 1537 of 1587
+==== Next file: 602/lto-symtab.bc
+Number of candidates: 489
+with size: 481 of 489
+==== Next file: 602/tree-ssa-loop-niter.bc
+Number of candidates: 1898
+with size: 1851 of 1898
+==== Next file: 602/tree-ssa-loop.bc
+Number of candidates: 25
+with size: 25 of 25
+==== Next file: 602/reg-stack.bc
+Number of candidates: 4529
+with size: 4416 of 4529
+==== Next file: 602/loop-init.bc
+Number of candidates: 206
+with size: 196 of 206
+==== Next file: 602/dse.bc
+Number of candidates: 6323
+with size: 6192 of 6323
+==== Next file: 602/rtlhooks.bc
+Number of candidates: 4
+with size: 3 of 4
+==== Next file: 602/cpp_traditional.bc
+Number of candidates: 857
+with size: 846 of 857
+==== Next file: 602/tree-mudflap.bc
+Number of candidates: 1520
+with size: 1517 of 1520
+==== Next file: 602/sched-vis.bc
+Number of candidates: 1267
+with size: 1253 of 1267
+==== Next file: 602/params.bc
+Number of candidates: 11
+with size: 9 of 11
+==== Next file: 602/host-linux.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/gimplify.bc
+Number of candidates: 3711
+with size: 3548 of 3711
+==== Next file: 602/postreload-gcse.bc
+Number of candidates: 4493
+with size: 4456 of 4493
+==== Next file: 602/crc32.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 602/gimple-low.bc
+Number of candidates: 504
+with size: 471 of 504
+==== Next file: 602/sbitmap.bc
+Number of candidates: 745
+with size: 729 of 745
+==== Next file: 602/regmove.bc
+Number of candidates: 2366
+with size: 2357 of 2366
+==== Next file: 602/insn-attrtab.bc
+Number of candidates: 134
+with size: 128 of 134
+==== Next file: 602/splay-tree.bc
+Number of candidates: 313
+with size: 309 of 313
+==== Next file: 602/ipa-reference.bc
+Number of candidates: 1647
+with size: 1617 of 1647
+==== Next file: 602/tree-ssa-loop-manip.bc
+Number of candidates: 2072
+with size: 2048 of 2072
+==== Next file: 602/cfgcleanup.bc
+Number of candidates: 4844
+with size: 4784 of 4844
+==== Next file: 602/stringpool.bc
+Number of candidates: 57
+with size: 51 of 57
+==== Next file: 602/cpp_lex.bc
+Number of candidates: 2644
+with size: 2608 of 2644
+==== Next file: 602/tree-ssa-loop-ivopts.bc
+Number of candidates: 12625
+with size: 12434 of 12625
+==== Next file: 602/omega.bc
+Number of candidates: 12715
+with size: 12477 of 12715
+==== Next file: 602/objalloc.bc
+Number of candidates: 50
+with size: 49 of 50
+==== Next file: 602/targhooks.bc
+Number of candidates: 47
+with size: 44 of 47
+==== Next file: 602/ira-build.bc
+Number of candidates: 7303
+with size: 7064 of 7303
+==== Next file: 602/gimple-pretty-print.bc
+Number of candidates: 1000
+with size: 995 of 1000
+==== Next file: 602/optabs.bc
+Number of candidates: 31122
+with size: 31099 of 31122
+==== Next file: 602/auto-inc-dec.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/attribs.bc
+Number of candidates: 317
+with size: 299 of 317
+==== Next file: 602/dominance.bc
+Number of candidates: 2296
+with size: 2250 of 2296
+==== Next file: 602/tree-vect-slp.bc
+Number of candidates: 2151
+with size: 2094 of 2151
+==== Next file: 602/mcf.bc
+Number of candidates: 3004
+with size: 2988 of 3004
+==== Next file: 602/sparseset.bc
+Number of candidates: 192
+with size: 186 of 192
+==== Next file: 602/cpp_init.bc
+Number of candidates: 697
+with size: 686 of 697
+==== Next file: 602/tree-sra.bc
+Number of candidates: 5798
+with size: 5731 of 5798
+==== Next file: 602/tree-ssa-sink.bc
+Number of candidates: 1016
+with size: 991 of 1016
+==== Next file: 602/insn-peep.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/c-convert.bc
+Number of candidates: 30
+with size: 29 of 30
+==== Next file: 602/mode-switching.bc
+Number of candidates: 1497
+with size: 1490 of 1497
+==== Next file: 602/lrealpath.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/dojump.bc
+Number of candidates: 272
+with size: 253 of 272
+==== Next file: 602/lambda-mat.bc
+Number of candidates: 130
+with size: 119 of 130
+==== Next file: 602/insn-opinit.bc
+Number of candidates: 11455
+with size: 9854 of 11455
+==== Next file: 602/fold-const.bc
+Number of candidates: 14348
+with size: 14034 of 14348
+==== Next file: 602/tree-vrp.bc
+Number of candidates: 8523
+with size: 8398 of 8523
+==== Next file: 602/loop-doloop.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/tree-ssa-propagate.bc
+Number of candidates: 1704
+with size: 1661 of 1704
+==== Next file: 602/cfghooks.bc
+Number of candidates: 1241
+with size: 1176 of 1241
+==== Next file: 602/decimal64.bc
+Number of candidates: 376
+with size: 339 of 376
+==== Next file: 602/pretty-print.bc
+Number of candidates: 913
+with size: 868 of 913
+==== Next file: 602/insn-modes.bc
+Number of candidates: 18
+with size: 18 of 18
+==== Next file: 602/cppdefault.bc
+Number of candidates: 2
+with size: 1 of 2
+==== Next file: 602/tree-ssa-dse.bc
+Number of candidates: 652
+with size: 635 of 652
+==== Next file: 602/lto-section-out.bc
+Number of candidates: 182
+with size: 177 of 182
+==== Next file: 602/graphite-ppl.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/fopen_unlocked.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/tree-tailcall.bc
+Number of candidates: 1432
+with size: 1395 of 1432
+==== Next file: 602/tree-vect-loop.bc
+Number of candidates: 2421
+with size: 2334 of 2421
+==== Next file: 602/tree-vect-patterns.bc
+Number of candidates: 409
+with size: 387 of 409
+==== Next file: 602/reload1.bc
+Number of candidates: 24423
+with size: 24081 of 24423
+==== Next file: 602/graphite-dependences.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/graphite-clast-to-gimple.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/intl.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/tree-if-conv.bc
+Number of candidates: 2892
+with size: 2875 of 2892
+==== Next file: 602/value-prof.bc
+Number of candidates: 2824
+with size: 2779 of 2824
+==== Next file: 602/stmt.bc
+Number of candidates: 1881
+with size: 1807 of 1881
+==== Next file: 602/domwalk.bc
+Number of candidates: 124
+with size: 120 of 124
+==== Next file: 602/alias.bc
+Number of candidates: 781
+with size: 747 of 781
+==== Next file: 602/tree-data-ref.bc
+Number of candidates: 6193
+with size: 6062 of 6193
+==== Next file: 602/emit-rtl.bc
+Number of candidates: 2362
+with size: 2309 of 2362
+==== Next file: 602/haifa-sched.bc
+Number of candidates: 6338
+with size: 6181 of 6338
+==== Next file: 602/graph.bc
+Number of candidates: 121
+with size: 116 of 121
+==== Next file: 602/tree-nrv.bc
+Number of candidates: 291
+with size: 286 of 291
+==== Next file: 602/sha1.bc
+Number of candidates: 656
+with size: 543 of 656
+==== Next file: 602/final.bc
+Number of candidates: 2504
+with size: 2445 of 2504
+==== Next file: 602/getruntime.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 602/tree-ssa-alias.bc
+Number of candidates: 488
+with size: 475 of 488
+==== Next file: 602/gimple-iterator.bc
+Number of candidates: 386
+with size: 373 of 386
+==== Next file: 602/tree-call-cdce.bc
+Number of candidates: 567
+with size: 563 of 567
+==== Next file: 602/ira-conflicts.bc
+Number of candidates: 3658
+with size: 3570 of 3658
+==== Next file: 602/tree-stdarg.bc
+Number of candidates: 1248
+with size: 1211 of 1248
+==== Next file: 602/tree-affine.bc
+Number of candidates: 589
+with size: 555 of 589
+==== Next file: 602/ipa-cp.bc
+Number of candidates: 2221
+with size: 2207 of 2221
+==== Next file: 602/lto-opts.bc
+Number of candidates: 252
+with size: 249 of 252
+==== Next file: 602/loop-invariant.bc
+Number of candidates: 5105
+with size: 5051 of 5105
+==== Next file: 602/xmalloc.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 602/xstrndup.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/lambda-code.bc
+Number of candidates: 4097
+with size: 4021 of 4097
+==== Next file: 602/ipa.bc
+Number of candidates: 557
+with size: 539 of 557
+==== Next file: 602/cfganal.bc
+Number of candidates: 2091
+with size: 2037 of 2091
+==== Next file: 602/physmem.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/insn-emit.bc
+Number of candidates: 4860
+with size: 4554 of 4860
+==== Next file: 602/lower-subreg.bc
+Number of candidates: 1016
+with size: 988 of 1016
+==== Next file: 602/cfg.bc
+Number of candidates: 1260
+with size: 1187 of 1260
+==== Next file: 602/c-typeck.bc
+Number of candidates: 9055
+with size: 8629 of 9055
+==== Next file: 602/tree-cfgcleanup.bc
+Number of candidates: 1068
+with size: 1044 of 1068
+==== Next file: 602/concat.bc
+Number of candidates: 20
+with size: 20 of 20
+==== Next file: 602/cfgexpand.bc
+Number of candidates: 5697
+with size: 5616 of 5697
+==== Next file: 602/graphite-blocking.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/tree-predcom.bc
+Number of candidates: 6326
+with size: 6302 of 6326
+==== Next file: 602/fibheap.bc
+Number of candidates: 223
+with size: 218 of 223
+==== Next file: 602/cpp_identifiers.bc
+Number of candidates: 65
+with size: 55 of 65
+==== Next file: 602/c-pretty-print.bc
+Number of candidates: 474
+with size: 466 of 474
+==== Next file: 602/dyn-string.bc
+Number of candidates: 20
+with size: 19 of 20
+==== Next file: 602/tree-inline.bc
+Number of candidates: 8313
+with size: 8219 of 8313
+==== Next file: 602/tree-ssa-phiprop.bc
+Number of candidates: 590
+with size: 573 of 590
+==== Next file: 602/cpp_files.bc
+Number of candidates: 1576
+with size: 1564 of 1576
+==== Next file: 602/insn-extract.bc
+Number of candidates: 1042
+with size: 1041 of 1042
+==== Next file: 602/lto-streamer-in.bc
+Number of candidates: 1943
+with size: 1925 of 1943
+==== Next file: 602/timevar.bc
+Number of candidates: 11572
+with size: 11566 of 11572
+==== Next file: 602/profile.bc
+Number of candidates: 5325
+with size: 5273 of 5325
+==== Next file: 602/sched-deps.bc
+Number of candidates: 4454
+with size: 4248 of 4454
+==== Next file: 602/mkstemps.bc
+Number of candidates: 106
+with size: 106 of 106
+==== Next file: 602/tree-cfg.bc
+Number of candidates: 5655
+with size: 5379 of 5655
+==== Next file: 602/explow.bc
+Number of candidates: 195
+with size: 183 of 195
+==== Next file: 602/print-rtl.bc
+Number of candidates: 660
+with size: 650 of 660
+==== Next file: 602/tree-ssa-ter.bc
+Number of candidates: 2264
+with size: 2251 of 2264
+==== Next file: 602/spaces.bc
+Number of candidates: 10
+with size: 5 of 10
+==== Next file: 602/tree-complex.bc
+Number of candidates: 563
+with size: 558 of 563
+==== Next file: 602/i386-c.bc
+Number of candidates: 34
+with size: 34 of 34
+==== Next file: 602/cpp_mkdeps.bc
+Number of candidates: 101
+with size: 96 of 101
+==== Next file: 602/convert.bc
+Number of candidates: 594
+with size: 584 of 594
+==== Next file: 602/insn-automata.bc
+Number of candidates: 3011
+with size: 3007 of 3011
+==== Next file: 602/c-pch.bc
+Number of candidates: 164
+with size: 162 of 164
+==== Next file: 602/reginfo.bc
+Number of candidates: 1039
+with size: 1003 of 1039
+==== Next file: 602/gtype-desc.bc
+Number of candidates: 2816
+with size: 2794 of 2816
+==== Next file: 602/bid2dpd_dpd2bid.bc
+Number of candidates: 101
+with size: 101 of 101
+==== Next file: 602/plugin.bc
+Number of candidates: 156
+with size: 144 of 156
+==== Next file: 602/decimal128.bc
+Number of candidates: 377
+with size: 346 of 377
+==== Next file: 602/lto-wpa-fixup.bc
+Number of candidates: 78
+with size: 75 of 78
+==== Next file: 602/cfgrtl.bc
+Number of candidates: 2391
+with size: 2264 of 2391
+==== Next file: 602/dbgcnt.bc
+Number of candidates: 59
+with size: 59 of 59
+==== Next file: 602/c-objc-common.bc
+Number of candidates: 37
+with size: 37 of 37
+==== Next file: 602/varpool.bc
+Number of candidates: 218
+with size: 209 of 218
+==== Next file: 602/insn-output.bc
+Number of candidates: 200
+with size: 198 of 200
+==== Next file: 602/tree-ssa-ccp.bc
+Number of candidates: 1182
+with size: 1165 of 1182
+==== Next file: 602/graphite-interchange.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/cpp_charset.bc
+Number of candidates: 1321
+with size: 1274 of 1321
+==== Next file: 602/tree-ssa-coalesce.bc
+Number of candidates: 2302
+with size: 2284 of 2302
+==== Next file: 602/regrename.bc
+Number of candidates: 2160
+with size: 2102 of 2160
+==== Next file: 602/hex.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/version.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/ipa-utils.bc
+Number of candidates: 253
+with size: 234 of 253
+==== Next file: 602/ggc-page.bc
+Number of candidates: 976
+with size: 948 of 976
+==== Next file: 602/strerror.bc
+Number of candidates: 82
+with size: 68 of 82
+==== Next file: 602/lists.bc
+Number of candidates: 30
+with size: 29 of 30
+==== Next file: 602/xmemdup.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/combine.bc
+Number of candidates: 13219
+with size: 12802 of 13219
+==== Next file: 602/ira-costs.bc
+Number of candidates: 4149
+with size: 4067 of 4149
+==== Next file: 602/df-problems.bc
+Number of candidates: 6157
+with size: 6010 of 6157
+==== Next file: 602/tree-ssa-copy.bc
+Number of candidates: 444
+with size: 442 of 444
+==== Next file: 602/tree-ssa-dom.bc
+Number of candidates: 3092
+with size: 3048 of 3092
+==== Next file: 602/sreal.bc
+Number of candidates: 84
+with size: 79 of 84
+==== Next file: 602/tree-vectorizer.bc
+Number of candidates: 233
+with size: 219 of 233
+==== Next file: 602/recog.bc
+Number of candidates: 1679
+with size: 1606 of 1679
+==== Next file: 602/decimal32.bc
+Number of candidates: 134
+with size: 120 of 134
+==== Next file: 602/lto-section-in.bc
+Number of candidates: 34
+with size: 32 of 34
+==== Next file: 602/tree-pretty-print.bc
+Number of candidates: 309
+with size: 298 of 309
+==== Next file: 602/init-regs.bc
+Number of candidates: 245
+with size: 244 of 245
+==== Next file: 602/expr.bc
+Number of candidates: 4799
+with size: 4498 of 4799
+==== Next file: 602/lambda-trans.bc
+Number of candidates: 15
+with size: 15 of 15
+==== Next file: 602/tree-optimize.bc
+Number of candidates: 203
+with size: 193 of 203
+==== Next file: 602/tree-nested.bc
+Number of candidates: 1329
+with size: 1314 of 1329
+==== Next file: 602/cplus-dem.bc
+Number of candidates: 1789
+with size: 1690 of 1789
+==== Next file: 602/stack-ptr-mod.bc
+Number of candidates: 77
+with size: 74 of 77
+==== Next file: 602/cpp_macro.bc
+Number of candidates: 1907
+with size: 1887 of 1907
+==== Next file: 602/obstack.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/cp-demint.bc
+Number of candidates: 29
+with size: 27 of 29
+==== Next file: 602/bt-load.bc
+Number of candidates: 10687
+with size: 10533 of 10687
+==== Next file: 602/sched-ebb.bc
+Number of candidates: 1308
+with size: 1299 of 1308
+==== Next file: 602/df-scan.bc
+Number of candidates: 4678
+with size: 4557 of 4678
+==== Next file: 602/tree-ssa-loop-prefetch.bc
+Number of candidates: 3898
+with size: 3892 of 3898
+==== Next file: 602/prefix.bc
+Number of candidates: 10
+with size: 8 of 10
+==== Next file: 602/tree-ssa-sccvn.bc
+Number of candidates: 3827
+with size: 3637 of 3827
+==== Next file: 602/regstat.bc
+Number of candidates: 1864
+with size: 1832 of 1864
+==== Next file: 602/graphite.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/mini-gmp.bc
+Number of candidates: 2231
+with size: 2065 of 2231
+==== Next file: 602/df-core.bc
+Number of candidates: 1676
+with size: 1613 of 1676
+==== Next file: 602/tree-ssa-pre.bc
+Number of candidates: 10360
+with size: 10248 of 10360
+==== Next file: 602/tree-ssa-loop-ivcanon.bc
+Number of candidates: 883
+with size: 867 of 883
+==== Next file: 602/cfglayout.bc
+Number of candidates: 1453
+with size: 1411 of 1453
+==== Next file: 602/cpp_directives-only.bc
+Number of candidates: 275
+with size: 273 of 275
+==== Next file: 602/et-forest.bc
+Number of candidates: 1049
+with size: 1032 of 1049
+==== Next file: 602/main.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/ipa-struct-reorg.bc
+Number of candidates: 5433
+with size: 5405 of 5433
+==== Next file: 602/xatexit.bc
+Number of candidates: 18
+with size: 14 of 18
+==== Next file: 602/lto-streamer.bc
+Number of candidates: 297
+with size: 284 of 297
+==== Next file: 602/vec.bc
+Number of candidates: 44
+with size: 44 of 44
+==== Next file: 602/cc1-checksum.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/dfp.bc
+Number of candidates: 198
+with size: 198 of 198
+==== Next file: 602/web.bc
+Number of candidates: 242
+with size: 239 of 242
+==== Next file: 602/lbasename.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 602/ipa-pure-const.bc
+Number of candidates: 756
+with size: 744 of 756
+==== Next file: 602/tree-parloops.bc
+Number of candidates: 3126
+with size: 3057 of 3126
+==== Next file: 602/cpp_expr.bc
+Number of candidates: 5361
+with size: 5283 of 5361
+==== Next file: 602/passes.bc
+Number of candidates: 791
+with size: 781 of 791
+==== Next file: 602/argv.bc
+Number of candidates: 28
+with size: 27 of 28
+==== Next file: 602/alloc-pool.bc
+Number of candidates: 148
+with size: 119 of 148
+==== Next file: 602/floatformat.bc
+Number of candidates: 215
+with size: 215 of 215
+==== Next file: 602/ddg.bc
+Number of candidates: 2176
+with size: 2163 of 2176
+==== Next file: 602/except.bc
+Number of candidates: 1352
+with size: 1321 of 1352
+==== Next file: 602/tree-ssa-reassoc.bc
+Number of candidates: 3156
+with size: 3081 of 3156
+==== Next file: 602/ira-color.bc
+Number of candidates: 10718
+with size: 10557 of 10718
+==== Next file: 602/cpp_errors.bc
+Number of candidates: 31
+with size: 31 of 31
+==== Next file: 602/tree-vect-loop-manip.bc
+Number of candidates: 1638
+with size: 1610 of 1638
+==== Next file: 602/getpwd.bc
+Number of candidates: 20
+with size: 20 of 20
+==== Next file: 602/simplify-rtx.bc
+Number of candidates: 4044
+with size: 3977 of 4044
+==== Next file: 602/opts-common.bc
+Number of candidates: 37
+with size: 36 of 37
+==== Next file: 602/tree-into-ssa.bc
+Number of candidates: 5909
+with size: 5684 of 5909
+==== Next file: 602/gcse.bc
+Number of candidates: 8447
+with size: 8274 of 8447
+==== Next file: 602/loop-unswitch.bc
+Number of candidates: 816
+with size: 801 of 816
+==== Next file: 602/c-opts.bc
+Number of candidates: 2641
+with size: 2600 of 2641
+==== Next file: 602/ipa-inline.bc
+Number of candidates: 1873
+with size: 1836 of 1873
+==== Next file: 602/lto-streamer-out.bc
+Number of candidates: 1479
+with size: 1394 of 1479
+==== Next file: 602/incpath.bc
+Number of candidates: 465
+with size: 463 of 465
+==== Next file: 602/predict.bc
+Number of candidates: 2830
+with size: 2790 of 2830
+==== Next file: 602/tree-profile.bc
+Number of candidates: 220
+with size: 218 of 220
+==== Next file: 602/real.bc
+Number of candidates: 965
+with size: 944 of 965
+==== Next file: 602/dwarf2asm.bc
+Number of candidates: 39
+with size: 38 of 39
+==== Next file: 602/hooks.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/matrix-reorg.bc
+Number of candidates: 2120
+with size: 2050 of 2120
+==== Next file: 602/tree-ssa-dce.bc
+Number of candidates: 3970
+with size: 3879 of 3970
+==== Next file: 602/postreload.bc
+Number of candidates: 1516
+with size: 1451 of 1516
+==== Next file: 602/cselib.bc
+Number of candidates: 1262
+with size: 1225 of 1262
+==== Next file: 602/sel-sched-dump.bc
+Number of candidates: 952
+with size: 948 of 952
+==== Next file: 602/c-errors.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 602/c-lex.bc
+Number of candidates: 693
+with size: 688 of 693
+==== Next file: 602/df-byte-scan.bc
+Number of candidates: 114
+with size: 114 of 114
+==== Next file: 602/tree-dump.bc
+Number of candidates: 666
+with size: 652 of 666
+==== Next file: 602/i386.bc
+Number of candidates: 17315
+with size: 16934 of 17315
+==== Next file: 602/integrate.bc
+Number of candidates: 176
+with size: 164 of 176
+==== Next file: 602/tree-ssa-forwprop.bc
+Number of candidates: 850
+with size: 824 of 850
+==== Next file: 602/statistics.bc
+Number of candidates: 228
+with size: 219 of 228
+==== Next file: 602/host-ieee128.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 602/host-ieee32.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/xexit.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/cpp_pch.bc
+Number of candidates: 370
+with size: 345 of 370
+==== Next file: 602/c-ppoutput.bc
+Number of candidates: 503
+with size: 493 of 503
+==== Next file: 602/builtins.bc
+Number of candidates: 2142
+with size: 2005 of 2142
+==== Next file: 602/insn-preds.bc
+Number of candidates: 300
+with size: 299 of 300
+==== Next file: 602/c-dump.bc
+Number of candidates: 4
+with size: 4 of 4
+==== Next file: 602/rtl.bc
+Number of candidates: 92
+with size: 86 of 92
+==== Next file: 602/loop-iv.bc
+Number of candidates: 6238
+with size: 6179 of 6238
+==== Next file: 602/xcoffout.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/graphite-scop-detection.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/tree-ssa-phiopt.bc
+Number of candidates: 1493
+with size: 1456 of 1493
+==== Next file: 602/omp-low.bc
+Number of candidates: 6978
+with size: 6885 of 6978
+==== Next file: 602/c-gimplify.bc
+Number of candidates: 15
+with size: 15 of 15
+==== Next file: 602/tree.bc
+Number of candidates: 5847
+with size: 5669 of 5847
+==== Next file: 602/c-aux-info.bc
+Number of candidates: 98
+with size: 90 of 98
+==== Next file: 602/ggc-common.bc
+Number of candidates: 477
+with size: 468 of 477
+==== Next file: 602/ebitmap.bc
+Number of candidates: 1628
+with size: 1574 of 1628
+==== Next file: 602/c-format.bc
+Number of candidates: 8245
+with size: 8167 of 8245
+==== Next file: 602/graphds.bc
+Number of candidates: 387
+with size: 360 of 387
+==== Next file: 602/sched-rgn.bc
+Number of candidates: 12473
+with size: 12335 of 12473
+==== Next file: 602/loop-unroll.bc
+Number of candidates: 1983
+with size: 1952 of 1983
+==== Next file: 602/cfgloopmanip.bc
+Number of candidates: 1999
+with size: 1851 of 1999
+==== Next file: 602/store-motion.bc
+Number of candidates: 4187
+with size: 4171 of 4187
+==== Next file: 602/xstrerror.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/strsignal.bc
+Number of candidates: 29
+with size: 24 of 29
+==== Next file: 602/dwarf2out.bc
+Number of candidates: 11618
+with size: 11114 of 11618
+==== Next file: 602/c-pragma.bc
+Number of candidates: 366
+with size: 359 of 366
+==== Next file: 602/cfgloop.bc
+Number of candidates: 2636
+with size: 2511 of 2636
+==== Next file: 602/xstrdup.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/bitmap.bc
+Number of candidates: 1027
+with size: 975 of 1027
+==== Next file: 602/caller-save.bc
+Number of candidates: 1571
+with size: 1447 of 1571
+==== Next file: 602/tree-vect-generic.bc
+Number of candidates: 376
+with size: 371 of 376
+==== Next file: 602/sel-sched-ir.bc
+Number of candidates: 6737
+with size: 6521 of 6737
+==== Next file: 602/graphite-sese-to-poly.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/toplev.bc
+Number of candidates: 3261
+with size: 3237 of 3261
+==== Next file: 602/tree-scalar-evolution.bc
+Number of candidates: 1212
+with size: 1180 of 1212
+==== Next file: 602/c-common.bc
+Number of candidates: 12439
+with size: 12352 of 12439
+==== Next file: 602/spec_qsort/spec_qsort.bc
+Number of candidates: 3
+with size: 3 of 3

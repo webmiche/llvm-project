@@ -1,0 +1,208 @@
+Running benchmark 600 with Oz
+==== Next file: 600/universal.bc
+Number of candidates: 891
+with size: 835 of 891
+==== Next file: 600/perlio.bc
+Number of candidates: 870
+with size: 811 of 870
+==== Next file: 600/gv.bc
+Number of candidates: 3868
+with size: 3753 of 3868
+==== Next file: 600/locale.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 600/Opcode.bc
+Number of candidates: 439
+with size: 422 of 439
+==== Next file: 600/mathoms.bc
+Number of candidates: 126
+with size: 125 of 126
+==== Next file: 600/perlmain.bc
+Number of candidates: 46
+with size: 46 of 46
+==== Next file: 600/dump.bc
+Number of candidates: 1197
+with size: 1142 of 1197
+==== Next file: 600/globals.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 600/pp_sort.bc
+Number of candidates: 1494
+with size: 1453 of 1494
+==== Next file: 600/DynaLoader.bc
+Number of candidates: 27
+with size: 27 of 27
+==== Next file: 600/doop.bc
+Number of candidates: 1527
+with size: 1488 of 1527
+==== Next file: 600/reentr.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 600/sv.bc
+Number of candidates: 7974
+with size: 7609 of 7974
+==== Next file: 600/regcomp.bc
+Number of candidates: 26006
+with size: 25278 of 26006
+==== Next file: 600/deb.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 600/numeric.bc
+Number of candidates: 487
+with size: 459 of 487
+==== Next file: 600/perlapi.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 600/doio.bc
+Number of candidates: 1400
+with size: 1356 of 1400
+==== Next file: 600/perl.bc
+Number of candidates: 6080
+with size: 5938 of 6080
+==== Next file: 600/mg.bc
+Number of candidates: 2595
+with size: 2502 of 2595
+==== Next file: 600/toke.bc
+Number of candidates: 20545
+with size: 19238 of 20545
+==== Next file: 600/pp_ctl.bc
+Number of candidates: 7297
+with size: 7037 of 7297
+==== Next file: 600/caretx.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 600/pp_hot.bc
+Number of candidates: 4826
+with size: 4682 of 4826
+==== Next file: 600/pp.bc
+Number of candidates: 7331
+with size: 7038 of 7331
+==== Next file: 600/utf8.bc
+Number of candidates: 1341
+with size: 1256 of 1341
+==== Next file: 600/perly.bc
+Number of candidates: 1144
+with size: 1134 of 1144
+==== Next file: 600/util.bc
+Number of candidates: 1060
+with size: 1005 of 1060
+==== Next file: 600/pp_pack.bc
+Number of candidates: 1973
+with size: 1900 of 1973
+==== Next file: 600/pad.bc
+Number of candidates: 2065
+with size: 1970 of 2065
+==== Next file: 600/scope.bc
+Number of candidates: 906
+with size: 881 of 906
+==== Next file: 600/hv.bc
+Number of candidates: 2199
+with size: 2096 of 2199
+==== Next file: 600/run.bc
+Number of candidates: 5
+with size: 5 of 5
+==== Next file: 600/op.bc
+Number of candidates: 14277
+with size: 13832 of 14277
+==== Next file: 600/taint.bc
+Number of candidates: 99
+with size: 95 of 99
+==== Next file: 600/mro_core.bc
+Number of candidates: 1710
+with size: 1622 of 1710
+==== Next file: 600/keywords.bc
+Number of candidates: 3897
+with size: 3897 of 3897
+==== Next file: 600/regexec.bc
+Number of candidates: 12172
+with size: 11751 of 12172
+==== Next file: 600/av.bc
+Number of candidates: 457
+with size: 369 of 457
+==== Next file: 600/pp_sys.bc
+Number of candidates: 4916
+with size: 4806 of 4916
+==== Next file: 600/dist/Storable/Storable.bc
+Number of candidates: 9554
+with size: 9217 of 9554
+==== Next file: 600/dist/Data-Dumper/Dumper.bc
+Number of candidates: 1177
+with size: 1136 of 1177
+==== Next file: 600/dist/PathTools/Cwd.bc
+Number of candidates: 292
+with size: 288 of 292
+==== Next file: 600/dist/IO/poll.bc
+Number of candidates: 25
+with size: 25 of 25
+==== Next file: 600/dist/IO/IO.bc
+Number of candidates: 200
+with size: 197 of 200
+==== Next file: 600/specrand/specrand.bc
+Number of candidates: 48
+with size: 41 of 48
+==== Next file: 600/cpan/MIME-Base64/Base64.bc
+Number of candidates: 482
+with size: 468 of 482
+==== Next file: 600/cpan/Time-HiRes/HiRes.bc
+Number of candidates: 452
+with size: 449 of 452
+==== Next file: 600/cpan/HTML-Parser/Parser.bc
+Number of candidates: 4657
+with size: 4556 of 4657
+==== Next file: 600/cpan/Digest-MD5/MD5.bc
+Number of candidates: 1720
+with size: 1694 of 1720
+==== Next file: 600/cpan/Digest-SHA/SHA.bc
+Number of candidates: 2439
+with size: 1679 of 2439
+==== Next file: 600/cpan/Scalar-List-Utils/ListUtil.bc
+Number of candidates: 3133
+with size: 2991 of 3133
+==== Next file: 600/ext/re/re.bc
+Number of candidates: 47
+with size: 46 of 47
+==== Next file: 600/ext/re/re_exec.bc
+Number of candidates: 12324
+with size: 11898 of 12324
+==== Next file: 600/ext/re/re_comp.bc
+Number of candidates: 28758
+with size: 27969 of 28758
+==== Next file: 600/ext/Sys-Hostname/Hostname.bc
+Number of candidates: 12
+with size: 12 of 12
+==== Next file: 600/ext/attributes/attributes.bc
+Number of candidates: 323
+with size: 320 of 323
+==== Next file: 600/ext/PerlIO-via/via.bc
+Number of candidates: 316
+with size: 308 of 316
+==== Next file: 600/ext/Devel-Peek/Peek.bc
+Number of candidates: 272
+with size: 269 of 272
+==== Next file: 600/ext/XS-Typemap/stdio.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 600/ext/mro/mro.bc
+Number of candidates: 289
+with size: 282 of 289
+==== Next file: 600/ext/Hash-Util/Util.bc
+Number of candidates: 227
+with size: 213 of 227
+==== Next file: 600/ext/Hash-Util-FieldHash/FieldHash.bc
+Number of candidates: 157
+with size: 156 of 157
+==== Next file: 600/ext/arybase/arybase.bc
+Number of candidates: 476
+with size: 463 of 476
+==== Next file: 600/ext/Tie-Hash-NamedCapture/NamedCapture.bc
+Number of candidates: 123
+with size: 120 of 123
+==== Next file: 600/ext/PerlIO-scalar/scalar.bc
+Number of candidates: 199
+with size: 178 of 199
+==== Next file: 600/ext/File-Glob/bsd_glob.bc
+Number of candidates: 384
+with size: 353 of 384
+==== Next file: 600/ext/File-Glob/Glob.bc
+Number of candidates: 324
+with size: 310 of 324

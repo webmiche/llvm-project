@@ -1,0 +1,271 @@
+Running benchmark 657 with Oz
+==== Next file: 657/spec.bc
+Number of candidates: 27
+with size: 22 of 27
+==== Next file: 657/pxz.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/spec_xz.bc
+Number of candidates: 58
+with size: 54 of 58
+==== Next file: 657/common/tuklib_progname.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/common/tuklib_physmem.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/common/tuklib_cpucores.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/common/tuklib_mbstr_width.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/common/tuklib_exit.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/common/tuklib_open_stdxxx.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/common/tuklib_mbstr_fw.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 657/liblzma/rangecoder/price_table.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/liblzma/simple/x86.bc
+Number of candidates: 25
+with size: 24 of 25
+==== Next file: 657/liblzma/simple/simple_encoder.bc
+Number of candidates: 12
+with size: 12 of 12
+==== Next file: 657/liblzma/simple/ia64.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 657/liblzma/simple/arm.bc
+Number of candidates: 7
+with size: 7 of 7
+==== Next file: 657/liblzma/simple/simple_coder.bc
+Number of candidates: 138
+with size: 115 of 138
+==== Next file: 657/liblzma/simple/simple_decoder.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 657/liblzma/simple/sparc.bc
+Number of candidates: 7
+with size: 5 of 7
+==== Next file: 657/liblzma/simple/powerpc.bc
+Number of candidates: 11
+with size: 8 of 11
+==== Next file: 657/liblzma/simple/armthumb.bc
+Number of candidates: 11
+with size: 11 of 11
+==== Next file: 657/liblzma/lz/lz_encoder_mf.bc
+Number of candidates: 976
+with size: 948 of 976
+==== Next file: 657/liblzma/lz/lz_decoder.bc
+Number of candidates: 273
+with size: 235 of 273
+==== Next file: 657/liblzma/lz/lz_encoder.bc
+Number of candidates: 1016
+with size: 939 of 1016
+==== Next file: 657/liblzma/common/common.bc
+Number of candidates: 594
+with size: 552 of 594
+==== Next file: 657/liblzma/common/alone_decoder.bc
+Number of candidates: 360
+with size: 324 of 360
+==== Next file: 657/liblzma/common/block_header_decoder.bc
+Number of candidates: 35
+with size: 31 of 35
+==== Next file: 657/liblzma/common/stream_buffer_decoder.bc
+Number of candidates: 30
+with size: 28 of 30
+==== Next file: 657/liblzma/common/block_util.bc
+Number of candidates: 7
+with size: 7 of 7
+==== Next file: 657/liblzma/common/index_encoder.bc
+Number of candidates: 96
+with size: 87 of 96
+==== Next file: 657/liblzma/common/vli_decoder.bc
+Number of candidates: 25
+with size: 10 of 25
+==== Next file: 657/liblzma/common/filter_buffer_decoder.bc
+Number of candidates: 36
+with size: 36 of 36
+==== Next file: 657/liblzma/common/stream_buffer_encoder.bc
+Number of candidates: 25
+with size: 22 of 25
+==== Next file: 657/liblzma/common/easy_buffer_encoder.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/liblzma/common/filter_common.bc
+Number of candidates: 87
+with size: 74 of 87
+==== Next file: 657/liblzma/common/easy_preset.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 657/liblzma/common/stream_encoder.bc
+Number of candidates: 411
+with size: 385 of 411
+==== Next file: 657/liblzma/common/filter_flags_decoder.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 657/liblzma/common/stream_flags_decoder.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 657/liblzma/common/index_decoder.bc
+Number of candidates: 228
+with size: 221 of 228
+==== Next file: 657/liblzma/common/index_hash.bc
+Number of candidates: 191
+with size: 189 of 191
+==== Next file: 657/liblzma/common/stream_flags_common.bc
+Number of candidates: 12
+with size: 12 of 12
+==== Next file: 657/liblzma/common/block_decoder.bc
+Number of candidates: 170
+with size: 150 of 170
+==== Next file: 657/liblzma/common/auto_decoder.bc
+Number of candidates: 79
+with size: 67 of 79
+==== Next file: 657/liblzma/common/stream_decoder.bc
+Number of candidates: 471
+with size: 452 of 471
+==== Next file: 657/liblzma/common/vli_size.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/liblzma/common/easy_decoder_memusage.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/liblzma/common/block_buffer_encoder.bc
+Number of candidates: 179
+with size: 179 of 179
+==== Next file: 657/liblzma/common/block_encoder.bc
+Number of candidates: 136
+with size: 116 of 136
+==== Next file: 657/liblzma/common/hardware_physmem.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/liblzma/common/filter_buffer_encoder.bc
+Number of candidates: 13
+with size: 13 of 13
+==== Next file: 657/liblzma/common/easy_encoder_memusage.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/liblzma/common/vli_encoder.bc
+Number of candidates: 19
+with size: 11 of 19
+==== Next file: 657/liblzma/common/filter_flags_encoder.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 657/liblzma/common/filter_decoder.bc
+Number of candidates: 6
+with size: 5 of 6
+==== Next file: 657/liblzma/common/index.bc
+Number of candidates: 1053
+with size: 1033 of 1053
+==== Next file: 657/liblzma/common/block_buffer_decoder.bc
+Number of candidates: 10
+with size: 8 of 10
+==== Next file: 657/liblzma/common/block_header_encoder.bc
+Number of candidates: 45
+with size: 42 of 45
+==== Next file: 657/liblzma/common/easy_encoder.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/liblzma/common/alone_encoder.bc
+Number of candidates: 138
+with size: 129 of 138
+==== Next file: 657/liblzma/common/filter_encoder.bc
+Number of candidates: 39
+with size: 37 of 39
+==== Next file: 657/liblzma/common/stream_flags_encoder.bc
+Number of candidates: 48
+with size: 48 of 48
+==== Next file: 657/liblzma/check/crc64_table.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/liblzma/check/check.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/liblzma/check/crc32_fast.bc
+Number of candidates: 33
+with size: 33 of 33
+==== Next file: 657/liblzma/check/sha256.bc
+Number of candidates: 673
+with size: 673 of 673
+==== Next file: 657/liblzma/check/crc32_table.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/liblzma/check/crc64_fast.bc
+Number of candidates: 13
+with size: 13 of 13
+==== Next file: 657/liblzma/lzma/lzma_encoder_optimum_normal.bc
+Number of candidates: 2512
+with size: 2449 of 2512
+==== Next file: 657/liblzma/lzma/fastpos_table.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/liblzma/lzma/lzma_decoder.bc
+Number of candidates: 1056
+with size: 1001 of 1056
+==== Next file: 657/liblzma/lzma/lzma2_decoder.bc
+Number of candidates: 562
+with size: 550 of 562
+==== Next file: 657/liblzma/lzma/lzma_encoder.bc
+Number of candidates: 1457
+with size: 1410 of 1457
+==== Next file: 657/liblzma/lzma/lzma2_encoder.bc
+Number of candidates: 940
+with size: 917 of 940
+==== Next file: 657/liblzma/lzma/lzma_encoder_presets.bc
+Number of candidates: 313
+with size: 294 of 313
+==== Next file: 657/liblzma/lzma/lzma_encoder_optimum_fast.bc
+Number of candidates: 75
+with size: 72 of 75
+==== Next file: 657/liblzma/delta/delta_decoder.bc
+Number of candidates: 24
+with size: 23 of 24
+==== Next file: 657/liblzma/delta/delta_common.bc
+Number of candidates: 31
+with size: 25 of 31
+==== Next file: 657/liblzma/delta/delta_encoder.bc
+Number of candidates: 64
+with size: 54 of 64
+==== Next file: 657/spec_mem_io/spec_mem_io.bc
+Number of candidates: 194
+with size: 181 of 194
+==== Next file: 657/sha-2/sha512.bc
+Number of candidates: 451
+with size: 281 of 451
+==== Next file: 657/xz/options.bc
+Number of candidates: 32
+with size: 26 of 32
+==== Next file: 657/xz/signals.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/xz/hardware.bc
+Number of candidates: 7
+with size: 7 of 7
+==== Next file: 657/xz/args.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/xz/file_io.bc
+Number of candidates: 83
+with size: 83 of 83
+==== Next file: 657/xz/util.bc
+Number of candidates: 16
+with size: 15 of 16
+==== Next file: 657/xz/main.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 657/xz/list.bc
+Number of candidates: 1374
+with size: 1322 of 1374
+==== Next file: 657/xz/coder.bc
+Number of candidates: 138
+with size: 126 of 138
+==== Next file: 657/xz/message.bc
+Number of candidates: 33
+with size: 33 of 33

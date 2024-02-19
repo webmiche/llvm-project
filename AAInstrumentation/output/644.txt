@@ -1,0 +1,61 @@
+Running benchmark 644 with Oz
+==== Next file: 644/memutil.bc
+Number of candidates: 7
+with size: 5 of 7
+==== Next file: 644/chirvol.bc
+Number of candidates: 103
+with size: 103 of 103
+==== Next file: 644/select_atoms.bc
+Number of candidates: 676
+with size: 651 of 676
+==== Next file: 644/molio.bc
+Number of candidates: 4187
+with size: 4153 of 4187
+==== Next file: 644/binpos.bc
+Number of candidates: 21
+with size: 19 of 21
+==== Next file: 644/reslib.bc
+Number of candidates: 3198
+with size: 3047 of 3198
+==== Next file: 644/traceback.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 644/database.bc
+Number of candidates: 581
+with size: 530 of 581
+==== Next file: 644/nabmd.bc
+Number of candidates: 135
+with size: 116 of 135
+==== Next file: 644/rand2.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 644/molutil.bc
+Number of candidates: 5267
+with size: 5156 of 5267
+==== Next file: 644/errormsg.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 644/sff.bc
+Number of candidates: 6437
+with size: 5965 of 6437
+==== Next file: 644/prm.bc
+Number of candidates: 8258
+with size: 8186 of 8258
+==== Next file: 644/nblist.bc
+Number of candidates: 371
+with size: 341 of 371
+==== Next file: 644/regex-alpha/regcomp.bc
+Number of candidates: 2287
+with size: 2200 of 2287
+==== Next file: 644/regex-alpha/regerror.bc
+Number of candidates: 27
+with size: 27 of 27
+==== Next file: 644/regex-alpha/regfree.bc
+Number of candidates: 6
+with size: 6 of 6
+==== Next file: 644/regex-alpha/regexec.bc
+Number of candidates: 2532
+with size: 2486 of 2532
+==== Next file: 644/specrand/specrand.bc
+Number of candidates: 48
+with size: 41 of 48
