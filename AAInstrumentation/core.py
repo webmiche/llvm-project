@@ -270,10 +270,11 @@ class AAInstrumentationDriver:
         name_prefix: int,
         index_list: list[index],
         instrument_recursively=False,
+        ignore_initial_dir=False,
     ):
         """Run a single function and assemble the result."""
         self.run_step_single_func(
-            file_name, name_prefix, index_list, instrument_recursively
+            file_name, name_prefix, index_list, instrument_recursively, ignore_initial_dir
         )
         self.assemble_file(
             self.instr_dir
@@ -287,11 +288,12 @@ class AAInstrumentationDriver:
         name_prefix: int,
         index_list: list[index],
         instrument_recursively=False,
+        ignore_initial_dir=False,
     ) -> size:
         """Run a round of instrumentation, assemble the result, and measure the
         output size."""
         self.run_and_assemble_file(
-            file_name, name_prefix, index_list, instrument_recursively
+            file_name, name_prefix, index_list, instrument_recursively, ignore_initial_dir
         )
         size = self.measure_outputsize(
             self.instr_dir
@@ -319,6 +321,7 @@ class AAInstrumentationDriver:
         name_prefix: int,
         index_list: list[index],
         instrument_recursively=False,
+        ignore_initial_dir=False,
     ):
         """Perform one run of the instrumentation.
 
@@ -333,7 +336,7 @@ class AAInstrumentationDriver:
 
         base_cmd = [
             str(self.instr_path / "opt"),
-            str(self.initial_dir / file_name),
+            str(self.initial_dir / file_name) if not ignore_initial_dir else str(file_name),
             "-stats",
             "-o",
             str(
@@ -349,7 +352,6 @@ class AAInstrumentationDriver:
             cmd = base_cmd + ["--aasequence=" + aa_sequence_string]
             p = run(
                 cmd,
-                cwd=self.exec_root,
                 stdout=DEVNULL,
                 stderr=DEVNULL,
                 text=True,
@@ -367,7 +369,6 @@ class AAInstrumentationDriver:
             # print(" ".join(cmd))
             p = run(
                 cmd,
-                cwd=self.exec_root,
                 stdout=DEVNULL,
                 stderr=DEVNULL,
                 text=True,

@@ -68,10 +68,10 @@ class FirstQueryChangeCheck(AAChecker):
     """
 
     def check(self) -> bool:
-        base_size = self.run_assemble_and_measure_file(self.file_name, 0, [])
+        base_size = self.run_assemble_and_measure_file(self.file_name, 0, [], ignore_initial_dir=True)
         sizes = []
         for i in range(self.sequence[0] + 1):
-            sizes.append(self.run_assemble_and_measure_file(self.file_name, 0, [i]))
+            sizes.append(self.run_assemble_and_measure_file(self.file_name, 0, [i], ignore_initial_dir=True))
 
         return any(self.size_criteria(base_size, size) for size in sizes)
 
@@ -105,7 +105,7 @@ if __name__ == "__main__":
         help="The file to apply the sequence to",
     )
 
-    with open("AAInstrumentation/config.txt", "r") as config_file:
+    with open("/home/michel/ETH/AST/llvm-project/AAInstrumentation/config.txt", "r") as config_file:
         args = arg_parser.parse_args(config_file.read().splitlines() + sys.argv[1:])
     instr_path = args.instr_path
     exec_root = args.exec_root
