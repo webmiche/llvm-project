@@ -352,6 +352,7 @@ class AAInstrumentationDriver:
             cmd = base_cmd + ["--aasequence=" + aa_sequence_string]
             p = run(
                 cmd,
+                cwd=self.exec_root,
                 stdout=DEVNULL,
                 stderr=DEVNULL,
                 text=True,
@@ -369,6 +370,7 @@ class AAInstrumentationDriver:
             # print(" ".join(cmd))
             p = run(
                 cmd,
+                cwd=self.exec_root,
                 stdout=DEVNULL,
                 stderr=DEVNULL,
                 text=True,

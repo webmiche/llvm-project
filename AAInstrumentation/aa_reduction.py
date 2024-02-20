@@ -73,6 +73,9 @@ class FirstQueryChangeCheck(AAChecker):
         for i in range(self.sequence[0] + 1):
             sizes.append(self.run_assemble_and_measure_file(self.file_name, 0, [i], ignore_initial_dir=True))
 
+        print(f"Base size: {base_size}")
+        print(f"Sizes: {sizes}")
+
         return any(self.size_criteria(base_size, size) for size in sizes)
 
 
@@ -115,7 +118,7 @@ if __name__ == "__main__":
     instr_dir = args.instr_dir
     groundtruth_dir = args.groundtruth_dir
 
-    stable_check = FirstQueryChangeSmallerCheck(
+    stable_check = FirstQueryChangeCheck(
         instr_path,
         exec_root,
         specbuild_dir,
