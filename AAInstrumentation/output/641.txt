@@ -1,0 +1,46 @@
+Running benchmark 641 with Oz
+641/SGFTree.bc: 663
+Unique hashes: 256 of 10000 runs
+641/GameState.bc: 345
+Unique hashes: 512 of 10000 runs
+641/FullBoard.bc: 297
+Unique hashes: 256 of 10000 runs
+641/GTP.bc: 2495
+Unique hashes: 1712 of 10000 runs
+641/MCOTable.bc: 26
+Unique hashes: 8 of 10000 runs
+641/FastState.bc: 400
+Unique hashes: 128 of 10000 runs
+641/Random.bc: 27
+Warning: only 9996 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 28 of 10000 runs
+641/FastBoard.bc: 4670
+Unique hashes: 10000 of 10000 runs
+641/KoState.bc: 152
+Unique hashes: 48 of 10000 runs
+641/Zobrist.bc: 0
+Unique hashes: 1 of 10000 runs
+641/SMP.bc: 0
+Unique hashes: 1 of 10000 runs
+641/Matcher.bc: 167
+Unique hashes: 8 of 10000 runs
+641/Leela.bc: 297
+Unique hashes: 845 of 10000 runs
+641/Timing.bc: 0
+Unique hashes: 1 of 10000 runs
+641/UCTNode.bc: 576
+Unique hashes: 4876 of 10000 runs
+641/TimeControl.bc: 68
+Unique hashes: 3 of 10000 runs
+641/UCTSearch.bc: 168
+Unique hashes: 1 of 10000 runs
+641/SGFParser.bc: 263
+Unique hashes: 8 of 10000 runs
+641/Playout.bc: 34
+Unique hashes: 1 of 10000 runs
+641/Utils.bc: 2
+Unique hashes: 1 of 10000 runs
+641/TTable.bc: 20
+Warning: only 9959 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9999 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 2 of 10000 runs

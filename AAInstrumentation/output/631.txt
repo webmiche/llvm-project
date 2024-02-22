@@ -1,0 +1,44 @@
+Running benchmark 631 with Oz
+631/make.bc: 3077
+Unique hashes: 3787 of 10000 runs
+631/epd.bc: 398
+Unique hashes: 2 of 10000 runs
+631/generate.bc: 2416
+Unique hashes: 10000 of 10000 runs
+631/board.bc: 17
+Warning: only 9633 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9969 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9995 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+631/initp.bc: 86
+Unique hashes: 1 of 10000 runs
+631/bitboard.bc: 5894
+Unique hashes: 10000 of 10000 runs
+631/neval.bc: 3304
+Unique hashes: 256 of 10000 runs
+631/search.bc: 1885
+Unique hashes: 10000 of 10000 runs
+631/draw.bc: 112
+Unique hashes: 4 of 10000 runs
+631/state.bc: 0
+Unique hashes: 1 of 10000 runs
+631/attacks.bc: 182
+Unique hashes: 1 of 10000 runs
+631/sjeng.bc: 177
+Unique hashes: 1 of 10000 runs
+631/moves.bc: 30
+Unique hashes: 1 of 10000 runs
+631/pawn.bc: 1378
+Unique hashes: 1681 of 10000 runs
+631/endgame.bc: 5127
+Unique hashes: 1001 of 10000 runs
+631/bits.bc: 0
+Unique hashes: 1 of 10000 runs
+631/preproc.bc: 48
+Unique hashes: 1 of 10000 runs
+631/utils.bc: 553
+Unique hashes: 5897 of 10000 runs
+631/see.bc: 354
+Unique hashes: 2 of 10000 runs
+631/ttable.bc: 199
+Unique hashes: 840 of 10000 runs

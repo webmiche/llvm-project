@@ -1,0 +1,45 @@
+Running benchmark 644 with Oz
+644/memutil.bc: 7
+Unique hashes: 4 of 10000 runs
+644/chirvol.bc: 103
+Unique hashes: 1 of 10000 runs
+644/select_atoms.bc: 676
+Unique hashes: 9996 of 10000 runs
+644/molio.bc: 4187
+Unique hashes: 9722 of 10000 runs
+644/binpos.bc: 21
+Warning: only 9976 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 15 of 10000 runs
+644/reslib.bc: 3198
+Unique hashes: 10000 of 10000 runs
+644/traceback.bc: 0
+Unique hashes: 1 of 10000 runs
+644/database.bc: 581
+Unique hashes: 9692 of 10000 runs
+644/nabmd.bc: 135
+Unique hashes: 5 of 10000 runs
+644/rand2.bc: 1
+Unique hashes: 1 of 10000 runs
+644/molutil.bc: 5267
+Unique hashes: 10000 of 10000 runs
+644/errormsg.bc: 3
+Unique hashes: 1 of 10000 runs
+644/sff.bc: 6437
+Unique hashes: 10000 of 10000 runs
+644/prm.bc: 8258
+Unique hashes: 138 of 10000 runs
+644/nblist.bc: 371
+Unique hashes: 9995 of 10000 runs
+644/regex-alpha/regcomp.bc: 2287
+Unique hashes: 10000 of 10000 runs
+644/regex-alpha/regerror.bc: 27
+Warning: only 9999 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+644/regex-alpha/regfree.bc: 6
+Warning: only 58 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 58 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+644/regex-alpha/regexec.bc: 2532
+Unique hashes: 10000 of 10000 runs
+644/specrand/specrand.bc: 48
+Unique hashes: 24 of 10000 runs

@@ -1,0 +1,253 @@
+Running benchmark 657 with Oz
+657/spec.bc: 27
+Warning: only 9999 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 60 of 10000 runs
+657/pxz.bc: 0
+Unique hashes: 1 of 10000 runs
+657/spec_xz.bc: 58
+Unique hashes: 4 of 10000 runs
+657/common/tuklib_progname.bc: 0
+Unique hashes: 1 of 10000 runs
+657/common/tuklib_physmem.bc: 0
+Unique hashes: 1 of 10000 runs
+657/common/tuklib_cpucores.bc: 0
+Unique hashes: 1 of 10000 runs
+657/common/tuklib_mbstr_width.bc: 0
+Unique hashes: 1 of 10000 runs
+657/common/tuklib_exit.bc: 0
+Unique hashes: 1 of 10000 runs
+657/common/tuklib_open_stdxxx.bc: 0
+Unique hashes: 1 of 10000 runs
+657/common/tuklib_mbstr_fw.bc: 1
+Unique hashes: 1 of 10000 runs
+657/liblzma/rangecoder/price_table.bc: 0
+Unique hashes: 1 of 10000 runs
+657/liblzma/simple/x86.bc: 25
+Warning: only 9997 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 3 of 10000 runs
+657/liblzma/simple/simple_encoder.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+657/liblzma/simple/ia64.bc: 1
+Unique hashes: 1 of 10000 runs
+657/liblzma/simple/arm.bc: 7
+Unique hashes: 1 of 10000 runs
+657/liblzma/simple/simple_coder.bc: 138
+Unique hashes: 9013 of 10000 runs
+657/liblzma/simple/simple_decoder.bc: 1
+Unique hashes: 1 of 10000 runs
+657/liblzma/simple/sparc.bc: 7
+Unique hashes: 4 of 10000 runs
+657/liblzma/simple/powerpc.bc: 11
+Warning: only 1978 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 1991 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 1991 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 2 of 10000 runs
+657/liblzma/simple/armthumb.bc: 11
+Warning: only 2033 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+657/liblzma/lz/lz_encoder_mf.bc: 976
+Unique hashes: 9974 of 10000 runs
+657/liblzma/lz/lz_decoder.bc: 273
+Unique hashes: 9703 of 10000 runs
+657/liblzma/lz/lz_encoder.bc: 1016
+Unique hashes: 9755 of 10000 runs
+657/liblzma/common/common.bc: 594
+Unique hashes: 9681 of 10000 runs
+657/liblzma/common/alone_decoder.bc: 360
+Unique hashes: 9461 of 10000 runs
+657/liblzma/common/block_header_decoder.bc: 35
+Unique hashes: 12 of 10000 runs
+657/liblzma/common/stream_buffer_decoder.bc: 30
+Unique hashes: 4 of 10000 runs
+657/liblzma/common/block_util.bc: 7
+Unique hashes: 1 of 10000 runs
+657/liblzma/common/index_encoder.bc: 96
+Unique hashes: 675 of 10000 runs
+657/liblzma/common/vli_decoder.bc: 25
+Warning: only 9997 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 686 of 10000 runs
+657/liblzma/common/filter_buffer_decoder.bc: 36
+Warning: only 9998 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+657/liblzma/common/stream_buffer_encoder.bc: 25
+Warning: only 9995 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 4 of 10000 runs
+657/liblzma/common/easy_buffer_encoder.bc: 0
+Unique hashes: 1 of 10000 runs
+657/liblzma/common/filter_common.bc: 87
+Unique hashes: 360 of 10000 runs
+657/liblzma/common/easy_preset.bc: 3
+Unique hashes: 1 of 10000 runs
+657/liblzma/common/stream_encoder.bc: 411
+Unique hashes: 7759 of 10000 runs
+657/liblzma/common/filter_flags_decoder.bc: 3
+Unique hashes: 1 of 10000 runs
+657/liblzma/common/stream_flags_decoder.bc: 2
+Unique hashes: 1 of 10000 runs
+657/liblzma/common/index_decoder.bc: 228
+Unique hashes: 155 of 10000 runs
+657/liblzma/common/index_hash.bc: 191
+Unique hashes: 8 of 10000 runs
+657/liblzma/common/stream_flags_common.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+657/liblzma/common/block_decoder.bc: 170
+Unique hashes: 5838 of 10000 runs
+657/liblzma/common/auto_decoder.bc: 79
+Unique hashes: 126 of 10000 runs
+657/liblzma/common/stream_decoder.bc: 471
+Unique hashes: 3135 of 10000 runs
+657/liblzma/common/vli_size.bc: 0
+Unique hashes: 1 of 10000 runs
+657/liblzma/common/easy_decoder_memusage.bc: 0
+Unique hashes: 1 of 10000 runs
+657/liblzma/common/block_buffer_encoder.bc: 179
+Unique hashes: 1 of 10000 runs
+657/liblzma/common/block_encoder.bc: 136
+Unique hashes: 2974 of 10000 runs
+657/liblzma/common/hardware_physmem.bc: 0
+Unique hashes: 1 of 10000 runs
+657/liblzma/common/filter_buffer_encoder.bc: 13
+Warning: only 5058 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 5950 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6381 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6605 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6748 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6854 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6902 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6948 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6976 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6990 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7009 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7016 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7018 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7021 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7027 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7028 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7029 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7030 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7032 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7032 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+657/liblzma/common/easy_encoder_memusage.bc: 0
+Unique hashes: 1 of 10000 runs
+657/liblzma/common/vli_encoder.bc: 19
+Warning: only 9914 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 36 of 10000 runs
+657/liblzma/common/filter_flags_encoder.bc: 3
+Unique hashes: 1 of 10000 runs
+657/liblzma/common/filter_decoder.bc: 6
+Warning: only 63 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 63 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 2 of 10000 runs
+657/liblzma/common/index.bc: 1053
+Unique hashes: 555 of 10000 runs
+657/liblzma/common/block_buffer_decoder.bc: 10
+Unique hashes: 4 of 10000 runs
+657/liblzma/common/block_header_encoder.bc: 45
+Unique hashes: 8 of 10000 runs
+657/liblzma/common/easy_encoder.bc: 0
+Unique hashes: 1 of 10000 runs
+657/liblzma/common/alone_encoder.bc: 138
+Unique hashes: 64 of 10000 runs
+657/liblzma/common/filter_encoder.bc: 39
+Unique hashes: 4 of 10000 runs
+657/liblzma/common/stream_flags_encoder.bc: 48
+Unique hashes: 1 of 10000 runs
+657/liblzma/check/crc64_table.bc: 0
+Unique hashes: 1 of 10000 runs
+657/liblzma/check/check.bc: 0
+Unique hashes: 1 of 10000 runs
+657/liblzma/check/crc32_fast.bc: 33
+Unique hashes: 1 of 10000 runs
+657/liblzma/check/sha256.bc: 673
+Unique hashes: 254 of 10000 runs
+657/liblzma/check/crc32_table.bc: 0
+Unique hashes: 1 of 10000 runs
+657/liblzma/check/crc64_fast.bc: 13
+Warning: only 5765 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6748 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7211 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7488 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7668 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7801 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7965 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8004 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8047 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8080 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8105 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8125 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8134 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8149 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8162 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8165 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8170 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8173 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8176 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8178 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8184 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8186 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+657/liblzma/lzma/lzma_encoder_optimum_normal.bc: 2512
+Unique hashes: 6061 of 10000 runs
+657/liblzma/lzma/fastpos_table.bc: 0
+Unique hashes: 1 of 10000 runs
+657/liblzma/lzma/lzma_decoder.bc: 1056
+Unique hashes: 9997 of 10000 runs
+657/liblzma/lzma/lzma2_decoder.bc: 562
+Unique hashes: 233 of 10000 runs
+657/liblzma/lzma/lzma_encoder.bc: 1457
+Unique hashes: 6835 of 10000 runs
+657/liblzma/lzma/lzma2_encoder.bc: 940
+Unique hashes: 9833 of 10000 runs
+657/liblzma/lzma/lzma_encoder_presets.bc: 313
+Unique hashes: 7 of 10000 runs
+657/liblzma/lzma/lzma_encoder_optimum_fast.bc: 75
+Unique hashes: 4 of 10000 runs
+657/liblzma/delta/delta_decoder.bc: 24
+Warning: only 9996 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 2 of 10000 runs
+657/liblzma/delta/delta_common.bc: 31
+Unique hashes: 16 of 10000 runs
+657/liblzma/delta/delta_encoder.bc: 64
+Unique hashes: 32 of 10000 runs
+657/spec_mem_io/spec_mem_io.bc: 194
+Unique hashes: 3450 of 10000 runs
+657/sha-2/sha512.bc: 451
+Unique hashes: 9987 of 10000 runs
+657/xz/options.bc: 32
+Unique hashes: 16 of 10000 runs
+657/xz/signals.bc: 0
+Unique hashes: 1 of 10000 runs
+657/xz/hardware.bc: 7
+Unique hashes: 1 of 10000 runs
+657/xz/args.bc: 0
+Unique hashes: 1 of 10000 runs
+657/xz/file_io.bc: 83
+Unique hashes: 1 of 10000 runs
+657/xz/util.bc: 16
+Warning: only 9273 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9980 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9997 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 2 of 10000 runs
+657/xz/main.bc: 0
+Unique hashes: 1 of 10000 runs
+657/xz/list.bc: 1374
+Unique hashes: 4629 of 10000 runs
+657/xz/coder.bc: 138
+Unique hashes: 369 of 10000 runs
+657/xz/message.bc: 33
+Unique hashes: 1 of 10000 runs

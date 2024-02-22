@@ -1,0 +1,208 @@
+Running benchmark 638 with Oz
+638/wand/magick-property.bc: 178
+Unique hashes: 12 of 10000 runs
+638/wand/magick-image.bc: 1437
+Unique hashes: 10000 of 10000 runs
+638/wand/wand.bc: 10
+Warning: only 1023 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 1023 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 6 of 10000 runs
+638/wand/pixel-iterator.bc: 237
+Unique hashes: 16 of 10000 runs
+638/wand/pixel-wand.bc: 212
+Unique hashes: 16 of 10000 runs
+638/wand/convert.bc: 2892
+Unique hashes: 6 of 10000 runs
+638/wand/magick-wand.bc: 373
+Unique hashes: 2 of 10000 runs
+638/wand/drawing-wand.bc: 2401
+Unique hashes: 10000 of 10000 runs
+638/wand/mogrify.bc: 3827
+Unique hashes: 9982 of 10000 runs
+638/filters/analyze.bc: 32
+Unique hashes: 1 of 10000 runs
+638/utilities/convert.bc: 0
+Unique hashes: 1 of 10000 runs
+638/magick/composite.bc: 6206
+Unique hashes: 9327 of 10000 runs
+638/magick/log.bc: 0
+Unique hashes: 1 of 10000 runs
+638/magick/monitor.bc: 2
+Unique hashes: 1 of 10000 runs
+638/magick/transform.bc: 1132
+Unique hashes: 9993 of 10000 runs
+638/magick/morphology.bc: 8101
+Unique hashes: 10000 of 10000 runs
+638/magick/semaphore.bc: 6
+Unique hashes: 2 of 10000 runs
+638/magick/locale.bc: 96
+Unique hashes: 8 of 10000 runs
+638/magick/paint.bc: 869
+Unique hashes: 1798 of 10000 runs
+638/magick/mime.bc: 210
+Unique hashes: 6 of 10000 runs
+638/magick/resource.bc: 44
+Unique hashes: 2 of 10000 runs
+638/magick/token.bc: 63
+Unique hashes: 18 of 10000 runs
+638/magick/registry.bc: 25
+Warning: only 9997 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 8 of 10000 runs
+638/magick/layer.bc: 1179
+Unique hashes: 10000 of 10000 runs
+638/magick/segment.bc: 2624
+Unique hashes: 9994 of 10000 runs
+638/magick/quantize.bc: 5475
+Unique hashes: 10000 of 10000 runs
+638/magick/attribute.bc: 440
+Unique hashes: 546 of 10000 runs
+638/magick/quantum-import.bc: 12349
+Unique hashes: 10000 of 10000 runs
+638/magick/enhance.bc: 7496
+Unique hashes: 10000 of 10000 runs
+638/magick/signature.bc: 240
+Unique hashes: 9881 of 10000 runs
+638/magick/splay-tree.bc: 732
+Unique hashes: 10000 of 10000 runs
+638/magick/accelerate.bc: 0
+Unique hashes: 1 of 10000 runs
+638/magick/color.bc: 1453
+Unique hashes: 9991 of 10000 runs
+638/magick/threshold.bc: 1492
+Unique hashes: 9230 of 10000 runs
+638/magick/annotate.bc: 3676
+Unique hashes: 4906 of 10000 runs
+638/magick/client.bc: 0
+Unique hashes: 1 of 10000 runs
+638/magick/display.bc: 0
+Unique hashes: 1 of 10000 runs
+638/magick/distort.bc: 7168
+Unique hashes: 10000 of 10000 runs
+638/magick/property.bc: 4422
+Unique hashes: 10000 of 10000 runs
+638/magick/fourier.bc: 1072
+Unique hashes: 3 of 10000 runs
+638/magick/resize.bc: 4097
+Unique hashes: 9724 of 10000 runs
+638/magick/delegate.bc: 0
+Unique hashes: 1 of 10000 runs
+638/magick/string.bc: 430
+Unique hashes: 512 of 10000 runs
+638/magick/quantum.bc: 81
+Unique hashes: 4 of 10000 runs
+638/magick/option.bc: 47
+Unique hashes: 32 of 10000 runs
+638/magick/utility.bc: 294
+Unique hashes: 4801 of 10000 runs
+638/magick/cache.bc: 3672
+Unique hashes: 10000 of 10000 runs
+638/magick/colorspace.bc: 2486
+Unique hashes: 2022 of 10000 runs
+638/magick/draw.bc: 7921
+Unique hashes: 10000 of 10000 runs
+638/magick/deprecate.bc: 3873
+Unique hashes: 10000 of 10000 runs
+638/magick/static.bc: 0
+Unique hashes: 1 of 10000 runs
+638/magick/quantum-export.bc: 5685
+Unique hashes: 10000 of 10000 runs
+638/magick/channel.bc: 473
+Unique hashes: 5527 of 10000 runs
+638/magick/random.bc: 111
+Unique hashes: 183 of 10000 runs
+638/magick/colormap.bc: 149
+Unique hashes: 6348 of 10000 runs
+638/magick/identify.bc: 1405
+Unique hashes: 1220 of 10000 runs
+638/magick/type.bc: 181
+Unique hashes: 8 of 10000 runs
+638/magick/profile.bc: 358
+Unique hashes: 16 of 10000 runs
+638/magick/feature.bc: 8634
+Unique hashes: 10000 of 10000 runs
+638/magick/blob.bc: 1181
+Unique hashes: 10000 of 10000 runs
+638/magick/gem.bc: 33
+Unique hashes: 1 of 10000 runs
+638/magick/version.bc: 12
+Warning: only 3758 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4010 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4068 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4081 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4084 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4085 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4085 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+638/magick/resample.bc: 1447
+Unique hashes: 921 of 10000 runs
+638/magick/compare.bc: 4909
+Unique hashes: 3824 of 10000 runs
+638/magick/distribute-cache.bc: 281
+Unique hashes: 1 of 10000 runs
+638/magick/decorate.bc: 817
+Unique hashes: 4025 of 10000 runs
+638/magick/module.bc: 3
+Unique hashes: 1 of 10000 runs
+638/magick/statistic.bc: 18411
+Unique hashes: 10000 of 10000 runs
+638/magick/memory.bc: 32
+Unique hashes: 4 of 10000 runs
+638/magick/geometry.bc: 388
+Unique hashes: 5141 of 10000 runs
+638/magick/magick.bc: 111
+Unique hashes: 16 of 10000 runs
+638/magick/shear.bc: 1362
+Unique hashes: 8800 of 10000 runs
+638/magick/image.bc: 2636
+Unique hashes: 10000 of 10000 runs
+638/magick/effect.bc: 2432
+Unique hashes: 10000 of 10000 runs
+638/magick/montage.bc: 1713
+Unique hashes: 8517 of 10000 runs
+638/magick/prepress.bc: 20
+Warning: only 9959 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9999 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+638/magick/timer.bc: 89
+Unique hashes: 4 of 10000 runs
+638/magick/list.bc: 178
+Unique hashes: 9999 of 10000 runs
+638/magick/xml-tree.bc: 894
+Unique hashes: 10000 of 10000 runs
+638/magick/matrix.bc: 350
+Unique hashes: 9926 of 10000 runs
+638/magick/pixel.bc: 12284
+Unique hashes: 10000 of 10000 runs
+638/magick/policy.bc: 115
+Unique hashes: 18 of 10000 runs
+638/magick/constitute.bc: 299
+Unique hashes: 2553 of 10000 runs
+638/magick/animate.bc: 0
+Unique hashes: 1 of 10000 runs
+638/magick/coder.bc: 109
+Unique hashes: 4 of 10000 runs
+638/magick/artifact.bc: 19
+Warning: only 9914 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 8 of 10000 runs
+638/magick/magic.bc: 282
+Unique hashes: 6 of 10000 runs
+638/magick/configure.bc: 121
+Unique hashes: 4 of 10000 runs
+638/magick/cipher.bc: 0
+Unique hashes: 1 of 10000 runs
+638/magick/hashmap.bc: 543
+Unique hashes: 1411 of 10000 runs
+638/magick/stream.bc: 1378
+Unique hashes: 10000 of 10000 runs
+638/magick/histogram.bc: 664
+Unique hashes: 5261 of 10000 runs
+638/magick/cache-view.bc: 108
+Unique hashes: 2 of 10000 runs
+638/magick/exception.bc: 96
+Unique hashes: 4 of 10000 runs
+638/magick/fx.bc: 2262
+Unique hashes: 9993 of 10000 runs
+638/magick/compress.bc: 341
+Unique hashes: 774 of 10000 runs
+638/coders/tga.bc: 957
+Unique hashes: 96 of 10000 runs

@@ -1,0 +1,377 @@
+Running benchmark 620 with Oz
+620/simulator/clinkedlist.bc: 256
+Unique hashes: 32 of 10000 runs
+620/simulator/cproperty.bc: 419
+Unique hashes: 298 of 10000 runs
+620/simulator/chistogram.bc: 256
+Unique hashes: 1130 of 10000 runs
+620/simulator/cdynamicmoduletype.bc: 86
+Unique hashes: 1 of 10000 runs
+620/simulator/eventlogwriter.bc: 92
+Unique hashes: 1 of 10000 runs
+620/simulator/intervals.bc: 119
+Unique hashes: 70 of 10000 runs
+620/simulator/indexedfileoutvectormgr.bc: 683
+Unique hashes: 731 of 10000 runs
+620/simulator/cpsquare.bc: 337
+Unique hashes: 9929 of 10000 runs
+620/simulator/nedexception.bc: 224
+Unique hashes: 1 of 10000 runs
+620/simulator/filereader.bc: 510
+Unique hashes: 565 of 10000 runs
+620/simulator/bigdecimal.bc: 198
+Unique hashes: 128 of 10000 runs
+620/simulator/cdynamicchanneltype.bc: 119
+Unique hashes: 1 of 10000 runs
+620/simulator/cdataratechannel.bc: 226
+Unique hashes: 6 of 10000 runs
+620/simulator/spec_qsort.bc: 1
+Unique hashes: 1 of 10000 runs
+620/simulator/matchexpression.tab.bc: 705
+Unique hashes: 64 of 10000 runs
+620/simulator/onstartup.bc: 4
+Unique hashes: 1 of 10000 runs
+620/simulator/displaystring.bc: 223
+Unique hashes: 9516 of 10000 runs
+620/simulator/saxparser_none.bc: 1
+Unique hashes: 1 of 10000 runs
+620/simulator/ccommbuffer.bc: 2
+Unique hashes: 1 of 10000 runs
+620/simulator/inifilereader.bc: 577
+Unique hashes: 8 of 10000 runs
+620/simulator/linetokenizer.bc: 44
+Unique hashes: 8 of 10000 runs
+620/simulator/cownedobject.bc: 69
+Unique hashes: 1 of 10000 runs
+620/simulator/cdoubleparimpl.bc: 85
+Unique hashes: 2 of 10000 runs
+620/simulator/fileglobber.bc: 63
+Unique hashes: 8 of 10000 runs
+620/simulator/coutvector.bc: 297
+Unique hashes: 2 of 10000 runs
+620/simulator/cmersennetwister.bc: 100
+Unique hashes: 2 of 10000 runs
+620/simulator/cgate.bc: 364
+Unique hashes: 160 of 10000 runs
+620/simulator/cvarhist.bc: 431
+Unique hashes: 9999 of 10000 runs
+620/simulator/cdensityestbase.bc: 385
+Unique hashes: 8 of 10000 runs
+620/simulator/nedtools.bc: 158
+Unique hashes: 4 of 10000 runs
+620/simulator/cmessageheap.bc: 242
+Unique hashes: 96 of 10000 runs
+620/simulator/matchableobject.bc: 111
+Unique hashes: 3 of 10000 runs
+620/simulator/cexception.bc: 447
+Unique hashes: 2 of 10000 runs
+620/simulator/startup.bc: 119
+Unique hashes: 1 of 10000 runs
+620/simulator/cstddev.bc: 370
+Unique hashes: 4 of 10000 runs
+620/simulator/matchablefield.bc: 53
+Unique hashes: 1 of 10000 runs
+620/simulator/nedutil.bc: 62
+Unique hashes: 1 of 10000 runs
+620/simulator/task.bc: 115
+Unique hashes: 12 of 10000 runs
+620/simulator/expression.tab.bc: 1210
+Unique hashes: 16 of 10000 runs
+620/simulator/nedresourcecache.bc: 989
+Unique hashes: 1120 of 10000 runs
+620/simulator/globals.bc: 0
+Unique hashes: 1 of 10000 runs
+620/simulator/cmodule.bc: 1114
+Unique hashes: 10000 of 10000 runs
+620/simulator/cmessage.bc: 655
+Unique hashes: 4711 of 10000 runs
+620/simulator/cpar.bc: 180
+Unique hashes: 1 of 10000 runs
+620/simulator/cmsgpar.bc: 970
+Unique hashes: 8519 of 10000 runs
+620/simulator/lex.msg2yy.bc: 1051
+Unique hashes: 10000 of 10000 runs
+620/simulator/lex.expressionyy.bc: 991
+Unique hashes: 10000 of 10000 runs
+620/simulator/fileoutvectormgr.bc: 346
+Unique hashes: 1 of 10000 runs
+620/simulator/commonutil.bc: 18
+Warning: only 9755 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9991 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+620/simulator/nedcrossvalidator.bc: 52
+Unique hashes: 1 of 10000 runs
+620/simulator/nedyylib.bc: 785
+Unique hashes: 9333 of 10000 runs
+620/simulator/stringutil.bc: 215
+Unique hashes: 2124 of 10000 runs
+620/simulator/enumstr.bc: 22
+Warning: only 9989 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 2 of 10000 runs
+620/simulator/cvisitor.bc: 0
+Unique hashes: 1 of 10000 runs
+620/simulator/scenario.bc: 375
+Unique hashes: 29 of 10000 runs
+620/simulator/distrib.bc: 63
+Unique hashes: 1 of 10000 runs
+620/simulator/ctopology.bc: 476
+Unique hashes: 7137 of 10000 runs
+620/simulator/cdisplaystring.bc: 303
+Unique hashes: 9925 of 10000 runs
+620/simulator/cstringpool.bc: 130
+Unique hashes: 1 of 10000 runs
+620/simulator/cmathfunction.bc: 229
+Unique hashes: 1 of 10000 runs
+620/simulator/envirbase.bc: 1203
+Unique hashes: 506 of 10000 runs
+620/simulator/cdynamicexpression.bc: 1749
+Unique hashes: 229 of 10000 runs
+620/simulator/stringpool.bc: 70
+Unique hashes: 1 of 10000 runs
+620/simulator/akoutvectormgr.bc: 0
+Unique hashes: 1 of 10000 runs
+620/simulator/cksplit.bc: 962
+Unique hashes: 10000 of 10000 runs
+620/simulator/args.bc: 347
+Unique hashes: 374 of 10000 runs
+620/simulator/ned2.tab.bc: 47421
+Unique hashes: 10000 of 10000 runs
+620/simulator/nedsaxhandler.bc: 50
+Unique hashes: 1 of 10000 runs
+620/simulator/cobject.bc: 123
+Unique hashes: 1 of 10000 runs
+620/simulator/cscheduler.bc: 161
+Unique hashes: 3 of 10000 runs
+620/simulator/cnednetworkbuilder.bc: 785
+Unique hashes: 1 of 10000 runs
+620/simulator/cdefaultlist.bc: 223
+Unique hashes: 48 of 10000 runs
+620/simulator/expr.tab.bc: 1540
+Unique hashes: 64 of 10000 runs
+620/simulator/runattributes.bc: 141
+Unique hashes: 2 of 10000 runs
+620/simulator/unitconversion.bc: 178
+Unique hashes: 16 of 10000 runs
+620/simulator/cdelaychannel.bc: 110
+Unique hashes: 1 of 10000 runs
+620/simulator/clcg32.bc: 68
+Unique hashes: 1 of 10000 runs
+620/simulator/cstlwatch.bc: 78
+Unique hashes: 1 of 10000 runs
+620/simulator/ccompoundmodule.bc: 130
+Unique hashes: 1 of 10000 runs
+620/simulator/neddtdvalidator.bc: 523
+Unique hashes: 1 of 10000 runs
+620/simulator/cboolparimpl.bc: 80
+Unique hashes: 2 of 10000 runs
+620/simulator/carray.bc: 352
+Unique hashes: 10000 of 10000 runs
+620/simulator/lex.ned2yy.bc: 1138
+Unique hashes: 10000 of 10000 runs
+620/simulator/sim_std_m.bc: 235
+Unique hashes: 2 of 10000 runs
+620/simulator/nedsupport.bc: 334
+Unique hashes: 6 of 10000 runs
+620/simulator/cneddeclaration.bc: 702
+Unique hashes: 16 of 10000 runs
+620/simulator/cnedfunction.bc: 322
+Unique hashes: 3 of 10000 runs
+620/simulator/cstringtokenizer.bc: 141
+Unique hashes: 8 of 10000 runs
+620/simulator/filesnapshotmgr.bc: 27
+Warning: only 9999 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+620/simulator/akaroarng.bc: 0
+Unique hashes: 1 of 10000 runs
+620/simulator/appreg.bc: 2
+Unique hashes: 1 of 10000 runs
+620/simulator/cparimpl.bc: 157
+Unique hashes: 1 of 10000 runs
+620/simulator/lcgrandom.bc: 2
+Unique hashes: 1 of 10000 runs
+620/simulator/nedparser.bc: 132
+Unique hashes: 1 of 10000 runs
+620/simulator/cxmlparimpl.bc: 90
+Unique hashes: 2 of 10000 runs
+620/simulator/cxmldoccache.bc: 170
+Unique hashes: 1 of 10000 runs
+620/simulator/simtime.bc: 211
+Unique hashes: 8 of 10000 runs
+620/simulator/nedelements.bc: 3456
+Unique hashes: 10000 of 10000 runs
+620/simulator/csimulation.bc: 539
+Unique hashes: 3023 of 10000 runs
+620/simulator/chasher.bc: 100
+Unique hashes: 2 of 10000 runs
+620/simulator/cenum.bc: 553
+Unique hashes: 1127 of 10000 runs
+620/simulator/cstatistic.bc: 171
+Unique hashes: 1 of 10000 runs
+620/simulator/ccoroutine.bc: 3
+Unique hashes: 1 of 10000 runs
+620/simulator/msg2.tab.bc: 4822
+Unique hashes: 4893 of 10000 runs
+620/simulator/nedxmlparser.bc: 0
+Unique hashes: 1 of 10000 runs
+620/simulator/matchexpressionlexer.bc: 22
+Warning: only 9989 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 2 of 10000 runs
+620/simulator/minixpath.bc: 181
+Unique hashes: 512 of 10000 runs
+620/simulator/ned1generator.bc: 637
+Unique hashes: 16 of 10000 runs
+620/simulator/valueiterator.bc: 278
+Unique hashes: 1529 of 10000 runs
+620/simulator/stringtokenizer.bc: 49
+Unique hashes: 2 of 10000 runs
+620/simulator/cchannel.bc: 158
+Unique hashes: 1 of 10000 runs
+620/simulator/neddtdvalidatorbase.bc: 50
+Unique hashes: 1 of 10000 runs
+620/simulator/fileutil.bc: 256
+Unique hashes: 12 of 10000 runs
+620/simulator/util.bc: 545
+Unique hashes: 275 of 10000 runs
+620/simulator/nedsyntaxvalidator.bc: 197
+Unique hashes: 1 of 10000 runs
+620/simulator/xmlgenerator.bc: 7
+Unique hashes: 1 of 10000 runs
+620/simulator/cdetect.bc: 717
+Unique hashes: 256 of 10000 runs
+620/simulator/matchexpression.bc: 104
+Unique hashes: 4 of 10000 runs
+620/simulator/patternmatcher.bc: 517
+Unique hashes: 5168 of 10000 runs
+620/simulator/sectionbasedconfig.bc: 2731
+Unique hashes: 6044 of 10000 runs
+620/simulator/cenvir.bc: 121
+Unique hashes: 1 of 10000 runs
+620/simulator/ccomponenttype.bc: 287
+Unique hashes: 8 of 10000 runs
+620/simulator/speedometer.bc: 77
+Unique hashes: 1 of 10000 runs
+620/simulator/cclassdescriptor.bc: 25
+Warning: only 9997 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 4 of 10000 runs
+620/simulator/fileoutscalarmgr.bc: 453
+Unique hashes: 1 of 10000 runs
+620/simulator/opp_run.bc: 0
+Unique hashes: 1 of 10000 runs
+620/simulator/cmdenv.bc: 527
+Unique hashes: 64 of 10000 runs
+620/simulator/ccomponent.bc: 242
+Unique hashes: 2 of 10000 runs
+620/simulator/cxmlelement.bc: 485
+Unique hashes: 4 of 10000 runs
+620/simulator/cstringparimpl.bc: 117
+Unique hashes: 2 of 10000 runs
+620/simulator/main.bc: 0
+Unique hashes: 1 of 10000 runs
+620/simulator/expression.bc: 1248
+Unique hashes: 16 of 10000 runs
+620/simulator/cwatch.bc: 27
+Warning: only 9999 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+620/simulator/lex.expryy.bc: 991
+Unique hashes: 10000 of 10000 runs
+620/simulator/cconfiguration.bc: 124
+Unique hashes: 1 of 10000 runs
+620/simulator/fnamelisttokenizer.bc: 43
+Unique hashes: 4 of 10000 runs
+620/simulator/nedfilebuffer.bc: 447
+Unique hashes: 9979 of 10000 runs
+620/simulator/cexpressionbuilder.bc: 687
+Unique hashes: 1 of 10000 runs
+620/simulator/nederror.bc: 103
+Unique hashes: 2 of 10000 runs
+620/simulator/cconfigoption.bc: 142
+Unique hashes: 1 of 10000 runs
+620/simulator/eventlogfilemgr.bc: 323
+Unique hashes: 16 of 10000 runs
+620/simulator/cfsm.bc: 118
+Unique hashes: 1 of 10000 runs
+620/simulator/ned2generator.bc: 602
+Unique hashes: 4 of 10000 runs
+620/simulator/cqueue.bc: 270
+Unique hashes: 16 of 10000 runs
+620/simulator/cnamedobject.bc: 75
+Unique hashes: 1 of 10000 runs
+620/simulator/objectprinter.bc: 315
+Unique hashes: 32 of 10000 runs
+620/simulator/lex.ned1yy.bc: 1051
+Unique hashes: 10000 of 10000 runs
+620/simulator/csimplemodule.bc: 764
+Unique hashes: 216 of 10000 runs
+620/simulator/nedelement.bc: 240
+Unique hashes: 4 of 10000 runs
+620/simulator/cproperties.bc: 267
+Unique hashes: 32 of 10000 runs
+620/simulator/errmsg.bc: 0
+Unique hashes: 1 of 10000 runs
+620/simulator/cnedloader.bc: 67
+Unique hashes: 2 of 10000 runs
+620/simulator/cpacketqueue.bc: 121
+Unique hashes: 1 of 10000 runs
+620/simulator/fsutils.bc: 236
+Unique hashes: 1 of 10000 runs
+620/simulator/exception.bc: 21
+Warning: only 9970 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9999 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+620/simulator/cparsimcomm.bc: 66
+Unique hashes: 1 of 10000 runs
+620/simulator/cregistrationlist.bc: 300
+Unique hashes: 2 of 10000 runs
+620/simulator/nedtypeinfo.bc: 381
+Unique hashes: 4 of 10000 runs
+620/simulator/cclassfactory.bc: 71
+Unique hashes: 1 of 10000 runs
+620/simulator/ned1.tab.bc: 8283
+Unique hashes: 1020 of 10000 runs
+620/simulator/nedvalidator.bc: 0
+Unique hashes: 1 of 10000 runs
+620/simulator/nedfunctions.bc: 467
+Unique hashes: 1 of 10000 runs
+620/simulator/clongparimpl.bc: 85
+Unique hashes: 2 of 10000 runs
+620/model/Ieee802Ctrl_m.bc: 164
+Unique hashes: 1 of 10000 runs
+620/model/EtherAppCli.bc: 228
+Unique hashes: 1 of 10000 runs
+620/model/MACRelayUnitNP.bc: 427
+Unique hashes: 4 of 10000 runs
+620/model/EtherEncap.bc: 180
+Unique hashes: 1 of 10000 runs
+620/model/MACRelayUnitPP.bc: 416
+Unique hashes: 4 of 10000 runs
+620/model/MACAddress.bc: 113
+Unique hashes: 1 of 10000 runs
+620/model/EtherMAC.bc: 777
+Unique hashes: 20 of 10000 runs
+620/model/EtherAppSrv.bc: 242
+Unique hashes: 1 of 10000 runs
+620/model/EtherFrame_m.bc: 162
+Unique hashes: 1 of 10000 runs
+620/model/EtherHub.bc: 131
+Unique hashes: 2 of 10000 runs
+620/model/EtherLLC.bc: 347
+Unique hashes: 8 of 10000 runs
+620/model/EtherMACBase.bc: 546
+Unique hashes: 258 of 10000 runs
+620/model/MACRelayUnitBase.bc: 405
+Unique hashes: 4 of 10000 runs
+620/model/EtherApp_m.bc: 14
+Warning: only 7511 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8768 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9325 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9596 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9764 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9849 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9907 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9938 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9959 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9973 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9982 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9990 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9997 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs

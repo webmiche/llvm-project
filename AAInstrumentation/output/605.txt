@@ -1,0 +1,50 @@
+Running benchmark 605 with Oz
+605/pflowup.bc: 6
+Unique hashes: 1 of 10000 runs
+605/treeup.bc: 159
+Unique hashes: 2 of 10000 runs
+605/pbeampp.bc: 175
+Unique hashes: 40 of 10000 runs
+605/pbla.bc: 51
+Unique hashes: 1 of 10000 runs
+605/mcf.bc: 13
+Warning: only 5030 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 5946 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6382 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6601 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6745 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6854 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6906 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6950 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6979 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6996 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7015 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7021 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7023 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7027 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7034 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7036 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7037 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7038 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7040 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7040 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+605/psimplex.bc: 367
+Unique hashes: 80 of 10000 runs
+605/readmin.bc: 620
+Unique hashes: 9682 of 10000 runs
+605/mcfutil.bc: 197
+Unique hashes: 485 of 10000 runs
+605/output.bc: 15
+Warning: only 8627 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9604 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9883 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9967 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9991 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+605/implicit.bc: 1165
+Unique hashes: 9918 of 10000 runs
+605/pstart.bc: 323
+Unique hashes: 6 of 10000 runs
+605/spec_qsort/spec_qsort.bc: 3
+Unique hashes: 1 of 10000 runs

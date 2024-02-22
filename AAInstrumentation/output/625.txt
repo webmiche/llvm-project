@@ -1,0 +1,78 @@
+Running benchmark 625 with Oz
+625/x264_src/x264.bc: 4512
+Unique hashes: 6424 of 10000 runs
+625/x264_src/extras/getopt.bc: 0
+Unique hashes: 1 of 10000 runs
+625/x264_src/output/matroska_ebml.bc: 285
+Unique hashes: 4677 of 10000 runs
+625/x264_src/output/raw.bc: 7
+Unique hashes: 1 of 10000 runs
+625/x264_src/output/matroska.bc: 351
+Unique hashes: 9 of 10000 runs
+625/x264_src/output/flv.bc: 148
+Unique hashes: 12 of 10000 runs
+625/x264_src/output/flv_bytestream.bc: 25
+Warning: only 9997 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 4 of 10000 runs
+625/x264_src/common/common.bc: 7169
+Unique hashes: 2 of 10000 runs
+625/x264_src/common/set.bc: 1053
+Unique hashes: 6848 of 10000 runs
+625/x264_src/common/mdate.bc: 0
+Unique hashes: 1 of 10000 runs
+625/x264_src/common/mc.bc: 771
+Unique hashes: 5 of 10000 runs
+625/x264_src/common/frame.bc: 590
+Unique hashes: 32 of 10000 runs
+625/x264_src/common/mvpred.bc: 3742
+Unique hashes: 8364 of 10000 runs
+625/x264_src/common/dct.bc: 1061
+Unique hashes: 135 of 10000 runs
+625/x264_src/common/quant.bc: 257
+Unique hashes: 1 of 10000 runs
+625/x264_src/common/pixel.bc: 3351
+Unique hashes: 1 of 10000 runs
+625/x264_src/common/predict.bc: 10498
+Unique hashes: 1 of 10000 runs
+625/x264_src/common/cpu.bc: 0
+Unique hashes: 1 of 10000 runs
+625/x264_src/common/deblock.bc: 535
+Unique hashes: 136 of 10000 runs
+625/x264_src/common/cabac.bc: 72
+Unique hashes: 4 of 10000 runs
+625/x264_src/common/rectangle.bc: 16
+Warning: only 9276 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9980 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9998 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+625/x264_src/common/vlc.bc: 9
+Unique hashes: 1 of 10000 runs
+625/x264_src/common/macroblock.bc: 5707
+Unique hashes: 10000 of 10000 runs
+625/x264_src/input/yuv.bc: 79
+Unique hashes: 4 of 10000 runs
+625/x264_src/input/y4m.bc: 304
+Unique hashes: 1 of 10000 runs
+625/x264_src/input/thread.bc: 112
+Unique hashes: 40 of 10000 runs
+625/x264_src/input/timecode.bc: 1720
+Unique hashes: 9952 of 10000 runs
+625/x264_src/encoder/set.bc: 3394
+Unique hashes: 9947 of 10000 runs
+625/x264_src/encoder/cavlc.bc: 1994
+Unique hashes: 16 of 10000 runs
+625/x264_src/encoder/lookahead.bc: 155
+Unique hashes: 40 of 10000 runs
+625/x264_src/encoder/encoder.bc: 30650
+Unique hashes: 10000 of 10000 runs
+625/x264_src/encoder/me.bc: 6429
+Unique hashes: 10000 of 10000 runs
+625/x264_src/encoder/analyse.bc: 71414
+Unique hashes: 10000 of 10000 runs
+625/x264_src/encoder/ratecontrol.bc: 11965
+Unique hashes: 10000 of 10000 runs
+625/x264_src/encoder/cabac.bc: 2459
+Unique hashes: 32 of 10000 runs
+625/x264_src/encoder/macroblock.bc: 3939
+Unique hashes: 9718 of 10000 runs
