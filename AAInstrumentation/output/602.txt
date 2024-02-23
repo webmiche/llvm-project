@@ -1108,3 +1108,55 @@ Number of candidates: 16531
 with size: 16399 of 16531
 ==== Next file: 602/loop-unroll.bc
 Number of candidates: 3532
+with size: 3508 of 3532
+==== Next file: 602/cfgloopmanip.bc
+Number of candidates: 2450
+with size: 2294 of 2450
+==== Next file: 602/store-motion.bc
+Number of candidates: 5137
+with size: 5126 of 5137
+==== Next file: 602/xstrerror.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 602/strsignal.bc
+Number of candidates: 2028
+with size: 1904 of 2028
+==== Next file: 602/dwarf2out.bc
+Number of candidates: 25830
+with size: 24929 of 25830
+==== Next file: 602/c-pragma.bc
+Number of candidates: 497
+with size: 487 of 497
+==== Next file: 602/cfgloop.bc
+Number of candidates: 4733
+with size: 4631 of 4733
+==== Next file: 602/xstrdup.bc
+Number of candidates: 10
+with size: 10 of 10
+==== Next file: 602/bitmap.bc
+Number of candidates: 4563
+with size: 4484 of 4563
+==== Next file: 602/caller-save.bc
+Number of candidates: 3637
+with size: 3586 of 3637
+==== Next file: 602/tree-vect-generic.bc
+Number of candidates: 665
+with size: 656 of 665
+==== Next file: 602/sel-sched-ir.bc
+Number of candidates: 16749
+with size: 16429 of 16749
+==== Next file: 602/graphite-sese-to-poly.bc
+Number of candidates: 12
+with size: 12 of 12
+==== Next file: 602/toplev.bc
+Number of candidates: 3989
+with size: 3964 of 3989
+==== Next file: 602/tree-scalar-evolution.bc
+Number of candidates: 1958
+with size: 1901 of 1958
+==== Next file: 602/c-common.bc
+Number of candidates: 25393
+with size: 25261 of 25393
+==== Next file: 602/spec_qsort/spec_qsort.bc
+Number of candidates: 131
+with size: 131 of 131
