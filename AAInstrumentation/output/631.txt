@@ -1,0 +1,61 @@
+Running benchmark 631 with O3
+==== Next file: 631/make.bc
+Number of candidates: 3102
+with size: 2979 of 3102
+==== Next file: 631/epd.bc
+Number of candidates: 500
+with size: 499 of 500
+==== Next file: 631/generate.bc
+Number of candidates: 2452
+with size: 2404 of 2452
+==== Next file: 631/board.bc
+Number of candidates: 16
+with size: 16 of 16
+==== Next file: 631/initp.bc
+Number of candidates: 86
+with size: 86 of 86
+==== Next file: 631/bitboard.bc
+Number of candidates: 11087
+with size: 10323 of 11087
+==== Next file: 631/neval.bc
+Number of candidates: 3342
+with size: 3334 of 3342
+==== Next file: 631/search.bc
+Number of candidates: 2540
+with size: 2437 of 2540
+==== Next file: 631/draw.bc
+Number of candidates: 106
+with size: 104 of 106
+==== Next file: 631/state.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 631/attacks.bc
+Number of candidates: 182
+with size: 182 of 182
+==== Next file: 631/sjeng.bc
+Number of candidates: 177
+with size: 177 of 177
+==== Next file: 631/moves.bc
+Number of candidates: 22
+with size: 22 of 22
+==== Next file: 631/pawn.bc
+Number of candidates: 1739
+with size: 1731 of 1739
+==== Next file: 631/endgame.bc
+Number of candidates: 5127
+with size: 5115 of 5127
+==== Next file: 631/bits.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 631/preproc.bc
+Number of candidates: 153
+with size: 153 of 153
+==== Next file: 631/utils.bc
+Number of candidates: 661
+with size: 626 of 661
+==== Next file: 631/see.bc
+Number of candidates: 337
+with size: 336 of 337
+==== Next file: 631/ttable.bc
+Number of candidates: 298
+with size: 277 of 298

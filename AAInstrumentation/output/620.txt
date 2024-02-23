@@ -1,0 +1,532 @@
+Running benchmark 620 with O3
+==== Next file: 620/simulator/clinkedlist.bc
+Number of candidates: 1051
+with size: 1040 of 1051
+==== Next file: 620/simulator/cproperty.bc
+Number of candidates: 1672
+with size: 1646 of 1672
+==== Next file: 620/simulator/chistogram.bc
+Number of candidates: 749
+with size: 730 of 749
+==== Next file: 620/simulator/cdynamicmoduletype.bc
+Number of candidates: 94
+with size: 94 of 94
+==== Next file: 620/simulator/eventlogwriter.bc
+Number of candidates: 381
+with size: 375 of 381
+==== Next file: 620/simulator/intervals.bc
+Number of candidates: 557
+with size: 545 of 557
+==== Next file: 620/simulator/indexedfileoutvectormgr.bc
+Number of candidates: 1418
+with size: 1401 of 1418
+==== Next file: 620/simulator/cpsquare.bc
+Number of candidates: 1281
+with size: 1186 of 1281
+==== Next file: 620/simulator/nedexception.bc
+Number of candidates: 481
+with size: 478 of 481
+==== Next file: 620/simulator/filereader.bc
+Number of candidates: 829
+with size: 805 of 829
+==== Next file: 620/simulator/bigdecimal.bc
+Number of candidates: 1444
+with size: 1423 of 1444
+==== Next file: 620/simulator/cdynamicchanneltype.bc
+Number of candidates: 365
+with size: 363 of 365
+==== Next file: 620/simulator/cdataratechannel.bc
+Number of candidates: 664
+with size: 653 of 664
+==== Next file: 620/simulator/spec_qsort.bc
+Number of candidates: 13
+with size: 13 of 13
+==== Next file: 620/simulator/matchexpression.tab.bc
+Number of candidates: 1119
+with size: 1116 of 1119
+==== Next file: 620/simulator/onstartup.bc
+Number of candidates: 5
+with size: 5 of 5
+==== Next file: 620/simulator/displaystring.bc
+Number of candidates: 632
+with size: 473 of 632
+==== Next file: 620/simulator/saxparser_none.bc
+Number of candidates: 1
+with size: 1 of 1
+==== Next file: 620/simulator/ccommbuffer.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 620/simulator/inifilereader.bc
+Number of candidates: 4065
+with size: 4052 of 4065
+==== Next file: 620/simulator/linetokenizer.bc
+Number of candidates: 52
+with size: 50 of 52
+==== Next file: 620/simulator/cownedobject.bc
+Number of candidates: 328
+with size: 326 of 328
+==== Next file: 620/simulator/cdoubleparimpl.bc
+Number of candidates: 371
+with size: 362 of 371
+==== Next file: 620/simulator/fileglobber.bc
+Number of candidates: 498
+with size: 490 of 498
+==== Next file: 620/simulator/coutvector.bc
+Number of candidates: 835
+with size: 829 of 835
+==== Next file: 620/simulator/cmersennetwister.bc
+Number of candidates: 632
+with size: 616 of 632
+==== Next file: 620/simulator/cgate.bc
+Number of candidates: 1037
+with size: 1027 of 1037
+==== Next file: 620/simulator/cvarhist.bc
+Number of candidates: 776
+with size: 716 of 776
+==== Next file: 620/simulator/cdensityestbase.bc
+Number of candidates: 1044
+with size: 1033 of 1044
+==== Next file: 620/simulator/nedtools.bc
+Number of candidates: 681
+with size: 681 of 681
+==== Next file: 620/simulator/cmessageheap.bc
+Number of candidates: 978
+with size: 948 of 978
+==== Next file: 620/simulator/matchableobject.bc
+Number of candidates: 153
+with size: 147 of 153
+==== Next file: 620/simulator/cexception.bc
+Number of candidates: 699
+with size: 696 of 699
+==== Next file: 620/simulator/startup.bc
+Number of candidates: 518
+with size: 516 of 518
+==== Next file: 620/simulator/cstddev.bc
+Number of candidates: 1573
+with size: 1542 of 1573
+==== Next file: 620/simulator/matchablefield.bc
+Number of candidates: 54
+with size: 54 of 54
+==== Next file: 620/simulator/nedutil.bc
+Number of candidates: 131
+with size: 131 of 131
+==== Next file: 620/simulator/task.bc
+Number of candidates: 153
+with size: 148 of 153
+==== Next file: 620/simulator/expression.tab.bc
+Number of candidates: 6775
+with size: 6765 of 6775
+==== Next file: 620/simulator/nedresourcecache.bc
+Number of candidates: 4431
+with size: 4374 of 4431
+==== Next file: 620/simulator/globals.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 620/simulator/cmodule.bc
+Number of candidates: 3521
+with size: 3216 of 3521
+==== Next file: 620/simulator/cmessage.bc
+Number of candidates: 1920
+with size: 1876 of 1920
+==== Next file: 620/simulator/cpar.bc
+Number of candidates: 693
+with size: 689 of 693
+==== Next file: 620/simulator/cmsgpar.bc
+Number of candidates: 2582
+with size: 2521 of 2582
+==== Next file: 620/simulator/lex.msg2yy.bc
+Number of candidates: 2300
+with size: 2091 of 2300
+==== Next file: 620/simulator/lex.expressionyy.bc
+Number of candidates: 2193
+with size: 2018 of 2193
+==== Next file: 620/simulator/fileoutvectormgr.bc
+Number of candidates: 1077
+with size: 1074 of 1077
+==== Next file: 620/simulator/commonutil.bc
+Number of candidates: 18
+with size: 18 of 18
+==== Next file: 620/simulator/nedcrossvalidator.bc
+Number of candidates: 107
+with size: 107 of 107
+==== Next file: 620/simulator/nedyylib.bc
+Number of candidates: 1414
+with size: 1282 of 1414
+==== Next file: 620/simulator/stringutil.bc
+Number of candidates: 690
+with size: 672 of 690
+==== Next file: 620/simulator/enumstr.bc
+Number of candidates: 28
+with size: 22 of 28
+==== Next file: 620/simulator/cvisitor.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 620/simulator/scenario.bc
+Number of candidates: 1453
+with size: 1424 of 1453
+==== Next file: 620/simulator/distrib.bc
+Number of candidates: 570
+with size: 568 of 570
+==== Next file: 620/simulator/ctopology.bc
+Number of candidates: 2084
+with size: 2047 of 2084
+==== Next file: 620/simulator/cdisplaystring.bc
+Number of candidates: 1113
+with size: 955 of 1113
+==== Next file: 620/simulator/cstringpool.bc
+Number of candidates: 231
+with size: 217 of 231
+==== Next file: 620/simulator/cmathfunction.bc
+Number of candidates: 740
+with size: 738 of 740
+==== Next file: 620/simulator/envirbase.bc
+Number of candidates: 2575
+with size: 2549 of 2575
+==== Next file: 620/simulator/cdynamicexpression.bc
+Number of candidates: 12861
+with size: 12811 of 12861
+==== Next file: 620/simulator/stringpool.bc
+Number of candidates: 92
+with size: 87 of 92
+==== Next file: 620/simulator/akoutvectormgr.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 620/simulator/cksplit.bc
+Number of candidates: 2187
+with size: 2040 of 2187
+==== Next file: 620/simulator/args.bc
+Number of candidates: 1983
+with size: 1957 of 1983
+==== Next file: 620/simulator/ned2.tab.bc
+Number of candidates: 45899
+with size: 44998 of 45899
+==== Next file: 620/simulator/nedsaxhandler.bc
+Number of candidates: 54
+with size: 54 of 54
+==== Next file: 620/simulator/cobject.bc
+Number of candidates: 415
+with size: 413 of 415
+==== Next file: 620/simulator/cscheduler.bc
+Number of candidates: 437
+with size: 435 of 437
+==== Next file: 620/simulator/cnednetworkbuilder.bc
+Number of candidates: 2237
+with size: 2210 of 2237
+==== Next file: 620/simulator/cdefaultlist.bc
+Number of candidates: 759
+with size: 733 of 759
+==== Next file: 620/simulator/expr.tab.bc
+Number of candidates: 7104
+with size: 7095 of 7104
+==== Next file: 620/simulator/runattributes.bc
+Number of candidates: 526
+with size: 520 of 526
+==== Next file: 620/simulator/unitconversion.bc
+Number of candidates: 607
+with size: 566 of 607
+==== Next file: 620/simulator/cdelaychannel.bc
+Number of candidates: 383
+with size: 378 of 383
+==== Next file: 620/simulator/clcg32.bc
+Number of candidates: 306
+with size: 304 of 306
+==== Next file: 620/simulator/cstlwatch.bc
+Number of candidates: 455
+with size: 455 of 455
+==== Next file: 620/simulator/ccompoundmodule.bc
+Number of candidates: 599
+with size: 597 of 599
+==== Next file: 620/simulator/neddtdvalidator.bc
+Number of candidates: 523
+with size: 523 of 523
+==== Next file: 620/simulator/cboolparimpl.bc
+Number of candidates: 349
+with size: 340 of 349
+==== Next file: 620/simulator/carray.bc
+Number of candidates: 992
+with size: 915 of 992
+==== Next file: 620/simulator/lex.ned2yy.bc
+Number of candidates: 2472
+with size: 2263 of 2472
+==== Next file: 620/simulator/sim_std_m.bc
+Number of candidates: 4013
+with size: 4013 of 4013
+==== Next file: 620/simulator/nedsupport.bc
+Number of candidates: 1270
+with size: 1265 of 1270
+==== Next file: 620/simulator/cneddeclaration.bc
+Number of candidates: 1790
+with size: 1774 of 1790
+==== Next file: 620/simulator/cnedfunction.bc
+Number of candidates: 1159
+with size: 1139 of 1159
+==== Next file: 620/simulator/cstringtokenizer.bc
+Number of candidates: 1081
+with size: 1031 of 1081
+==== Next file: 620/simulator/filesnapshotmgr.bc
+Number of candidates: 68
+with size: 68 of 68
+==== Next file: 620/simulator/akaroarng.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 620/simulator/appreg.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 620/simulator/cparimpl.bc
+Number of candidates: 694
+with size: 692 of 694
+==== Next file: 620/simulator/lcgrandom.bc
+Number of candidates: 4
+with size: 4 of 4
+==== Next file: 620/simulator/nedparser.bc
+Number of candidates: 603
+with size: 599 of 603
+==== Next file: 620/simulator/cxmlparimpl.bc
+Number of candidates: 501
+with size: 487 of 501
+==== Next file: 620/simulator/cxmldoccache.bc
+Number of candidates: 756
+with size: 747 of 756
+==== Next file: 620/simulator/simtime.bc
+Number of candidates: 1193
+with size: 1190 of 1193
+==== Next file: 620/simulator/nedelements.bc
+Number of candidates: 4228
+with size: 4017 of 4228
+==== Next file: 620/simulator/csimulation.bc
+Number of candidates: 1194
+with size: 1172 of 1194
+==== Next file: 620/simulator/chasher.bc
+Number of candidates: 364
+with size: 361 of 364
+==== Next file: 620/simulator/cenum.bc
+Number of candidates: 2342
+with size: 2298 of 2342
+==== Next file: 620/simulator/cstatistic.bc
+Number of candidates: 483
+with size: 480 of 483
+==== Next file: 620/simulator/ccoroutine.bc
+Number of candidates: 5
+with size: 5 of 5
+==== Next file: 620/simulator/msg2.tab.bc
+Number of candidates: 6084
+with size: 6070 of 6084
+==== Next file: 620/simulator/nedxmlparser.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 620/simulator/matchexpressionlexer.bc
+Number of candidates: 86
+with size: 82 of 86
+==== Next file: 620/simulator/minixpath.bc
+Number of candidates: 505
+with size: 495 of 505
+==== Next file: 620/simulator/ned1generator.bc
+Number of candidates: 1723
+with size: 1717 of 1723
+==== Next file: 620/simulator/valueiterator.bc
+Number of candidates: 1399
+with size: 1378 of 1399
+==== Next file: 620/simulator/stringtokenizer.bc
+Number of candidates: 530
+with size: 516 of 530
+==== Next file: 620/simulator/cchannel.bc
+Number of candidates: 671
+with size: 669 of 671
+==== Next file: 620/simulator/neddtdvalidatorbase.bc
+Number of candidates: 76
+with size: 76 of 76
+==== Next file: 620/simulator/fileutil.bc
+Number of candidates: 1410
+with size: 1359 of 1410
+==== Next file: 620/simulator/util.bc
+Number of candidates: 1752
+with size: 1708 of 1752
+==== Next file: 620/simulator/nedsyntaxvalidator.bc
+Number of candidates: 223
+with size: 223 of 223
+==== Next file: 620/simulator/xmlgenerator.bc
+Number of candidates: 46
+with size: 46 of 46
+==== Next file: 620/simulator/cdetect.bc
+Number of candidates: 997
+with size: 971 of 997
+==== Next file: 620/simulator/matchexpression.bc
+Number of candidates: 347
+with size: 339 of 347
+==== Next file: 620/simulator/patternmatcher.bc
+Number of candidates: 2475
+with size: 2413 of 2475
+==== Next file: 620/simulator/sectionbasedconfig.bc
+Number of candidates: 16936
+with size: 16652 of 16936
+==== Next file: 620/simulator/cenvir.bc
+Number of candidates: 456
+with size: 454 of 456
+==== Next file: 620/simulator/ccomponenttype.bc
+Number of candidates: 874
+with size: 864 of 874
+==== Next file: 620/simulator/speedometer.bc
+Number of candidates: 146
+with size: 142 of 146
+==== Next file: 620/simulator/cclassdescriptor.bc
+Number of candidates: 30
+with size: 28 of 30
+==== Next file: 620/simulator/fileoutscalarmgr.bc
+Number of candidates: 1117
+with size: 1115 of 1117
+==== Next file: 620/simulator/opp_run.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 620/simulator/cmdenv.bc
+Number of candidates: 2001
+with size: 1989 of 2001
+==== Next file: 620/simulator/ccomponent.bc
+Number of candidates: 567
+with size: 563 of 567
+==== Next file: 620/simulator/cxmlelement.bc
+Number of candidates: 2276
+with size: 2226 of 2276
+==== Next file: 620/simulator/cstringparimpl.bc
+Number of candidates: 487
+with size: 482 of 487
+==== Next file: 620/simulator/main.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 620/simulator/expression.bc
+Number of candidates: 9233
+with size: 9208 of 9233
+==== Next file: 620/simulator/cwatch.bc
+Number of candidates: 70
+with size: 70 of 70
+==== Next file: 620/simulator/lex.expryy.bc
+Number of candidates: 2152
+with size: 1977 of 2152
+==== Next file: 620/simulator/cconfiguration.bc
+Number of candidates: 1167
+with size: 1156 of 1167
+==== Next file: 620/simulator/fnamelisttokenizer.bc
+Number of candidates: 481
+with size: 474 of 481
+==== Next file: 620/simulator/nedfilebuffer.bc
+Number of candidates: 723
+with size: 670 of 723
+==== Next file: 620/simulator/cexpressionbuilder.bc
+Number of candidates: 939
+with size: 937 of 939
+==== Next file: 620/simulator/nederror.bc
+Number of candidates: 1569
+with size: 1551 of 1569
+==== Next file: 620/simulator/cconfigoption.bc
+Number of candidates: 440
+with size: 440 of 440
+==== Next file: 620/simulator/eventlogfilemgr.bc
+Number of candidates: 598
+with size: 594 of 598
+==== Next file: 620/simulator/cfsm.bc
+Number of candidates: 610
+with size: 608 of 610
+==== Next file: 620/simulator/ned2generator.bc
+Number of candidates: 1791
+with size: 1787 of 1791
+==== Next file: 620/simulator/cqueue.bc
+Number of candidates: 908
+with size: 898 of 908
+==== Next file: 620/simulator/cnamedobject.bc
+Number of candidates: 320
+with size: 318 of 320
+==== Next file: 620/simulator/objectprinter.bc
+Number of candidates: 1263
+with size: 1229 of 1263
+==== Next file: 620/simulator/lex.ned1yy.bc
+Number of candidates: 2300
+with size: 2091 of 2300
+==== Next file: 620/simulator/csimplemodule.bc
+Number of candidates: 1464
+with size: 1439 of 1464
+==== Next file: 620/simulator/nedelement.bc
+Number of candidates: 247
+with size: 243 of 247
+==== Next file: 620/simulator/cproperties.bc
+Number of candidates: 964
+with size: 943 of 964
+==== Next file: 620/simulator/errmsg.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 620/simulator/cnedloader.bc
+Number of candidates: 336
+with size: 330 of 336
+==== Next file: 620/simulator/cpacketqueue.bc
+Number of candidates: 609
+with size: 607 of 609
+==== Next file: 620/simulator/fsutils.bc
+Number of candidates: 968
+with size: 963 of 968
+==== Next file: 620/simulator/exception.bc
+Number of candidates: 23
+with size: 23 of 23
+==== Next file: 620/simulator/cparsimcomm.bc
+Number of candidates: 304
+with size: 302 of 304
+==== Next file: 620/simulator/cregistrationlist.bc
+Number of candidates: 1088
+with size: 1080 of 1088
+==== Next file: 620/simulator/nedtypeinfo.bc
+Number of candidates: 1979
+with size: 1955 of 1979
+==== Next file: 620/simulator/cclassfactory.bc
+Number of candidates: 383
+with size: 374 of 383
+==== Next file: 620/simulator/ned1.tab.bc
+Number of candidates: 8865
+with size: 8852 of 8865
+==== Next file: 620/simulator/nedvalidator.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 620/simulator/nedfunctions.bc
+Number of candidates: 2617
+with size: 2614 of 2617
+==== Next file: 620/simulator/clongparimpl.bc
+Number of candidates: 371
+with size: 362 of 371
+==== Next file: 620/model/Ieee802Ctrl_m.bc
+Number of candidates: 878
+with size: 840 of 878
+==== Next file: 620/model/EtherAppCli.bc
+Number of candidates: 759
+with size: 755 of 759
+==== Next file: 620/model/MACRelayUnitNP.bc
+Number of candidates: 1540
+with size: 1535 of 1540
+==== Next file: 620/model/EtherEncap.bc
+Number of candidates: 1004
+with size: 1002 of 1004
+==== Next file: 620/model/MACRelayUnitPP.bc
+Number of candidates: 1513
+with size: 1506 of 1513
+==== Next file: 620/model/MACAddress.bc
+Number of candidates: 417
+with size: 415 of 417
+==== Next file: 620/model/EtherMAC.bc
+Number of candidates: 1900
+with size: 1883 of 1900
+==== Next file: 620/model/EtherAppSrv.bc
+Number of candidates: 910
+with size: 908 of 910
+==== Next file: 620/model/EtherFrame_m.bc
+Number of candidates: 801
+with size: 795 of 801
+==== Next file: 620/model/EtherHub.bc
+Number of candidates: 572
+with size: 571 of 572
+==== Next file: 620/model/EtherLLC.bc
+Number of candidates: 1413
+with size: 1404 of 1413
+==== Next file: 620/model/EtherMACBase.bc
+Number of candidates: 1543
+with size: 1526 of 1543
+==== Next file: 620/model/MACRelayUnitBase.bc
+Number of candidates: 1201
+with size: 1191 of 1201
+==== Next file: 620/model/EtherApp_m.bc
+Number of candidates: 48
+with size: 36 of 48

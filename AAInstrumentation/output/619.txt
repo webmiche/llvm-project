@@ -1,0 +1,7 @@
+Running benchmark 619 with O3
+==== Next file: 619/lbm.bc
+Number of candidates: 2831
+with size: 2797 of 2831
+==== Next file: 619/main.bc
+Number of candidates: 125
+with size: 117 of 125

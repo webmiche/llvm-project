@@ -1,0 +1,292 @@
+Running benchmark 638 with O3
+==== Next file: 638/wand/magick-property.bc
+Number of candidates: 177
+with size: 175 of 177
+==== Next file: 638/wand/magick-image.bc
+Number of candidates: 1618
+with size: 1553 of 1618
+==== Next file: 638/wand/wand.bc
+Number of candidates: 10
+with size: 7 of 10
+==== Next file: 638/wand/pixel-iterator.bc
+Number of candidates: 353
+with size: 345 of 353
+==== Next file: 638/wand/pixel-wand.bc
+Number of candidates: 233
+with size: 215 of 233
+==== Next file: 638/wand/convert.bc
+Number of candidates: 3653
+with size: 3651 of 3653
+==== Next file: 638/wand/magick-wand.bc
+Number of candidates: 394
+with size: 393 of 394
+==== Next file: 638/wand/drawing-wand.bc
+Number of candidates: 3454
+with size: 3173 of 3454
+==== Next file: 638/wand/mogrify.bc
+Number of candidates: 4553
+with size: 4471 of 4553
+==== Next file: 638/filters/analyze.bc
+Number of candidates: 33
+with size: 32 of 33
+==== Next file: 638/utilities/convert.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 638/magick/composite.bc
+Number of candidates: 7497
+with size: 7380 of 7497
+==== Next file: 638/magick/log.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 638/magick/monitor.bc
+Number of candidates: 2
+with size: 2 of 2
+==== Next file: 638/magick/transform.bc
+Number of candidates: 1752
+with size: 1620 of 1752
+==== Next file: 638/magick/morphology.bc
+Number of candidates: 11173
+with size: 10527 of 11173
+==== Next file: 638/magick/semaphore.bc
+Number of candidates: 6
+with size: 5 of 6
+==== Next file: 638/magick/locale.bc
+Number of candidates: 128
+with size: 125 of 128
+==== Next file: 638/magick/paint.bc
+Number of candidates: 2279
+with size: 2086 of 2279
+==== Next file: 638/magick/mime.bc
+Number of candidates: 217
+with size: 214 of 217
+==== Next file: 638/magick/resource.bc
+Number of candidates: 60
+with size: 59 of 60
+==== Next file: 638/magick/token.bc
+Number of candidates: 1297
+with size: 1293 of 1297
+==== Next file: 638/magick/registry.bc
+Number of candidates: 25
+with size: 22 of 25
+==== Next file: 638/magick/layer.bc
+Number of candidates: 4250
+with size: 4048 of 4250
+==== Next file: 638/magick/segment.bc
+Number of candidates: 4697
+with size: 4556 of 4697
+==== Next file: 638/magick/quantize.bc
+Number of candidates: 12157
+with size: 11833 of 12157
+==== Next file: 638/magick/attribute.bc
+Number of candidates: 1089
+with size: 880 of 1089
+==== Next file: 638/magick/quantum-import.bc
+Number of candidates: 51293
+with size: 49596 of 51293
+==== Next file: 638/magick/enhance.bc
+Number of candidates: 9769
+with size: 9486 of 9769
+==== Next file: 638/magick/signature.bc
+Number of candidates: 1817
+with size: 1702 of 1817
+==== Next file: 638/magick/splay-tree.bc
+Number of candidates: 730
+with size: 693 of 730
+==== Next file: 638/magick/accelerate.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 638/magick/color.bc
+Number of candidates: 1861
+with size: 1736 of 1861
+==== Next file: 638/magick/threshold.bc
+Number of candidates: 2109
+with size: 1896 of 2109
+==== Next file: 638/magick/annotate.bc
+Number of candidates: 3957
+with size: 3922 of 3957
+==== Next file: 638/magick/client.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 638/magick/display.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 638/magick/distort.bc
+Number of candidates: 7264
+with size: 7032 of 7264
+==== Next file: 638/magick/property.bc
+Number of candidates: 3600
+with size: 3484 of 3600
+==== Next file: 638/magick/fourier.bc
+Number of candidates: 1075
+with size: 968 of 1075
+==== Next file: 638/magick/resize.bc
+Number of candidates: 4071
+with size: 3882 of 4071
+==== Next file: 638/magick/delegate.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 638/magick/string.bc
+Number of candidates: 503
+with size: 435 of 503
+==== Next file: 638/magick/quantum.bc
+Number of candidates: 132
+with size: 128 of 132
+==== Next file: 638/magick/option.bc
+Number of candidates: 58
+with size: 54 of 58
+==== Next file: 638/magick/utility.bc
+Number of candidates: 350
+with size: 327 of 350
+==== Next file: 638/magick/cache.bc
+Number of candidates: 5305
+with size: 5132 of 5305
+==== Next file: 638/magick/colorspace.bc
+Number of candidates: 3302
+with size: 2937 of 3302
+==== Next file: 638/magick/draw.bc
+Number of candidates: 12295
+with size: 11968 of 12295
+==== Next file: 638/magick/deprecate.bc
+Number of candidates: 5615
+with size: 4907 of 5615
+==== Next file: 638/magick/static.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 638/magick/quantum-export.bc
+Number of candidates: 26442
+with size: 25215 of 26442
+==== Next file: 638/magick/channel.bc
+Number of candidates: 500
+with size: 439 of 500
+==== Next file: 638/magick/random.bc
+Number of candidates: 114
+with size: 107 of 114
+==== Next file: 638/magick/colormap.bc
+Number of candidates: 279
+with size: 171 of 279
+==== Next file: 638/magick/identify.bc
+Number of candidates: 6697
+with size: 6641 of 6697
+==== Next file: 638/magick/type.bc
+Number of candidates: 165
+with size: 162 of 165
+==== Next file: 638/magick/profile.bc
+Number of candidates: 2989
+with size: 2979 of 2989
+==== Next file: 638/magick/feature.bc
+Number of candidates: 12512
+with size: 12067 of 12512
+==== Next file: 638/magick/blob.bc
+Number of candidates: 2433
+with size: 2352 of 2433
+==== Next file: 638/magick/gem.bc
+Number of candidates: 15
+with size: 15 of 15
+==== Next file: 638/magick/version.bc
+Number of candidates: 12
+with size: 12 of 12
+==== Next file: 638/magick/resample.bc
+Number of candidates: 1480
+with size: 1425 of 1480
+==== Next file: 638/magick/compare.bc
+Number of candidates: 43525
+with size: 42683 of 43525
+==== Next file: 638/magick/distribute-cache.bc
+Number of candidates: 44
+with size: 44 of 44
+==== Next file: 638/magick/decorate.bc
+Number of candidates: 13164
+with size: 10002 of 13164
+==== Next file: 638/magick/module.bc
+Number of candidates: 3
+with size: 3 of 3
+==== Next file: 638/magick/statistic.bc
+Number of candidates: 20391
+with size: 16808 of 20391
+==== Next file: 638/magick/memory.bc
+Number of candidates: 40
+with size: 38 of 40
+==== Next file: 638/magick/geometry.bc
+Number of candidates: 439
+with size: 395 of 439
+==== Next file: 638/magick/magick.bc
+Number of candidates: 111
+with size: 107 of 111
+==== Next file: 638/magick/shear.bc
+Number of candidates: 7293
+with size: 6534 of 7293
+==== Next file: 638/magick/image.bc
+Number of candidates: 3640
+with size: 3317 of 3640
+==== Next file: 638/magick/effect.bc
+Number of candidates: 3064
+with size: 2886 of 3064
+==== Next file: 638/magick/montage.bc
+Number of candidates: 1405
+with size: 1380 of 1405
+==== Next file: 638/magick/prepress.bc
+Number of candidates: 32
+with size: 32 of 32
+==== Next file: 638/magick/timer.bc
+Number of candidates: 209
+with size: 189 of 209
+==== Next file: 638/magick/list.bc
+Number of candidates: 304
+with size: 259 of 304
+==== Next file: 638/magick/xml-tree.bc
+Number of candidates: 962
+with size: 841 of 962
+==== Next file: 638/magick/matrix.bc
+Number of candidates: 630
+with size: 579 of 630
+==== Next file: 638/magick/pixel.bc
+Number of candidates: 22851
+with size: 21537 of 22851
+==== Next file: 638/magick/policy.bc
+Number of candidates: 138
+with size: 132 of 138
+==== Next file: 638/magick/constitute.bc
+Number of candidates: 306
+with size: 290 of 306
+==== Next file: 638/magick/animate.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 638/magick/coder.bc
+Number of candidates: 118
+with size: 116 of 118
+==== Next file: 638/magick/artifact.bc
+Number of candidates: 29
+with size: 27 of 29
+==== Next file: 638/magick/magic.bc
+Number of candidates: 288
+with size: 285 of 288
+==== Next file: 638/magick/configure.bc
+Number of candidates: 169
+with size: 167 of 169
+==== Next file: 638/magick/cipher.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 638/magick/hashmap.bc
+Number of candidates: 803
+with size: 775 of 803
+==== Next file: 638/magick/stream.bc
+Number of candidates: 1642
+with size: 1586 of 1642
+==== Next file: 638/magick/histogram.bc
+Number of candidates: 4308
+with size: 3930 of 4308
+==== Next file: 638/magick/cache-view.bc
+Number of candidates: 108
+with size: 107 of 108
+==== Next file: 638/magick/exception.bc
+Number of candidates: 102
+with size: 98 of 102
+==== Next file: 638/magick/fx.bc
+Number of candidates: 4481
+with size: 4021 of 4481
+==== Next file: 638/magick/compress.bc
+Number of candidates: 2341
+with size: 2291 of 2341
+==== Next file: 638/coders/tga.bc
+Number of candidates: 1103
+with size: 1080 of 1103

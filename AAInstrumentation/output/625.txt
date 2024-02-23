@@ -1,0 +1,109 @@
+Running benchmark 625 with O3
+==== Next file: 625/x264_src/x264.bc
+Number of candidates: 4657
+with size: 4647 of 4657
+==== Next file: 625/x264_src/extras/getopt.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 625/x264_src/output/matroska_ebml.bc
+Number of candidates: 1156
+with size: 1105 of 1156
+==== Next file: 625/x264_src/output/raw.bc
+Number of candidates: 7
+with size: 7 of 7
+==== Next file: 625/x264_src/output/matroska.bc
+Number of candidates: 356
+with size: 299 of 356
+==== Next file: 625/x264_src/output/flv.bc
+Number of candidates: 219
+with size: 211 of 219
+==== Next file: 625/x264_src/output/flv_bytestream.bc
+Number of candidates: 79
+with size: 69 of 79
+==== Next file: 625/x264_src/common/common.bc
+Number of candidates: 7748
+with size: 7570 of 7748
+==== Next file: 625/x264_src/common/set.bc
+Number of candidates: 6826
+with size: 6253 of 6826
+==== Next file: 625/x264_src/common/mdate.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 625/x264_src/common/mc.bc
+Number of candidates: 1684
+with size: 1663 of 1684
+==== Next file: 625/x264_src/common/frame.bc
+Number of candidates: 831
+with size: 804 of 831
+==== Next file: 625/x264_src/common/mvpred.bc
+Number of candidates: 8324
+with size: 8284 of 8324
+==== Next file: 625/x264_src/common/dct.bc
+Number of candidates: 18886
+with size: 18080 of 18886
+==== Next file: 625/x264_src/common/quant.bc
+Number of candidates: 3277
+with size: 3049 of 3277
+==== Next file: 625/x264_src/common/pixel.bc
+Number of candidates: 11075
+with size: 11060 of 11075
+==== Next file: 625/x264_src/common/predict.bc
+Number of candidates: 24546
+with size: 24006 of 24546
+==== Next file: 625/x264_src/common/cpu.bc
+Number of candidates: 0
+with size: 0 of 0
+==== Next file: 625/x264_src/common/deblock.bc
+Number of candidates: 1896
+with size: 1860 of 1896
+==== Next file: 625/x264_src/common/cabac.bc
+Number of candidates: 310
+with size: 296 of 310
+==== Next file: 625/x264_src/common/rectangle.bc
+Number of candidates: 74
+with size: 74 of 74
+==== Next file: 625/x264_src/common/vlc.bc
+Number of candidates: 9
+with size: 9 of 9
+==== Next file: 625/x264_src/common/macroblock.bc
+Number of candidates: 7200
+with size: 6733 of 7200
+==== Next file: 625/x264_src/input/yuv.bc
+Number of candidates: 78
+with size: 73 of 78
+==== Next file: 625/x264_src/input/y4m.bc
+Number of candidates: 281
+with size: 281 of 281
+==== Next file: 625/x264_src/input/thread.bc
+Number of candidates: 112
+with size: 101 of 112
+==== Next file: 625/x264_src/input/timecode.bc
+Number of candidates: 1649
+with size: 1638 of 1649
+==== Next file: 625/x264_src/encoder/set.bc
+Number of candidates: 31928
+with size: 31637 of 31928
+==== Next file: 625/x264_src/encoder/cavlc.bc
+Number of candidates: 9459
+with size: 9367 of 9459
+==== Next file: 625/x264_src/encoder/lookahead.bc
+Number of candidates: 189
+with size: 181 of 189
+==== Next file: 625/x264_src/encoder/encoder.bc
+Number of candidates: 67521
+with size: 66423 of 67521
+==== Next file: 625/x264_src/encoder/me.bc
+Number of candidates: 6978
+with size: 6791 of 6978
+==== Next file: 625/x264_src/encoder/analyse.bc
+Number of candidates: 118144
+with size: 116059 of 118144
+==== Next file: 625/x264_src/encoder/ratecontrol.bc
+Number of candidates: 14559
+with size: 14137 of 14559
+==== Next file: 625/x264_src/encoder/cabac.bc
+Number of candidates: 6184
+with size: 6177 of 6184
+==== Next file: 625/x264_src/encoder/macroblock.bc
+Number of candidates: 8498
+with size: 8217 of 8498
