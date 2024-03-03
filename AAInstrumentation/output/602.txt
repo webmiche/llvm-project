@@ -1,0 +1,999 @@
+Running benchmark 602 with Oz
+602/diagnostic.bc: 1068
+Unique hashes: 20 of 10000 runs
+602/decContext.bc: 63
+Unique hashes: 12 of 10000 runs
+602/alloca.bc: 25
+Warning: only 9997 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/tree-ssa-loop-unswitch.bc: 420
+Unique hashes: 1413 of 10000 runs
+602/reload.bc: 20627
+Unique hashes: 10000 of 10000 runs
+602/debug.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/tree-chrec.bc: 636
+Unique hashes: 9969 of 10000 runs
+602/cgraphunit.bc: 1594
+Unique hashes: 10000 of 10000 runs
+602/c-omp.bc: 143
+Unique hashes: 512 of 10000 runs
+602/make-relative-prefix.bc: 200
+Unique hashes: 56 of 10000 runs
+602/dce.bc: 1656
+Unique hashes: 8378 of 10000 runs
+602/regcprop.bc: 1635
+Unique hashes: 6949 of 10000 runs
+602/tree-ssa-structalias.bc: 12504
+Unique hashes: 10000 of 10000 runs
+602/tree-dfa.bc: 1140
+Unique hashes: 5321 of 10000 runs
+602/dbxout.bc: 2892
+Unique hashes: 10000 of 10000 runs
+602/sese.bc: 2507
+Unique hashes: 10000 of 10000 runs
+602/tree-ssa-ifcombine.bc: 1398
+Unique hashes: 9966 of 10000 runs
+602/options.bc: 84634
+Unique hashes: 1 of 10000 runs
+602/getopt1.bc: 10
+Unique hashes: 1 of 10000 runs
+602/graphite-poly.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/print-tree.bc: 483
+Unique hashes: 8473 of 10000 runs
+602/unlink-if-ordinary.bc: 10
+Unique hashes: 1 of 10000 runs
+602/double-int.bc: 119
+Unique hashes: 2 of 10000 runs
+602/tree-switch-conversion.bc: 2192
+Unique hashes: 422 of 10000 runs
+602/langhooks.bc: 93
+Unique hashes: 96 of 10000 runs
+602/tree-ssa-address.bc: 682
+Unique hashes: 9759 of 10000 runs
+602/tree-ssa-loop-ch.bc: 410
+Unique hashes: 36 of 10000 runs
+602/regex.bc: 2152
+Unique hashes: 10000 of 10000 runs
+602/tree-ssa.bc: 2729
+Unique hashes: 10000 of 10000 runs
+602/safe-ctype.bc: 2
+Unique hashes: 1 of 10000 runs
+602/partition.bc: 48
+Unique hashes: 3 of 10000 runs
+602/ipa-type-escape.bc: 1462
+Unique hashes: 328 of 10000 runs
+602/fwprop.bc: 1103
+Unique hashes: 10000 of 10000 runs
+602/expmed.bc: 3138
+Unique hashes: 10000 of 10000 runs
+602/tree-ssa-operands.bc: 3983
+Unique hashes: 10000 of 10000 runs
+602/tree-ssa-loop-im.bc: 6895
+Unique hashes: 9999 of 10000 runs
+602/c-lang.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/sdbout.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/c-decl.bc: 15566
+Unique hashes: 10000 of 10000 runs
+602/tree-ssanames.bc: 304
+Unique hashes: 2402 of 10000 runs
+602/insn-recog.bc: 21337
+Unique hashes: 10000 of 10000 runs
+602/tracer.bc: 923
+Unique hashes: 1369 of 10000 runs
+602/bb-reorder.bc: 10786
+Unique hashes: 10000 of 10000 runs
+602/cfgbuild.bc: 1303
+Unique hashes: 9986 of 10000 runs
+602/sel-sched.bc: 18329
+Unique hashes: 10000 of 10000 runs
+602/ira-emit.bc: 4086
+Unique hashes: 10000 of 10000 runs
+602/cpp_symtab.bc: 221
+Unique hashes: 240 of 10000 runs
+602/tree-ssa-uncprop.bc: 1204
+Unique hashes: 3318 of 10000 runs
+602/vasprintf.bc: 0
+Unique hashes: 1 of 10000 runs
+602/varray.bc: 23
+Warning: only 9994 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/calls.bc: 3042
+Unique hashes: 10000 of 10000 runs
+602/jump.bc: 458
+Unique hashes: 8405 of 10000 runs
+602/host-ieee64.bc: 0
+Unique hashes: 1 of 10000 runs
+602/varasm.bc: 4091
+Unique hashes: 10000 of 10000 runs
+602/fdmatch.bc: 16
+Warning: only 9276 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9980 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9998 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/c-parser.bc: 6632
+Unique hashes: 10000 of 10000 runs
+602/decNumber.bc: 8560
+Unique hashes: 10000 of 10000 runs
+602/fixed-value.bc: 1306
+Unique hashes: 10000 of 10000 runs
+602/tree-eh.bc: 5744
+Unique hashes: 10000 of 10000 runs
+602/tree-phinodes.bc: 758
+Unique hashes: 9081 of 10000 runs
+602/lto-cgraph.bc: 774
+Unique hashes: 1782 of 10000 runs
+602/tree-ssa-threadedge.bc: 1342
+Unique hashes: 6469 of 10000 runs
+602/tree-object-size.bc: 1771
+Unique hashes: 9256 of 10000 runs
+602/rtl-error.bc: 36
+Unique hashes: 1 of 10000 runs
+602/vmsdbgout.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/tree-ssa-threadupdate.bc: 2101
+Unique hashes: 9999 of 10000 runs
+602/ira-lives.bc: 5269
+Unique hashes: 10000 of 10000 runs
+602/resource.bc: 1187
+Unique hashes: 9999 of 10000 runs
+602/opts.bc: 4974
+Unique hashes: 6509 of 10000 runs
+602/function.bc: 5481
+Unique hashes: 10000 of 10000 runs
+602/cfgloopanal.bc: 557
+Unique hashes: 8214 of 10000 runs
+602/combine-stack-adj.bc: 447
+Unique hashes: 12 of 10000 runs
+602/var-tracking.bc: 14593
+Unique hashes: 10000 of 10000 runs
+602/md5.bc: 396
+Unique hashes: 813 of 10000 runs
+602/cgraphbuild.bc: 378
+Unique hashes: 20 of 10000 runs
+602/ira.bc: 13643
+Unique hashes: 10000 of 10000 runs
+602/stor-layout.bc: 1557
+Unique hashes: 10000 of 10000 runs
+602/cpp_directives.bc: 2777
+Unique hashes: 10000 of 10000 runs
+602/cp-demangle.bc: 4974
+Unique hashes: 10000 of 10000 runs
+602/genrtl.bc: 346
+Unique hashes: 1 of 10000 runs
+602/ipa-prop.bc: 2620
+Unique hashes: 10000 of 10000 runs
+602/tree-vect-stmts.bc: 6146
+Unique hashes: 10000 of 10000 runs
+602/tree-ssa-copyrename.bc: 382
+Unique hashes: 478 of 10000 runs
+602/c-semantics.bc: 63
+Unique hashes: 1 of 10000 runs
+602/tree-ssa-math-opts.bc: 2556
+Unique hashes: 10000 of 10000 runs
+602/pointer-set.bc: 125
+Unique hashes: 7400 of 10000 runs
+602/gimple.bc: 8384
+Unique hashes: 10000 of 10000 runs
+602/stub-objc.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/tree-loop-distribution.bc: 7117
+Unique hashes: 10000 of 10000 runs
+602/cse.bc: 14307
+Unique hashes: 10000 of 10000 runs
+602/tree-outof-ssa.bc: 5397
+Unique hashes: 10000 of 10000 runs
+602/coverage.bc: 2267
+Unique hashes: 9973 of 10000 runs
+602/sort.bc: 246
+Unique hashes: 256 of 10000 runs
+602/rtlanal.bc: 1191
+Unique hashes: 10000 of 10000 runs
+602/cpp_line-map.bc: 390
+Unique hashes: 80 of 10000 runs
+602/tree-ssa-live.bc: 2016
+Unique hashes: 9994 of 10000 runs
+602/lcm.bc: 1273
+Unique hashes: 1046 of 10000 runs
+602/tree-loop-linear.bc: 1321
+Unique hashes: 840 of 10000 runs
+602/filename_cmp.bc: 2
+Unique hashes: 1 of 10000 runs
+602/tree-iterator.bc: 117
+Unique hashes: 48 of 10000 runs
+602/hashtab.bc: 670
+Unique hashes: 144 of 10000 runs
+602/getopt.bc: 10
+Unique hashes: 1 of 10000 runs
+602/ifcvt.bc: 6113
+Unique hashes: 10000 of 10000 runs
+602/make-temp-file.bc: 16
+Warning: only 9276 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9980 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9998 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 2 of 10000 runs
+602/reorg.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/cgraph.bc: 2676
+Unique hashes: 10000 of 10000 runs
+602/c-cppbuiltin.bc: 832
+Unique hashes: 16 of 10000 runs
+602/modulo-sched.bc: 6017
+Unique hashes: 10000 of 10000 runs
+602/tree-vect-data-refs.bc: 3606
+Unique hashes: 10000 of 10000 runs
+602/lto-symtab.bc: 543
+Unique hashes: 9986 of 10000 runs
+602/tree-ssa-loop-niter.bc: 3549
+Unique hashes: 9983 of 10000 runs
+602/tree-ssa-loop.bc: 98
+Unique hashes: 1 of 10000 runs
+602/reg-stack.bc: 6534
+Unique hashes: 10000 of 10000 runs
+602/loop-init.bc: 272
+Unique hashes: 207 of 10000 runs
+602/dse.bc: 8965
+Unique hashes: 10000 of 10000 runs
+602/rtlhooks.bc: 16
+Warning: only 9276 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9980 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9998 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 2 of 10000 runs
+602/cpp_traditional.bc: 4113
+Unique hashes: 10000 of 10000 runs
+602/tree-mudflap.bc: 1878
+Unique hashes: 451 of 10000 runs
+602/sched-vis.bc: 896
+Unique hashes: 1897 of 10000 runs
+602/params.bc: 22
+Warning: only 9989 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 4 of 10000 runs
+602/host-linux.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/gimplify.bc: 5932
+Unique hashes: 10000 of 10000 runs
+602/postreload-gcse.bc: 5278
+Unique hashes: 10000 of 10000 runs
+602/crc32.bc: 13
+Warning: only 5765 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6748 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7211 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7488 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7668 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7801 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7965 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8004 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8047 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8080 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8105 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8125 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8134 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8149 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8162 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8165 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8170 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8173 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8176 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8178 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8184 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8186 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+602/gimple-low.bc: 747
+Unique hashes: 9921 of 10000 runs
+602/sbitmap.bc: 947
+Unique hashes: 10000 of 10000 runs
+602/regmove.bc: 2451
+Unique hashes: 9991 of 10000 runs
+602/insn-attrtab.bc: 215
+Unique hashes: 32 of 10000 runs
+602/splay-tree.bc: 321
+Unique hashes: 253 of 10000 runs
+602/ipa-reference.bc: 1840
+Unique hashes: 9991 of 10000 runs
+602/tree-ssa-loop-manip.bc: 2111
+Unique hashes: 9999 of 10000 runs
+602/cfgcleanup.bc: 6810
+Unique hashes: 10000 of 10000 runs
+602/stringpool.bc: 73
+Unique hashes: 2018 of 10000 runs
+602/cpp_lex.bc: 6204
+Unique hashes: 10000 of 10000 runs
+602/tree-ssa-loop-ivopts.bc: 15047
+Unique hashes: 10000 of 10000 runs
+602/omega.bc: 18159
+Unique hashes: 10000 of 10000 runs
+602/objalloc.bc: 70
+Unique hashes: 24 of 10000 runs
+602/targhooks.bc: 67
+Unique hashes: 22 of 10000 runs
+602/ira-build.bc: 10923
+Unique hashes: 10000 of 10000 runs
+602/gimple-pretty-print.bc: 1140
+Unique hashes: 3706 of 10000 runs
+602/optabs.bc: 37369
+Unique hashes: 10000 of 10000 runs
+602/auto-inc-dec.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/attribs.bc: 624
+Unique hashes: 8474 of 10000 runs
+602/dominance.bc: 3400
+Unique hashes: 10000 of 10000 runs
+602/tree-vect-slp.bc: 3147
+Unique hashes: 10000 of 10000 runs
+602/mcf.bc: 8609
+Unique hashes: 10000 of 10000 runs
+602/sparseset.bc: 1763
+Unique hashes: 10000 of 10000 runs
+602/cpp_init.bc: 1237
+Unique hashes: 86 of 10000 runs
+602/tree-sra.bc: 9185
+Unique hashes: 10000 of 10000 runs
+602/tree-ssa-sink.bc: 1437
+Unique hashes: 2703 of 10000 runs
+602/insn-peep.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/c-convert.bc: 42
+Unique hashes: 2 of 10000 runs
+602/mode-switching.bc: 2398
+Unique hashes: 6667 of 10000 runs
+602/lrealpath.bc: 10
+Unique hashes: 1 of 10000 runs
+602/dojump.bc: 225
+Unique hashes: 12 of 10000 runs
+602/lambda-mat.bc: 508
+Unique hashes: 9999 of 10000 runs
+602/insn-opinit.bc: 11540
+Unique hashes: 10000 of 10000 runs
+602/fold-const.bc: 15335
+Unique hashes: 10000 of 10000 runs
+602/tree-vrp.bc: 15783
+Unique hashes: 10000 of 10000 runs
+602/loop-doloop.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/tree-ssa-propagate.bc: 2076
+Unique hashes: 9984 of 10000 runs
+602/cfghooks.bc: 1237
+Unique hashes: 10000 of 10000 runs
+602/decimal64.bc: 414
+Unique hashes: 8325 of 10000 runs
+602/pretty-print.bc: 1849
+Unique hashes: 10000 of 10000 runs
+602/insn-modes.bc: 30
+Unique hashes: 3 of 10000 runs
+602/cppdefault.bc: 14
+Warning: only 7514 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8769 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9327 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9599 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9765 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9849 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9908 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9939 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9958 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9973 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9984 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9990 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9999 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 2 of 10000 runs
+602/tree-ssa-dse.bc: 846
+Unique hashes: 4790 of 10000 runs
+602/lto-section-out.bc: 884
+Unique hashes: 2046 of 10000 runs
+602/graphite-ppl.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/fopen_unlocked.bc: 10
+Unique hashes: 1 of 10000 runs
+602/tree-tailcall.bc: 3125
+Unique hashes: 9776 of 10000 runs
+602/tree-vect-loop.bc: 4485
+Unique hashes: 10000 of 10000 runs
+602/tree-vect-patterns.bc: 716
+Unique hashes: 1530 of 10000 runs
+602/reload1.bc: 38216
+Unique hashes: 10000 of 10000 runs
+602/graphite-dependences.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/graphite-clast-to-gimple.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/intl.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/tree-if-conv.bc: 3057
+Unique hashes: 3069 of 10000 runs
+602/value-prof.bc: 2889
+Unique hashes: 5835 of 10000 runs
+602/stmt.bc: 2069
+Unique hashes: 10000 of 10000 runs
+602/domwalk.bc: 200
+Unique hashes: 32 of 10000 runs
+602/alias.bc: 981
+Unique hashes: 10000 of 10000 runs
+602/tree-data-ref.bc: 10426
+Unique hashes: 10000 of 10000 runs
+602/emit-rtl.bc: 5209
+Unique hashes: 10000 of 10000 runs
+602/haifa-sched.bc: 8937
+Unique hashes: 10000 of 10000 runs
+602/graph.bc: 208
+Unique hashes: 64 of 10000 runs
+602/tree-nrv.bc: 674
+Unique hashes: 669 of 10000 runs
+602/sha1.bc: 593
+Unique hashes: 9930 of 10000 runs
+602/final.bc: 2998
+Unique hashes: 10000 of 10000 runs
+602/getruntime.bc: 16
+Warning: only 9276 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9980 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9998 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/tree-ssa-alias.bc: 1717
+Unique hashes: 9960 of 10000 runs
+602/gimple-iterator.bc: 897
+Unique hashes: 9952 of 10000 runs
+602/tree-call-cdce.bc: 1318
+Unique hashes: 2588 of 10000 runs
+602/ira-conflicts.bc: 2872
+Unique hashes: 10000 of 10000 runs
+602/tree-stdarg.bc: 2787
+Unique hashes: 9984 of 10000 runs
+602/tree-affine.bc: 794
+Unique hashes: 9837 of 10000 runs
+602/ipa-cp.bc: 2434
+Unique hashes: 6131 of 10000 runs
+602/lto-opts.bc: 526
+Unique hashes: 64 of 10000 runs
+602/loop-invariant.bc: 7747
+Unique hashes: 10000 of 10000 runs
+602/xmalloc.bc: 24
+Warning: only 9996 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/xstrndup.bc: 10
+Unique hashes: 1 of 10000 runs
+602/lambda-code.bc: 8958
+Unique hashes: 10000 of 10000 runs
+602/ipa.bc: 630
+Unique hashes: 9828 of 10000 runs
+602/cfganal.bc: 2610
+Unique hashes: 10000 of 10000 runs
+602/physmem.bc: 10
+Unique hashes: 1 of 10000 runs
+602/insn-emit.bc: 5759
+Unique hashes: 10000 of 10000 runs
+602/lower-subreg.bc: 891
+Unique hashes: 9851 of 10000 runs
+602/cfg.bc: 1540
+Unique hashes: 10000 of 10000 runs
+602/c-typeck.bc: 10095
+Unique hashes: 10000 of 10000 runs
+602/tree-cfgcleanup.bc: 2083
+Unique hashes: 10000 of 10000 runs
+602/concat.bc: 87
+Unique hashes: 4344 of 10000 runs
+602/cfgexpand.bc: 7001
+Unique hashes: 10000 of 10000 runs
+602/graphite-blocking.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/tree-predcom.bc: 9201
+Unique hashes: 10000 of 10000 runs
+602/fibheap.bc: 1031
+Unique hashes: 3282 of 10000 runs
+602/cpp_identifiers.bc: 76
+Unique hashes: 1248 of 10000 runs
+602/c-pretty-print.bc: 986
+Unique hashes: 774 of 10000 runs
+602/dyn-string.bc: 174
+Unique hashes: 288 of 10000 runs
+602/tree-inline.bc: 10462
+Unique hashes: 10000 of 10000 runs
+602/tree-ssa-phiprop.bc: 1346
+Unique hashes: 9992 of 10000 runs
+602/cpp_files.bc: 2328
+Unique hashes: 9996 of 10000 runs
+602/insn-extract.bc: 2407
+Unique hashes: 2 of 10000 runs
+602/lto-streamer-in.bc: 2833
+Unique hashes: 9921 of 10000 runs
+602/timevar.bc: 12035
+Unique hashes: 415 of 10000 runs
+602/profile.bc: 11914
+Unique hashes: 10000 of 10000 runs
+602/sched-deps.bc: 7911
+Unique hashes: 10000 of 10000 runs
+602/mkstemps.bc: 116
+Unique hashes: 1 of 10000 runs
+602/tree-cfg.bc: 14095
+Unique hashes: 10000 of 10000 runs
+602/explow.bc: 269
+Unique hashes: 3331 of 10000 runs
+602/print-rtl.bc: 487
+Unique hashes: 384 of 10000 runs
+602/tree-ssa-ter.bc: 2637
+Unique hashes: 1739 of 10000 runs
+602/spaces.bc: 21
+Warning: only 9976 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 40 of 10000 runs
+602/tree-complex.bc: 1779
+Unique hashes: 7428 of 10000 runs
+602/i386-c.bc: 78
+Unique hashes: 1 of 10000 runs
+602/cpp_mkdeps.bc: 147
+Unique hashes: 765 of 10000 runs
+602/convert.bc: 613
+Unique hashes: 853 of 10000 runs
+602/insn-automata.bc: 3065
+Unique hashes: 1249 of 10000 runs
+602/c-pch.bc: 296
+Unique hashes: 16 of 10000 runs
+602/reginfo.bc: 11212
+Unique hashes: 10000 of 10000 runs
+602/gtype-desc.bc: 3458
+Unique hashes: 10000 of 10000 runs
+602/bid2dpd_dpd2bid.bc: 101
+Unique hashes: 1 of 10000 runs
+602/plugin.bc: 173
+Unique hashes: 2028 of 10000 runs
+602/decimal128.bc: 406
+Unique hashes: 1936 of 10000 runs
+602/lto-wpa-fixup.bc: 103
+Unique hashes: 8 of 10000 runs
+602/cfgrtl.bc: 2818
+Unique hashes: 10000 of 10000 runs
+602/dbgcnt.bc: 76
+Unique hashes: 2 of 10000 runs
+602/c-objc-common.bc: 49
+Unique hashes: 1 of 10000 runs
+602/varpool.bc: 414
+Unique hashes: 3946 of 10000 runs
+602/insn-output.bc: 213
+Unique hashes: 4 of 10000 runs
+602/tree-ssa-ccp.bc: 2278
+Unique hashes: 10000 of 10000 runs
+602/graphite-interchange.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/cpp_charset.bc: 1562
+Unique hashes: 6338 of 10000 runs
+602/tree-ssa-coalesce.bc: 3139
+Unique hashes: 9654 of 10000 runs
+602/regrename.bc: 3447
+Unique hashes: 10000 of 10000 runs
+602/hex.bc: 2
+Unique hashes: 1 of 10000 runs
+602/version.bc: 0
+Unique hashes: 1 of 10000 runs
+602/ipa-utils.bc: 428
+Unique hashes: 988 of 10000 runs
+602/ggc-page.bc: 5350
+Unique hashes: 9687 of 10000 runs
+602/strerror.bc: 346
+Unique hashes: 213 of 10000 runs
+602/lists.bc: 61
+Unique hashes: 2 of 10000 runs
+602/xmemdup.bc: 10
+Unique hashes: 1 of 10000 runs
+602/combine.bc: 13121
+Unique hashes: 10000 of 10000 runs
+602/ira-costs.bc: 4538
+Unique hashes: 10000 of 10000 runs
+602/df-problems.bc: 6471
+Unique hashes: 10000 of 10000 runs
+602/tree-ssa-copy.bc: 1269
+Unique hashes: 7504 of 10000 runs
+602/tree-ssa-dom.bc: 5270
+Unique hashes: 10000 of 10000 runs
+602/sreal.bc: 117
+Unique hashes: 4841 of 10000 runs
+602/tree-vectorizer.bc: 302
+Unique hashes: 212 of 10000 runs
+602/recog.bc: 2678
+Unique hashes: 10000 of 10000 runs
+602/decimal32.bc: 146
+Unique hashes: 755 of 10000 runs
+602/lto-section-in.bc: 99
+Unique hashes: 36 of 10000 runs
+602/tree-pretty-print.bc: 385
+Unique hashes: 861 of 10000 runs
+602/init-regs.bc: 307
+Unique hashes: 1 of 10000 runs
+602/expr.bc: 5308
+Unique hashes: 10000 of 10000 runs
+602/lambda-trans.bc: 43
+Unique hashes: 1 of 10000 runs
+602/tree-optimize.bc: 272
+Unique hashes: 75 of 10000 runs
+602/tree-nested.bc: 2429
+Unique hashes: 9943 of 10000 runs
+602/cplus-dem.bc: 7135
+Unique hashes: 10000 of 10000 runs
+602/stack-ptr-mod.bc: 122
+Unique hashes: 8 of 10000 runs
+602/cpp_macro.bc: 3363
+Unique hashes: 10000 of 10000 runs
+602/obstack.bc: 10
+Unique hashes: 1 of 10000 runs
+602/cp-demint.bc: 46
+Unique hashes: 3 of 10000 runs
+602/bt-load.bc: 10712
+Unique hashes: 9995 of 10000 runs
+602/sched-ebb.bc: 1364
+Unique hashes: 1315 of 10000 runs
+602/df-scan.bc: 5736
+Unique hashes: 10000 of 10000 runs
+602/tree-ssa-loop-prefetch.bc: 4192
+Unique hashes: 9592 of 10000 runs
+602/prefix.bc: 22
+Warning: only 9989 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 6 of 10000 runs
+602/tree-ssa-sccvn.bc: 5801
+Unique hashes: 10000 of 10000 runs
+602/regstat.bc: 1802
+Unique hashes: 9974 of 10000 runs
+602/graphite.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/mini-gmp.bc: 5734
+Unique hashes: 10000 of 10000 runs
+602/df-core.bc: 1752
+Unique hashes: 10000 of 10000 runs
+602/tree-ssa-pre.bc: 10336
+Unique hashes: 10000 of 10000 runs
+602/tree-ssa-loop-ivcanon.bc: 1552
+Unique hashes: 5791 of 10000 runs
+602/cfglayout.bc: 1662
+Unique hashes: 10000 of 10000 runs
+602/cpp_directives-only.bc: 287
+Unique hashes: 3 of 10000 runs
+602/et-forest.bc: 1567
+Unique hashes: 9990 of 10000 runs
+602/main.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/ipa-struct-reorg.bc: 8102
+Unique hashes: 10000 of 10000 runs
+602/xatexit.bc: 27
+Warning: only 9999 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 8 of 10000 runs
+602/lto-streamer.bc: 353
+Unique hashes: 9886 of 10000 runs
+602/vec.bc: 151
+Unique hashes: 3 of 10000 runs
+602/cc1-checksum.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/dfp.bc: 406
+Unique hashes: 10000 of 10000 runs
+602/web.bc: 666
+Unique hashes: 732 of 10000 runs
+602/lbasename.bc: 13
+Warning: only 5765 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6748 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7211 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7488 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7668 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7801 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7965 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8004 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8047 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8080 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8105 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8125 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8134 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8149 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8162 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8165 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8170 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8173 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8176 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8178 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8184 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8186 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+602/ipa-pure-const.bc: 1286
+Unique hashes: 9900 of 10000 runs
+602/tree-parloops.bc: 3561
+Unique hashes: 9997 of 10000 runs
+602/cpp_expr.bc: 6881
+Unique hashes: 10000 of 10000 runs
+602/passes.bc: 1333
+Unique hashes: 3540 of 10000 runs
+602/argv.bc: 46
+Unique hashes: 28 of 10000 runs
+602/alloc-pool.bc: 167
+Unique hashes: 824 of 10000 runs
+602/floatformat.bc: 242
+Unique hashes: 9 of 10000 runs
+602/ddg.bc: 3111
+Unique hashes: 9304 of 10000 runs
+602/except.bc: 2376
+Unique hashes: 10000 of 10000 runs
+602/tree-ssa-reassoc.bc: 4001
+Unique hashes: 10000 of 10000 runs
+602/ira-color.bc: 14554
+Unique hashes: 10000 of 10000 runs
+602/cpp_errors.bc: 33
+Unique hashes: 1 of 10000 runs
+602/tree-vect-loop-manip.bc: 2552
+Unique hashes: 10000 of 10000 runs
+602/getpwd.bc: 23
+Warning: only 9994 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/simplify-rtx.bc: 4396
+Unique hashes: 10000 of 10000 runs
+602/opts-common.bc: 69
+Unique hashes: 5 of 10000 runs
+602/tree-into-ssa.bc: 7919
+Unique hashes: 10000 of 10000 runs
+602/gcse.bc: 14495
+Unique hashes: 10000 of 10000 runs
+602/loop-unswitch.bc: 485
+Unique hashes: 953 of 10000 runs
+602/c-opts.bc: 2668
+Unique hashes: 10000 of 10000 runs
+602/ipa-inline.bc: 4176
+Unique hashes: 10000 of 10000 runs
+602/lto-streamer-out.bc: 3184
+Unique hashes: 5417 of 10000 runs
+602/incpath.bc: 1244
+Unique hashes: 16 of 10000 runs
+602/predict.bc: 3251
+Unique hashes: 10000 of 10000 runs
+602/tree-profile.bc: 283
+Unique hashes: 127 of 10000 runs
+602/real.bc: 2410
+Unique hashes: 10000 of 10000 runs
+602/dwarf2asm.bc: 100
+Unique hashes: 4 of 10000 runs
+602/hooks.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/matrix-reorg.bc: 3710
+Unique hashes: 10000 of 10000 runs
+602/tree-ssa-dce.bc: 6977
+Unique hashes: 10000 of 10000 runs
+602/postreload.bc: 1548
+Unique hashes: 10000 of 10000 runs
+602/cselib.bc: 1794
+Unique hashes: 10000 of 10000 runs
+602/sel-sched-dump.bc: 645
+Unique hashes: 5 of 10000 runs
+602/c-errors.bc: 14
+Warning: only 7514 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8769 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9327 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9599 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9765 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9849 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9908 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9939 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9958 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9973 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9984 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9990 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9999 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/c-lex.bc: 671
+Unique hashes: 383 of 10000 runs
+602/df-byte-scan.bc: 126
+Unique hashes: 4 of 10000 runs
+602/tree-dump.bc: 1249
+Unique hashes: 8063 of 10000 runs
+602/i386.bc: 25389
+Unique hashes: 10000 of 10000 runs
+602/integrate.bc: 266
+Unique hashes: 899 of 10000 runs
+602/tree-ssa-forwprop.bc: 3417
+Unique hashes: 10000 of 10000 runs
+602/statistics.bc: 366
+Unique hashes: 6264 of 10000 runs
+602/host-ieee128.bc: 2
+Unique hashes: 1 of 10000 runs
+602/host-ieee32.bc: 0
+Unique hashes: 1 of 10000 runs
+602/xexit.bc: 10
+Unique hashes: 1 of 10000 runs
+602/cpp_pch.bc: 396
+Unique hashes: 9999 of 10000 runs
+602/c-ppoutput.bc: 665
+Unique hashes: 1614 of 10000 runs
+602/builtins.bc: 2534
+Unique hashes: 10000 of 10000 runs
+602/insn-preds.bc: 890
+Unique hashes: 72 of 10000 runs
+602/c-dump.bc: 16
+Warning: only 9276 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9980 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9998 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/rtl.bc: 122
+Unique hashes: 84 of 10000 runs
+602/loop-iv.bc: 6330
+Unique hashes: 10000 of 10000 runs
+602/xcoffout.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/graphite-scop-detection.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/tree-ssa-phiopt.bc: 1842
+Unique hashes: 10000 of 10000 runs
+602/omp-low.bc: 12206
+Unique hashes: 10000 of 10000 runs
+602/c-gimplify.bc: 28
+Unique hashes: 1 of 10000 runs
+602/tree.bc: 13040
+Unique hashes: 10000 of 10000 runs
+602/c-aux-info.bc: 123
+Unique hashes: 192 of 10000 runs
+602/ggc-common.bc: 708
+Unique hashes: 2864 of 10000 runs
+602/ebitmap.bc: 1653
+Unique hashes: 9888 of 10000 runs
+602/c-format.bc: 6203
+Unique hashes: 10000 of 10000 runs
+602/graphds.bc: 573
+Unique hashes: 9992 of 10000 runs
+602/sched-rgn.bc: 16531
+Unique hashes: 10000 of 10000 runs
+602/loop-unroll.bc: 3532
+Unique hashes: 9999 of 10000 runs
+602/cfgloopmanip.bc: 2450
+Unique hashes: 10000 of 10000 runs
+602/store-motion.bc: 5137
+Unique hashes: 9805 of 10000 runs
+602/xstrerror.bc: 0
+Unique hashes: 1 of 10000 runs
+602/strsignal.bc: 2028
+Unique hashes: 5450 of 10000 runs
+602/dwarf2out.bc: 25830
+Unique hashes: 10000 of 10000 runs
+602/c-pragma.bc: 497
+Unique hashes: 4347 of 10000 runs
+602/cfgloop.bc: 4733
+Unique hashes: 10000 of 10000 runs
+602/xstrdup.bc: 10
+Unique hashes: 1 of 10000 runs
+602/bitmap.bc: 4563
+Unique hashes: 10000 of 10000 runs
+602/caller-save.bc: 3637
+Unique hashes: 10000 of 10000 runs
+602/tree-vect-generic.bc: 665
+Unique hashes: 342 of 10000 runs
+602/sel-sched-ir.bc: 16749
+Unique hashes: 10000 of 10000 runs
+602/graphite-sese-to-poly.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+602/toplev.bc: 3989
+Unique hashes: 9947 of 10000 runs
+602/tree-scalar-evolution.bc: 1958
+Unique hashes: 10000 of 10000 runs
+602/c-common.bc: 25393
+Unique hashes: 10000 of 10000 runs
+602/spec_qsort/spec_qsort.bc: 131
+Unique hashes: 1 of 10000 runs

@@ -1,0 +1,1917 @@
+Running benchmark 623 with Oz
+623/SchemaInfo.bc: 1149
+Unique hashes: 9309 of 10000 runs
+623/ASCIIRangeFactory.bc: 5
+Unique hashes: 1 of 10000 runs
+623/PSVIAttributeList.bc: 673
+Unique hashes: 9973 of 10000 runs
+623/ElementDefinitionImpl.bc: 6
+Warning: only 59 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 59 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+623/Win32TransService2.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanSourceTreeTextIWS.bc: 5
+Unique hashes: 1 of 10000 runs
+623/EntityReferenceImpl.bc: 6
+Unique hashes: 1 of 10000 runs
+623/XercesDocumentBridge.bc: 0
+Unique hashes: 1 of 10000 runs
+623/AttributeListImpl.bc: 2583
+Unique hashes: 10000 of 10000 runs
+623/Wrapper4InputSource.bc: 21
+Warning: only 9976 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/XNumberBase.bc: 2
+Unique hashes: 1 of 10000 runs
+623/DOMString.bc: 894
+Unique hashes: 10000 of 10000 runs
+623/PanicHandler.bc: 0
+Unique hashes: 1 of 10000 runs
+623/NodeIteratorImpl.bc: 168
+Unique hashes: 1 of 10000 runs
+623/XObjectResultTreeFragProxyText.bc: 423
+Unique hashes: 606 of 10000 runs
+623/TreeWalker.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DoubleSupport.bc: 723
+Unique hashes: 9714 of 10000 runs
+623/XSpan.bc: 14
+Warning: only 7433 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8694 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9268 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9556 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9720 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9818 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9891 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9925 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9959 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9975 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9986 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9995 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 2 of 10000 runs
+623/XalanProcessingInstruction.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DOMParser.bc: 1162
+Unique hashes: 8344 of 10000 runs
+623/AttrNSImpl.bc: 148
+Unique hashes: 1 of 10000 runs
+623/VariablesStack.bc: 2115
+Unique hashes: 10000 of 10000 runs
+623/XPathConstructionContext.bc: 1
+Unique hashes: 1 of 10000 runs
+623/XalanEncodingPropertyCache.bc: 13
+Warning: only 5765 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6748 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7211 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7488 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7668 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7801 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7965 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8004 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8047 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8080 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8105 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8125 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8134 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8149 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8162 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8165 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8170 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8173 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8176 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8178 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8184 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8186 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+623/XercesDocumentWrapper.bc: 1818
+Unique hashes: 10000 of 10000 runs
+623/XercesCommentBridge.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanSourceTreeDocument.bc: 8775
+Unique hashes: 10000 of 10000 runs
+623/XalanDecimalFormatSymbols.bc: 795
+Unique hashes: 9997 of 10000 runs
+623/DOMDocumentTypeImpl.bc: 202
+Unique hashes: 3 of 10000 runs
+623/XalanSourceTreeTextIWSAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/StylesheetRoot.bc: 8506
+Unique hashes: 10000 of 10000 runs
+623/WFXMLScanner.bc: 5521
+Unique hashes: 10000 of 10000 runs
+623/IC_KeyRef.bc: 4
+Unique hashes: 1 of 10000 runs
+623/XSSimpleTypeDefinition.bc: 411
+Unique hashes: 4013 of 10000 runs
+623/FunctionDifference.bc: 61
+Unique hashes: 1 of 10000 runs
+623/DOMException.bc: 89
+Unique hashes: 2 of 10000 runs
+623/IC_Unique.bc: 0
+Unique hashes: 1 of 10000 runs
+623/TextImpl.bc: 22
+Warning: only 9989 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/RefCountedImpl.bc: 3
+Unique hashes: 1 of 10000 runs
+623/IGXMLScanner2.bc: 12245
+Unique hashes: 10000 of 10000 runs
+623/ReaderMgr.bc: 2182
+Unique hashes: 10000 of 10000 runs
+623/DTDValidator.bc: 806
+Unique hashes: 8702 of 10000 runs
+623/FormatterToXercesDOM.bc: 820
+Unique hashes: 9209 of 10000 runs
+623/XPathFactory.bc: 0
+Unique hashes: 1 of 10000 runs
+623/ElemApplyTemplates.bc: 79
+Unique hashes: 1 of 10000 runs
+623/XalanOutputStreamPrintWriter.bc: 582
+Unique hashes: 8537 of 10000 runs
+623/NodeSorter.bc: 5121
+Unique hashes: 10000 of 10000 runs
+623/NamespaceScope.bc: 218
+Unique hashes: 6699 of 10000 runs
+623/FunctionIntersection.bc: 96
+Unique hashes: 1 of 10000 runs
+623/XalanParsedSource.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XMLMsgLoader.bc: 6
+Unique hashes: 1 of 10000 runs
+623/DocumentFragmentImpl.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanParsedURI.bc: 1037
+Unique hashes: 9900 of 10000 runs
+623/AbstractNumericValidator.bc: 14
+Warning: only 7514 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8769 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9327 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9599 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9765 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9849 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9908 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9939 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9958 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9973 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9984 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9990 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9999 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/XNodeSetResultTreeFragProxy.bc: 6
+Unique hashes: 1 of 10000 runs
+623/PSVIItem.bc: 43
+Unique hashes: 1 of 10000 runs
+623/StdBinInputStream.bc: 5
+Unique hashes: 1 of 10000 runs
+623/NodeImpl.bc: 164
+Unique hashes: 2 of 10000 runs
+623/DateDatatypeValidator.bc: 10
+Warning: only 977 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 977 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+623/HexBin.bc: 362
+Unique hashes: 60 of 10000 runs
+623/DOMCharacterDataImpl.bc: 126
+Unique hashes: 3333 of 10000 runs
+623/XercesLiaisonXalanDOMStringPool.bc: 23
+Warning: only 9994 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/XalanSourceTreeElementANS.bc: 20
+Warning: only 9959 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9999 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/XNumberAllocator.bc: 1915
+Unique hashes: 10000 of 10000 runs
+623/XalanSourceTreeElementANSAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/LocalFileInputSource.bc: 10
+Unique hashes: 1 of 10000 runs
+623/XercesNodeListBridge.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DOM_Node.bc: 39
+Unique hashes: 1 of 10000 runs
+623/XalanEntityReference.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DOMStringPool.bc: 90
+Unique hashes: 16 of 10000 runs
+623/XSDDOMParser.bc: 2780
+Unique hashes: 10000 of 10000 runs
+623/StylesheetHandler.bc: 21236
+Unique hashes: 10000 of 10000 runs
+623/XalanDefaultParsedSource.bc: 109
+Unique hashes: 1 of 10000 runs
+623/ProblemListener.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanElemVariableAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/XercesCDATASectionBridge.bc: 0
+Unique hashes: 1 of 10000 runs
+623/OutputContextStack.bc: 2924
+Unique hashes: 10000 of 10000 runs
+623/XMLParserLiaison.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanCAPI.bc: 121
+Unique hashes: 2 of 10000 runs
+623/XStringCachedAllocator.bc: 1915
+Unique hashes: 10000 of 10000 runs
+623/XalanBitmap.bc: 716
+Unique hashes: 9908 of 10000 runs
+623/FunctionUnparsedEntityURI.bc: 8
+Unique hashes: 1 of 10000 runs
+623/XMLDTDDescriptionImpl.bc: 59
+Unique hashes: 1 of 10000 runs
+623/FunctionConcat.bc: 112
+Unique hashes: 1 of 10000 runs
+623/DOMImplementationRegistry.bc: 423
+Unique hashes: 8408 of 10000 runs
+623/XalanNumberFormat.bc: 699
+Unique hashes: 9957 of 10000 runs
+623/BMPattern.bc: 303
+Unique hashes: 1354 of 10000 runs
+623/FunctionSystemProperty.bc: 208
+Unique hashes: 1 of 10000 runs
+623/XalanQName.bc: 377
+Unique hashes: 1 of 10000 runs
+623/XercesToXalanNodeMap.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XMLEntityDecl.bc: 307
+Unique hashes: 8 of 10000 runs
+623/XercesElementWrapper.bc: 90
+Unique hashes: 1 of 10000 runs
+623/SchemaElementDecl.bc: 915
+Unique hashes: 4893 of 10000 runs
+623/XalanText.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DoubleDatatypeValidator.bc: 334
+Unique hashes: 8611 of 10000 runs
+623/XSAnnotation.bc: 120
+Unique hashes: 1 of 10000 runs
+623/FunctionString.bc: 26
+Unique hashes: 1 of 10000 runs
+623/ElemWhen.bc: 47
+Unique hashes: 1 of 10000 runs
+623/MonthDatatypeValidator.bc: 4
+Unique hashes: 1 of 10000 runs
+623/DecimalDatatypeValidator.bc: 601
+Unique hashes: 9996 of 10000 runs
+623/XUtil.bc: 42
+Unique hashes: 1 of 10000 runs
+623/XPathEvaluator.bc: 254
+Unique hashes: 3146 of 10000 runs
+623/ProcessingInstructionImpl.bc: 27
+Warning: only 9998 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/ElementPrefixResolverProxy.bc: 601
+Unique hashes: 9524 of 10000 runs
+623/MonthDayDatatypeValidator.bc: 4
+Unique hashes: 1 of 10000 runs
+623/XMLElementDecl.bc: 25
+Warning: only 9997 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/XalanEXSLTSet.bc: 163
+Unique hashes: 1 of 10000 runs
+623/XalanNode.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DOMSupport.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DOM_Comment.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XMLString.bc: 1004
+Unique hashes: 10000 of 10000 runs
+623/XPathAllocator.bc: 556
+Unique hashes: 6598 of 10000 runs
+623/Base64BinaryDatatypeValidator.bc: 8
+Unique hashes: 1 of 10000 runs
+623/XalanDOMStringHashTable.bc: 1408
+Unique hashes: 10000 of 10000 runs
+623/XSLTProcessorEnvSupportDefault.bc: 151
+Unique hashes: 2 of 10000 runs
+623/XalanSourceTreeElementNA.bc: 18
+Warning: only 9814 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9995 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/KeyTable.bc: 5876
+Unique hashes: 10000 of 10000 runs
+623/XUnknown.bc: 376
+Unique hashes: 72 of 10000 runs
+623/XalanElemTextLiteralAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/DOMChildNode.bc: 6
+Unique hashes: 1 of 10000 runs
+623/XalanElemLiteralResultAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/DOMSupportException.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XMLRegisterCleanup.bc: 28
+Unique hashes: 8 of 10000 runs
+623/XalanSourceTreeDOMSupport.bc: 15
+Warning: only 8627 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9604 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9883 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9967 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9991 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/XMLDeclImpl.bc: 18
+Warning: only 3853 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 5667 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6885 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7698 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8258 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8685 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9012 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9246 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9442 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9574 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9680 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9759 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9819 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9870 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9898 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9923 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9943 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9954 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9963 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9970 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9979 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9985 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9991 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9995 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9999 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/HPCCDefs.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XStringAllocator.bc: 1915
+Unique hashes: 10000 of 10000 runs
+623/RegularExpression.bc: 3235
+Unique hashes: 10000 of 10000 runs
+623/DOMErrorImpl.bc: 53
+Unique hashes: 1 of 10000 runs
+623/SchemaGrammar.bc: 1800
+Unique hashes: 10000 of 10000 runs
+623/AbstractNumericFacetValidator.bc: 1567
+Unique hashes: 9414 of 10000 runs
+623/NamedNodeMapAttributeList.bc: 62
+Unique hashes: 1 of 10000 runs
+623/CDATASectionImpl.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanMessageLoader.bc: 269
+Unique hashes: 1 of 10000 runs
+623/UnionDatatypeValidator.bc: 881
+Unique hashes: 8332 of 10000 runs
+623/XPathExecutionContextDefault.bc: 2759
+Unique hashes: 10000 of 10000 runs
+623/DStringPool.bc: 42
+Unique hashes: 4 of 10000 runs
+623/XMLChTranscoder.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanSourceTreeElement.bc: 73
+Unique hashes: 1 of 10000 runs
+623/XalanSourceTreeInit.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DOMCDATASectionImpl.bc: 32
+Unique hashes: 1 of 10000 runs
+623/XNodeSet.bc: 62
+Unique hashes: 4 of 10000 runs
+623/XSDElementNSImpl.bc: 24
+Warning: only 9996 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 4 of 10000 runs
+623/XercesElementWildcard.bc: 36
+Unique hashes: 1 of 10000 runs
+623/XercesXPath.bc: 2817
+Unique hashes: 10000 of 10000 runs
+623/XercesTreeWalker.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XMLEBCDICTranscoder390.bc: 0
+Unique hashes: 1 of 10000 runs
+623/AbstractStringValidator.bc: 1502
+Unique hashes: 9705 of 10000 runs
+623/XalanSourceTreeElementAAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/DOMStringHelper.bc: 1935
+Unique hashes: 10000 of 10000 runs
+623/SAXException.bc: 124
+Unique hashes: 4 of 10000 runs
+623/XercesNamedNodeMapBridge.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanFileOutputStream.bc: 165
+Unique hashes: 2 of 10000 runs
+623/FunctionSubstring.bc: 107
+Unique hashes: 4 of 10000 runs
+623/XalanSimplePrefixResolver.bc: 6
+Unique hashes: 1 of 10000 runs
+623/NullPrintWriter.bc: 0
+Unique hashes: 1 of 10000 runs
+623/IRIXPlatformUtils.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DTDAttDef.bc: 67
+Unique hashes: 1 of 10000 runs
+623/XercesDOMWrapperException.bc: 0
+Unique hashes: 1 of 10000 runs
+623/ElemIf.bc: 95
+Unique hashes: 1 of 10000 runs
+623/XMLASCIITranscoder390.bc: 10
+Warning: only 1023 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 1023 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 2 of 10000 runs
+623/XSNamespaceItem.bc: 830
+Unique hashes: 9990 of 10000 runs
+623/XalanElemAttributeAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/PlatformSupportInit.bc: 0
+Unique hashes: 1 of 10000 runs
+623/FloatDatatypeValidator.bc: 344
+Unique hashes: 8607 of 10000 runs
+623/XMLUTF8Transcoder.bc: 284
+Unique hashes: 12 of 10000 runs
+623/FunctionFunctionAvailable.bc: 6
+Unique hashes: 1 of 10000 runs
+623/XSDErrorReporter.bc: 30
+Unique hashes: 8 of 10000 runs
+623/PlatformUtils.bc: 48
+Unique hashes: 1 of 10000 runs
+623/Stylesheet.bc: 22013
+Unique hashes: 10000 of 10000 runs
+623/XercesDOMImplementationBridge.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanUTF16Transcoder.bc: 17
+Warning: only 9634 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9969 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9995 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/NamedNodeMapImpl.bc: 301
+Unique hashes: 256 of 10000 runs
+623/XSComplexTypeDefinition.bc: 330
+Unique hashes: 5277 of 10000 runs
+623/DayDatatypeValidator.bc: 4
+Unique hashes: 1 of 10000 runs
+623/InMemMsgLoader.bc: 137
+Unique hashes: 4 of 10000 runs
+623/PrefixResolver.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanSourceTreeElementNANS.bc: 41
+Unique hashes: 1 of 10000 runs
+623/CountersTable.bc: 1642
+Unique hashes: 10000 of 10000 runs
+623/NLSHandler.bc: 42
+Unique hashes: 1 of 10000 runs
+623/XMLSupportInit.bc: 0
+Unique hashes: 1 of 10000 runs
+623/SGXMLScanner.bc: 16346
+Unique hashes: 10000 of 10000 runs
+623/XalanEXSLTMath.bc: 498
+Unique hashes: 64 of 10000 runs
+623/DOMLocatorImpl.bc: 18
+Warning: only 9814 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9995 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/XSObjectFactory.bc: 8097
+Unique hashes: 10000 of 10000 runs
+623/XercesProcessingInstructionWrapper.bc: 55
+Unique hashes: 1 of 10000 runs
+623/XalanElemTextAllocator.bc: 1159
+Unique hashes: 10000 of 10000 runs
+623/XalanDOMStringAllocator.bc: 732
+Unique hashes: 6632 of 10000 runs
+623/ICUResHandler.bc: 218
+Unique hashes: 3 of 10000 runs
+623/HexBinaryDatatypeValidator.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XercesDOMWrapperParsedSource.bc: 36
+Unique hashes: 1 of 10000 runs
+623/XMLDouble.bc: 0
+Unique hashes: 1 of 10000 runs
+623/FunctionStartsWith.bc: 24
+Warning: only 9996 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/XalanSourceTreeComment.bc: 442
+Unique hashes: 603 of 10000 runs
+623/XProtoType.bc: 28
+Warning: only 9982 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 2 of 10000 runs
+623/ModifierToken.bc: 6
+Unique hashes: 1 of 10000 runs
+623/BlockRangeFactory.bc: 75
+Unique hashes: 1 of 10000 runs
+623/FunctionNodeSet.bc: 93
+Unique hashes: 1 of 10000 runs
+623/XMLIBM1047Transcoder390.bc: 0
+Unique hashes: 1 of 10000 runs
+623/FormatterListener.bc: 19
+Warning: only 9914 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/NodeNameTreeWalker.bc: 1116
+Unique hashes: 10000 of 10000 runs
+623/XalanNLSMessageLoader.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XSLTProcessorException.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanXMLChar.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XercesTextWrapper.bc: 30
+Unique hashes: 1 of 10000 runs
+623/XalanEmptyNamedNodeMap.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DOMBuilderImpl.bc: 416
+Unique hashes: 3072 of 10000 runs
+623/XTemplateSerializer.bc: 10941
+Unique hashes: 10000 of 10000 runs
+623/XercesParserLiaison.bc: 5047
+Unique hashes: 10000 of 10000 runs
+623/XML256TableTranscoder.bc: 28
+Unique hashes: 4 of 10000 runs
+623/XalanDocumentFragment.bc: 0
+Unique hashes: 1 of 10000 runs
+623/ComplexTypeInfo.bc: 2336
+Unique hashes: 10000 of 10000 runs
+623/URLInputSource.bc: 10
+Unique hashes: 8 of 10000 runs
+623/DOMElementImpl.bc: 116
+Unique hashes: 8 of 10000 runs
+623/XSParticle.bc: 21
+Warning: only 9976 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/XResultTreeFragAllocator.bc: 1915
+Unique hashes: 10000 of 10000 runs
+623/XSObject.bc: 10
+Unique hashes: 1 of 10000 runs
+623/XStringReferenceAllocator.bc: 1915
+Unique hashes: 10000 of 10000 runs
+623/XercesAttributeBridgeAllocator.bc: 0
+Unique hashes: 1 of 10000 runs
+623/IC_Selector.bc: 98
+Unique hashes: 1 of 10000 runs
+623/DOMRangeException.bc: 4
+Unique hashes: 1 of 10000 runs
+623/DOM_Document.bc: 24
+Warning: only 9996 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/SAX2XMLReaderImpl.bc: 2248
+Unique hashes: 10000 of 10000 runs
+623/ElemNumber.bc: 7696
+Unique hashes: 10000 of 10000 runs
+623/XMLScanner.bc: 6585
+Unique hashes: 10000 of 10000 runs
+623/Writer.bc: 0
+Unique hashes: 1 of 10000 runs
+623/StylesheetExecutionContext.bc: 0
+Unique hashes: 1 of 10000 runs
+623/StdInInputSource.bc: 1
+Unique hashes: 1 of 10000 runs
+623/XalanSourceTreeElementNANSAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/DOM_XMLDecl.bc: 3
+Unique hashes: 1 of 10000 runs
+623/FunctionNormalizeSpace.bc: 954
+Unique hashes: 9231 of 10000 runs
+623/XalanAttr.bc: 0
+Unique hashes: 1 of 10000 runs
+623/ElemOtherwise.bc: 7
+Warning: only 122 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 122 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+623/XSAttributeUse.bc: 13
+Warning: only 5765 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6748 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7211 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7488 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7668 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7801 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7965 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8004 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8047 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8080 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8105 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8125 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8134 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8149 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8162 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8165 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8170 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8173 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8176 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8178 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8184 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8186 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+623/XalanDOMStringCache.bc: 2090
+Unique hashes: 10000 of 10000 runs
+623/ElemChoose.bc: 26
+Unique hashes: 1 of 10000 runs
+623/XObjectResultTreeFragProxyBase.bc: 13
+Warning: only 5765 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6748 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7211 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7488 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7668 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7801 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7965 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8004 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8047 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8080 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8105 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8125 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8134 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8149 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8162 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8165 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8170 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8173 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8176 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8178 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8184 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8186 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+623/MemoryManagerArrayImpl.bc: 0
+Unique hashes: 1 of 10000 runs
+623/AttributesImpl.bc: 2548
+Unique hashes: 10000 of 10000 runs
+623/XalanOutputStream.bc: 1854
+Unique hashes: 10000 of 10000 runs
+623/XalanSourceTreeElementNAAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/XalanEXSLTDateTime.bc: 193
+Unique hashes: 1 of 10000 runs
+623/Wrapper4DOMInputSource.bc: 20
+Warning: only 9959 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9999 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/FunctionKey.bc: 242
+Unique hashes: 3 of 10000 runs
+623/XNodeSetAllocator.bc: 1915
+Unique hashes: 10000 of 10000 runs
+623/SelectionEvent.bc: 101
+Unique hashes: 1 of 10000 runs
+623/XML88591Transcoder.bc: 14
+Warning: only 7502 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8758 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9314 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9594 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9756 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9844 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9900 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9933 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9959 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9974 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9983 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9991 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 2 of 10000 runs
+623/XPathConstructionContextDefault.bc: 20
+Warning: only 9959 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9999 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/DOMXPathException.bc: 14
+Warning: only 7498 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8756 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9314 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9596 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9755 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9842 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9901 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9932 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9956 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9973 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9985 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9995 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/ExecutionContext.bc: 1
+Unique hashes: 1 of 10000 runs
+623/XalanElement.bc: 0
+Unique hashes: 1 of 10000 runs
+623/FormatterToHTML.bc: 12173
+Unique hashes: 10000 of 10000 runs
+623/XMLDateTime.bc: 2266
+Unique hashes: 10000 of 10000 runs
+623/XalanSourceTreeTextAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/BinMemInputStream.bc: 41
+Unique hashes: 2 of 10000 runs
+623/NCNameDatatypeValidator.bc: 0
+Unique hashes: 1 of 10000 runs
+623/ElemMessage.bc: 45
+Unique hashes: 1 of 10000 runs
+623/XalanNodeListDummy.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanDefaultDocumentBuilder.bc: 46
+Unique hashes: 1 of 10000 runs
+623/SchemaValidator.bc: 5117
+Unique hashes: 10000 of 10000 runs
+623/DOMAttrMapImpl.bc: 349
+Unique hashes: 1081 of 10000 runs
+623/XercesDOMWalker.bc: 0
+Unique hashes: 1 of 10000 runs
+623/ElemForEach.bc: 1590
+Unique hashes: 10000 of 10000 runs
+623/XStringCached.bc: 609
+Unique hashes: 9649 of 10000 runs
+623/DOMStringPrintWriter.bc: 651
+Unique hashes: 1 of 10000 runs
+623/SubstitutionGroupComparator.bc: 265
+Unique hashes: 1 of 10000 runs
+623/XNumber.bc: 67
+Unique hashes: 1 of 10000 runs
+623/DOMNormalizer.bc: 2050
+Unique hashes: 10000 of 10000 runs
+623/ElemForwardCompatible.bc: 26
+Unique hashes: 1 of 10000 runs
+623/CharacterDataImpl.bc: 36
+Unique hashes: 1 of 10000 runs
+623/XMLReader.bc: 2607
+Unique hashes: 10000 of 10000 runs
+623/XPathMatcherStack.bc: 309
+Unique hashes: 900 of 10000 runs
+623/DOMTextImpl.bc: 41
+Unique hashes: 1 of 10000 runs
+623/Win32TransService.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DOM_Notation.bc: 2
+Unique hashes: 1 of 10000 runs
+623/IDREFDatatypeValidator.bc: 10
+Unique hashes: 1 of 10000 runs
+623/XercesElementBridgeAllocator.bc: 0
+Unique hashes: 1 of 10000 runs
+623/GCCDefs.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XercesCommentWrapper.bc: 53
+Unique hashes: 1 of 10000 runs
+623/GeneralAttributeCheck.bc: 2449
+Unique hashes: 9818 of 10000 runs
+623/GrammarResolver.bc: 1699
+Unique hashes: 10000 of 10000 runs
+623/StringPool.bc: 539
+Unique hashes: 2556 of 10000 runs
+623/FormatterStringLengthCounter.bc: 1
+Unique hashes: 1 of 10000 runs
+623/XMLUri.bc: 2012
+Unique hashes: 9996 of 10000 runs
+623/XMLUTF16Transcoder.bc: 3
+Unique hashes: 1 of 10000 runs
+623/Constants.bc: 21844
+Unique hashes: 10000 of 10000 runs
+623/FunctionSubstringBefore.bc: 54
+Unique hashes: 1 of 10000 runs
+623/YearMonthDatatypeValidator.bc: 4
+Unique hashes: 1 of 10000 runs
+623/ParserForXMLSchema.bc: 173
+Unique hashes: 2 of 10000 runs
+623/VecAttributesImpl.bc: 280
+Unique hashes: 8 of 10000 runs
+623/XalanDOMStringReusableAllocator.bc: 1032
+Unique hashes: 10000 of 10000 runs
+623/XalanElemElementAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/XNull.bc: 333
+Unique hashes: 73 of 10000 runs
+623/XMLFormatter.bc: 1721
+Unique hashes: 1051 of 10000 runs
+623/DOMDocumentImpl.bc: 4130
+Unique hashes: 10000 of 10000 runs
+623/SAX2Handler.bc: 311
+Unique hashes: 1 of 10000 runs
+623/DOM_NodeFilter.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XObject.bc: 2073
+Unique hashes: 9344 of 10000 runs
+623/DOMSupportDefault.bc: 643
+Unique hashes: 9520 of 10000 runs
+623/XMLSchemaDescription.bc: 0
+Unique hashes: 1 of 10000 runs
+623/IdentityConstraint.bc: 210
+Unique hashes: 4 of 10000 runs
+623/XSAttributeGroupDefinition.bc: 35
+Unique hashes: 1 of 10000 runs
+623/NamespacesHandler.bc: 10324
+Unique hashes: 10000 of 10000 runs
+623/IconvTransService.bc: 89
+Unique hashes: 256 of 10000 runs
+623/XalanQNameByValue.bc: 1267
+Unique hashes: 9894 of 10000 runs
+623/ElemAttributeSet.bc: 51
+Unique hashes: 1 of 10000 runs
+623/UnicodeRangeFactory.bc: 2014
+Unique hashes: 2705 of 10000 runs
+623/AIXPlatformUtils.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XercesCDATASectionWrapper.bc: 53
+Unique hashes: 1 of 10000 runs
+623/CMAny.bc: 137
+Unique hashes: 1 of 10000 runs
+623/XTokenNumberAdapterAllocator.bc: 1915
+Unique hashes: 10000 of 10000 runs
+623/FormatterToDeprecatedXercesDOM.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XercesDOMParsedSource.bc: 98
+Unique hashes: 1 of 10000 runs
+623/DOM_NodeList.bc: 2
+Unique hashes: 1 of 10000 runs
+623/SchemaAttDef.bc: 558
+Unique hashes: 349 of 10000 runs
+623/DOM_Element.bc: 23
+Warning: only 9994 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/HashXMLCh.bc: 2
+Unique hashes: 1 of 10000 runs
+623/XercesDOMFormatterWalker.bc: 18
+Warning: only 9814 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9995 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/ElemEmpty.bc: 41
+Unique hashes: 1 of 10000 runs
+623/TracerEvent.bc: 342
+Unique hashes: 1 of 10000 runs
+623/XPathProcessorImpl.bc: 11687
+Unique hashes: 10000 of 10000 runs
+623/XalanEXSLTString.bc: 1112
+Unique hashes: 9887 of 10000 runs
+623/FieldValueMap.bc: 643
+Unique hashes: 9664 of 10000 runs
+623/ElemFallback.bc: 9
+Warning: only 504 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 504 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+623/XalanDOMString.bc: 2952
+Unique hashes: 10000 of 10000 runs
+623/BinFileOutputStream.bc: 38
+Unique hashes: 4 of 10000 runs
+623/DateTimeValidator.bc: 329
+Unique hashes: 8581 of 10000 runs
+623/XalanDocument.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanSourceTreeDocumentFragment.bc: 67
+Unique hashes: 1 of 10000 runs
+623/XSTypeDefinition.bc: 6
+Unique hashes: 1 of 10000 runs
+623/TreeWalkerImpl.bc: 104
+Unique hashes: 1 of 10000 runs
+623/BinOutputStream.bc: 0
+Unique hashes: 1 of 10000 runs
+623/SAXParseException.bc: 285
+Unique hashes: 64 of 10000 runs
+623/FunctionDistinct.bc: 3288
+Unique hashes: 10000 of 10000 runs
+623/XalanFileUtility.bc: 11259
+Unique hashes: 10000 of 10000 runs
+623/RangeTokenMap.bc: 848
+Unique hashes: 8169 of 10000 runs
+623/XalanSourceTreeElementA.bc: 83
+Unique hashes: 1 of 10000 runs
+623/TopLevelArg.bc: 53
+Unique hashes: 1 of 10000 runs
+623/XercesDOMImplementationWrapper.bc: 32
+Unique hashes: 1 of 10000 runs
+623/XMLUni.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XMLScannerResolver.bc: 64
+Unique hashes: 4 of 10000 runs
+623/XPathProcessor.bc: 4
+Unique hashes: 1 of 10000 runs
+623/XObjectTypeCallback.bc: 1
+Unique hashes: 1 of 10000 runs
+623/MemBufFormatTarget.bc: 56
+Unique hashes: 4 of 10000 runs
+623/XBoolean.bc: 37
+Unique hashes: 1 of 10000 runs
+623/ElemTemplateElement.bc: 939
+Unique hashes: 9855 of 10000 runs
+623/DOMNamedNodeMapImpl.bc: 433
+Unique hashes: 32 of 10000 runs
+623/XalanNamedNodeMap.bc: 0
+Unique hashes: 1 of 10000 runs
+623/FunctionElementAvailable.bc: 6
+Unique hashes: 1 of 10000 runs
+623/DOMSupportInit.bc: 0
+Unique hashes: 1 of 10000 runs
+623/ElemCallTemplate.bc: 62
+Unique hashes: 1 of 10000 runs
+623/XercesProcessingInstructionBridge.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XObjectFactoryDefault.bc: 3105
+Unique hashes: 10000 of 10000 runs
+623/XalanHTMLElementsProperties.bc: 16
+Warning: only 9276 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9980 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9998 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/XStringAdapterAllocator.bc: 1915
+Unique hashes: 10000 of 10000 runs
+623/XalanMemoryManagerDefault.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XercesDocumentTypeWrapper.bc: 71
+Unique hashes: 1 of 10000 runs
+623/TransService.bc: 19228
+Unique hashes: 9772 of 10000 runs
+623/XToken.bc: 104
+Unique hashes: 1 of 10000 runs
+623/XSModelGroup.bc: 10
+Unique hashes: 1 of 10000 runs
+623/ExtensionNSHandler.bc: 3238
+Unique hashes: 10000 of 10000 runs
+623/XalanSourceTreeContentHandler.bc: 2486
+Unique hashes: 10000 of 10000 runs
+623/PrintWriter.bc: 3
+Unique hashes: 1 of 10000 runs
+623/XercesNamedNodeMapAttributeList.bc: 9
+Unique hashes: 1 of 10000 runs
+623/DOM_NodeIterator.bc: 0
+Unique hashes: 1 of 10000 runs
+623/CharToken.bc: 1
+Unique hashes: 1 of 10000 runs
+623/XalanSourceTreeDocumentAllocator.bc: 1915
+Unique hashes: 10000 of 10000 runs
+623/DOMNodeIDMap.bc: 126
+Unique hashes: 937 of 10000 runs
+623/IDDatatypeValidator.bc: 10
+Unique hashes: 1 of 10000 runs
+623/ExtensionFunctionHandler.bc: 3735
+Unique hashes: 10000 of 10000 runs
+623/XalanNodeList.bc: 0
+Unique hashes: 1 of 10000 runs
+623/OpFactory.bc: 486
+Unique hashes: 9187 of 10000 runs
+623/NodeVector.bc: 65
+Unique hashes: 136 of 10000 runs
+623/XalanInMemoryMessageLoader.bc: 41
+Unique hashes: 1 of 10000 runs
+623/SunCCDefs.bc: 0
+Unique hashes: 1 of 10000 runs
+623/SchemaAttDefList.bc: 646
+Unique hashes: 2260 of 10000 runs
+623/InMemHandler.bc: 228
+Unique hashes: 1 of 10000 runs
+623/KVStringPair.bc: 259
+Unique hashes: 182 of 10000 runs
+623/DOM_DOMException.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DateTimeDatatypeValidator.bc: 10
+Warning: only 977 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 977 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+623/XalanDiagnosticMemoryManager.bc: 3944
+Unique hashes: 10000 of 10000 runs
+623/DOMImplementationImpl.bc: 34
+Unique hashes: 8 of 10000 runs
+623/XercesNotationBridge.bc: 0
+Unique hashes: 1 of 10000 runs
+623/CMBinaryOp.bc: 576
+Unique hashes: 6103 of 10000 runs
+623/ValueStoreCache.bc: 1539
+Unique hashes: 10000 of 10000 runs
+623/DOMTypeInfoImpl.bc: 182
+Unique hashes: 1 of 10000 runs
+623/XMLUniCharacter.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XPathSymbols.bc: 0
+Unique hashes: 1 of 10000 runs
+623/IC_Field.bc: 119
+Unique hashes: 2 of 10000 runs
+623/ElemAttribute.bc: 1685
+Unique hashes: 9975 of 10000 runs
+623/XercesDocumentFragmentBridge.bc: 0
+Unique hashes: 1 of 10000 runs
+623/NOTATIONDatatypeValidator.bc: 113
+Unique hashes: 4 of 10000 runs
+623/FunctionID.bc: 656
+Unique hashes: 9557 of 10000 runs
+623/XMLAttr.bc: 245
+Unique hashes: 4 of 10000 runs
+623/XalanSourceTreeCommentAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/CSetDefs.bc: 0
+Unique hashes: 1 of 10000 runs
+623/MemBufInputSource.bc: 33
+Unique hashes: 1 of 10000 runs
+623/XalanStdOutputStream.bc: 720
+Unique hashes: 9571 of 10000 runs
+623/XalanToXercesTranscoderWrapper.bc: 28
+Unique hashes: 1 of 10000 runs
+623/XMLWin1252Transcoder.bc: 0
+Unique hashes: 1 of 10000 runs
+623/FunctionHasSameNodes.bc: 15
+Warning: only 8627 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9604 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9883 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9967 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9991 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/XMLBuffer.bc: 19
+Warning: only 9914 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/XalanEXSLTCommon.bc: 147
+Unique hashes: 2 of 10000 runs
+623/RegxParser.bc: 953
+Unique hashes: 10000 of 10000 runs
+623/XalanNumberingResourceBundle.bc: 4757
+Unique hashes: 10000 of 10000 runs
+623/PSVIAttribute.bc: 76
+Unique hashes: 1 of 10000 runs
+623/XNodeSetNodeProxy.bc: 9
+Warning: only 511 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 511 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+623/XObjectFactory.bc: 1
+Unique hashes: 1 of 10000 runs
+623/ENTITYDatatypeValidator.bc: 0
+Unique hashes: 1 of 10000 runs
+623/MsgFileOutputStream.bc: 97
+Unique hashes: 1 of 10000 runs
+623/AnySimpleTypeDatatypeValidator.bc: 95
+Unique hashes: 5 of 10000 runs
+623/ElemText.bc: 18
+Warning: only 9814 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9995 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/XercesWrapperNavigatorAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/XalanQNameByReference.bc: 13
+Warning: only 5765 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6748 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7211 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7488 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7668 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7801 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7965 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8004 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8047 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8080 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8105 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8125 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8134 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8149 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8162 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8165 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8170 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8173 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8176 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8178 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8184 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8186 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+623/ParentNode.bc: 436
+Unique hashes: 9328 of 10000 runs
+623/ElemPI.bc: 98
+Unique hashes: 4 of 10000 runs
+623/DOMCommentImpl.bc: 36
+Unique hashes: 1 of 10000 runs
+623/XercesElementBridge.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XercesAttrBridge.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanSourceTreeDocumentFragmentAllocator.bc: 1919
+Unique hashes: 10000 of 10000 runs
+623/StringDatatypeValidator.bc: 78
+Unique hashes: 4 of 10000 runs
+623/XalanDOMException.bc: 3
+Unique hashes: 1 of 10000 runs
+623/TraceListener.bc: 0
+Unique hashes: 1 of 10000 runs
+623/FunctionFormatNumber.bc: 58
+Unique hashes: 1 of 10000 runs
+623/XMLChar.bc: 28
+Unique hashes: 1 of 10000 runs
+623/AttrMapImpl.bc: 7
+Warning: only 127 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 127 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 2 of 10000 runs
+623/MutableNodeRefList.bc: 1104
+Unique hashes: 10000 of 10000 runs
+623/LocalFileFormatTarget.bc: 77
+Unique hashes: 1 of 10000 runs
+623/XalanExtensions.bc: 210
+Unique hashes: 1 of 10000 runs
+623/XSValue.bc: 2009
+Unique hashes: 10000 of 10000 runs
+623/XMLEBCDICTranscoder.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XSLTInit.bc: 16
+Warning: only 9276 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9980 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9998 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/RangeToken.bc: 650
+Unique hashes: 10000 of 10000 runs
+623/StylesheetConstructionContext.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DOMEntityReferenceImpl.bc: 19
+Warning: only 9914 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 2 of 10000 runs
+623/XResultTreeFrag.bc: 148
+Unique hashes: 4 of 10000 runs
+623/XalanSourceTreeAttributeNSAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/ElemLiteralResult.bc: 272
+Unique hashes: 2 of 10000 runs
+623/XercesEntityWrapper.bc: 69
+Unique hashes: 1 of 10000 runs
+623/DOMAttrImpl.bc: 253
+Unique hashes: 32 of 10000 runs
+623/XMLBufferMgr.bc: 98
+Unique hashes: 112 of 10000 runs
+623/DTDEntityDecl.bc: 13
+Warning: only 5765 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6748 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7211 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7488 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7668 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7801 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7965 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8004 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8047 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8080 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8105 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8125 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8134 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8149 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8162 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8165 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8170 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8173 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8176 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8178 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8184 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8186 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+623/URISupport.bc: 1157
+Unique hashes: 9964 of 10000 runs
+623/ValidationContextImpl.bc: 500
+Unique hashes: 920 of 10000 runs
+623/XalanElemEmptyAllocator.bc: 1159
+Unique hashes: 10000 of 10000 runs
+623/XMLRefInfo.bc: 35
+Unique hashes: 1 of 10000 runs
+623/FunctionNamespaceURI.bc: 21
+Warning: only 9976 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/Function.bc: 134
+Unique hashes: 8 of 10000 runs
+623/XPathExecutionContext.bc: 1
+Unique hashes: 1 of 10000 runs
+623/XercesDocumentTypeBridge.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XPathFunctionTable.bc: 134
+Unique hashes: 1 of 10000 runs
+623/XSerializeEngine.bc: 1154
+Unique hashes: 10000 of 10000 runs
+623/FormatterTreeWalker.bc: 42
+Unique hashes: 1 of 10000 runs
+623/XalanXPathException.bc: 13
+Warning: only 5765 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6748 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7211 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7488 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7668 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7801 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7965 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8004 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8047 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8080 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8105 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8125 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8134 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8149 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8162 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8165 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8170 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8173 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8176 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8178 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8184 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8186 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+623/DTDAttDefList.bc: 503
+Unique hashes: 3926 of 10000 runs
+623/Resettable.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DOMWriterImpl.bc: 2576
+Unique hashes: 10000 of 10000 runs
+623/SolarisPlatformUtils.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanElemApplyTemplatesAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/FormatterToDOM.bc: 622
+Unique hashes: 9197 of 10000 runs
+623/XalanMatchPatternDataAllocator.bc: 725
+Unique hashes: 7187 of 10000 runs
+623/GenerateEvent.bc: 19
+Warning: only 9914 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/DOM_ProcessingInstruction.bc: 5
+Unique hashes: 1 of 10000 runs
+623/DOM_CharacterData.bc: 8
+Unique hashes: 1 of 10000 runs
+623/XalanElemTemplateAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/XercesTextWrapperAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/XPathInit.bc: 4
+Unique hashes: 1 of 10000 runs
+623/FunctionContains.bc: 8
+Unique hashes: 1 of 10000 runs
+623/SAX2XMLFilterImpl.bc: 114
+Unique hashes: 2 of 10000 runs
+623/XalanAVTPartSimpleAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/ElemStack.bc: 1443
+Unique hashes: 10000 of 10000 runs
+623/XMLException.bc: 262
+Unique hashes: 8 of 10000 runs
+623/DOMDocumentFragmentImpl.bc: 8
+Unique hashes: 1 of 10000 runs
+623/RangeImpl.bc: 877
+Unique hashes: 6626 of 10000 runs
+623/YearDatatypeValidator.bc: 4
+Unique hashes: 1 of 10000 runs
+623/DOMNotationImpl.bc: 125
+Unique hashes: 25 of 10000 runs
+623/XSModel.bc: 7138
+Unique hashes: 10000 of 10000 runs
+623/DOM_Entity.bc: 11
+Warning: only 2033 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/AbstractDOMParser.bc: 5385
+Unique hashes: 10000 of 10000 runs
+623/XalanTransformerProblemListener.bc: 42
+Unique hashes: 1 of 10000 runs
+623/FieldActivator.bc: 919
+Unique hashes: 9919 of 10000 runs
+623/XSModelGroupDefinition.bc: 31
+Unique hashes: 1 of 10000 runs
+623/XObjectResultTreeFragProxy.bc: 0
+Unique hashes: 1 of 10000 runs
+623/TimeDatatypeValidator.bc: 10
+Warning: only 977 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 977 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+623/ElemSort.bc: 367
+Unique hashes: 1 of 10000 runs
+623/StylesheetConstructionContextDefault.bc: 7621
+Unique hashes: 10000 of 10000 runs
+623/XMLAbstractDoubleFloat.bc: 697
+Unique hashes: 5455 of 10000 runs
+623/IC_Key.bc: 0
+Unique hashes: 1 of 10000 runs
+623/FormatterToXML.bc: 17612
+Unique hashes: 10000 of 10000 runs
+623/ElemComment.bc: 23
+Warning: only 9994 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 4 of 10000 runs
+623/XalanAVTPartXPathAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/DefaultPanicHandler.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanSourceTreeAttr.bc: 28
+Unique hashes: 1 of 10000 runs
+623/ConcatToken.bc: 4
+Unique hashes: 1 of 10000 runs
+623/DOM_DOMImplementation.bc: 31
+Unique hashes: 1 of 10000 runs
+623/NodeRefListBase.bc: 0
+Unique hashes: 1 of 10000 runs
+623/ElemDecimalFormat.bc: 1395
+Unique hashes: 9524 of 10000 runs
+623/XMLWin1252Transcoder390.bc: 0
+Unique hashes: 1 of 10000 runs
+623/StdOutFormatTarget.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanDOMStringPool.bc: 471
+Unique hashes: 1449 of 10000 runs
+623/BooleanDatatypeValidator.bc: 509
+Unique hashes: 9785 of 10000 runs
+623/XalanTransformer.bc: 5966
+Unique hashes: 10000 of 10000 runs
+623/XSAttributeDeclaration.bc: 49
+Unique hashes: 1 of 10000 runs
+623/XSWildcard.bc: 638
+Unique hashes: 9900 of 10000 runs
+623/FunctionSubstringAfter.bc: 49
+Unique hashes: 1 of 10000 runs
+623/XPathEnvSupportDefault.bc: 12651
+Unique hashes: 10000 of 10000 runs
+623/XalanEntity.bc: 0
+Unique hashes: 1 of 10000 runs
+623/CommentImpl.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanAVTAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/XMLGrammarDescription.bc: 1
+Unique hashes: 1 of 10000 runs
+623/XMLValidator.bc: 169
+Unique hashes: 32 of 10000 runs
+623/AVTPartXPath.bc: 9
+Unique hashes: 1 of 10000 runs
+623/DTDGrammar.bc: 960
+Unique hashes: 10000 of 10000 runs
+623/MixedContentModel.bc: 1148
+Unique hashes: 9414 of 10000 runs
+623/Op.bc: 385
+Unique hashes: 3965 of 10000 runs
+623/XercesNamedNodeMapWrapper.bc: 26
+Unique hashes: 1 of 10000 runs
+623/XalanCharacterData.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DOM_CDATASection.bc: 0
+Unique hashes: 1 of 10000 runs
+623/MIPSproDefs.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XString.bc: 35
+Unique hashes: 1 of 10000 runs
+623/ResultNamespacesStack.bc: 5846
+Unique hashes: 10000 of 10000 runs
+623/SynchronizedStringPool.bc: 159
+Unique hashes: 1 of 10000 runs
+623/ParenToken.bc: 3
+Unique hashes: 1 of 10000 runs
+623/XTokenStringAdapter.bc: 8
+Unique hashes: 1 of 10000 runs
+623/XPathFactoryDefault.bc: 4354
+Unique hashes: 10000 of 10000 runs
+623/DOMConfigurationImpl.bc: 192
+Unique hashes: 946 of 10000 runs
+623/XMLRangeFactory.bc: 1182
+Unique hashes: 271 of 10000 runs
+623/XMLSupportException.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XSLException.bc: 67
+Unique hashes: 2 of 10000 runs
+623/DocumentImpl.bc: 1385
+Unique hashes: 10000 of 10000 runs
+623/XalanXMLSerializerFactory.bc: 62913
+Unique hashes: 10000 of 10000 runs
+623/XMLStringTokenizer.bc: 574
+Unique hashes: 9810 of 10000 runs
+623/Base64.bc: 2490
+Unique hashes: 1861 of 10000 runs
+623/XSMultiValueFacet.bc: 250
+Unique hashes: 3973 of 10000 runs
+623/ValueStore.bc: 1236
+Unique hashes: 10000 of 10000 runs
+623/Win32MsgLoader.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XPathMatcher.bc: 1536
+Unique hashes: 10000 of 10000 runs
+623/Grammar.bc: 10
+Unique hashes: 1 of 10000 runs
+623/XStringBase.bc: 5
+Unique hashes: 2 of 10000 runs
+623/XMLURL.bc: 3149
+Unique hashes: 10000 of 10000 runs
+623/ElemParam.bc: 13
+Warning: only 5765 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6748 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7211 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7488 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7668 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7801 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7965 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8004 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8047 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8080 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8105 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8125 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8134 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8149 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8162 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8165 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8170 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8173 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8176 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8178 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8184 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8186 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 2 of 10000 runs
+623/AVTPartSimple.bc: 3
+Unique hashes: 1 of 10000 runs
+623/XalanElemValueOfAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/XalanNamespacesStack.bc: 6886
+Unique hashes: 10000 of 10000 runs
+623/XalanComment.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XStringReference.bc: 13
+Warning: only 5765 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 6748 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7211 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7488 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7668 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7801 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 7965 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8004 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8047 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8080 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8105 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8125 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8134 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8149 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8162 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8165 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8170 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8173 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8176 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8178 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8184 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8186 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8188 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+623/XSLTProcessor.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XercesWrapperToXalanNodeMap.bc: 3467
+Unique hashes: 10000 of 10000 runs
+623/DOM_Attr.bc: 5
+Unique hashes: 1 of 10000 runs
+623/XalanSourceTreeWrapperParsedSource.bc: 35
+Unique hashes: 1 of 10000 runs
+623/ContentSpecNode.bc: 428
+Unique hashes: 5872 of 10000 runs
+623/XalanTranscodingServices.bc: 95
+Unique hashes: 1 of 10000 runs
+623/XMLASCIITranscoder.bc: 16
+Warning: only 9276 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9980 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9998 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 4 of 10000 runs
+623/XalanDocumentFragmentNodeRefListBaseProxy.bc: 4
+Unique hashes: 1 of 10000 runs
+623/XSElementDeclaration.bc: 186
+Unique hashes: 26 of 10000 runs
+623/AVT.bc: 1060
+Unique hashes: 9665 of 10000 runs
+623/NodeIDMap.bc: 72
+Unique hashes: 112 of 10000 runs
+623/BinInputStream.bc: 0
+Unique hashes: 1 of 10000 runs
+623/ChildNode.bc: 21
+Warning: only 9976 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/ElemValueOf.bc: 209
+Unique hashes: 2 of 10000 runs
+623/DGXMLScanner.bc: 7006
+Unique hashes: 10000 of 10000 runs
+623/StringToken.bc: 19
+Warning: only 9914 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/XalanEXSLTDynamic.bc: 23
+Warning: only 9994 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/DOMAttrNSImpl.bc: 147
+Unique hashes: 288 of 10000 runs
+623/XercesWrapperHelper.bc: 6
+Unique hashes: 1 of 10000 runs
+623/XalanNullOutputStream.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XercesDOMException.bc: 1
+Unique hashes: 1 of 10000 runs
+623/ElemApplyImport.bc: 7
+Warning: only 122 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 122 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+623/XalanDocumentPrefixResolver.bc: 3528
+Unique hashes: 10000 of 10000 runs
+623/DOMServices.bc: 2055
+Unique hashes: 9711 of 10000 runs
+623/XercesAttrWrapperAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/Mutexes.bc: 2
+Unique hashes: 1 of 10000 runs
+623/DOMParentNode.bc: 428
+Unique hashes: 5969 of 10000 runs
+623/PSVIElement.bc: 105
+Unique hashes: 1 of 10000 runs
+623/DomMemDebug.bc: 341
+Unique hashes: 41 of 10000 runs
+623/DOMNodeVector.bc: 77
+Unique hashes: 200 of 10000 runs
+623/DOMProcessingInstructionImpl.bc: 71
+Unique hashes: 4 of 10000 runs
+623/ElemTextLiteral.bc: 18
+Warning: only 9814 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9995 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/XalanDocumentType.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XSFacet.bc: 10
+Unique hashes: 1 of 10000 runs
+623/DOM_DocumentFragment.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanICUMessageLoader.bc: 0
+Unique hashes: 1 of 10000 runs
+623/ElemElement.bc: 767
+Unique hashes: 9517 of 10000 runs
+623/FormatterToNull.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DOMNodeListImpl.bc: 9
+Unique hashes: 1 of 10000 runs
+623/XalanMemoryManagement.bc: 0
+Unique hashes: 1 of 10000 runs
+623/FormatterToSourceTree.bc: 2187
+Unique hashes: 10000 of 10000 runs
+623/XalanFStreamOutputStream.bc: 660
+Unique hashes: 9569 of 10000 runs
+623/MemoryManagerImpl.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanXMLFileReporter.bc: 5570
+Unique hashes: 10000 of 10000 runs
+623/DOMRangeImpl.bc: 1545
+Unique hashes: 10000 of 10000 runs
+623/FunctionEvaluate.bc: 31
+Unique hashes: 1 of 10000 runs
+623/XSIDCDefinition.bc: 275
+Unique hashes: 3980 of 10000 runs
+623/XercesNodeListWrapper.bc: 14
+Warning: only 7511 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 8768 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9325 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9596 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9764 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9849 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9907 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9938 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9959 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9973 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9982 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9990 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9997 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 2 of 10000 runs
+623/XalanSourceTreeAttrNS.bc: 12
+Warning: only 3766 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4020 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4079 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4092 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4094 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/IdentityConstraintHandler.bc: 514
+Unique hashes: 630 of 10000 runs
+623/XercesDOMParser.bc: 279
+Unique hashes: 3305 of 10000 runs
+623/XMLInitializer.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XMLBigDecimal.bc: 436
+Unique hashes: 1437 of 10000 runs
+623/ElemCopyOf.bc: 181
+Unique hashes: 2 of 10000 runs
+623/DurationDatatypeValidator.bc: 4
+Unique hashes: 1 of 10000 runs
+623/UnionToken.bc: 545
+Unique hashes: 9749 of 10000 runs
+623/AVTPart.bc: 0
+Unique hashes: 1 of 10000 runs
+623/ElemExtensionCall.bc: 34
+Unique hashes: 1 of 10000 runs
+623/ElementImpl.bc: 171
+Unique hashes: 16 of 10000 runs
+623/ContentLeafNameTypeVector.bc: 183
+Unique hashes: 8 of 10000 runs
+623/XStringAdapter.bc: 9
+Unique hashes: 1 of 10000 runs
+623/XMLNumber.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanCompiledStylesheetDefault.bc: 108
+Unique hashes: 6 of 10000 runs
+623/XMLFloat.bc: 8
+Unique hashes: 1 of 10000 runs
+623/DOMElementNSImpl.bc: 174
+Unique hashes: 198 of 10000 runs
+623/FunctionLang.bc: 371
+Unique hashes: 68 of 10000 runs
+623/Token.bc: 51
+Unique hashes: 2 of 10000 runs
+623/XercesAttrWrapper.bc: 33
+Unique hashes: 1 of 10000 runs
+623/DatatypeValidatorFactory.bc: 2033
+Unique hashes: 9997 of 10000 runs
+623/TraverseSchema.bc: 47440
+Unique hashes: 10000 of 10000 runs
+623/ConditionToken.bc: 11
+Warning: only 2033 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/XMLUTF8Transcoder390.bc: 28
+Unique hashes: 1 of 10000 runs
+623/NotationImpl.bc: 19
+Warning: only 9905 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9999 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/XalanCDataSection.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XSLTEngineImpl.bc: 8567
+Unique hashes: 10000 of 10000 runs
+623/XalanElemAttributeSetAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/AnyURIDatatypeValidator.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XercesTextBridgeAllocator.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanSourceTreeProcessingInstructionAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/FormatterToText.bc: 937
+Unique hashes: 9858 of 10000 runs
+623/XercesEntityReferenceWrapper.bc: 60
+Unique hashes: 1 of 10000 runs
+623/XMemory.bc: 4
+Unique hashes: 1 of 10000 runs
+623/NodeSortKey.bc: 204
+Unique hashes: 16 of 10000 runs
+623/NameDatatypeValidator.bc: 0
+Unique hashes: 1 of 10000 runs
+623/EncodingValidator.bc: 213
+Unique hashes: 283 of 10000 runs
+623/DOM_DocumentType.bc: 10
+Unique hashes: 1 of 10000 runs
+623/XMLBigInteger.bc: 255
+Unique hashes: 16 of 10000 runs
+623/DOMEntityImpl.bc: 209
+Unique hashes: 55 of 10000 runs
+623/XMLNotationDecl.bc: 203
+Unique hashes: 16 of 10000 runs
+623/VecAttrListImpl.bc: 162
+Unique hashes: 2 of 10000 runs
+623/XMLAttDefList.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanMsgLib.bc: 0
+Unique hashes: 1 of 10000 runs
+623/SAXParser.bc: 1094
+Unique hashes: 9999 of 10000 runs
+623/BinFileInputStream.bc: 41
+Unique hashes: 4 of 10000 runs
+623/XTokenStringAdapterAllocator.bc: 1915
+Unique hashes: 10000 of 10000 runs
+623/DeepNodeListImpl.bc: 35
+Unique hashes: 2 of 10000 runs
+623/ElemTemplate.bc: 157
+Unique hashes: 1 of 10000 runs
+623/XML256TableTranscoder390.bc: 26
+Unique hashes: 2 of 10000 runs
+623/NodeListImpl.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DOM_EntityReference.bc: 0
+Unique hashes: 1 of 10000 runs
+623/AttrImpl.bc: 654
+Unique hashes: 352 of 10000 runs
+623/XMLIBM1140Transcoder.bc: 0
+Unique hashes: 1 of 10000 runs
+623/BinMemOutputStream.bc: 61
+Unique hashes: 4 of 10000 runs
+623/ElemCopy.bc: 12
+Warning: only 3757 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4009 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4067 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4080 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4083 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4084 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4084 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+623/XTokenNumberAdapter.bc: 8
+Unique hashes: 1 of 10000 runs
+623/XalanNodeListSurrogate.bc: 6
+Unique hashes: 1 of 10000 runs
+623/XercesEntityReferenceBridge.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanDOMInit.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DOM_Range.bc: 0
+Unique hashes: 1 of 10000 runs
+623/AllContentModel.bc: 1076
+Unique hashes: 9999 of 10000 runs
+623/SimpleContentModel.bc: 418
+Unique hashes: 48 of 10000 runs
+623/DOM_TreeWalker.bc: 1
+Unique hashes: 1 of 10000 runs
+623/XalanSourceTreeText.bc: 436
+Unique hashes: 615 of 10000 runs
+623/DFAContentModel.bc: 4701
+Unique hashes: 10000 of 10000 runs
+623/DOMTreeWalkerImpl.bc: 219
+Unique hashes: 125 of 10000 runs
+623/XMLIBM1140Transcoder390.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XercesBridgeNavigator.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanTransformerOutputStream.bc: 29
+Unique hashes: 1 of 10000 runs
+623/XMLCanRepGroup.bc: 0
+Unique hashes: 1 of 10000 runs
+623/FunctionGenerateID.bc: 41
+Unique hashes: 1 of 10000 runs
+623/XMLContentModel.bc: 0
+Unique hashes: 1 of 10000 runs
+623/ElemUse.bc: 126
+Unique hashes: 1 of 10000 runs
+623/XPathExpression.bc: 2739
+Unique hashes: 10000 of 10000 runs
+623/DOM_RangeException.bc: 4
+Unique hashes: 1 of 10000 runs
+623/XercesDOMSupport.bc: 0
+Unique hashes: 1 of 10000 runs
+623/FunctionTranslate.bc: 892
+Unique hashes: 9225 of 10000 runs
+623/ElementNSImpl.bc: 121
+Unique hashes: 1 of 10000 runs
+623/XalanSourceTreeAttributeAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/FunctionDocument.bc: 932
+Unique hashes: 9846 of 10000 runs
+623/ListDatatypeValidator.bc: 277
+Unique hashes: 4 of 10000 runs
+623/EntityImpl.bc: 44
+Warning: only 9939 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9998 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/HeaderDummy.bc: 0
+Unique hashes: 1 of 10000 runs
+623/Match.bc: 109
+Unique hashes: 27 of 10000 runs
+623/StringTokenizer.bc: 210
+Unique hashes: 96 of 10000 runs
+623/XPathEnvSupport.bc: 0
+Unique hashes: 1 of 10000 runs
+623/TokenFactory.bc: 483
+Unique hashes: 9998 of 10000 runs
+623/DOMNodeIteratorImpl.bc: 345
+Unique hashes: 4 of 10000 runs
+623/XalanSourceTreeHelper.bc: 16
+Warning: only 9276 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9897 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9980 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9998 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/DTDScanner.bc: 6499
+Unique hashes: 10000 of 10000 runs
+623/XSAXMLScanner.bc: 2353
+Unique hashes: 9966 of 10000 runs
+623/XSLTInputSource.bc: 76
+Unique hashes: 4 of 10000 runs
+623/SchemaSymbols.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XMLDTDDescription.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XPath.bc: 5765
+Unique hashes: 10000 of 10000 runs
+623/XSDLocator.bc: 7
+Unique hashes: 1 of 10000 runs
+623/XalanUTF8Writer.bc: 79
+Unique hashes: 1 of 10000 runs
+623/ElemVariable.bc: 697
+Unique hashes: 9894 of 10000 runs
+623/XercesElementWrapperAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/XalanQNameByValueAllocator.bc: 623
+Unique hashes: 6640 of 10000 runs
+623/XalanUTF16Writer.bc: 79
+Unique hashes: 1 of 10000 runs
+623/BitSet.bc: 213
+Unique hashes: 9980 of 10000 runs
+623/DOM_Text.bc: 2
+Unique hashes: 1 of 10000 runs
+623/XMLIBM1047Transcoder.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanExe.bc: 1362
+Unique hashes: 10000 of 10000 runs
+623/ElemWithParam.bc: 189
+Unique hashes: 24 of 10000 runs
+623/XalanMatchPatternData.bc: 11
+Warning: only 2033 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/XalanElemCallTemplateAllocator.bc: 563
+Unique hashes: 6583 of 10000 runs
+623/XMLGrammarPoolImpl.bc: 1020
+Unique hashes: 9998 of 10000 runs
+623/HPPlatformUtils.bc: 0
+Unique hashes: 1 of 10000 runs
+623/QNameDatatypeValidator.bc: 113
+Unique hashes: 4 of 10000 runs
+623/XMLSchemaDescriptionImpl.bc: 461
+Unique hashes: 8573 of 10000 runs
+623/Win32PlatformUtils.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XPathParserException.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XML88591Transcoder390.bc: 10
+Warning: only 1023 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 1023 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 2 of 10000 runs
+623/Dummy.bc: 0
+Unique hashes: 1 of 10000 runs
+623/IGXMLScanner.bc: 9393
+Unique hashes: 10000 of 10000 runs
+623/XSLTProcessorEnvSupport.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XercesTextBridge.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XalanXMLSerializerBase.bc: 1452
+Unique hashes: 9855 of 10000 runs
+623/XNodeSetBase.bc: 60
+Unique hashes: 1 of 10000 runs
+623/CMUnaryOp.bc: 263
+Unique hashes: 123 of 10000 runs
+623/DOMNodeImpl.bc: 549
+Unique hashes: 5786 of 10000 runs
+623/DOMDeepNodeListImpl.bc: 115
+Unique hashes: 2 of 10000 runs
+623/XercesGroupInfo.bc: 338
+Unique hashes: 907 of 10000 runs
+623/XMLRecognizer.bc: 19
+Warning: only 9914 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 2 of 10000 runs
+623/RangeFactory.bc: 3
+Unique hashes: 1 of 10000 runs
+623/LinuxPlatformUtils.bc: 167
+Unique hashes: 666 of 10000 runs
+623/DocumentTypeImpl.bc: 101
+Unique hashes: 1 of 10000 runs
+623/XSNotationDeclaration.bc: 17
+Warning: only 9634 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9969 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9995 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/TraceListenerDefault.bc: 577
+Unique hashes: 1 of 10000 runs
+623/XercesAttGroupInfo.bc: 155
+Unique hashes: 1 of 10000 runs
+623/FunctionCurrent.bc: 4
+Unique hashes: 1 of 10000 runs
+623/NodeRefList.bc: 792
+Unique hashes: 9798 of 10000 runs
+623/XalanSpaceNodeTester.bc: 8
+Warning: only 248 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 248 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 2 of 10000 runs
+623/XercesEntityBridge.bc: 0
+Unique hashes: 1 of 10000 runs
+623/InputSource.bc: 121
+Unique hashes: 2 of 10000 runs
+623/DOM_NamedNodeMap.bc: 48
+Unique hashes: 2 of 10000 runs
+623/XalanNotation.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XPathFactoryBlock.bc: 92
+Unique hashes: 17 of 10000 runs
+623/XalanDOMImplementation.bc: 0
+Unique hashes: 1 of 10000 runs
+623/DTDElementDecl.bc: 950
+Unique hashes: 9999 of 10000 runs
+623/XalanReferenceCountedObject.bc: 3
+Unique hashes: 1 of 10000 runs
+623/XNodeSetNodeProxyAllocator.bc: 1915
+Unique hashes: 10000 of 10000 runs
+623/XSLTResultTarget.bc: 44
+Unique hashes: 3 of 10000 runs
+623/XercesDOM_NodeHack.bc: 0
+Unique hashes: 1 of 10000 runs
+623/XercesNotationWrapper.bc: 55
+Unique hashes: 1 of 10000 runs
+623/XPathCAPI.bc: 240
+Unique hashes: 1 of 10000 runs
+623/StylesheetExecutionContextDefault.bc: 20700
+Unique hashes: 10000 of 10000 runs
+623/DatatypeValidator.bc: 680
+Unique hashes: 368 of 10000 runs
+623/FileHandleImpl.bc: 33
+Unique hashes: 3 of 10000 runs
+623/XMLUCSTranscoder.bc: 19
+Warning: only 9906 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 9999 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 2 of 10000 runs
+623/RegxUtil.bc: 11
+Warning: only 2033 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+623/ProblemListenerDefault.bc: 102
+Unique hashes: 1 of 10000 runs
+623/XalanSourceTreeParserLiaison.bc: 4184
+Unique hashes: 10000 of 10000 runs
+623/QName.bc: 574
+Unique hashes: 344 of 10000 runs
+623/XalanSourceTreeProcessingInstruction.bc: 46
+Unique hashes: 1 of 10000 runs
+623/XMLAttDef.bc: 247
+Unique hashes: 4 of 10000 runs
+623/XercesBridgeHelper.bc: 0
+Unique hashes: 1 of 10000 runs
+623/ClosureToken.bc: 6
+Unique hashes: 1 of 10000 runs
+623/XercesWrapperNavigator.bc: 138
+Unique hashes: 13 of 10000 runs
+623/HashPtr.bc: 0
+Unique hashes: 1 of 10000 runs

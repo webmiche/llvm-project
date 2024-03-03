@@ -1,0 +1,5 @@
+Running benchmark 619 with Oz
+619/lbm.bc: 2831
+Unique hashes: 10000 of 10000 runs
+619/main.bc: 125
+Unique hashes: 119 of 10000 runs

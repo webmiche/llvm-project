@@ -1,0 +1,43 @@
+Running benchmark 641 with Oz
+641/SGFTree.bc: 7962
+Unique hashes: 10000 of 10000 runs
+641/GameState.bc: 3321
+Unique hashes: 10000 of 10000 runs
+641/FullBoard.bc: 622
+Unique hashes: 8979 of 10000 runs
+641/GTP.bc: 9054
+Unique hashes: 10000 of 10000 runs
+641/MCOTable.bc: 39
+Unique hashes: 12 of 10000 runs
+641/FastState.bc: 1588
+Unique hashes: 9998 of 10000 runs
+641/Random.bc: 40
+Unique hashes: 2535 of 10000 runs
+641/FastBoard.bc: 9137
+Unique hashes: 10000 of 10000 runs
+641/KoState.bc: 564
+Unique hashes: 890 of 10000 runs
+641/Zobrist.bc: 4
+Unique hashes: 1 of 10000 runs
+641/SMP.bc: 0
+Unique hashes: 1 of 10000 runs
+641/Matcher.bc: 256
+Unique hashes: 36 of 10000 runs
+641/Leela.bc: 967
+Unique hashes: 1743 of 10000 runs
+641/Timing.bc: 0
+Unique hashes: 1 of 10000 runs
+641/UCTNode.bc: 1895
+Unique hashes: 8767 of 10000 runs
+641/TimeControl.bc: 90
+Unique hashes: 3 of 10000 runs
+641/UCTSearch.bc: 725
+Unique hashes: 36 of 10000 runs
+641/SGFParser.bc: 1244
+Unique hashes: 1219 of 10000 runs
+641/Playout.bc: 315
+Unique hashes: 6 of 10000 runs
+641/Utils.bc: 2
+Unique hashes: 1 of 10000 runs
+641/TTable.bc: 29
+Unique hashes: 16 of 10000 runs

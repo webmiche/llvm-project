@@ -1,0 +1,147 @@
+Running benchmark 600 with Oz
+600/universal.bc: 996
+Unique hashes: 10000 of 10000 runs
+600/perlio.bc: 3645
+Unique hashes: 10000 of 10000 runs
+600/gv.bc: 4202
+Unique hashes: 10000 of 10000 runs
+600/locale.bc: 2
+Unique hashes: 1 of 10000 runs
+600/Opcode.bc: 650
+Unique hashes: 9997 of 10000 runs
+600/mathoms.bc: 133
+Unique hashes: 2 of 10000 runs
+600/perlmain.bc: 58
+Unique hashes: 1 of 10000 runs
+600/dump.bc: 1352
+Unique hashes: 10000 of 10000 runs
+600/globals.bc: 0
+Unique hashes: 1 of 10000 runs
+600/pp_sort.bc: 4051
+Unique hashes: 10000 of 10000 runs
+600/DynaLoader.bc: 27
+Warning: only 9999 unique sequences generated out of 10000 attempts. Trying again.
+Unique hashes: 1 of 10000 runs
+600/doop.bc: 1506
+Unique hashes: 9998 of 10000 runs
+600/reentr.bc: 0
+Unique hashes: 1 of 10000 runs
+600/sv.bc: 29537
+Unique hashes: 10000 of 10000 runs
+600/regcomp.bc: 38208
+Unique hashes: 10000 of 10000 runs
+600/deb.bc: 3
+Unique hashes: 1 of 10000 runs
+600/numeric.bc: 531
+Unique hashes: 9962 of 10000 runs
+600/perlapi.bc: 0
+Unique hashes: 1 of 10000 runs
+600/doio.bc: 1971
+Unique hashes: 10000 of 10000 runs
+600/perl.bc: 12384
+Unique hashes: 10000 of 10000 runs
+600/mg.bc: 3300
+Unique hashes: 10000 of 10000 runs
+600/toke.bc: 21081
+Unique hashes: 10000 of 10000 runs
+600/pp_ctl.bc: 8557
+Unique hashes: 10000 of 10000 runs
+600/caretx.bc: 1
+Unique hashes: 1 of 10000 runs
+600/pp_hot.bc: 5005
+Unique hashes: 10000 of 10000 runs
+600/pp.bc: 7498
+Unique hashes: 10000 of 10000 runs
+600/utf8.bc: 1474
+Unique hashes: 10000 of 10000 runs
+600/perly.bc: 1235
+Unique hashes: 6179 of 10000 runs
+600/util.bc: 1319
+Unique hashes: 10000 of 10000 runs
+600/pp_pack.bc: 5488
+Unique hashes: 10000 of 10000 runs
+600/pad.bc: 2725
+Unique hashes: 10000 of 10000 runs
+600/scope.bc: 1891
+Unique hashes: 9999 of 10000 runs
+600/hv.bc: 2959
+Unique hashes: 10000 of 10000 runs
+600/run.bc: 5
+Unique hashes: 1 of 10000 runs
+600/op.bc: 17607
+Unique hashes: 10000 of 10000 runs
+600/taint.bc: 78
+Unique hashes: 12 of 10000 runs
+600/mro_core.bc: 2181
+Unique hashes: 10000 of 10000 runs
+600/keywords.bc: 3897
+Unique hashes: 1 of 10000 runs
+600/regexec.bc: 16867
+Unique hashes: 10000 of 10000 runs
+600/av.bc: 651
+Unique hashes: 10000 of 10000 runs
+600/pp_sys.bc: 5379
+Unique hashes: 10000 of 10000 runs
+600/dist/Storable/Storable.bc: 10502
+Unique hashes: 10000 of 10000 runs
+600/dist/Data-Dumper/Dumper.bc: 1345
+Unique hashes: 10000 of 10000 runs
+600/dist/PathTools/Cwd.bc: 303
+Unique hashes: 16 of 10000 runs
+600/dist/IO/poll.bc: 54
+Unique hashes: 1 of 10000 runs
+600/dist/IO/IO.bc: 204
+Unique hashes: 10 of 10000 runs
+600/specrand/specrand.bc: 71
+Unique hashes: 4149 of 10000 runs
+600/cpan/MIME-Base64/Base64.bc: 481
+Unique hashes: 2893 of 10000 runs
+600/cpan/Time-HiRes/HiRes.bc: 495
+Unique hashes: 4 of 10000 runs
+600/cpan/HTML-Parser/Parser.bc: 10354
+Unique hashes: 10000 of 10000 runs
+600/cpan/Digest-MD5/MD5.bc: 7621
+Unique hashes: 10000 of 10000 runs
+600/cpan/Digest-SHA/SHA.bc: 10575
+Unique hashes: 10000 of 10000 runs
+600/cpan/Scalar-List-Utils/ListUtil.bc: 3410
+Unique hashes: 10000 of 10000 runs
+600/ext/re/re.bc: 46
+Unique hashes: 2 of 10000 runs
+600/ext/re/re_exec.bc: 16995
+Unique hashes: 10000 of 10000 runs
+600/ext/re/re_comp.bc: 32630
+Unique hashes: 10000 of 10000 runs
+600/ext/Sys-Hostname/Hostname.bc: 12
+Warning: only 3728 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 3972 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4030 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4043 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4046 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4047 unique sequences generated out of 10000 attempts. Trying again.
+Warning: only 4047 unique sequences generated out of 10000 attempts and no new sequences are being generated.
+Unique hashes: 1 of 10000 runs
+600/ext/attributes/attributes.bc: 364
+Unique hashes: 16 of 10000 runs
+600/ext/PerlIO-via/via.bc: 378
+Unique hashes: 128 of 10000 runs
+600/ext/Devel-Peek/Peek.bc: 285
+Unique hashes: 16 of 10000 runs
+600/ext/XS-Typemap/stdio.bc: 0
+Unique hashes: 1 of 10000 runs
+600/ext/mro/mro.bc: 286
+Unique hashes: 42 of 10000 runs
+600/ext/Hash-Util/Util.bc: 245
+Unique hashes: 5608 of 10000 runs
+600/ext/Hash-Util-FieldHash/FieldHash.bc: 358
+Unique hashes: 4 of 10000 runs
+600/ext/arybase/arybase.bc: 657
+Unique hashes: 515 of 10000 runs
+600/ext/Tie-Hash-NamedCapture/NamedCapture.bc: 127
+Unique hashes: 6 of 10000 runs
+600/ext/PerlIO-scalar/scalar.bc: 226
+Unique hashes: 9213 of 10000 runs
+600/ext/File-Glob/bsd_glob.bc: 474
+Unique hashes: 2549 of 10000 runs
+600/ext/File-Glob/Glob.bc: 338
+Unique hashes: 6792 of 10000 runs
