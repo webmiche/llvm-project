@@ -586,6 +586,50 @@ class AAInstrumentationDriver:
         return self.diff_aa_trace_info(base_info, contrast_info)
 
 
+    def get_result_and_pass(self, file_name: Path, index_list: list[int], index: int, instrument_recursively = False,):
+        """
+        Given an index i, returns the result and the path name for the i-th query.
+        """
+        aa_sequence_string = self.get_aa_string_from_indices(index_list)
+        cmd = [
+            str(self.instr_path / "opt"),
+            str(self.initial_dir / file_name),
+            "--aa-candidate-trace",
+            "-" + self.opt_flag,
+            "--print-pass-names",
+            "-disable-output",
+        ]
+        if instrument_recursively:
+            cmd.append("--instrument-aa-recursively")
+
+        cmd += ["--aasequence=" + aa_sequence_string]
+        p = run(
+            cmd,
+            cwd=self.exec_root,
+            stdout=DEVNULL,
+            stderr=PIPE,
+            text=True,
+        )
+
+        output_trace = p.stderr.split("\n")
+
+        result = None
+        i = 0
+        for line in output_trace:
+            if line.startswith("*** "):
+                if result:
+                    pass_name = line.removeprefix("*** Pass: ").removesuffix(" ***")
+                    return pass_name, result
+            elif instrument_recursively or not line.startswith(" "):
+                line = line.strip()
+                if i == index:
+                    result = line.split()[-1]
+                i = i + 1
+
+        return "", None
+
+
+
 if __name__ == "__main__":
     arg_parser = register_arguments()
 
@@ -618,8 +662,4 @@ if __name__ == "__main__":
 
     for file in files:
         for i in range(3):
-            diff = driver.get_diff_aa_trace_info(
-                file, [i], [], instrument_recursively=False
-            )
-            if diff is not None:
-                print(file, i, diff)
+            print(driver.get_result_and_pass(file, [], i))
