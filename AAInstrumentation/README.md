@@ -46,6 +46,8 @@ as private or public, but notice that there are other teams doing this project
 too and they might be able to see what you are working on, if you fork as
 public.
 
+### UPDATE: I was informed that public repositories cannot be forked to private ones. My suggestion is therefore that you download the code in this branch in a zip folder and reopen a new private repo containing the code.
+
 First, you will need to compile the clang custom build that has the aasequence
 argument. Checkout the main README for instructions on that. The cmake
 configuration I used on my machine is
