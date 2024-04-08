@@ -94,7 +94,7 @@ def run_unique_hashes_experiment(
             initial_dir,
             instr_dir,
             groundtruth_dir,
-            "Oz",
+            "O3",
             proc_count,
         )
         driver.generate_baseline()
@@ -130,7 +130,7 @@ def run_maximal_relaxation_experiment(
             initial_dir,
             instr_dir,
             groundtruth_dir,
-            "Oz",
+            "O3",
             proc_count,
             "",
             False,
