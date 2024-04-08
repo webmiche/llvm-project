@@ -17,19 +17,21 @@ import random
 from typing import TypeAlias
 from enum import Enum, auto
 
-index: TypeAlias = int
-size: TypeAlias = int
-AASequence: TypeAlias = list[index]
-AATraceInfo: TypeAlias = tuple[dict[str, dict[str, size]], list[str]]
-AATraceDiff: TypeAlias = dict[str, dict[str, size]]
-PassName: TypeAlias = str
-
 
 class AAResult(Enum):
     MayAlias = auto
     PartialAlias = auto
     MustAlias = auto
     NoAlias = auto
+
+
+index: TypeAlias = int
+size: TypeAlias = int
+AASequence: TypeAlias = list[index]
+AATraceInfo: TypeAlias = tuple[dict[str, dict[str, size]], list[str]]
+AATraceDiff: TypeAlias = dict[str, dict[str, size]]
+PassName: TypeAlias = str
+RelaxationTrace: TypeAlias = dict[str, list[AAResult]]
 
 
 # from specbuilder --> spec.py
@@ -41,6 +43,14 @@ linked_libraries = {
     "638": ["m"],
     "644": ["m"],
 }
+
+
+def get_result_and_pass(relaxation_trace: RelaxationTrace) -> tuple[AAResult, str]:
+    """Get the result and the pass from the relaxation trace."""
+    for pass_name, results in relaxation_trace.items():
+        for result in results:
+            return result, pass_name
+    assert False, "No result found in relaxation trace"
 
 
 def register_arguments():
@@ -219,7 +229,24 @@ class AAInstrumentationDriver:
         name_prefix: int,
         index_list: list[index],
     ):
-        self.run_and_assemble_file(file_name, name_prefix, index_list)
+        hash_string, relaxation_trace = self.run_assemble_and_get_hash_and_relaxation(
+            file_name, name_prefix, index_list
+        )
+
+        return hash_string
+
+    def run_assemble_and_get_hash_and_relaxation(
+        self,
+        file_name: Path,
+        name_prefix: int,
+        index_list: list[index],
+    ) -> tuple[str, RelaxationTrace]:
+        relaxation_trace = self.run_step_single_func(file_name, name_prefix, index_list)
+        self.assemble_file(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".bc")
+        )
 
         hash_string = self.get_hash(
             self.instr_dir
@@ -237,7 +264,7 @@ class AAInstrumentationDriver:
             / Path(str(name_prefix) + str(file_name.stem) + ".bc")
         )
 
-        return hash_string
+        return hash_string, relaxation_trace
 
     def measure_outputsize(self, file: Path) -> size:
         cmd = [str(self.instr_path / "llvm-size"), str(file)]
@@ -323,39 +350,6 @@ class AAInstrumentationDriver:
     def get_aa_string_from_indices(self, index_list: list[index]) -> str:
         return str(len(index_list)) + "-" + "-".join([str(i) for i in index_list])
 
-    def get_relaxed_results(
-        self,
-        file_name: Path,
-        index_list: list[index],
-        instrument_recursively=False,
-    ) -> dict[str, list[AAResult]]:
-        """
-        Perform one run of the instrumentation and return which AAResults were
-        relaxed in which pass.
-        """
-
-        aa_sequence_string = self.get_aa_string_from_indices(index_list)
-        cmd = [
-            str(self.instr_path / "opt"),
-            str(self.initial_dir / file_name),
-            "--aa-relaxation-trace",
-            "-" + self.opt_flag,
-            "--print-pass-names",
-            "-disable-output",
-        ]
-        if instrument_recursively:
-            cmd.append("--instrument-aa-recursively")
-        cmd += ["--aasequence=" + aa_sequence_string]
-        p = run(
-            cmd,
-            cwd=self.exec_root,
-            stdout=PIPE,
-            stderr=PIPE,
-            text=True,
-        )
-
-        return self.parse_relaxation_trace(p.stderr)
-
     def parse_relaxation_trace(self, relaxation_trace) -> dict[str, list[AAResult]]:
         """
         Given a relaxation trace, returns a dictionary mapping passes to a list
@@ -394,31 +388,16 @@ class AAInstrumentationDriver:
 
         return pass_dict
 
-    def get_relaxed_result(
-        self,
-        file_name: Path,
-        relaxed_index: index,
-        instrument_recursively=False,
-    ) -> Tuple[AAResult, PassName]:
-        """
-        Return which AAResult was relaxed.
-        """
-
-        full_dict = self.get_relaxed_results(
-            file_name, [relaxed_index], instrument_recursively
-        )
-        for pass_name in full_dict.keys():
-            if full_dict[pass_name] != []:
-                return full_dict[pass_name][0], pass_name
-
     def run_step_single_func(
         self,
         file_name: Path,
         name_prefix: int,
         index_list: list[index],
         instrument_recursively=False,
-    ):
+    ) -> dict[str, list[AAResult]]:
         """Perform one run of the instrumentation.
+        Returns a dictionary mapping passes to a list of AAResults that were
+        relaxed during that pass.
 
         Args:
             file_name: The name of the file to be instrumented.
@@ -432,13 +411,14 @@ class AAInstrumentationDriver:
         base_cmd = [
             str(self.instr_path / "opt"),
             str(self.initial_dir / file_name),
-            "-stats",
             "-o",
             str(
                 self.instr_dir
                 / file_name.parent
                 / Path(str(name_prefix) + str(file_name.stem) + ".bc")
             ),
+            "--aa-relaxation-trace",
+            "--print-pass-names",
             "-" + self.opt_flag,
         ]
         if instrument_recursively:
@@ -449,7 +429,7 @@ class AAInstrumentationDriver:
                 cmd,
                 cwd=self.exec_root,
                 stdout=DEVNULL,
-                stderr=DEVNULL,
+                stderr=PIPE,
                 text=True,
             )
         # It can happen that the aa_sequence is too long for the command line.
@@ -473,10 +453,12 @@ class AAInstrumentationDriver:
                 cmd,
                 cwd=self.exec_root,
                 stdout=DEVNULL,
-                stderr=DEVNULL,
+                stderr=PIPE,
                 text=True,
             )
             os.remove(aafile_name)
+
+        return self.parse_relaxation_trace(p.stderr)
 
     def run_step_opt_pipeline(
         self,
@@ -484,6 +466,7 @@ class AAInstrumentationDriver:
         name_prefix: int,
         index_list: list[index],
         opt_pipeline: list[str],
+        instrument_recursively=False,
     ):
         """Perform one run of the instrumentation with a given opt_pipeline.
 
@@ -565,7 +548,7 @@ class AAInstrumentationDriver:
             "/dev/null",
         ]
         if instrument_recursively:
-            cmd.append("--instrument-aa-recursively")
+            base_cmd.append("--instrument-aa-recursively")
         try:
             cmd = base_cmd + ["--aasequence=" + aa_string]
             p = run(
@@ -651,7 +634,6 @@ class AAInstrumentationDriver:
         cmd = [
             str(self.instr_path / "opt"),
             str(self.initial_dir / file_name),
-            "--aa-candidate-trace",
             "-" + self.opt_flag,
             "--print-pass-names",
             "-disable-output",

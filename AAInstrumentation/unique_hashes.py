@@ -34,7 +34,9 @@ class UniqueHashesDriver(AAInstrumentationDriver):
         """
         for i, sample in enumerate(population):
             # Check how many queries actually occur in this compilation.
-            new_num_candidates = self.get_candidate_count(file_name, sample, name_prefix=i)
+            new_num_candidates = self.get_candidate_count(
+                file_name, sample, name_prefix=i
+            )
             actual_sample = tuple(sample[:new_num_candidates])
 
             # If we have already seen this sequence, then we don't need to
@@ -68,7 +70,9 @@ class UniqueHashesDriver(AAInstrumentationDriver):
                 num_candidates, max(num_runs - len(full_population), 20)
             )
 
-            self.handle_population(file_name, population, full_population, distinct_hashes)
+            self.handle_population(
+                file_name, population, full_population, distinct_hashes
+            )
 
             if num_candidates < 20 and math.pow(2, num_candidates) <= len(
                 full_population
@@ -98,6 +102,7 @@ class UniqueHashesDriver(AAInstrumentationDriver):
 
         return len(distinct_hashes)
 
+
 @dataclass
 class ParallelUniqueHashesDriver(UniqueHashesDriver):
     """
@@ -112,7 +117,9 @@ class ParallelUniqueHashesDriver(UniqueHashesDriver):
 
     random_seed: int = 0
 
-    def truncate_sequence(self, file_name: Path, sample: List[int], name_prefix: int) -> tuple[int]:
+    def truncate_sequence(
+        self, file_name: Path, sample: List[int], name_prefix: int
+    ) -> tuple[int, ...]:
         """
         Given a sequence of AA queries, this method returns the number of
         queries that actually occur in the compilation. This is useful to
@@ -160,6 +167,7 @@ class ParallelUniqueHashesDriver(UniqueHashesDriver):
 
         # add the new hashes to the set of distinct hashes
         distinct_hashes.update(hashes)
+
 
 if __name__ == "__main__":
     arg_parser = register_arguments()

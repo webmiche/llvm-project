@@ -1,4 +1,13 @@
-from core import AAInstrumentationDriver, register_arguments, AASequence, index, size
+from core import (
+    AAInstrumentationDriver,
+    register_arguments,
+    AASequence,
+    index,
+    size,
+    RelaxationTrace,
+    AAResult,
+    get_result_and_pass,
+)
 from multiprocessing import Pool
 import os
 from pathlib import Path
@@ -306,7 +315,9 @@ class IndividualRelaxationDriver(MaximalRelaxationDriver):
     """
 
     @abstractmethod
-    def get_relaxable_queries(self, file_name: Path, candidate_count: size) -> size:
+    def get_relaxable_queries(
+        self, file_name: Path, candidate_count: size
+    ) -> AASequence:
         raise NotImplementedError
 
     def maximal_relaxation_single_file(
@@ -329,15 +340,6 @@ class IndividualRelaxationDriver(MaximalRelaxationDriver):
         relaxable_count = len(relaxable_queries)
         print("with size: " + str(relaxable_count) + " of " + str(candidate_count))
         print("prefix: " + str(relaxable_queries))
-        relaxed_results = []
-        relaxed_passes = []
-        for query in relaxable_queries:
-            relaxed_result, relaxed_pass = self.get_relaxed_result(file_name, query)
-            relaxed_results.append(relaxed_result)
-            relaxed_passes.append(relaxed_pass)
-
-        print("Relaxed results: " + str(relaxed_results))
-        print("Relaxed passes: " + str(relaxed_passes))
 
         return relaxable_queries
 
@@ -348,12 +350,14 @@ class ParallelIndividualRelaxationDriver(IndividualRelaxationDriver):
     checked sequentially.
     """
 
-    def get_relaxable_queries(self, file_name: Path, candidate_count: size) -> size:
+    def get_relaxable_queries(
+        self, file_name: Path, candidate_count: size
+    ) -> AASequence:
         relaxable_queries = []
         hashes = []
         with Pool(self.proc_count) as p:
             hashes = p.starmap(
-                self.run_assemble_and_get_hash,
+                self.run_assemble_and_get_hash_and_relaxation,
                 [
                     (
                         file_name,
@@ -364,9 +368,17 @@ class ParallelIndividualRelaxationDriver(IndividualRelaxationDriver):
                 ],
             )
 
-        for i, curr_hash in enumerate(hashes):
+        relaxed_results = []
+        relaxed_passes = []
+        for i, (curr_hash, RelaxationTrace) in enumerate(hashes):
             if curr_hash == self.original_hash:
                 relaxable_queries.append(i)
+                result, pass_ = get_result_and_pass(RelaxationTrace)
+                relaxed_results.append(result)
+                relaxed_passes.append(pass_)
+
+        print("Relaxed results: " + str(relaxed_results))
+        print("Relaxed passes: " + str(relaxed_passes))
 
         return relaxable_queries
 

@@ -6,7 +6,7 @@ from optimization import (
     parallel_local_autotuner_factory,
 )
 from maximal_relaxation import (
-    SequentialIndividualRelaxationDriver,
+    ParallelIndividualRelaxationDriver,
 )
 from unique_hashes import ParallelUniqueHashesDriver
 from core import register_arguments
@@ -38,7 +38,17 @@ benchmarks = [
     "602",
 ]
 
-def run_optimization_experiment(instr_path, exec_root, specbuild_dir, initial_dir, instr_dir, groundtruth_dir, proc_count, benchmarks: list[str]):
+
+def run_optimization_experiment(
+    instr_path,
+    exec_root,
+    specbuild_dir,
+    initial_dir,
+    instr_dir,
+    groundtruth_dir,
+    proc_count,
+    benchmarks: list[str],
+):
     for benchmark in benchmarks:
         sys.stdout = open(f"AAInstrumentation/output/{benchmark}.txt", "w")
         print(f"Running benchmark {benchmark} with Oz")
@@ -46,7 +56,7 @@ def run_optimization_experiment(instr_path, exec_root, specbuild_dir, initial_di
             instr_path,
             exec_root,
             specbuild_dir,
-            benchmark,
+            Path(benchmark),
             initial_dir,
             instr_dir,
             groundtruth_dir,
@@ -62,7 +72,17 @@ def run_optimization_experiment(instr_path, exec_root, specbuild_dir, initial_di
             ],
         )
 
-def run_unique_hashes_experiment(instr_path, exec_root, specbuild_dir, initial_dir, instr_dir, groundtruth_dir, proc_count, benchmarks: list[str]):
+
+def run_unique_hashes_experiment(
+    instr_path,
+    exec_root,
+    specbuild_dir,
+    initial_dir,
+    instr_dir,
+    groundtruth_dir,
+    proc_count,
+    benchmarks: list[str],
+):
     for benchmark in benchmarks:
         sys.stdout = open(f"AAInstrumentation/output/{benchmark}.txt", "w")
         print(f"Running benchmark {benchmark} with Oz")
@@ -70,7 +90,7 @@ def run_unique_hashes_experiment(instr_path, exec_root, specbuild_dir, initial_d
             instr_path,
             exec_root,
             specbuild_dir,
-            benchmark,
+            Path(benchmark),
             initial_dir,
             instr_dir,
             groundtruth_dir,
@@ -89,22 +109,31 @@ def run_unique_hashes_experiment(instr_path, exec_root, specbuild_dir, initial_d
             print(f"Unique hashes: {unique_hashes} of {num_runs} runs")
 
 
-def run_maximal_relaxation_experiment(instr_path, exec_root, specbuild_dir, initial_dir, instr_dir, groundtruth_dir, proc_count, benchmarks: list[str]):
+def run_maximal_relaxation_experiment(
+    instr_path,
+    exec_root,
+    specbuild_dir,
+    initial_dir,
+    instr_dir,
+    groundtruth_dir,
+    proc_count,
+    benchmarks: list[str],
+):
     for benchmark in benchmarks:
         sys.stdout = open(f"AAInstrumentation/output/{benchmark}.txt", "w")
         print(f"Running benchmark {benchmark} with Oz")
-        driver = SequentialIndividualRelaxationDriver(
+        driver = ParallelIndividualRelaxationDriver(
             instr_path,
             exec_root,
             specbuild_dir,
-            benchmark,
+            Path(benchmark),
             initial_dir,
             instr_dir,
             groundtruth_dir,
             "Oz",
             proc_count,
             "",
-            False
+            False,
         )
         driver.maximal_relaxation()
 
@@ -136,7 +165,9 @@ if __name__ == "__main__":
         args = arg_parser.parse_args(config_file.read().splitlines() + sys.argv[1:])
 
     if sum([args.optimization, args.unique_hashes, args.maximal_relaxation]) > 1:
-        print("Please specify only one of the following flags: --optimization, --unique_hashes, --maximal_relaxation")
+        print(
+            "Please specify only one of the following flags: --optimization, --unique_hashes, --maximal_relaxation"
+        )
         exit(1)
 
     instr_path = args.instr_path
@@ -153,10 +184,37 @@ if __name__ == "__main__":
         benchmarks = [benchmark]
 
     if args.optimization:
-        run_optimization_experiment(instr_path, exec_root, specbuild_dir, initial_dir, instr_dir, groundtruth_dir, args.proc_count, benchmarks)
+        run_optimization_experiment(
+            instr_path,
+            exec_root,
+            specbuild_dir,
+            initial_dir,
+            instr_dir,
+            groundtruth_dir,
+            args.proc_count,
+            benchmarks,
+        )
 
     if args.unique_hashes:
-        run_unique_hashes_experiment(instr_path, exec_root, specbuild_dir, initial_dir, instr_dir, groundtruth_dir, args.proc_count, benchmarks)
+        run_unique_hashes_experiment(
+            instr_path,
+            exec_root,
+            specbuild_dir,
+            initial_dir,
+            instr_dir,
+            groundtruth_dir,
+            args.proc_count,
+            benchmarks,
+        )
 
     if args.maximal_relaxation:
-        run_maximal_relaxation_experiment(instr_path, exec_root, specbuild_dir, initial_dir, instr_dir, groundtruth_dir, args.proc_count, benchmarks)
+        run_maximal_relaxation_experiment(
+            instr_path,
+            exec_root,
+            specbuild_dir,
+            initial_dir,
+            instr_dir,
+            groundtruth_dir,
+            args.proc_count,
+            benchmarks,
+        )
