@@ -4,7 +4,6 @@
     and implement their specific functionality.
 """
 
-
 from __future__ import annotations
 from subprocess import Popen, PIPE, run, DEVNULL
 import os
@@ -16,12 +15,21 @@ import shutil
 import hashlib
 import random
 from typing import TypeAlias
+from enum import Enum, auto
 
 index: TypeAlias = int
 size: TypeAlias = int
 AASequence: TypeAlias = list[index]
 AATraceInfo: TypeAlias = tuple[dict[str, dict[str, size]], list[str]]
 AATraceDiff: TypeAlias = dict[str, dict[str, size]]
+PassName: TypeAlias = str
+
+
+class AAResult(Enum):
+    MayAlias = auto
+    PartialAlias = auto
+    MustAlias = auto
+    NoAlias = auto
 
 
 # from specbuilder --> spec.py
@@ -168,7 +176,9 @@ class AAInstrumentationDriver:
         return files
 
     def compile_baseline_file(self, f: Path):
-        (self.exec_root / self.groundtruth_dir / f.parent).mkdir(exist_ok=True, parents=True)
+        (self.exec_root / self.groundtruth_dir / f.parent).mkdir(
+            exist_ok=True, parents=True
+        )
         cmd = [
             str(self.instr_path / "opt"),
             "-" + self.opt_flag,
@@ -313,6 +323,94 @@ class AAInstrumentationDriver:
     def get_aa_string_from_indices(self, index_list: list[index]) -> str:
         return str(len(index_list)) + "-" + "-".join([str(i) for i in index_list])
 
+    def get_relaxed_results(
+        self,
+        file_name: Path,
+        index_list: list[index],
+        instrument_recursively=False,
+    ) -> dict[str, list[AAResult]]:
+        """
+        Perform one run of the instrumentation and return which AAResults were
+        relaxed in which pass.
+        """
+
+        aa_sequence_string = self.get_aa_string_from_indices(index_list)
+        cmd = [
+            str(self.instr_path / "opt"),
+            str(self.initial_dir / file_name),
+            "--aa-relaxation-trace",
+            "-" + self.opt_flag,
+            "--print-pass-names",
+            "-disable-output",
+        ]
+        if instrument_recursively:
+            cmd.append("--instrument-aa-recursively")
+        cmd += ["--aasequence=" + aa_sequence_string]
+        p = run(
+            cmd,
+            cwd=self.exec_root,
+            stdout=PIPE,
+            stderr=PIPE,
+            text=True,
+        )
+
+        return self.parse_relaxation_trace(p.stderr)
+
+    def parse_relaxation_trace(self, relaxation_trace) -> dict[str, list[AAResult]]:
+        """
+        Given a relaxation trace, returns a dictionary mapping passes to a list
+        of AAResults that were relaxed during that pass. Lines starting with ***
+        are pass and have the form `*** Pass: <pass-name> ***`. Other lines are
+        from the AA trace and have the form `{Cache:} Relaxing <AAResult>` . The
+        AAqueries before a pass are the queries that are run during it.
+        """
+        pass_dict = {}
+
+        curr_list = []
+        relaxation_trace_lines = relaxation_trace.split("\n")
+        pass_list = []
+        pass_counts = {}
+        for i, line in enumerate(relaxation_trace_lines):
+            if not line:
+                continue
+            if line.startswith("*** "):
+                # This is a pass line
+                pass_name = line.removeprefix("*** Pass: ").removesuffix(" ***")
+                pass_list.append(pass_name)
+                new_pass_name = str(pass_counts.get(pass_name, 0)) + pass_name
+                pass_counts[pass_name] = pass_counts.get(pass_name, 0) + 1
+                pass_dict[new_pass_name] = curr_list
+                curr_list = []
+            elif line.startswith("Cache: "):
+                continue
+            elif line.startswith("Relaxing "):
+                AAResult = line.split()[-1]
+                if AAResult.endswith(")"):
+                    # This is the PartialAlias with an offset case.
+                    AAResult = line.split()[-3]
+                curr_list.append(AAResult)
+            else:
+                print("Unknown line: ", line)
+
+        return pass_dict
+
+    def get_relaxed_result(
+        self,
+        file_name: Path,
+        relaxed_index: index,
+        instrument_recursively=False,
+    ) -> Tuple[AAResult, PassName]:
+        """
+        Return which AAResult was relaxed.
+        """
+
+        full_dict = self.get_relaxed_results(
+            file_name, [relaxed_index], instrument_recursively
+        )
+        for pass_name in full_dict.keys():
+            if full_dict[pass_name] != []:
+                return full_dict[pass_name][0], pass_name
+
     def run_step_single_func(
         self,
         file_name: Path,
@@ -359,7 +457,81 @@ class AAInstrumentationDriver:
         # to opt.
         except OSError:
             Path("aa_sequences").mkdir(exist_ok=True)
-            aafile_name = "aa_sequences/" + str(file_name.stem) + "aa_sequence" + str(name_prefix) + ".txt"
+            aafile_name = (
+                "aa_sequences/"
+                + str(file_name.stem)
+                + "aa_sequence"
+                + str(name_prefix)
+                + ".txt"
+            )
+            with open(aafile_name, "w") as f:
+                f.write(aa_sequence_string)
+
+            cmd = base_cmd + ["--arfile=" + aafile_name]
+            # print(" ".join(cmd))
+            p = run(
+                cmd,
+                cwd=self.exec_root,
+                stdout=DEVNULL,
+                stderr=DEVNULL,
+                text=True,
+            )
+            os.remove(aafile_name)
+
+    def run_step_opt_pipeline(
+        self,
+        file_name: Path,
+        name_prefix: int,
+        index_list: list[index],
+        opt_pipeline: list[str],
+    ):
+        """Perform one run of the instrumentation with a given opt_pipeline.
+
+        Args:
+            file_name: The name of the file to be instrumented.
+            name_prefix: The prefix to be used for the output file.
+            index_list: The list of indices to be instrumented.
+            opt_pipeline: The optimization pipeline to be used.
+        """
+        (self.instr_dir / file_name.parent).mkdir(parents=True, exist_ok=True)
+
+        aa_sequence_string = self.get_aa_string_from_indices(index_list)
+
+        base_cmd = [
+            str(self.instr_path / "opt"),
+            str(self.initial_dir / file_name),
+            "-stats",
+            "-o",
+            str(
+                self.instr_dir
+                / file_name.parent
+                / Path(str(name_prefix) + str(file_name.stem) + ".bc")
+            ),
+            "--passes=" + ",".join(opt_pipeline),
+        ]
+        if instrument_recursively:
+            base_cmd.append("--instrument-aa-recursively")
+        try:
+            cmd = base_cmd + ["--aasequence=" + aa_sequence_string]
+            p = run(
+                cmd,
+                cwd=self.exec_root,
+                stdout=DEVNULL,
+                stderr=DEVNULL,
+                text=True,
+            )
+        # It can happen that the aa_sequence is too long for the command line.
+        # In this case, we write the sequence to a file and pass the file name
+        # to opt.
+        except OSError:
+            Path("aa_sequences").mkdir(exist_ok=True)
+            aafile_name = (
+                "aa_sequences/"
+                + str(file_name.stem)
+                + "aa_sequence"
+                + str(name_prefix)
+                + ".txt"
+            )
             with open(aafile_name, "w") as f:
                 f.write(aa_sequence_string)
 
@@ -375,7 +547,11 @@ class AAInstrumentationDriver:
             os.remove(aafile_name)
 
     def get_candidate_count(
-        self, file_name: Path, prefix: list[index] = [], instrument_recursively=False, name_prefix: int = 0
+        self,
+        file_name: Path,
+        prefix: list[index] = [],
+        instrument_recursively=False,
+        name_prefix: int = 0,
     ) -> size:
         """Get the number of candidates for a given file with a given prefix."""
 
@@ -401,7 +577,13 @@ class AAInstrumentationDriver:
             )
         except OSError:
             Path("aa_sequences").mkdir(exist_ok=True)
-            aafile_name = "aa_sequences/" + str(file_name.stem) + "aa_sequence" + str(name_prefix) + ".txt"
+            aafile_name = (
+                "aa_sequences/"
+                + str(file_name.stem)
+                + "aa_sequence"
+                + str(name_prefix)
+                + ".txt"
+            )
             with open(aafile_name, "w") as f:
                 f.write(aa_string)
 

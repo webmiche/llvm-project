@@ -73,10 +73,6 @@ cl::opt<bool> DisableBasicAA("disable-basic-aa", cl::Hidden, cl::init(false));
 #ifndef NDEBUG
 /// Print a trace of alias analysis queries and their results.
 static cl::opt<bool> EnableAATrace("aa-trace", cl::Hidden, cl::init(false));
-static cl::opt<bool> EnableOverallAATrace("aa-trace-overall", cl::Hidden,
-                                          cl::init(false));
-static cl::opt<bool> EnableAACandidateTrace("aa-candidate-trace", cl::Hidden,
-                                            cl::init(false));
 #else
 static const bool EnableAATrace = false;
 #endif
@@ -319,6 +315,13 @@ STATISTIC(NumberOfRelaxationCandidates,
 // Count the number of AA queries that have occured so far.
 static int CurrAAIndex = 0;
 
+static cl::opt<bool> EnableOverallAATrace("aa-trace-overall", cl::Hidden,
+                                          cl::init(false));
+static cl::opt<bool> EnableAACandidateTrace("aa-candidate-trace", cl::Hidden,
+                                            cl::init(false));
+static cl::opt<bool> EnableAARelaxationTrace("aa-relaxation-trace", cl::Hidden,
+                                             cl::init(false));
+
 AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
                                      const llvm::Value *Ptr2,
                                      AliasResult Result, AAQueryInfo &AAQI) {
@@ -342,6 +345,9 @@ AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
   if (AACache.isPairCached(Pr)) {
     NumberOfAACacheHits++;
     if (AACache.isPairRelaxed(Pr)) {
+      if (EnableAARelaxationTrace) {
+        dbgs() << "Cache: Relaxing " << Result << "\n";
+      }
       return AliasResult::MayAlias;
     }
     return Result;
@@ -357,6 +363,9 @@ AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
 
   if (AAInstrumentation->isAAIndexToRelax(CurrAAIndex)) {
     CurrAAIndex++;
+    if (EnableAARelaxationTrace) {
+      dbgs() << "Relaxing " << Result << "\n";
+    }
     return AACache.updateCacheAndReturn(Pr, AARelax::Relax,
                                         AliasResult::MayAlias);
   }

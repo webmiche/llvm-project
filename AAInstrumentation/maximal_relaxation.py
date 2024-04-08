@@ -19,7 +19,7 @@ the individual variant keeps relaxable queries precise. The class hierarchy look
                         |                                                               |
             OverallRelaxationDriver                                             IndividualRelaxationDriver
             |                              |                                            |
-LogMaximalRelaxationDriver SequentialMaximalRelaxationDriver                SequentialIndividualRelaxationDriver
+LogMaximalRelaxationDriver SequentialMaximalRelaxationDriver                ParallelIndividualRelaxationDriver
 
 """
 
@@ -118,7 +118,7 @@ class OverallRelaxationDriver(MaximalRelaxationDriver):
         self,
         candidate_count,
         file_name: Path,
-    ):
+    ) -> AASequence:
         """Returns the maximum number of queries that can be relaxed without
         impact on the result.
 
@@ -176,6 +176,8 @@ class OverallRelaxationDriver(MaximalRelaxationDriver):
 
         print("Final list: " + str(prefix))
         print("with size: " + str(len(prefix)) + " of " + str(upper_bound))
+
+        return prefix
 
 
 class SequentialMaximalRelaxationDriver(OverallRelaxationDriver):
@@ -311,7 +313,7 @@ class IndividualRelaxationDriver(MaximalRelaxationDriver):
         self,
         candidate_count,
         file_name: Path,
-    ):
+    ) -> AASequence:
         """Returns the maximum number of queries that can be relaxed without
         impact on the result.
 
@@ -323,18 +325,31 @@ class IndividualRelaxationDriver(MaximalRelaxationDriver):
 
         self.original_hash = self.get_groundtruth_hash(file_name)
 
-        relaxable_count = self.get_relaxable_queries(file_name, candidate_count)
+        relaxable_queries = self.get_relaxable_queries(file_name, candidate_count)
+        relaxable_count = len(relaxable_queries)
         print("with size: " + str(relaxable_count) + " of " + str(candidate_count))
+        print("prefix: " + str(relaxable_queries))
+        relaxed_results = []
+        relaxed_passes = []
+        for query in relaxable_queries:
+            relaxed_result, relaxed_pass = self.get_relaxed_result(file_name, query)
+            relaxed_results.append(relaxed_result)
+            relaxed_passes.append(relaxed_pass)
+
+        print("Relaxed results: " + str(relaxed_results))
+        print("Relaxed passes: " + str(relaxed_passes))
+
+        return relaxable_queries
 
 
-class SequentialIndividualRelaxationDriver(IndividualRelaxationDriver):
+class ParallelIndividualRelaxationDriver(IndividualRelaxationDriver):
     """
     This driver implements the individual relaxation approach. Queries are
     checked sequentially.
     """
 
     def get_relaxable_queries(self, file_name: Path, candidate_count: size) -> size:
-        num_relaxable = 0
+        relaxable_queries = []
         hashes = []
         with Pool(self.proc_count) as p:
             hashes = p.starmap(
@@ -351,9 +366,9 @@ class SequentialIndividualRelaxationDriver(IndividualRelaxationDriver):
 
         for i, curr_hash in enumerate(hashes):
             if curr_hash == self.original_hash:
-                num_relaxable += 1
+                relaxable_queries.append(i)
 
-        return num_relaxable
+        return relaxable_queries
 
 
 if __name__ == "__main__":
@@ -382,7 +397,7 @@ if __name__ == "__main__":
     elif args.style == "sequential_overall":
         maximal_relaxation_class = SequentialMaximalRelaxationDriver
     elif args.style == "sequential_individual":
-        maximal_relaxation_class = SequentialIndividualRelaxationDriver
+        maximal_relaxation_class = ParallelIndividualRelaxationDriver
     else:
         raise Exception("Unknown style: " + args.style)
 
