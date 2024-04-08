@@ -85,7 +85,7 @@ def run_unique_hashes_experiment(
 ):
     for benchmark in benchmarks:
         sys.stdout = open(f"AAInstrumentation/output/{benchmark}.txt", "w")
-        print(f"Running benchmark {benchmark} with Oz")
+        print(f"Running benchmark {benchmark} with O3")
         driver = ParallelUniqueHashesDriver(
             instr_path,
             exec_root,
@@ -121,7 +121,7 @@ def run_maximal_relaxation_experiment(
 ):
     for benchmark in benchmarks:
         sys.stdout = open(f"AAInstrumentation/output/{benchmark}.txt", "w")
-        print(f"Running benchmark {benchmark} with Oz")
+        print(f"Running benchmark {benchmark} with O3")
         driver = ParallelIndividualRelaxationDriver(
             instr_path,
             exec_root,
