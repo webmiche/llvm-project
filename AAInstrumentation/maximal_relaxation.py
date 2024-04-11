@@ -356,7 +356,7 @@ class ParallelIndividualRelaxationDriver(IndividualRelaxationDriver):
         relaxable_queries = []
         relaxed_results = []
         relaxed_passes = []
-        for i in range(0, candidate_count, 1000):
+        for j in range(0, candidate_count, 1000):
             hashes = []
             with Pool(self.proc_count) as p:
                 hashes = p.starmap(
@@ -367,11 +367,13 @@ class ParallelIndividualRelaxationDriver(IndividualRelaxationDriver):
                             i,
                             [i],
                         )
-                        for i in range(candidate_count)
+                        for i in range(j, min(j + 1000, candidate_count))
                     ],
                 )
 
-            for i, (curr_hash, RelaxationTrace) in enumerate(hashes):
+            for i, (curr_hash, RelaxationTrace) in zip(
+                range(j, min(j + 1000, candidate_count)), hashes
+            ):
                 if curr_hash == self.original_hash:
                     relaxable_queries.append(i)
                     result, pass_ = get_result_and_pass(RelaxationTrace)
