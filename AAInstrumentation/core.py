@@ -19,10 +19,10 @@ from enum import Enum, auto
 
 
 class AAResult(Enum):
-    MayAlias = auto
-    PartialAlias = auto
-    MustAlias = auto
-    NoAlias = auto
+    MayAlias = auto()
+    PartialAlias = auto()
+    MustAlias = auto()
+    NoAlias = auto()
 
 
 index: TypeAlias = int
@@ -618,6 +618,62 @@ class AAInstrumentationDriver:
             population.append(self.get_random_sequence(num_candidates))
         return population
 
+    def get_candidate_per_pass(
+        self,
+        file_name: Path,
+        index_list: list[index] = [],
+        instrument_recursively=False,
+    ) -> dict[str, list[AAResult]]:
+        """Get the relaxation candidates per pass."""
+
+        aa_sequence_string = self.get_aa_string_from_indices(index_list)
+        cmd = [
+            str(self.instr_path / "opt"),
+            str(self.initial_dir / file_name),
+            "-" + self.opt_flag,
+            "--aa-candidate-trace",
+            "--print-pass-names",
+            "-disable-output",
+        ]
+        if instrument_recursively:
+            cmd.append("--instrument-aa-recursively")
+
+        cmd += ["--aasequence=" + aa_sequence_string]
+        p = run(
+            cmd,
+            cwd=self.exec_root,
+            stdout=DEVNULL,
+            stderr=PIPE,
+            text=True,
+        )
+
+        return self.parse_aa_candidate_trace(p.stderr, instrument_recursively)
+
+    def parse_aa_candidate_trace(
+        self, aa_trace, instrument_recursively=False
+    ) -> dict[str, list[AAResult]]:
+
+        pass_dict = {}
+
+        curr_list = []
+        aa_trace_lines = aa_trace.split("\n")
+        pass_count = {}
+
+        for i, line in enumerate(aa_trace_lines):
+            if not line:
+                continue
+            if line.startswith("*** "):
+                # This is a pass line
+                pass_name = line.removeprefix("*** Pass: ").removesuffix(" ***")
+                new_pass_name = str(pass_count.get(pass_name, 0)) + pass_name
+                pass_count[pass_name] = pass_count.get(pass_name, 0) + 1
+                pass_dict[new_pass_name] = curr_list
+                curr_list = []
+            else:
+                curr_list.append(AAResult[line.split()[0]])
+
+        return pass_dict
+
     def get_queries_per_pass(
         self,
         file_name: Path,
@@ -635,6 +691,7 @@ class AAInstrumentationDriver:
             str(self.instr_path / "opt"),
             str(self.initial_dir / file_name),
             "-" + self.opt_flag,
+            "--aa-trace",
             "--print-pass-names",
             "-disable-output",
         ]

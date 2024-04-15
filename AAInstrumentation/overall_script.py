@@ -13,6 +13,7 @@ from core import register_arguments
 import sys
 from pathlib import Path
 from typing import Callable
+from queries_per_pass import QueriesPerPassDriver
 
 
 def run_optimization(
@@ -37,6 +38,38 @@ benchmarks = [
     "623",
     "602",
 ]
+
+
+def run_queries_per_pass_experiment(
+    instr_path,
+    exec_root,
+    specbuild_dir,
+    initial_dir,
+    instr_dir,
+    groundtruth_dir,
+    proc_count,
+    benchmarks: list[str],
+):
+    for benchmark in benchmarks:
+        sys.stdout = open(f"AAInstrumentation/output/{benchmark}.txt", "w")
+        print(f"Running benchmark {benchmark} with O3")
+        driver = QueriesPerPassDriver(
+            instr_path,
+            exec_root,
+            specbuild_dir,
+            Path(benchmark),
+            initial_dir,
+            instr_dir,
+            groundtruth_dir,
+            "O3",
+            proc_count,
+        )
+
+        driver.generate_baseline()
+        files = driver.get_baseline_files()
+
+        for file in files:
+            driver.run(file)
 
 
 def run_optimization_experiment(
@@ -156,6 +189,11 @@ if __name__ == "__main__":
         help="Run maximal relaxation experiment",
     )
     arg_parser.add_argument(
+        "--queries_per_pass",
+        action="store_true",
+        help="Run queries per pass experiment",
+    )
+    arg_parser.add_argument(
         "--all",
         action="store_true",
         help="Run for all benchmarks",
@@ -164,9 +202,19 @@ if __name__ == "__main__":
     with open("AAInstrumentation/config.txt", "r") as config_file:
         args = arg_parser.parse_args(config_file.read().splitlines() + sys.argv[1:])
 
-    if sum([args.optimization, args.unique_hashes, args.maximal_relaxation]) > 1:
+    if (
+        sum(
+            [
+                args.optimization,
+                args.unique_hashes,
+                args.maximal_relaxation,
+                args.queries_per_pass,
+            ]
+        )
+        > 1
+    ):
         print(
-            "Please specify only one of the following flags: --optimization, --unique_hashes, --maximal_relaxation"
+            "Please specify only one of the following flags: --optimization, --unique_hashes, --maximal_relaxation, --queries_per_pass"
         )
         exit(1)
 
@@ -209,6 +257,18 @@ if __name__ == "__main__":
 
     if args.maximal_relaxation:
         run_maximal_relaxation_experiment(
+            instr_path,
+            exec_root,
+            specbuild_dir,
+            initial_dir,
+            instr_dir,
+            groundtruth_dir,
+            args.proc_count,
+            benchmarks,
+        )
+
+    if args.queries_per_pass:
+        run_queries_per_pass_experiment(
             instr_path,
             exec_root,
             specbuild_dir,
