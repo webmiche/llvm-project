@@ -330,6 +330,7 @@ AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
       for (unsigned I = 0; I < AAQI.Depth; ++I)
         dbgs() << "  ";
       dbgs() << Result << "\n";
+      dbgs().flush();
     }
     return Result;
   }
@@ -347,6 +348,7 @@ AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
     if (AACache.isPairRelaxed(Pr)) {
       if (EnableAARelaxationTrace) {
         dbgs() << "Cache: Relaxing " << Result << "\n";
+        dbgs().flush();
       }
       return AliasResult::MayAlias;
     }
@@ -359,12 +361,14 @@ AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
     for (unsigned I = 0; I < AAQI.Depth; ++I)
       dbgs() << "  ";
     dbgs() << Result << "\n";
+    dbgs().flush();
   }
 
   if (AAInstrumentation->isAAIndexToRelax(CurrAAIndex)) {
     CurrAAIndex++;
     if (EnableAARelaxationTrace) {
       dbgs() << "Relaxing " << Result << "\n";
+      dbgs().flush();
     }
     return AACache.updateCacheAndReturn(Pr, AARelax::Relax,
                                         AliasResult::MayAlias);
