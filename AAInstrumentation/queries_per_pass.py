@@ -7,8 +7,20 @@ class QueriesPerPassDriver(AAInstrumentationDriver):
     def run(self, file):
         queries_per_pass = self.get_candidate_per_pass(file)
 
-        print(f"Queries per pass for {file}")
-        self.print_queries_per_pass(queries_per_pass)
+        candidate_count = self.get_candidate_count(file)
+        sum_candidate_counts = 0
+        for pass_, queries in queries_per_pass.items():
+            sum_candidate_counts += queries.count(AAResult.NoAlias)
+            sum_candidate_counts += queries.count(AAResult.MustAlias)
+            sum_candidate_counts += queries.count(AAResult.PartialAlias)
+
+        if candidate_count != sum_candidate_counts:
+            print(
+                f"File {file} has {candidate_count} candidates but {sum_candidate_counts} queries"
+            )
+
+        # print(f"Queries per pass for {file}")
+        # self.print_queries_per_pass(queries_per_pass)
 
     def print_queries_per_pass(self, queries_per_pass):
         to_print = {
@@ -52,9 +64,13 @@ if __name__ == "__main__":
         "O3",
         args.proc_count,
     )
-    driver.generate_baseline()
+    # driver.generate_baseline()
 
-    files = driver.get_baseline_files()
+    # files = driver.get_baseline_files()
 
-    for file in files:
-        driver.run(file)
+    # for file in files:
+    #     driver.run(file)
+
+    for i in range(100):
+        print(i)
+        driver.run("600/regcomp.bc")
