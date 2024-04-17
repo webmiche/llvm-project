@@ -634,6 +634,7 @@ class AAInstrumentationDriver:
             "--aa-candidate-trace",
             "--print-pass-names",
             "-disable-output",
+            "--enable-gvn-memdep=0",
         ]
         if instrument_recursively:
             cmd.append("--instrument-aa-recursively")
@@ -645,6 +646,7 @@ class AAInstrumentationDriver:
             stdout=DEVNULL,
             stderr=PIPE,
             text=True,
+            check=True,
         )
 
         return self.parse_aa_candidate_trace(p.stderr, instrument_recursively)
@@ -664,7 +666,12 @@ class AAInstrumentationDriver:
                 continue
             if line.startswith("*** "):
                 # This is a pass line
-                pass_name = line.removeprefix("*** Pass: ").removesuffix(" ***")
+                pass_name = (
+                    line.removeprefix("*** Pass: ")
+                    .removeprefix(" *** Loop Pass: ")
+                    .removeprefix(" *** Loop cpp Pass: ")
+                    .removesuffix(" ***")
+                )
                 new_pass_name = str(pass_count.get(pass_name, 0)) + pass_name
                 pass_count[pass_name] = pass_count.get(pass_name, 0) + 1
                 pass_dict[new_pass_name] = curr_list
