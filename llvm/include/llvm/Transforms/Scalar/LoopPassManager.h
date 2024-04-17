@@ -402,11 +402,11 @@ std::optional<PreservedAnalyses> LoopPassManager::runSinglePass(
     return std::nullopt;
 
   if (printPassNames()) {
-    llvm::dbgs() << "*** Start Pass: " << Pass->name() << " ***\n";
+    llvm::dbgs() << "*** Loop Start Pass: " << Pass->name() << " ***\n";
   }
   PreservedAnalyses PA = Pass->run(IR, AM, AR, U);
   if (printPassNames()) {
-    llvm::dbgs() << "*** End Pass: " << Pass->name() << " ***\n";
+    llvm::dbgs() << "*** Loop End Pass: " << Pass->name() << " ***\n";
   }
 
   // do not pass deleted Loop into the instrumentation
