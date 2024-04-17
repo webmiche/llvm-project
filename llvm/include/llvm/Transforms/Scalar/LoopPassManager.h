@@ -356,15 +356,11 @@ public:
     Worklist.insert(CurrentL);
   }
 
-  bool isLoopNestChanged() const {
-    return LoopNestChanged;
-  }
+  bool isLoopNestChanged() const { return LoopNestChanged; }
 
   /// Loopnest passes should use this method to indicate if the
   /// loopnest has been modified.
-  void markLoopNestChanged(bool Changed) {
-    LoopNestChanged = Changed;
-  }
+  void markLoopNestChanged(bool Changed) { LoopNestChanged = Changed; }
 
 private:
   friend class llvm::FunctionToLoopPassAdaptor;
@@ -405,7 +401,13 @@ std::optional<PreservedAnalyses> LoopPassManager::runSinglePass(
   if (!PI.runBeforePass<Loop>(*Pass, L))
     return std::nullopt;
 
+  if (printPassNames()) {
+    llvm::dbgs() << "*** Start Pass: " << Pass->name() << " ***\n";
+  }
   PreservedAnalyses PA = Pass->run(IR, AM, AR, U);
+  if (printPassNames()) {
+    llvm::dbgs() << "*** End Pass: " << Pass->name() << " ***\n";
+  }
 
   // do not pass deleted Loop into the instrumentation
   if (U.skipCurrentLoop())
@@ -549,6 +551,6 @@ public:
   PreservedAnalyses run(Loop &L, LoopAnalysisManager &,
                         LoopStandardAnalysisResults &, LPMUpdater &);
 };
-}
+} // namespace llvm
 
 #endif // LLVM_TRANSFORMS_SCALAR_LOOPPASSMANAGER_H
