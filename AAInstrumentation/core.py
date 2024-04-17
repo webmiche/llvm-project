@@ -667,9 +667,9 @@ class AAInstrumentationDriver:
             if line.startswith("*** "):
                 # This is a pass line
                 pass_name = (
-                    line.removeprefix("*** Pass: ")
-                    .removeprefix(" *** Loop Pass: ")
-                    .removeprefix(" *** Loop cpp Pass: ")
+                    line.removeprefix("*** End Pass: ")
+                    .removeprefix(" *** Loop End Pass: ")
+                    .removeprefix(" *** Loop cpp End Pass: ")
                     .removesuffix(" ***")
                 )
                 new_pass_name = str(pass_count.get(pass_name, 0)) + pass_name
