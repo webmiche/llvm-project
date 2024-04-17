@@ -8,16 +8,25 @@ class QueriesPerPassDriver(AAInstrumentationDriver):
         queries_per_pass = self.get_candidate_per_pass(file)
 
         candidate_count = self.get_candidate_count(file)
-        sum_candidate_counts = 0
+        sum_candidate_no = 0
+        sum_candidate_must = 0
+        sum_candidate_partial = 0
         for pass_, queries in queries_per_pass.items():
-            sum_candidate_counts += queries.count(AAResult.NoAlias)
-            sum_candidate_counts += queries.count(AAResult.MustAlias)
-            sum_candidate_counts += queries.count(AAResult.PartialAlias)
+            sum_candidate_no += queries.count(AAResult.NoAlias)
+            sum_candidate_must += queries.count(AAResult.MustAlias)
+            sum_candidate_partial += queries.count(AAResult.PartialAlias)
+
+        sum_candidate_counts = (
+            sum_candidate_no + sum_candidate_must + sum_candidate_partial
+        )
 
         if candidate_count != sum_candidate_counts:
             print(
                 f"File {file} has {candidate_count} candidates but {sum_candidate_counts} queries"
             )
+            print(f"Sum NoAlias: {sum_candidate_no}")
+            print(f"Sum MustAlias: {sum_candidate_must}")
+            print(f"Sum PartialAlias: {sum_candidate_partial}")
 
         # print(f"Queries per pass for {file}")
         # self.print_queries_per_pass(queries_per_pass)
