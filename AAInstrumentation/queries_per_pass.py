@@ -7,26 +7,28 @@ class QueriesPerPassDriver(AAInstrumentationDriver):
     def run(self, file):
         queries_per_pass = self.get_candidate_per_pass(file)
 
-        candidate_count = self.get_candidate_count(file)
-        sum_candidate_no = 0
-        sum_candidate_must = 0
-        sum_candidate_partial = 0
-        for pass_, queries in queries_per_pass.items():
-            sum_candidate_no += queries.count(AAResult.NoAlias)
-            sum_candidate_must += queries.count(AAResult.MustAlias)
-            sum_candidate_partial += queries.count(AAResult.PartialAlias)
+        # candidate_count = self.get_candidate_count(file)
+        # sum_candidate_no = 0
+        # sum_candidate_must = 0
+        # sum_candidate_partial = 0
+        # for pass_, queries in queries_per_pass.items():
+        #    sum_candidate_no += queries.count(AAResult.NoAlias)
+        #    sum_candidate_must += queries.count(AAResult.MustAlias)
+        #    sum_candidate_partial += queries.count(AAResult.PartialAlias)
 
-        sum_candidate_counts = (
-            sum_candidate_no + sum_candidate_must + sum_candidate_partial
-        )
+        # sum_candidate_counts = (
+        #    sum_candidate_no + sum_candidate_must + sum_candidate_partial
+        # )
 
-        if candidate_count != sum_candidate_counts:
-            print(
-                f"File {file} has {candidate_count} candidates but {sum_candidate_counts} queries"
-            )
-            print(f"Sum NoAlias: {sum_candidate_no}")
-            print(f"Sum MustAlias: {sum_candidate_must}")
-            print(f"Sum PartialAlias: {sum_candidate_partial}")
+        # if candidate_count != sum_candidate_counts:
+        #    print(
+        #        f"File {file} has {candidate_count} candidates but {sum_candidate_counts} queries"
+        #    )
+        #    print(f"Sum NoAlias: {sum_candidate_no}")
+        #    print(f"Sum MustAlias: {sum_candidate_must}")
+        #    print(f"Sum PartialAlias: {sum_candidate_partial}")
+
+        return queries_per_pass
 
         # print(f"Queries per pass for {file}")
         # self.print_queries_per_pass(queries_per_pass)
@@ -80,6 +82,25 @@ if __name__ == "__main__":
     # for file in files:
     #     driver.run(file)
 
+    groundtruth_dict = driver.run("600/regcomp.bc")
+
     for i in range(100):
         print(i)
-        driver.run("600/regcomp.bc")
+        new_dict = driver.run("600/regcomp.bc")
+
+        for pass_, queries in groundtruth_dict.items():
+            if new_dict[pass_] != queries:
+                print(f"Pass {pass_} has changed")
+                print("Old vs New:")
+                print(
+                    f"NoAlias: {queries.count(AAResult.NoAlias)} vs {new_dict[pass_].count(AAResult.NoAlias)}"
+                )
+                print(
+                    f"MayAlias: {queries.count(AAResult.MayAlias)} vs {new_dict[pass_].count(AAResult.MayAlias)}"
+                )
+                print(
+                    f"MustAlias: {queries.count(AAResult.MustAlias)} vs {new_dict[pass_].count(AAResult.MustAlias)}"
+                )
+                print(
+                    f"PartialAlias: {queries.count(AAResult.PartialAlias)} vs {new_dict[pass_].count(AAResult.PartialAlias)}"
+                )
