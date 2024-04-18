@@ -7,16 +7,19 @@ class QueriesPerPassDriver(AAInstrumentationDriver):
     def run(self, file):
         queries_per_pass = self.get_candidate_per_pass(file)
 
-        print(f"Queries per pass for {file}")
-        self.print_queries_per_pass(queries_per_pass)
+        aggregate_results = self.aggregate_results(queries_per_pass)
 
-    def print_queries_per_pass(self, queries_per_pass):
-        to_print = {
-            k: v for k, v in queries_per_pass.items() if v is not None and len(v) > 0
+        print(f"Queries per pass for {file}")
+        print(aggregate_results)
+
+    def aggregate_results(self, results):
+
+        remove_empty = {
+            k: v for k, v in results.items() if v is not None and len(v) > 0
         }
 
-        final_print = {}
-        for k, v in to_print.items():
+        res = {}
+        for k, v in remove_empty.items():
             final_print[k] = {
                 "NoAlias": v.count(AAResult.NoAlias),
                 "MayAlias": v.count(AAResult.MayAlias),
@@ -24,7 +27,7 @@ class QueriesPerPassDriver(AAInstrumentationDriver):
                 "PartialAlias": v.count(AAResult.PartialAlias),
             }
 
-        print(final_print)
+        return res
 
 
 if __name__ == "__main__":
