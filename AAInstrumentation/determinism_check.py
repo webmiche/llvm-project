@@ -14,7 +14,7 @@ class DeterminismCheck(QueriesPerPassDriver):
 
         aggregate_results = self.aggregate_results(queries_per_pass)
 
-        return hash_string, aggregate_results
+        return aggregate_results, hash_string
 
     def run(self, file, num_runs):
         base_dict, base_hash = self.compute_results(file, 0)
@@ -26,7 +26,7 @@ class DeterminismCheck(QueriesPerPassDriver):
 
         for hash_string, result in results:
             print(f"Comparing {hash_string} with {base_hash} in {file}")
-            # print(f"Res: {result}")
+            print(f"Res: {result}")
             for pass_, queries in result.items():
                 if base_dict[pass_] != queries:
                     print(f"Pass {pass_} in {file} is non-deterministic")
