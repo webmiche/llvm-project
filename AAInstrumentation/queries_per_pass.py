@@ -20,7 +20,7 @@ class QueriesPerPassDriver(AAInstrumentationDriver):
 
         res = {}
         for k, v in remove_empty.items():
-            final_print[k] = {
+            res[k] = {
                 "NoAlias": v.count(AAResult.NoAlias),
                 "MayAlias": v.count(AAResult.MayAlias),
                 "MustAlias": v.count(AAResult.MustAlias),

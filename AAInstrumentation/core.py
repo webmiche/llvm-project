@@ -650,7 +650,7 @@ class AAInstrumentationDriver:
             cmd.append("--instrument-aa-recursively")
 
         cmd += ["--aasequence=" + aa_sequence_string]
-        print(" ".join(cmd))
+        # print(" ".join(cmd))
         p = run(
             cmd,
             cwd=self.exec_root,
