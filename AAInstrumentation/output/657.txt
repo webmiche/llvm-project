@@ -1,0 +1,1467 @@
+Running benchmark 657 with O3
+Check determinism flag for 657/spec.bc
+Change in queries per pass for 657/spec.bc
+Pass 0GVNPass in 657/spec.bc is non-deterministic (missing pass)
+Check determinism flag for 657/pxz.bc
+Check determinism flag for 657/spec_xz.bc
+Change in queries per pass for 657/spec_xz.bc
+Pass 3GVNPass in 657/spec_xz.bc is non-deterministic (missing pass)
+Check determinism flag for 657/common/tuklib_progname.bc
+Check determinism flag for 657/common/tuklib_physmem.bc
+Check determinism flag for 657/common/tuklib_cpucores.bc
+Check determinism flag for 657/common/tuklib_mbstr_width.bc
+Check determinism flag for 657/common/tuklib_exit.bc
+Check determinism flag for 657/common/tuklib_open_stdxxx.bc
+Check determinism flag for 657/common/tuklib_mbstr_fw.bc
+Change in hash for 657/common/tuklib_mbstr_fw.bc
+Hash: 6ac47d6614278fefd9e8d40b6bec514ee55ce188 vs d05a1fef26bbf743932d8accb76bdf5dba5209c1
+Change in queries per pass for 657/common/tuklib_mbstr_fw.bc
+Pass 0GVNPass in 657/common/tuklib_mbstr_fw.bc is non-deterministic (missing pass)
+Pass 0DSEPass in 657/common/tuklib_mbstr_fw.bc is non-deterministic (new pass)
+Check determinism flag for 657/liblzma/rangecoder/price_table.bc
+Check determinism flag for 657/liblzma/simple/x86.bc
+Change in queries per pass for 657/liblzma/simple/x86.bc
+Pass 0GVNPass in 657/liblzma/simple/x86.bc is non-deterministic (missing pass)
+Pass 1GVNPass in 657/liblzma/simple/x86.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 657/liblzma/simple/x86.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/liblzma/simple/x86.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/simple/simple_encoder.bc
+Check determinism flag for 657/liblzma/simple/ia64.bc
+Change in hash for 657/liblzma/simple/ia64.bc
+Hash: 375631737d19fa204814eca7281ca38267e50049 vs 833d693569f920eae4d3b0ffa8d3ab1194d9575b
+Change in queries per pass for 657/liblzma/simple/ia64.bc
+Pass 0GVNPass in 657/liblzma/simple/ia64.bc is non-deterministic (missing pass)
+Pass 0DSEPass in 657/liblzma/simple/ia64.bc is non-deterministic
+NoAlias: 141 vs 144
+MayAlias: 3 vs 3
+MustAlias: 2 vs 2
+PartialAlias: 0 vs 0
+Check determinism flag for 657/liblzma/simple/arm.bc
+Change in queries per pass for 657/liblzma/simple/arm.bc
+Pass 0GVNPass in 657/liblzma/simple/arm.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/simple/simple_coder.bc
+Change in hash for 657/liblzma/simple/simple_coder.bc
+Hash: 025d19b0cb92539be4c9d5c3a6bd307f438e9547 vs a0f1e335cbe5447e901dbace06407960dbd7b948
+Change in queries per pass for 657/liblzma/simple/simple_coder.bc
+Pass 2GVNPass in 657/liblzma/simple/simple_coder.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/liblzma/simple/simple_coder.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/liblzma/simple/simple_coder.bc is non-deterministic (missing pass)
+Pass 4DSEPass in 657/liblzma/simple/simple_coder.bc is non-deterministic
+NoAlias: 8 vs 13
+MayAlias: 2 vs 2
+MustAlias: 1 vs 1
+PartialAlias: 0 vs 0
+Pass 5GVNPass in 657/liblzma/simple/simple_coder.bc is non-deterministic (missing pass)
+Pass 1SLPVectorizerPass in 657/liblzma/simple/simple_coder.bc is non-deterministic
+NoAlias: 2 vs 3
+MayAlias: 0 vs 0
+MustAlias: 2 vs 2
+PartialAlias: 0 vs 0
+Check determinism flag for 657/liblzma/simple/simple_decoder.bc
+Check determinism flag for 657/liblzma/simple/sparc.bc
+Change in hash for 657/liblzma/simple/sparc.bc
+Hash: 97c2262e9f0b6737517c72002344c0304189ee4a vs 96a4beb4487aa7c3a980d051c55b45347d523d1f
+Change in queries per pass for 657/liblzma/simple/sparc.bc
+Pass 0GVNPass in 657/liblzma/simple/sparc.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/simple/powerpc.bc
+Change in queries per pass for 657/liblzma/simple/powerpc.bc
+Pass 0GVNPass in 657/liblzma/simple/powerpc.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/simple/armthumb.bc
+Change in queries per pass for 657/liblzma/simple/armthumb.bc
+Pass 0GVNPass in 657/liblzma/simple/armthumb.bc is non-deterministic (missing pass)
+Pass 0DSEPass in 657/liblzma/simple/armthumb.bc is non-deterministic
+NoAlias: 10 vs 12
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Check determinism flag for 657/liblzma/lz/lz_encoder_mf.bc
+Change in hash for 657/liblzma/lz/lz_encoder_mf.bc
+Hash: 97ca2aa7a7c36b4a8e4af568e95a5114e655c13d vs 1cef5779544dad52365f5bf246ca52897b1a36d3
+Change in queries per pass for 657/liblzma/lz/lz_encoder_mf.bc
+Pass 2GVNPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic (missing pass)
+Pass 5GVNPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic (missing pass)
+Pass 5DSEPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 4 vs 6
+MayAlias: 2 vs 2
+MustAlias: 1 vs 1
+PartialAlias: 0 vs 0
+Pass 6GVNPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic (missing pass)
+Pass 7GVNPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic (missing pass)
+Pass 7DSEPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 21 vs 25
+MayAlias: 58 vs 58
+MustAlias: 1 vs 1
+PartialAlias: 0 vs 0
+Pass 8GVNPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic (missing pass)
+Pass 8DSEPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 2 vs 6
+MayAlias: 12 vs 12
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 35LICMPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 36 vs 38
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 9GVNPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic (missing pass)
+Pass 9DSEPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 33 vs 37
+MayAlias: 91 vs 91
+MustAlias: 1 vs 1
+PartialAlias: 0 vs 0
+Pass 10GVNPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic (missing pass)
+Pass 10DSEPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 3 vs 7
+MayAlias: 16 vs 16
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 56LICMPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 44 vs 46
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 11GVNPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic (missing pass)
+Pass 12GVNPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic (missing pass)
+Pass 12DSEPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 6 vs 7
+MayAlias: 32 vs 32
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 13GVNPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic (missing pass)
+Pass 14GVNPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic (missing pass)
+Pass 14DSEPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 0 vs 1
+MayAlias: 23 vs 23
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 89LICMPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 8 vs 9
+MayAlias: 26 vs 28
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 15GVNPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic (missing pass)
+Pass 15DSEPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 19 vs 20
+MayAlias: 115 vs 115
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 16GVNPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic (missing pass)
+Pass 16DSEPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 0 vs 1
+MayAlias: 31 vs 31
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 122LICMPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 8 vs 9
+MayAlias: 39 vs 41
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 17GVNPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic (missing pass)
+Pass 17DSEPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 27 vs 28
+MayAlias: 179 vs 179
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 18GVNPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic (missing pass)
+Pass 18DSEPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 1 vs 2
+MayAlias: 39 vs 39
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 155LICMPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 8 vs 9
+MayAlias: 47 vs 49
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 166LICMPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 6 vs 6
+MayAlias: 36 vs 38
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 176LICMPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 6 vs 6
+MayAlias: 44 vs 46
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 185LICMPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 16 vs 16
+MayAlias: 26 vs 28
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 199LICMPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 16 vs 16
+MayAlias: 39 vs 41
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 213LICMPass in 657/liblzma/lz/lz_encoder_mf.bc is non-deterministic
+NoAlias: 16 vs 16
+MayAlias: 47 vs 49
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Check determinism flag for 657/liblzma/lz/lz_decoder.bc
+Change in hash for 657/liblzma/lz/lz_decoder.bc
+Hash: e6b16f4b0705c5b7da48d5144d5b603c5544b226 vs 9d3633c00b95ecf1dc17bb29e6ebcdfc7ad0c4d5
+Change in queries per pass for 657/liblzma/lz/lz_decoder.bc
+Pass 0GVNPass in 657/liblzma/lz/lz_decoder.bc is non-deterministic (missing pass)
+Pass 1GVNPass in 657/liblzma/lz/lz_decoder.bc is non-deterministic (missing pass)
+Pass 0SimpleLoopUnswitchPass in 657/liblzma/lz/lz_decoder.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 657/liblzma/lz/lz_decoder.bc is non-deterministic (missing pass)
+Pass 2DSEPass in 657/liblzma/lz/lz_decoder.bc is non-deterministic
+NoAlias: 2 vs 3
+MayAlias: 4 vs 4
+MustAlias: 1 vs 1
+PartialAlias: 0 vs 0
+Pass 10EarlyCSEPass in 657/liblzma/lz/lz_decoder.bc is non-deterministic
+NoAlias: 21 vs 21
+MayAlias: 6 vs 6
+MustAlias: 1 vs 3
+PartialAlias: 0 vs 0
+Pass 1SimpleLoopUnswitchPass in 657/liblzma/lz/lz_decoder.bc is non-deterministic (missing pass)
+Pass 2SimpleLoopUnswitchPass in 657/liblzma/lz/lz_decoder.bc is non-deterministic (missing pass)
+Pass 3SimpleLoopUnswitchPass in 657/liblzma/lz/lz_decoder.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/liblzma/lz/lz_decoder.bc is non-deterministic (missing pass)
+Pass 3DSEPass in 657/liblzma/lz/lz_decoder.bc is non-deterministic
+NoAlias: 12 vs 21
+MayAlias: 8 vs 8
+MustAlias: 2 vs 2
+PartialAlias: 0 vs 0
+Pass 10LICMPass in 657/liblzma/lz/lz_decoder.bc is non-deterministic
+NoAlias: 0 vs 7
+MayAlias: 8 vs 8
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 4GVNPass in 657/liblzma/lz/lz_decoder.bc is non-deterministic (missing pass)
+Pass 4DSEPass in 657/liblzma/lz/lz_decoder.bc is non-deterministic
+NoAlias: 70 vs 107
+MayAlias: 37 vs 33
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 6GVNPass in 657/liblzma/lz/lz_decoder.bc is non-deterministic (missing pass)
+Pass 25InstCombinePass in 657/liblzma/lz/lz_decoder.bc is non-deterministic (new pass)
+Pass 26InstCombinePass in 657/liblzma/lz/lz_decoder.bc is non-deterministic (new pass)
+Pass 35InstCombinePass in 657/liblzma/lz/lz_decoder.bc is non-deterministic (new pass)
+Pass 36InstCombinePass in 657/liblzma/lz/lz_decoder.bc is non-deterministic (new pass)
+Pass 37InstCombinePass in 657/liblzma/lz/lz_decoder.bc is non-deterministic (new pass)
+Check determinism flag for 657/liblzma/lz/lz_encoder.bc
+Change in hash for 657/liblzma/lz/lz_encoder.bc
+Hash: 7564f518d1d3f82dfc564cfe18307b8a5900d988 vs 3d199ba61a735f26c37e98ffdda6d6e659e19c5a
+Change in queries per pass for 657/liblzma/lz/lz_encoder.bc
+Pass 0GVNPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic (missing pass)
+Pass 0DSEPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic
+NoAlias: 132 vs 163
+MayAlias: 0 vs 0
+MustAlias: 2 vs 2
+PartialAlias: 0 vs 0
+Pass 1GVNPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic (missing pass)
+Pass 2DSEPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic
+NoAlias: 28 vs 29
+MayAlias: 1 vs 1
+MustAlias: 0 vs 0
+PartialAlias: 1 vs 1
+Pass 3GVNPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic (missing pass)
+Pass 5GVNPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic (missing pass)
+Pass 5DSEPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic
+NoAlias: 6 vs 8
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 6GVNPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic (missing pass)
+Pass 6DSEPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic
+NoAlias: 24 vs 32
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 1LICMPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic
+NoAlias: 179 vs 167
+MayAlias: 34 vs 34
+MustAlias: 4 vs 3
+PartialAlias: 0 vs 0
+Pass 0SimpleLoopUnswitchPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic (missing pass)
+Pass 7GVNPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic (missing pass)
+Pass 7DSEPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic
+NoAlias: 6 vs 8
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 2LICMPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic
+NoAlias: 2 vs 3
+MayAlias: 34 vs 34
+MustAlias: 1 vs 1
+PartialAlias: 0 vs 0
+Pass 18EarlyCSEPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic
+NoAlias: 11 vs 11
+MayAlias: 4 vs 4
+MustAlias: 1 vs 2
+PartialAlias: 0 vs 0
+Pass 8GVNPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic (missing pass)
+Pass 8DSEPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic
+NoAlias: 117 vs 118
+MayAlias: 17 vs 17
+MustAlias: 0 vs 0
+PartialAlias: 1 vs 1
+Pass 1SLPVectorizerPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic
+NoAlias: 1 vs 5
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 3LICMPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic
+NoAlias: 0 vs 10
+MayAlias: 34 vs 28
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 1DSEPass in 657/liblzma/lz/lz_encoder.bc is non-deterministic (new pass)
+Check determinism flag for 657/liblzma/common/common.bc
+Change in hash for 657/liblzma/common/common.bc
+Hash: 27b4aba880f074e26485a26a7377da0da882cc58 vs 52d518d189c31e7c80775daacd5f05046dd824e7
+Change in queries per pass for 657/liblzma/common/common.bc
+Pass 2GVNPass in 657/liblzma/common/common.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/liblzma/common/common.bc is non-deterministic (missing pass)
+Pass 5GVNPass in 657/liblzma/common/common.bc is non-deterministic (missing pass)
+Pass 5DSEPass in 657/liblzma/common/common.bc is non-deterministic
+NoAlias: 3 vs 5
+MayAlias: 3 vs 3
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 6GVNPass in 657/liblzma/common/common.bc is non-deterministic (missing pass)
+Pass 6DSEPass in 657/liblzma/common/common.bc is non-deterministic
+NoAlias: 3 vs 4
+MayAlias: 5 vs 5
+MustAlias: 2 vs 2
+PartialAlias: 0 vs 0
+Pass 7GVNPass in 657/liblzma/common/common.bc is non-deterministic (missing pass)
+Pass 8GVNPass in 657/liblzma/common/common.bc is non-deterministic (missing pass)
+Pass 9GVNPass in 657/liblzma/common/common.bc is non-deterministic (missing pass)
+Pass 9DSEPass in 657/liblzma/common/common.bc is non-deterministic
+NoAlias: 90 vs 111
+MayAlias: 0 vs 0
+MustAlias: 2 vs 2
+PartialAlias: 0 vs 0
+Pass 10GVNPass in 657/liblzma/common/common.bc is non-deterministic (missing pass)
+Pass 10DSEPass in 657/liblzma/common/common.bc is non-deterministic
+NoAlias: 2 vs 3
+MayAlias: 5 vs 5
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 11GVNPass in 657/liblzma/common/common.bc is non-deterministic (missing pass)
+Pass 12GVNPass in 657/liblzma/common/common.bc is non-deterministic (missing pass)
+Pass 13GVNPass in 657/liblzma/common/common.bc is non-deterministic (missing pass)
+Pass 14GVNPass in 657/liblzma/common/common.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/alone_decoder.bc
+Change in hash for 657/liblzma/common/alone_decoder.bc
+Hash: ffa7520aa8eef848a6c0ef1f218ff66b353f53ae vs 8460332edbed444a4d40733a04e4ad5ac97d0637
+Change in queries per pass for 657/liblzma/common/alone_decoder.bc
+Pass 0GVNPass in 657/liblzma/common/alone_decoder.bc is non-deterministic (missing pass)
+Pass 0SimpleLoopUnswitchPass in 657/liblzma/common/alone_decoder.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 657/liblzma/common/alone_decoder.bc is non-deterministic (missing pass)
+Pass 2DSEPass in 657/liblzma/common/alone_decoder.bc is non-deterministic
+NoAlias: 18 vs 24
+MayAlias: 0 vs 0
+MustAlias: 0 vs 1
+PartialAlias: 0 vs 0
+Pass 2LICMPass in 657/liblzma/common/alone_decoder.bc is non-deterministic
+NoAlias: 7 vs 12
+MayAlias: 0 vs 0
+MustAlias: 0 vs 1
+PartialAlias: 0 vs 0
+Pass 3GVNPass in 657/liblzma/common/alone_decoder.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/liblzma/common/alone_decoder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/block_header_decoder.bc
+Change in queries per pass for 657/liblzma/common/block_header_decoder.bc
+Pass 1GVNPass in 657/liblzma/common/block_header_decoder.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 657/liblzma/common/block_header_decoder.bc is non-deterministic (missing pass)
+Pass 2DSEPass in 657/liblzma/common/block_header_decoder.bc is non-deterministic
+NoAlias: 76 vs 77
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 9InstCombinePass in 657/liblzma/common/block_header_decoder.bc is non-deterministic (new pass)
+Check determinism flag for 657/liblzma/common/stream_buffer_decoder.bc
+Change in hash for 657/liblzma/common/stream_buffer_decoder.bc
+Hash: af08163088c411b23a669fa5f5b6ee754f6b16a2 vs efc53747ae2c39936cf3fa67640dd738aced6ed3
+Change in queries per pass for 657/liblzma/common/stream_buffer_decoder.bc
+Pass 0GVNPass in 657/liblzma/common/stream_buffer_decoder.bc is non-deterministic (missing pass)
+Pass 0DSEPass in 657/liblzma/common/stream_buffer_decoder.bc is non-deterministic
+NoAlias: 10 vs 12
+MayAlias: 1 vs 1
+MustAlias: 0 vs 0
+PartialAlias: 1 vs 1
+Check determinism flag for 657/liblzma/common/block_util.bc
+Change in hash for 657/liblzma/common/block_util.bc
+Hash: 8278b8e9ea04fcf80d84ac9c2af796a7e07dba79 vs 8397cffe69d15ff72b52159e2e168c95f1015d15
+Change in queries per pass for 657/liblzma/common/block_util.bc
+Pass 0GVNPass in 657/liblzma/common/block_util.bc is non-deterministic (missing pass)
+Pass 1GVNPass in 657/liblzma/common/block_util.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/liblzma/common/block_util.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/index_encoder.bc
+Change in hash for 657/liblzma/common/index_encoder.bc
+Hash: 877d5efed7c1f8e92c9828ff67d7c93a54321d20 vs fc66d8a3446a5f7eb6555468bfb6037490ba674f
+Change in queries per pass for 657/liblzma/common/index_encoder.bc
+Pass 2GVNPass in 657/liblzma/common/index_encoder.bc is non-deterministic (missing pass)
+Pass 2DSEPass in 657/liblzma/common/index_encoder.bc is non-deterministic
+NoAlias: 6 vs 9
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 5LICMPass in 657/liblzma/common/index_encoder.bc is non-deterministic
+NoAlias: 1 vs 3
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 3GVNPass in 657/liblzma/common/index_encoder.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/liblzma/common/index_encoder.bc is non-deterministic (missing pass)
+Pass 4DSEPass in 657/liblzma/common/index_encoder.bc is non-deterministic
+NoAlias: 19 vs 17
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 10EarlyCSEPass in 657/liblzma/common/index_encoder.bc is non-deterministic (new pass)
+Check determinism flag for 657/liblzma/common/vli_decoder.bc
+Change in hash for 657/liblzma/common/vli_decoder.bc
+Hash: e709c34e4a71ff4a713c9f9db715e3765559f815 vs 3a5e49bab8bb790ca25876350b1305eb9e49f0cb
+Change in queries per pass for 657/liblzma/common/vli_decoder.bc
+Pass 0GVNPass in 657/liblzma/common/vli_decoder.bc is non-deterministic (missing pass)
+Pass 0DSEPass in 657/liblzma/common/vli_decoder.bc is non-deterministic
+NoAlias: 2 vs 5
+MayAlias: 3 vs 12
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Check determinism flag for 657/liblzma/common/filter_buffer_decoder.bc
+Change in queries per pass for 657/liblzma/common/filter_buffer_decoder.bc
+Pass 0GVNPass in 657/liblzma/common/filter_buffer_decoder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/stream_buffer_encoder.bc
+Change in hash for 657/liblzma/common/stream_buffer_encoder.bc
+Hash: d9cdfd8ff4072627ec329fef85b4f21480d759dc vs fe607d81619d33033ced5ee22426f5c8feae6fd0
+Change in queries per pass for 657/liblzma/common/stream_buffer_encoder.bc
+Pass 1GVNPass in 657/liblzma/common/stream_buffer_encoder.bc is non-deterministic (missing pass)
+Pass 1DSEPass in 657/liblzma/common/stream_buffer_encoder.bc is non-deterministic
+NoAlias: 17 vs 20
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 3 vs 3
+Check determinism flag for 657/liblzma/common/easy_buffer_encoder.bc
+Check determinism flag for 657/liblzma/common/filter_common.bc
+Change in hash for 657/liblzma/common/filter_common.bc
+Hash: 10f345aa5d6679c647d617a2a6e45a973d09d31f vs f5e35e63fac3591e2dc96f76fcc73ad89585b7a4
+Change in queries per pass for 657/liblzma/common/filter_common.bc
+Pass 0GVNPass in 657/liblzma/common/filter_common.bc is non-deterministic (missing pass)
+Pass 1GVNPass in 657/liblzma/common/filter_common.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 657/liblzma/common/filter_common.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/liblzma/common/filter_common.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/easy_preset.bc
+Check determinism flag for 657/liblzma/common/stream_encoder.bc
+Change in hash for 657/liblzma/common/stream_encoder.bc
+Hash: cd29e6f695bef2b694b901d3a9a47fe362dc91cb vs 9162073da987adb942d9f7c8681e5f61d8efaa82
+Change in queries per pass for 657/liblzma/common/stream_encoder.bc
+Pass 1GVNPass in 657/liblzma/common/stream_encoder.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/liblzma/common/stream_encoder.bc is non-deterministic (missing pass)
+Pass 8LICMPass in 657/liblzma/common/stream_encoder.bc is non-deterministic
+NoAlias: 4 vs 2
+MayAlias: 0 vs 0
+MustAlias: 0 vs 1
+PartialAlias: 0 vs 0
+Pass 4GVNPass in 657/liblzma/common/stream_encoder.bc is non-deterministic (missing pass)
+Pass 5GVNPass in 657/liblzma/common/stream_encoder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/filter_flags_decoder.bc
+Change in queries per pass for 657/liblzma/common/filter_flags_decoder.bc
+Pass 0GVNPass in 657/liblzma/common/filter_flags_decoder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/stream_flags_decoder.bc
+Change in queries per pass for 657/liblzma/common/stream_flags_decoder.bc
+Pass 1GVNPass in 657/liblzma/common/stream_flags_decoder.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 657/liblzma/common/stream_flags_decoder.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/liblzma/common/stream_flags_decoder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/index_decoder.bc
+Change in hash for 657/liblzma/common/index_decoder.bc
+Hash: 768ae490745ba550d0b3d8cc3f8c15d1a79292ef vs cf470c948d965ae5afa884936695ed931ea929f3
+Change in queries per pass for 657/liblzma/common/index_decoder.bc
+Pass 1GVNPass in 657/liblzma/common/index_decoder.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/liblzma/common/index_decoder.bc is non-deterministic (missing pass)
+Pass 3DSEPass in 657/liblzma/common/index_decoder.bc is non-deterministic
+NoAlias: 2 vs 6
+MayAlias: 2 vs 2
+MustAlias: 1 vs 2
+PartialAlias: 0 vs 0
+Pass 5LICMPass in 657/liblzma/common/index_decoder.bc is non-deterministic
+NoAlias: 1 vs 3
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 4GVNPass in 657/liblzma/common/index_decoder.bc is non-deterministic (missing pass)
+Pass 4DSEPass in 657/liblzma/common/index_decoder.bc is non-deterministic
+NoAlias: 26 vs 27
+MayAlias: 6 vs 6
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 5GVNPass in 657/liblzma/common/index_decoder.bc is non-deterministic (missing pass)
+Pass 6GVNPass in 657/liblzma/common/index_decoder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/index_hash.bc
+Change in hash for 657/liblzma/common/index_hash.bc
+Hash: 77e01a7de498316f2610afa789fb821bf31e5d5a vs d677fafad34d520bc5a32a2a023be5921a60e006
+Change in queries per pass for 657/liblzma/common/index_hash.bc
+Pass 5GVNPass in 657/liblzma/common/index_hash.bc is non-deterministic (missing pass)
+Pass 6GVNPass in 657/liblzma/common/index_hash.bc is non-deterministic (missing pass)
+Pass 6DSEPass in 657/liblzma/common/index_hash.bc is non-deterministic
+NoAlias: 16 vs 17
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 8GVNPass in 657/liblzma/common/index_hash.bc is non-deterministic (missing pass)
+Pass 8DSEPass in 657/liblzma/common/index_hash.bc is non-deterministic
+NoAlias: 12 vs 16
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 9GVNPass in 657/liblzma/common/index_hash.bc is non-deterministic (missing pass)
+Pass 9DSEPass in 657/liblzma/common/index_hash.bc is non-deterministic
+NoAlias: 4 vs 8
+MayAlias: 3 vs 3
+MustAlias: 0 vs 1
+PartialAlias: 0 vs 0
+Pass 4LICMPass in 657/liblzma/common/index_hash.bc is non-deterministic
+NoAlias: 0 vs 7
+MayAlias: 18 vs 18
+MustAlias: 1 vs 2
+PartialAlias: 0 vs 0
+Pass 5LICMPass in 657/liblzma/common/index_hash.bc is non-deterministic
+NoAlias: 0 vs 2
+MayAlias: 4 vs 4
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 4SLPVectorizerPass in 657/liblzma/common/index_hash.bc is non-deterministic
+NoAlias: 1 vs 2
+MayAlias: 0 vs 0
+MustAlias: 0 vs 2
+PartialAlias: 0 vs 0
+Check determinism flag for 657/liblzma/common/stream_flags_common.bc
+Change in hash for 657/liblzma/common/stream_flags_common.bc
+Hash: 21035023606aa79caad94b6d72384c57a044c750 vs 814ef1570f25da3f27b7ce3d1521c23f08c866cf
+Change in queries per pass for 657/liblzma/common/stream_flags_common.bc
+Pass 1GVNPass in 657/liblzma/common/stream_flags_common.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/block_decoder.bc
+Change in hash for 657/liblzma/common/block_decoder.bc
+Hash: de5133aa31ae755b3f8df784f1d8bd2af9b3af80 vs 58b28270080ce1b0b93b4e952f2e1ac294a5ffb3
+Change in queries per pass for 657/liblzma/common/block_decoder.bc
+Pass 3GVNPass in 657/liblzma/common/block_decoder.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/liblzma/common/block_decoder.bc is non-deterministic (missing pass)
+Pass 5GVNPass in 657/liblzma/common/block_decoder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/auto_decoder.bc
+Change in hash for 657/liblzma/common/auto_decoder.bc
+Hash: 82ee3168d2c7ad41236d8c1d80f86e7f3be6f64c vs 7a7b95abf8e738d705f4c808d9708170ded4bc89
+Change in queries per pass for 657/liblzma/common/auto_decoder.bc
+Pass 0GVNPass in 657/liblzma/common/auto_decoder.bc is non-deterministic (missing pass)
+Pass 1GVNPass in 657/liblzma/common/auto_decoder.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/liblzma/common/auto_decoder.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/liblzma/common/auto_decoder.bc is non-deterministic (missing pass)
+Pass 5GVNPass in 657/liblzma/common/auto_decoder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/stream_decoder.bc
+Change in hash for 657/liblzma/common/stream_decoder.bc
+Hash: a15e18b66892f1820193cdbf894621fb6bf564e0 vs dccd554292c850a511db8d7e6b0a08fb2af93de0
+Change in queries per pass for 657/liblzma/common/stream_decoder.bc
+Pass 1GVNPass in 657/liblzma/common/stream_decoder.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/liblzma/common/stream_decoder.bc is non-deterministic (missing pass)
+Pass 4DSEPass in 657/liblzma/common/stream_decoder.bc is non-deterministic
+NoAlias: 11 vs 15
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 7LICMPass in 657/liblzma/common/stream_decoder.bc is non-deterministic
+NoAlias: 91 vs 107
+MayAlias: 0 vs 0
+MustAlias: 0 vs 2
+PartialAlias: 0 vs 0
+Pass 5GVNPass in 657/liblzma/common/stream_decoder.bc is non-deterministic (missing pass)
+Pass 6GVNPass in 657/liblzma/common/stream_decoder.bc is non-deterministic (missing pass)
+Pass 6LICMPass in 657/liblzma/common/stream_decoder.bc is non-deterministic (new pass)
+Check determinism flag for 657/liblzma/common/vli_size.bc
+Check determinism flag for 657/liblzma/common/easy_decoder_memusage.bc
+Check determinism flag for 657/liblzma/common/block_buffer_encoder.bc
+Change in queries per pass for 657/liblzma/common/block_buffer_encoder.bc
+Pass 2GVNPass in 657/liblzma/common/block_buffer_encoder.bc is non-deterministic (missing pass)
+Pass 2DSEPass in 657/liblzma/common/block_buffer_encoder.bc is non-deterministic
+NoAlias: 24 vs 25
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 1 vs 1
+Pass 3GVNPass in 657/liblzma/common/block_buffer_encoder.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/liblzma/common/block_buffer_encoder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/block_encoder.bc
+Change in hash for 657/liblzma/common/block_encoder.bc
+Hash: 18e6b539572bf5bb418ae4f6c966b5b9fcedfd8d vs 25dd3cd8d86b9dc7d0d08cef4efefdaf866552a9
+Change in queries per pass for 657/liblzma/common/block_encoder.bc
+Pass 2GVNPass in 657/liblzma/common/block_encoder.bc is non-deterministic (missing pass)
+Pass 2DSEPass in 657/liblzma/common/block_encoder.bc is non-deterministic
+NoAlias: 12 vs 15
+MayAlias: 4 vs 4
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 3GVNPass in 657/liblzma/common/block_encoder.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/liblzma/common/block_encoder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/hardware_physmem.bc
+Check determinism flag for 657/liblzma/common/filter_buffer_encoder.bc
+Change in queries per pass for 657/liblzma/common/filter_buffer_encoder.bc
+Pass 0GVNPass in 657/liblzma/common/filter_buffer_encoder.bc is non-deterministic (missing pass)
+Pass 0DSEPass in 657/liblzma/common/filter_buffer_encoder.bc is non-deterministic
+NoAlias: 5 vs 6
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 1 vs 1
+Check determinism flag for 657/liblzma/common/easy_encoder_memusage.bc
+Check determinism flag for 657/liblzma/common/vli_encoder.bc
+Change in hash for 657/liblzma/common/vli_encoder.bc
+Hash: 50b10dabdc72a2b9f769b81903f7a53b4a6a7e32 vs 57b04d95b5643599aeb576054d8d18cdd07d1ba5
+Change in queries per pass for 657/liblzma/common/vli_encoder.bc
+Pass 0GVNPass in 657/liblzma/common/vli_encoder.bc is non-deterministic (missing pass)
+Pass 0DSEPass in 657/liblzma/common/vli_encoder.bc is non-deterministic
+NoAlias: 5 vs 6
+MayAlias: 4 vs 5
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 3LICMPass in 657/liblzma/common/vli_encoder.bc is non-deterministic
+NoAlias: 2 vs 3
+MayAlias: 0 vs 0
+MustAlias: 0 vs 1
+PartialAlias: 0 vs 0
+Check determinism flag for 657/liblzma/common/filter_flags_encoder.bc
+Change in queries per pass for 657/liblzma/common/filter_flags_encoder.bc
+Pass 1GVNPass in 657/liblzma/common/filter_flags_encoder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/filter_decoder.bc
+Change in queries per pass for 657/liblzma/common/filter_decoder.bc
+Pass 3GVNPass in 657/liblzma/common/filter_decoder.bc is non-deterministic (missing pass)
+Pass 5GVNPass in 657/liblzma/common/filter_decoder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/index.bc
+Change in hash for 657/liblzma/common/index.bc
+Hash: 730e5ffdfcbd03dd9d84de554016e4bf6fe06094 vs 24ac209ed3cc150aa2ef287b59b900499888268f
+Change in queries per pass for 657/liblzma/common/index.bc
+Pass 5GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 5DSEPass in 657/liblzma/common/index.bc is non-deterministic
+NoAlias: 26 vs 33
+MayAlias: 18 vs 18
+MustAlias: 4 vs 4
+PartialAlias: 0 vs 0
+Pass 7GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 13GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 19GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 21GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 23GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 25GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 26GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 28GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 29GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 29DSEPass in 657/liblzma/common/index.bc is non-deterministic
+NoAlias: 40 vs 46
+MayAlias: 11 vs 11
+MustAlias: 1 vs 1
+PartialAlias: 0 vs 0
+Pass 30GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 30DSEPass in 657/liblzma/common/index.bc is non-deterministic
+NoAlias: 6 vs 9
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 31GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 31DSEPass in 657/liblzma/common/index.bc is non-deterministic
+NoAlias: 85 vs 102
+MayAlias: 13 vs 13
+MustAlias: 1 vs 1
+PartialAlias: 0 vs 0
+Pass 32GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 33GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 34GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 34DSEPass in 657/liblzma/common/index.bc is non-deterministic
+NoAlias: 74 vs 77
+MayAlias: 9 vs 9
+MustAlias: 3 vs 3
+PartialAlias: 4 vs 4
+Pass 37GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 38GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 39GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 40GVNPass in 657/liblzma/common/index.bc is non-deterministic (missing pass)
+Pass 1SLPVectorizerPass in 657/liblzma/common/index.bc is non-deterministic
+NoAlias: 1 vs 2
+MayAlias: 3 vs 3
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 19SLPVectorizerPass in 657/liblzma/common/index.bc is non-deterministic
+NoAlias: 3 vs 8
+MayAlias: 0 vs 0
+MustAlias: 2 vs 4
+PartialAlias: 0 vs 0
+Check determinism flag for 657/liblzma/common/block_buffer_decoder.bc
+Change in hash for 657/liblzma/common/block_buffer_decoder.bc
+Hash: 3fa05bc8020e2f2653dd133f27760c607c96fe4b vs edad13c39a03d1de0c94e6d82f58670470376bb2
+Change in queries per pass for 657/liblzma/common/block_buffer_decoder.bc
+Pass 0GVNPass in 657/liblzma/common/block_buffer_decoder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/block_header_encoder.bc
+Change in hash for 657/liblzma/common/block_header_encoder.bc
+Hash: f8d42133a07ffb8b3182b22af22a3d710775f95c vs 4edf665c1c1d82ac2823961194621287ce14aa14
+Change in queries per pass for 657/liblzma/common/block_header_encoder.bc
+Pass 0GVNPass in 657/liblzma/common/block_header_encoder.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 657/liblzma/common/block_header_encoder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/easy_encoder.bc
+Check determinism flag for 657/liblzma/common/alone_encoder.bc
+Change in hash for 657/liblzma/common/alone_encoder.bc
+Hash: 6694003f84b8379e24a843aca802ef0ec040a0ca vs 76e80bbd600fb162acb0d1769ce623df50db547f
+Change in queries per pass for 657/liblzma/common/alone_encoder.bc
+Pass 2GVNPass in 657/liblzma/common/alone_encoder.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/liblzma/common/alone_encoder.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/liblzma/common/alone_encoder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/filter_encoder.bc
+Change in queries per pass for 657/liblzma/common/filter_encoder.bc
+Pass 3GVNPass in 657/liblzma/common/filter_encoder.bc is non-deterministic (missing pass)
+Pass 5GVNPass in 657/liblzma/common/filter_encoder.bc is non-deterministic (missing pass)
+Pass 6GVNPass in 657/liblzma/common/filter_encoder.bc is non-deterministic (missing pass)
+Pass 7GVNPass in 657/liblzma/common/filter_encoder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/common/stream_flags_encoder.bc
+Change in hash for 657/liblzma/common/stream_flags_encoder.bc
+Hash: 23bfe06357359a83025ca51348c4aa6517234bdf vs bf0724fad563db245c79538c53d552bc93561ad0
+Change in queries per pass for 657/liblzma/common/stream_flags_encoder.bc
+Pass 0GVNPass in 657/liblzma/common/stream_flags_encoder.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 657/liblzma/common/stream_flags_encoder.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/liblzma/common/stream_flags_encoder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/check/crc64_table.bc
+Check determinism flag for 657/liblzma/check/check.bc
+Check determinism flag for 657/liblzma/check/crc32_fast.bc
+Change in queries per pass for 657/liblzma/check/crc32_fast.bc
+Pass 0GVNPass in 657/liblzma/check/crc32_fast.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/check/sha256.bc
+Change in queries per pass for 657/liblzma/check/sha256.bc
+Pass 1GVNPass in 657/liblzma/check/sha256.bc is non-deterministic (missing pass)
+Pass 1DSEPass in 657/liblzma/check/sha256.bc is non-deterministic
+NoAlias: 7 vs 49
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 2GVNPass in 657/liblzma/check/sha256.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/liblzma/check/sha256.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/liblzma/check/sha256.bc is non-deterministic (missing pass)
+Pass 7EarlyCSEPass in 657/liblzma/check/sha256.bc is non-deterministic (new pass)
+Check determinism flag for 657/liblzma/check/crc32_table.bc
+Check determinism flag for 657/liblzma/check/crc64_fast.bc
+Change in queries per pass for 657/liblzma/check/crc64_fast.bc
+Pass 0GVNPass in 657/liblzma/check/crc64_fast.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/lzma/lzma_encoder_optimum_normal.bc
+Change in hash for 657/liblzma/lzma/lzma_encoder_optimum_normal.bc
+Hash: 471fd9636a4f52f6c3a50a1a10941033512a24d4 vs 745ccca0f7dbc648c7748285f75dec52cedbd03e
+Change in queries per pass for 657/liblzma/lzma/lzma_encoder_optimum_normal.bc
+Pass 1GVNPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic (missing pass)
+Pass 6SimpleLoopUnswitchPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic (missing pass)
+Pass 5GVNPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic (missing pass)
+Pass 6GVNPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic (missing pass)
+Pass 11GVNPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic (missing pass)
+Pass 14GVNPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic (missing pass)
+Pass 16GVNPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic (missing pass)
+Pass 19GVNPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic (missing pass)
+Pass 20GVNPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic (missing pass)
+Pass 20DSEPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic
+NoAlias: 389 vs 483
+MayAlias: 52 vs 50
+MustAlias: 1 vs 3
+PartialAlias: 0 vs 0
+Pass 21GVNPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic (missing pass)
+Pass 22GVNPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic (missing pass)
+Pass 22DSEPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic
+NoAlias: 254 vs 259
+MayAlias: 51 vs 50
+MustAlias: 4 vs 4
+PartialAlias: 0 vs 0
+Pass 136LICMPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic
+NoAlias: 8 vs 30
+MayAlias: 9 vs 9
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 143LICMPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic
+NoAlias: 2 vs 12
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 23GVNPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic (missing pass)
+Pass 23DSEPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic
+NoAlias: 52 vs 58
+MayAlias: 6 vs 6
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 49EarlyCSEPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic
+NoAlias: 52 vs 172
+MayAlias: 9 vs 14
+MustAlias: 2 vs 5
+PartialAlias: 0 vs 0
+Pass 243LICMPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic
+NoAlias: 36 vs 38
+MayAlias: 1 vs 1
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 244LICMPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic
+NoAlias: 235 vs 247
+MayAlias: 7 vs 7
+MustAlias: 3 vs 3
+PartialAlias: 0 vs 0
+Pass 24GVNPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic (missing pass)
+Pass 24MemCpyOptPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic
+NoAlias: 83 vs 72
+MayAlias: 2 vs 2
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 24DSEPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic
+NoAlias: 1135 vs 1197
+MayAlias: 161 vs 159
+MustAlias: 9 vs 10
+PartialAlias: 2 vs 2
+Pass 294LICMPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic
+NoAlias: 5 vs 67
+MayAlias: 14 vs 14
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 0SLPVectorizerPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic
+NoAlias: 77 vs 78
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 343LICMPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic
+NoAlias: 78 vs 82
+MayAlias: 6 vs 6
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 351LICMPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic
+NoAlias: 13 vs 27
+MayAlias: 3 vs 3
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 11JumpThreadingPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic (new pass)
+Pass 40LICMPass in 657/liblzma/lzma/lzma_encoder_optimum_normal.bc is non-deterministic (new pass)
+Check determinism flag for 657/liblzma/lzma/fastpos_table.bc
+Check determinism flag for 657/liblzma/lzma/lzma_decoder.bc
+Change in hash for 657/liblzma/lzma/lzma_decoder.bc
+Hash: e624708767b3e64c13bb0bce4482e6031d52e6c6 vs 2dfe0b5e0239d4f2f2e0df1f3036bfb765c0c4ff
+Change in queries per pass for 657/liblzma/lzma/lzma_decoder.bc
+Pass 2GVNPass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (missing pass)
+Pass 5GVNPass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (missing pass)
+Pass 18SimpleLoopUnswitchPass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (missing pass)
+Pass 7GVNPass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (missing pass)
+Pass 7DSEPass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic
+NoAlias: 1 vs 3
+MayAlias: 17 vs 17
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 8GVNPass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (missing pass)
+Pass 8DSEPass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic
+NoAlias: 330 vs 371
+MayAlias: 51 vs 52
+MustAlias: 1 vs 2
+PartialAlias: 0 vs 0
+Pass 9GVNPass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (missing pass)
+Pass 10GVNPass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (missing pass)
+Pass 11GVNPass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (missing pass)
+Pass 15GVNPass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (missing pass)
+Pass 17GVNPass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (missing pass)
+Pass 1SLPVectorizerPass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (missing pass)
+Pass 70LICMPass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (missing pass)
+Pass 64InstCombinePass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (new pass)
+Pass 65InstCombinePass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (new pass)
+Pass 105InstCombinePass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (new pass)
+Pass 106InstCombinePass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (new pass)
+Pass 107InstCombinePass in 657/liblzma/lzma/lzma_decoder.bc is non-deterministic (new pass)
+Check determinism flag for 657/liblzma/lzma/lzma2_decoder.bc
+Change in hash for 657/liblzma/lzma/lzma2_decoder.bc
+Hash: df0b8a7b5fbd05d065b92bff5c026b46947bcfe0 vs 6c3853a137ed13d484791588881c451ab41a534d
+Change in queries per pass for 657/liblzma/lzma/lzma2_decoder.bc
+Pass 2GVNPass in 657/liblzma/lzma/lzma2_decoder.bc is non-deterministic (missing pass)
+Pass 0SimpleLoopUnswitchPass in 657/liblzma/lzma/lzma2_decoder.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/liblzma/lzma/lzma2_decoder.bc is non-deterministic (missing pass)
+Pass 3DSEPass in 657/liblzma/lzma/lzma2_decoder.bc is non-deterministic
+NoAlias: 14 vs 23
+MayAlias: 0 vs 0
+MustAlias: 0 vs 2
+PartialAlias: 0 vs 0
+Pass 2LICMPass in 657/liblzma/lzma/lzma2_decoder.bc is non-deterministic
+NoAlias: 4 vs 14
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 4GVNPass in 657/liblzma/lzma/lzma2_decoder.bc is non-deterministic (missing pass)
+Pass 4DSEPass in 657/liblzma/lzma/lzma2_decoder.bc is non-deterministic
+NoAlias: 20 vs 19
+MayAlias: 6 vs 6
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 7GVNPass in 657/liblzma/lzma/lzma2_decoder.bc is non-deterministic (missing pass)
+Pass 7JumpThreadingPass in 657/liblzma/lzma/lzma2_decoder.bc is non-deterministic (new pass)
+Check determinism flag for 657/liblzma/lzma/lzma_encoder.bc
+Change in hash for 657/liblzma/lzma/lzma_encoder.bc
+Hash: 584378a8b2fdd5a22ef3cf2c0bc8cf6e78cc0c8c vs a5c26263749e70c3d9eabf5d23deca991e48cae7
+Change in queries per pass for 657/liblzma/lzma/lzma_encoder.bc
+Pass 1GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 44EarlyCSEPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 2 vs 2
+MustAlias: 0 vs 1
+PartialAlias: 0 vs 0
+Pass 53InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 1 vs 2
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 54InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 2 vs 4
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 3GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 55InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 2 vs 14
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 3DSEPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 25 vs 25
+MayAlias: 103 vs 103
+MustAlias: 1 vs 0
+PartialAlias: 0 vs 0
+Pass 56InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 1 vs 7
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 2SimpleLoopUnswitchPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 5GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 5DSEPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 3 vs 5
+MayAlias: 7 vs 7
+MustAlias: 1 vs 2
+PartialAlias: 0 vs 0
+Pass 48EarlyCSEPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 28 vs 30
+MayAlias: 15 vs 17
+MustAlias: 1 vs 1
+PartialAlias: 0 vs 0
+Pass 3SimpleLoopUnswitchPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 10LICMPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 9 vs 9
+MayAlias: 6 vs 7
+MustAlias: 2 vs 2
+PartialAlias: 0 vs 0
+Pass 11LICMPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 16 vs 10
+MayAlias: 11 vs 10
+MustAlias: 1 vs 1
+PartialAlias: 0 vs 0
+Pass 4SimpleLoopUnswitchPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 5SimpleLoopUnswitchPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 14LICMPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 11 vs 11
+MayAlias: 7 vs 8
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 15LICMPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 7 vs 2
+MayAlias: 8 vs 7
+MustAlias: 1 vs 1
+PartialAlias: 0 vs 0
+Pass 7GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 7DSEPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 10 vs 31
+MayAlias: 39 vs 31
+MustAlias: 0 vs 2
+PartialAlias: 0 vs 1
+Pass 17LICMPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 11 vs 12
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 19LICMPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 9 vs 10
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 9GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 23LICMPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 2 vs 2
+MustAlias: 0 vs 1
+PartialAlias: 0 vs 0
+Pass 25LICMPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 2 vs 2
+MustAlias: 0 vs 1
+PartialAlias: 0 vs 0
+Pass 10GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 83InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 2 vs 14
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 10DSEPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 21 vs 22
+MayAlias: 91 vs 91
+MustAlias: 2 vs 0
+PartialAlias: 0 vs 0
+Pass 84InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 1 vs 7
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 14GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 15GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 57EarlyCSEPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 7 vs 7
+MustAlias: 0 vs 2
+PartialAlias: 0 vs 0
+Pass 105InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 2 vs 5
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 106InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 4 vs 10
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 16GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 107InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 4 vs 14
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 16DSEPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 41 vs 43
+MayAlias: 196 vs 196
+MustAlias: 2 vs 0
+PartialAlias: 0 vs 0
+Pass 17GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 17DSEPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 51 vs 54
+MayAlias: 49 vs 49
+MustAlias: 5 vs 5
+PartialAlias: 0 vs 0
+Pass 19GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 20GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 62EarlyCSEPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 5 vs 4
+MustAlias: 0 vs 1
+PartialAlias: 0 vs 0
+Pass 21GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 127InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 3 vs 22
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 21DSEPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 58 vs 63
+MayAlias: 170 vs 170
+MustAlias: 2 vs 2
+PartialAlias: 0 vs 0
+Pass 128InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 2 vs 7
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 63EarlyCSEPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 10 vs 10
+MayAlias: 30 vs 30
+MustAlias: 0 vs 1
+PartialAlias: 0 vs 0
+Pass 129InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 2 vs 3
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 130InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 4 vs 6
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 22GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 131InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 2 vs 3
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 22DSEPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 92 vs 96
+MayAlias: 207 vs 207
+MustAlias: 4 vs 3
+PartialAlias: 0 vs 0
+Pass 23GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 24GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 66EarlyCSEPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 63 vs 63
+MayAlias: 46 vs 46
+MustAlias: 0 vs 1
+PartialAlias: 0 vs 0
+Pass 141InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 7 vs 8
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 142InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 14 vs 16
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 25GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 143InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 7 vs 8
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 25DSEPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 146 vs 151
+MayAlias: 329 vs 329
+MustAlias: 4 vs 4
+PartialAlias: 0 vs 0
+Pass 81LICMPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 10 vs 83
+MayAlias: 36 vs 36
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 144InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 14 vs 16
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 26GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 27GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 30GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 30DSEPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 3770 vs 3785
+MayAlias: 133 vs 135
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 31GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 32GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 36GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 36DSEPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 76 vs 84
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 37GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 39GVNPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (missing pass)
+Pass 205InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 14 vs 16
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 206InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 7 vs 8
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 207InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 14 vs 16
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 159LICMPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 11 vs 12
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 161LICMPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 9 vs 10
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 235InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 2 vs 7
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 10SLPVectorizerPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 1 vs 3
+MayAlias: 18 vs 20
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 236InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 2 vs 7
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 237InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 4 vs 22
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 11SLPVectorizerPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic
+NoAlias: 13 vs 13
+MayAlias: 109 vs 118
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 51InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (new pass)
+Pass 52InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (new pass)
+Pass 79InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (new pass)
+Pass 80InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (new pass)
+Pass 81InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (new pass)
+Pass 82InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (new pass)
+Pass 21JumpThreadingPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (new pass)
+Pass 108InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (new pass)
+Pass 119InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (new pass)
+Pass 120InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (new pass)
+Pass 125InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (new pass)
+Pass 126InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (new pass)
+Pass 132InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (new pass)
+Pass 61JumpThreadingPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (new pass)
+Pass 2SLPVectorizerPass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (new pass)
+Pass 238InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (new pass)
+Pass 239InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (new pass)
+Pass 240InstCombinePass in 657/liblzma/lzma/lzma_encoder.bc is non-deterministic (new pass)
+Check determinism flag for 657/liblzma/lzma/lzma2_encoder.bc
+Change in hash for 657/liblzma/lzma/lzma2_encoder.bc
+Hash: 252cb77d733751096947989da6e0c3d902917ad0 vs 8be0509f7b24f9071f4d8421efa3ba2124e425d8
+Change in queries per pass for 657/liblzma/lzma/lzma2_encoder.bc
+Pass 0GVNPass in 657/liblzma/lzma/lzma2_encoder.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 657/liblzma/lzma/lzma2_encoder.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/liblzma/lzma/lzma2_encoder.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/liblzma/lzma/lzma2_encoder.bc is non-deterministic (missing pass)
+Pass 4DSEPass in 657/liblzma/lzma/lzma2_encoder.bc is non-deterministic
+NoAlias: 84 vs 84
+MayAlias: 6 vs 6
+MustAlias: 0 vs 1
+PartialAlias: 0 vs 0
+Pass 5GVNPass in 657/liblzma/lzma/lzma2_encoder.bc is non-deterministic (missing pass)
+Pass 18EarlyCSEPass in 657/liblzma/lzma/lzma2_encoder.bc is non-deterministic
+NoAlias: 24 vs 27
+MayAlias: 3 vs 3
+MustAlias: 1 vs 1
+PartialAlias: 0 vs 0
+Pass 6GVNPass in 657/liblzma/lzma/lzma2_encoder.bc is non-deterministic (missing pass)
+Pass 6DSEPass in 657/liblzma/lzma/lzma2_encoder.bc is non-deterministic
+NoAlias: 84 vs 99
+MayAlias: 7 vs 7
+MustAlias: 2 vs 5
+PartialAlias: 0 vs 0
+Pass 2LICMPass in 657/liblzma/lzma/lzma2_encoder.bc is non-deterministic
+NoAlias: 23 vs 31
+MayAlias: 7 vs 6
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 7GVNPass in 657/liblzma/lzma/lzma2_encoder.bc is non-deterministic (missing pass)
+Pass 11GVNPass in 657/liblzma/lzma/lzma2_encoder.bc is non-deterministic (missing pass)
+Pass 3LICMPass in 657/liblzma/lzma/lzma2_encoder.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 6 vs 5
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 42InstCombinePass in 657/liblzma/lzma/lzma2_encoder.bc is non-deterministic (new pass)
+Pass 43InstCombinePass in 657/liblzma/lzma/lzma2_encoder.bc is non-deterministic (new pass)
+Pass 63InstCombinePass in 657/liblzma/lzma/lzma2_encoder.bc is non-deterministic (new pass)
+Pass 64InstCombinePass in 657/liblzma/lzma/lzma2_encoder.bc is non-deterministic (new pass)
+Pass 65InstCombinePass in 657/liblzma/lzma/lzma2_encoder.bc is non-deterministic (new pass)
+Check determinism flag for 657/liblzma/lzma/lzma_encoder_presets.bc
+Change in queries per pass for 657/liblzma/lzma/lzma_encoder_presets.bc
+Pass 0GVNPass in 657/liblzma/lzma/lzma_encoder_presets.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/lzma/lzma_encoder_optimum_fast.bc
+Change in hash for 657/liblzma/lzma/lzma_encoder_optimum_fast.bc
+Hash: 594b68a4ee0ace43049eeede2244c8af297030d2 vs 3d412e07c85c1086b998c4fbf357f7b827416cfd
+Change in queries per pass for 657/liblzma/lzma/lzma_encoder_optimum_fast.bc
+Pass 3GVNPass in 657/liblzma/lzma/lzma_encoder_optimum_fast.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/delta/delta_decoder.bc
+Change in queries per pass for 657/liblzma/delta/delta_decoder.bc
+Pass 0GVNPass in 657/liblzma/delta/delta_decoder.bc is non-deterministic (missing pass)
+Pass 1GVNPass in 657/liblzma/delta/delta_decoder.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/liblzma/delta/delta_decoder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/delta/delta_common.bc
+Change in hash for 657/liblzma/delta/delta_common.bc
+Hash: fb0a4538f3d9c3c551570e7fe112402e2b81982c vs 8fad7cd7f61902107bfdf1923b515be0dd42d2c6
+Change in queries per pass for 657/liblzma/delta/delta_common.bc
+Pass 0GVNPass in 657/liblzma/delta/delta_common.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 657/liblzma/delta/delta_common.bc is non-deterministic (missing pass)
+Check determinism flag for 657/liblzma/delta/delta_encoder.bc
+Change in queries per pass for 657/liblzma/delta/delta_encoder.bc
+Pass 1GVNPass in 657/liblzma/delta/delta_encoder.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 657/liblzma/delta/delta_encoder.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/liblzma/delta/delta_encoder.bc is non-deterministic (missing pass)
+Pass 3DSEPass in 657/liblzma/delta/delta_encoder.bc is non-deterministic
+NoAlias: 2 vs 4
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Check determinism flag for 657/spec_mem_io/spec_mem_io.bc
+Change in hash for 657/spec_mem_io/spec_mem_io.bc
+Hash: e6ea03630b85d66d9127babd1ef2b7b1e996bd1e vs 1b7d05e0a15c79b6947b397630b76c0e4ea22f21
+Change in queries per pass for 657/spec_mem_io/spec_mem_io.bc
+Pass 0GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 10LICMPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic
+NoAlias: 0 vs 1
+MayAlias: 1 vs 1
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 1GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 10SimpleLoopUnswitchPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 6GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 13JumpThreadingPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic
+NoAlias: 0 vs 1
+MayAlias: 9 vs 6
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 6DSEPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic
+NoAlias: 21 vs 24
+MayAlias: 7 vs 7
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 35LICMPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic
+NoAlias: 1 vs 0
+MayAlias: 6 vs 6
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 7GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 8GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 9GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 10GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 11GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 13GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 14GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 15GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 16GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 17GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 18GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 19GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 20GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 21GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 24GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 26GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 27GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 28GVNPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (missing pass)
+Pass 56InstCombinePass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (new pass)
+Pass 57InstCombinePass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (new pass)
+Pass 17DSEPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (new pass)
+Pass 18DSEPass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (new pass)
+Pass 156InstCombinePass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (new pass)
+Pass 157InstCombinePass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (new pass)
+Pass 158InstCombinePass in 657/spec_mem_io/spec_mem_io.bc is non-deterministic (new pass)
+Check determinism flag for 657/sha-2/sha512.bc
+Change in hash for 657/sha-2/sha512.bc
+Hash: 1b294c71e4b7137f5cefa728b9f99ba106824ae2 vs 55fd25b0ed5f25c87f01a81cb6fd60eacc463fe7
+Change in queries per pass for 657/sha-2/sha512.bc
+Pass 1GVNPass in 657/sha-2/sha512.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 657/sha-2/sha512.bc is non-deterministic (missing pass)
+Pass 11GVNPass in 657/sha-2/sha512.bc is non-deterministic (missing pass)
+Pass 11DSEPass in 657/sha-2/sha512.bc is non-deterministic
+NoAlias: 72 vs 121
+MayAlias: 1 vs 1
+MustAlias: 0 vs 0
+PartialAlias: 1 vs 1
+Pass 13GVNPass in 657/sha-2/sha512.bc is non-deterministic (missing pass)
+Pass 15GVNPass in 657/sha-2/sha512.bc is non-deterministic (missing pass)
+Pass 15DSEPass in 657/sha-2/sha512.bc is non-deterministic
+NoAlias: 332 vs 333
+MayAlias: 105 vs 105
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 2LoopVectorizePass in 657/sha-2/sha512.bc is non-deterministic
+NoAlias: 8 vs 8
+MayAlias: 12 vs 13
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Check determinism flag for 657/xz/options.bc
+Change in hash for 657/xz/options.bc
+Hash: 93560f4aa34c77462aba7d0cbe001460c268dddb vs d2f36771351b6767ae64026a84779534dfec1fa1
+Change in queries per pass for 657/xz/options.bc
+Pass 1GVNPass in 657/xz/options.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 657/xz/options.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/xz/options.bc is non-deterministic (missing pass)
+Pass 5GVNPass in 657/xz/options.bc is non-deterministic (missing pass)
+Pass 6GVNPass in 657/xz/options.bc is non-deterministic (missing pass)
+Pass 8GVNPass in 657/xz/options.bc is non-deterministic (missing pass)
+Pass 9GVNPass in 657/xz/options.bc is non-deterministic (missing pass)
+Check determinism flag for 657/xz/signals.bc
+Check determinism flag for 657/xz/hardware.bc
+Change in queries per pass for 657/xz/hardware.bc
+Pass 3GVNPass in 657/xz/hardware.bc is non-deterministic (missing pass)
+Check determinism flag for 657/xz/args.bc
+Check determinism flag for 657/xz/file_io.bc
+Change in hash for 657/xz/file_io.bc
+Hash: e255da1eae296ca54c28bd2f0f7c12d817ebaa1f vs 80734593ab00071fbf0d936e0961ed2fb64de8a6
+Change in queries per pass for 657/xz/file_io.bc
+Pass 2GVNPass in 657/xz/file_io.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 657/xz/file_io.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/xz/file_io.bc is non-deterministic (missing pass)
+Pass 5GVNPass in 657/xz/file_io.bc is non-deterministic (missing pass)
+Pass 6GVNPass in 657/xz/file_io.bc is non-deterministic (missing pass)
+Pass 7GVNPass in 657/xz/file_io.bc is non-deterministic (missing pass)
+Pass 9GVNPass in 657/xz/file_io.bc is non-deterministic (missing pass)
+Pass 10GVNPass in 657/xz/file_io.bc is non-deterministic (missing pass)
+Pass 11GVNPass in 657/xz/file_io.bc is non-deterministic (missing pass)
+Pass 13GVNPass in 657/xz/file_io.bc is non-deterministic (missing pass)
+Check determinism flag for 657/xz/util.bc
+Change in queries per pass for 657/xz/util.bc
+Pass 2GVNPass in 657/xz/util.bc is non-deterministic (missing pass)
+Pass 6GVNPass in 657/xz/util.bc is non-deterministic (missing pass)
+Pass 6DSEPass in 657/xz/util.bc is non-deterministic
+NoAlias: 2 vs 3
+MayAlias: 0 vs 0
+MustAlias: 1 vs 1
+PartialAlias: 0 vs 0
+Check determinism flag for 657/xz/main.bc
+Check determinism flag for 657/xz/list.bc
+Change in hash for 657/xz/list.bc
+Hash: 70e99a47874dd71e17468362f828444c0a74e25d vs 2530288e0ccec6157cff21ad9d94c8cb510fb06b
+Change in queries per pass for 657/xz/list.bc
+Pass 3GVNPass in 657/xz/list.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 657/xz/list.bc is non-deterministic (missing pass)
+Pass 6GVNPass in 657/xz/list.bc is non-deterministic (missing pass)
+Pass 7GVNPass in 657/xz/list.bc is non-deterministic (missing pass)
+Pass 8GVNPass in 657/xz/list.bc is non-deterministic (missing pass)
+Pass 9GVNPass in 657/xz/list.bc is non-deterministic (missing pass)
+Pass 10GVNPass in 657/xz/list.bc is non-deterministic (missing pass)
+Pass 11GVNPass in 657/xz/list.bc is non-deterministic (missing pass)
+Pass 12GVNPass in 657/xz/list.bc is non-deterministic (missing pass)
+Pass 13GVNPass in 657/xz/list.bc is non-deterministic (missing pass)
+Pass 14GVNPass in 657/xz/list.bc is non-deterministic (missing pass)
+Pass 15GVNPass in 657/xz/list.bc is non-deterministic (missing pass)
+Pass 15DSEPass in 657/xz/list.bc is non-deterministic
+NoAlias: 4 vs 6
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 16GVNPass in 657/xz/list.bc is non-deterministic (missing pass)
+Pass 16DSEPass in 657/xz/list.bc is non-deterministic
+NoAlias: 94 vs 109
+MayAlias: 2 vs 2
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 1
+Pass 10LICMPass in 657/xz/list.bc is non-deterministic (new pass)
+Pass 13DSEPass in 657/xz/list.bc is non-deterministic (new pass)
+Check determinism flag for 657/xz/coder.bc
+Change in hash for 657/xz/coder.bc
+Hash: 15e75ebf3e3dd3c46f19fb94f462e2f30ce97a60 vs da84932c6c0509f947b6d6f16d2fe9e55eb29123
+Change in queries per pass for 657/xz/coder.bc
+Pass 2GVNPass in 657/xz/coder.bc is non-deterministic (missing pass)
+Pass 4DSEPass in 657/xz/coder.bc is non-deterministic
+NoAlias: 5 vs 6
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 6GVNPass in 657/xz/coder.bc is non-deterministic (missing pass)
+Pass 6DSEPass in 657/xz/coder.bc is non-deterministic
+NoAlias: 3 vs 4
+MayAlias: 1 vs 1
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 8GVNPass in 657/xz/coder.bc is non-deterministic (missing pass)
+Pass 9GVNPass in 657/xz/coder.bc is non-deterministic (missing pass)
+Pass 20LICMPass in 657/xz/coder.bc is non-deterministic
+NoAlias: 28 vs 29
+MayAlias: 0 vs 0
+MustAlias: 0 vs 1
+PartialAlias: 0 vs 0
+Pass 10GVNPass in 657/xz/coder.bc is non-deterministic (missing pass)
+Pass 10SimpleLoopUnswitchPass in 657/xz/coder.bc is non-deterministic (missing pass)
+Pass 12GVNPass in 657/xz/coder.bc is non-deterministic (missing pass)
+Check determinism flag for 657/xz/message.bc
+Change in queries per pass for 657/xz/message.bc
+Pass 17GVNPass in 657/xz/message.bc is non-deterministic (missing pass)
+Pass 19GVNPass in 657/xz/message.bc is non-deterministic (missing pass)
+Pass 20GVNPass in 657/xz/message.bc is non-deterministic (missing pass)
+Pass 39JumpThreadingPass in 657/xz/message.bc is non-deterministic (new pass)

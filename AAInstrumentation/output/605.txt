@@ -1,0 +1,264 @@
+Running benchmark 605 with O3
+Check determinism flag for 605/pflowup.bc
+Change in queries per pass for 605/pflowup.bc
+Pass 0GVNPass in 605/pflowup.bc is non-deterministic (missing pass)
+Check determinism flag for 605/treeup.bc
+Change in queries per pass for 605/treeup.bc
+Pass 0GVNPass in 605/treeup.bc is non-deterministic (missing pass)
+Pass 0DSEPass in 605/treeup.bc is non-deterministic
+NoAlias: 55 vs 59
+MayAlias: 17 vs 17
+MustAlias: 4 vs 4
+PartialAlias: 0 vs 0
+Pass 0SLPVectorizerPass in 605/treeup.bc is non-deterministic
+NoAlias: 6 vs 10
+MayAlias: 3 vs 3
+MustAlias: 5 vs 5
+PartialAlias: 0 vs 0
+Check determinism flag for 605/pbeampp.bc
+Change in hash for 605/pbeampp.bc
+Hash: aec0c3e476a55517c69cd89d5aee48a07e25dcd3 vs f6f968b7ef316539818172dddb6676a61c6fd05c
+Change in queries per pass for 605/pbeampp.bc
+Pass 0GVNPass in 605/pbeampp.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 605/pbeampp.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 605/pbeampp.bc is non-deterministic (missing pass)
+Pass 3DSEPass in 605/pbeampp.bc is non-deterministic
+NoAlias: 21 vs 24
+MayAlias: 12 vs 12
+MustAlias: 0 vs 1
+PartialAlias: 0 vs 0
+Pass 9LICMPass in 605/pbeampp.bc is non-deterministic
+NoAlias: 1 vs 4
+MayAlias: 8 vs 8
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Check determinism flag for 605/pbla.bc
+Change in queries per pass for 605/pbla.bc
+Pass 0GVNPass in 605/pbla.bc is non-deterministic (missing pass)
+Check determinism flag for 605/mcf.bc
+Change in queries per pass for 605/mcf.bc
+Pass 1GVNPass in 605/mcf.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 605/mcf.bc is non-deterministic (missing pass)
+Check determinism flag for 605/psimplex.bc
+Change in hash for 605/psimplex.bc
+Hash: 3138e1e8a922caa777a2715f7ca40ce1990c4ac7 vs 07a0d5a153821721aadf0e2f926ab2fcd9e3ebd4
+Change in queries per pass for 605/psimplex.bc
+Pass 0GVNPass in 605/psimplex.bc is non-deterministic (missing pass)
+Pass 0DSEPass in 605/psimplex.bc is non-deterministic
+NoAlias: 5 vs 6
+MayAlias: 8 vs 8
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 10LICMPass in 605/psimplex.bc is non-deterministic
+NoAlias: 2 vs 2
+MayAlias: 2 vs 3
+MustAlias: 1 vs 1
+PartialAlias: 0 vs 0
+Pass 12LICMPass in 605/psimplex.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 9 vs 8
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 1GVNPass in 605/psimplex.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 605/psimplex.bc is non-deterministic (missing pass)
+Pass 2DSEPass in 605/psimplex.bc is non-deterministic
+NoAlias: 17 vs 19
+MayAlias: 5 vs 5
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 31LICMPass in 605/psimplex.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 1 vs 2
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 32LICMPass in 605/psimplex.bc is non-deterministic
+NoAlias: 0 vs 4
+MayAlias: 1 vs 1
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 3GVNPass in 605/psimplex.bc is non-deterministic (missing pass)
+Pass 3DSEPass in 605/psimplex.bc is non-deterministic
+NoAlias: 2 vs 3
+MayAlias: 3 vs 3
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 33LICMPass in 605/psimplex.bc is non-deterministic
+NoAlias: 0 vs 3
+MayAlias: 1 vs 3
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 35LICMPass in 605/psimplex.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 9 vs 8
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 42LICMPass in 605/psimplex.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 1 vs 2
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 3JumpThreadingPass in 605/psimplex.bc is non-deterministic (new pass)
+Pass 22LICMPass in 605/psimplex.bc is non-deterministic (new pass)
+Pass 23LICMPass in 605/psimplex.bc is non-deterministic (new pass)
+Pass 5JumpThreadingPass in 605/psimplex.bc is non-deterministic (new pass)
+Check determinism flag for 605/readmin.bc
+Change in hash for 605/readmin.bc
+Hash: f8118e1018baf10955d94c5101f81dc5b053bb73 vs bd801073a97c540af7adea0af9d251719bf83ddd
+Change in queries per pass for 605/readmin.bc
+Pass 0GVNPass in 605/readmin.bc is non-deterministic (missing pass)
+Pass 0DSEPass in 605/readmin.bc is non-deterministic
+NoAlias: 240 vs 273
+MayAlias: 3 vs 3
+MustAlias: 8 vs 9
+PartialAlias: 0 vs 0
+Pass 0SLPVectorizerPass in 605/readmin.bc is non-deterministic
+NoAlias: 8 vs 9
+MayAlias: 1 vs 1
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 1JumpThreadingPass in 605/readmin.bc is non-deterministic (new pass)
+Pass 9LICMPass in 605/readmin.bc is non-deterministic (new pass)
+Pass 10LICMPass in 605/readmin.bc is non-deterministic (new pass)
+Check determinism flag for 605/mcfutil.bc
+Change in queries per pass for 605/mcfutil.bc
+Pass 0GVNPass in 605/mcfutil.bc is non-deterministic (missing pass)
+Pass 1GVNPass in 605/mcfutil.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 605/mcfutil.bc is non-deterministic (missing pass)
+Pass 5GVNPass in 605/mcfutil.bc is non-deterministic (missing pass)
+Pass 6GVNPass in 605/mcfutil.bc is non-deterministic (missing pass)
+Pass 7GVNPass in 605/mcfutil.bc is non-deterministic (missing pass)
+Pass 8GVNPass in 605/mcfutil.bc is non-deterministic (missing pass)
+Pass 1LoopVectorizePass in 605/mcfutil.bc is non-deterministic
+NoAlias: 2 vs 3
+MayAlias: 2 vs 2
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 5LoopVectorizePass in 605/mcfutil.bc is non-deterministic
+NoAlias: 2 vs 3
+MayAlias: 2 vs 2
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Check determinism flag for 605/output.bc
+Change in queries per pass for 605/output.bc
+Pass 0GVNPass in 605/output.bc is non-deterministic (missing pass)
+Check determinism flag for 605/implicit.bc
+Change in hash for 605/implicit.bc
+Hash: afa7664c6af6d813eb009e91a2ca165762f06ce5 vs 079781d9df93f7c3af508f46f8b0b3faf1cda648
+Change in queries per pass for 605/implicit.bc
+Pass 0GVNPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 1GVNPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 1DSEPass in 605/implicit.bc is non-deterministic
+NoAlias: 2 vs 3
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 2GVNPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 2DSEPass in 605/implicit.bc is non-deterministic
+NoAlias: 6 vs 24
+MayAlias: 12 vs 14
+MustAlias: 1 vs 2
+PartialAlias: 0 vs 0
+Pass 3GVNPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 4DSEPass in 605/implicit.bc is non-deterministic
+NoAlias: 112 vs 115
+MayAlias: 14 vs 14
+MustAlias: 3 vs 3
+PartialAlias: 0 vs 0
+Pass 5GVNPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 5DSEPass in 605/implicit.bc is non-deterministic
+NoAlias: 112 vs 115
+MayAlias: 14 vs 14
+MustAlias: 3 vs 3
+PartialAlias: 0 vs 0
+Pass 6GVNPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 6DSEPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 7GVNPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 7DSEPass in 605/implicit.bc is non-deterministic
+NoAlias: 99 vs 103
+MayAlias: 20 vs 20
+MustAlias: 3 vs 3
+PartialAlias: 0 vs 0
+Pass 8GVNPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 20EarlyCSEPass in 605/implicit.bc is non-deterministic
+NoAlias: 130 vs 152
+MayAlias: 29 vs 21
+MustAlias: 5 vs 6
+PartialAlias: 0 vs 0
+Pass 66LICMPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 68LICMPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 48InstCombinePass in 605/implicit.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 6 vs 4
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 9GVNPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 9DSEPass in 605/implicit.bc is non-deterministic
+NoAlias: 272 vs 361
+MayAlias: 58 vs 57
+MustAlias: 11 vs 9
+PartialAlias: 0 vs 0
+Pass 75LICMPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 76LICMPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 84LICMPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 88LICMPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 91LICMPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 10GVNPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 10DSEPass in 605/implicit.bc is non-deterministic
+NoAlias: 39 vs 53
+MayAlias: 1 vs 1
+MustAlias: 0 vs 1
+PartialAlias: 0 vs 0
+Pass 99LICMPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 102LICMPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 2SLPVectorizerPass in 605/implicit.bc is non-deterministic
+NoAlias: 0 vs 2
+MayAlias: 6 vs 6
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 103LICMPass in 605/implicit.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 4 vs 1
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 109LICMPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 8SLPVectorizerPass in 605/implicit.bc is non-deterministic
+NoAlias: 2 vs 2
+MayAlias: 8 vs 8
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 2
+Pass 111LICMPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 112LICMPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 9LoopVectorizePass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 120LICMPass in 605/implicit.bc is non-deterministic
+NoAlias: 6 vs 0
+MayAlias: 14 vs 2
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 121LICMPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 130LICMPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 133LICMPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 137LICMPass in 605/implicit.bc is non-deterministic (missing pass)
+Pass 62LICMPass in 605/implicit.bc is non-deterministic (new pass)
+Pass 64LICMPass in 605/implicit.bc is non-deterministic (new pass)
+Pass 71LICMPass in 605/implicit.bc is non-deterministic (new pass)
+Pass 72LICMPass in 605/implicit.bc is non-deterministic (new pass)
+Pass 78LICMPass in 605/implicit.bc is non-deterministic (new pass)
+Pass 82LICMPass in 605/implicit.bc is non-deterministic (new pass)
+Pass 85LICMPass in 605/implicit.bc is non-deterministic (new pass)
+Pass 87LICMPass in 605/implicit.bc is non-deterministic (new pass)
+Pass 90LICMPass in 605/implicit.bc is non-deterministic (new pass)
+Pass 97LICMPass in 605/implicit.bc is non-deterministic (new pass)
+Pass 105LICMPass in 605/implicit.bc is non-deterministic (new pass)
+Pass 106LICMPass in 605/implicit.bc is non-deterministic (new pass)
+Pass 113LICMPass in 605/implicit.bc is non-deterministic (new pass)
+Pass 114LICMPass in 605/implicit.bc is non-deterministic (new pass)
+Pass 123LICMPass in 605/implicit.bc is non-deterministic (new pass)
+Pass 127LICMPass in 605/implicit.bc is non-deterministic (new pass)
+Check determinism flag for 605/pstart.bc
+Change in queries per pass for 605/pstart.bc
+Pass 0GVNPass in 605/pstart.bc is non-deterministic (missing pass)
+Check determinism flag for 605/spec_qsort/spec_qsort.bc
+Change in queries per pass for 605/spec_qsort/spec_qsort.bc
+Pass 0GVNPass in 605/spec_qsort/spec_qsort.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 605/spec_qsort/spec_qsort.bc is non-deterministic (missing pass)

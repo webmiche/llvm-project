@@ -1,0 +1,17 @@
+Running benchmark 619 with O3
+Check determinism flag for 619/lbm.bc
+Change in queries per pass for 619/lbm.bc
+Pass 3GVNPass in 619/lbm.bc is non-deterministic (missing pass)
+Pass 7GVNPass in 619/lbm.bc is non-deterministic (missing pass)
+Pass 8GVNPass in 619/lbm.bc is non-deterministic (missing pass)
+Pass 9GVNPass in 619/lbm.bc is non-deterministic (missing pass)
+Pass 10GVNPass in 619/lbm.bc is non-deterministic (missing pass)
+Pass 12GVNPass in 619/lbm.bc is non-deterministic (missing pass)
+Pass 14GVNPass in 619/lbm.bc is non-deterministic (missing pass)
+Check determinism flag for 619/main.bc
+Change in queries per pass for 619/main.bc
+Pass 2GVNPass in 619/main.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 619/main.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 619/main.bc is non-deterministic (missing pass)
+Pass 5GVNPass in 619/main.bc is non-deterministic (missing pass)
+Pass 6GVNPass in 619/main.bc is non-deterministic (missing pass)

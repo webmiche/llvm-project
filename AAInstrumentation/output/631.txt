@@ -1,0 +1,494 @@
+Running benchmark 631 with O3
+Check determinism flag for 631/make.bc
+Change in hash for 631/make.bc
+Hash: 9525cd3b50f93702e1b1967d6bd14154bbf9a0e2 vs 6f518b7aaf640880d8e38dedad7cd810b329ba47
+Change in queries per pass for 631/make.bc
+Pass 0GVNPass in 631/make.bc is non-deterministic (missing pass)
+Pass 4InstCombinePass in 631/make.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 7 vs 6
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 0DSEPass in 631/make.bc is non-deterministic
+NoAlias: 296 vs 453
+MayAlias: 151 vs 149
+MustAlias: 5 vs 6
+PartialAlias: 0 vs 0
+Pass 5InstCombinePass in 631/make.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 7 vs 6
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 1GVNPass in 631/make.bc is non-deterministic (missing pass)
+Pass 1DSEPass in 631/make.bc is non-deterministic
+NoAlias: 454 vs 592
+MayAlias: 110 vs 110
+MustAlias: 10 vs 10
+PartialAlias: 0 vs 0
+Pass 10InstCombinePass in 631/make.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 7 vs 6
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 11InstCombinePass in 631/make.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 7 vs 6
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 12InstCombinePass in 631/make.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 7 vs 6
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 1JumpThreadingPass in 631/make.bc is non-deterministic (new pass)
+Check determinism flag for 631/epd.bc
+Change in hash for 631/epd.bc
+Hash: fa8dca211a446c320ed13f98fd198b660086ae66 vs 7945b21abb266336254edfc04ca588fd95646e1f
+Change in queries per pass for 631/epd.bc
+Pass 1GVNPass in 631/epd.bc is non-deterministic (missing pass)
+Pass 1DSEPass in 631/epd.bc is non-deterministic
+NoAlias: 15 vs 34
+MayAlias: 84 vs 84
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 2GVNPass in 631/epd.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 631/epd.bc is non-deterministic (missing pass)
+Check determinism flag for 631/generate.bc
+Change in hash for 631/generate.bc
+Hash: 5f8ba14f9028370f3c7947d84634f2afca0f0248 vs 8b165470e2d63974c1f7482f0fc483616a814980
+Change in queries per pass for 631/generate.bc
+Pass 3GVNPass in 631/generate.bc is non-deterministic (missing pass)
+Pass 3DSEPass in 631/generate.bc is non-deterministic
+NoAlias: 14 vs 16
+MayAlias: 4 vs 4
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 4GVNPass in 631/generate.bc is non-deterministic (missing pass)
+Pass 4DSEPass in 631/generate.bc is non-deterministic
+NoAlias: 40 vs 43
+MayAlias: 44 vs 44
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 51LICMPass in 631/generate.bc is non-deterministic
+NoAlias: 0 vs 2
+MayAlias: 1 vs 1
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 52LICMPass in 631/generate.bc is non-deterministic
+NoAlias: 0 vs 2
+MayAlias: 1 vs 1
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 5GVNPass in 631/generate.bc is non-deterministic (missing pass)
+Pass 83LICMPass in 631/generate.bc is non-deterministic
+NoAlias: 0 vs 2
+MayAlias: 1 vs 1
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 85LICMPass in 631/generate.bc is non-deterministic
+NoAlias: 0 vs 2
+MayAlias: 1 vs 1
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 6GVNPass in 631/generate.bc is non-deterministic (missing pass)
+Pass 7GVNPass in 631/generate.bc is non-deterministic (missing pass)
+Pass 8GVNPass in 631/generate.bc is non-deterministic (missing pass)
+Pass 7JumpThreadingPass in 631/generate.bc is non-deterministic (new pass)
+Pass 9JumpThreadingPass in 631/generate.bc is non-deterministic (new pass)
+Pass 11JumpThreadingPass in 631/generate.bc is non-deterministic (new pass)
+Pass 13JumpThreadingPass in 631/generate.bc is non-deterministic (new pass)
+Pass 15JumpThreadingPass in 631/generate.bc is non-deterministic (new pass)
+Pass 17JumpThreadingPass in 631/generate.bc is non-deterministic (new pass)
+Pass 8DSEPass in 631/generate.bc is non-deterministic (new pass)
+Check determinism flag for 631/board.bc
+Change in queries per pass for 631/board.bc
+Pass 5GVNPass in 631/board.bc is non-deterministic (missing pass)
+Check determinism flag for 631/initp.bc
+Check determinism flag for 631/bitboard.bc
+Change in hash for 631/bitboard.bc
+Hash: 77dea357674ddf7147f15a5f0d38db3511510baf vs ea83684d6588245edd7f4224d4862c210a4fc78f
+Change in queries per pass for 631/bitboard.bc
+Pass 3GVNPass in 631/bitboard.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 631/bitboard.bc is non-deterministic (missing pass)
+Pass 4DSEPass in 631/bitboard.bc is non-deterministic
+NoAlias: 1717 vs 1831
+MayAlias: 0 vs 0
+MustAlias: 8 vs 8
+PartialAlias: 0 vs 0
+Pass 125LICMPass in 631/bitboard.bc is non-deterministic
+NoAlias: 1 vs 217
+MayAlias: 2 vs 7
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 126LICMPass in 631/bitboard.bc is non-deterministic
+NoAlias: 0 vs 38
+MayAlias: 1 vs 7
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 129LICMPass in 631/bitboard.bc is non-deterministic
+NoAlias: 4 vs 8
+MayAlias: 4 vs 7
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 130LICMPass in 631/bitboard.bc is non-deterministic
+NoAlias: 0 vs 8
+MayAlias: 4 vs 7
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 131LICMPass in 631/bitboard.bc is non-deterministic
+NoAlias: 0 vs 8
+MayAlias: 3 vs 7
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 132LICMPass in 631/bitboard.bc is non-deterministic
+NoAlias: 0 vs 8
+MayAlias: 2 vs 7
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 5GVNPass in 631/bitboard.bc is non-deterministic (missing pass)
+Pass 8GVNPass in 631/bitboard.bc is non-deterministic (missing pass)
+Pass 9GVNPass in 631/bitboard.bc is non-deterministic (missing pass)
+Pass 10GVNPass in 631/bitboard.bc is non-deterministic (missing pass)
+Pass 11GVNPass in 631/bitboard.bc is non-deterministic (missing pass)
+Pass 3LoopVectorizePass in 631/bitboard.bc is non-deterministic
+NoAlias: 47 vs 67
+MayAlias: 17 vs 24
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 3LoopLoadEliminationPass in 631/bitboard.bc is non-deterministic
+NoAlias: 31 vs 54
+MayAlias: 55 vs 59
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 3SLPVectorizerPass in 631/bitboard.bc is non-deterministic
+NoAlias: 134 vs 212
+MayAlias: 0 vs 0
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 118LICMPass in 631/bitboard.bc is non-deterministic (new pass)
+Pass 127LICMPass in 631/bitboard.bc is non-deterministic (new pass)
+Pass 128LICMPass in 631/bitboard.bc is non-deterministic (new pass)
+Check determinism flag for 631/neval.bc
+Change in hash for 631/neval.bc
+Hash: 0a6f39adba623d82abcb2a0bf090895a824c00d5 vs 27a0f4abea62f4546aeed9d58fa9dc6d9d97fe47
+Change in queries per pass for 631/neval.bc
+Pass 0GVNPass in 631/neval.bc is non-deterministic (missing pass)
+Pass 1GVNPass in 631/neval.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 631/neval.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 631/neval.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 631/neval.bc is non-deterministic (missing pass)
+Pass 5GVNPass in 631/neval.bc is non-deterministic (missing pass)
+Pass 17EarlyCSEPass in 631/neval.bc is non-deterministic
+NoAlias: 17 vs 17
+MayAlias: 2 vs 3
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 12JumpThreadingPass in 631/neval.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 1 vs 3
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 6GVNPass in 631/neval.bc is non-deterministic (missing pass)
+Pass 6DSEPass in 631/neval.bc is non-deterministic
+NoAlias: 23 vs 26
+MayAlias: 0 vs 2
+MustAlias: 0 vs 2
+PartialAlias: 0 vs 0
+Pass 7GVNPass in 631/neval.bc is non-deterministic (missing pass)
+Pass 8GVNPass in 631/neval.bc is non-deterministic (missing pass)
+Pass 9GVNPass in 631/neval.bc is non-deterministic (missing pass)
+Pass 10GVNPass in 631/neval.bc is non-deterministic (missing pass)
+Pass 0SLPVectorizerPass in 631/neval.bc is non-deterministic
+NoAlias: 4 vs 4
+MayAlias: 0 vs 4
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 1SLPVectorizerPass in 631/neval.bc is non-deterministic (new pass)
+Check determinism flag for 631/search.bc
+Change in hash for 631/search.bc
+Hash: e446d36de07d85200302f2df98855146a8735dfc vs 1235171369ed4b9374870fac0404b0ece9ed9ded
+Change in queries per pass for 631/search.bc
+Pass 0GVNPass in 631/search.bc is non-deterministic (missing pass)
+Pass 1GVNPass in 631/search.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 631/search.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 631/search.bc is non-deterministic (missing pass)
+Pass 4GVNPass in 631/search.bc is non-deterministic (missing pass)
+Pass 5GVNPass in 631/search.bc is non-deterministic (missing pass)
+Pass 6GVNPass in 631/search.bc is non-deterministic (missing pass)
+Pass 6DSEPass in 631/search.bc is non-deterministic
+NoAlias: 13 vs 19
+MayAlias: 4 vs 4
+MustAlias: 2 vs 2
+PartialAlias: 0 vs 0
+Pass 7GVNPass in 631/search.bc is non-deterministic (missing pass)
+Pass 8GVNPass in 631/search.bc is non-deterministic (missing pass)
+Pass 9GVNPass in 631/search.bc is non-deterministic (missing pass)
+Pass 10GVNPass in 631/search.bc is non-deterministic (missing pass)
+Pass 60InstCombinePass in 631/search.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 2 vs 4
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 10DSEPass in 631/search.bc is non-deterministic
+NoAlias: 53 vs 56
+MayAlias: 65 vs 65
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 61InstCombinePass in 631/search.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 1 vs 2
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 11GVNPass in 631/search.bc is non-deterministic (missing pass)
+Pass 12GVNPass in 631/search.bc is non-deterministic (missing pass)
+Pass 12DSEPass in 631/search.bc is non-deterministic
+NoAlias: 80 vs 122
+MayAlias: 34 vs 34
+MustAlias: 3 vs 3
+PartialAlias: 0 vs 0
+Pass 123LICMPass in 631/search.bc is non-deterministic
+NoAlias: 3 vs 15
+MayAlias: 7 vs 7
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 14GVNPass in 631/search.bc is non-deterministic (missing pass)
+Pass 14DSEPass in 631/search.bc is non-deterministic
+NoAlias: 40 vs 52
+MayAlias: 2 vs 2
+MustAlias: 1 vs 1
+PartialAlias: 0 vs 0
+Pass 16GVNPass in 631/search.bc is non-deterministic (missing pass)
+Pass 33JumpThreadingPass in 631/search.bc is non-deterministic
+NoAlias: 0 vs 2
+MayAlias: 1 vs 1
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 35EarlyCSEPass in 631/search.bc is non-deterministic
+NoAlias: 2 vs 3
+MayAlias: 0 vs 0
+MustAlias: 1 vs 1
+PartialAlias: 0 vs 0
+Pass 152LICMPass in 631/search.bc is non-deterministic
+NoAlias: 76 vs 111
+MayAlias: 2 vs 2
+MustAlias: 2 vs 2
+PartialAlias: 0 vs 0
+Pass 153LICMPass in 631/search.bc is non-deterministic
+NoAlias: 56 vs 60
+MayAlias: 5 vs 5
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 42SimpleLoopUnswitchPass in 631/search.bc is non-deterministic (missing pass)
+Pass 17GVNPass in 631/search.bc is non-deterministic (missing pass)
+Pass 17DSEPass in 631/search.bc is non-deterministic
+NoAlias: 89 vs 90
+MayAlias: 52 vs 52
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 0SLPVectorizerPass in 631/search.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 0 vs 0
+MustAlias: 1 vs 2
+PartialAlias: 0 vs 0
+Pass 4LoopVectorizePass in 631/search.bc is non-deterministic
+NoAlias: 0 vs 12
+MayAlias: 24 vs 24
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 4SLPVectorizerPass in 631/search.bc is non-deterministic
+NoAlias: 6 vs 6
+MayAlias: 8 vs 8
+MustAlias: 1 vs 2
+PartialAlias: 0 vs 0
+Pass 6LoopVectorizePass in 631/search.bc is non-deterministic
+NoAlias: 0 vs 12
+MayAlias: 48 vs 48
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 108InstCombinePass in 631/search.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 1 vs 2
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 109InstCombinePass in 631/search.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 1 vs 2
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 110InstCombinePass in 631/search.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 2 vs 4
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 220LICMPass in 631/search.bc is non-deterministic
+NoAlias: 12 vs 13
+MayAlias: 9 vs 9
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 8SLPVectorizerPass in 631/search.bc is non-deterministic (new pass)
+Check determinism flag for 631/draw.bc
+Change in hash for 631/draw.bc
+Hash: aa320acc028a2131ddf390829ff8375f5c4c039a vs afa4ec2c36b3a63d782d42d0d3fff6fb9e02a421
+Change in queries per pass for 631/draw.bc
+Pass 0GVNPass in 631/draw.bc is non-deterministic (missing pass)
+Pass 1GVNPass in 631/draw.bc is non-deterministic (missing pass)
+Check determinism flag for 631/state.bc
+Check determinism flag for 631/attacks.bc
+Change in queries per pass for 631/attacks.bc
+Pass 0GVNPass in 631/attacks.bc is non-deterministic (missing pass)
+Pass 1GVNPass in 631/attacks.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 631/attacks.bc is non-deterministic (missing pass)
+Check determinism flag for 631/sjeng.bc
+Change in queries per pass for 631/sjeng.bc
+Pass 0GVNPass in 631/sjeng.bc is non-deterministic (missing pass)
+Check determinism flag for 631/moves.bc
+Change in queries per pass for 631/moves.bc
+Pass 0GVNPass in 631/moves.bc is non-deterministic (missing pass)
+Pass 1GVNPass in 631/moves.bc is non-deterministic (missing pass)
+Check determinism flag for 631/pawn.bc
+Change in hash for 631/pawn.bc
+Hash: e2214e76a234944222b02e5a7ce77d118db52718 vs 4d29558ec32129cc7028b63d622a3d12b16f4fb7
+Change in queries per pass for 631/pawn.bc
+Pass 2GVNPass in 631/pawn.bc is non-deterministic (missing pass)
+Pass 2DSEPass in 631/pawn.bc is non-deterministic
+NoAlias: 31 vs 41
+MayAlias: 50 vs 43
+MustAlias: 2 vs 4
+PartialAlias: 3 vs 4
+Pass 6LICMPass in 631/pawn.bc is non-deterministic
+NoAlias: 1 vs 8
+MayAlias: 8 vs 8
+MustAlias: 0 vs 2
+PartialAlias: 0 vs 0
+Pass 7LICMPass in 631/pawn.bc is non-deterministic
+NoAlias: 0 vs 7
+MayAlias: 7 vs 7
+MustAlias: 0 vs 2
+PartialAlias: 0 vs 0
+Pass 3GVNPass in 631/pawn.bc is non-deterministic (missing pass)
+Pass 3DSEPass in 631/pawn.bc is non-deterministic
+NoAlias: 43 vs 51
+MayAlias: 42 vs 42
+MustAlias: 3 vs 3
+PartialAlias: 4 vs 4
+Pass 2SLPVectorizerPass in 631/pawn.bc is non-deterministic
+NoAlias: 2 vs 3
+MayAlias: 0 vs 0
+MustAlias: 4 vs 4
+PartialAlias: 0 vs 0
+Pass 5JumpThreadingPass in 631/pawn.bc is non-deterministic (new pass)
+Check determinism flag for 631/endgame.bc
+Change in hash for 631/endgame.bc
+Hash: c396cb0368ccd71cdaecbc0775f05535e52bc6c2 vs 6bc64b8fb6e1641435af5227285804bcaaee1fac
+Change in queries per pass for 631/endgame.bc
+Pass 0GVNPass in 631/endgame.bc is non-deterministic (missing pass)
+Check determinism flag for 631/bits.bc
+Check determinism flag for 631/preproc.bc
+Change in queries per pass for 631/preproc.bc
+Pass 0GVNPass in 631/preproc.bc is non-deterministic (missing pass)
+Pass 1GVNPass in 631/preproc.bc is non-deterministic (missing pass)
+Pass 2GVNPass in 631/preproc.bc is non-deterministic (missing pass)
+Pass 2LoopLoadEliminationPass in 631/preproc.bc is non-deterministic
+NoAlias: 104 vs 105
+MayAlias: 15 vs 15
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Check determinism flag for 631/utils.bc
+Change in hash for 631/utils.bc
+Hash: 2faef07de4b49ff3c45f4f1dbbd8fee210f80f4a vs 9efc2ca77cc2e239e9a3701d832b660963e198ea
+Change in queries per pass for 631/utils.bc
+Pass 6GVNPass in 631/utils.bc is non-deterministic (missing pass)
+Pass 7GVNPass in 631/utils.bc is non-deterministic (missing pass)
+Pass 8GVNPass in 631/utils.bc is non-deterministic (missing pass)
+Pass 10GVNPass in 631/utils.bc is non-deterministic (missing pass)
+Pass 11GVNPass in 631/utils.bc is non-deterministic (missing pass)
+Pass 11DSEPass in 631/utils.bc is non-deterministic
+NoAlias: 25 vs 27
+MayAlias: 19 vs 19
+MustAlias: 0 vs 2
+PartialAlias: 0 vs 0
+Pass 13GVNPass in 631/utils.bc is non-deterministic (missing pass)
+Pass 14GVNPass in 631/utils.bc is non-deterministic (missing pass)
+Pass 15GVNPass in 631/utils.bc is non-deterministic (missing pass)
+Pass 16GVNPass in 631/utils.bc is non-deterministic (missing pass)
+Pass 21GVNPass in 631/utils.bc is non-deterministic (missing pass)
+Pass 22GVNPass in 631/utils.bc is non-deterministic (missing pass)
+Pass 23GVNPass in 631/utils.bc is non-deterministic (missing pass)
+Pass 24GVNPass in 631/utils.bc is non-deterministic (missing pass)
+Pass 41LICMPass in 631/utils.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 1 vs 2
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 43LICMPass in 631/utils.bc is non-deterministic
+NoAlias: 0 vs 3
+MayAlias: 1 vs 2
+MustAlias: 0 vs 1
+PartialAlias: 0 vs 0
+Pass 44LICMPass in 631/utils.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 1 vs 2
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 25GVNPass in 631/utils.bc is non-deterministic (missing pass)
+Pass 25DSEPass in 631/utils.bc is non-deterministic
+NoAlias: 44 vs 41
+MayAlias: 6 vs 6
+MustAlias: 3 vs 3
+PartialAlias: 0 vs 0
+Pass 49LICMPass in 631/utils.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 1 vs 2
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 26GVNPass in 631/utils.bc is non-deterministic (missing pass)
+Pass 28GVNPass in 631/utils.bc is non-deterministic (missing pass)
+Pass 29GVNPass in 631/utils.bc is non-deterministic (missing pass)
+Pass 32GVNPass in 631/utils.bc is non-deterministic (missing pass)
+Pass 75LICMPass in 631/utils.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 1 vs 2
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 65JumpThreadingPass in 631/utils.bc is non-deterministic (new pass)
+Check determinism flag for 631/see.bc
+Change in hash for 631/see.bc
+Hash: 75ed1d4d0464cc6d7af5dfd18b5964307d1eb978 vs ad9b776da73c5fb8c60812c842e9630a8f55bb97
+Change in queries per pass for 631/see.bc
+Pass 0GVNPass in 631/see.bc is non-deterministic (missing pass)
+Pass 0DSEPass in 631/see.bc is non-deterministic
+NoAlias: 8 vs 11
+MayAlias: 5 vs 5
+MustAlias: 0 vs 2
+PartialAlias: 0 vs 0
+Check determinism flag for 631/ttable.bc
+Change in hash for 631/ttable.bc
+Hash: f4dab5eb53dec1ce2f66e07cf859ac71f70c1fbf vs 9445881fbf03f2c40fcfda0232d908d35162183e
+Change in queries per pass for 631/ttable.bc
+Pass 0GVNPass in 631/ttable.bc is non-deterministic (missing pass)
+Pass 3GVNPass in 631/ttable.bc is non-deterministic (missing pass)
+Pass 20LICMPass in 631/ttable.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 2 vs 4
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 4GVNPass in 631/ttable.bc is non-deterministic (missing pass)
+Pass 4DSEPass in 631/ttable.bc is non-deterministic
+NoAlias: 35 vs 41
+MayAlias: 49 vs 49
+MustAlias: 4 vs 4
+PartialAlias: 0 vs 0
+Pass 5GVNPass in 631/ttable.bc is non-deterministic (missing pass)
+Pass 5DSEPass in 631/ttable.bc is non-deterministic
+NoAlias: 12 vs 14
+MayAlias: 64 vs 64
+MustAlias: 1 vs 1
+PartialAlias: 0 vs 0
+Pass 3LoopLoadEliminationPass in 631/ttable.bc is non-deterministic (missing pass)
+Pass 39LICMPass in 631/ttable.bc is non-deterministic
+NoAlias: 0 vs 0
+MayAlias: 2 vs 4
+MustAlias: 0 vs 0
+PartialAlias: 0 vs 0
+Pass 14EarlyCSEPass in 631/ttable.bc is non-deterministic (new pass)
+Pass 3LoopVectorizePass in 631/ttable.bc is non-deterministic (new pass)
