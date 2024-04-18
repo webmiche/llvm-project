@@ -405,7 +405,13 @@ std::optional<PreservedAnalyses> LoopPassManager::runSinglePass(
   if (!PI.runBeforePass<Loop>(*Pass, L))
     return std::nullopt;
 
+  if (printPassNames()) {
+    llvm::dbgs() << "*** Loop Start Pass: " << Pass->name() << " ***\n";
+  }
   PreservedAnalyses PA = Pass->run(IR, AM, AR, U);
+  if (printPassNames()) {
+    llvm::dbgs() << "*** Loop End Pass: " << Pass->name() << " ***\n";
+  }
 
   // do not pass deleted Loop into the instrumentation
   if (U.skipCurrentLoop())
