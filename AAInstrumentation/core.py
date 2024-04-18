@@ -666,6 +666,8 @@ class AAInstrumentationDriver:
             if not line:
                 continue
             if line.startswith("*** "):
+                if not line.__contains__("End"):
+                    continue
                 # This is a pass line
                 pass_name = (
                     line.removeprefix("*** End Pass: ")
