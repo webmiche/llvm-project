@@ -58,6 +58,55 @@ class DeterminismCheck(QueriesPerPassDriver):
                     )
 
 
+class VerifyDeterminismFlag(QueriesPerPassDriver):
+
+    def run(self, file):
+        base_queries_per_pass, base_hash_string = self.get_candidate_per_pass_and_hash(
+            file, 0
+        )
+
+        deterministic_queries_per_pass, deterministic_hash_string = (
+            self.get_candidate_per_pass_and_hash(file, 1, deterministic=True)
+        )
+
+        base_queries_per_pass = self.aggregate_results(base_queries_per_pass)
+        deterministic_queries_per_pass = self.aggregate_results(
+            deterministic_queries_per_pass
+        )
+
+        print(f"Check determinism flag for {file}")
+
+        if base_hash_string != deterministic_hash_string:
+            print(f"Change in hash for {file}")
+            print(f"Hash: {base_hash_string} vs {deterministic_hash_string}")
+
+        if base_queries_per_pass != deterministic_queries_per_pass:
+            print(f"Change in queries per pass for {file}")
+            for pass_, queries in base_queries_per_pass.items():
+                if pass_ not in deterministic_queries_per_pass:
+                    print(f"Pass {pass_} in {file} is non-deterministic (missing pass)")
+                    continue
+                if queries != deterministic_queries_per_pass[pass_]:
+                    print(f"Pass {pass_} in {file} is non-deterministic")
+                    print(
+                        f"NoAlias: {queries['NoAlias']} vs {deterministic_queries_per_pass[pass_]['NoAlias']}"
+                    )
+                    print(
+                        f"MayAlias: {queries['MayAlias']} vs {deterministic_queries_per_pass[pass_]['MayAlias']}"
+                    )
+                    print(
+                        f"MustAlias: {queries['MustAlias']} vs {deterministic_queries_per_pass[pass_]['MustAlias']}"
+                    )
+                    print(
+                        f"PartialAlias: {queries['PartialAlias']} vs {deterministic_queries_per_pass[pass_]['PartialAlias']}"
+                    )
+
+            for pass_ in deterministic_queries_per_pass:
+                if pass_ not in base_queries_per_pass:
+                    print(f"Pass {pass_} in {file} is non-deterministic (new pass)")
+                    continue
+
+
 if __name__ == "__main__":
 
     arg_parser = register_arguments()
@@ -72,7 +121,7 @@ if __name__ == "__main__":
     instr_dir = args.instr_dir
     groundtruth_dir = args.groundtruth_dir
 
-    driver = DeterminismCheck(
+    driver = VerifyDeterminismFlag(
         instr_path,
         exec_root,
         specbuild_dir,
@@ -83,7 +132,7 @@ if __name__ == "__main__":
         "O3",
         args.proc_count,
     )
-    driver.run(Path("600/regcomp.bc"), 10)
+    driver.run(Path("600/regcomp.bc"))
 
     # driver.generate_baseline()
 
