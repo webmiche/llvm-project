@@ -44,7 +44,9 @@ class DeterminismCheck(QueriesPerPassDriver):
                     print(
                         f"PartialAlias: {base_dict[pass_]['PartialAlias']} vs {queries['PartialAlias']}"
                     )
-                    print(f"Hash: {hash_string}")
+                    print(
+                        f"Hash: {hash_string} vs {base_hash}: {hash_string == base_hash}"
+                    )
 
 
 if __name__ == "__main__":
