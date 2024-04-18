@@ -26,6 +26,10 @@ class DeterminismCheck(QueriesPerPassDriver):
 
         for result, hash_string in results:
             for pass_, queries in result.items():
+                if pass_ not in base_dict:
+                    print(f"Pass {pass_} in {file} is non-deterministic (new pass)")
+                    print(f"Hash: {hash_string}")
+                    continue
                 if base_dict[pass_] != queries:
                     print(f"Pass {pass_} in {file} is non-deterministic")
                     print(
