@@ -24,7 +24,7 @@ class DeterminismCheck(QueriesPerPassDriver):
                 self.compute_results, [(file, i) for i in range(num_runs)]
             )
 
-        for hash_string, result in results:
+        for result, hash_string in results:
             print(f"Comparing {hash_string} with {base_hash} in {file}")
             print(f"Res: {result}")
             for pass_, queries in result.items():
