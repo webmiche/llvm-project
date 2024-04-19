@@ -686,6 +686,32 @@ class AAInstrumentationDriver:
             hash_string,
         )
 
+    def get_trace_no_instrumentation(
+        self,
+        file_name: Path,
+    ):
+        """Get the trace without instrumentation."""
+
+        cmd = [
+            str(self.instr_path / "opt"),
+            str(self.initial_dir / file_name),
+            "-" + self.opt_flag,
+            "--aa-trace",
+            "--print-changed",
+            "-disable-output",
+        ]
+
+        p = run(
+            cmd,
+            cwd=self.exec_root,
+            stdout=DEVNULL,
+            stderr=PIPE,
+            text=True,
+            check=True,
+        )
+
+        return p.stderr
+
     def get_candidate_per_pass(
         self,
         file_name: Path,

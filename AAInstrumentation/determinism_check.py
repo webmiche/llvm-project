@@ -107,6 +107,24 @@ class VerifyDeterminismFlag(QueriesPerPassDriver):
                     continue
 
 
+class NoInstrumentationDeterminismCheck(AAInstrumentationDriver):
+
+    def run(self, file_name, num_runs):
+        base_trace = self.get_trace_no_instrumentation(file_name)
+
+        with Pool(self.proc_count) as p:
+            traces = p.map(
+                self.get_trace_no_instrumentation,
+                [(file_name) for _ in range(num_runs)],
+            )
+
+        print(f"Check determinism for {file_name}")
+
+        for i, trace in enumerate(traces):
+            if trace != base_trace:
+                print(f"Trace {i} for {file_name} is non-deterministic")
+
+
 if __name__ == "__main__":
 
     arg_parser = register_arguments()
