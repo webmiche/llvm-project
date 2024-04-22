@@ -1,0 +1,13 @@
+Running benchmark 605 with O3
+Check determinism for 605/pflowup.bc
+Check determinism for 605/treeup.bc
+Check determinism for 605/pbeampp.bc
+Check determinism for 605/pbla.bc
+Check determinism for 605/mcf.bc
+Check determinism for 605/psimplex.bc
+Check determinism for 605/readmin.bc
+Check determinism for 605/mcfutil.bc
+Check determinism for 605/output.bc
+Check determinism for 605/implicit.bc
+Check determinism for 605/pstart.bc
+Check determinism for 605/spec_qsort/spec_qsort.bc

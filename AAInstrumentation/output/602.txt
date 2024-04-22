@@ -1,1 +1,0 @@
-Running benchmark 602 with O3

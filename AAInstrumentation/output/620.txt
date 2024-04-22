@@ -1,1 +1,0 @@
-Running benchmark 620 with O3

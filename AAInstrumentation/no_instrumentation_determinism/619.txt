@@ -1,0 +1,3 @@
+Running benchmark 619 with O3
+Check determinism for 619/lbm.bc
+Check determinism for 619/main.bc

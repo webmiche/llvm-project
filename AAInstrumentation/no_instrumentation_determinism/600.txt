@@ -1,0 +1,150 @@
+Running benchmark 600 with O3
+Check determinism for 600/universal.bc
+Check determinism for 600/perlio.bc
+Check determinism for 600/gv.bc
+Check determinism for 600/locale.bc
+Check determinism for 600/Opcode.bc
+Check determinism for 600/mathoms.bc
+Check determinism for 600/perlmain.bc
+Check determinism for 600/dump.bc
+Check determinism for 600/globals.bc
+Check determinism for 600/pp_sort.bc
+Check determinism for 600/DynaLoader.bc
+Check determinism for 600/doop.bc
+Check determinism for 600/reentr.bc
+Check determinism for 600/sv.bc
+Check determinism for 600/regcomp.bc
+Trace 0 for 600/regcomp.bc is non-deterministic
+Trace 2 for 600/regcomp.bc is non-deterministic
+Trace 3 for 600/regcomp.bc is non-deterministic
+Trace 4 for 600/regcomp.bc is non-deterministic
+Trace 6 for 600/regcomp.bc is non-deterministic
+Trace 7 for 600/regcomp.bc is non-deterministic
+Trace 8 for 600/regcomp.bc is non-deterministic
+Trace 9 for 600/regcomp.bc is non-deterministic
+Trace 10 for 600/regcomp.bc is non-deterministic
+Trace 11 for 600/regcomp.bc is non-deterministic
+Trace 13 for 600/regcomp.bc is non-deterministic
+Trace 14 for 600/regcomp.bc is non-deterministic
+Trace 15 for 600/regcomp.bc is non-deterministic
+Trace 16 for 600/regcomp.bc is non-deterministic
+Trace 17 for 600/regcomp.bc is non-deterministic
+Trace 18 for 600/regcomp.bc is non-deterministic
+Trace 19 for 600/regcomp.bc is non-deterministic
+Trace 22 for 600/regcomp.bc is non-deterministic
+Trace 24 for 600/regcomp.bc is non-deterministic
+Trace 26 for 600/regcomp.bc is non-deterministic
+Trace 27 for 600/regcomp.bc is non-deterministic
+Trace 28 for 600/regcomp.bc is non-deterministic
+Trace 29 for 600/regcomp.bc is non-deterministic
+Trace 30 for 600/regcomp.bc is non-deterministic
+Trace 32 for 600/regcomp.bc is non-deterministic
+Trace 34 for 600/regcomp.bc is non-deterministic
+Trace 35 for 600/regcomp.bc is non-deterministic
+Trace 37 for 600/regcomp.bc is non-deterministic
+Trace 39 for 600/regcomp.bc is non-deterministic
+Trace 40 for 600/regcomp.bc is non-deterministic
+Trace 41 for 600/regcomp.bc is non-deterministic
+Trace 42 for 600/regcomp.bc is non-deterministic
+Trace 43 for 600/regcomp.bc is non-deterministic
+Trace 45 for 600/regcomp.bc is non-deterministic
+Trace 46 for 600/regcomp.bc is non-deterministic
+Trace 47 for 600/regcomp.bc is non-deterministic
+Trace 48 for 600/regcomp.bc is non-deterministic
+Trace 49 for 600/regcomp.bc is non-deterministic
+Trace 53 for 600/regcomp.bc is non-deterministic
+Trace 55 for 600/regcomp.bc is non-deterministic
+Trace 56 for 600/regcomp.bc is non-deterministic
+Trace 57 for 600/regcomp.bc is non-deterministic
+Trace 58 for 600/regcomp.bc is non-deterministic
+Trace 59 for 600/regcomp.bc is non-deterministic
+Trace 60 for 600/regcomp.bc is non-deterministic
+Trace 61 for 600/regcomp.bc is non-deterministic
+Trace 62 for 600/regcomp.bc is non-deterministic
+Trace 63 for 600/regcomp.bc is non-deterministic
+Trace 64 for 600/regcomp.bc is non-deterministic
+Trace 65 for 600/regcomp.bc is non-deterministic
+Trace 66 for 600/regcomp.bc is non-deterministic
+Trace 67 for 600/regcomp.bc is non-deterministic
+Trace 69 for 600/regcomp.bc is non-deterministic
+Trace 70 for 600/regcomp.bc is non-deterministic
+Trace 72 for 600/regcomp.bc is non-deterministic
+Trace 73 for 600/regcomp.bc is non-deterministic
+Trace 74 for 600/regcomp.bc is non-deterministic
+Trace 76 for 600/regcomp.bc is non-deterministic
+Trace 77 for 600/regcomp.bc is non-deterministic
+Trace 78 for 600/regcomp.bc is non-deterministic
+Trace 79 for 600/regcomp.bc is non-deterministic
+Trace 81 for 600/regcomp.bc is non-deterministic
+Trace 82 for 600/regcomp.bc is non-deterministic
+Trace 83 for 600/regcomp.bc is non-deterministic
+Trace 84 for 600/regcomp.bc is non-deterministic
+Trace 85 for 600/regcomp.bc is non-deterministic
+Trace 86 for 600/regcomp.bc is non-deterministic
+Trace 87 for 600/regcomp.bc is non-deterministic
+Trace 88 for 600/regcomp.bc is non-deterministic
+Trace 89 for 600/regcomp.bc is non-deterministic
+Trace 90 for 600/regcomp.bc is non-deterministic
+Trace 91 for 600/regcomp.bc is non-deterministic
+Trace 92 for 600/regcomp.bc is non-deterministic
+Trace 93 for 600/regcomp.bc is non-deterministic
+Trace 94 for 600/regcomp.bc is non-deterministic
+Trace 95 for 600/regcomp.bc is non-deterministic
+Trace 96 for 600/regcomp.bc is non-deterministic
+Trace 97 for 600/regcomp.bc is non-deterministic
+Trace 98 for 600/regcomp.bc is non-deterministic
+Trace 99 for 600/regcomp.bc is non-deterministic
+Check determinism for 600/deb.bc
+Check determinism for 600/numeric.bc
+Check determinism for 600/perlapi.bc
+Check determinism for 600/doio.bc
+Check determinism for 600/perl.bc
+Check determinism for 600/mg.bc
+Check determinism for 600/toke.bc
+Check determinism for 600/pp_ctl.bc
+Check determinism for 600/caretx.bc
+Check determinism for 600/pp_hot.bc
+Check determinism for 600/pp.bc
+Check determinism for 600/utf8.bc
+Check determinism for 600/perly.bc
+Check determinism for 600/util.bc
+Check determinism for 600/pp_pack.bc
+Check determinism for 600/pad.bc
+Check determinism for 600/scope.bc
+Check determinism for 600/hv.bc
+Check determinism for 600/run.bc
+Check determinism for 600/op.bc
+Check determinism for 600/taint.bc
+Check determinism for 600/mro_core.bc
+Check determinism for 600/keywords.bc
+Check determinism for 600/regexec.bc
+Check determinism for 600/av.bc
+Check determinism for 600/pp_sys.bc
+Check determinism for 600/dist/Storable/Storable.bc
+Check determinism for 600/dist/Data-Dumper/Dumper.bc
+Check determinism for 600/dist/PathTools/Cwd.bc
+Check determinism for 600/dist/IO/poll.bc
+Check determinism for 600/dist/IO/IO.bc
+Check determinism for 600/specrand/specrand.bc
+Check determinism for 600/cpan/MIME-Base64/Base64.bc
+Check determinism for 600/cpan/Time-HiRes/HiRes.bc
+Check determinism for 600/cpan/HTML-Parser/Parser.bc
+Check determinism for 600/cpan/Digest-MD5/MD5.bc
+Check determinism for 600/cpan/Digest-SHA/SHA.bc
+Check determinism for 600/cpan/Scalar-List-Utils/ListUtil.bc
+Check determinism for 600/ext/re/re.bc
+Check determinism for 600/ext/re/re_exec.bc
+Check determinism for 600/ext/re/re_comp.bc
+Check determinism for 600/ext/Sys-Hostname/Hostname.bc
+Check determinism for 600/ext/attributes/attributes.bc
+Check determinism for 600/ext/PerlIO-via/via.bc
+Check determinism for 600/ext/Devel-Peek/Peek.bc
+Check determinism for 600/ext/XS-Typemap/stdio.bc
+Check determinism for 600/ext/mro/mro.bc
+Check determinism for 600/ext/Hash-Util/Util.bc
+Check determinism for 600/ext/Hash-Util-FieldHash/FieldHash.bc
+Check determinism for 600/ext/arybase/arybase.bc
+Check determinism for 600/ext/Tie-Hash-NamedCapture/NamedCapture.bc
+Check determinism for 600/ext/PerlIO-scalar/scalar.bc
+Check determinism for 600/ext/File-Glob/bsd_glob.bc
+Check determinism for 600/ext/File-Glob/Glob.bc
