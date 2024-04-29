@@ -517,9 +517,12 @@ public:
       if (!PI.runBeforePass<IRUnitT>(*Pass, IR))
         continue;
 
+      if (printPassNames()) {
+        llvm::dbgs() << "*** Start Pass: " << Pass->name() << " ***\n";
+      }
       PreservedAnalyses PassPA = Pass->run(IR, AM, ExtraArgs...);
       if (printPassNames()) {
-        llvm::dbgs() << "*** Pass: " << Pass->name() << " ***\n";
+        llvm::dbgs() << "*** End Pass: " << Pass->name() << " ***\n";
       }
 
       // Update the analysis manager as each pass runs and potentially
