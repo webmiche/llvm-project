@@ -14,6 +14,10 @@ import sys
 from pathlib import Path
 from typing import Callable
 from queries_per_pass import QueriesPerPassDriver
+from determinism_check import (
+    DeterminismCheck,
+    NoInstrumentationDeterminismCheck,
+)
 
 
 def run_optimization(
@@ -38,6 +42,70 @@ benchmarks = [
     "623",
     "602",
 ]
+
+
+def run_no_instrumentation_determinism_check(
+    instr_path,
+    exec_root,
+    specbuild_dir,
+    initial_dir,
+    instr_dir,
+    groundtruth_dir,
+    proc_count,
+    benchmarks: list[str],
+):
+    for benchmark in benchmarks:
+        sys.stdout = open(f"AAInstrumentation/output/{benchmark}.txt", "w")
+        print(f"Running benchmark {benchmark} with O3")
+        driver = NoInstrumentationDeterminismCheck(
+            instr_path,
+            exec_root,
+            specbuild_dir,
+            Path(benchmark),
+            initial_dir,
+            instr_dir,
+            groundtruth_dir,
+            "O3",
+            proc_count,
+        )
+        driver.generate_baseline()
+
+        files = driver.get_baseline_files()
+
+        for file in files:
+            driver.run(file, 10)
+
+
+def run_determinism_check(
+    instr_path,
+    exec_root,
+    specbuild_dir,
+    initial_dir,
+    instr_dir,
+    groundtruth_dir,
+    proc_count,
+    benchmarks: list[str],
+):
+    for benchmark in benchmarks:
+        sys.stdout = open(f"AAInstrumentation/output/{benchmark}.txt", "w")
+        print(f"Running benchmark {benchmark} with O3")
+        driver = DeterminismCheck(
+            instr_path,
+            exec_root,
+            specbuild_dir,
+            Path(benchmark),
+            initial_dir,
+            instr_dir,
+            groundtruth_dir,
+            "O3",
+            proc_count,
+        )
+        driver.generate_baseline()
+
+        files = driver.get_baseline_files()
+
+        for file in files:
+            driver.run(file, 10)
 
 
 def run_queries_per_pass_experiment(
@@ -194,6 +262,16 @@ if __name__ == "__main__":
         help="Run queries per pass experiment",
     )
     arg_parser.add_argument(
+        "--determinism_check",
+        action="store_true",
+        help="Run determinism check",
+    )
+    arg_parser.add_argument(
+        "--no_instrumentation_determinism_check",
+        action="store_true",
+        help="Run no instrumentation determinism check",
+    )
+    arg_parser.add_argument(
         "--all",
         action="store_true",
         help="Run for all benchmarks",
@@ -214,7 +292,7 @@ if __name__ == "__main__":
         > 1
     ):
         print(
-            "Please specify only one of the following flags: --optimization, --unique_hashes, --maximal_relaxation, --queries_per_pass"
+            "Please specify only one of the following flags: --optimization, --unique_hashes, --maximal_relaxation, --queries_per_pass, --determinism_check, --no-instrumentation-determinism-check"
         )
         exit(1)
 
@@ -269,6 +347,30 @@ if __name__ == "__main__":
 
     if args.queries_per_pass:
         run_queries_per_pass_experiment(
+            instr_path,
+            exec_root,
+            specbuild_dir,
+            initial_dir,
+            instr_dir,
+            groundtruth_dir,
+            args.proc_count,
+            benchmarks,
+        )
+
+    if args.determinism_check:
+        run_determinism_check(
+            instr_path,
+            exec_root,
+            specbuild_dir,
+            initial_dir,
+            instr_dir,
+            groundtruth_dir,
+            args.proc_count,
+            benchmarks,
+        )
+
+    if args.no_instrumentation_determinism_check:
+        run_no_instrumentation_determinism_check(
             instr_path,
             exec_root,
             specbuild_dir,

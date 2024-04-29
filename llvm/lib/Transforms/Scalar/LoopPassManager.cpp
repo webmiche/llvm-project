@@ -302,7 +302,13 @@ PreservedAnalyses FunctionToLoopPassAdaptor::run(Function &F,
     if (!PI.runBeforePass<Loop>(*Pass, *L))
       continue;
 
+    if (printPassNames()) {
+      llvm::dbgs() << "*** Loop cpp Start Pass: " << Pass->name() << " ***\n";
+    }
     PreservedAnalyses PassPA = Pass->run(*L, LAM, LAR, Updater);
+    if (printPassNames()) {
+      llvm::dbgs() << "*** Loop cpp End Pass: " << Pass->name() << " ***\n";
+    }
 
     // Do not pass deleted Loop into the instrumentation.
     if (Updater.skipCurrentLoop())

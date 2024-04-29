@@ -618,6 +618,96 @@ class AAInstrumentationDriver:
             population.append(self.get_random_sequence(num_candidates))
         return population
 
+    def get_candidate_per_pass_and_hash(
+        self,
+        file_name: Path,
+        name_prefix: int = 0,
+        index_list: list[index] = [],
+        instrument_recursively=False,
+    ) -> dict[str, list[AAResult]]:
+        """Get the relaxation candidates per pass and the hash."""
+        (self.instr_dir / file_name.parent).mkdir(parents=True, exist_ok=True)
+
+        aa_sequence_string = self.get_aa_string_from_indices(index_list)
+        cmd = [
+            str(self.instr_path / "opt"),
+            str(self.initial_dir / file_name),
+            "-" + self.opt_flag,
+            "--aa-candidate-trace",
+            "--print-pass-names",
+            "-o",
+            str(
+                self.instr_dir
+                / file_name.parent
+                / Path(str(name_prefix) + str(file_name.stem) + ".bc")
+            ),
+        ]
+        if instrument_recursively:
+            cmd.append("--instrument-aa-recursively")
+
+        cmd += ["--aasequence=" + aa_sequence_string]
+        # print(" ".join(cmd))
+        p = run(
+            cmd,
+            cwd=self.exec_root,
+            stdout=DEVNULL,
+            stderr=PIPE,
+            text=True,
+            check=True,
+        )
+
+        self.assemble_file(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".bc")
+        )
+        hash_string = self.get_hash(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".o")
+        )
+        os.remove(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".o")
+        )
+        os.remove(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".bc")
+        )
+
+        return (
+            self.parse_aa_candidate_trace(p.stderr, instrument_recursively),
+            hash_string,
+        )
+
+    def get_trace_no_instrumentation(
+        self,
+        file_name: Path,
+    ):
+        """Get the trace without instrumentation."""
+
+        cmd = [
+            str(self.instr_path / "opt"),
+            str(self.initial_dir / file_name),
+            "-" + self.opt_flag,
+            "--aa-trace",
+            "--print-changed",
+            "-disable-output",
+        ]
+
+        p = run(
+            cmd,
+            cwd=self.exec_root,
+            stdout=DEVNULL,
+            stderr=PIPE,
+            text=True,
+            check=True,
+        )
+
+        return p.stderr
+
     def get_candidate_per_pass(
         self,
         file_name: Path,
@@ -645,6 +735,7 @@ class AAInstrumentationDriver:
             stdout=DEVNULL,
             stderr=PIPE,
             text=True,
+            check=True,
         )
 
         return self.parse_aa_candidate_trace(p.stderr, instrument_recursively)
@@ -663,8 +754,15 @@ class AAInstrumentationDriver:
             if not line:
                 continue
             if line.startswith("*** "):
+                if not line.__contains__("End"):
+                    continue
                 # This is a pass line
-                pass_name = line.removeprefix("*** Pass: ").removesuffix(" ***")
+                pass_name = (
+                    line.removeprefix("*** End Pass: ")
+                    .removeprefix("*** Loop End Pass: ")
+                    .removeprefix("*** Loop cpp End Pass: ")
+                    .removesuffix(" ***")
+                )
                 new_pass_name = str(pass_count.get(pass_name, 0)) + pass_name
                 pass_count[pass_name] = pass_count.get(pass_name, 0) + 1
                 pass_dict[new_pass_name] = curr_list
