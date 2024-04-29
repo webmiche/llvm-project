@@ -29,7 +29,7 @@ class DeterminismCheck(QueriesPerPassDriver):
 
         return aggregate_results, hash_string
 
-    def run(self, file, num_runs):
+    def run(self, file, num_runs=100):
         base_dict, base_hash = self.compute_results(file, 0)
 
         with Pool(self.proc_count) as p:
@@ -103,7 +103,7 @@ if __name__ == "__main__":
     instr_dir = args.instr_dir
     groundtruth_dir = args.groundtruth_dir
 
-    driver = VerifyDeterminismFlag(
+    driver = NoInstrumentationDeterminismCheck(
         instr_path,
         exec_root,
         specbuild_dir,
@@ -114,7 +114,7 @@ if __name__ == "__main__":
         "O3",
         args.proc_count,
     )
-    driver.run(Path("600/regcomp.bc"))
+    driver.run(Path("600/regcomp.bc"), 100)
 
     # driver.generate_baseline()
 
