@@ -43,6 +43,15 @@ benchmarks = [
     "602",
 ]
 
+result_directories = {
+    "optimization": "AAInstrumentation/optimization",
+    "unique_hashes": "AAInstrumentation/unique_hashes",
+    "maximal_relaxation": "AAInstrumentation/maximal_relaxation",
+    "queries_per_pass": "AAInstrumentation/queries_per_pass",
+    "determinism_check": "AAInstrumentation/determinism_check",
+    "no_instrumentation_determinism_check": "AAInstrumentation/no_instrumentation_determinism_check",
+}
+
 
 def run_no_instrumentation_determinism_check(
     instr_path,
@@ -51,12 +60,15 @@ def run_no_instrumentation_determinism_check(
     initial_dir,
     instr_dir,
     groundtruth_dir,
+    opt_flag,
     proc_count,
     benchmarks: list[str],
 ):
+    result_directory = result_directories["no_instrumentation_determinism_check"]
+    Path(result_directory).mkdir(parents=True, exist_ok=True)
     for benchmark in benchmarks:
-        sys.stdout = open(f"AAInstrumentation/output/{benchmark}.txt", "w")
-        print(f"Running benchmark {benchmark} with O3")
+        sys.stdout = open(f"{result_directory}/{benchmark}.txt", "w")
+        print(f"Running benchmark {benchmark} with {opt_flag}")
         driver = NoInstrumentationDeterminismCheck(
             instr_path,
             exec_root,
@@ -65,7 +77,7 @@ def run_no_instrumentation_determinism_check(
             initial_dir,
             instr_dir,
             groundtruth_dir,
-            "O3",
+            opt_flag,
             proc_count,
         )
         driver.generate_baseline()
@@ -83,12 +95,15 @@ def run_determinism_check(
     initial_dir,
     instr_dir,
     groundtruth_dir,
+    opt_flag,
     proc_count,
     benchmarks: list[str],
 ):
+    result_directory = result_directories["determinism_check"]
+    Path(result_directory).mkdir(parents=True, exist_ok=True)
     for benchmark in benchmarks:
-        sys.stdout = open(f"AAInstrumentation/output/{benchmark}.txt", "w")
-        print(f"Running benchmark {benchmark} with O3")
+        sys.stdout = open(f"{result_directory}/{benchmark}.txt", "w")
+        print(f"Running benchmark {benchmark} with {opt_flag}")
         driver = DeterminismCheck(
             instr_path,
             exec_root,
@@ -97,7 +112,7 @@ def run_determinism_check(
             initial_dir,
             instr_dir,
             groundtruth_dir,
-            "O3",
+            opt_flag,
             proc_count,
         )
         driver.generate_baseline()
@@ -115,12 +130,15 @@ def run_queries_per_pass_experiment(
     initial_dir,
     instr_dir,
     groundtruth_dir,
+    opt_flag,
     proc_count,
     benchmarks: list[str],
 ):
+    result_directory = result_directories["queries_per_pass"]
+    Path(result_directory).mkdir(parents=True, exist_ok=True)
     for benchmark in benchmarks:
-        sys.stdout = open(f"AAInstrumentation/output/{benchmark}.txt", "w")
-        print(f"Running benchmark {benchmark} with O3")
+        sys.stdout = open(f"{result_directory}/{benchmark}.txt", "w")
+        print(f"Running benchmark {benchmark} with {opt_flag}")
         driver = QueriesPerPassDriver(
             instr_path,
             exec_root,
@@ -129,7 +147,7 @@ def run_queries_per_pass_experiment(
             initial_dir,
             instr_dir,
             groundtruth_dir,
-            "O3",
+            opt_flag,
             proc_count,
         )
 
@@ -147,12 +165,15 @@ def run_optimization_experiment(
     initial_dir,
     instr_dir,
     groundtruth_dir,
+    opt_flag,
     proc_count,
     benchmarks: list[str],
 ):
+    result_directory = result_directories["optimization"]
+    Path(result_directory).mkdir(parents=True, exist_ok=True)
     for benchmark in benchmarks:
-        sys.stdout = open(f"AAInstrumentation/output/{benchmark}.txt", "w")
-        print(f"Running benchmark {benchmark} with Oz")
+        sys.stdout = open(f"{result_directory}/{benchmark}.txt", "w")
+        print(f"Running benchmark {benchmark} with {opt_flag}")
         driver = OptimizerDriver(
             instr_path,
             exec_root,
@@ -161,7 +182,7 @@ def run_optimization_experiment(
             initial_dir,
             instr_dir,
             groundtruth_dir,
-            "Oz",
+            opt_flag,
             proc_count,
         )
         run_optimization(
@@ -181,12 +202,15 @@ def run_unique_hashes_experiment(
     initial_dir,
     instr_dir,
     groundtruth_dir,
+    opt_flag,
     proc_count,
     benchmarks: list[str],
 ):
+    result_directory = result_directories["unique_hashes"]
+    Path(result_directory).mkdir(parents=True, exist_ok=True)
     for benchmark in benchmarks:
-        sys.stdout = open(f"AAInstrumentation/output/{benchmark}.txt", "w")
-        print(f"Running benchmark {benchmark} with O3")
+        sys.stdout = open(f"{result_directory}/{benchmark}.txt", "w")
+        print(f"Running benchmark {benchmark} with {opt_flag}")
         driver = ParallelUniqueHashesDriver(
             instr_path,
             exec_root,
@@ -195,7 +219,7 @@ def run_unique_hashes_experiment(
             initial_dir,
             instr_dir,
             groundtruth_dir,
-            "O3",
+            opt_flag,
             proc_count,
         )
         driver.generate_baseline()
@@ -217,12 +241,15 @@ def run_maximal_relaxation_experiment(
     initial_dir,
     instr_dir,
     groundtruth_dir,
+    opt_flag,
     proc_count,
     benchmarks: list[str],
 ):
+    result_directory = result_directories["maximal_relaxation"]
+    Path(result_directory).mkdir(parents=True, exist_ok=True)
     for benchmark in benchmarks:
-        sys.stdout = open(f"AAInstrumentation/output/{benchmark}.txt", "w")
-        print(f"Running benchmark {benchmark} with O3")
+        sys.stdout = open(f"{result_directory}/{benchmark}.txt", "w")
+        print(f"Running benchmark {benchmark} with {opt_flag}")
         driver = ParallelIndividualRelaxationDriver(
             instr_path,
             exec_root,
@@ -231,7 +258,7 @@ def run_maximal_relaxation_experiment(
             initial_dir,
             instr_dir,
             groundtruth_dir,
-            "O3",
+            opt_flag,
             proc_count,
             "",
             False,
@@ -276,6 +303,12 @@ if __name__ == "__main__":
         action="store_true",
         help="Run for all benchmarks",
     )
+    arg_parser.add_argument(
+        "--opt-flag",
+        type=str,
+        default="O3",
+        help="Optimization flag",
+    )
 
     with open("AAInstrumentation/config.txt", "r") as config_file:
         args = arg_parser.parse_args(config_file.read().splitlines() + sys.argv[1:])
@@ -304,8 +337,6 @@ if __name__ == "__main__":
     instr_dir = args.instr_dir
     groundtruth_dir = args.groundtruth_dir
 
-    Path("AAInstrumentation/output").mkdir(parents=True, exist_ok=True)
-
     if not args.all:
         benchmarks = [benchmark]
 
@@ -317,6 +348,7 @@ if __name__ == "__main__":
             initial_dir,
             instr_dir,
             groundtruth_dir,
+            args.opt_flag,
             args.proc_count,
             benchmarks,
         )
@@ -329,6 +361,7 @@ if __name__ == "__main__":
             initial_dir,
             instr_dir,
             groundtruth_dir,
+            args.opt_flag,
             args.proc_count,
             benchmarks,
         )
@@ -341,6 +374,7 @@ if __name__ == "__main__":
             initial_dir,
             instr_dir,
             groundtruth_dir,
+            args.opt_flag,
             args.proc_count,
             benchmarks,
         )
@@ -353,6 +387,7 @@ if __name__ == "__main__":
             initial_dir,
             instr_dir,
             groundtruth_dir,
+            args.opt_flag,
             args.proc_count,
             benchmarks,
         )
@@ -365,6 +400,7 @@ if __name__ == "__main__":
             initial_dir,
             instr_dir,
             groundtruth_dir,
+            args.opt_flag,
             args.proc_count,
             benchmarks,
         )
@@ -377,6 +413,7 @@ if __name__ == "__main__":
             initial_dir,
             instr_dir,
             groundtruth_dir,
+            args.opt_flag,
             args.proc_count,
             benchmarks,
         )
