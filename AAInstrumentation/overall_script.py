@@ -309,6 +309,11 @@ if __name__ == "__main__":
         default="O3",
         help="Optimization flag",
     )
+    arg_parser.add_argument(
+        "--all-experiments",
+        action="store_true",
+        help="Run all experiments",
+    )
 
     with open("AAInstrumentation/config.txt", "r") as config_file:
         args = arg_parser.parse_args(config_file.read().splitlines() + sys.argv[1:])
@@ -320,12 +325,15 @@ if __name__ == "__main__":
                 args.unique_hashes,
                 args.maximal_relaxation,
                 args.queries_per_pass,
+                args.determinism_check,
+                args.no_instrumentation_determinism_check,
+                args.all_experiments,
             ]
         )
         > 1
     ):
         print(
-            "Please specify only one of the following flags: --optimization, --unique_hashes, --maximal_relaxation, --queries_per_pass, --determinism_check, --no-instrumentation-determinism-check"
+            "Please specify only one of the following flags: --optimization, --unique_hashes, --maximal_relaxation, --queries_per_pass, --determinism_check, --no-instrumentation-determinism-check, --all-experiments"
         )
         exit(1)
 
@@ -339,6 +347,14 @@ if __name__ == "__main__":
 
     if not args.all:
         benchmarks = [benchmark]
+
+    if args.all_experiments:
+        args.optimization = True
+        args.unique_hashes = True
+        args.maximal_relaxation = True
+        args.queries_per_pass = True
+        args.determinism_check = True
+        args.no_instrumentation_determinism_check = True
 
     if args.optimization:
         run_optimization_experiment(
