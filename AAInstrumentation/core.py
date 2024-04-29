@@ -350,6 +350,17 @@ class AAInstrumentationDriver:
     def get_aa_string_from_indices(self, index_list: list[index]) -> str:
         return str(len(index_list)) + "-" + "-".join([str(i) for i in index_list])
 
+    def get_pass_name_from_pass_print(self, pass_print: str) -> Optional[str]:
+        if not pass_print.__contains__("Pass"):
+            return None
+        pass_name = (
+            pass_print.removeprefix("*** End Pass: ")
+            .removeprefix("*** Loop End Pass: ")
+            .removeprefix("*** Loop cpp End Pass: ")
+            .removesuffix(" ***")
+        )
+        return pass_name
+
     def parse_relaxation_trace(self, relaxation_trace) -> dict[str, list[AAResult]]:
         """
         Given a relaxation trace, returns a dictionary mapping passes to a list
@@ -369,7 +380,9 @@ class AAInstrumentationDriver:
                 continue
             if line.startswith("*** "):
                 # This is a pass line
-                pass_name = line.removeprefix("*** Pass: ").removesuffix(" ***")
+                pass_name = self.get_pass_name_from_pass_print(line)
+                if pass_name is None:
+                    continue
                 pass_list.append(pass_name)
                 new_pass_name = str(pass_counts.get(pass_name, 0)) + pass_name
                 pass_counts[pass_name] = pass_counts.get(pass_name, 0) + 1
@@ -754,15 +767,9 @@ class AAInstrumentationDriver:
             if not line:
                 continue
             if line.startswith("*** "):
-                if not line.__contains__("End"):
+                pass_name = self.get_pass_name_from_pass_print(line)
+                if pass_name is None:
                     continue
-                # This is a pass line
-                pass_name = (
-                    line.removeprefix("*** End Pass: ")
-                    .removeprefix("*** Loop End Pass: ")
-                    .removeprefix("*** Loop cpp End Pass: ")
-                    .removesuffix(" ***")
-                )
                 new_pass_name = str(pass_count.get(pass_name, 0)) + pass_name
                 pass_count[pass_name] = pass_count.get(pass_name, 0) + 1
                 pass_dict[new_pass_name] = curr_list
@@ -825,7 +832,9 @@ class AAInstrumentationDriver:
         for i, line in enumerate(aa_trace_lines):
             if line.startswith("*** "):
                 # This is a pass line
-                pass_name = line.removeprefix("*** Pass: ").removesuffix(" ***")
+                pass_name = self.get_pass_name_from_pass_print(line)
+                if pass_name is None:
+                    continue
                 pass_index = pass_counts.get(pass_name, 0)
                 pass_counts[pass_name] = pass_index + 1
                 new_pass_name = str(pass_index) + pass_name
