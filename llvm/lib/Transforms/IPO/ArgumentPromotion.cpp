@@ -787,6 +787,9 @@ PreservedAnalyses ArgumentPromotionPass::run(LazyCallGraph::SCC &C,
                                              CGSCCAnalysisManager &AM,
                                              LazyCallGraph &CG,
                                              CGSCCUpdateResult &UR) {
+  if (printPassNames()) {
+    dbgs() << "*** Start Pass: ArgumentPromotionPass ***\n";
+  }
   bool Changed = false, LocalChange;
 
   // Iterate until we stop promoting from this SCC.
@@ -832,5 +835,8 @@ PreservedAnalyses ArgumentPromotionPass::run(LazyCallGraph::SCC &C,
   PA.preserve<FunctionAnalysisManagerCGSCCProxy>();
   // We've manually invalidated analyses for functions we've modified.
   PA.preserveSet<AllAnalysesOn<Function>>();
+  if (printPassNames()) {
+    dbgs() << "*** End Pass: ArgumentPromotionPass ***\n";
+  }
   return PA;
 }
