@@ -351,7 +351,7 @@ class AAInstrumentationDriver:
         return str(len(index_list)) + "-" + "-".join([str(i) for i in index_list])
 
     def get_pass_name_from_pass_print(self, pass_print: str) -> Optional[str]:
-        if not pass_print.__contains__("Pass"):
+        if not pass_print.__contains__("End"):
             return None
         pass_name = (
             pass_print.removeprefix("*** End Pass: ")
