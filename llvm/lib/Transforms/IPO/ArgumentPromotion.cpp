@@ -827,8 +827,12 @@ PreservedAnalyses ArgumentPromotionPass::run(LazyCallGraph::SCC &C,
     Changed |= LocalChange;
   } while (LocalChange);
 
-  if (!Changed)
+  if (!Changed) {
+    if (printPassNames()) {
+      dbgs() << "*** End Pass: ArgumentPromotionPass ***\n";
+    }
     return PreservedAnalyses::all();
+  }
 
   PreservedAnalyses PA;
   // We've cleared out analyses for deleted functions.
