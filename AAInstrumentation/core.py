@@ -350,7 +350,7 @@ class AAInstrumentationDriver:
     def get_aa_string_from_indices(self, index_list: list[index]) -> str:
         return str(len(index_list)) + "-" + "-".join([str(i) for i in index_list])
 
-    def get_pass_name_from_pass_print(self, pass_print: str) -> Optional[str]:
+    def get_pass_name_from_pass_print(self, pass_print: str) -> str | None:
         if not pass_print.__contains__("End"):
             return None
         pass_name = (
@@ -637,7 +637,7 @@ class AAInstrumentationDriver:
         name_prefix: int = 0,
         index_list: list[index] = [],
         instrument_recursively=False,
-    ) -> dict[str, list[AAResult]]:
+    ) -> tuple[dict[str, list[AAResult]], str]:
         """Get the relaxation candidates per pass and the hash."""
         (self.instr_dir / file_name.parent).mkdir(parents=True, exist_ok=True)
 
