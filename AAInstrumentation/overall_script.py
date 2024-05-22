@@ -64,7 +64,9 @@ def run_no_instrumentation_determinism_check(
     proc_count,
     benchmarks: list[str],
 ):
-    result_directory = result_directories["no_instrumentation_determinism_check"]
+    result_directory = (
+        result_directories["no_instrumentation_determinism_check"] + f"_{opt_flag}"
+    )
     Path(result_directory).mkdir(parents=True, exist_ok=True)
     for benchmark in benchmarks:
         sys.stdout = open(f"{result_directory}/{benchmark}.txt", "w")
@@ -99,7 +101,7 @@ def run_determinism_check(
     proc_count,
     benchmarks: list[str],
 ):
-    result_directory = result_directories["determinism_check"]
+    result_directory = result_directories["determinism_check"] + f"_{opt_flag}"
     Path(result_directory).mkdir(parents=True, exist_ok=True)
     for benchmark in benchmarks:
         sys.stdout = open(f"{result_directory}/{benchmark}.txt", "w")
@@ -134,7 +136,7 @@ def run_queries_per_pass_experiment(
     proc_count,
     benchmarks: list[str],
 ):
-    result_directory = result_directories["queries_per_pass"]
+    result_directory = result_directories["queries_per_pass"] + f"_{opt_flag}"
     Path(result_directory).mkdir(parents=True, exist_ok=True)
     for benchmark in benchmarks:
         sys.stdout = open(f"{result_directory}/{benchmark}.txt", "w")
@@ -169,7 +171,7 @@ def run_optimization_experiment(
     proc_count,
     benchmarks: list[str],
 ):
-    result_directory = result_directories["optimization"]
+    result_directory = result_directories["optimization"] + f"_{opt_flag}"
     Path(result_directory).mkdir(parents=True, exist_ok=True)
     for benchmark in benchmarks:
         sys.stdout = open(f"{result_directory}/{benchmark}.txt", "w")
@@ -206,7 +208,7 @@ def run_unique_hashes_experiment(
     proc_count,
     benchmarks: list[str],
 ):
-    result_directory = result_directories["unique_hashes"]
+    result_directory = result_directories["unique_hashes"] + f"_{opt_flag}"
     Path(result_directory).mkdir(parents=True, exist_ok=True)
     for benchmark in benchmarks:
         sys.stdout = open(f"{result_directory}/{benchmark}.txt", "w")
@@ -245,7 +247,7 @@ def run_maximal_relaxation_experiment(
     proc_count,
     benchmarks: list[str],
 ):
-    result_directory = result_directories["maximal_relaxation"]
+    result_directory = result_directories["maximal_relaxation"] + f"_{opt_flag}"
     Path(result_directory).mkdir(parents=True, exist_ok=True)
     for benchmark in benchmarks:
         sys.stdout = open(f"{result_directory}/{benchmark}.txt", "w")
