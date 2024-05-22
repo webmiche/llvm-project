@@ -30,6 +30,16 @@ class QueriesPerPassDriver(AAInstrumentationDriver):
         return res
 
 
+class OverallQueriesPerPassDriver(QueriesPerPassDriver):
+    def run(self, file):
+        queries_per_pass = self.get_candidate_per_pass(file, overall=True)
+
+        aggregate_results = self.aggregate_results(queries_per_pass)
+
+        print(f"Queries per pass for {file}")
+        print(aggregate_results)
+
+
 if __name__ == "__main__":
 
     arg_parser = register_arguments()

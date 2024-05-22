@@ -726,6 +726,7 @@ class AAInstrumentationDriver:
         file_name: Path,
         index_list: list[index] = [],
         instrument_recursively=False,
+        overall: bool = False,
     ) -> dict[str, list[AAResult]]:
         """Get the relaxation candidates per pass."""
 
@@ -734,7 +735,7 @@ class AAInstrumentationDriver:
             str(self.instr_path / "opt"),
             str(self.initial_dir / file_name),
             "-" + self.opt_flag,
-            "--aa-candidate-trace",
+            "--aa-trace-overall" if overall else "--aa-candidate-trace",
             "--print-pass-names",
             "-disable-output",
         ]

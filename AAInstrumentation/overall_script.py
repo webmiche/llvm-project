@@ -13,7 +13,7 @@ from core import register_arguments
 import sys
 from pathlib import Path
 from typing import Callable
-from queries_per_pass import QueriesPerPassDriver
+from queries_per_pass import QueriesPerPassDriver, OverallQueriesPerPassDriver
 from determinism_check import (
     DeterminismCheck,
     NoInstrumentationDeterminismCheck,
@@ -135,13 +135,17 @@ def run_queries_per_pass_experiment(
     opt_flag,
     proc_count,
     benchmarks: list[str],
+    overall: bool = False,
 ):
     result_directory = result_directories["queries_per_pass"] + f"_{opt_flag}"
     Path(result_directory).mkdir(parents=True, exist_ok=True)
     for benchmark in benchmarks:
         sys.stdout = open(f"{result_directory}/{benchmark}.txt", "w")
         print(f"Running benchmark {benchmark} with {opt_flag}")
-        driver = QueriesPerPassDriver(
+        base_class = QueriesPerPassDriver
+        if overall:
+            base_class = OverallQueriesPerPassDriver
+        driver = base_class(
             instr_path,
             exec_root,
             specbuild_dir,
@@ -291,6 +295,11 @@ if __name__ == "__main__":
         help="Run queries per pass experiment",
     )
     arg_parser.add_argument(
+        "--queries_per_pass_overall",
+        action="store_true",
+        help="Run queries per pass experiment with overall flag",
+    )
+    arg_parser.add_argument(
         "--determinism_check",
         action="store_true",
         help="Run determinism check",
@@ -327,6 +336,7 @@ if __name__ == "__main__":
                 args.unique_hashes,
                 args.maximal_relaxation,
                 args.queries_per_pass,
+                args.queries_per_pass_overall,
                 args.determinism_check,
                 args.no_instrumentation_determinism_check,
                 args.all_experiments,
@@ -335,7 +345,7 @@ if __name__ == "__main__":
         > 1
     ):
         print(
-            "Please specify only one of the following flags: --optimization, --unique_hashes, --maximal_relaxation, --queries_per_pass, --determinism_check, --no-instrumentation-determinism-check, --all-experiments"
+            "Please specify only one of the following flags: --optimization, --unique_hashes, --maximal_relaxation, --queries_per_pass, --queries_per_pass_overall, --determinism_check, --no-instrumentation-determinism-check, --all-experiments"
         )
         exit(1)
 
@@ -408,6 +418,20 @@ if __name__ == "__main__":
             args.opt_flag,
             args.proc_count,
             benchmarks,
+        )
+
+    if args.queries_per_pass_overall:
+        run_queries_per_pass_experiment(
+            instr_path,
+            exec_root,
+            specbuild_dir,
+            initial_dir,
+            instr_dir,
+            groundtruth_dir,
+            args.opt_flag,
+            args.proc_count,
+            benchmarks,
+            overall=True,
         )
 
     if args.determinism_check:
