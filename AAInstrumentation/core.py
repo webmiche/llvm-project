@@ -266,6 +266,37 @@ class AAInstrumentationDriver:
 
         return hash_string, relaxation_trace
 
+    def run_assemble_and_get_hash_and_size(
+        self,
+        file_name: Path,
+        name_prefix: int,
+        index_list: list[index],
+    ) -> tuple[str, size]:
+        self.run_step_single_func(file_name, name_prefix, index_list)
+        size = self.assemble_and_measure_file(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".bc")
+        )
+
+        hash_string = self.get_hash(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".o")
+        )
+        os.remove(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".o")
+        )
+        os.remove(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".bc")
+        )
+
+        return hash_string, size
+
     def measure_outputsize(self, file: Path) -> size:
         cmd = [str(self.instr_path / "llvm-size"), str(file)]
         p = run(cmd, stdout=PIPE, stderr=PIPE, text=True)

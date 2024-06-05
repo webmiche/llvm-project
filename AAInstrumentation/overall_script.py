@@ -236,8 +236,15 @@ def run_unique_hashes_experiment(
         num_runs = 10000
         for file, num_candidates in candidates_per_file.items():
             print(f"{file}: {num_candidates}")
-            unique_hashes = driver.get_num_unique_hashes(file, num_candidates, num_runs)
+            original_hash, original_size = driver.run_assemble_and_get_hash_and_size(
+                file, 0, []
+            )
+            unique_hashes, sizes = driver.get_num_unique_hashes(
+                file, num_candidates, num_runs
+            )
             print(f"Unique hashes: {unique_hashes} of {num_runs} runs")
+            print(f"Original size: {original_size}")
+            print(f"Sizes: {sizes}")
 
 
 def run_maximal_relaxation_experiment(

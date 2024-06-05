@@ -25,6 +25,7 @@ class UniqueHashesDriver(AAInstrumentationDriver):
         population: List[List[int]],
         full_population: set,
         distinct_hashes: set,
+        sizes: List[int],
     ) -> None:
         """
         Given a population of random sequences, this method runs the assembly
@@ -42,19 +43,23 @@ class UniqueHashesDriver(AAInstrumentationDriver):
             # If we have already seen this sequence, then we don't need to
             # compute the hash again.
             if not actual_sample in full_population:
-                curr_hash = self.run_assemble_and_get_hash(file_name, i, sample)
+                curr_hash, size = self.run_assemble_and_get_hash_and_size(
+                    file_name, i, sample
+                )
                 full_population.add(actual_sample)
                 distinct_hashes.add(curr_hash)
+                sizes.append(size)
 
     def get_num_unique_hashes(
         self,
         file_name: Path,
         num_candidates: int,
         num_runs: int,
-    ) -> int:
+    ) -> tuple[int, List[int]]:
         random.seed(self.random_seed)
         full_population = set()
         distinct_hashes = set()
+        sizes = []
         last_len = -1
 
         while len(full_population) < num_runs:
@@ -71,7 +76,7 @@ class UniqueHashesDriver(AAInstrumentationDriver):
             )
 
             self.handle_population(
-                file_name, population, full_population, distinct_hashes
+                file_name, population, full_population, distinct_hashes, sizes
             )
 
             if num_candidates < 20 and math.pow(2, num_candidates) <= len(
@@ -100,7 +105,7 @@ class UniqueHashesDriver(AAInstrumentationDriver):
 
             last_len = len(full_population)
 
-        return len(distinct_hashes)
+        return len(distinct_hashes), sizes
 
 
 @dataclass
@@ -134,6 +139,7 @@ class ParallelUniqueHashesDriver(UniqueHashesDriver):
         population: List[List[int]],
         full_population: set,
         distinct_hashes: set,
+        sizes: List[int],
     ) -> None:
         """
         Given a population of random sequences, this method runs the assembly
@@ -157,16 +163,22 @@ class ParallelUniqueHashesDriver(UniqueHashesDriver):
 
         # run the assembly process for the new sequences
         with Pool(self.proc_count) as pool:
-            hashes = pool.starmap(
-                self.run_assemble_and_get_hash,
+            hashes_and_sizes = pool.starmap(
+                self.run_assemble_and_get_hash_and_size,
                 [(file_name, i, sample) for i, sample in enumerate(new_sequences)],
             )
+
+        # extract the hashes and sizes
+        hashes = [hash_ for hash_, _ in hashes_and_sizes]
+        curr_sizes = [size for _, size in hashes_and_sizes]
 
         # add the new sequences to the full population
         full_population.update(new_sequences)
 
         # add the new hashes to the set of distinct hashes
         distinct_hashes.update(hashes)
+
+        sizes.extend(curr_sizes)
 
 
 if __name__ == "__main__":
@@ -200,5 +212,6 @@ if __name__ == "__main__":
     candidates_per_file = driver.get_candidates_per_file(files)
     for file, num_candidates in candidates_per_file.items():
         print(f"{file}: {num_candidates}")
-        unique_hashes = driver.get_num_unique_hashes(file, num_candidates, 100)
+        unique_hashes, sizes = driver.get_num_unique_hashes(file, num_candidates, 100)
         print(f"Unique hashes: {unique_hashes} of 100 runs")
+        print(f"Sizes: {sizes}")
