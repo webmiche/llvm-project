@@ -49,6 +49,8 @@ class UniqueHashesDriver(AAInstrumentationDriver):
                 full_population.add(actual_sample)
                 distinct_hashes.add(curr_hash)
                 sizes.append(size)
+                if size == 234:
+                    print(f"Size 234: {actual_sample}")
 
     def get_num_unique_hashes(
         self,
@@ -205,13 +207,19 @@ if __name__ == "__main__":
         "Oz",
         args.proc_count,
     )
-    driver.generate_baseline()
+    # driver.generate_baseline()
 
     files = driver.get_baseline_files()
 
     candidates_per_file = driver.get_candidates_per_file(files)
-    for file, num_candidates in candidates_per_file.items():
+    for file, num_candidates in [
+        (Path("657/liblzma/common/vli_decoder.bc"), 25)
+    ]:  # candidates_per_file.items():
         print(f"{file}: {num_candidates}")
-        unique_hashes, sizes = driver.get_num_unique_hashes(file, num_candidates, 100)
+        original_hash, original_size = driver.run_assemble_and_get_hash_and_size(
+            file, 0, []
+        )
+        print(f"Original size: {original_size}")
+        unique_hashes, sizes = driver.get_num_unique_hashes(file, num_candidates, 1000)
         print(f"Unique hashes: {unique_hashes} of 100 runs")
         print(f"Sizes: {sizes}")
