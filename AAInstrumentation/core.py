@@ -228,9 +228,10 @@ class AAInstrumentationDriver:
         file_name: Path,
         name_prefix: int,
         index_list: list[index],
+        remove_files=True,
     ):
         hash_string, relaxation_trace = self.run_assemble_and_get_hash_and_relaxation(
-            file_name, name_prefix, index_list
+            file_name, name_prefix, index_list, remove_files=remove_files
         )
 
         return hash_string
@@ -240,6 +241,7 @@ class AAInstrumentationDriver:
         file_name: Path,
         name_prefix: int,
         index_list: list[index],
+        remove_files=True,
     ) -> tuple[str, RelaxationTrace]:
         relaxation_trace = self.run_step_single_func(file_name, name_prefix, index_list)
         self.assemble_file(
@@ -253,16 +255,17 @@ class AAInstrumentationDriver:
             / file_name.parent
             / Path(str(name_prefix) + str(file_name.stem) + ".o")
         )
-        os.remove(
-            self.instr_dir
-            / file_name.parent
-            / Path(str(name_prefix) + str(file_name.stem) + ".o")
-        )
-        os.remove(
-            self.instr_dir
-            / file_name.parent
-            / Path(str(name_prefix) + str(file_name.stem) + ".bc")
-        )
+        if remove_files:
+            os.remove(
+                self.instr_dir
+                / file_name.parent
+                / Path(str(name_prefix) + str(file_name.stem) + ".o")
+            )
+            os.remove(
+                self.instr_dir
+                / file_name.parent
+                / Path(str(name_prefix) + str(file_name.stem) + ".bc")
+            )
 
         return hash_string, relaxation_trace
 
@@ -944,6 +947,82 @@ class AAInstrumentationDriver:
             file_name, contrast_list, instrument_recursively
         )
         return self.diff_aa_trace_info(base_info, contrast_info)
+
+    def link_and_run(
+        self,
+        file_name: Path,
+        name_prefix: int,
+        other_files: list[Path],
+    ):
+        """Link the file with other files and run."""
+
+        # create folder for the binaries
+        (self.exec_root / "binaries").mkdir(exist_ok=True)
+
+        # copy over the other files
+        for other_file in other_files:
+            (self.exec_root / "binaries" / other_file.parent).mkdir(
+                parents=True, exist_ok=True
+            )
+            shutil.copy(
+                self.groundtruth_dir / other_file,
+                self.exec_root / "binaries" / other_file,
+            )
+
+        # copy over the file to be linked
+        shutil.move(
+            self.instr_dir
+            / file_name.parent
+            / Path(str(name_prefix) + str(file_name.stem) + ".o"),
+            (self.exec_root / "binaries" / file_name).with_suffix(".o"),
+        )
+
+        # link the files
+        linked_libraries_str = " ".join(linked_libraries.get(self.benchmark, []))
+
+        cmd = [
+            str(self.instr_path / "clang"),
+            "-no-pie",
+            "-o",
+            str(self.exec_root / "binaries" / file_name.with_suffix("")),
+            str((self.exec_root / "binaries" / file_name).with_suffix(".o")),
+            linked_libraries_str,
+        ] + [
+            str(self.exec_root / "binaries" / other_file) for other_file in other_files
+        ]
+
+        run(cmd, cwd=self.exec_root, stdout=DEVNULL, stderr=DEVNULL)
+
+        # run the linked file
+        run_cmd = [
+            "./run.sh",
+            str(self.exec_root / "binaries" / file_name.with_suffix("")),
+        ]
+
+        p = run(
+            run_cmd,
+            cwd=(self.specbuild_dir / "run" / self.benchmark + "_run"),
+            text=True,
+            stdout=PIPE,
+        )
+
+        return p.stdout
+
+    def run_baseline(self,):
+        run_cmd = [
+            "./run.sh",
+            "../../build/" + self.benchmark.
+        ]
+
+        p = run(
+            run_cmd,
+            cwd=(self.specbuild_dir / "run" / self.benchmark + "_run"),
+            text=True,
+            stdout=PIPE,
+        )
+
+        return p.stdout
+
 
 
 if __name__ == "__main__":
