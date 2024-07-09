@@ -6,6 +6,7 @@ from typing import Dict, List
 import random
 import math
 from multiprocessing import Pool
+import shutil
 
 
 @dataclass
@@ -43,18 +44,21 @@ class BugTester(AAInstrumentationDriver):
         hashes = enumerate(hashes)
         distinct_hashes = []
         for i, hash_ in hashes:
-            if hash_ not in distinct_hashes:
-                distinct_hashes.append((hash_, i))
+            if hash_ not in [h for h, _, _ in distinct_hashes]:
+                distinct_hashes.append((hash_, i, full_population[i]))
 
-        original_output = self.run_baseline()
+        computed_hashes = []
+        original_output = self.run_baseline(computed_hashes=computed_hashes)
 
         # for each distinct binary, link with precise files, run, and compare output
-        for hash_, i in distinct_hashes:
-            print(f"Testing sequence {i}/{num_candidates}")
-            output = self.link_and_run(file_name, i, precise_files)
-            if output != original_output:
-                print(f"Sequence: {full_population[i]}")
+        for ind, (hash_, i, seq) in enumerate(distinct_hashes):
+            print(f"Testing sequence {ind + 1}/{len(distinct_hashes)}")
+            output = self.link_and_run(file_name, i, precise_files, computed_hashes)
+            if output is not None and output != original_output:
+                print(f"Sequence: {seq}")
                 print(f"Output: {output}")
+
+        shutil.rmtree(self.exec_root / "binaries")
 
 
 if __name__ == "__main__":

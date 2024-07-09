@@ -953,6 +953,7 @@ class AAInstrumentationDriver:
         file_name: Path,
         name_prefix: int,
         other_files: list[Path],
+        computed_hashes=[],
     ):
         """Link the file with other files and run."""
 
@@ -969,6 +970,9 @@ class AAInstrumentationDriver:
                 self.exec_root / "binaries" / other_file,
             )
 
+        (self.exec_root / "binaries" / file_name.parent).mkdir(
+            parents=True, exist_ok=True
+        )
         # copy over the file to be linked
         shutil.move(
             self.instr_dir
@@ -993,6 +997,15 @@ class AAInstrumentationDriver:
 
         run(cmd, cwd=self.exec_root, stdout=DEVNULL, stderr=DEVNULL)
 
+        full_hash = self.get_hash(
+            self.exec_root / "binaries" / file_name.with_suffix("")
+        )
+
+        if full_hash in computed_hashes:
+            return None
+
+        computed_hashes.append(full_hash)
+
         # run the linked file
         run_cmd = [
             "./run.sh",
@@ -1001,7 +1014,7 @@ class AAInstrumentationDriver:
 
         p = run(
             run_cmd,
-            cwd=(self.specbuild_dir / "run" / self.benchmark + "_run"),
+            cwd=(self.specbuild_dir / Path("run") / Path(str(self.benchmark) + "_run")),
             text=True,
             stdout=PIPE,
         )
@@ -1010,15 +1023,21 @@ class AAInstrumentationDriver:
 
     def run_baseline(
         self,
+        computed_hashes=[],
     ):
         run_cmd = [
             "./run.sh",
-            "../../build/" + self.benchmark,
+            "../../build/" + str(self.benchmark),
         ]
+
+        original_hash = self.get_hash(
+            self.specbuild_dir / "build" / str(self.benchmark)
+        )
+        computed_hashes.append(original_hash)
 
         p = run(
             run_cmd,
-            cwd=(self.specbuild_dir / "run" / self.benchmark + "_run"),
+            cwd=(self.specbuild_dir / Path("run") / Path(str(self.benchmark) + "_run")),
             text=True,
             stdout=PIPE,
         )
