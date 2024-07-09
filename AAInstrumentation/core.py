@@ -1008,10 +1008,12 @@ class AAInstrumentationDriver:
 
         return p.stdout
 
-    def run_baseline(self,):
+    def run_baseline(
+        self,
+    ):
         run_cmd = [
             "./run.sh",
-            "../../build/" + self.benchmark.
+            "../../build/" + self.benchmark,
         ]
 
         p = run(
@@ -1022,7 +1024,6 @@ class AAInstrumentationDriver:
         )
 
         return p.stdout
-
 
 
 if __name__ == "__main__":
