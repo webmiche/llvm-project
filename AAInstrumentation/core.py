@@ -1015,6 +1015,7 @@ class AAInstrumentationDriver:
             str(self.exec_root / "binaries" / file_name.with_suffix("")),
         ]
 
+        start_time = time()
         try:
             p = run(
                 run_cmd,
@@ -1032,6 +1033,7 @@ class AAInstrumentationDriver:
             print(e)
             return ""
 
+        print("Time taken: ", time() - start_time)
         return p.stdout
 
     def run_baseline(
