@@ -990,15 +990,15 @@ class AAInstrumentationDriver:
         cmd = [
             str(self.instr_path / "clang"),
             "-no-pie",
+            "-lstdc++",
+            "-lm",
             "-o",
-            str(self.exec_root / "binaries" / file_name.with_suffix("")),
-            str((self.exec_root / "binaries" / file_name).with_suffix(".o")),
+            str("binaries" / file_name.with_suffix("")),
+            str(("binaries" / file_name).with_suffix(".o")),
             linked_libraries_str,
-        ] + [
-            str(self.exec_root / "binaries" / other_file) for other_file in other_files
-        ]
+        ] + [str("binaries" / other_file) for other_file in other_files]
 
-        run(cmd, cwd=self.exec_root, stdout=DEVNULL, stderr=DEVNULL)
+        run(cmd, cwd=self.exec_root, stdout=DEVNULL, stderr=DEVNULL, check=True)
 
         full_hash = self.get_hash(
             self.exec_root / "binaries" / file_name.with_suffix("")
@@ -1026,6 +1026,7 @@ class AAInstrumentationDriver:
                 ),
                 text=True,
                 stdout=PIPE,
+                stderr=PIPE,
                 timeout=timeout,
                 check=True,
             )
@@ -1034,7 +1035,7 @@ class AAInstrumentationDriver:
             return ""
 
         print("Time taken: ", time() - start_time)
-        return p.stdout
+        return p.stdout + p.stderr
 
     def run_baseline(
         self,
@@ -1056,9 +1057,10 @@ class AAInstrumentationDriver:
             cwd=(self.specbuild_dir / Path("run") / Path(str(self.benchmark) + "_run")),
             text=True,
             stdout=PIPE,
+            stderr=PIPE,
         )
 
-        return p.stdout, time() - start_time
+        return p.stdout + p.stderr, time() - start_time
 
 
 if __name__ == "__main__":

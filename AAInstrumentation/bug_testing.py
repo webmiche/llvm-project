@@ -92,6 +92,9 @@ if __name__ == "__main__":
 
     files = driver.get_baseline_files()
 
+    for f in files:
+        driver.compile_baseline_file(f)
+
     candidates_per_file = driver.get_candidates_per_file(files)
     for file, num_candidates in candidates_per_file.items():
         print(f"{file}: {num_candidates}")
