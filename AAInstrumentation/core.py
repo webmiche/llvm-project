@@ -17,6 +17,8 @@ import random
 from typing import TypeAlias
 from enum import Enum, auto
 
+from time import time
+
 
 class AAResult(Enum):
     MayAlias = auto()
@@ -954,6 +956,7 @@ class AAInstrumentationDriver:
         name_prefix: int,
         other_files: list[Path],
         computed_hashes=[],
+        timeout=None,
     ):
         """Link the file with other files and run."""
 
@@ -1012,12 +1015,22 @@ class AAInstrumentationDriver:
             str(self.exec_root / "binaries" / file_name.with_suffix("")),
         ]
 
-        p = run(
-            run_cmd,
-            cwd=(self.specbuild_dir / Path("run") / Path(str(self.benchmark) + "_run")),
-            text=True,
-            stdout=PIPE,
-        )
+        try:
+            p = run(
+                run_cmd,
+                cwd=(
+                    self.specbuild_dir
+                    / Path("run")
+                    / Path(str(self.benchmark) + "_run")
+                ),
+                text=True,
+                stdout=PIPE,
+                timeout=timeout,
+                check=True,
+            )
+        except Exception as e:
+            print(e)
+            return ""
 
         return p.stdout
 
@@ -1035,6 +1048,7 @@ class AAInstrumentationDriver:
         )
         computed_hashes.append(original_hash)
 
+        start_time = time()
         p = run(
             run_cmd,
             cwd=(self.specbuild_dir / Path("run") / Path(str(self.benchmark) + "_run")),
@@ -1042,7 +1056,7 @@ class AAInstrumentationDriver:
             stdout=PIPE,
         )
 
-        return p.stdout
+        return p.stdout, time() - start_time
 
 
 if __name__ == "__main__":

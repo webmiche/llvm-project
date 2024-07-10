@@ -48,12 +48,15 @@ class BugTester(AAInstrumentationDriver):
                 distinct_hashes.append((hash_, i, full_population[i]))
 
         computed_hashes = []
-        original_output = self.run_baseline(computed_hashes=computed_hashes)
+        original_output, time_taken = self.run_baseline(computed_hashes=computed_hashes)
+        print(f"time taken: {time_taken}")
 
         # for each distinct binary, link with precise files, run, and compare output
         for ind, (hash_, i, seq) in enumerate(distinct_hashes):
             print(f"Testing sequence {ind + 1}/{len(distinct_hashes)}")
-            output = self.link_and_run(file_name, i, precise_files, computed_hashes)
+            output = self.link_and_run(
+                file_name, i, precise_files, computed_hashes, timeout=time_taken * 10
+            )
             if output is not None and output != original_output:
                 print(f"Sequence: {seq}")
                 print(f"Output: {output}")
