@@ -18,6 +18,7 @@ from determinism_check import (
     DeterminismCheck,
     NoInstrumentationDeterminismCheck,
 )
+from bug_testing import BugTester
 
 
 def run_optimization(
@@ -50,6 +51,7 @@ result_directories = {
     "queries_per_pass": "AAInstrumentation/queries_per_pass",
     "determinism_check": "AAInstrumentation/determinism_check",
     "no_instrumentation_determinism_check": "AAInstrumentation/no_instrumentation_determinism_check",
+    "bug_testing": "AAInstrumentation/bug_testing",
 }
 
 
@@ -279,6 +281,55 @@ def run_maximal_relaxation_experiment(
         driver.maximal_relaxation()
 
 
+def run_bug_testing(
+    instr_path,
+    exec_root,
+    specbuild_dir,
+    initial_dir,
+    instr_dir,
+    groundtruth_dir,
+    opt_flag,
+    proc_count,
+    benchmarks: list[str],
+    num_draws: int = 100,
+):
+
+    result_directory = result_directories["bug_testing"] + f"_{opt_flag}"
+    Path(result_directory).mkdir(parents=True, exist_ok=True)
+    for benchmark in benchmarks:
+        sys.stdout = open(f"{result_directory}/{benchmark}.txt", "w")
+        print(f"Running benchmark {benchmark} with {opt_flag}")
+
+        driver = BugTester(
+            instr_path,
+            exec_root,
+            specbuild_dir,
+            benchmark,
+            initial_dir,
+            instr_dir,
+            groundtruth_dir,
+            opt_flag,
+            args.proc_count,
+        )
+        driver.generate_baseline()
+
+        files = driver.get_baseline_files()
+
+        for f in files:
+            driver.compile_baseline_file(f)
+
+        candidates_per_file = driver.get_candidates_per_file(files)
+        for i, (file, num_candidates) in enumerate(candidates_per_file.items()):
+            print(f"Testing file {i + 1}/{len(candidates_per_file)}")
+            print(f"{file}: {num_candidates}")
+            driver.test_bug(
+                file,
+                num_candidates,
+                num_draws,
+                [f.with_suffix(".o") for f in files if f != file],
+            )
+
+
 if __name__ == "__main__":
     arg_parser = register_arguments()
     arg_parser.add_argument(
@@ -332,6 +383,11 @@ if __name__ == "__main__":
         action="store_true",
         help="Run all experiments",
     )
+    arg_parser.add_argument(
+        "--bug-testing",
+        action="store_true",
+        help="Run bug testing",
+    )
 
     with open("AAInstrumentation/config.txt", "r") as config_file:
         args = arg_parser.parse_args(config_file.read().splitlines() + sys.argv[1:])
@@ -347,12 +403,13 @@ if __name__ == "__main__":
                 args.determinism_check,
                 args.no_instrumentation_determinism_check,
                 args.all_experiments,
+                args.bug_testing,
             ]
         )
         > 1
     ):
         print(
-            "Please specify only one of the following flags: --optimization, --unique_hashes, --maximal_relaxation, --queries_per_pass, --queries_per_pass_overall, --determinism_check, --no-instrumentation-determinism-check, --all-experiments"
+            "Please specify only one of the following flags: --optimization, --unique_hashes, --maximal_relaxation, --queries_per_pass, --queries_per_pass_overall, --determinism_check, --no-instrumentation-determinism-check, --all-experiments, --bug-testing"
         )
         exit(1)
 
@@ -456,6 +513,19 @@ if __name__ == "__main__":
 
     if args.no_instrumentation_determinism_check:
         run_no_instrumentation_determinism_check(
+            instr_path,
+            exec_root,
+            specbuild_dir,
+            initial_dir,
+            instr_dir,
+            groundtruth_dir,
+            args.opt_flag,
+            args.proc_count,
+            benchmarks,
+        )
+
+    if args.bug_testing:
+        run_bug_testing(
             instr_path,
             exec_root,
             specbuild_dir,
