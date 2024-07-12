@@ -1,0 +1,27 @@
+605/pflowup.bc: 6
+Testing sequence 1/1
+605/treeup.bc: 177
+Testing sequence 1/2
+Testing sequence 2/2
+605/pbeampp.bc: 180
+Testing sequence 1/16
+Testing sequence 2/16
+Testing sequence 3/16
+Testing sequence 4/16
+Testing sequence 5/16
+Testing sequence 6/16
+Testing sequence 7/16
+Testing sequence 8/16
+Testing sequence 9/16
+Testing sequence 10/16
+Testing sequence 11/16
+Testing sequence 12/16
+Testing sequence 13/16
+Testing sequence 14/16
+Testing sequence 15/16
+Testing sequence 16/16
+605/pbla.bc: 53
+Testing sequence 1/1
+605/mcf.bc: 13
+Testing sequence 1/1
+605/psimplex.bc: 401
