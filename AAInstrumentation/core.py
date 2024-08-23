@@ -986,7 +986,7 @@ class AAInstrumentationDriver:
 
         # link the files
         linked_libraries_str = ""
-        for lib in linked_libraries.get(self.benchmark, []):
+        for lib in linked_libraries.get(str(self.benchmark), []):
             linked_libraries_str += "-l" + lib
 
         cmd = [

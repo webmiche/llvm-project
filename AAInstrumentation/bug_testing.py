@@ -57,8 +57,8 @@ class BugTester(AAInstrumentationDriver):
             output = self.link_and_run(
                 file_name, i, precise_files, computed_hashes, timeout=time_taken * 10
             )
+            print(f"Sequence: {seq}")
             if output is not None and output != original_output:
-                print(f"Sequence: {seq}")
                 print(f"Output: {output}")
 
         shutil.rmtree(self.exec_root / "binaries")
@@ -96,7 +96,10 @@ if __name__ == "__main__":
         driver.compile_baseline_file(f)
 
     candidates_per_file = driver.get_candidates_per_file(files)
-    for file, num_candidates in candidates_per_file.items():
+    print(candidates_per_file)
+    # for file, num_candidates in candidates_per_file.items():
+    for file in [Path("644/sff.bc")]:
+        num_candidates = candidates_per_file[file]
         print(f"{file}: {num_candidates}")
         driver.test_bug(
             file, num_candidates, 100, [f.with_suffix(".o") for f in files if f != file]
