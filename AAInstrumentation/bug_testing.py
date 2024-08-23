@@ -3935,7 +3935,7 @@ class BugTester(AAInstrumentationDriver):
         # for each distinct binary, link with precise files, run, and compare output
         for ind, (hash_, i, seq) in enumerate(distinct_hashes):
             print(f"Testing sequence {ind + 1}/{len(distinct_hashes)}")
-            output = self.link_and_run(
+            output, _ = self.link_and_run(
                 file_name, i, precise_files, computed_hashes, timeout=time_taken * 10
             )
             print(f"Sequence: {seq}")
@@ -3943,6 +3943,44 @@ class BugTester(AAInstrumentationDriver):
                 print(f"Output: {output}")
 
         shutil.rmtree(self.exec_root / "binaries")
+
+
+@dataclass
+class SequenceReducer(AAInstrumentationDriver):
+
+    def reduce_sequence(
+        self,
+        file_name: Path,
+        sequence: List[int],
+        precise_files: List[Path],
+        original_time,
+        minimum_difference,
+    ):
+
+        self.run_and_assemble_file(file_name, 0, sequence)
+        # check if original satisfies the difference
+        _, time = self.link_and_run(file_name, 0, sequence, precise_files)
+        if original_time - time < minimum_difference:
+            pritn("ERROR: original sequence is not fast enough")
+
+        left = 0
+        right = len(curr_seq) - 1
+        i = 0
+        while left < right:
+            i += 1
+            mid = (left + right) // 2
+            mid_seq = curr_seq[:mid]
+            self.run_and_assemble_file(file_name, 0, mid_seq)
+            _, new_time = self.link_and_run(file_name, 0, mid_seq, precise_files)
+            print(f"Iteration {i}:")
+            print(f"Current sequence: {mid_seq}")
+            print(f"Time taken: {new_time}")
+            if original_time - new_time < minimum_difference:
+                left = mid + 1
+            else:
+                right = mid
+
+        print(f"Reduced sequence: {curr_seq[:left]}")
 
 
 if __name__ == "__main__":
