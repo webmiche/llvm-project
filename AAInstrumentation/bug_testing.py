@@ -3996,7 +3996,7 @@ if __name__ == "__main__":
     instr_dir = args.instr_dir
     groundtruth_dir = args.groundtruth_dir
 
-    driver = BugTester(
+    driver = SequenceReducer(
         instr_path,
         exec_root,
         specbuild_dir,
@@ -4011,15 +4011,23 @@ if __name__ == "__main__":
 
     files = driver.get_baseline_files()
 
-    for f in files:
-        driver.compile_baseline_file(f)
+    driver.reduce_sequence(
+        Path("644/sff.bc"),
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [f.with_suffix(".o") for f in files if f != Path("644/sff.bc")],
+        2000,
+        400,
+    )
 
-    candidates_per_file = driver.get_candidates_per_file(files)
-    print(candidates_per_file)
-    # for file, num_candidates in candidates_per_file.items():
-    for file in [Path("644/sff.bc")]:
-        num_candidates = candidates_per_file[file]
-        print(f"{file}: {num_candidates}")
-        driver.test_bug(
-            file, num_candidates, 100, [f.with_suffix(".o") for f in files if f != file]
-        )
+    # for f in files:
+    #    driver.compile_baseline_file(f)
+
+    # candidates_per_file = driver.get_candidates_per_file(files)
+    # print(candidates_per_file)
+    ## for file, num_candidates in candidates_per_file.items():
+    # for file in [Path("644/sff.bc")]:
+    #    num_candidates = candidates_per_file[file]
+    #    print(f"{file}: {num_candidates}")
+    #    driver.test_bug(
+    #        file, num_candidates, 100, [f.with_suffix(".o") for f in files if f != file]
+    #    )
