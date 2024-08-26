@@ -1036,7 +1036,7 @@ class AAInstrumentationDriver:
             return ""
 
         print("Time taken: ", time() - start_time)
-        return p.stdout + p.stderr
+        return p.stdout + p.stderr, time() - start_time
 
     def run_baseline(
         self,

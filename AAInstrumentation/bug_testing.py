@@ -3959,9 +3959,9 @@ class SequenceReducer(AAInstrumentationDriver):
 
         self.run_and_assemble_file(file_name, 0, sequence)
         # check if original satisfies the difference
-        _, time = self.link_and_run(file_name, 0, sequence, precise_files)
+        _, time = self.link_and_run(file_name, 0, precise_files)
         if original_time - time < minimum_difference:
-            pritn("ERROR: original sequence is not fast enough")
+            print("ERROR: original sequence is not fast enough")
 
         left = 0
         right = len(curr_seq) - 1
@@ -3971,7 +3971,7 @@ class SequenceReducer(AAInstrumentationDriver):
             mid = (left + right) // 2
             mid_seq = curr_seq[:mid]
             self.run_and_assemble_file(file_name, 0, mid_seq)
-            _, new_time = self.link_and_run(file_name, 0, mid_seq, precise_files)
+            _, new_time = self.link_and_run(file_name, 0, precise_files)
             print(f"Iteration {i}:")
             print(f"Current sequence: {mid_seq}")
             print(f"Time taken: {new_time}")
@@ -4013,7 +4013,7 @@ if __name__ == "__main__":
 
     driver.reduce_sequence(
         Path("644/sff.bc"),
-        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        rel_seq_644,
         [f.with_suffix(".o") for f in files if f != Path("644/sff.bc")],
         2000,
         400,
