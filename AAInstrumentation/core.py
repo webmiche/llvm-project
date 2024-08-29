@@ -977,7 +977,7 @@ class AAInstrumentationDriver:
             parents=True, exist_ok=True
         )
         # copy over the file to be linked
-        shutil.move(
+        shutil.copy(
             self.instr_dir
             / file_name.parent
             / Path(str(name_prefix) + str(file_name.stem) + ".o"),
