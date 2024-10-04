@@ -3,15 +3,15 @@
 ===-------------------------------------------------------------------------===
 
   142 SLP                          - Number of vector instructions generated
- 4498 aa                           - Number of MayAlias results
+ 4488 aa                           - Number of MayAlias results
   209 aa                           - Number of MustAlias results
- 9951 aa                           - Number of NoAlias results
- 6622 aa                           - Number of AA cache hits
-13077 aa                           - Number of AA queries
- 6455 aa                           - Number of queries that are not cached and not MayAlias. Therefore, these are candidates to be relaxed.
+ 9969 aa                           - Number of NoAlias results
+ 6621 aa                           - Number of AA cache hits
+13085 aa                           - Number of AA queries
+ 6464 aa                           - Number of queries that are not cached and not MayAlias. Therefore, these are candidates to be relaxed.
    27 abstract-call-sites          - Number of direct abstract call sites created
     5 argpromotion                 - Number of dead pointer args eliminated
-32976 assume-queries               - Number of Queries into an assume assume bundles
+32964 assume-queries               - Number of Queries into an assume assume bundles
 12866 basicaa                      - Number of times a GEP is decomposed
     9 bdce                         - Number of instructions removed (unused)
  5943 bitcode-reader               - Number of Metadata records loaded
@@ -41,11 +41,11 @@
     1 deadargelim                  - Number of unused return values removed
   559 dse                          - Number iterations check for reads in getDomMemoryDef
    12 dse                          - Number of other instrs removed
-    7 dse                          - Number of stores deleted
+    8 dse                          - Number of stores deleted
     6 dse                          - Number of times a valid candidate is returned from getDomMemoryDef
-  254 dse                          - Number of stores remaining after DSE
+  253 dse                          - Number of stores remaining after DSE
   540 early-cse                    - Number of instructions CSE'd
-  423 early-cse                    - Number of load instructions CSE'd
+  424 early-cse                    - Number of load instructions CSE'd
     2 early-cse                    - Number of trivial dead stores removed
   179 early-cse                    - Number of instructions simplified or DCE'd
    13 function-attrs               - Number of functions with improved memory attribute
@@ -92,9 +92,9 @@
     1 instcombine                  - Negator: Number of negations successfully sinked
    67 instcombine                  - Negator: Total number of values visited during attempts to sink negation
    66 instcombine                  - Negator: Number of negations attempted to be sinked
- 1490 instcombine                  - Number of insts combined
+ 1489 instcombine                  - Number of insts combined
     3 instcombine                  - Number of constant folds
-  171 instcombine                  - Number of dead inst eliminated
+  169 instcombine                  - Number of dead inst eliminated
   171 instcombine                  - Number of functions with one iteration
     1 instcombine                  - Number of PHI's that got CSE'd
     3 instcombine                  - Number of reassociations
@@ -104,8 +104,8 @@
   343 instcombine                  - Number of instruction combining iterations performed
     4 instsimplify                 - Number of reassociations
    64 instsimplify                 - Number of redundant instructions removed
-12540 ipt                          - Number of insts scanned while updating ibt
-  627 ir                           - Number of renumberings across all blocks
+12657 ipt                          - Number of insts scanned while updating ibt
+  628 ir                           - Number of renumberings across all blocks
     9 jump-threading               - Number of terminators folded
    19 jump-threading               - Number of jumps threaded
   444 lcssa                        - Number of live out of a loop variables
@@ -154,7 +154,7 @@
     2 simplifycfg                  - Number of value comparisons folded into predecessor basic blocks
    13 simplifycfg                  - Number of common instruction 'blocks' hoisted up to the begin block
    45 simplifycfg                  - Number of common instructions hoisted up to the begin block
-  665 simplifycfg                  - Number of blocks simplified
+  666 simplifycfg                  - Number of blocks simplified
     5 simplifycfg                  - Number of common instruction 'blocks' sunk down to the end block
    14 simplifycfg                  - Number of common instructions sunk down to the end block
     1 simplifycfg                  - Number of speculative executed instructions
