@@ -1,0 +1,170 @@
+===-------------------------------------------------------------------------===
+                          ... Statistics Collected ...
+===-------------------------------------------------------------------------===
+
+  142 SLP                          - Number of vector instructions generated
+ 4488 aa                           - Number of MayAlias results
+  209 aa                           - Number of MustAlias results
+ 9969 aa                           - Number of NoAlias results
+ 6621 aa                           - Number of AA cache hits
+13085 aa                           - Number of AA queries
+ 6464 aa                           - Number of queries that are not cached and not MayAlias. Therefore, these are candidates to be relaxed.
+   27 abstract-call-sites          - Number of direct abstract call sites created
+    5 argpromotion                 - Number of dead pointer args eliminated
+32964 assume-queries               - Number of Queries into an assume assume bundles
+12866 basicaa                      - Number of times a GEP is decomposed
+    9 bdce                         - Number of instructions removed (unused)
+ 5943 bitcode-reader               - Number of Metadata records loaded
+   14 bitcode-reader               - Number of MDStrings loaded
+    5 build-libcalls               - Number of functions inferred as argmemonly
+    2 build-libcalls               - Number of functions inferred as inaccessiblememonly
+    1 build-libcalls               - Number of functions inferred as inaccessiblemem_or_argmemonly
+    5 build-libcalls               - Number of function returns inferred as noalias
+   22 build-libcalls               - Number of arguments inferred as nocapture
+   14 build-libcalls               - Number of function returns inferred as noundef returns
+    6 build-libcalls               - Number of functions inferred as nounwind
+   10 build-libcalls               - Number of arguments inferred as readonly
+    2 build-libcalls               - Number of arguments inferred as returned
+   12 build-libcalls               - Number of functions inferred as willreturn
+    6 build-libcalls               - Number of functions inferred as writeonly
+    3 build-libcalls               - Number of arguments inferred as writeonly
+   59 capture-tracking             - Number of pointers maybe captured
+   13 capture-tracking             - Number of pointers maybe captured before
+   62 capture-tracking             - Number of pointers not captured
+    5 capture-tracking             - Number of pointers not captured before
+    1 constraint-elimination       - Number of instructions removed
+    7 correlated-value-propagation - Number of function pointer arguments marked non-null
+    1 correlated-value-propagation - Number of phis deleted via common incoming value
+   12 correlated-value-propagation - Number of phis propagated
+    1 correlated-value-propagation - Number of sext converted to zext
+    1 count-visits                 - Max number of times we visited a function
+    1 deadargelim                  - Number of unused return values removed
+  559 dse                          - Number iterations check for reads in getDomMemoryDef
+   12 dse                          - Number of other instrs removed
+    8 dse                          - Number of stores deleted
+    6 dse                          - Number of times a valid candidate is returned from getDomMemoryDef
+  253 dse                          - Number of stores remaining after DSE
+  540 early-cse                    - Number of instructions CSE'd
+  424 early-cse                    - Number of load instructions CSE'd
+    2 early-cse                    - Number of trivial dead stores removed
+  179 early-cse                    - Number of instructions simplified or DCE'd
+   13 function-attrs               - Number of functions with improved memory attribute
+   84 function-attrs               - Number of arguments marked nocapture
+    8 function-attrs               - Number of functions marked as nofree
+   10 function-attrs               - Number of functions marked as norecurse
+   11 function-attrs               - Number of functions marked as nosync
+    2 function-attrs               - Number of arguments marked readnone
+   59 function-attrs               - Number of arguments marked readonly
+    9 function-attrs               - Number of functions marked as willreturn
+   13 function-attrs               - Number of arguments marked writeonly
+   36 globalopt                    - Number of globals deleted
+    9 globalopt                    - Number of functions converted to fastcc
+    9 globalopt                    - Number of internal functions
+    1 globalopt                    - Number of global vars shrunk to booleans
+  125 globalopt                    - Number of globals marked unnamed_addr
+    5 globalsmodref-aa             - Number of indirect global objects
+   21 globalsmodref-aa             - Number of functions that do not access memory
+   14 globalsmodref-aa             - Number of functions without address taken
+   74 globalsmodref-aa             - Number of global vars without address taken
+   29 globalsmodref-aa             - Number of functions that only read memory
+   14 gvn                          - Number of blocks speculated as available in IsValueFullyAvailableInBlock(), max
+    5 gvn                          - Number of blocks merged
+    9 gvn                          - Number of equalities propagated
+  140 gvn                          - Number of instructions deleted
+   14 gvn                          - Number of loads deleted
+    2 gvn                          - Number of instructions PRE'd
+   94 gvn                          - Number of instructions simplified
+   13 gvn                          - Number of loads PRE'd
+    1 gvn                          - Number of loads moved to predecessor of a critical edge in PRE
+    5 gvn                          - Number of loop loads PRE'd
+   86 indvars                      - Number of IV sign/zero extends eliminated
+   55 indvars                      - Number of congruent IVs eliminated
+   18 indvars                      - Number of loop exit tests replaced
+   57 indvars                      - Number of indvars widened
+    4 inline                       - Number of functions deleted because all callers found
+   48 inline                       - Number of functions inlined
+   63 inline-cost                  - Number of call sites analyzed
+    1 instcombine                  - Negator: Maximal traversal depth ever reached while attempting to sink negation
+    1 instcombine                  - Negator: Maximal number of new instructions created during negation attempt
+    2 instcombine                  - Negator: Maximal number of values ever visited while attempting to sink negation
+    1 instcombine                  - Negator: Number of new negated instructions created, total
+    1 instcombine                  - Negator: Number of new negated instructions created in successful negation sinking attempts
+    1 instcombine                  - Negator: Number of negations successfully sinked
+   67 instcombine                  - Negator: Total number of values visited during attempts to sink negation
+   66 instcombine                  - Negator: Number of negations attempted to be sinked
+ 1489 instcombine                  - Number of insts combined
+    3 instcombine                  - Number of constant folds
+  169 instcombine                  - Number of dead inst eliminated
+  171 instcombine                  - Number of functions with one iteration
+    1 instcombine                  - Number of PHI's that got CSE'd
+    3 instcombine                  - Number of reassociations
+   13 instcombine                  - Number of library calls simplified
+   13 instcombine                  - Number of instructions sunk
+   86 instcombine                  - Number of functions with two iterations
+  343 instcombine                  - Number of instruction combining iterations performed
+    4 instsimplify                 - Number of reassociations
+   64 instsimplify                 - Number of redundant instructions removed
+12552 ipt                          - Number of insts scanned while updating ibt
+  628 ir                           - Number of renumberings across all blocks
+    9 jump-threading               - Number of terminators folded
+   19 jump-threading               - Number of jumps threaded
+  444 lcssa                        - Number of live out of a loop variables
+    1 libcalls-shrinkwrap          - Number of One-Condition Wrappers Inserted
+    2 licm                         - Number of geps reassociated and hoisted out of the loop
+  106 licm                         - Number of instructions hoisted out of loop
+   11 licm                         - Number of load and store promotions
+   39 licm                         - Number of load insts hoisted or sunk
+   11 licm                         - Number of promotion candidates
+    1 licm                         - Number of instructions sunk out of loop
+    2 local                        - Number of PHI's that got CSE'd
+   10 local                        - Number of unreachable basic blocks removed
+    3 loop-delete                  - Number of loops deleted
+    2 loop-idiom                   - Number of memset's formed from loop stores
+    5 loop-instsimplify            - Number of redundant instructions simplified
+  180 loop-rotate                  - Number of instructions cloned into loop preheader
+   52 loop-rotate                  - Number of loops rotated
+    1 loop-simplifycfg             - Number of loop exiting edges deleted
+    1 loop-simplifycfg             - Number of terminators folded to unconditional branches
+    2 loop-unroll                  - Number of loops completely unrolled
+    6 loop-unroll                  - Number of loops unrolled with run-time trip counts
+    8 loop-unroll                  - Number of loops unrolled (completely or otherwise)
+   44 loop-vectorize               - Number of loops analyzed for vectorization
+    6 loop-vectorize               - Number of loops vectorized
+   85 mem2reg                      - Number of dead alloca's removed
+    1 mem2reg                      - Number of alloca's promoted within one block
+  241 mem2reg                      - Number of PHI nodes inserted
+    1 mem2reg                      - Number of alloca's promoted
+  363 mem2reg                      - Number of alloca's promoted with a single store
+   65 memdep                       - Number of block queries that were completely cached
+13647 memdep                       - Number of fully cached non-local ptr responses
+ 4904 memdep                       - Number of uncached non-local ptr responses
+  650 memory-builtins              - Number of arguments with unsolved size and offset
+  140 memory-builtins              - Number of load instructions with unsolved size and offset
+   64 reassociate                  - Number of insts reassociated
+    1 scalar-evolution             - Number of loops with trip counts computed by force
+   86 scalar-evolution             - Number of loop exits with predictable exit counts
+   53 scalar-evolution             - Number of loop exits without predictable exit counts
+    2 sccp                         - Number of arguments constant propagated
+  142 sccp                         - Number of basic blocks unreachable
+   57 sccp                         - Number of globals found to be constant
+ 1768 sccp                         - Number of instructions removed
+    7 sccp                         - Number of instructions replaced with (simpler) instruction
+    3 simple-loop-unswitch         - Number of branches unswitched
+   18 simplifycfg                  - Number of branches folded into predecessor basic block
+    2 simplifycfg                  - Number of value comparisons folded into predecessor basic blocks
+   13 simplifycfg                  - Number of common instruction 'blocks' hoisted up to the begin block
+   45 simplifycfg                  - Number of common instructions hoisted up to the begin block
+  666 simplifycfg                  - Number of blocks simplified
+    5 simplifycfg                  - Number of common instruction 'blocks' sunk down to the end block
+   14 simplifycfg                  - Number of common instructions sunk down to the end block
+    1 simplifycfg                  - Number of speculative executed instructions
+   14 sroa                         - Maximum number of partitions per alloca
+  114 sroa                         - Maximum number of uses of a partition
+ 4360 sroa                         - Number of alloca partition uses rewritten
+  608 sroa                         - Number of alloca partitions formed
+  656 sroa                         - Number of allocas analyzed for replacement
+ 4368 sroa                         - Number of instructions deleted
+   14 sroa                         - Number of new, smaller allocas introduced
+  608 sroa                         - Number of allocas promoted to SSA values
+    9 vector-combine               - Number of vector binops formed
+
