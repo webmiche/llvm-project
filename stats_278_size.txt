@@ -1,0 +1,64 @@
+===-------------------------------------------------------------------------===
+                          ... Statistics Collected ...
+===-------------------------------------------------------------------------===
+
+ 53 aa                           - Number of MayAlias results
+ 15 aa                           - Number of MustAlias results
+ 89 aa                           - Number of NoAlias results
+132 aa                           - Number of AA cache hits
+152 aa                           - Number of AA queries
+ 20 aa                           - Number of queries that are not cached and not MayAlias. Therefore, these are candidates to be relaxed.
+504 assume-queries               - Number of Queries into an assume assume bundles
+120 bitcode-reader               - Number of Metadata records loaded
+ 10 bitcode-reader               - Number of MDStrings loaded
+  1 correlated-value-propagation - Number of no-unsigned-wrap deductions for add
+  1 correlated-value-propagation - Number of no-wrap deductions for add
+  1 correlated-value-propagation - Number of no-unsigned-wrap deductions
+  1 correlated-value-propagation - Number of no-wrap deductions
+  1 count-visits                 - Max number of times we visited a function
+ 63 dse                          - Number iterations check for reads in getDomMemoryDef
+  6 dse                          - Number of stores remaining after DSE
+  2 early-cse                    - Number of instructions CSE'd
+  4 early-cse                    - Number of load instructions CSE'd
+  2 early-cse                    - Number of instructions simplified or DCE'd
+  1 function-attrs               - Number of functions with improved memory attribute
+  3 function-attrs               - Number of arguments marked nocapture
+  1 function-attrs               - Number of functions marked as nofree
+  1 function-attrs               - Number of functions marked as nosync
+  1 function-attrs               - Number of arguments marked readonly
+  1 globalopt                    - Number of globals marked unnamed_addr
+  5 gvn                          - Number of instructions deleted
+  2 gvn                          - Number of loads deleted
+  3 gvn                          - Number of instructions simplified
+ 27 instcombine                  - Number of insts combined
+  4 instcombine                  - Number of dead inst eliminated
+  2 instcombine                  - Number of functions with one iteration
+  6 instcombine                  - Number of functions with two iterations
+ 14 instcombine                  - Number of instruction combining iterations performed
+  2 instsimplify                 - Number of redundant instructions removed
+106 ipt                          - Number of insts scanned while updating ibt
+  8 ir                           - Number of renumberings across all blocks
+  1 jump-threading               - Number of jumps threaded
+ 14 lcssa                        - Number of live out of a loop variables
+  1 loop-vectorize               - Number of loops analyzed for vectorization
+  5 mem2reg                      - Number of PHI nodes inserted
+  5 mem2reg                      - Number of alloca's promoted with a single store
+ 13 memdep                       - Number of fully cached non-local ptr responses
+ 24 memdep                       - Number of uncached non-local ptr responses
+ 52 memory-builtins              - Number of arguments with unsolved size and offset
+  1 reassociate                  - Number of insts reassociated
+  9 scalar-evolution             - Number of loop exits without predictable exit counts
+  2 sccp                         - Number of instructions removed
+  1 sccp                         - Number of instructions replaced with (simpler) instruction
+  1 simplifycfg                  - Number of branches folded into predecessor basic block
+  1 simplifycfg                  - Number of common instruction 'blocks' hoisted up to the begin block
+  1 simplifycfg                  - Number of common instructions hoisted up to the begin block
+ 15 simplifycfg                  - Number of blocks simplified
+  1 sroa                         - Maximum number of partitions per alloca
+ 12 sroa                         - Maximum number of uses of a partition
+ 52 sroa                         - Number of alloca partition uses rewritten
+  8 sroa                         - Number of alloca partitions formed
+ 13 sroa                         - Number of allocas analyzed for replacement
+ 52 sroa                         - Number of instructions deleted
+  8 sroa                         - Number of allocas promoted to SSA values
+
