@@ -583,7 +583,7 @@ getxv:                                  # @getxv
 	movl	$.L.str.1, %esi
 	movq	%r14, %rdi
 	callq	fopen@PLT
-	movq	%rax, %r14
+	movq	%rax, %rbx
 	testq	%rax, %rax
 	jne	.LBB15_5
 # %bb.23:                               # %if.then.i.i
@@ -597,19 +597,19 @@ getxv:                                  # @getxv
 	callq	exit@PLT
 .LBB15_2:                               # %if.then
 	movq	stdin@GOTPCREL(%rip), %rax
-	movq	(%rax), %r14
+	movq	(%rax), %rbx
 .LBB15_5:                               # %if.end18
 	leaq	32(%rsp), %rbp
 	movq	%rbp, %rdi
 	movl	$82, %esi
-	movq	%r14, %rdx
+	movq	%rbx, %rdx
 	callq	ggets@PLT
 	movq	%rbp, %rdi
 	movl	$82, %esi
-	movq	%r14, %rdx
+	movq	%rbx, %rdx
 	callq	ggets@PLT
 	movq	$0, (%r13)
-	xorl	%ebx, %ebx
+	xorl	%r14d, %r14d
 	movl	$.L.str.10, %esi
 	movq	%rbp, %rdi
 	movq	%r15, %rdx
@@ -618,8 +618,8 @@ getxv:                                  # @getxv
 	callq	__isoc99_sscanf@PLT
 	movq	%rbp, %rdi
 	movl	$82, %esi
-	movq	%r14, (%rsp)                    # 8-byte Spill
-	movq	%r14, %rdx
+	movq	%rbx, (%rsp)                    # 8-byte Spill
+	movq	%rbx, %rdx
 	callq	ggets@PLT
 	cmpl	$0, (%r15)
 	jle	.LBB15_11
@@ -633,25 +633,25 @@ getxv:                                  # @getxv
 	incq	%rbp
 	movslq	(%r15), %rax
 	leaq	(%rax,%rax,2), %rax
-	addl	$12, %ebx
+	addl	$12, %r14d
 	cmpq	%rax, %rbp
 	jge	.LBB15_11
 .LBB15_7:                               # %for.body
                                         # =>This Inner Loop Header: Depth=1
+	movq	%rbp, %rax
+	movabsq	$-6148914691236517205, %rcx     # imm = 0xAAAAAAAAAAAAAAAB
+	mulq	%rcx
+	shrq	$2, %rdx
+	leal	(%rdx,%rdx,2), %eax
+	leal	5(,%rax,2), %ebx
 	movl	%ebp, %eax
 	movl	$2863311531, %ecx               # imm = 0xAAAAAAAB
 	imulq	%rcx, %rax
 	shrq	$34, %rax
 	shll	$3, %eax
 	leal	(%rax,%rax,8), %eax
-	movl	%ebx, %ecx
+	movl	%r14d, %ecx
 	subl	%eax, %ecx
-	movq	%rbp, %rax
-	movabsq	$-6148914691236517205, %rdx     # imm = 0xAAAAAAAAAAAAAAAB
-	mulq	%rdx
-	shrq	$2, %rdx
-	leal	(%rdx,%rdx,2), %eax
-	leal	5(,%rax,2), %r14d
 	leaq	(%rsp,%rcx), %rsi
 	addq	$32, %rsi
 	movl	$12, %edx
@@ -662,7 +662,7 @@ getxv:                                  # @getxv
 	xorl	%esi, %esi
 	callq	strtod@PLT
 	movsd	%xmm0, (%r12,%rbp,8)
-	cmpl	%ebp, %r14d
+	cmpl	%ebp, %ebx
 	jne	.LBB15_10
 # %bb.8:                                # %land.lhs.true
                                         #   in Loop: Header=BB15_7 Depth=1
@@ -691,33 +691,35 @@ getxv:                                  # @getxv
 	jle	.LBB15_20
 # %bb.13:                               # %for.body49.lr.ph
 	xorl	%ebx, %ebx
-	movl	$5, %ebp
+	movl	$2863311531, %r14d              # imm = 0xAAAAAAAB
 	leaq	19(%rsp), %r12
-	xorl	%r13d, %r13d
+	xorl	%ebp, %ebp
 	jmp	.LBB15_14
 	.p2align	4, 0x90
 .LBB15_16:                              # %for.inc68
                                         #   in Loop: Header=BB15_14 Depth=1
-	incq	%r13
+	incq	%rbp
 	movslq	(%r15), %rax
 	leaq	(%rax,%rax,2), %rax
 	addl	$12, %ebx
-	decl	%ebp
-	cmpq	%rax, %r13
+	cmpq	%rax, %rbp
 	jge	.LBB15_20
 .LBB15_14:                              # %for.body49
                                         # =>This Inner Loop Header: Depth=1
-	movl	%r13d, %eax
-	movl	$2863311531, %ecx               # imm = 0xAAAAAAAB
-	imulq	%rcx, %rax
+	movq	%rbp, %rax
+	movabsq	$-6148914691236517205, %rcx     # imm = 0xAAAAAAAAAAAAAAAB
+	mulq	%rcx
+	shrq	$2, %rdx
+	leal	(%rdx,%rdx,2), %eax
+	leal	5(,%rax,2), %r13d
+	movl	%ebp, %eax
+	imulq	%r14, %rax
 	shrq	$34, %rax
-	leal	(,%rax,8), %ecx
-	leal	(%rcx,%rcx,8), %ecx
-	movl	%ebx, %edx
-	subl	%ecx, %edx
-	leal	(%rax,%rax,2), %r14d
-	addl	%r14d, %r14d
-	leaq	(%rsp,%rdx), %rsi
+	shll	$3, %eax
+	leal	(%rax,%rax,8), %eax
+	movl	%ebx, %ecx
+	subl	%eax, %ecx
+	leaq	(%rsp,%rcx), %rsi
 	addq	$32, %rsi
 	movl	$12, %edx
 	movq	%r12, %rdi
@@ -727,8 +729,8 @@ getxv:                                  # @getxv
 	xorl	%esi, %esi
 	callq	strtod@PLT
 	movq	8(%rsp), %rax                   # 8-byte Reload
-	movsd	%xmm0, (%rax,%r13,8)
-	addl	%ebp, %r14d
+	movsd	%xmm0, (%rax,%rbp,8)
+	cmpl	%ebp, %r13d
 	jne	.LBB15_16
 # %bb.15:                               # %if.then64
                                         #   in Loop: Header=BB15_14 Depth=1
@@ -4755,7 +4757,7 @@ md:                                     # @md
 	je	.LBB24_68
 	jmp	.LBB24_75
 	.p2align	4, 0x90
-.LBB24_74:                              # %call.sqrt124
+.LBB24_74:                              # %call.sqrt130
                                         #   in Loop: Header=BB24_70 Depth=1
 	callq	sqrt@PLT
 	movapd	.LCPI24_16(%rip), %xmm8         # xmm8 = [2.0454999999999997E-2,2.0454999999999997E-2]
