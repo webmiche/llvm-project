@@ -1,0 +1,113 @@
+slow
+nabmd 3j1n 20140317
+
+Reading .pdb file (3j1n/3j1n.pdb)
+Reading .prm file (3j1n/3j1n.prm)
+title:
+default_name                                                                    
+      iter    Total
+ff:     0 490665981616042475520.00
+Initial energy is 490665981616042475520.0000000
+Starting molecular dynamics with Born solvation energy...
+
+      iter    Total
+ff:     0 490665981616042475520.00
+ff:   220 747802.02
+
+...Done, md returns 0
+      iter    Total
+ff:     0 825607.66
+Initial energy is 825607.6590810
+Starting molecular dynamics with in vaccuo non-bonded energy...
+
+      iter    Total
+ff:     0 825607.66
+ff:   220 194992.94
+
+...Done, md returns 0
+
+ Performance counter stats for './run_slow.sh':
+
+   300,430,197,008      stalled-cycles-frontend                                                 (50.00%)
+             5,114      bp_l1_tlb_miss_l2_tlb_miss       #  6937.00 l1_itlb_misses            
+                                                  #      0.0 %  ic_fetch_miss_ratio      (33.33%)
+             1,823      bp_l1_tlb_miss_l2_hit                                                   (33.33%)
+       769,575,858      l2_cache_req_stat.ic_access_in_l2                                        (33.33%)
+ 3,432,108,269,573      bp_l1_tlb_fetch_hit                                                     (33.33%)
+     5,816,376,077      l2_pf_miss_l2_l3                 # 12333047621.00 l2_cache_misses_from_l2_hwpf
+                                                  # 30763468900.00 l2_cache_accesses_from_l2_hwpf
+                                                  # 167598908776.00 all_l2_cache_accesses  (16.67%)
+    18,430,421,279      l2_pf_hit_l2                                                            (16.67%)
+     6,516,671,544      l2_pf_miss_l2_hit_l3                                                    (16.67%)
+   136,835,439,876      l2_request_g1.all_no_prefetch                                           (16.67%)
+     5,823,313,968      l2_pf_miss_l2_l3                 # 23623035560.00 all_l2_cache_misses   (16.67%)
+     6,534,134,764      l2_pf_miss_l2_hit_l3                                                    (16.67%)
+    11,265,586,828      l2_cache_req_stat.ic_dc_miss_in_l2                                        (16.67%)
+    18,463,809,735      l2_pf_hit_l2                     # 143695278136.00 all_l2_cache_hits    (33.34%)
+   125,231,468,401      l2_cache_req_stat.ic_dc_hit_in_l2                                        (33.34%)
+ 1,567,356,023,063      ex_ret_brn                       #      0.9 %  branch_misprediction_ratio  (33.33%)
+    14,678,211,132      ex_ret_brn_misp                                                         (33.33%)
+
+    1902.618539967 seconds time elapsed
+
+    1896.267643000 seconds user
+       0.265881000 seconds sys
+
+
+==========================================================================
+fast
+nabmd 3j1n 20140317
+
+Reading .pdb file (3j1n/3j1n.pdb)
+Reading .prm file (3j1n/3j1n.prm)
+title:
+default_name                                                                    
+      iter    Total
+ff:     0 490665981616042475520.00
+Initial energy is 490665981616042475520.0000000
+Starting molecular dynamics with Born solvation energy...
+
+      iter    Total
+ff:     0 490665981616042475520.00
+ff:   220 747802.02
+
+...Done, md returns 0
+      iter    Total
+ff:     0 825607.66
+Initial energy is 825607.6590810
+Starting molecular dynamics with in vaccuo non-bonded energy...
+
+      iter    Total
+ff:     0 825607.66
+ff:   220 194992.94
+
+...Done, md returns 0
+
+ Performance counter stats for './run_fast.sh':
+
+   142,154,964,177      stalled-cycles-frontend                                                 (50.00%)
+             4,700      bp_l1_tlb_miss_l2_tlb_miss       #  6730.00 l1_itlb_misses            
+                                                  #      0.0 %  ic_fetch_miss_ratio      (33.34%)
+             2,030      bp_l1_tlb_miss_l2_hit                                                   (33.34%)
+       672,764,466      l2_cache_req_stat.ic_access_in_l2                                        (33.34%)
+ 2,597,143,243,638      bp_l1_tlb_fetch_hit                                                     (33.34%)
+     5,816,534,038      l2_pf_miss_l2_l3                 # 12278339369.00 l2_cache_misses_from_l2_hwpf
+                                                  # 31207997765.00 l2_cache_accesses_from_l2_hwpf
+                                                  # 167402582953.00 all_l2_cache_accesses  (16.67%)
+    18,929,658,396      l2_pf_hit_l2                                                            (16.67%)
+     6,461,805,331      l2_pf_miss_l2_hit_l3                                                    (16.67%)
+   136,194,585,188      l2_request_g1.all_no_prefetch                                           (16.67%)
+     5,807,307,795      l2_pf_miss_l2_l3                 # 23466983650.00 all_l2_cache_misses   (16.67%)
+     6,465,359,158      l2_pf_miss_l2_hit_l3                                                    (16.67%)
+    11,194,316,697      l2_cache_req_stat.ic_dc_miss_in_l2                                        (16.67%)
+    18,923,452,058      l2_pf_hit_l2                     # 143580059463.00 all_l2_cache_hits    (33.33%)
+   124,656,607,405      l2_cache_req_stat.ic_dc_hit_in_l2                                        (33.33%)
+ 1,540,402,159,685      ex_ret_brn                       #      1.0 %  branch_misprediction_ratio  (33.33%)
+    14,640,780,891      ex_ret_brn_misp                                                         (33.33%)
+
+    1560.466334485 seconds time elapsed
+
+    1555.149919000 seconds user
+       0.182518000 seconds sys
+
+
