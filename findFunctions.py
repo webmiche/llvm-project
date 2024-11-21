@@ -58,7 +58,7 @@ def parse_function_trace(trace):
 
 def demangle_function(function_name):
     # demangle a function name
-    cmd = ["c++filt", function_name]
+    cmd = ["/home/michel/ETH/AST/questions/llvm-project/build_instrumented/bin/llvm-cxxfilt", function_name]
 
     result = run(cmd, stdout=PIPE, stderr=PIPE, universal_newlines=True)
 
