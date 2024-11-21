@@ -12,21 +12,29 @@ FunctionInstrumentationPass::run(Function &F, FunctionAnalysisManager &AM) {
   for (auto &BB : F) {
     LLVM_DEBUG(dbgs() << "BasicBlock: ");
     LLVM_DEBUG(dbgs() << BB.getName() << "\n");
+    LLVM_DEBUG(dbgs() << BB << "\n");
     if (auto *BI = dyn_cast<ReturnInst>(BB.getTerminator())) {
       LLVM_DEBUG(dbgs() << *BI << "\n");
       continue;
+    } else if (auto *BI = dyn_cast<UnreachableInst>(BB.getTerminator())) {
+      LLVM_DEBUG(dbgs() << *BI << "\n");
+      continue;
     }
-    BranchInst *BI = dyn_cast<BranchInst>(BB.getTerminator());
-    LLVM_DEBUG(dbgs() << *BI << "\n");
+    LLVM_DEBUG(dbgs() << *BB.getTerminator() << "\n");
     // get defs of BI
     SmallVector<Instruction *, 10> users;
-    users.push_back(BI);
+    users.push_back(BB.getTerminator());
     while (!users.empty()) {
       Instruction *I = users.back();
       users.pop_back();
-      LLVM_DEBUG(dbgs() << *I << "\n");
+      LLVM_DEBUG(dbgs() << "Currently handling: " << *I << "\n");
       // if I is a call instruction, add it to CIs
       if (auto *CI = dyn_cast<CallInst>(I)) {
+        if (!CI->getCalledFunction()) {
+          LLVM_DEBUG(dbgs() << "indirect call: ");
+          LLVM_DEBUG(dbgs() << *CI << "\n");
+          continue;
+        }
         CalledFunctions.insert(CI->getCalledFunction()->getName());
         continue;
       }

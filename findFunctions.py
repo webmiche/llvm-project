@@ -28,7 +28,7 @@ def get_functions(file):
     result = run(cmd, stdout=PIPE, stderr=PIPE, universal_newlines=True)
 
     if result.returncode != 0:
-        print("Error")
+        print("Error in getting functions")
         print(result.stderr)
         return []
 
@@ -39,24 +39,48 @@ def get_functions(file):
 
 def parse_function_trace(trace):
     # parse the function trace
-    functions = []
+    called_functions = {}
+    function_name = ""
+    curr_called_functions = []
     for line in trace.split("\n"):
-        if line.startswith("Called function:"):
-            function_name = line.split(" ")[2]
-            functions.append(function_name)
+        if line.startswith("Called functions "):
+            if function_name != "":
+                called_functions[function_name] = curr_called_functions
+            function_name = line.split(" ")[-1].removesuffix(":")
+            curr_called_functions = []
+        elif line == "":
+            continue
+        else:
+            curr_called_functions.append(line)
 
-    return functions
 
+    return called_functions
+
+def demangle_function(function_name):
+    # demangle a function name
+    cmd = ["c++filt", function_name]
+
+    result = run(cmd, stdout=PIPE, stderr=PIPE, universal_newlines=True)
+
+    if result.returncode != 0:
+        print("Error in demangling")
+        print(result.stderr)
+        return function_name
+
+    return result.stdout.strip()
 
 if __name__ == "__main__":
-    files = get_files("/home/michel/ETH/AST/questions/llvm-project/build_IR/lib/Transforms/InstCombine/CMakeFiles/LLVMAggressiveInstCombine.dir/")
-    functions = []
+    files = get_files("/home/michel/ETH/AST/questions/llvm-project/build_IR/lib/Transforms/InstCombine/CMakeFiles/LLVMInstCombine.dir/")
     for file in files:
         print(file)
-        functions.extend(get_functions(file))
+        functions = get_functions(file)
+        # filter out all functions without called functions
+        functions = {k: v for k, v in functions.items() if len(v) > 0}
 
-    functions = list(set(functions))
-    functions.sort()
-
-    for function in functions:
-        print(function)
+        print("For file: " + file)
+        for function, called_functions in functions.items():
+            print("Function: " + demangle_function(function))
+            print("Called functions: ")
+            for called_function in called_functions:
+                print("\t" + demangle_function(called_function))
+            print()
