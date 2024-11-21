@@ -13,12 +13,10 @@ FunctionInstrumentationPass::run(Function &F, FunctionAnalysisManager &AM) {
     LLVM_DEBUG(dbgs() << "BasicBlock: ");
     LLVM_DEBUG(dbgs() << BB.getName() << "\n");
     LLVM_DEBUG(dbgs() << BB << "\n");
-    if (auto *BI = dyn_cast<ReturnInst>(BB.getTerminator())) {
-      LLVM_DEBUG(dbgs() << *BI << "\n");
-      continue;
-    } else if (auto *BI = dyn_cast<UnreachableInst>(BB.getTerminator())) {
-      LLVM_DEBUG(dbgs() << *BI << "\n");
-      continue;
+    auto terminator = BB.getTerminator();
+    if (!isa<BranchInst>(terminator) && !isa<SwitchInst>(terminator)) {
+      LLVM_DEBUG(dbgs() << "terminator: ");
+      LLVM_DEBUG(dbgs() << *terminator << "\n");
     }
     LLVM_DEBUG(dbgs() << *BB.getTerminator() << "\n");
     // get defs of BI
