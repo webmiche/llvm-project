@@ -1,11 +1,16 @@
-#include "llvm/Transforms/Utils/FunctionInstrumentation.h"
+#include "llvm/Analysis/CFFunctionAnalysis.h"
 
 using namespace llvm;
 
-#define DEBUG_TYPE "function-instrumentation"
+#define DEBUG_TYPE "cffunction-analysis"
 
-PreservedAnalyses
-FunctionInstrumentationPass::run(Function &F, FunctionAnalysisManager &AM) {
+// Provide a definition for the static object used to identify passes.
+AnalysisKey CFFunctionAnalysis::Key;
+
+CFFunctionAnalysisInfo CFFunctionAnalysis::run(Function &F,
+                                               FunctionAnalysisManager &AM) {
+
+  CFFunctionAnalysisInfo CalledFunctions;
   LLVM_DEBUG(dbgs() << "=========================\n");
   LLVM_DEBUG(dbgs() << "Function: ");
   LLVM_DEBUG(dbgs() << F.getName() << " " << *(F.getReturnType()) << "\n");
@@ -61,12 +66,15 @@ FunctionInstrumentationPass::run(Function &F, FunctionAnalysisManager &AM) {
     }
   }
 
-  errs() << "Called functions for " << F.getName() << ":\n";
-  for (auto &F : CalledFunctions) {
-    errs() << F << "\n";
-  }
-  errs() << "\n";
-  CalledFunctions.clear();
+  return CalledFunctions;
+}
 
+PreservedAnalyses
+CFFunctionAnalysisPrinterPass::run(Function &F, FunctionAnalysisManager &AM) {
+  OS << "Called functions for " << F.getName() << ":\n";
+  for (auto &F : AM.getResult<CFFunctionAnalysis>(F)) {
+    OS << F << "\n";
+  }
+  OS << "\n";
   return PreservedAnalyses::all();
 }
