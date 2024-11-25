@@ -1,11 +1,11 @@
-#include "llvm/Transforms/Utils/FunctionInstrumentation.h"
+#include "llvm/Transforms/Utils/CFFunctionInstrumentation.h"
 
 using namespace llvm;
 
-#define DEBUG_TYPE "function-instrumentation"
+#define DEBUG_TYPE "cffunction-instrumentation"
 
 PreservedAnalyses
-FunctionInstrumentationPass::run(Function &F, FunctionAnalysisManager &AM) {
+CFFunctionInstrumentationPass::run(Function &F, FunctionAnalysisManager &AM) {
   LLVM_DEBUG(dbgs() << "=========================\n");
   LLVM_DEBUG(dbgs() << "Function: ");
   LLVM_DEBUG(dbgs() << F.getName() << " " << *(F.getReturnType()) << "\n");

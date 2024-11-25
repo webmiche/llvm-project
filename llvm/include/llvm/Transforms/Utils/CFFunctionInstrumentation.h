@@ -9,13 +9,14 @@
 
 namespace llvm {
 
-class FunctionInstrumentationPass
-    : public PassInfoMixin<FunctionInstrumentationPass> {
+class CFFunctionInstrumentationPass
+    : public PassInfoMixin<CFFunctionInstrumentationPass> {
 public:
   PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM);
 
-  FunctionInstrumentationPass() = default;
-  FunctionInstrumentationPass(const FunctionInstrumentationPass &) = default;
+  CFFunctionInstrumentationPass() = default;
+  CFFunctionInstrumentationPass(const CFFunctionInstrumentationPass &) =
+      default;
 
 private:
   SetVector<StringRef> CalledFunctions;

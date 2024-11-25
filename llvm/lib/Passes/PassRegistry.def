@@ -294,7 +294,7 @@ FUNCTION_ALIAS_ANALYSIS("tbaa", TypeBasedAA())
 #ifndef FUNCTION_PASS
 #define FUNCTION_PASS(NAME, CREATE_PASS)
 #endif
-FUNCTION_PASS("function-instrumentation", FunctionInstrumentationPass())
+FUNCTION_PASS("cffunction-instrumentation", CFFunctionInstrumentationPass())
 FUNCTION_PASS("print<cffunction-analysis>", CFFunctionAnalysisPrinterPass(dbgs()))
 FUNCTION_PASS("aa-eval", AAEvaluator())
 FUNCTION_PASS("adce", ADCEPass())
