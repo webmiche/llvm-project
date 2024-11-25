@@ -29,9 +29,8 @@ struct CFFunctionAnalysisPrinterPass
   raw_ostream &OS;
 
 public:
-  explicit CFFunctionAnalysisPrinterPass(raw_ostream &OS) : OS(OS) {
-    OS << "CFFunctionAnalysisPrinterPass\n";
-  }
+  explicit CFFunctionAnalysisPrinterPass(raw_ostream &OS) : OS(OS) {}
+
   PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM);
 
   static bool isRequired() { return true; }

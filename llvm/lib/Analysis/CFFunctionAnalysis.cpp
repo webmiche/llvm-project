@@ -14,6 +14,7 @@ CFFunctionAnalysisInfo CFFunctionAnalysis::run(Function &F,
   LLVM_DEBUG(dbgs() << "=========================\n");
   LLVM_DEBUG(dbgs() << "Function: ");
   LLVM_DEBUG(dbgs() << F.getName() << " " << *(F.getReturnType()) << "\n");
+  SmallVector<Instruction *, 10> visited_users;
   for (auto &BB : F) {
     LLVM_DEBUG(dbgs() << "BasicBlock: ");
     LLVM_DEBUG(dbgs() << BB.getName() << "\n");
@@ -27,9 +28,11 @@ CFFunctionAnalysisInfo CFFunctionAnalysis::run(Function &F,
     // get defs of BI
     SmallVector<Instruction *, 10> users;
     users.push_back(BB.getTerminator());
+    visited_users.push_back(BB.getTerminator());
     while (!users.empty()) {
       Instruction *I = users.back();
       users.pop_back();
+      visited_users.push_back(I);
       LLVM_DEBUG(dbgs() << "Currently handling: " << *I << "\n");
       // if I is a call instruction, add it to CIs
       if (auto *CI = dyn_cast<CallInst>(I)) {
@@ -38,22 +41,20 @@ CFFunctionAnalysisInfo CFFunctionAnalysis::run(Function &F,
           LLVM_DEBUG(dbgs() << *CI << "\n");
           continue;
         }
-        if (!CI->getCalledFunction()->getReturnType()->isIntegerTy()) {
-          LLVM_DEBUG(dbgs() << "return type is not an integer: ");
-          LLVM_DEBUG(dbgs() << *CI << "\n");
-          continue;
-        }
         CalledFunctions.insert(CI->getCalledFunction()->getName());
         continue;
       }
       // else add all users of I to users
       for (Use &U : I->operands()) {
-        if (PHINode *PN = dyn_cast<PHINode>(U)) {
-          LLVM_DEBUG(dbgs() << "skipping phi: ");
-          LLVM_DEBUG(dbgs() << *PN << "\n");
-        } else if (Instruction *UI = dyn_cast<Instruction>(U)) {
+        if (Instruction *UI = dyn_cast<Instruction>(U)) {
           LLVM_DEBUG(dbgs() << "user: ");
           LLVM_DEBUG(dbgs() << *UI << "\n");
+          if (std::find(visited_users.begin(), visited_users.end(), UI) !=
+              visited_users.end()) {
+            LLVM_DEBUG(dbgs() << "already visited: ");
+            LLVM_DEBUG(dbgs() << *UI << "\n");
+            continue;
+          }
           users.push_back(UI);
         } else if (auto *label = dyn_cast<BasicBlock>(U)) {
           LLVM_DEBUG(dbgs() << "label: ");
