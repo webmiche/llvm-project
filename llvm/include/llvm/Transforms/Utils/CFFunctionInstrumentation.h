@@ -3,6 +3,7 @@
 
 #include "llvm/ADT/SetVector.h"
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Analysis/CFFunctionAnalysis.h"
 #include "llvm/IR/Instructions.h"
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Debug.h"
@@ -12,14 +13,7 @@ namespace llvm {
 class CFFunctionInstrumentationPass
     : public PassInfoMixin<CFFunctionInstrumentationPass> {
 public:
-  PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM);
-
-  CFFunctionInstrumentationPass() = default;
-  CFFunctionInstrumentationPass(const CFFunctionInstrumentationPass &) =
-      default;
-
-private:
-  SetVector<StringRef> CalledFunctions;
+  PreservedAnalyses run(Module &F, ModuleAnalysisManager &AM);
 };
 
 } // namespace llvm

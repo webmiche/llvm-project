@@ -18,6 +18,7 @@
 #ifndef MODULE_ANALYSIS
 #define MODULE_ANALYSIS(NAME, CREATE_PASS)
 #endif
+MODULE_ANALYSIS("cffunction-analysis", CFFunctionAnalysis())
 MODULE_ANALYSIS("callgraph", CallGraphAnalysis())
 MODULE_ANALYSIS("collector-metadata", CollectorMetadataAnalysis())
 MODULE_ANALYSIS("inline-advisor", InlineAdvisorAnalysis())
@@ -41,6 +42,8 @@ MODULE_ALIAS_ANALYSIS("globals-aa", GlobalsAA())
 #ifndef MODULE_PASS
 #define MODULE_PASS(NAME, CREATE_PASS)
 #endif
+MODULE_PASS("print<cffunction-analysis>", CFFunctionAnalysisPrinterPass(errs()))
+MODULE_PASS("cffunction-instrumentation", CFFunctionInstrumentationPass())
 MODULE_PASS("always-inline", AlwaysInlinerPass())
 MODULE_PASS("annotation2metadata", Annotation2MetadataPass())
 MODULE_PASS("attributor", AttributorPass())
@@ -246,7 +249,6 @@ FUNCTION_ANALYSIS("assumptions", AssumptionAnalysis())
 FUNCTION_ANALYSIS("bb-sections-profile-reader", BasicBlockSectionsProfileReaderAnalysis(TM))
 FUNCTION_ANALYSIS("block-freq", BlockFrequencyAnalysis())
 FUNCTION_ANALYSIS("branch-prob", BranchProbabilityAnalysis())
-FUNCTION_ANALYSIS("cffunction-analysis", CFFunctionAnalysis())
 FUNCTION_ANALYSIS("cycles", CycleAnalysis())
 FUNCTION_ANALYSIS("da", DependenceAnalysis())
 FUNCTION_ANALYSIS("debug-ata", DebugAssignmentTrackingAnalysis())
@@ -294,8 +296,6 @@ FUNCTION_ALIAS_ANALYSIS("tbaa", TypeBasedAA())
 #ifndef FUNCTION_PASS
 #define FUNCTION_PASS(NAME, CREATE_PASS)
 #endif
-FUNCTION_PASS("cffunction-instrumentation", CFFunctionInstrumentationPass())
-FUNCTION_PASS("print<cffunction-analysis>", CFFunctionAnalysisPrinterPass(dbgs()))
 FUNCTION_PASS("aa-eval", AAEvaluator())
 FUNCTION_PASS("adce", ADCEPass())
 FUNCTION_PASS("add-discriminators", AddDiscriminatorsPass())

@@ -18,7 +18,7 @@ class CFFunctionAnalysis : public AnalysisInfoMixin<CFFunctionAnalysis> {
 
 public:
   using Result = CFFunctionAnalysisInfo;
-  CFFunctionAnalysisInfo run(Function &F, FunctionAnalysisManager &AM);
+  CFFunctionAnalysisInfo run(Module &M, ModuleAnalysisManager &AM);
 
   static AnalysisKey Key;
 };
@@ -31,9 +31,7 @@ struct CFFunctionAnalysisPrinterPass
 public:
   explicit CFFunctionAnalysisPrinterPass(raw_ostream &OS) : OS(OS) {}
 
-  PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM);
-
-  static bool isRequired() { return true; }
+  PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
 };
 
 } // namespace llvm
