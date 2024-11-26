@@ -23,9 +23,9 @@ def get_files(directory):
 def get_functions(file):
     # get all interesting functions from a file
     functions = []
-    cmd = ["/home/michel/ETH/AST/questions/llvm-project/build_instrumented/bin/opt", "--passes=function-instrumentation", file, "-disable-output"]
+    cmd = ["/home/michel/ETH/AST/questions/llvm-project/build_instrumented/bin/opt", "--passes=\"print<cffunction-analysis>\"", file, "-disable-output"]
 
-    result = run(cmd, stdout=PIPE, stderr=PIPE, universal_newlines=True)
+    result = run(" ".join(cmd), stdout=PIPE, stderr=PIPE, text=True, shell=True)
 
     if result.returncode != 0:
         print("Error in getting functions")
@@ -39,19 +39,14 @@ def get_functions(file):
 
 def parse_function_trace(trace):
     # parse the function trace
-    called_functions = {}
-    function_name = ""
-    curr_called_functions = []
+    called_functions = []
     for line in trace.split("\n"):
-        if line.startswith("Called functions "):
-            if function_name != "":
-                called_functions[function_name] = curr_called_functions
-            function_name = line.split(" ")[-1].removesuffix(":")
-            curr_called_functions = []
+        if line.startswith("For file:"):
+            continue
         elif line == "":
             continue
         else:
-            curr_called_functions.append(line)
+            called_functions.append(line)
 
 
     return called_functions
@@ -72,15 +67,8 @@ def demangle_function(function_name):
 if __name__ == "__main__":
     files = get_files("/home/michel/ETH/AST/questions/llvm-project/build_IR/lib/Transforms/InstCombine/CMakeFiles/LLVMInstCombine.dir/")
     for file in files:
-        print(file)
+        print(f"For file {file}:")
         functions = get_functions(file)
-        # filter out all functions without called functions
-        functions = {k: v for k, v in functions.items() if len(v) > 0}
 
-        print("For file: " + file)
-        for function, called_functions in functions.items():
-            print("Function: " + demangle_function(function))
-            print("Called functions: ")
-            for called_function in called_functions:
-                print("\t" + demangle_function(called_function))
-            print()
+        for function in functions:
+            print(demangle_function(function))
