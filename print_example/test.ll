@@ -1,5 +1,9 @@
-declare i1 @foo()
-declare i32 @bat()
+define i1 @foo() {
+  ret i1 false
+}
+define i32 @bat() {
+  ret i32 0
+}
 
 define void @bar() {
   ret void
