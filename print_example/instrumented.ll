@@ -5,82 +5,49 @@ source_filename = "test.ll"
 @1 = private unnamed_addr constant [24 x i8] c"bat return value: %lld\0A\00", align 1
 @2 = private unnamed_addr constant [24 x i8] c"baz return value: %lld\0A\00", align 1
 
-define i1 @foo() {
-  call void (ptr, ...) @printf(ptr @0, i1 false)
+define noundef i1 @foo() local_unnamed_addr {
+  tail call void (ptr, ...) @printf(ptr nonnull @0, i1 false)
   ret i1 false
 }
 
-define i32 @bat() {
-  call void (ptr, ...) @printf(ptr @1, i32 0)
+define noundef i32 @bat() local_unnamed_addr {
+  tail call void (ptr, ...) @printf(ptr nonnull @1, i32 0)
   ret i32 0
 }
 
-define void @bar() {
+; Function Attrs: mustprogress nofree norecurse nosync nounwind willreturn memory(none)
+define void @bar() local_unnamed_addr #0 {
   ret void
 }
 
-define i32 @baz() {
-  %1 = call i1 @foo()
-  br i1 %1, label %then, label %else
-
-then:                                             ; preds = %0
-  br label %end
-
-else:                                             ; preds = %0
-  br label %end
-
-end:                                              ; preds = %else, %then
-  call void (ptr, ...) @printf(ptr @2, i32 5)
+define noundef i32 @baz() local_unnamed_addr {
+end:
+  tail call void (ptr, ...) @printf(ptr nonnull @0, i1 false)
+  tail call void (ptr, ...) @printf(ptr nonnull @2, i32 5)
   ret i32 5
 }
 
-define i32 @qux() {
-  %1 = call i32 @bat()
-  %2 = icmp eq i32 %1, 0
-  br i1 %2, label %then, label %else
-
-then:                                             ; preds = %0
-  br label %end
-
-else:                                             ; preds = %0
-  br label %end
-
-end:                                              ; preds = %else, %then
+define noundef i32 @qux() local_unnamed_addr {
+end:
+  tail call void (ptr, ...) @printf(ptr nonnull @1, i32 0)
   ret i32 5
 }
 
-define i32 @quuz() {
-  %1 = call i32 @baz()
-  %2 = call i32 @bat()
-  %3 = add i32 %1, %2
-  %4 = icmp eq i32 %3, 0
-  br i1 %4, label %then, label %else
-
-then:                                             ; preds = %0
-  br label %end
-
-else:                                             ; preds = %0
-  br label %end
-
-end:                                              ; preds = %else, %then
+define noundef i32 @quuz() local_unnamed_addr {
+end:
+  tail call void (ptr, ...) @printf(ptr nonnull @0, i1 false)
+  tail call void (ptr, ...) @printf(ptr nonnull @2, i32 5)
+  tail call void (ptr, ...) @printf(ptr nonnull @1, i32 0)
   ret i32 5
 }
 
-define i32 @quux() {
-  %1 = call i32 @bat()
-  %2 = call i32 @bat()
-  %3 = add i32 %1, %2
-  %4 = icmp eq i32 %3, 0
-  br i1 %4, label %then, label %else
-
-then:                                             ; preds = %0
-  br label %end
-
-else:                                             ; preds = %0
-  br label %end
-
-end:                                              ; preds = %else, %then
+define noundef i32 @quux() local_unnamed_addr {
+end:
+  tail call void (ptr, ...) @printf(ptr nonnull @1, i32 0)
+  tail call void (ptr, ...) @printf(ptr nonnull @1, i32 0)
   ret i32 5
 }
 
-declare void @printf(ptr, ...)
+declare void @printf(ptr, ...) local_unnamed_addr
+
+attributes #0 = { mustprogress nofree norecurse nosync nounwind willreturn memory(none) }
