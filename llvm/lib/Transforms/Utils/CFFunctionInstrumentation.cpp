@@ -52,7 +52,7 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
               FunctionType::get(Type::getVoidTy(M.getContext()),
                                 PointerType::get(M.getContext(), 0), true));
           Value *FileName = Builder.CreateGlobalStringPtr(funcFileName);
-          Value *WritePermission = Builder.CreateGlobalStringPtr("w");
+          Value *WritePermission = Builder.CreateGlobalStringPtr("a");
           Value *formatStrPtr = Builder.CreateGlobalStringPtr(funcFormatStr);
           Value *fptr =
               Builder.CreateCall(OpenFunc, {FileName, WritePermission});

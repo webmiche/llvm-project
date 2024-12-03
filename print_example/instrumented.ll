@@ -4,7 +4,7 @@ source_filename = "test.ll"
 @0 = private unnamed_addr constant [24 x i8] c"foo return value: %lld\0A\00", align 1
 @1 = private unnamed_addr constant [24 x i8] c"bat return value: %lld\0A\00", align 1
 @2 = private unnamed_addr constant [19 x i8] c"function_trace.txt\00", align 1
-@3 = private unnamed_addr constant [2 x i8] c"w\00", align 1
+@3 = private unnamed_addr constant [2 x i8] c"a\00", align 1
 @4 = private unnamed_addr constant [24 x i8] c"baz return value: %lld\0A\00", align 1
 
 define noundef i1 @foo() local_unnamed_addr {
