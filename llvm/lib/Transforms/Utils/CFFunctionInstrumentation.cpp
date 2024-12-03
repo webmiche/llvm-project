@@ -26,7 +26,10 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
 
     std::string outputString = F.getName().str() + " return value: %lld\n";
     StringRef funcFormatStr = StringRef(outputString);
-    // for all return instructions, print the return value
+    std::string fileName = F.getName().str() + ".txt";
+    StringRef funcFileName = StringRef(fileName);
+    // for all return instructions, print the return value to a file with the
+    // name of the function
     for (auto &BB : F) {
       if (auto *RI = dyn_cast<ReturnInst>(BB.getTerminator())) {
         auto *retVal = RI->getReturnValue();
@@ -39,12 +42,21 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
 
           // insert call to print function
           IRBuilder<> Builder(RI);
+          FunctionCallee OpenFunc = M.getOrInsertFunction(
+              "fopen", FunctionType::get(PointerType::get(M.getContext(), 0),
+                                         {PointerType::get(M.getContext(), 0),
+                                          PointerType::get(M.getContext(), 0)},
+                                         false));
           FunctionCallee PrintFunc = M.getOrInsertFunction(
-              "printf",
+              "fprintf",
               FunctionType::get(Type::getVoidTy(M.getContext()),
                                 PointerType::get(M.getContext(), 0), true));
+          Value *FileName = Builder.CreateGlobalStringPtr(funcFileName);
+          Value *WritePermission = Builder.CreateGlobalStringPtr("w");
           Value *formatStrPtr = Builder.CreateGlobalStringPtr(funcFormatStr);
-          Builder.CreateCall(PrintFunc, {formatStrPtr, retVal});
+          Value *fptr =
+              Builder.CreateCall(OpenFunc, {FileName, WritePermission});
+          Builder.CreateCall(PrintFunc, {fptr, formatStrPtr, retVal});
         }
       }
     }
