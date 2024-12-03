@@ -26,7 +26,7 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
 
     std::string outputString = F.getName().str() + " return value: %lld\n";
     StringRef funcFormatStr = StringRef(outputString);
-    std::string fileName = F.getName().str() + ".txt";
+    std::string fileName = "function_trace.txt";
     StringRef funcFileName = StringRef(fileName);
     // for all return instructions, print the return value to a file with the
     // name of the function
