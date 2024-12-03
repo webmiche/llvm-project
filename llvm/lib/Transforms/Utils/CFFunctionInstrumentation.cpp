@@ -31,6 +31,10 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
     // for all return instructions, print the return value to a file with the
     // name of the function
     for (auto &BB : F) {
+      // Do NOT reinstrument the inserted blocks
+      if (BB.getName() == "return" || BB.getName() == "print" || BB.getName() == "open") {
+        continue;
+      }
       if (auto *RI = dyn_cast<ReturnInst>(BB.getTerminator())) {
         auto *retVal = RI->getReturnValue();
         if (retVal) {
@@ -41,22 +45,53 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
           LLVM_DEBUG(dbgs() << *RI->getReturnValue() << "\n");
 
           // insert call to print function
-          IRBuilder<> Builder(RI);
+          IRBuilder<> OrigBuilder(RI);
           FunctionCallee OpenFunc = M.getOrInsertFunction(
               "fopen", FunctionType::get(PointerType::get(M.getContext(), 0),
                                          {PointerType::get(M.getContext(), 0),
                                           PointerType::get(M.getContext(), 0)},
                                          false));
+          Value *FileName = OrigBuilder.CreateGlobalStringPtr(funcFileName);
+          Value *WritePermission = OrigBuilder.CreateGlobalStringPtr("a");
+
+          // split at return
+          BasicBlock *ReturnBB = BB.splitBasicBlock(RI, "return", false);
+
+          BasicBlock *OpenBB = BasicBlock::Create(M.getContext(), "open", &F);
+          BasicBlock *PrintBB = BasicBlock::Create(M.getContext(), "print", &F);
+
+          IRBuilder<> OpenBuilder(OpenBB);
+          Value *fptr =
+              OpenBuilder.CreateCall(OpenFunc, {FileName, WritePermission});
+
+          Value *Cmp = OpenBuilder.CreateICmpNE(
+              fptr,
+              ConstantPointerNull::get(PointerType::get(M.getContext(), 0)));
+          OpenBuilder.CreateCondBr(Cmp, PrintBB, ReturnBB);
+
+          IRBuilder<> PrintBuilder(PrintBB);
           FunctionCallee PrintFunc = M.getOrInsertFunction(
               "fprintf",
               FunctionType::get(Type::getVoidTy(M.getContext()),
                                 PointerType::get(M.getContext(), 0), true));
-          Value *FileName = Builder.CreateGlobalStringPtr(funcFileName);
-          Value *WritePermission = Builder.CreateGlobalStringPtr("a");
-          Value *formatStrPtr = Builder.CreateGlobalStringPtr(funcFormatStr);
-          Value *fptr =
-              Builder.CreateCall(OpenFunc, {FileName, WritePermission});
-          Builder.CreateCall(PrintFunc, {fptr, formatStrPtr, retVal});
+          Value *formatStrPtr =
+              PrintBuilder.CreateGlobalStringPtr(funcFormatStr);
+          // if the file pointer is null, return
+
+          PrintBuilder.CreateCall(PrintFunc, {fptr, formatStrPtr, retVal});
+
+          // insert call to fclose
+          FunctionCallee CloseFunc = M.getOrInsertFunction(
+              "fclose",
+              FunctionType::get(Type::getInt32Ty(M.getContext()),
+                                {PointerType::get(M.getContext(), 0)}, false));
+          PrintBuilder.CreateCall(CloseFunc, fptr);
+          PrintBuilder.CreateBr(ReturnBB);
+
+          BB.getTerminator()->setSuccessor(0, OpenBB);
+
+          // place new BBs in the correct order
+          ReturnBB->moveAfter(PrintBB);
         }
       }
     }
