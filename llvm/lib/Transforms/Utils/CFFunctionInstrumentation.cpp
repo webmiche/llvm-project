@@ -32,7 +32,8 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
     // name of the function
     for (auto &BB : F) {
       // Do NOT reinstrument the inserted blocks
-      if (BB.getName() == "return" || BB.getName() == "print" || BB.getName() == "open") {
+      if (BB.getName() == "return" || BB.getName() == "print" ||
+          BB.getName() == "open") {
         continue;
       }
       if (auto *RI = dyn_cast<ReturnInst>(BB.getTerminator())) {
@@ -53,6 +54,7 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
                                          false));
           Value *FileName = OrigBuilder.CreateGlobalStringPtr(funcFileName);
           Value *WritePermission = OrigBuilder.CreateGlobalStringPtr("a");
+          Value *ReadPermission = OrigBuilder.CreateGlobalStringPtr("r");
 
           // split at return
           BasicBlock *ReturnBB = BB.splitBasicBlock(RI, "return", false);
@@ -61,11 +63,11 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
           BasicBlock *PrintBB = BasicBlock::Create(M.getContext(), "print", &F);
 
           IRBuilder<> OpenBuilder(OpenBB);
-          Value *fptr =
-              OpenBuilder.CreateCall(OpenFunc, {FileName, WritePermission});
+          Value *read_fptr =
+              OpenBuilder.CreateCall(OpenFunc, {FileName, ReadPermission});
 
           Value *Cmp = OpenBuilder.CreateICmpNE(
-              fptr,
+              read_fptr,
               ConstantPointerNull::get(PointerType::get(M.getContext(), 0)));
           OpenBuilder.CreateCondBr(Cmp, PrintBB, ReturnBB);
 
@@ -77,15 +79,20 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
           Value *formatStrPtr =
               PrintBuilder.CreateGlobalStringPtr(funcFormatStr);
           // if the file pointer is null, return
-
-          PrintBuilder.CreateCall(PrintFunc, {fptr, formatStrPtr, retVal});
-
-          // insert call to fclose
           FunctionCallee CloseFunc = M.getOrInsertFunction(
               "fclose",
               FunctionType::get(Type::getInt32Ty(M.getContext()),
                                 {PointerType::get(M.getContext(), 0)}, false));
-          PrintBuilder.CreateCall(CloseFunc, fptr);
+          PrintBuilder.CreateCall(CloseFunc, read_fptr);
+
+          Value *write_fptr =
+              PrintBuilder.CreateCall(OpenFunc, {FileName, WritePermission});
+          PrintBuilder.CreateCall(PrintFunc,
+                                  {write_fptr, formatStrPtr, retVal});
+
+          // insert call to fclose
+
+          PrintBuilder.CreateCall(CloseFunc, write_fptr);
           PrintBuilder.CreateBr(ReturnBB);
 
           BB.getTerminator()->setSuccessor(0, OpenBB);
