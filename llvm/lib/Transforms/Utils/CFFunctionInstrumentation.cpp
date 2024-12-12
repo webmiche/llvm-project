@@ -10,6 +10,9 @@ PreservedAnalyses
 CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
 
   CFFunctionAnalysisInfo CalledFunctions = AM.getResult<CFFunctionAnalysis>(M);
+  int permissions_created = 0;
+  Value *WritePermission = nullptr;
+  Value *FileName = nullptr;
   for (auto &F : M) {
     if (F.isDeclaration()) {
       continue;
@@ -24,7 +27,7 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
       continue;
     }
 
-    std::string outputString = F.getName().str() + " return value: %lld\n";
+    std::string outputString = F.getName().str() + " %lld\n";
     StringRef funcFormatStr = StringRef(outputString);
     std::string fileName = "function_trace.txt";
     StringRef funcFileName = StringRef(fileName);
@@ -47,29 +50,35 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
 
           // insert call to print function
           IRBuilder<> OrigBuilder(RI);
-          FunctionCallee OpenFunc = M.getOrInsertFunction(
-              "fopen", FunctionType::get(PointerType::get(M.getContext(), 0),
-                                         {PointerType::get(M.getContext(), 0),
-                                          PointerType::get(M.getContext(), 0)},
-                                         false));
-          Value *FileName = OrigBuilder.CreateGlobalStringPtr(funcFileName);
-          Value *WritePermission = OrigBuilder.CreateGlobalStringPtr("a");
-          Value *ReadPermission = OrigBuilder.CreateGlobalStringPtr("r");
+          FunctionCallee AccessFunc = M.getOrInsertFunction(
+              "access",
+              FunctionType::get(IntegerType::getInt32Ty(M.getContext()),
+                                {PointerType::get(M.getContext(), 0),
+                                 IntegerType::getInt32Ty(M.getContext())},
+                                false));
+
+          if (!permissions_created) {
+            permissions_created = 1;
+            FileName = OrigBuilder.CreateGlobalStringPtr(funcFileName);
+            WritePermission = OrigBuilder.CreateGlobalStringPtr("a");
+          }
 
           // split at return
           BasicBlock *ReturnBB = BB.splitBasicBlock(RI, "return", false);
 
-          BasicBlock *OpenBB = BasicBlock::Create(M.getContext(), "open", &F);
+          BasicBlock *AccessBB =
+              BasicBlock::Create(M.getContext(), "access", &F);
           BasicBlock *PrintBB = BasicBlock::Create(M.getContext(), "print", &F);
 
-          IRBuilder<> OpenBuilder(OpenBB);
-          Value *read_fptr =
-              OpenBuilder.CreateCall(OpenFunc, {FileName, ReadPermission});
+          IRBuilder<> AccessBuilder(AccessBB);
+          // insert call to access function with filename and 0
+          Value *status = AccessBuilder.CreateCall(
+              AccessFunc, {FileName, AccessBuilder.getInt32(0)});
 
-          Value *Cmp = OpenBuilder.CreateICmpNE(
-              read_fptr,
-              ConstantPointerNull::get(PointerType::get(M.getContext(), 0)));
-          OpenBuilder.CreateCondBr(Cmp, PrintBB, ReturnBB);
+          Value *Cmp = AccessBuilder.CreateICmpEQ(
+              status,
+              ConstantInt::get(IntegerType::getInt32Ty(M.getContext()), 0));
+          AccessBuilder.CreateCondBr(Cmp, PrintBB, ReturnBB);
 
           IRBuilder<> PrintBuilder(PrintBB);
           FunctionCallee PrintFunc = M.getOrInsertFunction(
@@ -83,7 +92,12 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
               "fclose",
               FunctionType::get(Type::getInt32Ty(M.getContext()),
                                 {PointerType::get(M.getContext(), 0)}, false));
-          PrintBuilder.CreateCall(CloseFunc, read_fptr);
+
+          FunctionCallee OpenFunc = M.getOrInsertFunction(
+              "fopen", FunctionType::get(PointerType::get(M.getContext(), 0),
+                                         {PointerType::get(M.getContext(), 0),
+                                          PointerType::get(M.getContext(), 0)},
+                                         false));
 
           Value *write_fptr =
               PrintBuilder.CreateCall(OpenFunc, {FileName, WritePermission});
@@ -95,7 +109,7 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
           PrintBuilder.CreateCall(CloseFunc, write_fptr);
           PrintBuilder.CreateBr(ReturnBB);
 
-          BB.getTerminator()->setSuccessor(0, OpenBB);
+          BB.getTerminator()->setSuccessor(0, AccessBB);
 
           // place new BBs in the correct order
           ReturnBB->moveAfter(PrintBB);

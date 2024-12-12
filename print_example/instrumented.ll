@@ -3,139 +3,144 @@ source_filename = "test.ll"
 
 @0 = private unnamed_addr constant [19 x i8] c"function_trace.txt\00", align 1
 @1 = private unnamed_addr constant [2 x i8] c"a\00", align 1
-@2 = private unnamed_addr constant [2 x i8] c"r\00", align 1
-@3 = private unnamed_addr constant [24 x i8] c"foo return value: %lld\0A\00", align 1
-@4 = private unnamed_addr constant [19 x i8] c"function_trace.txt\00", align 1
-@5 = private unnamed_addr constant [2 x i8] c"a\00", align 1
-@6 = private unnamed_addr constant [2 x i8] c"r\00", align 1
-@7 = private unnamed_addr constant [24 x i8] c"bat return value: %lld\0A\00", align 1
-@8 = private unnamed_addr constant [19 x i8] c"function_trace.txt\00", align 1
-@9 = private unnamed_addr constant [2 x i8] c"a\00", align 1
-@10 = private unnamed_addr constant [2 x i8] c"r\00", align 1
-@11 = private unnamed_addr constant [24 x i8] c"baz return value: %lld\0A\00", align 1
+@2 = private unnamed_addr constant [10 x i8] c"foo %lld\0A\00", align 1
+@3 = private unnamed_addr constant [10 x i8] c"bat %lld\0A\00", align 1
+@4 = private unnamed_addr constant [10 x i8] c"baz %lld\0A\00", align 1
 
-define i1 @foo() {
-  br label %open
+define noundef i1 @foo() local_unnamed_addr {
+access:
+  %0 = tail call i32 @access(ptr nonnull @0, i32 0)
+  %1 = icmp eq i32 %0, 0
+  br i1 %1, label %print, label %return
 
-open:                                             ; preds = %0
-  %1 = call ptr @fopen(ptr @0, ptr @2)
-  %2 = icmp ne ptr %1, null
-  br i1 %2, label %print, label %return
-
-print:                                            ; preds = %open
-  %3 = call i32 @fclose(ptr %1)
-  %4 = call ptr @fopen(ptr @0, ptr @1)
-  call void (ptr, ...) @fprintf(ptr %4, ptr @3, i1 false)
-  %5 = call i32 @fclose(ptr %4)
+print:                                            ; preds = %access
+  %2 = tail call ptr @fopen(ptr nonnull @0, ptr nonnull @1)
+  tail call void (ptr, ...) @fprintf(ptr %2, ptr nonnull @2, i1 false)
+  %3 = tail call i32 @fclose(ptr %2)
   br label %return
 
-return:                                           ; preds = %print, %open
+return:                                           ; preds = %print, %access
   ret i1 false
 }
 
-define i32 @bat() {
-  br label %open
+define noundef i32 @bat() local_unnamed_addr {
+access:
+  %0 = tail call i32 @access(ptr nonnull @0, i32 0)
+  %1 = icmp eq i32 %0, 0
+  br i1 %1, label %print, label %return
 
-open:                                             ; preds = %0
-  %1 = call ptr @fopen(ptr @4, ptr @6)
-  %2 = icmp ne ptr %1, null
-  br i1 %2, label %print, label %return
-
-print:                                            ; preds = %open
-  %3 = call i32 @fclose(ptr %1)
-  %4 = call ptr @fopen(ptr @4, ptr @5)
-  call void (ptr, ...) @fprintf(ptr %4, ptr @7, i32 0)
-  %5 = call i32 @fclose(ptr %4)
+print:                                            ; preds = %access
+  %2 = tail call ptr @fopen(ptr nonnull @0, ptr nonnull @1)
+  tail call void (ptr, ...) @fprintf(ptr %2, ptr nonnull @3, i32 0)
+  %3 = tail call i32 @fclose(ptr %2)
   br label %return
 
-return:                                           ; preds = %print, %open
+return:                                           ; preds = %print, %access
   ret i32 0
 }
 
-define void @bar() {
+; Function Attrs: mustprogress nofree norecurse nosync nounwind willreturn memory(none)
+define void @bar() local_unnamed_addr #0 {
   ret void
 }
 
-define i32 @baz() {
-  %1 = call i1 @foo()
-  br i1 %1, label %then, label %else
+define noundef i32 @baz() local_unnamed_addr {
+end:
+  %0 = tail call i32 @access(ptr nonnull @0, i32 0)
+  %1 = icmp eq i32 %0, 0
+  br i1 %1, label %print.i, label %foo.exit
 
-then:                                             ; preds = %0
-  br label %end
+print.i:                                          ; preds = %end
+  %2 = tail call ptr @fopen(ptr nonnull @0, ptr nonnull @1)
+  tail call void (ptr, ...) @fprintf(ptr %2, ptr nonnull @2, i1 false)
+  %3 = tail call i32 @fclose(ptr %2)
+  br label %foo.exit
 
-else:                                             ; preds = %0
-  br label %end
+foo.exit:                                         ; preds = %end, %print.i
+  %4 = tail call i32 @access(ptr nonnull @0, i32 0)
+  %5 = icmp eq i32 %4, 0
+  br i1 %5, label %print, label %return
 
-end:                                              ; preds = %else, %then
-  br label %open
-
-open:                                             ; preds = %end
-  %2 = call ptr @fopen(ptr @8, ptr @10)
-  %3 = icmp ne ptr %2, null
-  br i1 %3, label %print, label %return
-
-print:                                            ; preds = %open
-  %4 = call i32 @fclose(ptr %2)
-  %5 = call ptr @fopen(ptr @8, ptr @9)
-  call void (ptr, ...) @fprintf(ptr %5, ptr @11, i32 5)
-  %6 = call i32 @fclose(ptr %5)
+print:                                            ; preds = %foo.exit
+  %6 = tail call ptr @fopen(ptr nonnull @0, ptr nonnull @1)
+  tail call void (ptr, ...) @fprintf(ptr %6, ptr nonnull @4, i32 5)
+  %7 = tail call i32 @fclose(ptr %6)
   br label %return
 
-return:                                           ; preds = %print, %open
+return:                                           ; preds = %print, %foo.exit
   ret i32 5
 }
 
-define i32 @qux() {
-  %1 = call i32 @bat()
+define noundef i32 @qux() local_unnamed_addr {
+end:
+  %0 = tail call i32 @access(ptr nonnull @0, i32 0)
+  %1 = icmp eq i32 %0, 0
+  br i1 %1, label %print.i, label %bat.exit
+
+print.i:                                          ; preds = %end
+  %2 = tail call ptr @fopen(ptr nonnull @0, ptr nonnull @1)
+  tail call void (ptr, ...) @fprintf(ptr %2, ptr nonnull @3, i32 0)
+  %3 = tail call i32 @fclose(ptr %2)
+  br label %bat.exit
+
+bat.exit:                                         ; preds = %end, %print.i
+  ret i32 5
+}
+
+define noundef i32 @quuz() local_unnamed_addr {
+end:
+  %0 = tail call i32 @baz()
+  %1 = tail call i32 @access(ptr nonnull @0, i32 0)
   %2 = icmp eq i32 %1, 0
-  br i1 %2, label %then, label %else
+  br i1 %2, label %print.i, label %bat.exit
 
-then:                                             ; preds = %0
-  br label %end
+print.i:                                          ; preds = %end
+  %3 = tail call ptr @fopen(ptr nonnull @0, ptr nonnull @1)
+  tail call void (ptr, ...) @fprintf(ptr %3, ptr nonnull @3, i32 0)
+  %4 = tail call i32 @fclose(ptr %3)
+  br label %bat.exit
 
-else:                                             ; preds = %0
-  br label %end
-
-end:                                              ; preds = %else, %then
+bat.exit:                                         ; preds = %end, %print.i
   ret i32 5
 }
 
-define i32 @quuz() {
-  %1 = call i32 @baz()
-  %2 = call i32 @bat()
-  %3 = add i32 %1, %2
-  %4 = icmp eq i32 %3, 0
-  br i1 %4, label %then, label %else
+define noundef i32 @quux() local_unnamed_addr {
+end:
+  %0 = tail call i32 @access(ptr nonnull @0, i32 0)
+  %1 = icmp eq i32 %0, 0
+  br i1 %1, label %print.i, label %bat.exit
 
-then:                                             ; preds = %0
-  br label %end
+print.i:                                          ; preds = %end
+  %2 = tail call ptr @fopen(ptr nonnull @0, ptr nonnull @1)
+  tail call void (ptr, ...) @fprintf(ptr %2, ptr nonnull @3, i32 0)
+  %3 = tail call i32 @fclose(ptr %2)
+  br label %bat.exit
 
-else:                                             ; preds = %0
-  br label %end
+bat.exit:                                         ; preds = %end, %print.i
+  %4 = tail call i32 @access(ptr nonnull @0, i32 0)
+  %5 = icmp eq i32 %4, 0
+  br i1 %5, label %print.i1, label %bat.exit2
 
-end:                                              ; preds = %else, %then
+print.i1:                                         ; preds = %bat.exit
+  %6 = tail call ptr @fopen(ptr nonnull @0, ptr nonnull @1)
+  tail call void (ptr, ...) @fprintf(ptr %6, ptr nonnull @3, i32 0)
+  %7 = tail call i32 @fclose(ptr %6)
+  br label %bat.exit2
+
+bat.exit2:                                        ; preds = %bat.exit, %print.i1
   ret i32 5
 }
 
-define i32 @quux() {
-  %1 = call i32 @bat()
-  %2 = call i32 @bat()
-  %3 = add i32 %1, %2
-  %4 = icmp eq i32 %3, 0
-  br i1 %4, label %then, label %else
+; Function Attrs: nofree nounwind
+declare noundef i32 @access(ptr nocapture noundef readonly, i32 noundef) local_unnamed_addr #1
 
-then:                                             ; preds = %0
-  br label %end
+declare void @fprintf(ptr, ...) local_unnamed_addr
 
-else:                                             ; preds = %0
-  br label %end
+; Function Attrs: nofree nounwind
+declare noundef i32 @fclose(ptr nocapture noundef) local_unnamed_addr #1
 
-end:                                              ; preds = %else, %then
-  ret i32 5
-}
+; Function Attrs: nofree nounwind
+declare noalias noundef ptr @fopen(ptr nocapture noundef readonly, ptr nocapture noundef readonly) local_unnamed_addr #1
 
-declare ptr @fopen(ptr, ptr)
-
-declare void @fprintf(ptr, ...)
-
-declare i32 @fclose(ptr)
+attributes #0 = { mustprogress nofree norecurse nosync nounwind willreturn memory(none) }
+attributes #1 = { nofree nounwind }
