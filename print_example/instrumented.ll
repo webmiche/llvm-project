@@ -8,9 +8,9 @@ source_filename = "test.ll"
 @instr_file = private unnamed_addr constant [19 x i8] c"function_trace.txt\00", align 1
 @1 = private unnamed_addr constant [5 x i8] c"%ld \00", align 1
 @2 = private unnamed_addr constant [2 x i8] c"\0A\00", align 1
-@3 = private unnamed_addr constant [19 x i8] c"function_trace.txt\00", align 1
+@instr_file.1 = private unnamed_addr constant [19 x i8] c"function_trace.txt\00", align 1
 @__dso_handle = external hidden global i8
-@llvm.global_ctors = appending global [1 x { i32, ptr, ptr }] [{ i32, ptr, ptr } { i32 65535, ptr @_GLOBAL__sub_I_class_idea.cpp, ptr null }]
+@llvm.global_ctors = appending global [1 x { i32, ptr, ptr }] [{ i32, ptr, ptr } { i32 65535, ptr @_GLOBAL__sub_test.ll, ptr null }]
 @foo_name = private unnamed_addr constant [5 x i8] c"foo \00", align 1
 @foo_tracker = internal global %Tracker zeroinitializer
 @bat_name = private unnamed_addr constant [5 x i8] c"bat \00", align 1
@@ -200,7 +200,7 @@ declare void @_ZdaPv(ptr)
 
 define internal void @__cxx_global_var_init() section ".text.startup" {
 entry:
-  %0 = call i32 @access(ptr @3, i32 0)
+  %0 = call i32 @access(ptr @instr_file.1, i32 0)
   %1 = icmp eq i32 %0, 0
   br i1 %1, label %then, label %end
 
@@ -222,7 +222,7 @@ end:                                              ; preds = %entry
 
 declare i32 @access(ptr, i32)
 
-define internal void @_GLOBAL__sub_I_class_idea.cpp() section ".text.startup" {
+define internal void @_GLOBAL__sub_test.ll() section ".text.startup" {
 entry:
   call void @__cxx_global_var_init()
   ret void

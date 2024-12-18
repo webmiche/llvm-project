@@ -420,7 +420,8 @@ void insert_instrumentation_global_var_init(Module &M) {
 
   // only create the tracker if function_trace.txt exists
 
-  Value *FileName = Builder.CreateGlobalStringPtr("function_trace.txt");
+  Value *FileName =
+      Builder.CreateGlobalStringPtr("function_trace.txt", "instr_file");
 
   FunctionCallee OpenFunc = M.getOrInsertFunction(
       "access", FunctionType::get(
@@ -463,7 +464,7 @@ void insert_instrumentation_global_var_init(Module &M) {
 
   Function *GlobalCtor = Function::Create(
       FunctionType::get(Type::getVoidTy(M.getContext()), false),
-      Function::InternalLinkage, "_GLOBAL__sub_I_class_idea.cpp", M);
+      Function::InternalLinkage, "_GLOBAL__sub_" + M.getName(), M);
 
   LLVM_DEBUG(dbgs() << "created global ctor\n");
 
@@ -577,6 +578,18 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
   int tracker_created = 0;
   for (auto &F : M) {
     if (F.isDeclaration()) {
+      continue;
+    }
+
+    if (F.getName() == "add" || F.getName() == "print" ||
+        F.getName() == "open" || F.getName() == "close" ||
+        F.getName() == "malloc" || F.getName() == "free" ||
+        F.getName() == "access" || F.getName() == "fopen" ||
+        F.getName() == "fclose" || F.getName() == "fprintf" ||
+        F.getName() == "_ZdaPv" || F.getName() == "__cxa_atexit" ||
+        F.getName() == "__cxx_global_var_init" ||
+        F.getName() == "Destructor" || F.getName() == "Constructor" ||
+        F.getName() == StringRef("_GLOBAL__sub_" + M.getName().str())) {
       continue;
     }
 
