@@ -587,8 +587,8 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
         F.getName() == "access" || F.getName() == "fopen" ||
         F.getName() == "fclose" || F.getName() == "fprintf" ||
         F.getName() == "_ZdaPv" || F.getName() == "__cxa_atexit" ||
-        F.getName() == "__cxx_global_var_init" ||
-        F.getName() == "Destructor" || F.getName() == "Constructor" ||
+        F.getName() == "__cxx_global_var_init" || F.getName() == "Destructor" ||
+        F.getName() == "Constructor" ||
         F.getName() == StringRef("_GLOBAL__sub_" + M.getName().str())) {
       continue;
     }
@@ -623,7 +623,7 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
     // insert global value that looks like:
     // @foo_tracker = dso_local global %Tracker zeroinitializer, align 8
     auto *GV = new GlobalVariable(
-        M, TrackerType, false, GlobalValue::InternalLinkage,
+        M, TrackerType, false, GlobalValue::PrivateLinkage,
         Constant::getNullValue(TrackerType), F.getName() + "_tracker", nullptr,
         GlobalVariable::NotThreadLocal, 0, false);
 

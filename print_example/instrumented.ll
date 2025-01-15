@@ -12,11 +12,11 @@ source_filename = "test.ll"
 @__dso_handle = external hidden global i8
 @llvm.global_ctors = appending global [1 x { i32, ptr, ptr }] [{ i32, ptr, ptr } { i32 65535, ptr @_GLOBAL__sub_test.ll, ptr null }]
 @foo_name = private unnamed_addr constant [5 x i8] c"foo \00", align 1
-@foo_tracker = internal global %Tracker zeroinitializer
+@foo_tracker = private global %Tracker zeroinitializer
 @bat_name = private unnamed_addr constant [5 x i8] c"bat \00", align 1
-@bat_tracker = internal global %Tracker zeroinitializer
+@bat_tracker = private global %Tracker zeroinitializer
 @baz_name = private unnamed_addr constant [5 x i8] c"baz \00", align 1
-@baz_tracker = internal global %Tracker zeroinitializer
+@baz_tracker = private global %Tracker zeroinitializer
 
 define i1 @foo() {
   call void @add(ptr @foo_tracker, i64 0)

@@ -19,6 +19,25 @@ def parse_trace(trace_string) -> dict:
 
     return result
 
+
+def parse_trace_as_count_dict(file_name) -> dict:
+
+    result = {}
+
+    # Split the trace string into lines
+    file_iter = open(file_name, 'r')
+
+    for line in file_iter:
+        if line == '':
+            continue
+        function = line.split(' ')[1]
+        values = line.split(' ')[3:-1]
+        if function not in result:
+            result[function] = Counter()
+        result[function].update(values)
+
+    return result
+
 def convert_to_count_dict(trace_dict) -> dict:
     result = {}
     for function, values in trace_dict.items():
@@ -90,10 +109,6 @@ def same_value_functions(opt_level_dict):
     return same_value_functions
 
 
-
-
-
-
 def print_stats(trace_dict):
 
     print('Function Trace Statistics')
@@ -133,7 +148,7 @@ def print_stats(trace_dict):
     print(f"The most-called function is \"{demangle_function_name(max_function)}\" with {max_value} calls and {max_distinct_values} distinct values")
 
 
-if __name__ == '__main__':
+def analyse_simple():
 
     opt_levels = ['no_opt', 'O1', 'O2', 'O3', 'Os', 'Oz']
     opt_level_dicts = {}
@@ -188,3 +203,17 @@ if __name__ == '__main__':
 
     #same_value = same_value_functions({'605': trace_605})
     #print(f"Functions that return the same value in all traces: {len(same_value)}")
+
+def analyse_benchmark(name: str):
+    file_name = f"CFFunctionInstrumentation/function_trace_{name}_partial.txt"
+
+    trace_dict = parse_trace_as_count_dict(file_name)
+
+    print_stats(trace_dict)
+
+    for function, values in trace_dict.items():
+        print(f"{demangle_function_name(function)}: {values}")
+
+
+if __name__ == '__main__':
+    analyse_benchmark("623")
