@@ -216,4 +216,4 @@ def analyse_benchmark(name: str):
 
 
 if __name__ == '__main__':
-    analyse_benchmark("623")
+    analyse_simple()

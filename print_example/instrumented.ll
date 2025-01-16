@@ -96,7 +96,7 @@ end:                                              ; preds = %else, %then
   ret i32 5
 }
 
-define internal void @Constructor(ptr %0, ptr %1) {
+define linkonce_odr void @Constructor(ptr %0, ptr %1) {
 entry:
   %2 = getelementptr inbounds %Tracker, ptr %0, i32 0, i32 1
   store i64 0, ptr %2, align 4
@@ -110,7 +110,7 @@ entry:
 
 declare ptr @malloc(i64)
 
-define internal void @print(ptr %0) {
+define linkonce_odr void @print(ptr %0) {
 entry:
   %1 = icmp eq ptr %0, null
   br i1 %1, label %then, label %else
@@ -150,7 +150,7 @@ declare ptr @fopen(ptr, ptr)
 
 declare void @fprintf(ptr, ...)
 
-define internal void @add(ptr %0, i64 %1) {
+define linkonce_odr void @add(ptr %0, i64 %1) {
 entry:
   %2 = load i64, ptr %0, align 4
   %3 = icmp eq i64 %2, 0
@@ -180,7 +180,7 @@ end:                                              ; preds = %then, %else
   ret void
 }
 
-define internal void @Destructor(ptr %0) {
+define linkonce_odr void @Destructor(ptr %0) {
 entry:
   call void @print(ptr %0)
   %1 = getelementptr inbounds %Tracker, ptr %0, i32 0, i32 0
@@ -198,7 +198,7 @@ end:                                              ; preds = %then, %entry
 
 declare void @_ZdaPv(ptr)
 
-define internal void @__cxx_global_var_init() section ".text.startup" {
+define private void @__cxx_global_var_init() section ".text.startup" {
 entry:
   %0 = call i32 @access(ptr @instr_file.1, i32 0)
   %1 = icmp eq i32 %0, 0
@@ -222,7 +222,7 @@ end:                                              ; preds = %entry
 
 declare i32 @access(ptr, i32)
 
-define internal void @_GLOBAL__sub_test.ll() section ".text.startup" {
+define private void @_GLOBAL__sub_test.ll() section ".text.startup" {
 entry:
   call void @__cxx_global_var_init()
   ret void

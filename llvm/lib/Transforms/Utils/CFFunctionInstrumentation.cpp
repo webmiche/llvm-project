@@ -24,7 +24,7 @@ void insert_instrumentation_constructor(Module &M, Function &F) {
           {PointerType::get(IntegerType::get(M.getContext(), 8), 0),
            PointerType::get(IntegerType::get(M.getContext(), 8), 0)},
           false),
-      Function::InternalLinkage, "Constructor", M);
+      Function::LinkOnceODRLinkage, "Constructor", M);
 
   LLVM_DEBUG(dbgs() << "created constructor\n");
 
@@ -93,7 +93,7 @@ void insert_instrumentation_add(Module &M) {
                                          {PointerType::get(TrackerType, 0),
                                           Type::getInt64Ty(M.getContext())},
                                          false),
-                       Function::InternalLinkage, "add", M);
+                       Function::LinkOnceODRLinkage, "add", M);
 
   BasicBlock *BB = BasicBlock::Create(M.getContext(), "entry", AddFunc);
 
@@ -197,7 +197,7 @@ void insert_instrumentation_print(Module &M) {
   Function *PrintFunc = Function::Create(
       FunctionType::get(Type::getVoidTy(M.getContext()),
                         {PointerType::get(TrackerType, 0)}, false),
-      Function::InternalLinkage, "print", M);
+      Function::LinkOnceODRLinkage, "print", M);
 
   BasicBlock *BB = BasicBlock::Create(M.getContext(), "entry", PrintFunc);
 
@@ -342,7 +342,7 @@ void insert_instrumentation_destructor(Module &M) {
   Function *Destructor = Function::Create(
       FunctionType::get(Type::getVoidTy(M.getContext()),
                         {PointerType::get(TrackerType, 0)}, false),
-      Function::InternalLinkage, "Destructor", M);
+      Function::LinkOnceODRLinkage, "Destructor", M);
 
   FunctionCallee DeleteFunc = M.getOrInsertFunction(
       "_ZdaPv",
@@ -410,7 +410,7 @@ void insert_instrumentation_global_var_init(Module &M) {
 
   Function *GlobalVarInit = Function::Create(
       FunctionType::get(Type::getVoidTy(M.getContext()), false),
-      Function::InternalLinkage, "__cxx_global_var_init", M);
+      Function::PrivateLinkage, "__cxx_global_var_init", M);
 
   LLVM_DEBUG(dbgs() << "created global var init\n");
 
@@ -464,7 +464,7 @@ void insert_instrumentation_global_var_init(Module &M) {
 
   Function *GlobalCtor = Function::Create(
       FunctionType::get(Type::getVoidTy(M.getContext()), false),
-      Function::InternalLinkage, "_GLOBAL__sub_" + M.getName(), M);
+      Function::PrivateLinkage, "_GLOBAL__sub_" + M.getName(), M);
 
   LLVM_DEBUG(dbgs() << "created global ctor\n");
 
