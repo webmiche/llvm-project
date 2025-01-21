@@ -180,6 +180,18 @@ def analyse_simple():
     same_value = same_value_functions(opt_level_dicts)
     print(f"Functions that return the same value in all traces: {len(same_value)}")
 
+    # filter out all functions that are in no_opt
+    filtered_opt_level_dicts = {}
+
+    for opt_level, trace_dict in opt_level_dicts.items():
+
+        filtered_trace_dict = {}
+        for function, values in trace_dict.items():
+            if function not in opt_level_dicts['no_opt']:
+                filtered_trace_dict[function] = values
+
+        filtered_opt_level_dicts[opt_level] = filtered_trace_dict
+
     del opt_level_dicts['no_opt']
     print()
 
@@ -188,6 +200,40 @@ def analyse_simple():
 
     same_value = same_value_functions(opt_level_dicts)
     print(f"Functions that return the same value in all optimized traces: {len(same_value)}")
+
+
+    print()
+    print("====================================================")
+    print("Filtered out no_opt functions")
+    print("====================================================")
+    print()
+
+    for opt_level in opt_levels[1:]:
+        print(f"Optimization Level: {opt_level}")
+        result = filtered_opt_level_dicts[opt_level]
+        print_stats(result)
+        print()
+
+    for outer_index, outer_opt_level in enumerate(opt_levels[1:]):
+        for inner_opt_level in opt_levels[1:outer_index]:
+            print(f"Comparing {outer_opt_level} and {inner_opt_level}")
+            result1 = filtered_opt_level_dicts[outer_opt_level]
+            result2 = filtered_opt_level_dicts[inner_opt_level]
+            single_valued1 = single_valued_functions(result1)
+            single_valued2 = single_valued_functions(result2)
+            num_single_functions_1 = sum([len(functions) for functions in single_valued1.values()])
+            num_single_functions_2 = sum([len(functions) for functions in single_valued2.values()])
+            num_same, num_in_1, num_in_2 = compare_single_valued_functions(result1, result2)
+
+            print(f"  {num_same} single-valued functions return the same value (out of {num_single_functions_1} in {outer_opt_level} and {num_single_functions_2} in {inner_opt_level})")
+            print()
+
+    omnipresent = omnipresent_functions(filtered_opt_level_dicts)
+    print(f"Functions that occur in all traces: {len(omnipresent)}")
+
+    same_value = same_value_functions(filtered_opt_level_dicts)
+    print(f"Functions that return the same value in all traces: {len(same_value)}")
+
 
 
     #print("====================================================")
@@ -216,4 +262,5 @@ def analyse_benchmark(name: str):
 
 
 if __name__ == '__main__':
-    analyse_simple()
+    analyse_benchmark("620")
+    analyse_benchmark("623")
