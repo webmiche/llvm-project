@@ -24,7 +24,7 @@ void insert_instrumentation_constructor(Module &M, Function &F) {
           {PointerType::get(IntegerType::get(M.getContext(), 8), 0),
            PointerType::get(IntegerType::get(M.getContext(), 8), 0)},
           false),
-      Function::LinkOnceODRLinkage, "Constructor", M);
+      Function::PrivateLinkage, "Constructor", M);
 
   LLVM_DEBUG(dbgs() << "created constructor\n");
 
@@ -88,12 +88,13 @@ void insert_instrumentation_add(Module &M) {
   StructType *TrackerType =
       StructType::getTypeByName(M.getContext(), "Tracker");
 
-  Function *AddFunc =
-      Function::Create(FunctionType::get(Type::getVoidTy(M.getContext()),
-                                         {PointerType::get(TrackerType, 0),
-                                          Type::getInt64Ty(M.getContext())},
-                                         false),
-                       Function::LinkOnceODRLinkage, "add", M);
+  Function *AddFunc = Function::Create(
+      FunctionType::get(
+          Type::getVoidTy(M.getContext()),
+          {PointerType::get(TrackerType, 0), Type::getInt64Ty(M.getContext()),
+           PointerType::get(IntegerType::get(M.getContext(), 8), 0)},
+          false),
+      Function::PrivateLinkage, "add", M);
 
   BasicBlock *BB = BasicBlock::Create(M.getContext(), "entry", AddFunc);
 
@@ -103,6 +104,7 @@ void insert_instrumentation_add(Module &M) {
 
   Argument *Tracker = AddFunc->arg_begin();
   Argument *StoreValue = AddFunc->arg_begin() + 1;
+  Argument *Name = AddFunc->arg_begin() + 2;
 
   // check if the value of the tracker is 0
 
@@ -111,19 +113,71 @@ void insert_instrumentation_add(Module &M) {
 
   LLVM_DEBUG(dbgs() << "created tracker load\n");
 
-  Value *IsNull = Builder.CreateICmpEQ(
-      TrackerValue, ConstantInt::get(M.getContext(), APInt(64, 0, false)));
+  Value *IsNeg1 = Builder.CreateICmpEQ(
+      TrackerValue, ConstantInt::get(M.getContext(), APInt(64, -1, false)));
 
-  BasicBlock *NullBB = BasicBlock::Create(M.getContext(), "null", AddFunc);
+  BasicBlock *Neg1BB = BasicBlock::Create(M.getContext(), "neg", AddFunc);
   BasicBlock *ElseBB = BasicBlock::Create(M.getContext(), "else", AddFunc);
 
-  Builder.CreateCondBr(IsNull, NullBB, ElseBB);
+  Builder.CreateCondBr(IsNeg1, Neg1BB, ElseBB);
 
-  Builder.SetInsertPoint(NullBB);
+  Builder.SetInsertPoint(Neg1BB);
 
   Builder.CreateRetVoid();
 
   Builder.SetInsertPoint(ElseBB);
+
+  Value *isNull = Builder.CreateICmpEQ(
+      TrackerValue, ConstantInt::get(M.getContext(), APInt(64, 0, false)));
+
+  BasicBlock *NullBB = BasicBlock::Create(M.getContext(), "null", AddFunc);
+  BasicBlock *NotNullBB =
+      BasicBlock::Create(M.getContext(), "not_null", AddFunc);
+
+  Builder.CreateCondBr(isNull, NullBB, NotNullBB);
+  // If it is null, it needs to be constructed if the file is present
+
+  Builder.SetInsertPoint(NullBB);
+
+  Value *FileName =
+      Builder.CreateGlobalStringPtr("function_trace.txt", "instr_file");
+
+  FunctionCallee AccessFunc = M.getOrInsertFunction(
+      "access", FunctionType::get(
+                    IntegerType::get(M.getContext(), 32),
+                    {PointerType::get(IntegerType::get(M.getContext(), 8), 0),
+                     IntegerType::get(M.getContext(), 32)},
+                    false));
+
+  Value *File = Builder.CreateCall(
+      AccessFunc,
+      {FileName, ConstantInt::get(M.getContext(), APInt(32, 0, false))});
+
+  Value *FileIsNull = Builder.CreateICmpEQ(
+      File, ConstantInt::get(M.getContext(), APInt(32, 0, true)));
+
+  BasicBlock *AccessBB = BasicBlock::Create(M.getContext(), "access", AddFunc);
+  BasicBlock *NonAccessBB =
+      BasicBlock::Create(M.getContext(), "non_access", AddFunc);
+
+  Builder.CreateCondBr(FileIsNull, AccessBB, NonAccessBB);
+
+  Builder.SetInsertPoint(NonAccessBB);
+  // store -1 to tracker
+  Builder.CreateStore(ConstantInt::get(M.getContext(), APInt(64, -1, false)),
+                      Tracker);
+
+  Builder.CreateRetVoid();
+
+  Builder.SetInsertPoint(AccessBB);
+
+  Function *Constructor = M.getFunction("Constructor");
+
+  Builder.CreateCall(Constructor, {Tracker, Name});
+
+  Builder.CreateBr(NotNullBB);
+
+  Builder.SetInsertPoint(NotNullBB);
 
   Value *CountPtr = Builder.CreateStructGEP(TrackerType, Tracker, 1);
   Value *Count =
@@ -197,7 +251,7 @@ void insert_instrumentation_print(Module &M) {
   Function *PrintFunc = Function::Create(
       FunctionType::get(Type::getVoidTy(M.getContext()),
                         {PointerType::get(TrackerType, 0)}, false),
-      Function::LinkOnceODRLinkage, "print", M);
+      Function::PrivateLinkage, "print", M);
 
   BasicBlock *BB = BasicBlock::Create(M.getContext(), "entry", PrintFunc);
 
@@ -227,7 +281,7 @@ void insert_instrumentation_print(Module &M) {
 
   LLVM_DEBUG(dbgs() << "created name load\n");
 
-  Value *FormatStr = Builder.CreateGlobalStringPtr("Tracker %s: ");
+  Value *FormatStr = Builder.CreateGlobalStringPtr("%s: ");
 
   LLVM_DEBUG(dbgs() << "created format string\n");
 
@@ -342,7 +396,7 @@ void insert_instrumentation_destructor(Module &M) {
   Function *Destructor = Function::Create(
       FunctionType::get(Type::getVoidTy(M.getContext()),
                         {PointerType::get(TrackerType, 0)}, false),
-      Function::LinkOnceODRLinkage, "Destructor", M);
+      Function::PrivateLinkage, "Destructor", M);
 
   FunctionCallee DeleteFunc = M.getOrInsertFunction(
       "_ZdaPv",
@@ -355,6 +409,30 @@ void insert_instrumentation_destructor(Module &M) {
   Builder.SetInsertPoint(BB);
 
   Argument *Tracker = Destructor->arg_begin();
+
+  // check if the tracker is 0 or -1, if so, return
+
+  Value *TrackerValue =
+      Builder.CreateLoad(Type::getInt64Ty(M.getContext()), Tracker);
+
+  Value *IsNull = Builder.CreateICmpEQ(
+      TrackerValue, ConstantInt::get(M.getContext(), APInt(64, 0, false)));
+  Value *IsNeg1 = Builder.CreateICmpEQ(
+      TrackerValue, ConstantInt::get(M.getContext(), APInt(64, -1, false)));
+
+  Value *IsZero = Builder.CreateOr(IsNull, IsNeg1);
+
+  BasicBlock *NonInitBB =
+      BasicBlock::Create(M.getContext(), "then", Destructor);
+  BasicBlock *ElseBB = BasicBlock::Create(M.getContext(), "else", Destructor);
+
+  Builder.CreateCondBr(IsZero, NonInitBB, ElseBB);
+
+  Builder.SetInsertPoint(NonInitBB);
+
+  Builder.CreateRetVoid();
+
+  Builder.SetInsertPoint(ElseBB);
 
   Function *PrintFunc = M.getFunction("print");
   Builder.CreateCall(PrintFunc, Tracker);
@@ -404,93 +482,51 @@ void insert_instrumentation_destructor(Module &M) {
 //   tail call fastcc void @__cxx_global_var_init()
 //   ret void
 // }
-void insert_instrumentation_global_var_init(Module &M) {
+void insert_instrumentation_global_var_destruct(Module &M) {
 
   IRBuilder<> Builder(M.getContext());
 
-  Function *GlobalVarInit = Function::Create(
+  Function *GlobalVarDestruct = Function::Create(
       FunctionType::get(Type::getVoidTy(M.getContext()), false),
-      Function::PrivateLinkage, "__cxx_global_var_init", M);
+      Function::PrivateLinkage, "__cxx_global_var_destruct", M);
 
-  LLVM_DEBUG(dbgs() << "created global var init\n");
+  LLVM_DEBUG(dbgs() << "created global var destruct\n");
 
-  BasicBlock *BB = BasicBlock::Create(M.getContext(), "entry", GlobalVarInit);
+  BasicBlock *BB =
+      BasicBlock::Create(M.getContext(), "entry", GlobalVarDestruct);
 
   Builder.SetInsertPoint(BB);
 
-  // only create the tracker if function_trace.txt exists
-
-  Value *FileName =
-      Builder.CreateGlobalStringPtr("function_trace.txt", "instr_file");
-
-  FunctionCallee OpenFunc = M.getOrInsertFunction(
-      "access", FunctionType::get(
-                    IntegerType::get(M.getContext(), 32),
-                    {PointerType::get(IntegerType::get(M.getContext(), 8), 0),
-                     IntegerType::get(M.getContext(), 32)},
-                    false));
-
-  Value *File = Builder.CreateCall(
-      OpenFunc,
-      {FileName, ConstantInt::get(M.getContext(), APInt(32, 0, false))});
-
-  Value *FileIsNull = Builder.CreateICmpEQ(
-      File, ConstantInt::get(M.getContext(), APInt(32, 0, true)));
-
-  BasicBlock *ThenBB =
-      BasicBlock::Create(M.getContext(), "then", GlobalVarInit);
-  BasicBlock *EndBB = BasicBlock::Create(M.getContext(), "end", GlobalVarInit);
-
-  Builder.CreateCondBr(FileIsNull, ThenBB, EndBB);
-
-  Builder.SetInsertPoint(EndBB);
-
   Builder.CreateRetVoid();
 
-  Builder.SetInsertPoint(ThenBB);
-
-  // Create the dso handle
-  // @__dso_handle = external hidden global i8
-  GlobalVariable *DsoHandle = new GlobalVariable(
-      M, IntegerType::get(M.getContext(), 8), false,
-      GlobalValue::ExternalLinkage, nullptr, "__dso_handle", nullptr);
-  DsoHandle->setVisibility(GlobalValue::HiddenVisibility);
-
-  LLVM_DEBUG(dbgs() << "created dso handle\n");
-
-  LLVM_DEBUG(dbgs() << "created atexit\n");
-
-  Builder.CreateRetVoid();
-
-  Function *GlobalCtor = Function::Create(
+  Function *GlobalDtor = Function::Create(
       FunctionType::get(Type::getVoidTy(M.getContext()), false),
-      Function::PrivateLinkage, "_GLOBAL__sub_" + M.getName(), M);
+      Function::PrivateLinkage, "_GLOBAL__destructor_" + M.getName(), M);
 
   LLVM_DEBUG(dbgs() << "created global ctor\n");
 
-  BasicBlock *BB2 = BasicBlock::Create(M.getContext(), "entry", GlobalCtor);
+  BasicBlock *BB2 = BasicBlock::Create(M.getContext(), "entry", GlobalDtor);
 
   Builder.SetInsertPoint(BB2);
 
-  FunctionCallee GlobalVarInitFunc = M.getOrInsertFunction(
-      "__cxx_global_var_init",
+  FunctionCallee GlobalVarDestructFunc = M.getOrInsertFunction(
+      "__cxx_global_var_destruct",
       FunctionType::get(Type::getVoidTy(M.getContext()), false));
 
   LLVM_DEBUG(dbgs() << "created global var init func\n");
 
-  Builder.CreateCall(GlobalVarInitFunc);
-
+  Builder.CreateCall(GlobalVarDestructFunc);
   LLVM_DEBUG(dbgs() << "created global var init call\n");
 
   Builder.CreateRetVoid();
 
-  GlobalCtor->setSection(".text.startup");
+  GlobalDtor->setSection(".text.startup");
 
-  GlobalVarInit->setSection(".text.startup");
+  GlobalVarDestruct->setSection(".text.startup");
 
   // @llvm.global_ctors = appending global [1 x { i32, ptr, ptr }] [{ i32, ptr,
   // ptr } { i32 65535, ptr @_GLOBAL__sub_I_class_idea.cpp, ptr null }]
-  appendToGlobalCtors(M, GlobalCtor, 65535, nullptr);
+  appendToGlobalDtors(M, GlobalDtor, 0, nullptr);
 
   LLVM_DEBUG(dbgs() << "found global ctors\n");
 }
@@ -568,7 +604,7 @@ void insert_instrumentation_class(Module &M, Function &F) {
 
   LLVM_DEBUG(dbgs() << "created destructor\n");
 
-  insert_instrumentation_global_var_init(M);
+  insert_instrumentation_global_var_destruct(M);
 }
 
 PreservedAnalyses
@@ -629,63 +665,14 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
 
     // register the constructor and destructor to the var init func
 
-    Function *Constructor = M.getFunction("Constructor");
+    Function *Destructor = M.getFunction("Destructor");
 
-    Function *VarInitFunc = M.getFunction("__cxx_global_var_init");
+    Function *VarDestructFunc = M.getFunction("__cxx_global_var_destruct");
 
-    BasicBlock *ThenBB = nullptr;
+    BasicBlock *DestructBB = &VarDestructFunc->getEntryBlock();
 
-    for (auto &BB : *VarInitFunc) {
-      if (BB.getName() == "then") {
-        ThenBB = &BB;
-        break;
-      }
-    }
-
-    if (!ThenBB) {
-      LLVM_DEBUG(dbgs() << "could not find then block\n");
-      continue;
-    }
-
-    Builder.SetInsertPoint(ThenBB->getTerminator());
-    Builder.CreateCall(Constructor, {GV, FuncName});
-
-    FunctionCallee AtExitFunc = M.getOrInsertFunction(
-        "__cxa_atexit",
-        FunctionType::get(
-            IntegerType::get(M.getContext(), 32),
-            {PointerType::get(
-                 FunctionType::get(Type::getVoidTy(M.getContext()),
-                                   {PointerType::get(TrackerType, 0)}, false),
-                 0),
-             PointerType::get(TrackerType, 0),
-             PointerType::get(IntegerType::get(M.getContext(), 8), 0)},
-            false));
-
-    Value *DsoHandle = M.getOrInsertGlobal("__dso_handle",
-                                           IntegerType::get(M.getContext(), 8));
-    Builder.CreateCall(AtExitFunc,
-                       {M.getFunction("Destructor"), GV, DsoHandle});
-
-    LLVM_DEBUG(dbgs() << "created atexit call\n");
-
-    for (auto &BB : *VarInitFunc) {
-      if (BB.getName() == "end") {
-        ThenBB = &BB;
-        break;
-      }
-    }
-
-    if (!ThenBB) {
-      LLVM_DEBUG(dbgs() << "could not find then block\n");
-      continue;
-    }
-
-    Builder.SetInsertPoint(ThenBB->getTerminator());
-    // write nullptr to GV
-
-    Builder.CreateStore(ConstantInt::get(M.getContext(), APInt(64, 0, false)),
-                        GV);
+    IRBuilder<> DestructBuilder(DestructBB, DestructBB->begin());
+    DestructBuilder.CreateCall(Destructor, GV);
 
     for (auto &BB : F) {
       // Do NOT reinstrument the inserted blocks
@@ -708,12 +695,14 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
           Value *ExtVal =
               Builder.CreateZExt(retVal, Type::getInt64Ty(M.getContext()));
           Builder.CreateCall(
-              FunctionType::get(Type::getVoidTy(M.getContext()),
-                                {PointerType::get(TrackerType, 0),
-                                 Type::getInt64Ty(M.getContext())},
-                                false),
+              FunctionType::get(
+                  Type::getVoidTy(M.getContext()),
+                  {PointerType::get(TrackerType, 0),
+                   Type::getInt64Ty(M.getContext()),
+                   PointerType::get(IntegerType::get(M.getContext(), 8), 0)},
+                  false),
 
-              AddFunc, {Tracker, ExtVal});
+              AddFunc, {Tracker, ExtVal, FuncName});
         }
       }
     }

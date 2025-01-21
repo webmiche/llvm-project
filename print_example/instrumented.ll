@@ -3,14 +3,13 @@ source_filename = "test.ll"
 
 %Tracker = type { ptr, i64, ptr }
 
-@0 = private unnamed_addr constant [13 x i8] c"Tracker %s: \00", align 1
+@0 = private unnamed_addr constant [5 x i8] c"%s: \00", align 1
 @file_permission = private unnamed_addr constant [2 x i8] c"a\00", align 1
 @instr_file = private unnamed_addr constant [19 x i8] c"function_trace.txt\00", align 1
 @1 = private unnamed_addr constant [5 x i8] c"%ld \00", align 1
 @2 = private unnamed_addr constant [2 x i8] c"\0A\00", align 1
 @instr_file.1 = private unnamed_addr constant [19 x i8] c"function_trace.txt\00", align 1
-@__dso_handle = external hidden global i8
-@llvm.global_ctors = appending global [1 x { i32, ptr, ptr }] [{ i32, ptr, ptr } { i32 65535, ptr @_GLOBAL__sub_test.ll, ptr null }]
+@llvm.global_dtors = appending global [1 x { i32, ptr, ptr }] [{ i32, ptr, ptr } { i32 0, ptr @_GLOBAL__destructor_test.ll, ptr null }]
 @foo_name = private unnamed_addr constant [5 x i8] c"foo \00", align 1
 @foo_tracker = private global %Tracker zeroinitializer
 @bat_name = private unnamed_addr constant [5 x i8] c"bat \00", align 1
@@ -19,12 +18,12 @@ source_filename = "test.ll"
 @baz_tracker = private global %Tracker zeroinitializer
 
 define i1 @foo() {
-  call void @add(ptr @foo_tracker, i64 0)
+  call void @add(ptr @foo_tracker, i64 0, ptr @foo_name)
   ret i1 false
 }
 
 define i32 @bat() {
-  call void @add(ptr @bat_tracker, i64 0)
+  call void @add(ptr @bat_tracker, i64 0, ptr @bat_name)
   ret i32 0
 }
 
@@ -43,7 +42,7 @@ else:                                             ; preds = %0
   br label %end
 
 end:                                              ; preds = %else, %then
-  call void @add(ptr @baz_tracker, i64 5)
+  call void @add(ptr @baz_tracker, i64 5, ptr @baz_name)
   ret i32 5
 }
 
@@ -96,7 +95,7 @@ end:                                              ; preds = %else, %then
   ret i32 5
 }
 
-define linkonce_odr void @Constructor(ptr %0, ptr %1) {
+define private void @Constructor(ptr %0, ptr %1) {
 entry:
   %2 = getelementptr inbounds %Tracker, ptr %0, i32 0, i32 1
   store i64 0, ptr %2, align 4
@@ -110,7 +109,7 @@ entry:
 
 declare ptr @malloc(i64)
 
-define linkonce_odr void @print(ptr %0) {
+define private void @print(ptr %0) {
 entry:
   %1 = icmp eq ptr %0, null
   br i1 %1, label %then, label %else
@@ -150,82 +149,93 @@ declare ptr @fopen(ptr, ptr)
 
 declare void @fprintf(ptr, ...)
 
-define linkonce_odr void @add(ptr %0, i64 %1) {
+define private void @add(ptr %0, i64 %1, ptr %2) {
 entry:
-  %2 = load i64, ptr %0, align 4
-  %3 = icmp eq i64 %2, 0
-  br i1 %3, label %null, label %else
+  %3 = load i64, ptr %0, align 4
+  %4 = icmp eq i64 %3, -1
+  br i1 %4, label %neg, label %else
 
-null:                                             ; preds = %entry
+neg:                                              ; preds = %entry
   ret void
 
 else:                                             ; preds = %entry
-  %4 = getelementptr inbounds %Tracker, ptr %0, i32 0, i32 1
-  %5 = load i64, ptr %4, align 4
-  %6 = getelementptr inbounds %Tracker, ptr %0, i32 0, i32 0
-  %7 = load ptr, ptr %6, align 8
-  %8 = getelementptr ptr, ptr %7, i64 %5
-  store i64 %1, ptr %8, align 4
-  %9 = add i64 %5, 1
-  store i64 %9, ptr %4, align 4
-  %10 = icmp eq i64 %9, 100
-  br i1 %10, label %then, label %end
+  %5 = icmp eq i64 %3, 0
+  br i1 %5, label %null, label %not_null
 
-then:                                             ; preds = %else
+null:                                             ; preds = %else
+  %6 = call i32 @access(ptr @instr_file.1, i32 0)
+  %7 = icmp eq i32 %6, 0
+  br i1 %7, label %access, label %non_access
+
+not_null:                                         ; preds = %access, %else
+  %8 = getelementptr inbounds %Tracker, ptr %0, i32 0, i32 1
+  %9 = load i64, ptr %8, align 4
+  %10 = getelementptr inbounds %Tracker, ptr %0, i32 0, i32 0
+  %11 = load ptr, ptr %10, align 8
+  %12 = getelementptr ptr, ptr %11, i64 %9
+  store i64 %1, ptr %12, align 4
+  %13 = add i64 %9, 1
+  store i64 %13, ptr %8, align 4
+  %14 = icmp eq i64 %13, 100
+  br i1 %14, label %then, label %end
+
+access:                                           ; preds = %null
+  call void @Constructor(ptr %0, ptr %2)
+  br label %not_null
+
+non_access:                                       ; preds = %null
+  store i64 -1, ptr %0, align 4
+  ret void
+
+then:                                             ; preds = %not_null
   call void @print(ptr %0)
-  store i64 0, ptr %4, align 4
+  store i64 0, ptr %8, align 4
   br label %end
 
-end:                                              ; preds = %then, %else
-  ret void
-}
-
-define linkonce_odr void @Destructor(ptr %0) {
-entry:
-  call void @print(ptr %0)
-  %1 = getelementptr inbounds %Tracker, ptr %0, i32 0, i32 0
-  %2 = load ptr, ptr %1, align 8
-  %3 = icmp eq ptr %2, null
-  br i1 %3, label %end, label %then
-
-then:                                             ; preds = %entry
-  call void @_ZdaPv(ptr %2)
-  br label %end
-
-end:                                              ; preds = %then, %entry
-  ret void
-}
-
-declare void @_ZdaPv(ptr)
-
-define private void @__cxx_global_var_init() section ".text.startup" {
-entry:
-  %0 = call i32 @access(ptr @instr_file.1, i32 0)
-  %1 = icmp eq i32 %0, 0
-  br i1 %1, label %then, label %end
-
-then:                                             ; preds = %entry
-  call void @Constructor(ptr @foo_tracker, ptr @foo_name)
-  %2 = call i32 @__cxa_atexit(ptr @Destructor, ptr @foo_tracker, ptr @__dso_handle)
-  call void @Constructor(ptr @bat_tracker, ptr @bat_name)
-  %3 = call i32 @__cxa_atexit(ptr @Destructor, ptr @bat_tracker, ptr @__dso_handle)
-  call void @Constructor(ptr @baz_tracker, ptr @baz_name)
-  %4 = call i32 @__cxa_atexit(ptr @Destructor, ptr @baz_tracker, ptr @__dso_handle)
-  ret void
-
-end:                                              ; preds = %entry
-  store i64 0, ptr @foo_tracker, align 4
-  store i64 0, ptr @bat_tracker, align 4
-  store i64 0, ptr @baz_tracker, align 4
+end:                                              ; preds = %then, %not_null
   ret void
 }
 
 declare i32 @access(ptr, i32)
 
-define private void @_GLOBAL__sub_test.ll() section ".text.startup" {
+define private void @Destructor(ptr %0) {
 entry:
-  call void @__cxx_global_var_init()
+  %1 = load i64, ptr %0, align 4
+  %2 = icmp eq i64 %1, 0
+  %3 = icmp eq i64 %1, -1
+  %4 = or i1 %2, %3
+  br i1 %4, label %then, label %else
+
+then:                                             ; preds = %entry
+  ret void
+
+else:                                             ; preds = %entry
+  call void @print(ptr %0)
+  %5 = getelementptr inbounds %Tracker, ptr %0, i32 0, i32 0
+  %6 = load ptr, ptr %5, align 8
+  %7 = icmp eq ptr %6, null
+  br i1 %7, label %end, label %then1
+
+then1:                                            ; preds = %else
+  call void @_ZdaPv(ptr %6)
+  br label %end
+
+end:                                              ; preds = %then1, %else
   ret void
 }
 
-declare i32 @__cxa_atexit(ptr, ptr, ptr)
+declare void @_ZdaPv(ptr)
+
+define private void @__cxx_global_var_destruct() section ".text.startup" {
+entry:
+  call void @Destructor(ptr @baz_tracker)
+  call void @Destructor(ptr @bat_tracker)
+  call void @Destructor(ptr @foo_tracker)
+  ret void
+}
+
+define private void @_GLOBAL__destructor_test.ll() section ".text.startup" {
+entry:
+  call void @__cxx_global_var_destruct()
+  ret void
+}
