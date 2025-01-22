@@ -97,35 +97,28 @@ end:                                              ; preds = %else, %then
 
 define private void @print(ptr %0) {
 entry:
-  %1 = icmp eq ptr %0, null
-  br i1 %1, label %then, label %else
-
-then:                                             ; preds = %entry
-  ret void
-
-else:                                             ; preds = %entry
-  %2 = getelementptr inbounds %Tracker, ptr %0, i32 0, i32 2
-  %3 = load ptr, ptr %2, align 8
-  %4 = call ptr @fopen(ptr @instr_file, ptr @file_permission)
-  call void (ptr, ...) @fprintf(ptr %4, ptr @0, ptr %3)
-  %5 = getelementptr inbounds %Tracker, ptr %0, i32 0, i32 1
-  %6 = load i64, ptr %5, align 4
-  %7 = getelementptr inbounds %Tracker, ptr %0, i32 0, i32 0
-  %8 = load ptr, ptr %7, align 8
+  %1 = getelementptr inbounds %Tracker, ptr %0, i32 0, i32 2
+  %2 = load ptr, ptr %1, align 8
+  %3 = call ptr @fopen(ptr @instr_file, ptr @file_permission)
+  call void (ptr, ...) @fprintf(ptr %3, ptr @0, ptr %2)
+  %4 = getelementptr inbounds %Tracker, ptr %0, i32 0, i32 1
+  %5 = load i64, ptr %4, align 4
+  %6 = getelementptr inbounds %Tracker, ptr %0, i32 0, i32 0
+  %7 = load ptr, ptr %6, align 8
   br label %loop
 
-loop:                                             ; preds = %loop, %else
-  %9 = phi i64 [ 0, %else ], [ %12, %loop ]
-  %10 = getelementptr ptr, ptr %8, i64 %9
-  %11 = load i64, ptr %10, align 4
-  call void (ptr, ...) @fprintf(ptr %4, ptr @1, i64 %11)
-  %12 = add i64 %9, 1
-  %13 = icmp eq i64 %12, %6
-  br i1 %13, label %end, label %loop
+loop:                                             ; preds = %loop, %entry
+  %8 = phi i64 [ 0, %entry ], [ %11, %loop ]
+  %9 = getelementptr ptr, ptr %7, i64 %8
+  %10 = load i64, ptr %9, align 4
+  call void (ptr, ...) @fprintf(ptr %3, ptr @1, i64 %10)
+  %11 = add i64 %8, 1
+  %12 = icmp eq i64 %11, %5
+  br i1 %12, label %end, label %loop
 
 end:                                              ; preds = %loop
-  call void (ptr, ...) @fprintf(ptr %4, ptr @2)
-  %14 = call i32 @fclose(ptr %4)
+  call void (ptr, ...) @fprintf(ptr %3, ptr @2)
+  %13 = call i32 @fclose(ptr %3)
   ret void
 }
 
@@ -180,7 +173,7 @@ declare ptr @malloc(i64)
 define private void @setup() {
 entry:
   %0 = load i64, ptr @initialized, align 4
-  %1 = icmp ne i64 %0, 0
+  %1 = icmp eq i64 %0, 0
   br i1 %1, label %then, label %end
 
 then:                                             ; preds = %entry

@@ -100,7 +100,7 @@ void insert_instrumentation_constructor(Module &M, Function &F) {
   Value *InitValue =
       Builder.CreateLoad(IntegerType::get(M.getContext(), 64), InitGV);
 
-  Value *IsCalled = Builder.CreateICmpNE(
+  Value *IsCalled = Builder.CreateICmpEQ(
       InitValue, ConstantInt::get(M.getContext(), APInt(64, 0, false)));
 
   BasicBlock *InitBB = BasicBlock::Create(M.getContext(), "then", SetupFunc);
@@ -305,22 +305,6 @@ void insert_instrumentation_print(Module &M) {
 
   Argument *Tracker = PrintFunc->arg_begin();
 
-  // check if the tracker is null
-
-  Value *IsNull = Builder.CreateICmpEQ(
-      Tracker, ConstantPointerNull::get(PointerType::get(TrackerType, 0)));
-
-  BasicBlock *ThenBB = BasicBlock::Create(M.getContext(), "then", PrintFunc);
-  BasicBlock *ElseBB = BasicBlock::Create(M.getContext(), "else", PrintFunc);
-
-  Builder.CreateCondBr(IsNull, ThenBB, ElseBB);
-
-  Builder.SetInsertPoint(ThenBB);
-
-  Builder.CreateRetVoid();
-
-  Builder.SetInsertPoint(ElseBB);
-
   Value *NamePtr = Builder.CreateStructGEP(TrackerType, Tracker, 2);
   Value *Name = Builder.CreateLoad(
       PointerType::get(IntegerType::get(M.getContext(), 8), 0), NamePtr);
@@ -381,8 +365,7 @@ void insert_instrumentation_print(Module &M) {
 
   PHINode *Index = Builder.CreatePHI(IntegerType::get(M.getContext(), 64), 2);
 
-  Index->addIncoming(ConstantInt::get(M.getContext(), APInt(64, 0, false)),
-                     ElseBB);
+  Index->addIncoming(ConstantInt::get(M.getContext(), APInt(64, 0, false)), BB);
 
   Value *ValuesIndex =
       Builder.CreateGEP(PointerType::get(TrackerType, 0), Values, {Index});
@@ -602,10 +585,9 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
         F.getName() == "malloc" || F.getName() == "free" ||
         F.getName() == "access" || F.getName() == "fopen" ||
         F.getName() == "fclose" || F.getName() == "fprintf" ||
-        F.getName() == "_ZdaPv" || F.getName() == "__cxa_atexit" ||
-        F.getName() == "__cxx_global_var_init" || F.getName() == "Destructor" ||
-        F.getName() == "Constructor" ||
-        F.getName() == StringRef("_GLOBAL__sub_" + M.getName().str())) {
+        F.getName() == "free" || F.getName() == "atexit" ||
+        F.getName().starts_with("setup") || F.getName() == "Destructor" ||
+        F.getName() == "Constructor" || F.getName().starts_with("destruct_")) {
       continue;
     }
 
