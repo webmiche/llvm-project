@@ -9,6 +9,7 @@
 #include "llvm/Passes/PassBuilder.h"
 #include "llvm/Passes/PassPlugin.h"
 #include "llvm/Support/Debug.h"
+#include <fstream>
 
 namespace llvm {
 
@@ -30,6 +31,20 @@ struct CFFunctionAnalysisPrinterPass
 
 public:
   explicit CFFunctionAnalysisPrinterPass(raw_ostream &OS) : OS(OS) {}
+
+  PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
+};
+
+struct CFFunctionAnalysisStorePass
+    : PassInfoMixin<CFFunctionAnalysisStorePass> {
+
+  std::string Filename;
+
+public:
+  explicit CFFunctionAnalysisStorePass(std::string Filename)
+      : Filename(std::move(Filename)) {}
+
+  explicit CFFunctionAnalysisStorePass() : Filename("called_functions.txt") {}
 
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
 };

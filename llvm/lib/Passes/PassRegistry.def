@@ -42,6 +42,7 @@ MODULE_ALIAS_ANALYSIS("globals-aa", GlobalsAA())
 #ifndef MODULE_PASS
 #define MODULE_PASS(NAME, CREATE_PASS)
 #endif
+MODULE_PASS("store<cffunction-analysis>", CFFunctionAnalysisStorePass())
 MODULE_PASS("print<cffunction-analysis>", CFFunctionAnalysisPrinterPass(errs()))
 MODULE_PASS("cffunction-instrumentation", CFFunctionInstrumentationPass())
 MODULE_PASS("always-inline", AlwaysInlinerPass())
