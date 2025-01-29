@@ -10,9 +10,9 @@ PreservedAnalyses
 CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
 
   CFFunctionAnalysisInfo CalledFunctions = AM.getResult<CFFunctionAnalysis>(M);
-  for (auto &F : CalledFunctions) {
-    LLVM_DEBUG(dbgs() << "Called function: " << F << "\n");
-  }
+  LLVM_DEBUG(
+      for (auto &F
+           : CalledFunctions) { dbgs() << "Called function: " << F << "\n"; });
   int permissions_created = 0;
   Value *WritePermission = nullptr;
   Value *FileName = nullptr;
