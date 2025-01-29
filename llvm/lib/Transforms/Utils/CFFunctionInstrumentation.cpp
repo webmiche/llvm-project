@@ -40,6 +40,9 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
     // store already handled blocks
     std::set<BasicBlock *> HandledBlocks;
     for (auto &BB : F) {
+      if (HandledBlocks.count(&BB)) {
+        continue;
+      }
       // Do NOT reinstrument the inserted blocks
       if (BB.getName() == "return" || BB.getName() == "print" ||
           BB.getName() == "open") {
@@ -120,6 +123,10 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
 
           // place new BBs in the correct order
           ReturnBB->moveAfter(PrintBB);
+
+          HandledBlocks.insert(AccessBB);
+          HandledBlocks.insert(PrintBB);
+          HandledBlocks.insert(ReturnBB);
         }
       }
       HandledBlocks.insert(&BB);
