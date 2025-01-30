@@ -17,7 +17,11 @@ def parse_called_funcs(filename):
     try:
         with open(filename, 'r') as f:
             for line in f:
-                func, _, _, module = line.strip().split(' ')
+                splitline = line.strip().split(' ')
+                if not len(splitline) == 4:
+                    continue
+                func = splitline[0]
+                module = splitline[3]
                 if module not in funcs_per_module:
                     funcs_per_module[module] = []
                 funcs_per_module[module].append(func)
@@ -41,14 +45,12 @@ if __name__ == '__main__':
     unique_funcs = get_unique_funcs(filename)
 
     print(f'Found {len(unique_funcs)} unique functions in {filename}:')
-    for func in unique_funcs:
-        print(demangle_function_name(func))
 
     funcs_per_module = parse_called_funcs(filename)
 
     print(f'Found {len(funcs_per_module)} modules in {filename}:')
     for module, funcs in funcs_per_module.items():
         print(f'{module}: {len(funcs)} functions')
-        for func in funcs:
-            print(demangle_function_name(func))
-        print()
+
+    f = open("funcs_per_module.txt", "w")
+    f.write(str(funcs_per_module))
