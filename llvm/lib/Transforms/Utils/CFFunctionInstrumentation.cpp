@@ -30,6 +30,18 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
       continue;
     }
 
+    // print the function name and the module name to traced_functions.txt
+    std::ofstream out;
+    out.open("traced_functions.txt", std::ios::app);
+
+    if (!out) {
+      errs() << "Error: cannot open file traced_functions.txt \n";
+      return PreservedAnalyses::none();
+    }
+    out << F.getName().str() << " instrumented in " << M.getName().str()
+        << "\n";
+    out.close();
+
     std::string outputString = F.getName().str() + " %lld\n";
     StringRef funcFormatStr = StringRef(outputString);
     std::string fileName = "function_trace.txt";
@@ -46,7 +58,7 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
       // Do NOT reinstrument the inserted blocks
       if (BB.getName() == "return" || BB.getName() == "print" ||
           BB.getName() == "open") {
-            HandledBlocks.insert(&BB);
+        HandledBlocks.insert(&BB);
         continue;
       }
       if (auto *RI = dyn_cast<ReturnInst>(BB.getTerminator())) {

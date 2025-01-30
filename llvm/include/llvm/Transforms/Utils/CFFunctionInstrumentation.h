@@ -8,6 +8,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
+#include <fstream>
 
 namespace llvm {
 
