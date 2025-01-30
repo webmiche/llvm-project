@@ -10,6 +10,9 @@ PreservedAnalyses
 CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
 
   CFFunctionAnalysisInfo CalledFunctions = AM.getResult<CFFunctionAnalysis>(M);
+  LLVM_DEBUG(
+      for (auto &F
+           : CalledFunctions) { dbgs() << "Called function: " << F << "\n"; });
   int permissions_created = 0;
   Value *WritePermission = nullptr;
   Value *FileName = nullptr;
@@ -33,10 +36,17 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
     StringRef funcFileName = StringRef(fileName);
     // for all return instructions, print the return value to a file with the
     // name of the function
+
+    // store already handled blocks
+    std::set<BasicBlock *> HandledBlocks;
     for (auto &BB : F) {
+      if (HandledBlocks.count(&BB)) {
+        continue;
+      }
       // Do NOT reinstrument the inserted blocks
       if (BB.getName() == "return" || BB.getName() == "print" ||
           BB.getName() == "open") {
+            HandledBlocks.insert(&BB);
         continue;
       }
       if (auto *RI = dyn_cast<ReturnInst>(BB.getTerminator())) {
@@ -113,8 +123,13 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
 
           // place new BBs in the correct order
           ReturnBB->moveAfter(PrintBB);
+
+          HandledBlocks.insert(AccessBB);
+          HandledBlocks.insert(PrintBB);
+          HandledBlocks.insert(ReturnBB);
         }
       }
+      HandledBlocks.insert(&BB);
     }
   }
 

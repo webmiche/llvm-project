@@ -17,6 +17,7 @@
 #include "llvm/ADT/Statistic.h"
 #include "llvm/Analysis/AliasAnalysis.h"
 #include "llvm/Analysis/BasicAliasAnalysis.h"
+#include "llvm/Analysis/CFFunctionAnalysis.h"
 #include "llvm/Analysis/CGSCCPassManager.h"
 #include "llvm/Analysis/GlobalsModRef.h"
 #include "llvm/Analysis/InlineAdvisor.h"
@@ -123,9 +124,9 @@
 #include "llvm/Transforms/Scalar/WarnMissedTransforms.h"
 #include "llvm/Transforms/Utils/AddDiscriminators.h"
 #include "llvm/Transforms/Utils/AssumeBundleBuilder.h"
+#include "llvm/Transforms/Utils/CFFunctionInstrumentation.h"
 #include "llvm/Transforms/Utils/CanonicalizeAliases.h"
 #include "llvm/Transforms/Utils/CountVisits.h"
-#include "llvm/Transforms/Utils/CFFunctionInstrumentation.h"
 #include "llvm/Transforms/Utils/InjectTLIMappings.h"
 #include "llvm/Transforms/Utils/LibCallsShrinkWrap.h"
 #include "llvm/Transforms/Utils/Mem2Reg.h"
@@ -181,9 +182,9 @@ static cl::opt<bool> EnablePostPGOLoopRotation(
     "enable-post-pgo-loop-rotation", cl::init(true), cl::Hidden,
     cl::desc("Run the loop rotation transformation after PGO instrumentation"));
 
-static cl::opt<bool> EnableGlobalAnalyses(
-    "enable-global-analyses", cl::init(true), cl::Hidden,
-    cl::desc("Enable inter-procedural analyses"));
+static cl::opt<bool>
+    EnableGlobalAnalyses("enable-global-analyses", cl::init(true), cl::Hidden,
+                         cl::desc("Enable inter-procedural analyses"));
 
 static cl::opt<bool>
     RunPartialInlining("enable-partial-inlining", cl::init(false), cl::Hidden,
@@ -1084,11 +1085,10 @@ PassBuilder::buildModuleSimplificationPipeline(OptimizationLevel Level,
   // and prior to optimizing globals.
   // FIXME: This position in the pipeline hasn't been carefully considered in
   // years, it should be re-analyzed.
-  MPM.addPass(IPSCCPPass(
-              IPSCCPOptions(/*AllowFuncSpec=*/
-                            Level != OptimizationLevel::Os &&
-                            Level != OptimizationLevel::Oz &&
-                            !isLTOPreLink(Phase))));
+  MPM.addPass(IPSCCPPass(IPSCCPOptions(/*AllowFuncSpec=*/
+                                       Level != OptimizationLevel::Os &&
+                                       Level != OptimizationLevel::Oz &&
+                                       !isLTOPreLink(Phase))));
 
   // Attach metadata to indirect call sites indicating the set of functions
   // they may target at run-time. This should follow IPSCCP.
@@ -1498,6 +1498,7 @@ PassBuilder::buildPerModuleDefaultPipeline(OptimizationLevel Level,
 
   ModulePassManager MPM;
 
+  MPM.addPass(CFFunctionAnalysisStorePass("cffunction-analysis-store.txt"));
   MPM.addPass(CFFunctionInstrumentationPass());
 
   // Convert @llvm.global.annotations to !annotation metadata.
@@ -1559,7 +1560,7 @@ PassBuilder::buildFatLTODefaultPipeline(OptimizationLevel Level, bool ThinLTO,
 ModulePassManager
 PassBuilder::buildThinLTOPreLinkDefaultPipeline(OptimizationLevel Level) {
   if (Level == OptimizationLevel::O0)
-    return buildO0DefaultPipeline(Level, /*LTOPreLink*/true);
+    return buildO0DefaultPipeline(Level, /*LTOPreLink*/ true);
 
   ModulePassManager MPM;
 

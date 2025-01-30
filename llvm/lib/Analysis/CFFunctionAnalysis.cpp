@@ -7,9 +7,7 @@ using namespace llvm;
 // Provide a definition for the static object used to identify passes.
 AnalysisKey CFFunctionAnalysis::Key;
 
-CFFunctionAnalysisInfo CFFunctionAnalysis::run(Module &M,
-                                               ModuleAnalysisManager &AM) {
-
+CFFunctionAnalysisInfo analyse(Module &M) {
   CFFunctionAnalysisInfo CalledFunctions;
   for (auto &F : M) {
     if (F.isDeclaration()) {
@@ -75,6 +73,27 @@ CFFunctionAnalysisInfo CFFunctionAnalysis::run(Module &M,
   return CalledFunctions;
 }
 
+CFFunctionAnalysisInfo CFFunctionAnalysis::run(Module &M,
+                                               ModuleAnalysisManager &AM) {
+
+  CFFunctionAnalysisInfo CalledFunctions;
+
+  // check if called functions file exists
+  std::ifstream file("called_functions.txt");
+  if (file.good()) {
+    std::string line;
+    while (std::getline(file, line)) {
+      char *cstr = new char[line.length() + 1];
+      strcpy(cstr, line.c_str());
+      CalledFunctions.insert(cstr);
+    }
+  } else {
+    CalledFunctions = analyse(M);
+  }
+  file.close();
+  return CalledFunctions;
+}
+
 PreservedAnalyses
 CFFunctionAnalysisPrinterPass::run(Module &M, ModuleAnalysisManager &AM) {
   OS << "Called functions for " << M.getName() << ":\n";
@@ -82,5 +101,27 @@ CFFunctionAnalysisPrinterPass::run(Module &M, ModuleAnalysisManager &AM) {
     OS << F << "\n";
   }
   OS << "\n";
+  return PreservedAnalyses::all();
+}
+
+PreservedAnalyses CFFunctionAnalysisStorePass::run(Module &M,
+                                                   ModuleAnalysisManager &AM) {
+  CFFunctionAnalysisInfo CalledFunctions = AM.getResult<CFFunctionAnalysis>(M);
+
+  // store called functions to called_functions.txt
+  std::ofstream out;
+  out.open(Filename, std::ios::app);
+
+  if (!out) {
+    errs() << "Error: cannot open file " << Filename << "\n";
+    return PreservedAnalyses::none();
+  }
+
+  for (auto &F : CalledFunctions) {
+    out << F.str() << "\n";
+  }
+
+  out.close();
+
   return PreservedAnalyses::all();
 }
