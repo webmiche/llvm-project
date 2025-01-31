@@ -118,7 +118,7 @@ PreservedAnalyses CFFunctionAnalysisStorePass::run(Module &M,
   }
 
   for (auto &F : CalledFunctions) {
-    out << F.str() << "\n";
+    out << F.str() << " called from " << M.getName().str() << "\n";
   }
 
   out.close();

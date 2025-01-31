@@ -1,6 +1,7 @@
 
 from collections import Counter
 from subprocess import run, PIPE
+from utils import demangle_function_name
 
 def parse_trace(trace_string) -> dict:
 
@@ -30,10 +31,6 @@ def parse_file(file_path) -> dict:
         trace_string = f.read()
     return parse_trace(trace_string)
 
-def demangle_function_name(function_name):
-    cmd = f"llvm-cxxfilt {function_name}"
-    result = run(cmd, shell=True, stdout=PIPE)
-    return result.stdout.decode('utf-8').strip()
 
 def single_valued_functions(trace_dict):
     result = {}
