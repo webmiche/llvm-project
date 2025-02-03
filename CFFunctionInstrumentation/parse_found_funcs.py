@@ -76,6 +76,21 @@ def print_hierarchy(hierarchy):
             print()
         print()
 
+def find_tablegen_funcs(funcs_per_module):
+    functions_in_tablegen = {}
+    for module, funcs in funcs_per_module.items():
+        if module.startswith('/home/webmiche/questions/llvm-project/llvm/utils/TableGen'):
+            functions_in_tablegen[module] = funcs
+    unique_functions = unique_funcs(functions_in_tablegen)
+    total_functions = len(unique_functions)
+    print(f'Functions in TableGen: {total_functions}')
+    return functions_in_tablegen
+
+
+def prepare_called_funcs(funcs_to_instrument):
+    called_funcs_file = open('called_functions.txt', 'w')
+    for func in funcs_to_instrument:
+        called_funcs_file.write(f'{func}\n')
 
 
 if __name__ == '__main__':
@@ -86,21 +101,6 @@ if __name__ == '__main__':
     filename = args.filename
     funcs_per_module = get_stored_funcs_dict(filename)
 
-
-    hierarchy = build_folder_hierarchy(funcs_per_module.keys())
-
-    print_hierarchy(hierarchy)
-
-    # add up all the functions in the TableGen folder
-    functions_in_tablegen = {}
-    for module, funcs in funcs_per_module.items():
-        if module.startswith('/home/webmiche/questions/llvm-project/llvm/utils/TableGen'):
-            functions_in_tablegen[module] = funcs
-
-    unique_functions = unique_funcs(functions_in_tablegen)
-    total_functions = len(unique_functions)
-
-
-    print_stats(funcs_per_module)
-
-    print(f'Functions in TableGen: {total_functions}')
+    all_funcs = unique_funcs(funcs_per_module)
+    print(f'Found {len(all_funcs)} functions')
+    prepare_called_funcs(all_funcs)
