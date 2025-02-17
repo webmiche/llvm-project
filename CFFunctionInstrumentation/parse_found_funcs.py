@@ -92,6 +92,96 @@ def prepare_called_funcs(funcs_to_instrument):
     for func in funcs_to_instrument:
         called_funcs_file.write(f'{func}\n')
 
+def prepare_called_funcs_only_llvm(funcs_per_module):
+    funcs_to_call = set()
+    for module, funcs in funcs_per_module.items():
+        if module.startswith('/home/webmiche/questions/llvm-project/llvm'):
+            for func in funcs:
+                funcs_to_call.add(func)
+
+    prepare_called_funcs(funcs_to_call)
+
+def prepare_called_funcs_only_analysis(funcs_per_module):
+    funcs_to_call = set()
+    for module, funcs in funcs_per_module.items():
+        if module.startswith('/home/webmiche/questions/llvm-project/llvm/lib/Analysis'):
+            for func in funcs:
+                funcs_to_call.add(func)
+
+    prepare_called_funcs(funcs_to_call)
+
+def prepare_called_funcs_all(funcs_per_module):
+    funcs_to_call = set()
+    for module, funcs in funcs_per_module.items():
+        for func in funcs:
+            funcs_to_call.add(func)
+
+    prepare_called_funcs(funcs_to_call)
+
+def convert_to_nested_folder_dict(funcs_per_module):
+    nested_dict = {}
+    for module, funcs in funcs_per_module.items():
+        module = module.removeprefix('/home/webmiche/questions/llvm-project/')
+        parts = module.split('/')
+        current = nested_dict
+        for part in parts:
+            if part not in current:
+                current[part] = {}
+            current = current[part]
+        current['functions'] = funcs
+
+    return nested_dict
+
+def convert_to_nested_folder_dict_count(funcs_per_module):
+    nested_dict = {}
+    for module, funcs in funcs_per_module.items():
+        module = module.removeprefix('/home/webmiche/questions/llvm-project/')
+        parts = module.split('/')
+        current = nested_dict
+        for part in parts:
+            if part not in current:
+                current[part] = {}
+            current = current[part]
+        current['functions'] = len(funcs)
+
+    return nested_dict
+
+def coalesce_nested_dict_to_level(nested_dict, level):
+    if level == 0:
+        return nested_dict
+    coalesced_dict = {}
+    for outer_most, inner in nested_dict.items():
+        coalesced_dict[outer_most] = coalesce_nested_dict_to_level(inner, level - 1)
+    return coalesced_dict
+
+def print_function_count_per_folder(nested_dict):
+    for outer_most, inner in nested_dict.items():
+        print(outer_most)
+        # add up all the numbers in the innermost dicts
+        for inner_most, inner_inner in inner.items():
+            print(f'  {inner_most}')
+            for inner_inner_most, inner_inner_inner in inner_inner.items():
+                total = 0
+                print(f'    {inner_inner_most}')
+                for inner_inner_inner_most, inner_inner_inner_inner in inner_inner_inner.items():
+                    for inner_inner_inner_inner_most, inner_inner_inner_inner_inner in inner_inner_inner_inner.items():
+                        if inner_inner_inner_inner_most == 'functions':
+                            total += inner_inner_inner_inner_inner
+                        else:
+                            for inner_inner_inner_inner_inner_most, inner_inner_inner_inner_inner_inner in inner_inner_inner_inner_inner.items():
+                                if inner_inner_inner_inner_inner_most == 'functions':
+                                    total += inner_inner_inner_inner_inner_inner
+                                else:
+                                    for inner_inner_inner_inner_inner_inner_most, inner_inner_inner_inner_inner_inner_inner in inner_inner_inner_inner_inner_inner.items():
+                                        if inner_inner_inner_inner_inner_inner_most == 'functions':
+                                            total += inner_inner_inner_inner_inner_inner_inner
+                                        else:
+                                            print(123)
+
+
+                print(f'      Total: {total}')
+
+
 
 if __name__ == '__main__':
     # pass the filename as an argument
@@ -99,8 +189,7 @@ if __name__ == '__main__':
     parser.add_argument('filename')
     args = parser.parse_args()
     filename = args.filename
+
     funcs_per_module = get_stored_funcs_dict(filename)
 
-    all_funcs = unique_funcs(funcs_per_module)
-    print(f'Found {len(all_funcs)} functions')
-    prepare_called_funcs(all_funcs)
+    prepare_called_funcs_all(funcs_per_module)
