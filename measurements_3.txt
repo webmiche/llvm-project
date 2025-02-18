@@ -1,0 +1,111 @@
+slow
+nabmd 3j1n 20140317
+
+Reading .pdb file (3j1n/3j1n.pdb)
+Reading .prm file (3j1n/3j1n.prm)
+title:
+default_name                                                                    
+      iter    Total
+ff:     0 490665981616042475520.00
+Initial energy is 490665981616042475520.0000000
+Starting molecular dynamics with Born solvation energy...
+
+      iter    Total
+ff:     0 490665981616042475520.00
+ff:   220 747802.02
+
+...Done, md returns 0
+      iter    Total
+ff:     0 825607.66
+Initial energy is 825607.6590810
+Starting molecular dynamics with in vaccuo non-bonded energy...
+
+      iter    Total
+ff:     0 825607.66
+ff:   220 194992.94
+
+...Done, md returns 0
+
+ Performance counter stats for './run_slow.sh':
+
+ 6,618,535,052,916      L1-dcache-loads                                                         (27.78%)
+   134,341,263,196      L1-dcache-load-misses            #    2.03% of all L1-dcache accesses   (27.78%)
+   396,522,067,318      L1-icache-loads                                                         (27.78%)
+       155,633,064      L1-icache-load-misses            #    0.04% of all L1-icache accesses   (27.78%)
+    11,331,390,898      cache-misses                     #    6.70% of all cache refs           (27.78%)
+   169,138,871,830      cache-references                                                        (27.78%)
+   137,126,079,798      L2_request_g1.all_no_prefetch                                           (27.78%)
+   125,510,751,267      l2_cache_req_stat.ic_dc_hit_in_l2                                        (27.78%)
+   125,470,627,932      l2_cache_req_stat.ic_dc_hit_in_l2                                        (27.78%)
+    10,701,443,471      l2_cache_req_stat.ls_rd_blk_c                                           (27.78%)
+       764,182,933      l2_request_g1.cacheable_ic_read                                         (27.78%)
+ 4,098,246,846,194      fp_ret_sse_avx_ops.all                                                  (22.22%)
+   299,688,640,139      stalled-cycles-frontend                                                 (22.22%)
+ 1,567,577,098,979      branch-instructions                                                     (22.22%)
+    14,672,560,117      branch-misses                    #    0.94% of all branches             (22.22%)
+ 1,567,589,135,237      branch-loads                                                            (22.22%)
+    14,677,379,611      branch-load-misses                                                      (27.78%)
+13,041,367,696,321      ex_ret_instr                                                            (27.78%)
+
+    1901.933690882 seconds time elapsed
+
+    1894.691191000 seconds user
+       0.199345000 seconds sys
+
+
+==========================================================================
+fast
+nabmd 3j1n 20140317
+
+Reading .pdb file (3j1n/3j1n.pdb)
+Reading .prm file (3j1n/3j1n.prm)
+title:
+default_name                                                                    
+      iter    Total
+ff:     0 490665981616042475520.00
+Initial energy is 490665981616042475520.0000000
+Starting molecular dynamics with Born solvation energy...
+
+      iter    Total
+ff:     0 490665981616042475520.00
+ff:   220 747802.02
+
+...Done, md returns 0
+      iter    Total
+ff:     0 825607.66
+Initial energy is 825607.6590810
+Starting molecular dynamics with in vaccuo non-bonded energy...
+
+      iter    Total
+ff:     0 825607.66
+ff:   220 194992.94
+
+...Done, md returns 0
+
+ Performance counter stats for './run_fast.sh':
+
+ 5,659,741,585,797      L1-dcache-loads                                                         (27.78%)
+   133,688,201,338      L1-dcache-load-misses            #    2.36% of all L1-dcache accesses   (27.78%)
+    18,219,385,613      L1-icache-loads                                                         (27.78%)
+       153,805,143      L1-icache-load-misses            #    0.84% of all L1-icache accesses   (27.78%)
+    11,260,078,427      cache-misses                     #    6.67% of all cache refs           (27.78%)
+   168,868,713,266      cache-references                                                        (27.78%)
+   136,580,363,226      L2_request_g1.all_no_prefetch                                           (27.78%)
+   124,962,002,261      l2_cache_req_stat.ic_dc_hit_in_l2                                        (27.78%)
+   124,957,848,759      l2_cache_req_stat.ic_dc_hit_in_l2                                        (27.78%)
+    10,771,692,752      l2_cache_req_stat.ls_rd_blk_c                                           (27.78%)
+       693,971,965      l2_request_g1.cacheable_ic_read                                         (27.78%)
+ 4,096,514,399,099      fp_ret_sse_avx_ops.all                                                  (22.22%)
+   142,447,181,171      stalled-cycles-frontend                                                 (22.22%)
+ 1,540,716,396,873      branch-instructions                                                     (22.22%)
+    14,635,549,211      branch-misses                    #    0.95% of all branches             (22.22%)
+ 1,540,413,891,829      branch-loads                                                            (22.22%)
+    14,635,960,310      branch-load-misses                                                      (27.78%)
+13,014,896,081,124      ex_ret_instr                                                            (27.78%)
+
+    1563.868783804 seconds time elapsed
+
+    1557.803478000 seconds user
+       0.212497000 seconds sys
+
+

@@ -955,7 +955,7 @@ class AAInstrumentationDriver:
         file_name: Path,
         name_prefix: int,
         other_files: list[Path],
-        computed_hashes=[],
+        computed_hashes=None,
         timeout=None,
     ):
         """Link the file with other files and run."""
@@ -977,7 +977,7 @@ class AAInstrumentationDriver:
             parents=True, exist_ok=True
         )
         # copy over the file to be linked
-        shutil.move(
+        shutil.copy(
             self.instr_dir
             / file_name.parent
             / Path(str(name_prefix) + str(file_name.stem) + ".o"),
@@ -986,7 +986,7 @@ class AAInstrumentationDriver:
 
         # link the files
         linked_libraries_str = ""
-        for lib in linked_libraries.get(self.benchmark, []):
+        for lib in linked_libraries.get(str(self.benchmark), []):
             linked_libraries_str += "-l" + lib
 
         cmd = [
@@ -1005,10 +1005,11 @@ class AAInstrumentationDriver:
             self.exec_root / "binaries" / file_name.with_suffix("")
         )
 
-        if full_hash in computed_hashes:
-            return None
+        if computed_hashes is not None:
+            if full_hash in computed_hashes:
+                return None, None
 
-        computed_hashes.append(full_hash)
+            computed_hashes.append(full_hash)
 
         # run the linked file
         run_cmd = [
@@ -1033,10 +1034,10 @@ class AAInstrumentationDriver:
             )
         except Exception as e:
             print(e)
-            return ""
+            return "", time() - start_time
 
         print("Time taken: ", time() - start_time)
-        return p.stdout + p.stderr
+        return p.stdout + p.stderr, time() - start_time
 
     def run_baseline(
         self,

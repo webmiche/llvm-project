@@ -1,0 +1,79 @@
+===-------------------------------------------------------------------------===
+                          ... Statistics Collected ...
+===-------------------------------------------------------------------------===
+
+ 18 aa                           - Number of MayAlias results
+ 32 aa                           - Number of MustAlias results
+120 aa                           - Number of NoAlias results
+142 aa                           - Number of AA cache hits
+167 aa                           - Number of AA queries
+ 25 aa                           - Number of queries that are not cached and not MayAlias. Therefore, these are candidates to be relaxed.
+526 assume-queries               - Number of Queries into an assume assume bundles
+  2 basicaa                      - Number of times a GEP is decomposed
+120 bitcode-reader               - Number of Metadata records loaded
+ 10 bitcode-reader               - Number of MDStrings loaded
+  2 correlated-value-propagation - Number of no-unsigned-wrap deductions for add
+  2 correlated-value-propagation - Number of no-wrap deductions for add
+  2 correlated-value-propagation - Number of no-unsigned-wrap deductions
+  2 correlated-value-propagation - Number of no-wrap deductions
+  1 count-visits                 - Max number of times we visited a function
+ 60 dse                          - Number of stores modified
+  6 dse                          - Number of stores modified
+107 dse                          - Number iterations check for reads in getDomMemoryDef
+  0 dse                          - Number of other instrs removed
+  1 dse                          - Number of stores deleted
+  1 dse                          - Number of times a valid candidate is returned from getDomMemoryDef
+ 11 dse                          - Number of stores remaining after DSE
+  2 early-cse                    - Number of instructions CSE'd
+  5 early-cse                    - Number of load instructions CSE'd
+  2 early-cse                    - Number of instructions simplified or DCE'd
+  1 function-attrs               - Number of functions with improved memory attribute
+  3 function-attrs               - Number of arguments marked nocapture
+  1 function-attrs               - Number of functions marked as nofree
+  1 function-attrs               - Number of functions marked as nosync
+  1 function-attrs               - Number of arguments marked readonly
+  1 globalopt                    - Number of globals marked unnamed_addr
+  1 globalsmodref-aa             - Number of functions that do not access memory
+  1 globalsmodref-aa             - Number of functions that only read memory
+  2 gvn                          - Number of blocks speculated as available in IsValueFullyAvailableInBlock(), max
+ 13 gvn                          - Number of instructions deleted
+  3 gvn                          - Number of loads deleted
+  9 gvn                          - Number of instructions simplified
+  1 gvn                          - Number of loads PRE'd
+  2 indvars                      - Number of exit values replaced
+ 54 instcombine                  - Number of insts combined
+  4 instcombine                  - Number of dead inst eliminated
+  2 instcombine                  - Number of functions with one iteration
+  6 instcombine                  - Number of functions with two iterations
+ 14 instcombine                  - Number of instruction combining iterations performed
+  8 instsimplify                 - Number of redundant instructions removed
+ 86 ipt                          - Number of insts scanned while updating ibt
+ 11 ir                           - Number of renumberings across all blocks
+  2 jump-threading               - Number of jumps threaded
+ 24 lcssa                        - Number of live out of a loop variables
+  3 licm                         - Number of load and store promotions
+  3 licm                         - Number of promotion candidates
+  1 local                        - Number of PHI's that got CSE'd
+  1 loop-vectorize               - Number of loops analyzed for vectorization
+  5 mem2reg                      - Number of PHI nodes inserted
+  5 mem2reg                      - Number of alloca's promoted with a single store
+  8 memdep                       - Number of fully cached non-local ptr responses
+ 30 memdep                       - Number of uncached non-local ptr responses
+ 63 memory-builtins              - Number of arguments with unsolved size and offset
+  1 reassociate                  - Number of insts reassociated
+  6 scalar-evolution             - Number of loop exits with predictable exit counts
+  3 scalar-evolution             - Number of loop exits without predictable exit counts
+  2 sccp                         - Number of instructions removed
+  1 sccp                         - Number of instructions replaced with (simpler) instruction
+  1 simplifycfg                  - Number of branches folded into predecessor basic block
+  1 simplifycfg                  - Number of common instruction 'blocks' hoisted up to the begin block
+  1 simplifycfg                  - Number of common instructions hoisted up to the begin block
+ 12 simplifycfg                  - Number of blocks simplified
+  1 sroa                         - Maximum number of partitions per alloca
+ 12 sroa                         - Maximum number of uses of a partition
+ 52 sroa                         - Number of alloca partition uses rewritten
+  8 sroa                         - Number of alloca partitions formed
+ 13 sroa                         - Number of allocas analyzed for replacement
+ 52 sroa                         - Number of instructions deleted
+  8 sroa                         - Number of allocas promoted to SSA values
+

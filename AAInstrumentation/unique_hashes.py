@@ -182,6 +182,18 @@ class ParallelUniqueHashesDriver(UniqueHashesDriver):
 
         sizes.extend(curr_sizes)
 
+        if curr_sizes:
+            print(f"minimum size: {min(sizes)}")
+            print(f"Min size: {min(curr_sizes)}")
+            print(
+                f"Minimum Sequence: {list(new_sequences[curr_sizes.index(min(curr_sizes))])}"
+            )
+            print(f"Max size: {max(curr_sizes)}")
+            print(
+                f"Maximum Sequence: {list(new_sequences[curr_sizes.index(max(curr_sizes))])}"
+            )
+ 
+
 
 if __name__ == "__main__":
     arg_parser = register_arguments()

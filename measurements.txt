@@ -1,0 +1,32 @@
+                                                                                                                                                                         
+slow 
+Performance counter stats for './run_slow.sh':
+    6,618,871,405,841      L1-dcache-loads                                                         (50.00%)
+      134,441,515,748      L1-dcache-load-misses            #    2.03% of all L1-dcache accesses   (62.50%)
+      397,185,118,517      L1-icache-loads                                                         (62.50%)
+          159,454,237      L1-icache-load-misses            #    0.04% of all L1-icache accesses   (62.50%)
+    4,096,683,389,771      fp_ret_sse_avx_ops.all                                                  (50.00%)
+    1,567,302,677,841      branch-loads                                                            (50.00%)
+       14,671,834,827      branch-load-misses                                                      (50.00%)
+   13,041,782,786,836      ex_ret_instr                                                            (50.00%)
+   
+    1903.019251922 seconds time elapsed                                                                
+    1896.148132000 seconds user                                                                      
+       0.242804000 seconds sys       
+
+=============================================================
+fast
+
+Performance counter stats for './run_fast.sh':   
+     5,659,277,872,666      L1-dcache-loads                                                         (50.00%)
+       136,143,930,138      L1-dcache-load-misses            #    2.41% of all L1-dcache accesses   (62.50%)
+        15,633,619,951      L1-icache-loads                                                         (62.50%)
+           158,128,078      L1-icache-load-misses            #    1.01% of all L1-icache accesses   (62.50%)
+     4,096,976,063,456      fp_ret_sse_avx_ops.all                                                  (50.00%)
+     1,540,539,067,701      branch-loads                                                            (50.00%)
+        14,634,486,970      branch-load-misses                                                      (50.00%)
+    13,013,977,026,600      ex_ret_instr                                                            (50.00%)
+   
+    1562.502149392 seconds time elapsed  
+    1556.752734000 seconds user        
+       0.249048000 seconds sys
