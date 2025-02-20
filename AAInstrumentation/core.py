@@ -950,6 +950,48 @@ class AAInstrumentationDriver:
         )
         return self.diff_aa_trace_info(base_info, contrast_info)
 
+    def link(self,
+        files: list[Path],
+        ):
+        """Link the files."""
+        linked_libraries_str = ""
+        for lib in linked_libraries.get(str(self.benchmark), []):
+            linked_libraries_str += "-l" + lib
+
+        cmd = [
+            str(self.instr_path / "clang"),
+            "-no-pie",
+            "-lstdc++",
+            linked_libraries_str,
+            "-o",
+            str(self.instr_dir / "linked"),
+        ] + [str(file) for file in files]
+
+        run(cmd, cwd=self.exec_root, check=True, stdout=DEVNULL, stderr=DEVNULL)
+
+    def run_linked(self):
+        run_cmd = [
+            "./run.sh",
+            str(self.exec_root / self.instr_dir / "linked"),
+        ]
+
+        start_time = time()
+        p = run(
+            run_cmd,
+            cwd=(
+                self.specbuild_dir
+                / Path("run")
+                / Path(str(self.benchmark) + "_run")
+            ),
+            text=True,
+            stdout=PIPE,
+            stderr=PIPE,
+            check=True,
+        )
+
+        print("Time taken: ", time() - start_time, flush=True)
+        return p.stdout + p.stderr, time() - start_time
+
     def link_and_run(
         self,
         file_name: Path,

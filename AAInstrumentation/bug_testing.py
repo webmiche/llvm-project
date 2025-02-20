@@ -104,6 +104,57 @@ class SequenceReducer(AAInstrumentationDriver):
 
         print(f"Reduced sequence: {sequence[:left]}")
 
+@dataclass
+class RuntimeEvaluatorBenchmarkLevel(AAInstrumentationDriver):
+
+    def run(self,
+    num_runs: int,
+    num_relaxations: int,
+    ):
+        print("Generating baseline")
+        self.generate_baseline()
+
+        print("Getting baseline files")
+        files = self.get_baseline_files()
+
+        print("Getting candidates per file", flush=True)
+        candidates_per_file = self.get_candidates_per_file(files)
+        for i, file in enumerate(files):
+            print(f"Compiling file {file}, {i} of {len(files)}", flush=True)
+            num_candidates = candidates_per_file[file]
+            print(f"{file}: {num_candidates}")
+            # generate random sequences
+            full_population = self.get_n_random_sequences(num_candidates, num_relaxations)
+            print(f"Number of sequences: {len(full_population)}")
+
+            with Pool(self.proc_count) as pool:
+                pool.starmap(
+                    self.run_and_assemble_file,
+                    [
+                        (file, i, sample)
+                        for i, sample in enumerate(full_population)
+                    ],
+                )
+
+        print("Linking and running", flush=True)
+        for i in range(num_relaxations):
+            print(f"Relaxation {i}", flush=True)
+            files_to_link = []
+
+            for file in files:
+                files_to_link.append(self.instr_dir/file.parent/Path(str(i) + str(file.stem) + ".o"))
+
+            print(f"Linking {benchmark}", flush=True)
+
+            self.link(files_to_link)
+
+            for i in range(num_runs):
+                self.run_linked()
+
+
+
+        pass
+
 
 if __name__ == "__main__":
     arg_parser = register_arguments()
@@ -118,7 +169,7 @@ if __name__ == "__main__":
     instr_dir = args.instr_dir
     groundtruth_dir = args.groundtruth_dir
 
-    driver = SequenceReducer(
+    driver = RuntimeEvaluatorBenchmarkLevel(
         instr_path,
         exec_root,
         specbuild_dir,
@@ -129,34 +180,35 @@ if __name__ == "__main__":
         "O3",
         args.proc_count,
     )
-    driver.generate_baseline()
 
-    files = driver.get_baseline_files()
+    driver.run(10, 10)
 
-    file_name = Path("644/sff.bc")
-    precise_files = [f.with_suffix(".o") for f in files if f != file_name]
+    #files = driver.get_baseline_files()
 
-    for f in files:
-       driver.compile_baseline_file(f)
+    #file_name = Path("644/sff.bc")
+    #precise_files = [f.with_suffix(".o") for f in files if f != file_name]
+
+    #for f in files:
+    #   driver.compile_baseline_file(f)
 
 
-    print(f"Current sequence: {rel_seq_644}")
-    hash1 = driver.run_assemble_and_get_hash(file_name, 0, rel_seq_644, remove_files=False)
-    print(f"def hash: {hash1}")
+    #print(f"Current sequence: {rel_seq_644}")
+    #hash1 = driver.run_assemble_and_get_hash(file_name, 0, rel_seq_644, remove_files=False)
+    #print(f"def hash: {hash1}")
 
-    rel_seq_644.pop()
-    hash2 = driver.run_assemble_and_get_hash(file_name, 1, rel_seq_644, remove_files=False)
-    print(f"def hash without last: {hash2}")
+    #rel_seq_644.pop()
+    #hash2 = driver.run_assemble_and_get_hash(file_name, 1, rel_seq_644, remove_files=False)
+    #print(f"def hash without last: {hash2}")
 
-    for i in range(10):
-        print(f"Iteration {i}:", flush=True)
-        _, new_time = driver.link_and_run(file_name, 0, precise_files)
-        print(f"Time taken default: {new_time}")
-        
-        _, new_time = driver.link_and_run(file_name, 1, precise_files)
-        print(f"Time taken without last: {new_time}")
+    #for i in range(10):
+    #    print(f"Iteration {i}:", flush=True)
+    #    _, new_time = driver.link_and_run(file_name, 0, precise_files)
+    #    print(f"Time taken default: {new_time}")
 
-    
+    #    _, new_time = driver.link_and_run(file_name, 1, precise_files)
+    #    print(f"Time taken without last: {new_time}")
+
+
     #for i in range(10):
     #   _, time = driver.run_baseline()
     #   print(f"Time taken {i}: {time}")
