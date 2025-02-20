@@ -111,13 +111,10 @@ class RuntimeEvaluatorBenchmarkLevel(AAInstrumentationDriver):
     num_runs: int,
     num_relaxations: int,
     ):
-        print("Generating baseline")
         self.generate_baseline()
 
-        print("Getting baseline files")
         files = self.get_baseline_files()
 
-        print("Getting candidates per file", flush=True)
         candidates_per_file = self.get_candidates_per_file(files)
         for i, file in enumerate(files):
             print(f"Compiling file {file}, {i} of {len(files)}", flush=True)
@@ -125,7 +122,6 @@ class RuntimeEvaluatorBenchmarkLevel(AAInstrumentationDriver):
             print(f"{file}: {num_candidates}")
             # generate random sequences
             full_population = self.get_n_random_sequences(num_candidates, num_relaxations)
-            print(f"Number of sequences: {len(full_population)}")
 
             with Pool(self.proc_count) as pool:
                 pool.starmap(
@@ -136,7 +132,6 @@ class RuntimeEvaluatorBenchmarkLevel(AAInstrumentationDriver):
                     ],
                 )
 
-        print("Linking and running", flush=True)
         for i in range(num_relaxations):
             print(f"Relaxation {i}", flush=True)
             files_to_link = []
@@ -144,16 +139,10 @@ class RuntimeEvaluatorBenchmarkLevel(AAInstrumentationDriver):
             for file in files:
                 files_to_link.append(self.instr_dir/file.parent/Path(str(i) + str(file.stem) + ".o"))
 
-            print(f"Linking {benchmark}", flush=True)
-
             self.link(files_to_link)
 
             for i in range(num_runs):
                 self.run_linked()
-
-
-
-        pass
 
 
 if __name__ == "__main__":

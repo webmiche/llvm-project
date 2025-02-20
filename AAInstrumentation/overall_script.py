@@ -18,7 +18,7 @@ from determinism_check import (
     DeterminismCheck,
     NoInstrumentationDeterminismCheck,
 )
-from bug_testing import BugTester
+from bug_testing import BugTester, RuntimeEvaluatorBenchmarkLevel
 
 
 def run_optimization(
@@ -52,6 +52,7 @@ result_directories = {
     "determinism_check": "AAInstrumentation/determinism_check",
     "no_instrumentation_determinism_check": "AAInstrumentation/no_instrumentation_determinism_check",
     "bug_testing": "AAInstrumentation/bug_testing",
+    "runtime_evaluation": "AAInstrumentation/runtime_evaluation",
 }
 
 
@@ -329,6 +330,40 @@ def run_bug_testing(
                 [f.with_suffix(".o") for f in files if f != file],
             )
 
+def run_runtime_evaluation(
+    instr_path,
+    exec_root,
+    specbuild_dir,
+    initial_dir,
+    instr_dir,
+    groundtruth_dir,
+    opt_flag,
+    proc_count,
+    benchmarks: list[str],
+    num_runs: int,
+    num_relaxations: int,
+    ):
+
+    result_directory = result_directories["runtime_evaluation"] + f"_{opt_flag}"
+    Path(result_directory).mkdir(parents=True, exist_ok=True)
+    for benchmark in benchmarks:
+        sys.stdout = open(f"{result_directory}/{benchmark}.txt", "w")
+        print(f"Running benchmark {benchmark} with {opt_flag}")
+
+        driver = RuntimeEvaluatorBenchmarkLevel(
+            instr_path,
+            exec_root,
+            specbuild_dir,
+            benchmark,
+            initial_dir,
+            instr_dir,
+            groundtruth_dir,
+            opt_flag,
+            args.proc_count,
+        )
+        driver.run(num_runs, num_relaxations)
+
+
 
 if __name__ == "__main__":
     arg_parser = register_arguments()
@@ -388,6 +423,11 @@ if __name__ == "__main__":
         action="store_true",
         help="Run bug testing",
     )
+    arg_parser.add_argument(
+        "--runtime-evaluation",
+        action="store_true",
+        help="Run runtime evaluation",
+    )
 
     with open("AAInstrumentation/config.txt", "r") as config_file:
         args = arg_parser.parse_args(config_file.read().splitlines() + sys.argv[1:])
@@ -404,12 +444,13 @@ if __name__ == "__main__":
                 args.no_instrumentation_determinism_check,
                 args.all_experiments,
                 args.bug_testing,
+                args.runtime_evaluation,
             ]
         )
         > 1
     ):
         print(
-            "Please specify only one of the following flags: --optimization, --unique_hashes, --maximal_relaxation, --queries_per_pass, --queries_per_pass_overall, --determinism_check, --no-instrumentation-determinism-check, --all-experiments, --bug-testing"
+            "Please specify only one of the following flags: --optimization, --unique_hashes, --maximal_relaxation, --queries_per_pass, --queries_per_pass_overall, --determinism_check, --no-instrumentation-determinism-check, --all-experiments, --bug-testing, --runtime-evaluation"
         )
         exit(1)
 
@@ -535,4 +576,19 @@ if __name__ == "__main__":
             args.opt_flag,
             args.proc_count,
             benchmarks,
+        )
+
+    if args.runtime_evaluation:
+        run_runtime_evaluation(
+            instr_path,
+            exec_root,
+            specbuild_dir,
+            initial_dir,
+            instr_dir,
+            groundtruth_dir,
+            args.opt_flag,
+            args.proc_count,
+            benchmarks,
+            num_runs=5,
+            num_relaxations=100,
         )
