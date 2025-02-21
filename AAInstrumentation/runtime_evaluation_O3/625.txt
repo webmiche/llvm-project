@@ -1,4 +1,10 @@
 Running benchmark 625 with O3
+Running without relaxations
+Time taken:  156.40027117729187
+Time taken:  156.28954648971558
+Time taken:  156.71789526939392
+Time taken:  156.38770866394043
+Time taken:  156.92849946022034
 Compiling file 625/x264_src/x264.bc, 0 of 36
 625/x264_src/x264.bc: 4657
 Compiling file 625/x264_src/extras/getopt.bc, 1 of 36
@@ -72,60 +78,5 @@ Compiling file 625/x264_src/encoder/set.bc, 34 of 36
 Compiling file 625/x264_src/encoder/ratecontrol.bc, 35 of 36
 625/x264_src/encoder/ratecontrol.bc: 14559
 Relaxation 0
-Time taken:  161.0247950553894
-Time taken:  160.35114002227783
-Time taken:  160.40282368659973
-Time taken:  160.44761419296265
-Time taken:  160.2039761543274
-Relaxation 1
-Time taken:  163.72542667388916
-Time taken:  163.51778078079224
-Time taken:  163.41306686401367
-Time taken:  163.8116331100464
-Time taken:  163.73525857925415
-Relaxation 2
-Time taken:  159.93967247009277
-Time taken:  160.12744331359863
-Time taken:  159.94236779212952
-Time taken:  159.99613881111145
-Time taken:  159.67000007629395
-Relaxation 3
-Time taken:  160.4176046848297
-Time taken:  160.1142601966858
-Time taken:  160.221830368042
-Time taken:  160.50076007843018
-Time taken:  160.08048152923584
-Relaxation 4
-Time taken:  159.8941512107849
-Time taken:  159.87749981880188
-Time taken:  159.77403378486633
-Time taken:  159.89234828948975
-Time taken:  159.32111120224
-Relaxation 5
-Time taken:  160.30398154258728
-Time taken:  160.19341015815735
-Time taken:  160.2152304649353
-Time taken:  160.38814735412598
-Time taken:  160.42934560775757
-Relaxation 6
-Time taken:  160.03112173080444
-Time taken:  160.01376271247864
-Time taken:  160.35678386688232
-Time taken:  160.22476744651794
-Time taken:  160.21219158172607
-Relaxation 7
-Time taken:  160.29169154167175
-Time taken:  160.07974696159363
-Time taken:  159.91323018074036
-Time taken:  160.0662817955017
-Time taken:  160.14460802078247
-Relaxation 8
-Time taken:  160.63264632225037
-Time taken:  160.14261293411255
-Time taken:  160.65136170387268
-Time taken:  160.51326751708984
-Time taken:  160.50315260887146
-Relaxation 9
-Time taken:  160.19683194160461
-Time taken:  159.904283285141
-Time taken:  160.52662086486816
+Time taken:  160.6174385547638
+Time taken:  159.925785779953

@@ -1,4 +1,6 @@
 Running benchmark 644 with O3
+Running without relaxations
+Time taken:  1561.28391456604
 Compiling file 644/sff.bc, 0 of 20
 644/sff.bc: 7747
 Compiling file 644/nblist.bc, 1 of 20
@@ -78,3 +80,4 @@ Time taken:  1943.2829065322876
 Relaxation 6
 Time taken:  1875.3109912872314
 Time taken:  1884.2849671840668
+Time taken:  1879.6273093223572

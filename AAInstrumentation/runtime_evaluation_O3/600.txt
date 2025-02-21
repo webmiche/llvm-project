@@ -1,0 +1,745 @@
+Running benchmark 600 with O3
+Running without relaxations
+Time taken:  19.26307463645935
+Time taken:  19.18032217025757
+Time taken:  19.30104112625122
+Time taken:  19.286701202392578
+Time taken:  19.178640365600586
+Compiling file 600/sv.bc, 0 of 69
+600/sv.bc: 29541
+Compiling file 600/perlmain.bc, 1 of 69
+600/perlmain.bc: 58
+Compiling file 600/DynaLoader.bc, 2 of 69
+600/DynaLoader.bc: 27
+Compiling file 600/mg.bc, 3 of 69
+600/mg.bc: 3303
+Compiling file 600/mro_core.bc, 4 of 69
+600/mro_core.bc: 2181
+Compiling file 600/doop.bc, 5 of 69
+600/doop.bc: 1506
+Compiling file 600/doio.bc, 6 of 69
+600/doio.bc: 1971
+Compiling file 600/universal.bc, 7 of 69
+600/universal.bc: 996
+Compiling file 600/dump.bc, 8 of 69
+600/dump.bc: 1352
+Compiling file 600/globals.bc, 9 of 69
+600/globals.bc: 0
+Compiling file 600/numeric.bc, 10 of 69
+600/numeric.bc: 531
+Compiling file 600/pp_pack.bc, 11 of 69
+600/pp_pack.bc: 5488
+Compiling file 600/scope.bc, 12 of 69
+600/scope.bc: 1891
+Compiling file 600/utf8.bc, 13 of 69
+600/utf8.bc: 1474
+Compiling file 600/pad.bc, 14 of 69
+600/pad.bc: 2725
+Compiling file 600/regcomp.bc, 15 of 69
+600/regcomp.bc: 38210
+Compiling file 600/op.bc, 16 of 69
+600/op.bc: 17607
+Compiling file 600/locale.bc, 17 of 69
+600/locale.bc: 2
+Compiling file 600/pp_hot.bc, 18 of 69
+600/pp_hot.bc: 5005
+Compiling file 600/run.bc, 19 of 69
+600/run.bc: 5
+Compiling file 600/pp_sys.bc, 20 of 69
+600/pp_sys.bc: 5379
+Compiling file 600/pp.bc, 21 of 69
+600/pp.bc: 7498
+Compiling file 600/Opcode.bc, 22 of 69
+600/Opcode.bc: 650
+Compiling file 600/perl.bc, 23 of 69
+600/perl.bc: 12445
+Compiling file 600/caretx.bc, 24 of 69
+600/caretx.bc: 1
+Compiling file 600/gv.bc, 25 of 69
+600/gv.bc: 4202
+Compiling file 600/keywords.bc, 26 of 69
+600/keywords.bc: 3897
+Compiling file 600/pp_ctl.bc, 27 of 69
+600/pp_ctl.bc: 8565
+Compiling file 600/reentr.bc, 28 of 69
+600/reentr.bc: 0
+Compiling file 600/deb.bc, 29 of 69
+600/deb.bc: 3
+Compiling file 600/mathoms.bc, 30 of 69
+600/mathoms.bc: 133
+Compiling file 600/perlio.bc, 31 of 69
+600/perlio.bc: 3645
+Compiling file 600/av.bc, 32 of 69
+600/av.bc: 651
+Compiling file 600/pp_sort.bc, 33 of 69
+600/pp_sort.bc: 4051
+Compiling file 600/toke.bc, 34 of 69
+600/toke.bc: 21081
+Compiling file 600/regexec.bc, 35 of 69
+600/regexec.bc: 16867
+Compiling file 600/taint.bc, 36 of 69
+600/taint.bc: 78
+Compiling file 600/perly.bc, 37 of 69
+600/perly.bc: 1235
+Compiling file 600/perlapi.bc, 38 of 69
+600/perlapi.bc: 0
+Compiling file 600/hv.bc, 39 of 69
+600/hv.bc: 2959
+Compiling file 600/util.bc, 40 of 69
+600/util.bc: 1324
+Compiling file 600/specrand/specrand.bc, 41 of 69
+600/specrand/specrand.bc: 71
+Compiling file 600/ext/re/re_comp.bc, 42 of 69
+600/ext/re/re_comp.bc: 32630
+Compiling file 600/ext/re/re_exec.bc, 43 of 69
+600/ext/re/re_exec.bc: 16995
+Compiling file 600/ext/re/re.bc, 44 of 69
+600/ext/re/re.bc: 46
+Compiling file 600/ext/mro/mro.bc, 45 of 69
+600/ext/mro/mro.bc: 286
+Compiling file 600/ext/Devel-Peek/Peek.bc, 46 of 69
+600/ext/Devel-Peek/Peek.bc: 285
+Compiling file 600/ext/Sys-Hostname/Hostname.bc, 47 of 69
+600/ext/Sys-Hostname/Hostname.bc: 12
+Compiling file 600/ext/XS-Typemap/stdio.bc, 48 of 69
+600/ext/XS-Typemap/stdio.bc: 0
+Compiling file 600/ext/arybase/arybase.bc, 49 of 69
+600/ext/arybase/arybase.bc: 657
+Compiling file 600/ext/PerlIO-via/via.bc, 50 of 69
+600/ext/PerlIO-via/via.bc: 378
+Compiling file 600/ext/Hash-Util-FieldHash/FieldHash.bc, 51 of 69
+600/ext/Hash-Util-FieldHash/FieldHash.bc: 358
+Compiling file 600/ext/File-Glob/bsd_glob.bc, 52 of 69
+600/ext/File-Glob/bsd_glob.bc: 482
+Compiling file 600/ext/File-Glob/Glob.bc, 53 of 69
+600/ext/File-Glob/Glob.bc: 338
+Compiling file 600/ext/Hash-Util/Util.bc, 54 of 69
+600/ext/Hash-Util/Util.bc: 245
+Compiling file 600/ext/Tie-Hash-NamedCapture/NamedCapture.bc, 55 of 69
+600/ext/Tie-Hash-NamedCapture/NamedCapture.bc: 127
+Compiling file 600/ext/PerlIO-scalar/scalar.bc, 56 of 69
+600/ext/PerlIO-scalar/scalar.bc: 226
+Compiling file 600/ext/attributes/attributes.bc, 57 of 69
+600/ext/attributes/attributes.bc: 364
+Compiling file 600/dist/IO/IO.bc, 58 of 69
+600/dist/IO/IO.bc: 204
+Compiling file 600/dist/IO/poll.bc, 59 of 69
+600/dist/IO/poll.bc: 97
+Compiling file 600/dist/Data-Dumper/Dumper.bc, 60 of 69
+600/dist/Data-Dumper/Dumper.bc: 1345
+Compiling file 600/dist/PathTools/Cwd.bc, 61 of 69
+600/dist/PathTools/Cwd.bc: 303
+Compiling file 600/dist/Storable/Storable.bc, 62 of 69
+600/dist/Storable/Storable.bc: 10502
+Compiling file 600/cpan/Digest-SHA/SHA.bc, 63 of 69
+600/cpan/Digest-SHA/SHA.bc: 10575
+Compiling file 600/cpan/HTML-Parser/Parser.bc, 64 of 69
+600/cpan/HTML-Parser/Parser.bc: 10354
+Compiling file 600/cpan/Scalar-List-Utils/ListUtil.bc, 65 of 69
+600/cpan/Scalar-List-Utils/ListUtil.bc: 3410
+Compiling file 600/cpan/MIME-Base64/Base64.bc, 66 of 69
+600/cpan/MIME-Base64/Base64.bc: 481
+Compiling file 600/cpan/Time-HiRes/HiRes.bc, 67 of 69
+600/cpan/Time-HiRes/HiRes.bc: 495
+Compiling file 600/cpan/Digest-MD5/MD5.bc, 68 of 69
+600/cpan/Digest-MD5/MD5.bc: 7621
+Relaxation 0
+Time taken:  19.408294439315796
+Time taken:  19.33725142478943
+Time taken:  19.340945720672607
+Time taken:  19.36607003211975
+Time taken:  19.336468935012817
+Relaxation 1
+Time taken:  19.142675161361694
+Time taken:  19.094892740249634
+Time taken:  19.0132257938385
+Time taken:  19.015372276306152
+Time taken:  19.038262605667114
+Relaxation 2
+Time taken:  19.043184757232666
+Time taken:  19.06828474998474
+Time taken:  19.023898601531982
+Time taken:  19.165837287902832
+Time taken:  19.0612370967865
+Relaxation 3
+Time taken:  19.173760890960693
+Time taken:  19.29421877861023
+Time taken:  19.12533974647522
+Time taken:  19.171879053115845
+Time taken:  19.080944061279297
+Relaxation 4
+Time taken:  19.18285632133484
+Time taken:  19.23690152168274
+Time taken:  19.209893703460693
+Time taken:  19.34237766265869
+Time taken:  19.24991464614868
+Relaxation 5
+Time taken:  18.89222764968872
+Time taken:  18.84549593925476
+Time taken:  18.94456434249878
+Time taken:  18.844478845596313
+Time taken:  18.876527070999146
+Relaxation 6
+Time taken:  18.764140844345093
+Time taken:  18.82724952697754
+Time taken:  18.88569974899292
+Time taken:  18.864195823669434
+Time taken:  18.885956525802612
+Relaxation 7
+Time taken:  19.1722354888916
+Time taken:  19.253063201904297
+Time taken:  19.044652938842773
+Time taken:  19.078455209732056
+Time taken:  19.21056628227234
+Relaxation 8
+Time taken:  19.04394006729126
+Time taken:  19.116613149642944
+Time taken:  19.072733879089355
+Time taken:  19.14663600921631
+Time taken:  19.073403120040894
+Relaxation 9
+Time taken:  19.127752780914307
+Time taken:  19.249279737472534
+Time taken:  19.205252647399902
+Time taken:  19.183510780334473
+Time taken:  19.240301847457886
+Relaxation 10
+Time taken:  19.103004455566406
+Time taken:  19.182822465896606
+Time taken:  19.105843782424927
+Time taken:  18.976980209350586
+Time taken:  18.998332500457764
+Relaxation 11
+Time taken:  19.13274598121643
+Time taken:  19.08266258239746
+Time taken:  18.999756336212158
+Time taken:  19.001410245895386
+Time taken:  18.92818784713745
+Relaxation 12
+Time taken:  19.026241064071655
+Time taken:  19.025914907455444
+Time taken:  19.07425308227539
+Time taken:  19.043676376342773
+Time taken:  19.1047523021698
+Relaxation 13
+Time taken:  18.860668897628784
+Time taken:  18.836334705352783
+Time taken:  18.9427011013031
+Time taken:  18.756901741027832
+Time taken:  18.82150173187256
+Relaxation 14
+Time taken:  19.072586059570312
+Time taken:  19.117868423461914
+Time taken:  19.066704511642456
+Time taken:  19.13748526573181
+Time taken:  19.24711298942566
+Relaxation 15
+Time taken:  18.972464561462402
+Time taken:  18.90460991859436
+Time taken:  19.04447293281555
+Time taken:  18.844485998153687
+Time taken:  19.027167081832886
+Relaxation 16
+Time taken:  19.284927129745483
+Time taken:  19.29087734222412
+Time taken:  19.273486614227295
+Time taken:  19.294694900512695
+Time taken:  19.419554471969604
+Relaxation 17
+Time taken:  19.11229705810547
+Time taken:  19.18619656562805
+Time taken:  19.11744999885559
+Time taken:  19.147955894470215
+Time taken:  19.06288242340088
+Relaxation 18
+Time taken:  18.881142616271973
+Time taken:  18.896044731140137
+Time taken:  18.950825929641724
+Time taken:  18.94117307662964
+Time taken:  18.947547435760498
+Relaxation 19
+Time taken:  18.83658766746521
+Time taken:  18.789034605026245
+Time taken:  18.82456874847412
+Time taken:  18.661225080490112
+Time taken:  18.796436309814453
+Relaxation 20
+Time taken:  18.80930733680725
+Time taken:  18.873468160629272
+Time taken:  19.000412940979004
+Time taken:  18.892574787139893
+Time taken:  18.94163680076599
+Relaxation 21
+Time taken:  19.196744680404663
+Time taken:  19.30506920814514
+Time taken:  19.17172861099243
+Time taken:  19.18886160850525
+Time taken:  19.188440561294556
+Relaxation 22
+Time taken:  19.154563903808594
+Time taken:  19.151411533355713
+Time taken:  19.237504720687866
+Time taken:  19.23963737487793
+Time taken:  19.30369520187378
+Relaxation 23
+Time taken:  19.242990493774414
+Time taken:  19.17666220664978
+Time taken:  19.287495136260986
+Time taken:  19.246888637542725
+Time taken:  19.144832134246826
+Relaxation 24
+Time taken:  19.00458312034607
+Time taken:  19.048027515411377
+Time taken:  18.997722625732422
+Time taken:  19.014845848083496
+Time taken:  19.001802444458008
+Relaxation 25
+Time taken:  19.163091897964478
+Time taken:  19.14344334602356
+Time taken:  19.093067407608032
+Time taken:  19.247148752212524
+Time taken:  19.148657083511353
+Relaxation 26
+Time taken:  19.02937078475952
+Time taken:  19.355268478393555
+Time taken:  19.305944204330444
+Time taken:  19.305001258850098
+Time taken:  19.359179973602295
+Relaxation 27
+Time taken:  18.911792278289795
+Time taken:  18.859912395477295
+Time taken:  18.903881072998047
+Time taken:  18.84614586830139
+Time taken:  19.00994300842285
+Relaxation 28
+Time taken:  19.067681074142456
+Time taken:  19.101476430892944
+Time taken:  19.050930976867676
+Time taken:  19.112112522125244
+Time taken:  18.94171667098999
+Relaxation 29
+Time taken:  18.956526517868042
+Time taken:  18.9471595287323
+Time taken:  19.04057550430298
+Time taken:  18.985330820083618
+Time taken:  19.008031606674194
+Relaxation 30
+Time taken:  19.162953853607178
+Time taken:  18.922067880630493
+Time taken:  19.03252649307251
+Time taken:  18.977986097335815
+Time taken:  19.053917169570923
+Relaxation 31
+Time taken:  19.025691270828247
+Time taken:  19.086554527282715
+Time taken:  19.111432313919067
+Time taken:  19.04284691810608
+Time taken:  19.09158182144165
+Relaxation 32
+Time taken:  18.851736068725586
+Time taken:  19.01422905921936
+Time taken:  18.93363857269287
+Time taken:  19.07579803466797
+Time taken:  18.931922435760498
+Relaxation 33
+Time taken:  18.941418170928955
+Time taken:  18.98743510246277
+Time taken:  18.85975170135498
+Time taken:  18.967134714126587
+Time taken:  19.011333227157593
+Relaxation 34
+Time taken:  19.27752661705017
+Time taken:  18.98249387741089
+Time taken:  19.019811153411865
+Time taken:  18.966880798339844
+Time taken:  19.065763473510742
+Relaxation 35
+Time taken:  19.082717418670654
+Time taken:  19.015547037124634
+Time taken:  18.98298144340515
+Time taken:  19.020843744277954
+Time taken:  19.107935190200806
+Relaxation 36
+Time taken:  18.795140027999878
+Time taken:  18.852013111114502
+Time taken:  18.828286170959473
+Time taken:  18.95210576057434
+Time taken:  18.885152339935303
+Relaxation 37
+Time taken:  18.824010610580444
+Time taken:  18.899868488311768
+Time taken:  18.747979640960693
+Time taken:  18.747682809829712
+Time taken:  18.768190622329712
+Relaxation 38
+Time taken:  18.837475538253784
+Time taken:  18.89321279525757
+Time taken:  18.830464839935303
+Time taken:  18.87526249885559
+Time taken:  18.853887796401978
+Relaxation 39
+Time taken:  19.475870370864868
+Time taken:  19.239594221115112
+Time taken:  19.241130828857422
+Time taken:  19.141961097717285
+Time taken:  19.25339651107788
+Relaxation 40
+Time taken:  18.92458462715149
+Time taken:  18.949031352996826
+Time taken:  19.065106630325317
+Time taken:  18.98735547065735
+Time taken:  19.07021951675415
+Relaxation 41
+Time taken:  19.206268310546875
+Time taken:  19.330713748931885
+Time taken:  19.22585368156433
+Time taken:  19.188842296600342
+Time taken:  19.132192134857178
+Relaxation 42
+Time taken:  18.941577911376953
+Time taken:  18.99777913093567
+Time taken:  19.035786628723145
+Time taken:  19.15327501296997
+Time taken:  18.99894142150879
+Relaxation 43
+Time taken:  19.04956030845642
+Time taken:  19.13136386871338
+Time taken:  19.042498111724854
+Time taken:  19.09380054473877
+Time taken:  19.064610958099365
+Relaxation 44
+Time taken:  18.86184573173523
+Time taken:  18.830589532852173
+Time taken:  19.12656259536743
+Time taken:  18.90539836883545
+Time taken:  18.896867036819458
+Relaxation 45
+Time taken:  18.93617606163025
+Time taken:  18.95550799369812
+Time taken:  19.008000135421753
+Time taken:  18.90925693511963
+Time taken:  19.202980995178223
+Relaxation 46
+Time taken:  19.389862298965454
+Time taken:  19.357680320739746
+Time taken:  19.373517990112305
+Time taken:  19.21107029914856
+Time taken:  19.25544047355652
+Relaxation 47
+Time taken:  18.798125982284546
+Time taken:  18.723618984222412
+Time taken:  18.813544034957886
+Time taken:  18.828377723693848
+Time taken:  18.743345737457275
+Relaxation 48
+Time taken:  19.138365507125854
+Time taken:  19.1168315410614
+Time taken:  19.15963864326477
+Time taken:  19.1048264503479
+Time taken:  19.186821937561035
+Relaxation 49
+Time taken:  19.05289125442505
+Time taken:  19.103735208511353
+Time taken:  19.072087287902832
+Time taken:  19.1682288646698
+Time taken:  18.975419282913208
+Relaxation 50
+Time taken:  19.361719131469727
+Time taken:  19.570436477661133
+Time taken:  19.429174184799194
+Time taken:  19.483186721801758
+Time taken:  19.47777271270752
+Relaxation 51
+Time taken:  19.170374393463135
+Time taken:  19.154414653778076
+Time taken:  19.238035678863525
+Time taken:  19.22536849975586
+Time taken:  19.213398933410645
+Relaxation 52
+Time taken:  19.234610080718994
+Time taken:  19.29483675956726
+Time taken:  19.211391925811768
+Time taken:  19.13016152381897
+Time taken:  19.0958251953125
+Relaxation 53
+Time taken:  18.927809238433838
+Time taken:  18.888115406036377
+Time taken:  18.87188172340393
+Time taken:  18.861650466918945
+Time taken:  18.953198194503784
+Relaxation 54
+Time taken:  19.1804461479187
+Time taken:  19.279470443725586
+Time taken:  19.166164875030518
+Time taken:  19.106512308120728
+Time taken:  19.098844289779663
+Relaxation 55
+Time taken:  19.13796067237854
+Time taken:  19.07998776435852
+Time taken:  19.138415813446045
+Time taken:  19.08079695701599
+Time taken:  19.244110345840454
+Relaxation 56
+Time taken:  19.153310775756836
+Time taken:  19.174845457077026
+Time taken:  19.192137241363525
+Time taken:  19.15219020843506
+Time taken:  19.026793241500854
+Relaxation 57
+Time taken:  18.91956329345703
+Time taken:  19.040696620941162
+Time taken:  18.96826481819153
+Time taken:  19.016817092895508
+Time taken:  18.982181787490845
+Relaxation 58
+Time taken:  19.190304279327393
+Time taken:  19.19227933883667
+Time taken:  19.227569580078125
+Time taken:  19.27371382713318
+Time taken:  19.04029154777527
+Relaxation 59
+Time taken:  18.660570859909058
+Time taken:  18.662752628326416
+Time taken:  18.784550189971924
+Time taken:  18.709740161895752
+Time taken:  18.742114782333374
+Relaxation 60
+Time taken:  18.94253444671631
+Time taken:  18.969132661819458
+Time taken:  19.052552700042725
+Time taken:  18.942691564559937
+Time taken:  18.844061136245728
+Relaxation 61
+Time taken:  19.021968364715576
+Time taken:  19.11904263496399
+Time taken:  19.144290924072266
+Time taken:  19.135634183883667
+Time taken:  19.094090461730957
+Relaxation 62
+Time taken:  19.133118391036987
+Time taken:  19.05757999420166
+Time taken:  19.076866149902344
+Time taken:  18.93547224998474
+Time taken:  19.056349277496338
+Relaxation 63
+Time taken:  19.46563220024109
+Time taken:  19.501017808914185
+Time taken:  19.437101364135742
+Time taken:  19.39135766029358
+Time taken:  19.546436071395874
+Relaxation 64
+Time taken:  18.97222661972046
+Time taken:  18.98110818862915
+Time taken:  19.04568076133728
+Time taken:  18.964014291763306
+Time taken:  18.997776985168457
+Relaxation 65
+Time taken:  18.93473482131958
+Time taken:  18.957722187042236
+Time taken:  18.90952777862549
+Time taken:  18.946893453598022
+Time taken:  19.059669017791748
+Relaxation 66
+Time taken:  18.849883794784546
+Time taken:  18.892425537109375
+Time taken:  18.95093274116516
+Time taken:  18.811416387557983
+Time taken:  18.810190200805664
+Relaxation 67
+Time taken:  18.901066541671753
+Time taken:  18.888761520385742
+Time taken:  18.885485649108887
+Time taken:  18.96020746231079
+Time taken:  19.021329879760742
+Relaxation 68
+Time taken:  19.37294101715088
+Time taken:  19.32172417640686
+Time taken:  19.4542338848114
+Time taken:  19.387328386306763
+Time taken:  19.363674879074097
+Relaxation 69
+Time taken:  18.96977186203003
+Time taken:  18.91702365875244
+Time taken:  18.97078561782837
+Time taken:  18.88651442527771
+Time taken:  19.045082807540894
+Relaxation 70
+Time taken:  18.981314182281494
+Time taken:  19.017338752746582
+Time taken:  19.050194263458252
+Time taken:  19.124532461166382
+Time taken:  18.885254621505737
+Relaxation 71
+Time taken:  19.01418924331665
+Time taken:  19.10912322998047
+Time taken:  19.094813108444214
+Time taken:  19.140299558639526
+Time taken:  19.129379749298096
+Relaxation 72
+Time taken:  18.978578805923462
+Time taken:  18.87187170982361
+Time taken:  18.956733226776123
+Time taken:  18.90821886062622
+Time taken:  18.88067388534546
+Relaxation 73
+Time taken:  19.046493768692017
+Time taken:  19.122178554534912
+Time taken:  19.04562735557556
+Time taken:  19.16243600845337
+Time taken:  19.02593469619751
+Relaxation 74
+Time taken:  19.015892505645752
+Time taken:  19.10630440711975
+Time taken:  19.104841709136963
+Time taken:  18.998417854309082
+Time taken:  18.913334131240845
+Relaxation 75
+Time taken:  18.927284240722656
+Time taken:  18.961583852767944
+Time taken:  18.933069944381714
+Time taken:  19.059945821762085
+Time taken:  18.982572555541992
+Relaxation 76
+Time taken:  18.983230352401733
+Time taken:  19.031932830810547
+Time taken:  18.94189190864563
+Time taken:  19.01389789581299
+Time taken:  18.858915090560913
+Relaxation 77
+Time taken:  19.090513467788696
+Time taken:  19.107202291488647
+Time taken:  19.089717388153076
+Time taken:  19.09503436088562
+Time taken:  19.197253942489624
+Relaxation 78
+Time taken:  19.033777236938477
+Time taken:  18.984742879867554
+Time taken:  19.035558700561523
+Time taken:  19.052146673202515
+Time taken:  18.963185787200928
+Relaxation 79
+Time taken:  19.192349433898926
+Time taken:  19.119220495224
+Time taken:  19.21173906326294
+Time taken:  19.24660611152649
+Time taken:  19.101091861724854
+Relaxation 80
+Time taken:  18.916979551315308
+Time taken:  18.97234272956848
+Time taken:  18.91342830657959
+Time taken:  18.956897497177124
+Time taken:  18.865979433059692
+Relaxation 81
+Time taken:  18.88945984840393
+Time taken:  19.041336059570312
+Time taken:  18.925446033477783
+Time taken:  19.00826382637024
+Time taken:  18.94214940071106
+Relaxation 82
+Time taken:  19.11312222480774
+Time taken:  19.196696996688843
+Time taken:  19.059877634048462
+Time taken:  19.149651050567627
+Time taken:  19.027725219726562
+Relaxation 83
+Time taken:  18.84321618080139
+Time taken:  18.833500385284424
+Time taken:  18.836796760559082
+Time taken:  18.937089920043945
+Time taken:  18.821959018707275
+Relaxation 84
+Time taken:  19.02321481704712
+Time taken:  18.97190499305725
+Time taken:  19.073307752609253
+Time taken:  18.941801071166992
+Time taken:  18.995917081832886
+Relaxation 85
+Time taken:  18.902244567871094
+Time taken:  18.790422201156616
+Time taken:  18.872020483016968
+Time taken:  18.94514560699463
+Time taken:  18.954848289489746
+Relaxation 86
+Time taken:  19.289353847503662
+Time taken:  19.26813244819641
+Time taken:  19.181405305862427
+Time taken:  19.269684314727783
+Time taken:  19.110745429992676
+Relaxation 87
+Time taken:  18.98503875732422
+Time taken:  18.888877153396606
+Time taken:  18.997843027114868
+Time taken:  18.987067937850952
+Time taken:  19.018054008483887
+Relaxation 88
+Time taken:  19.160182237625122
+Time taken:  19.151103019714355
+Time taken:  19.260478734970093
+Time taken:  19.12808394432068
+Time taken:  19.1176655292511
+Relaxation 89
+Time taken:  18.781712293624878
+Time taken:  18.868465662002563
+Time taken:  18.809436798095703
+Time taken:  18.942108869552612
+Time taken:  18.885728359222412
+Relaxation 90
+Time taken:  18.96348738670349
+Time taken:  19.166571617126465
+Time taken:  18.873722791671753
+Time taken:  18.874178886413574
+Time taken:  18.882407665252686
+Relaxation 91
+Time taken:  18.916155338287354
+Time taken:  18.912848949432373
+Time taken:  18.917922496795654
+Time taken:  18.980313301086426
+Time taken:  18.897951364517212
+Relaxation 92
+Time taken:  19.19853949546814
+Time taken:  19.233774423599243
+Time taken:  19.12604308128357
+Time taken:  19.287733793258667
+Time taken:  19.239100694656372
+Relaxation 93
+Time taken:  19.121004819869995
+Time taken:  19.196895599365234
+Time taken:  18.947547912597656
+Time taken:  19.068944692611694
+Time taken:  18.990739822387695
+Relaxation 94
+Time taken:  19.208439826965332
+Time taken:  19.1319260597229
+Time taken:  19.22945213317871
+Time taken:  19.018040895462036
+Time taken:  19.086755752563477
+Relaxation 95
+Time taken:  19.01151728630066
+Time taken:  19.031900644302368
+Time taken:  18.978694200515747
+Time taken:  19.0750789642334
+Time taken:  19.057924509048462
+Relaxation 96
+Time taken:  19.144591808319092
+Time taken:  19.009289264678955
+Time taken:  18.937386512756348
+Time taken:  18.939468383789062
+Time taken:  18.81479835510254
+Relaxation 97
+Time taken:  19.12752413749695
+Time taken:  19.131831645965576
+Time taken:  19.16826844215393
+Time taken:  19.158761978149414
+Time taken:  19.201565742492676
+Relaxation 98
+Time taken:  19.100682497024536
+Time taken:  19.042121648788452
+Time taken:  19.02137064933777
+Time taken:  19.067986011505127
+Time taken:  19.034750938415527
+Relaxation 99
+Time taken:  18.903740644454956
+Time taken:  18.926716804504395
+Time taken:  18.988560676574707
+Time taken:  18.916162490844727
+Time taken:  18.94977068901062
