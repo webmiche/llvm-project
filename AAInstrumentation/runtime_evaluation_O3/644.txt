@@ -1,0 +1,80 @@
+Running benchmark 644 with O3
+Compiling file 644/sff.bc, 0 of 20
+644/sff.bc: 7747
+Compiling file 644/nblist.bc, 1 of 20
+644/nblist.bc: 430
+Compiling file 644/traceback.bc, 2 of 20
+644/traceback.bc: 0
+Compiling file 644/errormsg.bc, 3 of 20
+644/errormsg.bc: 3
+Compiling file 644/reslib.bc, 4 of 20
+644/reslib.bc: 4585
+Compiling file 644/rand2.bc, 5 of 20
+644/rand2.bc: 1
+Compiling file 644/molutil.bc, 6 of 20
+644/molutil.bc: 12907
+Compiling file 644/chirvol.bc, 7 of 20
+644/chirvol.bc: 157
+Compiling file 644/binpos.bc, 8 of 20
+644/binpos.bc: 31
+Compiling file 644/select_atoms.bc, 9 of 20
+644/select_atoms.bc: 1398
+Compiling file 644/nabmd.bc, 10 of 20
+644/nabmd.bc: 132
+Compiling file 644/prm.bc, 11 of 20
+644/prm.bc: 10615
+Compiling file 644/molio.bc, 12 of 20
+644/molio.bc: 5460
+Compiling file 644/database.bc, 13 of 20
+644/database.bc: 2405
+Compiling file 644/memutil.bc, 14 of 20
+644/memutil.bc: 23
+Compiling file 644/specrand/specrand.bc, 15 of 20
+644/specrand/specrand.bc: 71
+Compiling file 644/regex-alpha/regerror.bc, 16 of 20
+644/regex-alpha/regerror.bc: 12
+Compiling file 644/regex-alpha/regcomp.bc, 17 of 20
+644/regex-alpha/regcomp.bc: 5927
+Compiling file 644/regex-alpha/regfree.bc, 18 of 20
+644/regex-alpha/regfree.bc: 22
+Compiling file 644/regex-alpha/regexec.bc, 19 of 20
+644/regex-alpha/regexec.bc: 2564
+Relaxation 0
+Time taken:  1936.6576237678528
+Time taken:  1934.2488231658936
+Time taken:  1937.5598905086517
+Time taken:  1935.9520242214203
+Time taken:  1935.5625462532043
+Relaxation 1
+Time taken:  1897.5015707015991
+Time taken:  1898.6079227924347
+Time taken:  1899.7957656383514
+Time taken:  1899.3769023418427
+Time taken:  1898.004242181778
+Relaxation 2
+Time taken:  1920.5751056671143
+Time taken:  1920.1766591072083
+Time taken:  1914.5809526443481
+Time taken:  1918.9244346618652
+Time taken:  1920.654060602188
+Relaxation 3
+Time taken:  1902.4759457111359
+Time taken:  1901.249657869339
+Time taken:  1905.1219305992126
+Time taken:  1901.812819480896
+Time taken:  1902.2522041797638
+Relaxation 4
+Time taken:  1601.7969570159912
+Time taken:  1602.7562301158905
+Time taken:  1600.6231994628906
+Time taken:  1595.6211636066437
+Time taken:  1601.2435848712921
+Relaxation 5
+Time taken:  1942.2348222732544
+Time taken:  1942.359498500824
+Time taken:  1943.5119202136993
+Time taken:  1940.6590609550476
+Time taken:  1943.2829065322876
+Relaxation 6
+Time taken:  1875.3109912872314
+Time taken:  1884.2849671840668
