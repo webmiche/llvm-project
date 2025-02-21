@@ -115,6 +115,21 @@ class RuntimeEvaluatorBenchmarkLevel(AAInstrumentationDriver):
 
         files = self.get_baseline_files()
 
+        # compile and run without relaxations
+        for file in files:
+            self.compile_baseline_file(file)
+        files_to_link = []
+
+        for file in files:
+            files_to_link.append(self.groundtruth_dir/file.with_suffix(".o"))
+
+        self.link(files_to_link)
+
+        print("Running without relaxations")
+        for i in range(num_runs):
+            self.run_linked()
+
+
         candidates_per_file = self.get_candidates_per_file(files)
         for i, file in enumerate(files):
             print(f"Compiling file {file}, {i} of {len(files)}", flush=True)
