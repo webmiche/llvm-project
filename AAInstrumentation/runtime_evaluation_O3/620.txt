@@ -1,1 +1,961 @@
 Running benchmark 620 with O3
+Running without relaxations
+Time taken:  340.98967242240906
+Time taken:  337.84495854377747
+Time taken:  342.13344526290894
+Time taken:  339.47288823127747
+Time taken:  339.26615357398987
+Compiling file 620/model/EtherAppSrv.bc, 0 of 177
+620/model/EtherAppSrv.bc: 970
+Compiling file 620/model/EtherEncap.bc, 1 of 177
+620/model/EtherEncap.bc: 1087
+Compiling file 620/model/EtherMACBase.bc, 2 of 177
+620/model/EtherMACBase.bc: 1634
+Compiling file 620/model/EtherFrame_m.bc, 3 of 177
+620/model/EtherFrame_m.bc: 895
+Compiling file 620/model/MACAddress.bc, 4 of 177
+620/model/MACAddress.bc: 460
+Compiling file 620/model/EtherLLC.bc, 5 of 177
+620/model/EtherLLC.bc: 1395
+Compiling file 620/model/Ieee802Ctrl_m.bc, 6 of 177
+620/model/Ieee802Ctrl_m.bc: 972
+Compiling file 620/model/MACRelayUnitNP.bc, 7 of 177
+620/model/MACRelayUnitNP.bc: 1632
+Compiling file 620/model/EtherHub.bc, 8 of 177
+620/model/EtherHub.bc: 593
+Compiling file 620/model/MACRelayUnitBase.bc, 9 of 177
+620/model/MACRelayUnitBase.bc: 1305
+Compiling file 620/model/EtherApp_m.bc, 10 of 177
+620/model/EtherApp_m.bc: 48
+Compiling file 620/model/EtherMAC.bc, 11 of 177
+620/model/EtherMAC.bc: 1988
+Compiling file 620/model/EtherAppCli.bc, 12 of 177
+620/model/EtherAppCli.bc: 780
+Compiling file 620/model/MACRelayUnitPP.bc, 13 of 177
+620/model/MACRelayUnitPP.bc: 1605
+Compiling file 620/simulator/saxparser_none.bc, 14 of 177
+620/simulator/saxparser_none.bc: 1
+Compiling file 620/simulator/ccommbuffer.bc, 15 of 177
+620/simulator/ccommbuffer.bc: 2
+Compiling file 620/simulator/nedfilebuffer.bc, 16 of 177
+620/simulator/nedfilebuffer.bc: 725
+Compiling file 620/simulator/speedometer.bc, 17 of 177
+620/simulator/speedometer.bc: 146
+Compiling file 620/simulator/fnamelisttokenizer.bc, 18 of 177
+620/simulator/fnamelisttokenizer.bc: 565
+Compiling file 620/simulator/cclassdescriptor.bc, 19 of 177
+620/simulator/cclassdescriptor.bc: 36
+Compiling file 620/simulator/opp_run.bc, 20 of 177
+620/simulator/opp_run.bc: 0
+Compiling file 620/simulator/minixpath.bc, 21 of 177
+620/simulator/minixpath.bc: 537
+Compiling file 620/simulator/filereader.bc, 22 of 177
+620/simulator/filereader.bc: 890
+Compiling file 620/simulator/cenum.bc, 23 of 177
+620/simulator/cenum.bc: 2685
+Compiling file 620/simulator/linetokenizer.bc, 24 of 177
+620/simulator/linetokenizer.bc: 59
+Compiling file 620/simulator/nedtypeinfo.bc, 25 of 177
+620/simulator/nedtypeinfo.bc: 2362
+Compiling file 620/simulator/cneddeclaration.bc, 26 of 177
+620/simulator/cneddeclaration.bc: 1916
+Compiling file 620/simulator/nedyylib.bc, 27 of 177
+620/simulator/nedyylib.bc: 1427
+Compiling file 620/simulator/nedsyntaxvalidator.bc, 28 of 177
+620/simulator/nedsyntaxvalidator.bc: 219
+Compiling file 620/simulator/cdisplaystring.bc, 29 of 177
+620/simulator/cdisplaystring.bc: 1156
+Compiling file 620/simulator/cwatch.bc, 30 of 177
+620/simulator/cwatch.bc: 86
+Compiling file 620/simulator/cdataratechannel.bc, 31 of 177
+620/simulator/cdataratechannel.bc: 709
+Compiling file 620/simulator/sim_std_m.bc, 32 of 177
+620/simulator/sim_std_m.bc: 4645
+Compiling file 620/simulator/filesnapshotmgr.bc, 33 of 177
+620/simulator/filesnapshotmgr.bc: 81
+Compiling file 620/simulator/cksplit.bc, 34 of 177
+620/simulator/cksplit.bc: 2260
+Compiling file 620/simulator/matchexpression.bc, 35 of 177
+620/simulator/matchexpression.bc: 401
+Compiling file 620/simulator/stringutil.bc, 36 of 177
+620/simulator/stringutil.bc: 676
+Compiling file 620/simulator/neddtdvalidatorbase.bc, 37 of 177
+620/simulator/neddtdvalidatorbase.bc: 76
+Compiling file 620/simulator/eventlogfilemgr.bc, 38 of 177
+620/simulator/eventlogfilemgr.bc: 663
+Compiling file 620/simulator/cdelaychannel.bc, 39 of 177
+620/simulator/cdelaychannel.bc: 427
+Compiling file 620/simulator/fsutils.bc, 40 of 177
+620/simulator/fsutils.bc: 918
+Compiling file 620/simulator/akaroarng.bc, 41 of 177
+620/simulator/akaroarng.bc: 0
+Compiling file 620/simulator/indexedfileoutvectormgr.bc, 42 of 177
+620/simulator/indexedfileoutvectormgr.bc: 1425
+Compiling file 620/simulator/intervals.bc, 43 of 177
+620/simulator/intervals.bc: 608
+Compiling file 620/simulator/cdensityestbase.bc, 44 of 177
+620/simulator/cdensityestbase.bc: 1123
+Compiling file 620/simulator/cmessage.bc, 45 of 177
+620/simulator/cmessage.bc: 2054
+Compiling file 620/simulator/cstringtokenizer.bc, 46 of 177
+620/simulator/cstringtokenizer.bc: 1176
+Compiling file 620/simulator/valueiterator.bc, 47 of 177
+620/simulator/valueiterator.bc: 1468
+Compiling file 620/simulator/lcgrandom.bc, 48 of 177
+620/simulator/lcgrandom.bc: 11
+Compiling file 620/simulator/startup.bc, 49 of 177
+620/simulator/startup.bc: 675
+Compiling file 620/simulator/cxmlelement.bc, 50 of 177
+620/simulator/cxmlelement.bc: 2545
+Compiling file 620/simulator/fileoutscalarmgr.bc, 51 of 177
+620/simulator/fileoutscalarmgr.bc: 1292
+Compiling file 620/simulator/cxmlparimpl.bc, 52 of 177
+620/simulator/cxmlparimpl.bc: 517
+Compiling file 620/simulator/csimplemodule.bc, 53 of 177
+620/simulator/csimplemodule.bc: 1600
+Compiling file 620/simulator/cproperties.bc, 54 of 177
+620/simulator/cproperties.bc: 1027
+Compiling file 620/simulator/cstringpool.bc, 55 of 177
+620/simulator/cstringpool.bc: 241
+Compiling file 620/simulator/ned2.tab.bc, 56 of 177
+620/simulator/ned2.tab.bc: 46013
+Compiling file 620/simulator/expr.tab.bc, 57 of 177
+620/simulator/expr.tab.bc: 7128
+Compiling file 620/simulator/displaystring.bc, 58 of 177
+620/simulator/displaystring.bc: 632
+Compiling file 620/simulator/cexception.bc, 59 of 177
+620/simulator/cexception.bc: 806
+Compiling file 620/simulator/stringpool.bc, 60 of 177
+620/simulator/stringpool.bc: 95
+Compiling file 620/simulator/bigdecimal.bc, 61 of 177
+620/simulator/bigdecimal.bc: 1479
+Compiling file 620/simulator/xmlgenerator.bc, 62 of 177
+620/simulator/xmlgenerator.bc: 63
+Compiling file 620/simulator/cdynamicmoduletype.bc, 63 of 177
+620/simulator/cdynamicmoduletype.bc: 110
+Compiling file 620/simulator/cparsimcomm.bc, 64 of 177
+620/simulator/cparsimcomm.bc: 348
+Compiling file 620/simulator/globals.bc, 65 of 177
+620/simulator/globals.bc: 0
+Compiling file 620/simulator/ned2generator.bc, 66 of 177
+620/simulator/ned2generator.bc: 1950
+Compiling file 620/simulator/coutvector.bc, 67 of 177
+620/simulator/coutvector.bc: 921
+Compiling file 620/simulator/ccoroutine.bc, 68 of 177
+620/simulator/ccoroutine.bc: 5
+Compiling file 620/simulator/ctopology.bc, 69 of 177
+620/simulator/ctopology.bc: 2279
+Compiling file 620/simulator/cnedfunction.bc, 70 of 177
+620/simulator/cnedfunction.bc: 1570
+Compiling file 620/simulator/objectprinter.bc, 71 of 177
+620/simulator/objectprinter.bc: 1359
+Compiling file 620/simulator/cdynamicchanneltype.bc, 72 of 177
+620/simulator/cdynamicchanneltype.bc: 421
+Compiling file 620/simulator/patternmatcher.bc, 73 of 177
+620/simulator/patternmatcher.bc: 2719
+Compiling file 620/simulator/cmdenv.bc, 74 of 177
+620/simulator/cmdenv.bc: 2282
+Compiling file 620/simulator/cnedloader.bc, 75 of 177
+620/simulator/cnedloader.bc: 480
+Compiling file 620/simulator/main.bc, 76 of 177
+620/simulator/main.bc: 0
+Compiling file 620/simulator/chasher.bc, 77 of 177
+620/simulator/chasher.bc: 402
+Compiling file 620/simulator/clinkedlist.bc, 78 of 177
+620/simulator/clinkedlist.bc: 1122
+Compiling file 620/simulator/ccomponent.bc, 79 of 177
+620/simulator/ccomponent.bc: 633
+Compiling file 620/simulator/sectionbasedconfig.bc, 80 of 177
+620/simulator/sectionbasedconfig.bc: 18834
+Compiling file 620/simulator/inifilereader.bc, 81 of 177
+620/simulator/inifilereader.bc: 4852
+Compiling file 620/simulator/cfsm.bc, 82 of 177
+620/simulator/cfsm.bc: 681
+Compiling file 620/simulator/cqueue.bc, 83 of 177
+620/simulator/cqueue.bc: 979
+Compiling file 620/simulator/cpsquare.bc, 84 of 177
+620/simulator/cpsquare.bc: 1354
+Compiling file 620/simulator/cmsgpar.bc, 85 of 177
+620/simulator/cmsgpar.bc: 2724
+Compiling file 620/simulator/chistogram.bc, 86 of 177
+620/simulator/chistogram.bc: 809
+Compiling file 620/simulator/errmsg.bc, 87 of 177
+620/simulator/errmsg.bc: 0
+Compiling file 620/simulator/cstlwatch.bc, 88 of 177
+620/simulator/cstlwatch.bc: 503
+Compiling file 620/simulator/cstringparimpl.bc, 89 of 177
+620/simulator/cstringparimpl.bc: 518
+Compiling file 620/simulator/cvisitor.bc, 90 of 177
+620/simulator/cvisitor.bc: 0
+Compiling file 620/simulator/nedfunctions.bc, 91 of 177
+620/simulator/nedfunctions.bc: 2681
+Compiling file 620/simulator/ccompoundmodule.bc, 92 of 177
+620/simulator/ccompoundmodule.bc: 671
+Compiling file 620/simulator/stringtokenizer.bc, 93 of 177
+620/simulator/stringtokenizer.bc: 619
+Compiling file 620/simulator/nedresourcecache.bc, 94 of 177
+620/simulator/nedresourcecache.bc: 5219
+Compiling file 620/simulator/nedparser.bc, 95 of 177
+620/simulator/nedparser.bc: 728
+Compiling file 620/simulator/neddtdvalidator.bc, 96 of 177
+620/simulator/neddtdvalidator.bc: 523
+Compiling file 620/simulator/csimulation.bc, 97 of 177
+620/simulator/csimulation.bc: 1366
+Compiling file 620/simulator/eventlogwriter.bc, 98 of 177
+620/simulator/eventlogwriter.bc: 486
+Compiling file 620/simulator/fileglobber.bc, 99 of 177
+620/simulator/fileglobber.bc: 585
+Compiling file 620/simulator/cdynamicexpression.bc, 100 of 177
+620/simulator/cdynamicexpression.bc: 14764
+Compiling file 620/simulator/cpar.bc, 101 of 177
+620/simulator/cpar.bc: 791
+Compiling file 620/simulator/cregistrationlist.bc, 102 of 177
+620/simulator/cregistrationlist.bc: 1271
+Compiling file 620/simulator/nederror.bc, 103 of 177
+620/simulator/nederror.bc: 1644
+Compiling file 620/simulator/ned1.tab.bc, 104 of 177
+620/simulator/ned1.tab.bc: 8914
+Compiling file 620/simulator/cproperty.bc, 105 of 177
+620/simulator/cproperty.bc: 1722
+Compiling file 620/simulator/cchannel.bc, 106 of 177
+620/simulator/cchannel.bc: 743
+Compiling file 620/simulator/expression.tab.bc, 107 of 177
+620/simulator/expression.tab.bc: 6800
+Compiling file 620/simulator/fileoutvectormgr.bc, 108 of 177
+620/simulator/fileoutvectormgr.bc: 1176
+Compiling file 620/simulator/cmodule.bc, 109 of 177
+620/simulator/cmodule.bc: 3550
+Compiling file 620/simulator/nedsupport.bc, 110 of 177
+620/simulator/nedsupport.bc: 1249
+Compiling file 620/simulator/cscheduler.bc, 111 of 177
+620/simulator/cscheduler.bc: 480
+Compiling file 620/simulator/cnednetworkbuilder.bc, 112 of 177
+620/simulator/cnednetworkbuilder.bc: 2805
+Compiling file 620/simulator/cdetect.bc, 113 of 177
+620/simulator/cdetect.bc: 997
+Compiling file 620/simulator/lex.expressionyy.bc, 114 of 177
+620/simulator/lex.expressionyy.bc: 2196
+Compiling file 620/simulator/ned1generator.bc, 115 of 177
+620/simulator/ned1generator.bc: 1926
+Compiling file 620/simulator/exception.bc, 116 of 177
+620/simulator/exception.bc: 33
+Compiling file 620/simulator/nedelements.bc, 117 of 177
+620/simulator/nedelements.bc: 5105
+Compiling file 620/simulator/nedsaxhandler.bc, 118 of 177
+620/simulator/nedsaxhandler.bc: 54
+Compiling file 620/simulator/nedelement.bc, 119 of 177
+620/simulator/nedelement.bc: 261
+Compiling file 620/simulator/cconfigoption.bc, 120 of 177
+620/simulator/cconfigoption.bc: 504
+Compiling file 620/simulator/nedexception.bc, 121 of 177
+620/simulator/nedexception.bc: 575
+Compiling file 620/simulator/cgate.bc, 122 of 177
+620/simulator/cgate.bc: 1127
+Compiling file 620/simulator/cdoubleparimpl.bc, 123 of 177
+620/simulator/cdoubleparimpl.bc: 414
+Compiling file 620/simulator/cmessageheap.bc, 124 of 177
+620/simulator/cmessageheap.bc: 1012
+Compiling file 620/simulator/cboolparimpl.bc, 125 of 177
+620/simulator/cboolparimpl.bc: 392
+Compiling file 620/simulator/enumstr.bc, 126 of 177
+620/simulator/enumstr.bc: 28
+Compiling file 620/simulator/cexpressionbuilder.bc, 127 of 177
+620/simulator/cexpressionbuilder.bc: 984
+Compiling file 620/simulator/cenvir.bc, 128 of 177
+620/simulator/cenvir.bc: 503
+Compiling file 620/simulator/cmersennetwister.bc, 129 of 177
+620/simulator/cmersennetwister.bc: 675
+Compiling file 620/simulator/args.bc, 130 of 177
+620/simulator/args.bc: 2298
+Compiling file 620/simulator/carray.bc, 131 of 177
+620/simulator/carray.bc: 1063
+Compiling file 620/simulator/expression.bc, 132 of 177
+620/simulator/expression.bc: 11643
+Compiling file 620/simulator/cvarhist.bc, 133 of 177
+620/simulator/cvarhist.bc: 819
+Compiling file 620/simulator/akoutvectormgr.bc, 134 of 177
+620/simulator/akoutvectormgr.bc: 0
+Compiling file 620/simulator/lex.ned1yy.bc, 135 of 177
+620/simulator/lex.ned1yy.bc: 2307
+Compiling file 620/simulator/runattributes.bc, 136 of 177
+620/simulator/runattributes.bc: 593
+Compiling file 620/simulator/matchableobject.bc, 137 of 177
+620/simulator/matchableobject.bc: 174
+Compiling file 620/simulator/envirbase.bc, 138 of 177
+620/simulator/envirbase.bc: 2993
+Compiling file 620/simulator/cmathfunction.bc, 139 of 177
+620/simulator/cmathfunction.bc: 835
+Compiling file 620/simulator/lex.msg2yy.bc, 140 of 177
+620/simulator/lex.msg2yy.bc: 2307
+Compiling file 620/simulator/task.bc, 141 of 177
+620/simulator/task.bc: 153
+Compiling file 620/simulator/onstartup.bc, 142 of 177
+620/simulator/onstartup.bc: 5
+Compiling file 620/simulator/cownedobject.bc, 143 of 177
+620/simulator/cownedobject.bc: 371
+Compiling file 620/simulator/clongparimpl.bc, 144 of 177
+620/simulator/clongparimpl.bc: 414
+Compiling file 620/simulator/scenario.bc, 145 of 177
+620/simulator/scenario.bc: 1607
+Compiling file 620/simulator/simtime.bc, 146 of 177
+620/simulator/simtime.bc: 1360
+Compiling file 620/simulator/cxmldoccache.bc, 147 of 177
+620/simulator/cxmldoccache.bc: 941
+Compiling file 620/simulator/msg2.tab.bc, 148 of 177
+620/simulator/msg2.tab.bc: 6099
+Compiling file 620/simulator/lex.ned2yy.bc, 149 of 177
+620/simulator/lex.ned2yy.bc: 2480
+Compiling file 620/simulator/nedcrossvalidator.bc, 150 of 177
+620/simulator/nedcrossvalidator.bc: 107
+Compiling file 620/simulator/cparimpl.bc, 151 of 177
+620/simulator/cparimpl.bc: 765
+Compiling file 620/simulator/distrib.bc, 152 of 177
+620/simulator/distrib.bc: 613
+Compiling file 620/simulator/commonutil.bc, 153 of 177
+620/simulator/commonutil.bc: 23
+Compiling file 620/simulator/cstatistic.bc, 154 of 177
+620/simulator/cstatistic.bc: 543
+Compiling file 620/simulator/cstddev.bc, 155 of 177
+620/simulator/cstddev.bc: 1675
+Compiling file 620/simulator/matchexpression.tab.bc, 156 of 177
+620/simulator/matchexpression.tab.bc: 1146
+Compiling file 620/simulator/ccomponenttype.bc, 157 of 177
+620/simulator/ccomponenttype.bc: 1062
+Compiling file 620/simulator/cnamedobject.bc, 158 of 177
+620/simulator/cnamedobject.bc: 363
+Compiling file 620/simulator/matchexpressionlexer.bc, 159 of 177
+620/simulator/matchexpressionlexer.bc: 73
+Compiling file 620/simulator/cdefaultlist.bc, 160 of 177
+620/simulator/cdefaultlist.bc: 831
+Compiling file 620/simulator/nedtools.bc, 161 of 177
+620/simulator/nedtools.bc: 688
+Compiling file 620/simulator/fileutil.bc, 162 of 177
+620/simulator/fileutil.bc: 1558
+Compiling file 620/simulator/cclassfactory.bc, 163 of 177
+620/simulator/cclassfactory.bc: 437
+Compiling file 620/simulator/clcg32.bc, 164 of 177
+620/simulator/clcg32.bc: 349
+Compiling file 620/simulator/matchablefield.bc, 165 of 177
+620/simulator/matchablefield.bc: 54
+Compiling file 620/simulator/nedvalidator.bc, 166 of 177
+620/simulator/nedvalidator.bc: 0
+Compiling file 620/simulator/cconfiguration.bc, 167 of 177
+620/simulator/cconfiguration.bc: 1435
+Compiling file 620/simulator/cobject.bc, 168 of 177
+620/simulator/cobject.bc: 480
+Compiling file 620/simulator/appreg.bc, 169 of 177
+620/simulator/appreg.bc: 2
+Compiling file 620/simulator/spec_qsort.bc, 170 of 177
+620/simulator/spec_qsort.bc: 13
+Compiling file 620/simulator/lex.expryy.bc, 171 of 177
+620/simulator/lex.expryy.bc: 2155
+Compiling file 620/simulator/unitconversion.bc, 172 of 177
+620/simulator/unitconversion.bc: 597
+Compiling file 620/simulator/util.bc, 173 of 177
+620/simulator/util.bc: 2005
+Compiling file 620/simulator/nedxmlparser.bc, 174 of 177
+620/simulator/nedxmlparser.bc: 0
+Compiling file 620/simulator/cpacketqueue.bc, 175 of 177
+620/simulator/cpacketqueue.bc: 680
+Compiling file 620/simulator/nedutil.bc, 176 of 177
+620/simulator/nedutil.bc: 145
+Relaxation 0
+Time taken:  342.65247988700867
+Time taken:  344.8401370048523
+Time taken:  342.5791676044464
+Time taken:  349.8526532649994
+Time taken:  337.64443254470825
+Relaxation 1
+Time taken:  344.3644828796387
+Time taken:  340.5505864620209
+Time taken:  338.6007695198059
+Time taken:  337.2809407711029
+Time taken:  344.3511846065521
+Relaxation 2
+Time taken:  348.83123111724854
+Time taken:  354.1587710380554
+Time taken:  347.05691599845886
+Time taken:  344.29552268981934
+Time taken:  342.02758383750916
+Relaxation 3
+Time taken:  344.6526024341583
+Time taken:  350.3323218822479
+Time taken:  343.90646147727966
+Time taken:  339.0404794216156
+Time taken:  335.7431845664978
+Relaxation 4
+Time taken:  352.4834063053131
+Time taken:  352.5038802623749
+Time taken:  341.0474212169647
+Time taken:  347.03026127815247
+Time taken:  345.734991312027
+Relaxation 5
+Time taken:  353.5203356742859
+Time taken:  341.5493085384369
+Time taken:  345.30410146713257
+Time taken:  349.9664409160614
+Time taken:  337.11199927330017
+Relaxation 6
+Time taken:  343.027508020401
+Time taken:  346.2980225086212
+Time taken:  353.605343580246
+Time taken:  341.2650179862976
+Time taken:  343.8133873939514
+Relaxation 7
+Time taken:  340.2249822616577
+Time taken:  341.1119668483734
+Time taken:  345.58962845802307
+Time taken:  350.1633110046387
+Time taken:  346.8894393444061
+Relaxation 8
+Time taken:  347.8635745048523
+Time taken:  361.13264179229736
+Time taken:  357.14860582351685
+Time taken:  354.94239473342896
+Time taken:  345.94605326652527
+Relaxation 9
+Time taken:  351.3448362350464
+Time taken:  348.4989457130432
+Time taken:  342.36777091026306
+Time taken:  358.84349966049194
+Time taken:  347.7956795692444
+Relaxation 10
+Time taken:  355.353063583374
+Time taken:  345.2351086139679
+Time taken:  340.6229600906372
+Time taken:  345.2868752479553
+Time taken:  336.3572566509247
+Relaxation 11
+Time taken:  346.19994854927063
+Time taken:  346.32698225975037
+Time taken:  345.250052690506
+Time taken:  343.3251898288727
+Time taken:  343.92501044273376
+Relaxation 12
+Time taken:  341.4109380245209
+Time taken:  339.7379605770111
+Time taken:  345.33787083625793
+Time taken:  345.58386754989624
+Time taken:  352.7898299694061
+Relaxation 13
+Time taken:  338.28252601623535
+Time taken:  345.2935769557953
+Time taken:  344.45487689971924
+Time taken:  351.57166934013367
+Time taken:  343.6476707458496
+Relaxation 14
+Time taken:  347.0151081085205
+Time taken:  343.4535348415375
+Time taken:  352.12598752975464
+Time taken:  346.346209526062
+Time taken:  344.0996103286743
+Relaxation 15
+Time taken:  349.26379132270813
+Time taken:  340.0002021789551
+Time taken:  340.2504277229309
+Time taken:  347.55969285964966
+Time taken:  351.1446771621704
+Relaxation 16
+Time taken:  349.0787208080292
+Time taken:  355.7101171016693
+Time taken:  346.0777235031128
+Time taken:  350.4281952381134
+Time taken:  339.4836962223053
+Relaxation 17
+Time taken:  341.7622139453888
+Time taken:  345.11689591407776
+Time taken:  344.94152092933655
+Time taken:  358.2834439277649
+Time taken:  341.21730637550354
+Relaxation 18
+Time taken:  345.62319922447205
+Time taken:  348.71858263015747
+Time taken:  341.3936071395874
+Time taken:  341.5557563304901
+Time taken:  342.72859239578247
+Relaxation 19
+Time taken:  338.4825267791748
+Time taken:  337.84100461006165
+Time taken:  338.3609640598297
+Time taken:  343.96997451782227
+Time taken:  341.2707509994507
+Relaxation 20
+Time taken:  352.1911835670471
+Time taken:  349.199951171875
+Time taken:  353.4492611885071
+Time taken:  350.7274475097656
+Time taken:  344.71692991256714
+Relaxation 21
+Time taken:  343.33426570892334
+Time taken:  347.290415763855
+Time taken:  350.04437589645386
+Time taken:  343.1146767139435
+Time taken:  342.42270827293396
+Relaxation 22
+Time taken:  341.63400530815125
+Time taken:  346.10281562805176
+Time taken:  355.02088022232056
+Time taken:  342.92746114730835
+Time taken:  350.8650839328766
+Relaxation 23
+Time taken:  351.38734579086304
+Time taken:  362.70737528800964
+Time taken:  347.7680208683014
+Time taken:  339.9263551235199
+Time taken:  338.9245116710663
+Relaxation 24
+Time taken:  349.08885884284973
+Time taken:  347.6851954460144
+Time taken:  343.4411745071411
+Time taken:  344.7223491668701
+Time taken:  338.26477336883545
+Relaxation 25
+Time taken:  339.5601420402527
+Time taken:  349.48986625671387
+Time taken:  351.58357334136963
+Time taken:  350.6030230522156
+Time taken:  357.77003622055054
+Relaxation 26
+Time taken:  347.4248626232147
+Time taken:  362.0285496711731
+Time taken:  355.4934227466583
+Time taken:  349.23581171035767
+Time taken:  346.60377168655396
+Relaxation 27
+Time taken:  351.46815395355225
+Time taken:  340.7714853286743
+Time taken:  350.50769448280334
+Time taken:  350.14454889297485
+Time taken:  339.8600833415985
+Relaxation 28
+Time taken:  339.0965766906738
+Time taken:  339.28085708618164
+Time taken:  341.65230345726013
+Time taken:  350.4328119754791
+Time taken:  349.98189306259155
+Relaxation 29
+Time taken:  342.69746255874634
+Time taken:  349.3352689743042
+Time taken:  342.54997277259827
+Time taken:  351.03331685066223
+Time taken:  340.8348295688629
+Relaxation 30
+Time taken:  353.1223146915436
+Time taken:  352.5032367706299
+Time taken:  341.8232138156891
+Time taken:  341.71186900138855
+Time taken:  347.8512718677521
+Relaxation 31
+Time taken:  357.2217879295349
+Time taken:  346.7896046638489
+Time taken:  345.8847692012787
+Time taken:  354.3131923675537
+Time taken:  350.2359092235565
+Relaxation 32
+Time taken:  358.9361643791199
+Time taken:  356.7597529888153
+Time taken:  356.04016160964966
+Time taken:  346.29600620269775
+Time taken:  343.05753993988037
+Relaxation 33
+Time taken:  355.016077041626
+Time taken:  347.91594767570496
+Time taken:  350.88940143585205
+Time taken:  341.11666464805603
+Time taken:  341.00282883644104
+Relaxation 34
+Time taken:  346.9854347705841
+Time taken:  343.78996539115906
+Time taken:  352.4869387149811
+Time taken:  346.03847789764404
+Time taken:  338.8690950870514
+Relaxation 35
+Time taken:  341.6825406551361
+Time taken:  342.2695140838623
+Time taken:  341.37267088890076
+Time taken:  347.87730288505554
+Time taken:  349.7817335128784
+Relaxation 36
+Time taken:  341.27259254455566
+Time taken:  342.7292354106903
+Time taken:  351.75059723854065
+Time taken:  362.39320635795593
+Time taken:  360.7878496646881
+Relaxation 37
+Time taken:  354.0758512020111
+Time taken:  346.2283480167389
+Time taken:  339.2642059326172
+Time taken:  348.0296311378479
+Time taken:  355.45553398132324
+Relaxation 38
+Time taken:  337.15652346611023
+Time taken:  343.3600695133209
+Time taken:  338.6740539073944
+Time taken:  342.70035696029663
+Time taken:  343.91898798942566
+Relaxation 39
+Time taken:  351.6229889392853
+Time taken:  352.40174436569214
+Time taken:  342.90338015556335
+Time taken:  341.2223198413849
+Time taken:  351.6422002315521
+Relaxation 40
+Time taken:  349.6883397102356
+Time taken:  349.86795473098755
+Time taken:  339.27726769447327
+Time taken:  348.71957898139954
+Time taken:  341.7061629295349
+Relaxation 41
+Time taken:  335.9379587173462
+Time taken:  337.5203151702881
+Time taken:  338.9051868915558
+Time taken:  338.4029583930969
+Time taken:  347.4529860019684
+Relaxation 42
+Time taken:  361.87939643859863
+Time taken:  354.04628682136536
+Time taken:  348.6449820995331
+Time taken:  343.65391063690186
+Time taken:  351.84794545173645
+Relaxation 43
+Time taken:  349.173059463501
+Time taken:  338.7120313644409
+Time taken:  340.97230648994446
+Time taken:  351.2677228450775
+Time taken:  348.9089365005493
+Relaxation 44
+Time taken:  345.7684097290039
+Time taken:  345.80071926116943
+Time taken:  350.9091875553131
+Time taken:  345.91363978385925
+Time taken:  339.3366587162018
+Relaxation 45
+Time taken:  343.6269018650055
+Time taken:  345.9868674278259
+Time taken:  352.57504177093506
+Time taken:  347.9678900241852
+Time taken:  359.1772565841675
+Relaxation 46
+Time taken:  348.458468914032
+Time taken:  345.95723819732666
+Time taken:  358.4809489250183
+Time taken:  364.24170541763306
+Time taken:  350.82837176322937
+Relaxation 47
+Time taken:  337.717316865921
+Time taken:  358.081800699234
+Time taken:  346.30444741249084
+Time taken:  338.9027633666992
+Time taken:  341.6457133293152
+Relaxation 48
+Time taken:  348.550621509552
+Time taken:  352.01203060150146
+Time taken:  350.49891924858093
+Time taken:  353.38335156440735
+Time taken:  341.69791865348816
+Relaxation 49
+Time taken:  341.95247650146484
+Time taken:  347.80376076698303
+Time taken:  347.13496923446655
+Time taken:  340.1842293739319
+Time taken:  338.2129874229431
+Relaxation 50
+Time taken:  347.7703056335449
+Time taken:  348.01147627830505
+Time taken:  348.5377986431122
+Time taken:  336.69000148773193
+Time taken:  338.0569107532501
+Relaxation 51
+Time taken:  344.0763359069824
+Time taken:  354.6980924606323
+Time taken:  346.8329277038574
+Time taken:  353.7568187713623
+Time taken:  340.02917671203613
+Relaxation 52
+Time taken:  349.68541622161865
+Time taken:  355.7070400714874
+Time taken:  344.6613709926605
+Time taken:  357.7744719982147
+Time taken:  345.0187621116638
+Relaxation 53
+Time taken:  344.72800302505493
+Time taken:  333.36660265922546
+Time taken:  344.06121826171875
+Time taken:  349.27488803863525
+Time taken:  341.20329570770264
+Relaxation 54
+Time taken:  337.7030143737793
+Time taken:  345.31334257125854
+Time taken:  349.9208252429962
+Time taken:  342.2959563732147
+Time taken:  343.9274446964264
+Relaxation 55
+Time taken:  343.03801679611206
+Time taken:  347.5695559978485
+Time taken:  353.969096660614
+Time taken:  342.9879925251007
+Time taken:  347.9691381454468
+Relaxation 56
+Time taken:  338.26982736587524
+Time taken:  349.5552933216095
+Time taken:  350.53867506980896
+Time taken:  347.8670060634613
+Time taken:  340.7018575668335
+Relaxation 57
+Time taken:  340.8288006782532
+Time taken:  338.01041555404663
+Time taken:  338.91021370887756
+Time taken:  339.56603717803955
+Time taken:  342.5710356235504
+Relaxation 58
+Time taken:  354.86730313301086
+Time taken:  346.68539023399353
+Time taken:  344.25088334083557
+Time taken:  351.73171162605286
+Time taken:  353.04420018196106
+Relaxation 59
+Time taken:  353.4746518135071
+Time taken:  355.2071952819824
+Time taken:  354.0155966281891
+Time taken:  344.7457935810089
+Time taken:  341.09224677085876
+Relaxation 60
+Time taken:  344.0292446613312
+Time taken:  344.9354786872864
+Time taken:  345.58678340911865
+Time taken:  340.10677313804626
+Time taken:  339.66676783561707
+Relaxation 61
+Time taken:  345.6737539768219
+Time taken:  342.20697951316833
+Time taken:  348.4230532646179
+Time taken:  353.42285561561584
+Time taken:  352.4851076602936
+Relaxation 62
+Time taken:  340.67781114578247
+Time taken:  347.5282232761383
+Time taken:  346.46850848197937
+Time taken:  356.4395432472229
+Time taken:  341.7242968082428
+Relaxation 63
+Time taken:  340.46921157836914
+Time taken:  340.04743790626526
+Time taken:  336.9688718318939
+Time taken:  340.4582679271698
+Time taken:  339.6287398338318
+Relaxation 64
+Time taken:  337.5053741931915
+Time taken:  342.9373993873596
+Time taken:  342.80503153800964
+Time taken:  346.2228317260742
+Time taken:  336.4704780578613
+Relaxation 65
+Time taken:  354.6517562866211
+Time taken:  352.7517874240875
+Time taken:  348.1608257293701
+Time taken:  348.2814998626709
+Time taken:  350.4714913368225
+Relaxation 66
+Time taken:  337.1236777305603
+Time taken:  340.58488297462463
+Time taken:  341.92648124694824
+Time taken:  344.2053484916687
+Time taken:  342.36319613456726
+Relaxation 67
+Time taken:  340.48819303512573
+Time taken:  349.02943682670593
+Time taken:  356.8447515964508
+Time taken:  342.51026678085327
+Time taken:  347.11961698532104
+Relaxation 68
+Time taken:  338.4244315624237
+Time taken:  336.45353651046753
+Time taken:  342.09026980400085
+Time taken:  341.26185941696167
+Time taken:  338.8000626564026
+Relaxation 69
+Time taken:  355.3201496601105
+Time taken:  338.0688350200653
+Time taken:  338.05800223350525
+Time taken:  350.0693850517273
+Time taken:  339.54528760910034
+Relaxation 70
+Time taken:  351.65516996383667
+Time taken:  358.10995221138
+Time taken:  346.1146490573883
+Time taken:  357.62800431251526
+Time taken:  343.7373821735382
+Relaxation 71
+Time taken:  346.49383568763733
+Time taken:  342.31691455841064
+Time taken:  343.39909839630127
+Time taken:  351.76805448532104
+Time taken:  339.8090431690216
+Relaxation 72
+Time taken:  342.7933497428894
+Time taken:  346.01550364494324
+Time taken:  341.30275082588196
+Time taken:  345.4043595790863
+Time taken:  343.46656703948975
+Relaxation 73
+Time taken:  344.76001024246216
+Time taken:  343.815780878067
+Time taken:  348.5996708869934
+Time taken:  337.736613035202
+Time taken:  344.0810272693634
+Relaxation 74
+Time taken:  334.8133707046509
+Time taken:  355.8793330192566
+Time taken:  352.2647850513458
+Time taken:  336.71109557151794
+Time taken:  336.02128767967224
+Relaxation 75
+Time taken:  361.83199763298035
+Time taken:  341.67369651794434
+Time taken:  342.3711280822754
+Time taken:  342.0682032108307
+Time taken:  343.06849431991577
+Relaxation 76
+Time taken:  346.61040019989014
+Time taken:  338.499064207077
+Time taken:  345.92637157440186
+Time taken:  339.8757848739624
+Time taken:  337.81778836250305
+Relaxation 77
+Time taken:  341.5242590904236
+Time taken:  343.0739302635193
+Time taken:  346.97258949279785
+Time taken:  338.5965919494629
+Time taken:  339.8177738189697
+Relaxation 78
+Time taken:  333.9104599952698
+Time taken:  346.8145411014557
+Time taken:  339.64746713638306
+Time taken:  346.2265512943268
+Time taken:  342.7468192577362
+Relaxation 79
+Time taken:  348.94982504844666
+Time taken:  348.0148985385895
+Time taken:  340.50098633766174
+Time taken:  339.59181785583496
+Time taken:  340.57911109924316
+Relaxation 80
+Time taken:  345.0171751976013
+Time taken:  347.22350239753723
+Time taken:  347.26158595085144
+Time taken:  341.7949161529541
+Time taken:  340.3356075286865
+Relaxation 81
+Time taken:  346.32249546051025
+Time taken:  344.1825006008148
+Time taken:  358.6079773902893
+Time taken:  348.74603819847107
+Time taken:  350.2908959388733
+Relaxation 82
+Time taken:  346.86110758781433
+Time taken:  350.5194923877716
+Time taken:  344.2089054584503
+Time taken:  342.15623807907104
+Time taken:  340.46372294425964
+Relaxation 83
+Time taken:  349.5201575756073
+Time taken:  346.0352144241333
+Time taken:  341.7886481285095
+Time taken:  350.8240432739258
+Time taken:  355.7526364326477
+Relaxation 84
+Time taken:  342.2388651371002
+Time taken:  343.1192879676819
+Time taken:  350.6791160106659
+Time taken:  355.9425892829895
+Time taken:  351.3127737045288
+Relaxation 85
+Time taken:  351.8029429912567
+Time taken:  341.58797121047974
+Time taken:  342.45249676704407
+Time taken:  340.6496891975403
+Time taken:  341.42499136924744
+Relaxation 86
+Time taken:  341.22542214393616
+Time taken:  359.28332781791687
+Time taken:  340.6123540401459
+Time taken:  340.14038729667664
+Time taken:  347.94822692871094
+Relaxation 87
+Time taken:  355.63737988471985
+Time taken:  353.19122409820557
+Time taken:  348.5673701763153
+Time taken:  349.9920103549957
+Time taken:  353.2680563926697
+Relaxation 88
+Time taken:  346.12487864494324
+Time taken:  344.76617527008057
+Time taken:  343.17145323753357
+Time taken:  341.02241253852844
+Time taken:  335.45426177978516
+Relaxation 89
+Time taken:  340.20271158218384
+Time taken:  350.4007349014282
+Time taken:  345.2973735332489
+Time taken:  347.01805806159973
+Time taken:  349.56679487228394
+Relaxation 90
+Time taken:  335.5285108089447
+Time taken:  332.90137696266174
+Time taken:  338.1744759082794
+Time taken:  346.1801745891571
+Time taken:  346.2212219238281
+Relaxation 91
+Time taken:  338.38406467437744
+Time taken:  341.9205334186554
+Time taken:  339.4260940551758
+Time taken:  351.1578381061554
+Time taken:  346.3929316997528
+Relaxation 92
+Time taken:  338.87240743637085
+Time taken:  337.8814871311188
+Time taken:  348.72478342056274
+Time taken:  351.314989566803
+Time taken:  341.93637251853943
+Relaxation 93
+Time taken:  348.2701325416565
+Time taken:  350.2380566596985
+Time taken:  345.89025497436523
+Time taken:  345.21564292907715
+Time taken:  348.07386088371277
+Relaxation 94
+Time taken:  351.5635344982147
+Time taken:  351.6148636341095
+Time taken:  349.3801338672638
+Time taken:  347.4965696334839
+Time taken:  340.0463635921478
+Relaxation 95
+Time taken:  342.3379409313202
+Time taken:  340.78229999542236
+Time taken:  341.55722069740295
+Time taken:  345.3627219200134
+Time taken:  345.85109972953796
+Relaxation 96
+Time taken:  352.76476645469666
+Time taken:  339.76333594322205
+Time taken:  339.8050136566162
+Time taken:  339.4459238052368
+Time taken:  339.7248868942261
+Relaxation 97
+Time taken:  349.7371530532837
+Time taken:  340.1983222961426
+Time taken:  337.66123056411743
+Time taken:  336.82885551452637
+Time taken:  336.662086725235
+Relaxation 98
+Time taken:  335.7615866661072
+Time taken:  339.33966040611267
+Time taken:  337.10037779808044
+Time taken:  337.03680205345154
+Time taken:  337.3170323371887
+Relaxation 99
+Time taken:  349.40778255462646
+Time taken:  342.6189305782318
+Time taken:  343.6856701374054
+Time taken:  337.3904800415039
+Time taken:  343.7887713909149
