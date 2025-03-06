@@ -1,1 +1,2121 @@
 Running benchmark 623 with O3
+Running without relaxations
+Time taken:  93.68763613700867
+Time taken:  93.42905402183533
+Time taken:  93.97763776779175
+Time taken:  93.58742117881775
+Time taken:  94.50751972198486
+Compiling file 623/DeepNodeListImpl.bc, 0 of 757
+623/DeepNodeListImpl.bc: 35
+Compiling file 623/DOMAttrMapImpl.bc, 1 of 757
+623/DOMAttrMapImpl.bc: 349
+Compiling file 623/DOM_Entity.bc, 2 of 757
+623/DOM_Entity.bc: 11
+Compiling file 623/DOMConfigurationImpl.bc, 3 of 757
+623/DOMConfigurationImpl.bc: 192
+Compiling file 623/AVTPartSimple.bc, 4 of 757
+623/AVTPartSimple.bc: 3
+Compiling file 623/XPathFactoryDefault.bc, 5 of 757
+623/XPathFactoryDefault.bc: 4354
+Compiling file 623/XSTypeDefinition.bc, 6 of 757
+623/XSTypeDefinition.bc: 6
+Compiling file 623/XalanAVTPartXPathAllocator.bc, 7 of 757
+623/XalanAVTPartXPathAllocator.bc: 563
+Compiling file 623/XMLBuffer.bc, 8 of 757
+623/XMLBuffer.bc: 19
+Compiling file 623/FunctionFormatNumber.bc, 9 of 757
+623/FunctionFormatNumber.bc: 58
+Compiling file 623/XercesDOMFormatterWalker.bc, 10 of 757
+623/XercesDOMFormatterWalker.bc: 18
+Compiling file 623/XSpan.bc, 11 of 757
+623/XSpan.bc: 14
+Compiling file 623/UnionToken.bc, 12 of 757
+623/UnionToken.bc: 545
+Compiling file 623/FormatterToDOM.bc, 13 of 757
+623/FormatterToDOM.bc: 627
+Compiling file 623/MemBufFormatTarget.bc, 14 of 757
+623/MemBufFormatTarget.bc: 56
+Compiling file 623/RefCountedImpl.bc, 15 of 757
+623/RefCountedImpl.bc: 3
+Compiling file 623/RegularExpression.bc, 16 of 757
+623/RegularExpression.bc: 3235
+Compiling file 623/XUnknown.bc, 17 of 757
+623/XUnknown.bc: 376
+Compiling file 623/ResultNamespacesStack.bc, 18 of 757
+623/ResultNamespacesStack.bc: 5873
+Compiling file 623/ContentLeafNameTypeVector.bc, 19 of 757
+623/ContentLeafNameTypeVector.bc: 183
+Compiling file 623/PrintWriter.bc, 20 of 757
+623/PrintWriter.bc: 3
+Compiling file 623/XalanAttr.bc, 21 of 757
+623/XalanAttr.bc: 0
+Compiling file 623/XalanNodeList.bc, 22 of 757
+623/XalanNodeList.bc: 0
+Compiling file 623/FunctionConcat.bc, 23 of 757
+623/FunctionConcat.bc: 112
+Compiling file 623/XalanDocumentType.bc, 24 of 757
+623/XalanDocumentType.bc: 0
+Compiling file 623/FunctionSubstring.bc, 25 of 757
+623/FunctionSubstring.bc: 107
+Compiling file 623/RegxUtil.bc, 26 of 757
+623/RegxUtil.bc: 11
+Compiling file 623/IDREFDatatypeValidator.bc, 27 of 757
+623/IDREFDatatypeValidator.bc: 10
+Compiling file 623/XalanBitmap.bc, 28 of 757
+623/XalanBitmap.bc: 720
+Compiling file 623/ElemSort.bc, 29 of 757
+623/ElemSort.bc: 367
+Compiling file 623/XercesTreeWalker.bc, 30 of 757
+623/XercesTreeWalker.bc: 0
+Compiling file 623/XMLUTF8Transcoder390.bc, 31 of 757
+623/XMLUTF8Transcoder390.bc: 28
+Compiling file 623/DateDatatypeValidator.bc, 32 of 757
+623/DateDatatypeValidator.bc: 10
+Compiling file 623/XMLRefInfo.bc, 33 of 757
+623/XMLRefInfo.bc: 35
+Compiling file 623/DOMDeepNodeListImpl.bc, 34 of 757
+623/DOMDeepNodeListImpl.bc: 115
+Compiling file 623/XalanElemEmptyAllocator.bc, 35 of 757
+623/XalanElemEmptyAllocator.bc: 1159
+Compiling file 623/YearDatatypeValidator.bc, 36 of 757
+623/YearDatatypeValidator.bc: 4
+Compiling file 623/DOMTextImpl.bc, 37 of 757
+623/DOMTextImpl.bc: 41
+Compiling file 623/XalanEXSLTString.bc, 38 of 757
+623/XalanEXSLTString.bc: 1123
+Compiling file 623/XercesDocumentTypeBridge.bc, 39 of 757
+623/XercesDocumentTypeBridge.bc: 0
+Compiling file 623/XPathFactory.bc, 40 of 757
+623/XPathFactory.bc: 0
+Compiling file 623/XMLDateTime.bc, 41 of 757
+623/XMLDateTime.bc: 2266
+Compiling file 623/XObject.bc, 42 of 757
+623/XObject.bc: 2079
+Compiling file 623/DoubleSupport.bc, 43 of 757
+623/DoubleSupport.bc: 725
+Compiling file 623/AVT.bc, 44 of 757
+623/AVT.bc: 1078
+Compiling file 623/EntityReferenceImpl.bc, 45 of 757
+623/EntityReferenceImpl.bc: 6
+Compiling file 623/PSVIAttributeList.bc, 46 of 757
+623/PSVIAttributeList.bc: 673
+Compiling file 623/DOM_NodeIterator.bc, 47 of 757
+623/DOM_NodeIterator.bc: 0
+Compiling file 623/XalanSourceTreeProcessingInstructionAllocator.bc, 48 of 757
+623/XalanSourceTreeProcessingInstructionAllocator.bc: 563
+Compiling file 623/XNodeSetNodeProxyAllocator.bc, 49 of 757
+623/XNodeSetNodeProxyAllocator.bc: 1915
+Compiling file 623/XMLChTranscoder.bc, 50 of 757
+623/XMLChTranscoder.bc: 0
+Compiling file 623/XercesDocumentWrapper.bc, 51 of 757
+623/XercesDocumentWrapper.bc: 1833
+Compiling file 623/StylesheetConstructionContext.bc, 52 of 757
+623/StylesheetConstructionContext.bc: 0
+Compiling file 623/TracerEvent.bc, 53 of 757
+623/TracerEvent.bc: 342
+Compiling file 623/XalanUTF16Writer.bc, 54 of 757
+623/XalanUTF16Writer.bc: 79
+Compiling file 623/HexBinaryDatatypeValidator.bc, 55 of 757
+623/HexBinaryDatatypeValidator.bc: 0
+Compiling file 623/XalanElemLiteralResultAllocator.bc, 56 of 757
+623/XalanElemLiteralResultAllocator.bc: 563
+Compiling file 623/XalanSourceTreeParserLiaison.bc, 57 of 757
+623/XalanSourceTreeParserLiaison.bc: 4184
+Compiling file 623/Stylesheet.bc, 58 of 757
+623/Stylesheet.bc: 22055
+Compiling file 623/XalanMsgLib.bc, 59 of 757
+623/XalanMsgLib.bc: 0
+Compiling file 623/XStringBase.bc, 60 of 757
+623/XStringBase.bc: 5
+Compiling file 623/DOM_Element.bc, 61 of 757
+623/DOM_Element.bc: 23
+Compiling file 623/IdentityConstraintHandler.bc, 62 of 757
+623/IdentityConstraintHandler.bc: 514
+Compiling file 623/ReaderMgr.bc, 63 of 757
+623/ReaderMgr.bc: 2182
+Compiling file 623/XalanElemTemplateAllocator.bc, 64 of 757
+623/XalanElemTemplateAllocator.bc: 563
+Compiling file 623/UnionDatatypeValidator.bc, 65 of 757
+623/UnionDatatypeValidator.bc: 881
+Compiling file 623/XercesNodeListBridge.bc, 66 of 757
+623/XercesNodeListBridge.bc: 0
+Compiling file 623/DOM_NodeList.bc, 67 of 757
+623/DOM_NodeList.bc: 2
+Compiling file 623/XalanNumberFormat.bc, 68 of 757
+623/XalanNumberFormat.bc: 710
+Compiling file 623/XercesDOMWrapperParsedSource.bc, 69 of 757
+623/XercesDOMWrapperParsedSource.bc: 36
+Compiling file 623/XSValue.bc, 70 of 757
+623/XSValue.bc: 2002
+Compiling file 623/Wrapper4InputSource.bc, 71 of 757
+623/Wrapper4InputSource.bc: 21
+Compiling file 623/XSComplexTypeDefinition.bc, 72 of 757
+623/XSComplexTypeDefinition.bc: 330
+Compiling file 623/ConditionToken.bc, 73 of 757
+623/ConditionToken.bc: 11
+Compiling file 623/NodeRefList.bc, 74 of 757
+623/NodeRefList.bc: 799
+Compiling file 623/MemoryManagerArrayImpl.bc, 75 of 757
+623/MemoryManagerArrayImpl.bc: 0
+Compiling file 623/XML88591Transcoder390.bc, 76 of 757
+623/XML88591Transcoder390.bc: 10
+Compiling file 623/CDATASectionImpl.bc, 77 of 757
+623/CDATASectionImpl.bc: 0
+Compiling file 623/XPathEvaluator.bc, 78 of 757
+623/XPathEvaluator.bc: 254
+Compiling file 623/DOMNormalizer.bc, 79 of 757
+623/DOMNormalizer.bc: 2050
+Compiling file 623/XTokenNumberAdapterAllocator.bc, 80 of 757
+623/XTokenNumberAdapterAllocator.bc: 1915
+Compiling file 623/XSerializeEngine.bc, 81 of 757
+623/XSerializeEngine.bc: 1154
+Compiling file 623/ValueStoreCache.bc, 82 of 757
+623/ValueStoreCache.bc: 1539
+Compiling file 623/VecAttrListImpl.bc, 83 of 757
+623/VecAttrListImpl.bc: 162
+Compiling file 623/DTDElementDecl.bc, 84 of 757
+623/DTDElementDecl.bc: 950
+Compiling file 623/FormatterToNull.bc, 85 of 757
+623/FormatterToNull.bc: 0
+Compiling file 623/XSModelGroupDefinition.bc, 86 of 757
+623/XSModelGroupDefinition.bc: 31
+Compiling file 623/XalanSourceTreeProcessingInstruction.bc, 87 of 757
+623/XalanSourceTreeProcessingInstruction.bc: 46
+Compiling file 623/FunctionContains.bc, 88 of 757
+623/FunctionContains.bc: 8
+Compiling file 623/XalanEntity.bc, 89 of 757
+623/XalanEntity.bc: 0
+Compiling file 623/XercesElementWrapperAllocator.bc, 90 of 757
+623/XercesElementWrapperAllocator.bc: 563
+Compiling file 623/SchemaSymbols.bc, 91 of 757
+623/SchemaSymbols.bc: 0
+Compiling file 623/XMLCanRepGroup.bc, 92 of 757
+623/XMLCanRepGroup.bc: 0
+Compiling file 623/FunctionStartsWith.bc, 93 of 757
+623/FunctionStartsWith.bc: 24
+Compiling file 623/XercesEntityWrapper.bc, 94 of 757
+623/XercesEntityWrapper.bc: 69
+Compiling file 623/XSFacet.bc, 95 of 757
+623/XSFacet.bc: 10
+Compiling file 623/XMLException.bc, 96 of 757
+623/XMLException.bc: 262
+Compiling file 623/DTDGrammar.bc, 97 of 757
+623/DTDGrammar.bc: 960
+Compiling file 623/DOM_Notation.bc, 98 of 757
+623/DOM_Notation.bc: 2
+Compiling file 623/XalanSourceTreeElement.bc, 99 of 757
+623/XalanSourceTreeElement.bc: 73
+Compiling file 623/FunctionTranslate.bc, 100 of 757
+623/FunctionTranslate.bc: 898
+Compiling file 623/MemBufInputSource.bc, 101 of 757
+623/MemBufInputSource.bc: 33
+Compiling file 623/DefaultPanicHandler.bc, 102 of 757
+623/DefaultPanicHandler.bc: 0
+Compiling file 623/XalanDiagnosticMemoryManager.bc, 103 of 757
+623/XalanDiagnosticMemoryManager.bc: 3955
+Compiling file 623/ICUResHandler.bc, 104 of 757
+623/ICUResHandler.bc: 218
+Compiling file 623/DOM_DocumentFragment.bc, 105 of 757
+623/DOM_DocumentFragment.bc: 0
+Compiling file 623/IC_Key.bc, 106 of 757
+623/IC_Key.bc: 0
+Compiling file 623/FormatterToHTML.bc, 107 of 757
+623/FormatterToHTML.bc: 12185
+Compiling file 623/XalanOutputStreamPrintWriter.bc, 108 of 757
+623/XalanOutputStreamPrintWriter.bc: 595
+Compiling file 623/XalanToXercesTranscoderWrapper.bc, 109 of 757
+623/XalanToXercesTranscoderWrapper.bc: 28
+Compiling file 623/DOMTreeWalkerImpl.bc, 110 of 757
+623/DOMTreeWalkerImpl.bc: 219
+Compiling file 623/FunctionFunctionAvailable.bc, 111 of 757
+623/FunctionFunctionAvailable.bc: 6
+Compiling file 623/XStringAllocator.bc, 112 of 757
+623/XStringAllocator.bc: 1915
+Compiling file 623/DOMNamedNodeMapImpl.bc, 113 of 757
+623/DOMNamedNodeMapImpl.bc: 433
+Compiling file 623/XNodeSetResultTreeFragProxy.bc, 114 of 757
+623/XNodeSetResultTreeFragProxy.bc: 6
+Compiling file 623/SAXException.bc, 115 of 757
+623/SAXException.bc: 124
+Compiling file 623/XalanSourceTreeWrapperParsedSource.bc, 116 of 757
+623/XalanSourceTreeWrapperParsedSource.bc: 35
+Compiling file 623/ElemNumber.bc, 117 of 757
+623/ElemNumber.bc: 7717
+Compiling file 623/ElementNSImpl.bc, 118 of 757
+623/ElementNSImpl.bc: 121
+Compiling file 623/FloatDatatypeValidator.bc, 119 of 757
+623/FloatDatatypeValidator.bc: 344
+Compiling file 623/DOMNodeListImpl.bc, 120 of 757
+623/DOMNodeListImpl.bc: 9
+Compiling file 623/XMLFloat.bc, 121 of 757
+623/XMLFloat.bc: 8
+Compiling file 623/SchemaElementDecl.bc, 122 of 757
+623/SchemaElementDecl.bc: 915
+Compiling file 623/XercesAttrBridge.bc, 123 of 757
+623/XercesAttrBridge.bc: 0
+Compiling file 623/DOMTypeInfoImpl.bc, 124 of 757
+623/DOMTypeInfoImpl.bc: 182
+Compiling file 623/MonthDayDatatypeValidator.bc, 125 of 757
+623/MonthDayDatatypeValidator.bc: 4
+Compiling file 623/XNumberAllocator.bc, 126 of 757
+623/XNumberAllocator.bc: 1915
+Compiling file 623/GrammarResolver.bc, 127 of 757
+623/GrammarResolver.bc: 1699
+Compiling file 623/XercesElementBridgeAllocator.bc, 128 of 757
+623/XercesElementBridgeAllocator.bc: 0
+Compiling file 623/XalanNodeListSurrogate.bc, 129 of 757
+623/XalanNodeListSurrogate.bc: 6
+Compiling file 623/Dummy.bc, 130 of 757
+623/Dummy.bc: 0
+Compiling file 623/XalanCAPI.bc, 131 of 757
+623/XalanCAPI.bc: 136
+Compiling file 623/BitSet.bc, 132 of 757
+623/BitSet.bc: 213
+Compiling file 623/SchemaInfo.bc, 133 of 757
+623/SchemaInfo.bc: 1149
+Compiling file 623/PSVIItem.bc, 134 of 757
+623/PSVIItem.bc: 43
+Compiling file 623/StdBinInputStream.bc, 135 of 757
+623/StdBinInputStream.bc: 5
+Compiling file 623/XalanSimplePrefixResolver.bc, 136 of 757
+623/XalanSimplePrefixResolver.bc: 6
+Compiling file 623/XercesNodeListWrapper.bc, 137 of 757
+623/XercesNodeListWrapper.bc: 14
+Compiling file 623/XercesDOMImplementationBridge.bc, 138 of 757
+623/XercesDOMImplementationBridge.bc: 0
+Compiling file 623/XMLNumber.bc, 139 of 757
+623/XMLNumber.bc: 0
+Compiling file 623/FormatterToXML.bc, 140 of 757
+623/FormatterToXML.bc: 17679
+Compiling file 623/DOMSupportDefault.bc, 141 of 757
+623/DOMSupportDefault.bc: 654
+Compiling file 623/SolarisPlatformUtils.bc, 142 of 757
+623/SolarisPlatformUtils.bc: 0
+Compiling file 623/XalanSourceTreeAttributeNSAllocator.bc, 143 of 757
+623/XalanSourceTreeAttributeNSAllocator.bc: 563
+Compiling file 623/ElemIf.bc, 144 of 757
+623/ElemIf.bc: 95
+Compiling file 623/AttrMapImpl.bc, 145 of 757
+623/AttrMapImpl.bc: 7
+Compiling file 623/DTDAttDefList.bc, 146 of 757
+623/DTDAttDefList.bc: 503
+Compiling file 623/ElemAttributeSet.bc, 147 of 757
+623/ElemAttributeSet.bc: 51
+Compiling file 623/DOMNodeIteratorImpl.bc, 148 of 757
+623/DOMNodeIteratorImpl.bc: 345
+Compiling file 623/XercesCommentWrapper.bc, 149 of 757
+623/XercesCommentWrapper.bc: 53
+Compiling file 623/ElemOtherwise.bc, 150 of 757
+623/ElemOtherwise.bc: 7
+Compiling file 623/XPathInit.bc, 151 of 757
+623/XPathInit.bc: 4
+Compiling file 623/Win32MsgLoader.bc, 152 of 757
+623/Win32MsgLoader.bc: 0
+Compiling file 623/URISupport.bc, 153 of 757
+623/URISupport.bc: 1163
+Compiling file 623/XNull.bc, 154 of 757
+623/XNull.bc: 333
+Compiling file 623/XalanSourceTreeElementNANSAllocator.bc, 155 of 757
+623/XalanSourceTreeElementNANSAllocator.bc: 563
+Compiling file 623/XalanSourceTreeElementA.bc, 156 of 757
+623/XalanSourceTreeElementA.bc: 83
+Compiling file 623/XMLRangeFactory.bc, 157 of 757
+623/XMLRangeFactory.bc: 1182
+Compiling file 623/FormatterTreeWalker.bc, 158 of 757
+623/FormatterTreeWalker.bc: 42
+Compiling file 623/DFAContentModel.bc, 159 of 757
+623/DFAContentModel.bc: 4701
+Compiling file 623/UnicodeRangeFactory.bc, 160 of 757
+623/UnicodeRangeFactory.bc: 2014
+Compiling file 623/TraverseSchema.bc, 161 of 757
+623/TraverseSchema.bc: 47440
+Compiling file 623/DTDScanner.bc, 162 of 757
+623/DTDScanner.bc: 6499
+Compiling file 623/URLInputSource.bc, 163 of 757
+623/URLInputSource.bc: 10
+Compiling file 623/ElemChoose.bc, 164 of 757
+623/ElemChoose.bc: 26
+Compiling file 623/XSWildcard.bc, 165 of 757
+623/XSWildcard.bc: 638
+Compiling file 623/XalanXPathException.bc, 166 of 757
+623/XalanXPathException.bc: 13
+Compiling file 623/SimpleContentModel.bc, 167 of 757
+623/SimpleContentModel.bc: 418
+Compiling file 623/XalanDefaultParsedSource.bc, 168 of 757
+623/XalanDefaultParsedSource.bc: 109
+Compiling file 623/XMLDTDDescription.bc, 169 of 757
+623/XMLDTDDescription.bc: 0
+Compiling file 623/XMLAttDefList.bc, 170 of 757
+623/XMLAttDefList.bc: 0
+Compiling file 623/XSAttributeGroupDefinition.bc, 171 of 757
+623/XSAttributeGroupDefinition.bc: 35
+Compiling file 623/Win32TransService.bc, 172 of 757
+623/Win32TransService.bc: 0
+Compiling file 623/XMLBigDecimal.bc, 173 of 757
+623/XMLBigDecimal.bc: 436
+Compiling file 623/XalanElemAttributeSetAllocator.bc, 174 of 757
+623/XalanElemAttributeSetAllocator.bc: 563
+Compiling file 623/XalanMemoryManagerDefault.bc, 175 of 757
+623/XalanMemoryManagerDefault.bc: 0
+Compiling file 623/DOM_NamedNodeMap.bc, 176 of 757
+623/DOM_NamedNodeMap.bc: 48
+Compiling file 623/XMLDouble.bc, 177 of 757
+623/XMLDouble.bc: 0
+Compiling file 623/Op.bc, 178 of 757
+623/Op.bc: 385
+Compiling file 623/AttrImpl.bc, 179 of 757
+623/AttrImpl.bc: 654
+Compiling file 623/LinuxPlatformUtils.bc, 180 of 757
+623/LinuxPlatformUtils.bc: 167
+Compiling file 623/FunctionSubstringAfter.bc, 181 of 757
+623/FunctionSubstringAfter.bc: 49
+Compiling file 623/FieldValueMap.bc, 182 of 757
+623/FieldValueMap.bc: 643
+Compiling file 623/DecimalDatatypeValidator.bc, 183 of 757
+623/DecimalDatatypeValidator.bc: 601
+Compiling file 623/DOM_RangeException.bc, 184 of 757
+623/DOM_RangeException.bc: 4
+Compiling file 623/XalanQNameByValueAllocator.bc, 185 of 757
+623/XalanQNameByValueAllocator.bc: 623
+Compiling file 623/XalanUTF16Transcoder.bc, 186 of 757
+623/XalanUTF16Transcoder.bc: 17
+Compiling file 623/GCCDefs.bc, 187 of 757
+623/GCCDefs.bc: 0
+Compiling file 623/ElementPrefixResolverProxy.bc, 188 of 757
+623/ElementPrefixResolverProxy.bc: 612
+Compiling file 623/NamespaceScope.bc, 189 of 757
+623/NamespaceScope.bc: 218
+Compiling file 623/DOMException.bc, 190 of 757
+623/DOMException.bc: 89
+Compiling file 623/ENTITYDatatypeValidator.bc, 191 of 757
+623/ENTITYDatatypeValidator.bc: 0
+Compiling file 623/FunctionGenerateID.bc, 192 of 757
+623/FunctionGenerateID.bc: 41
+Compiling file 623/DOMXPathException.bc, 193 of 757
+623/DOMXPathException.bc: 14
+Compiling file 623/XSObjectFactory.bc, 194 of 757
+623/XSObjectFactory.bc: 8097
+Compiling file 623/MonthDatatypeValidator.bc, 195 of 757
+623/MonthDatatypeValidator.bc: 4
+Compiling file 623/CharacterDataImpl.bc, 196 of 757
+623/CharacterDataImpl.bc: 36
+Compiling file 623/DGXMLScanner.bc, 197 of 757
+623/DGXMLScanner.bc: 7006
+Compiling file 623/XalanDocument.bc, 198 of 757
+623/XalanDocument.bc: 0
+Compiling file 623/AbstractNumericFacetValidator.bc, 199 of 757
+623/AbstractNumericFacetValidator.bc: 1567
+Compiling file 623/XMLAbstractDoubleFloat.bc, 200 of 757
+623/XMLAbstractDoubleFloat.bc: 697
+Compiling file 623/DurationDatatypeValidator.bc, 201 of 757
+623/DurationDatatypeValidator.bc: 4
+Compiling file 623/XMLValidator.bc, 202 of 757
+623/XMLValidator.bc: 169
+Compiling file 623/AnyURIDatatypeValidator.bc, 203 of 757
+623/AnyURIDatatypeValidator.bc: 0
+Compiling file 623/XPathExecutionContext.bc, 204 of 757
+623/XPathExecutionContext.bc: 1
+Compiling file 623/WFXMLScanner.bc, 205 of 757
+623/WFXMLScanner.bc: 5521
+Compiling file 623/ExtensionNSHandler.bc, 206 of 757
+623/ExtensionNSHandler.bc: 3238
+Compiling file 623/DOMAttrImpl.bc, 207 of 757
+623/DOMAttrImpl.bc: 253
+Compiling file 623/XML256TableTranscoder390.bc, 208 of 757
+623/XML256TableTranscoder390.bc: 26
+Compiling file 623/XercesAttributeBridgeAllocator.bc, 209 of 757
+623/XercesAttributeBridgeAllocator.bc: 0
+Compiling file 623/CommentImpl.bc, 210 of 757
+623/CommentImpl.bc: 0
+Compiling file 623/NodeSorter.bc, 211 of 757
+623/NodeSorter.bc: 5145
+Compiling file 623/XalanEXSLTCommon.bc, 212 of 757
+623/XalanEXSLTCommon.bc: 147
+Compiling file 623/CMBinaryOp.bc, 213 of 757
+623/CMBinaryOp.bc: 576
+Compiling file 623/XMLDTDDescriptionImpl.bc, 214 of 757
+623/XMLDTDDescriptionImpl.bc: 59
+Compiling file 623/DOM_TreeWalker.bc, 215 of 757
+623/DOM_TreeWalker.bc: 1
+Compiling file 623/ElemCopy.bc, 216 of 757
+623/ElemCopy.bc: 12
+Compiling file 623/XalanQNameByReference.bc, 217 of 757
+623/XalanQNameByReference.bc: 13
+Compiling file 623/DOMElementNSImpl.bc, 218 of 757
+623/DOMElementNSImpl.bc: 174
+Compiling file 623/DOMNotationImpl.bc, 219 of 757
+623/DOMNotationImpl.bc: 125
+Compiling file 623/XMLGrammarPoolImpl.bc, 220 of 757
+623/XMLGrammarPoolImpl.bc: 1020
+Compiling file 623/ElemPI.bc, 221 of 757
+623/ElemPI.bc: 98
+Compiling file 623/XalanSourceTreeElementANSAllocator.bc, 222 of 757
+623/XalanSourceTreeElementANSAllocator.bc: 563
+Compiling file 623/XPathConstructionContextDefault.bc, 223 of 757
+623/XPathConstructionContextDefault.bc: 20
+Compiling file 623/XSNotationDeclaration.bc, 224 of 757
+623/XSNotationDeclaration.bc: 17
+Compiling file 623/XMLDeclImpl.bc, 225 of 757
+623/XMLDeclImpl.bc: 18
+Compiling file 623/XalanSourceTreeElementNAAllocator.bc, 226 of 757
+623/XalanSourceTreeElementNAAllocator.bc: 563
+Compiling file 623/XMLParserLiaison.bc, 227 of 757
+623/XMLParserLiaison.bc: 0
+Compiling file 623/DOMImplementationRegistry.bc, 228 of 757
+623/DOMImplementationRegistry.bc: 423
+Compiling file 623/DocumentImpl.bc, 229 of 757
+623/DocumentImpl.bc: 1385
+Compiling file 623/StringPool.bc, 230 of 757
+623/StringPool.bc: 539
+Compiling file 623/NodeImpl.bc, 231 of 757
+623/NodeImpl.bc: 164
+Compiling file 623/BinFileInputStream.bc, 232 of 757
+623/BinFileInputStream.bc: 41
+Compiling file 623/DOM_Range.bc, 233 of 757
+623/DOM_Range.bc: 0
+Compiling file 623/XMLBufferMgr.bc, 234 of 757
+623/XMLBufferMgr.bc: 98
+Compiling file 623/FormatterToText.bc, 235 of 757
+623/FormatterToText.bc: 971
+Compiling file 623/XMLRecognizer.bc, 236 of 757
+623/XMLRecognizer.bc: 19
+Compiling file 623/XalanEXSLTMath.bc, 237 of 757
+623/XalanEXSLTMath.bc: 504
+Compiling file 623/XMLAttDef.bc, 238 of 757
+623/XMLAttDef.bc: 247
+Compiling file 623/XPathConstructionContext.bc, 239 of 757
+623/XPathConstructionContext.bc: 1
+Compiling file 623/ElemText.bc, 240 of 757
+623/ElemText.bc: 18
+Compiling file 623/XalanEXSLTSet.bc, 241 of 757
+623/XalanEXSLTSet.bc: 163
+Compiling file 623/DOMSupportInit.bc, 242 of 757
+623/DOMSupportInit.bc: 0
+Compiling file 623/XalanSourceTreeText.bc, 243 of 757
+623/XalanSourceTreeText.bc: 436
+Compiling file 623/FormatterToSourceTree.bc, 244 of 757
+623/FormatterToSourceTree.bc: 2210
+Compiling file 623/TextImpl.bc, 245 of 757
+623/TextImpl.bc: 22
+Compiling file 623/XSLTProcessorException.bc, 246 of 757
+623/XSLTProcessorException.bc: 0
+Compiling file 623/XSLTProcessor.bc, 247 of 757
+623/XSLTProcessor.bc: 0
+Compiling file 623/TimeDatatypeValidator.bc, 248 of 757
+623/TimeDatatypeValidator.bc: 10
+Compiling file 623/XSModel.bc, 249 of 757
+623/XSModel.bc: 7138
+Compiling file 623/DOMEntityImpl.bc, 250 of 757
+623/DOMEntityImpl.bc: 209
+Compiling file 623/Wrapper4DOMInputSource.bc, 251 of 757
+623/Wrapper4DOMInputSource.bc: 20
+Compiling file 623/BlockRangeFactory.bc, 252 of 757
+623/BlockRangeFactory.bc: 75
+Compiling file 623/XercesNotationWrapper.bc, 253 of 757
+623/XercesNotationWrapper.bc: 55
+Compiling file 623/SAXParser.bc, 254 of 757
+623/SAXParser.bc: 1094
+Compiling file 623/NodeIDMap.bc, 255 of 757
+623/NodeIDMap.bc: 72
+Compiling file 623/XalanExtensions.bc, 256 of 757
+623/XalanExtensions.bc: 210
+Compiling file 623/NodeIteratorImpl.bc, 257 of 757
+623/NodeIteratorImpl.bc: 168
+Compiling file 623/XalanStdOutputStream.bc, 258 of 757
+623/XalanStdOutputStream.bc: 731
+Compiling file 623/XNodeSetAllocator.bc, 259 of 757
+623/XNodeSetAllocator.bc: 1915
+Compiling file 623/XalanComment.bc, 260 of 757
+623/XalanComment.bc: 0
+Compiling file 623/ElemElement.bc, 261 of 757
+623/ElemElement.bc: 778
+Compiling file 623/XPath.bc, 262 of 757
+623/XPath.bc: 5771
+Compiling file 623/IDDatatypeValidator.bc, 263 of 757
+623/IDDatatypeValidator.bc: 10
+Compiling file 623/AbstractStringValidator.bc, 264 of 757
+623/AbstractStringValidator.bc: 1502
+Compiling file 623/XercesDOMParser.bc, 265 of 757
+623/XercesDOMParser.bc: 279
+Compiling file 623/XSDElementNSImpl.bc, 266 of 757
+623/XSDElementNSImpl.bc: 24
+Compiling file 623/XalanEXSLTDateTime.bc, 267 of 757
+623/XalanEXSLTDateTime.bc: 199
+Compiling file 623/XercesWrapperHelper.bc, 268 of 757
+623/XercesWrapperHelper.bc: 6
+Compiling file 623/FunctionString.bc, 269 of 757
+623/FunctionString.bc: 26
+Compiling file 623/XStringReferenceAllocator.bc, 270 of 757
+623/XStringReferenceAllocator.bc: 1915
+Compiling file 623/XTokenStringAdapterAllocator.bc, 271 of 757
+623/XTokenStringAdapterAllocator.bc: 1915
+Compiling file 623/FunctionID.bc, 272 of 757
+623/FunctionID.bc: 667
+Compiling file 623/XMLMsgLoader.bc, 273 of 757
+623/XMLMsgLoader.bc: 6
+Compiling file 623/XSLException.bc, 274 of 757
+623/XSLException.bc: 67
+Compiling file 623/OpFactory.bc, 275 of 757
+623/OpFactory.bc: 486
+Compiling file 623/DOMSupportException.bc, 276 of 757
+623/DOMSupportException.bc: 0
+Compiling file 623/IdentityConstraint.bc, 277 of 757
+623/IdentityConstraint.bc: 210
+Compiling file 623/XalanInMemoryMessageLoader.bc, 278 of 757
+623/XalanInMemoryMessageLoader.bc: 44
+Compiling file 623/XalanAVTAllocator.bc, 279 of 757
+623/XalanAVTAllocator.bc: 563
+Compiling file 623/XMLSupportException.bc, 280 of 757
+623/XMLSupportException.bc: 0
+Compiling file 623/XalanSourceTreeAttributeAllocator.bc, 281 of 757
+623/XalanSourceTreeAttributeAllocator.bc: 563
+Compiling file 623/XML256TableTranscoder.bc, 282 of 757
+623/XML256TableTranscoder.bc: 28
+Compiling file 623/TopLevelArg.bc, 283 of 757
+623/TopLevelArg.bc: 53
+Compiling file 623/XalanXMLSerializerFactory.bc, 284 of 757
+623/XalanXMLSerializerFactory.bc: 62925
+Compiling file 623/FormatterToDeprecatedXercesDOM.bc, 285 of 757
+623/FormatterToDeprecatedXercesDOM.bc: 0
+Compiling file 623/SubstitutionGroupComparator.bc, 286 of 757
+623/SubstitutionGroupComparator.bc: 265
+Compiling file 623/XSLTProcessorEnvSupportDefault.bc, 287 of 757
+623/XSLTProcessorEnvSupportDefault.bc: 151
+Compiling file 623/StdOutFormatTarget.bc, 288 of 757
+623/StdOutFormatTarget.bc: 0
+Compiling file 623/XBoolean.bc, 289 of 757
+623/XBoolean.bc: 37
+Compiling file 623/XResultTreeFrag.bc, 290 of 757
+623/XResultTreeFrag.bc: 154
+Compiling file 623/IC_Field.bc, 291 of 757
+623/IC_Field.bc: 119
+Compiling file 623/NLSHandler.bc, 292 of 757
+623/NLSHandler.bc: 42
+Compiling file 623/ElemTextLiteral.bc, 293 of 757
+623/ElemTextLiteral.bc: 18
+Compiling file 623/XObjectTypeCallback.bc, 294 of 757
+623/XObjectTypeCallback.bc: 1
+Compiling file 623/DTDValidator.bc, 295 of 757
+623/DTDValidator.bc: 806
+Compiling file 623/XSDDOMParser.bc, 296 of 757
+623/XSDDOMParser.bc: 2780
+Compiling file 623/DatatypeValidatorFactory.bc, 297 of 757
+623/DatatypeValidatorFactory.bc: 2033
+Compiling file 623/StringTokenizer.bc, 298 of 757
+623/StringTokenizer.bc: 210
+Compiling file 623/ParenToken.bc, 299 of 757
+623/ParenToken.bc: 3
+Compiling file 623/XalanSourceTreeHelper.bc, 300 of 757
+623/XalanSourceTreeHelper.bc: 16
+Compiling file 623/XalanMatchPatternData.bc, 301 of 757
+623/XalanMatchPatternData.bc: 11
+Compiling file 623/FunctionLang.bc, 302 of 757
+623/FunctionLang.bc: 371
+Compiling file 623/PSVIElement.bc, 303 of 757
+623/PSVIElement.bc: 105
+Compiling file 623/XalanSourceTreeElementNANS.bc, 304 of 757
+623/XalanSourceTreeElementNANS.bc: 41
+Compiling file 623/DOM_EntityReference.bc, 305 of 757
+623/DOM_EntityReference.bc: 0
+Compiling file 623/XalanSourceTreeTextAllocator.bc, 306 of 757
+623/XalanSourceTreeTextAllocator.bc: 563
+Compiling file 623/XalanQName.bc, 307 of 757
+623/XalanQName.bc: 377
+Compiling file 623/BinFileOutputStream.bc, 308 of 757
+623/BinFileOutputStream.bc: 38
+Compiling file 623/TransService.bc, 309 of 757
+623/TransService.bc: 19228
+Compiling file 623/ChildNode.bc, 310 of 757
+623/ChildNode.bc: 21
+Compiling file 623/MemoryManagerImpl.bc, 311 of 757
+623/MemoryManagerImpl.bc: 0
+Compiling file 623/XPathProcessor.bc, 312 of 757
+623/XPathProcessor.bc: 4
+Compiling file 623/XMLChar.bc, 313 of 757
+623/XMLChar.bc: 28
+Compiling file 623/DOMStringHelper.bc, 314 of 757
+623/DOMStringHelper.bc: 1955
+Compiling file 623/AbstractNumericValidator.bc, 315 of 757
+623/AbstractNumericValidator.bc: 14
+Compiling file 623/PlatformUtils.bc, 316 of 757
+623/PlatformUtils.bc: 48
+Compiling file 623/XalanEmptyNamedNodeMap.bc, 317 of 757
+623/XalanEmptyNamedNodeMap.bc: 0
+Compiling file 623/XMLURL.bc, 318 of 757
+623/XMLURL.bc: 3149
+Compiling file 623/DoubleDatatypeValidator.bc, 319 of 757
+623/DoubleDatatypeValidator.bc: 334
+Compiling file 623/XalanEntityReference.bc, 320 of 757
+623/XalanEntityReference.bc: 0
+Compiling file 623/StylesheetHandler.bc, 321 of 757
+623/StylesheetHandler.bc: 21286
+Compiling file 623/XercesDOMWrapperException.bc, 322 of 757
+623/XercesDOMWrapperException.bc: 0
+Compiling file 623/XalanSourceTreeDOMSupport.bc, 323 of 757
+623/XalanSourceTreeDOMSupport.bc: 15
+Compiling file 623/DOMDocumentImpl.bc, 324 of 757
+623/DOMDocumentImpl.bc: 4130
+Compiling file 623/XMLASCIITranscoder.bc, 325 of 757
+623/XMLASCIITranscoder.bc: 16
+Compiling file 623/PanicHandler.bc, 326 of 757
+623/PanicHandler.bc: 0
+Compiling file 623/XalanDOMInit.bc, 327 of 757
+623/XalanDOMInit.bc: 0
+Compiling file 623/FormatterStringLengthCounter.bc, 328 of 757
+623/FormatterStringLengthCounter.bc: 1
+Compiling file 623/XMLUri.bc, 329 of 757
+623/XMLUri.bc: 2012
+Compiling file 623/XTokenStringAdapter.bc, 330 of 757
+623/XTokenStringAdapter.bc: 8
+Compiling file 623/ValidationContextImpl.bc, 331 of 757
+623/ValidationContextImpl.bc: 500
+Compiling file 623/BinMemInputStream.bc, 332 of 757
+623/BinMemInputStream.bc: 41
+Compiling file 623/XalanMessageLoader.bc, 333 of 757
+623/XalanMessageLoader.bc: 269
+Compiling file 623/ParserForXMLSchema.bc, 334 of 757
+623/ParserForXMLSchema.bc: 173
+Compiling file 623/ElemDecimalFormat.bc, 335 of 757
+623/ElemDecimalFormat.bc: 1406
+Compiling file 623/XalanSourceTreeDocumentFragment.bc, 336 of 757
+623/XalanSourceTreeDocumentFragment.bc: 67
+Compiling file 623/AttributeListImpl.bc, 337 of 757
+623/AttributeListImpl.bc: 2616
+Compiling file 623/MutableNodeRefList.bc, 338 of 757
+623/MutableNodeRefList.bc: 1129
+Compiling file 623/XStringAdapter.bc, 339 of 757
+623/XStringAdapter.bc: 9
+Compiling file 623/XUtil.bc, 340 of 757
+623/XUtil.bc: 42
+Compiling file 623/XSAttributeDeclaration.bc, 341 of 757
+623/XSAttributeDeclaration.bc: 49
+Compiling file 623/XercesTextWrapperAllocator.bc, 342 of 757
+623/XercesTextWrapperAllocator.bc: 563
+Compiling file 623/DOMWriterImpl.bc, 343 of 757
+623/DOMWriterImpl.bc: 2576
+Compiling file 623/IconvTransService.bc, 344 of 757
+623/IconvTransService.bc: 89
+Compiling file 623/DateTimeValidator.bc, 345 of 757
+623/DateTimeValidator.bc: 329
+Compiling file 623/OutputContextStack.bc, 346 of 757
+623/OutputContextStack.bc: 2947
+Compiling file 623/XMLIBM1140Transcoder390.bc, 347 of 757
+623/XMLIBM1140Transcoder390.bc: 0
+Compiling file 623/XalanText.bc, 348 of 757
+623/XalanText.bc: 0
+Compiling file 623/XPathProcessorImpl.bc, 349 of 757
+623/XPathProcessorImpl.bc: 11722
+Compiling file 623/SchemaAttDef.bc, 350 of 757
+623/SchemaAttDef.bc: 558
+Compiling file 623/FunctionDifference.bc, 351 of 757
+623/FunctionDifference.bc: 61
+Compiling file 623/IRIXPlatformUtils.bc, 352 of 757
+623/IRIXPlatformUtils.bc: 0
+Compiling file 623/XalanTransformer.bc, 353 of 757
+623/XalanTransformer.bc: 6024
+Compiling file 623/NodeNameTreeWalker.bc, 354 of 757
+623/NodeNameTreeWalker.bc: 1132
+Compiling file 623/XalanParsedSource.bc, 355 of 757
+623/XalanParsedSource.bc: 0
+Compiling file 623/XalanMatchPatternDataAllocator.bc, 356 of 757
+623/XalanMatchPatternDataAllocator.bc: 725
+Compiling file 623/Function.bc, 357 of 757
+623/Function.bc: 134
+Compiling file 623/XalanXMLChar.bc, 358 of 757
+623/XalanXMLChar.bc: 0
+Compiling file 623/XercesCDATASectionBridge.bc, 359 of 757
+623/XercesCDATASectionBridge.bc: 0
+Compiling file 623/SGXMLScanner.bc, 360 of 757
+623/SGXMLScanner.bc: 16346
+Compiling file 623/DOM_Comment.bc, 361 of 757
+623/DOM_Comment.bc: 0
+Compiling file 623/XObjectFactory.bc, 362 of 757
+623/XObjectFactory.bc: 1
+Compiling file 623/XercesCDATASectionWrapper.bc, 363 of 757
+623/XercesCDATASectionWrapper.bc: 53
+Compiling file 623/DOMCommentImpl.bc, 364 of 757
+623/DOMCommentImpl.bc: 36
+Compiling file 623/XercesAttrWrapperAllocator.bc, 365 of 757
+623/XercesAttrWrapperAllocator.bc: 563
+Compiling file 623/DOMStringPrintWriter.bc, 366 of 757
+623/DOMStringPrintWriter.bc: 662
+Compiling file 623/XalanCDataSection.bc, 367 of 757
+623/XalanCDataSection.bc: 0
+Compiling file 623/XalanSourceTreeAttrNS.bc, 368 of 757
+623/XalanSourceTreeAttrNS.bc: 12
+Compiling file 623/ElemComment.bc, 369 of 757
+623/ElemComment.bc: 23
+Compiling file 623/XMemory.bc, 370 of 757
+623/XMemory.bc: 4
+Compiling file 623/TokenFactory.bc, 371 of 757
+623/TokenFactory.bc: 483
+Compiling file 623/XalanElemTextLiteralAllocator.bc, 372 of 757
+623/XalanElemTextLiteralAllocator.bc: 563
+Compiling file 623/TreeWalkerImpl.bc, 373 of 757
+623/TreeWalkerImpl.bc: 104
+Compiling file 623/RangeTokenMap.bc, 374 of 757
+623/RangeTokenMap.bc: 848
+Compiling file 623/DOMNodeImpl.bc, 375 of 757
+623/DOMNodeImpl.bc: 549
+Compiling file 623/XTokenNumberAdapter.bc, 376 of 757
+623/XTokenNumberAdapter.bc: 8
+Compiling file 623/XalanFileOutputStream.bc, 377 of 757
+623/XalanFileOutputStream.bc: 165
+Compiling file 623/XSNamespaceItem.bc, 378 of 757
+623/XSNamespaceItem.bc: 830
+Compiling file 623/XalanElemTextAllocator.bc, 379 of 757
+623/XalanElemTextAllocator.bc: 1159
+Compiling file 623/Win32TransService2.bc, 380 of 757
+623/Win32TransService2.bc: 0
+Compiling file 623/XPathEnvSupport.bc, 381 of 757
+623/XPathEnvSupport.bc: 0
+Compiling file 623/DOMErrorImpl.bc, 382 of 757
+623/DOMErrorImpl.bc: 53
+Compiling file 623/XSLTResultTarget.bc, 383 of 757
+623/XSLTResultTarget.bc: 44
+Compiling file 623/XercesProcessingInstructionBridge.bc, 384 of 757
+623/XercesProcessingInstructionBridge.bc: 0
+Compiling file 623/ConcatToken.bc, 385 of 757
+623/ConcatToken.bc: 4
+Compiling file 623/XercesDOMException.bc, 386 of 757
+623/XercesDOMException.bc: 1
+Compiling file 623/TraceListener.bc, 387 of 757
+623/TraceListener.bc: 0
+Compiling file 623/XNodeSet.bc, 388 of 757
+623/XNodeSet.bc: 62
+Compiling file 623/XalanQNameByValue.bc, 389 of 757
+623/XalanQNameByValue.bc: 1285
+Compiling file 623/MsgFileOutputStream.bc, 390 of 757
+623/MsgFileOutputStream.bc: 97
+Compiling file 623/LocalFileInputSource.bc, 391 of 757
+623/LocalFileInputSource.bc: 10
+Compiling file 623/ProblemListenerDefault.bc, 392 of 757
+623/ProblemListenerDefault.bc: 102
+Compiling file 623/XalanNode.bc, 393 of 757
+623/XalanNode.bc: 0
+Compiling file 623/XString.bc, 394 of 757
+623/XString.bc: 35
+Compiling file 623/DOM_Node.bc, 395 of 757
+623/DOM_Node.bc: 39
+Compiling file 623/XSLTProcessorEnvSupport.bc, 396 of 757
+623/XSLTProcessorEnvSupport.bc: 0
+Compiling file 623/BMPattern.bc, 397 of 757
+623/BMPattern.bc: 303
+Compiling file 623/RangeImpl.bc, 398 of 757
+623/RangeImpl.bc: 877
+Compiling file 623/XercesElementBridge.bc, 399 of 757
+623/XercesElementBridge.bc: 0
+Compiling file 623/FunctionElementAvailable.bc, 400 of 757
+623/FunctionElementAvailable.bc: 6
+Compiling file 623/XMLIBM1047Transcoder.bc, 401 of 757
+623/XMLIBM1047Transcoder.bc: 0
+Compiling file 623/FunctionNamespaceURI.bc, 402 of 757
+623/FunctionNamespaceURI.bc: 21
+Compiling file 623/XercesWrapperNavigator.bc, 403 of 757
+623/XercesWrapperNavigator.bc: 138
+Compiling file 623/DOMBuilderImpl.bc, 404 of 757
+623/DOMBuilderImpl.bc: 416
+Compiling file 623/IGXMLScanner2.bc, 405 of 757
+623/IGXMLScanner2.bc: 12245
+Compiling file 623/XPathExecutionContextDefault.bc, 406 of 757
+623/XPathExecutionContextDefault.bc: 2785
+Compiling file 623/YearMonthDatatypeValidator.bc, 407 of 757
+623/YearMonthDatatypeValidator.bc: 4
+Compiling file 623/XalanDecimalFormatSymbols.bc, 408 of 757
+623/XalanDecimalFormatSymbols.bc: 806
+Compiling file 623/DTDAttDef.bc, 409 of 757
+623/DTDAttDef.bc: 67
+Compiling file 623/XStringAdapterAllocator.bc, 410 of 757
+623/XStringAdapterAllocator.bc: 1915
+Compiling file 623/AllContentModel.bc, 411 of 757
+623/AllContentModel.bc: 1076
+Compiling file 623/XercesNamedNodeMapAttributeList.bc, 412 of 757
+623/XercesNamedNodeMapAttributeList.bc: 9
+Compiling file 623/ComplexTypeInfo.bc, 413 of 757
+623/ComplexTypeInfo.bc: 2336
+Compiling file 623/NullPrintWriter.bc, 414 of 757
+623/NullPrintWriter.bc: 0
+Compiling file 623/XalanSourceTreeDocumentFragmentAllocator.bc, 415 of 757
+623/XalanSourceTreeDocumentFragmentAllocator.bc: 1919
+Compiling file 623/FunctionNodeSet.bc, 416 of 757
+623/FunctionNodeSet.bc: 93
+Compiling file 623/AIXPlatformUtils.bc, 417 of 757
+623/AIXPlatformUtils.bc: 0
+Compiling file 623/DOM_CharacterData.bc, 418 of 757
+623/DOM_CharacterData.bc: 8
+Compiling file 623/XalanMemoryManagement.bc, 419 of 757
+623/XalanMemoryManagement.bc: 0
+Compiling file 623/ElemMessage.bc, 420 of 757
+623/ElemMessage.bc: 45
+Compiling file 623/AbstractDOMParser.bc, 421 of 757
+623/AbstractDOMParser.bc: 5385
+Compiling file 623/QNameDatatypeValidator.bc, 422 of 757
+623/QNameDatatypeValidator.bc: 113
+Compiling file 623/XNodeSetNodeProxy.bc, 423 of 757
+623/XNodeSetNodeProxy.bc: 9
+Compiling file 623/StringToken.bc, 424 of 757
+623/StringToken.bc: 19
+Compiling file 623/XercesBridgeHelper.bc, 425 of 757
+623/XercesBridgeHelper.bc: 0
+Compiling file 623/DOM_XMLDecl.bc, 426 of 757
+623/DOM_XMLDecl.bc: 3
+Compiling file 623/DOMNodeIDMap.bc, 427 of 757
+623/DOMNodeIDMap.bc: 126
+Compiling file 623/XToken.bc, 428 of 757
+623/XToken.bc: 104
+Compiling file 623/SchemaValidator.bc, 429 of 757
+623/SchemaValidator.bc: 5117
+Compiling file 623/XercesAttGroupInfo.bc, 430 of 757
+623/XercesAttGroupInfo.bc: 155
+Compiling file 623/SynchronizedStringPool.bc, 431 of 757
+623/SynchronizedStringPool.bc: 159
+Compiling file 623/FormatterListener.bc, 432 of 757
+623/FormatterListener.bc: 19
+Compiling file 623/Writer.bc, 433 of 757
+623/Writer.bc: 0
+Compiling file 623/StdInInputSource.bc, 434 of 757
+623/StdInInputSource.bc: 1
+Compiling file 623/XalanFileUtility.bc, 435 of 757
+623/XalanFileUtility.bc: 11472
+Compiling file 623/ParentNode.bc, 436 of 757
+623/ParentNode.bc: 436
+Compiling file 623/XMLFormatter.bc, 437 of 757
+623/XMLFormatter.bc: 1721
+Compiling file 623/DOM_Document.bc, 438 of 757
+623/DOM_Document.bc: 24
+Compiling file 623/XPathExpression.bc, 439 of 757
+623/XPathExpression.bc: 2756
+Compiling file 623/XalanSourceTreeTextIWS.bc, 440 of 757
+623/XalanSourceTreeTextIWS.bc: 5
+Compiling file 623/ElemForEach.bc, 441 of 757
+623/ElemForEach.bc: 1601
+Compiling file 623/XObjectFactoryDefault.bc, 442 of 757
+623/XObjectFactoryDefault.bc: 3148
+Compiling file 623/XalanNamedNodeMap.bc, 443 of 757
+623/XalanNamedNodeMap.bc: 0
+Compiling file 623/XalanSourceTreeAttr.bc, 444 of 757
+623/XalanSourceTreeAttr.bc: 28
+Compiling file 623/ContentSpecNode.bc, 445 of 757
+623/ContentSpecNode.bc: 428
+Compiling file 623/XPathParserException.bc, 446 of 757
+623/XPathParserException.bc: 0
+Compiling file 623/XMLUTF8Transcoder.bc, 447 of 757
+623/XMLUTF8Transcoder.bc: 284
+Compiling file 623/ElemTemplate.bc, 448 of 757
+623/ElemTemplate.bc: 157
+Compiling file 623/XalanNLSMessageLoader.bc, 449 of 757
+623/XalanNLSMessageLoader.bc: 0
+Compiling file 623/XercesBridgeNavigator.bc, 450 of 757
+623/XercesBridgeNavigator.bc: 0
+Compiling file 623/XalanElemVariableAllocator.bc, 451 of 757
+623/XalanElemVariableAllocator.bc: 563
+Compiling file 623/PrefixResolver.bc, 452 of 757
+623/PrefixResolver.bc: 0
+Compiling file 623/Grammar.bc, 453 of 757
+623/Grammar.bc: 10
+Compiling file 623/DatatypeValidator.bc, 454 of 757
+623/DatatypeValidator.bc: 680
+Compiling file 623/NotationImpl.bc, 455 of 757
+623/NotationImpl.bc: 19
+Compiling file 623/XMLReader.bc, 456 of 757
+623/XMLReader.bc: 2607
+Compiling file 623/ElemApplyImport.bc, 457 of 757
+623/ElemApplyImport.bc: 7
+Compiling file 623/ClosureToken.bc, 458 of 757
+623/ClosureToken.bc: 6
+Compiling file 623/RegxParser.bc, 459 of 757
+623/RegxParser.bc: 953
+Compiling file 623/DateTimeDatatypeValidator.bc, 460 of 757
+623/DateTimeDatatypeValidator.bc: 10
+Compiling file 623/XercesEntityReferenceBridge.bc, 461 of 757
+623/XercesEntityReferenceBridge.bc: 0
+Compiling file 623/HPPlatformUtils.bc, 462 of 757
+623/HPPlatformUtils.bc: 0
+Compiling file 623/DOMSupport.bc, 463 of 757
+623/DOMSupport.bc: 0
+Compiling file 623/XalanDOMStringCache.bc, 464 of 757
+623/XalanDOMStringCache.bc: 2112
+Compiling file 623/DOM_Attr.bc, 465 of 757
+623/DOM_Attr.bc: 5
+Compiling file 623/XercesElementWildcard.bc, 466 of 757
+623/XercesElementWildcard.bc: 36
+Compiling file 623/XObjectResultTreeFragProxyBase.bc, 467 of 757
+623/XObjectResultTreeFragProxyBase.bc: 13
+Compiling file 623/AVTPart.bc, 468 of 757
+623/AVTPart.bc: 0
+Compiling file 623/PSVIAttribute.bc, 469 of 757
+623/PSVIAttribute.bc: 76
+Compiling file 623/XStringReference.bc, 470 of 757
+623/XStringReference.bc: 13
+Compiling file 623/VecAttributesImpl.bc, 471 of 757
+623/VecAttributesImpl.bc: 280
+Compiling file 623/XMLWin1252Transcoder.bc, 472 of 757
+623/XMLWin1252Transcoder.bc: 0
+Compiling file 623/XercesCommentBridge.bc, 473 of 757
+623/XercesCommentBridge.bc: 0
+Compiling file 623/Constants.bc, 474 of 757
+623/Constants.bc: 21844
+Compiling file 623/XalanICUMessageLoader.bc, 475 of 757
+623/XalanICUMessageLoader.bc: 0
+Compiling file 623/XercesWrapperToXalanNodeMap.bc, 476 of 757
+623/XercesWrapperToXalanNodeMap.bc: 3467
+Compiling file 623/NodeVector.bc, 477 of 757
+623/NodeVector.bc: 65
+Compiling file 623/XSElementDeclaration.bc, 478 of 757
+623/XSElementDeclaration.bc: 186
+Compiling file 623/XMLStringTokenizer.bc, 479 of 757
+623/XMLStringTokenizer.bc: 574
+Compiling file 623/QName.bc, 480 of 757
+623/QName.bc: 574
+Compiling file 623/ValueStore.bc, 481 of 757
+623/ValueStore.bc: 1236
+Compiling file 623/XalanHTMLElementsProperties.bc, 482 of 757
+623/XalanHTMLElementsProperties.bc: 16
+Compiling file 623/BooleanDatatypeValidator.bc, 483 of 757
+623/BooleanDatatypeValidator.bc: 509
+Compiling file 623/XercesParserLiaison.bc, 484 of 757
+623/XercesParserLiaison.bc: 5053
+Compiling file 623/XNumberBase.bc, 485 of 757
+623/XNumberBase.bc: 2
+Compiling file 623/AVTPartXPath.bc, 486 of 757
+623/AVTPartXPath.bc: 9
+Compiling file 623/RangeToken.bc, 487 of 757
+623/RangeToken.bc: 650
+Compiling file 623/XSModelGroup.bc, 488 of 757
+623/XSModelGroup.bc: 10
+Compiling file 623/StringDatatypeValidator.bc, 489 of 757
+623/StringDatatypeValidator.bc: 78
+Compiling file 623/ExecutionContext.bc, 490 of 757
+623/ExecutionContext.bc: 1
+Compiling file 623/DocumentFragmentImpl.bc, 491 of 757
+623/DocumentFragmentImpl.bc: 0
+Compiling file 623/XMLSchemaDescription.bc, 492 of 757
+623/XMLSchemaDescription.bc: 0
+Compiling file 623/XSAXMLScanner.bc, 493 of 757
+623/XSAXMLScanner.bc: 2353
+Compiling file 623/XMLIBM1047Transcoder390.bc, 494 of 757
+623/XMLIBM1047Transcoder390.bc: 0
+Compiling file 623/XalanDefaultDocumentBuilder.bc, 495 of 757
+623/XalanDefaultDocumentBuilder.bc: 46
+Compiling file 623/XMLEBCDICTranscoder.bc, 496 of 757
+623/XMLEBCDICTranscoder.bc: 0
+Compiling file 623/XercesGroupInfo.bc, 497 of 757
+623/XercesGroupInfo.bc: 338
+Compiling file 623/XalanDOMString.bc, 498 of 757
+623/XalanDOMString.bc: 2977
+Compiling file 623/FormatterToXercesDOM.bc, 499 of 757
+623/FormatterToXercesDOM.bc: 831
+Compiling file 623/XalanSourceTreeElementAAllocator.bc, 500 of 757
+623/XalanSourceTreeElementAAllocator.bc: 563
+Compiling file 623/XalanDocumentFragmentNodeRefListBaseProxy.bc, 501 of 757
+623/XalanDocumentFragmentNodeRefListBaseProxy.bc: 4
+Compiling file 623/DStringPool.bc, 502 of 757
+623/DStringPool.bc: 42
+Compiling file 623/NamespacesHandler.bc, 503 of 757
+623/NamespacesHandler.bc: 10352
+Compiling file 623/FileHandleImpl.bc, 504 of 757
+623/FileHandleImpl.bc: 33
+Compiling file 623/DOMProcessingInstructionImpl.bc, 505 of 757
+623/DOMProcessingInstructionImpl.bc: 71
+Compiling file 623/XNodeSetBase.bc, 506 of 757
+623/XNodeSetBase.bc: 66
+Compiling file 623/XObjectResultTreeFragProxy.bc, 507 of 757
+623/XObjectResultTreeFragProxy.bc: 0
+Compiling file 623/ElemFallback.bc, 508 of 757
+623/ElemFallback.bc: 9
+Compiling file 623/CMAny.bc, 509 of 757
+623/CMAny.bc: 137
+Compiling file 623/DOM_NodeFilter.bc, 510 of 757
+623/DOM_NodeFilter.bc: 0
+Compiling file 623/XPathMatcherStack.bc, 511 of 757
+623/XPathMatcherStack.bc: 309
+Compiling file 623/GenerateEvent.bc, 512 of 757
+623/GenerateEvent.bc: 19
+Compiling file 623/FunctionDistinct.bc, 513 of 757
+623/FunctionDistinct.bc: 3294
+Compiling file 623/XalanSourceTreeElementNA.bc, 514 of 757
+623/XalanSourceTreeElementNA.bc: 18
+Compiling file 623/FunctionCurrent.bc, 515 of 757
+623/FunctionCurrent.bc: 4
+Compiling file 623/SelectionEvent.bc, 516 of 757
+623/SelectionEvent.bc: 101
+Compiling file 623/FieldActivator.bc, 517 of 757
+623/FieldActivator.bc: 919
+Compiling file 623/InMemHandler.bc, 518 of 757
+623/InMemHandler.bc: 228
+Compiling file 623/XProtoType.bc, 519 of 757
+623/XProtoType.bc: 28
+Compiling file 623/XercesToXalanNodeMap.bc, 520 of 757
+623/XercesToXalanNodeMap.bc: 0
+Compiling file 623/XPathCAPI.bc, 521 of 757
+623/XPathCAPI.bc: 240
+Compiling file 623/NodeSortKey.bc, 522 of 757
+623/NodeSortKey.bc: 204
+Compiling file 623/Mutexes.bc, 523 of 757
+623/Mutexes.bc: 2
+Compiling file 623/AnySimpleTypeDatatypeValidator.bc, 524 of 757
+623/AnySimpleTypeDatatypeValidator.bc: 95
+Compiling file 623/XercesDocumentFragmentBridge.bc, 525 of 757
+623/XercesDocumentFragmentBridge.bc: 0
+Compiling file 623/DOMString.bc, 526 of 757
+623/DOMString.bc: 894
+Compiling file 623/ElemTemplateElement.bc, 527 of 757
+623/ElemTemplateElement.bc: 945
+Compiling file 623/XalanElemElementAllocator.bc, 528 of 757
+623/XalanElemElementAllocator.bc: 563
+Compiling file 623/XalanExe.bc, 529 of 757
+623/XalanExe.bc: 1380
+Compiling file 623/DTDEntityDecl.bc, 530 of 757
+623/DTDEntityDecl.bc: 13
+Compiling file 623/RangeFactory.bc, 531 of 757
+623/RangeFactory.bc: 3
+Compiling file 623/CountersTable.bc, 532 of 757
+623/CountersTable.bc: 1649
+Compiling file 623/XMLNotationDecl.bc, 533 of 757
+623/XMLNotationDecl.bc: 203
+Compiling file 623/XMLWin1252Transcoder390.bc, 534 of 757
+623/XMLWin1252Transcoder390.bc: 0
+Compiling file 623/XercesElementWrapper.bc, 535 of 757
+623/XercesElementWrapper.bc: 90
+Compiling file 623/ElemCopyOf.bc, 536 of 757
+623/ElemCopyOf.bc: 181
+Compiling file 623/DOMCharacterDataImpl.bc, 537 of 757
+623/DOMCharacterDataImpl.bc: 126
+Compiling file 623/FunctionNormalizeSpace.bc, 538 of 757
+623/FunctionNormalizeSpace.bc: 960
+Compiling file 623/LocalFileFormatTarget.bc, 539 of 757
+623/LocalFileFormatTarget.bc: 77
+Compiling file 623/DOMImplementationImpl.bc, 540 of 757
+623/DOMImplementationImpl.bc: 34
+Compiling file 623/DOMDocumentTypeImpl.bc, 541 of 757
+623/DOMDocumentTypeImpl.bc: 202
+Compiling file 623/StylesheetConstructionContextDefault.bc, 542 of 757
+623/StylesheetConstructionContextDefault.bc: 7661
+Compiling file 623/XercesDocumentBridge.bc, 543 of 757
+623/XercesDocumentBridge.bc: 0
+Compiling file 623/HexBin.bc, 544 of 757
+623/HexBin.bc: 362
+Compiling file 623/ElemStack.bc, 545 of 757
+623/ElemStack.bc: 1443
+Compiling file 623/DOM_ProcessingInstruction.bc, 546 of 757
+623/DOM_ProcessingInstruction.bc: 5
+Compiling file 623/DOM_DocumentType.bc, 547 of 757
+623/DOM_DocumentType.bc: 10
+Compiling file 623/MIPSproDefs.bc, 548 of 757
+623/MIPSproDefs.bc: 0
+Compiling file 623/XercesNotationBridge.bc, 549 of 757
+623/XercesNotationBridge.bc: 0
+Compiling file 623/XalanTranscodingServices.bc, 550 of 757
+623/XalanTranscodingServices.bc: 95
+Compiling file 623/HashXMLCh.bc, 551 of 757
+623/HashXMLCh.bc: 2
+Compiling file 623/XMLScannerResolver.bc, 552 of 757
+623/XMLScannerResolver.bc: 64
+Compiling file 623/XMLEBCDICTranscoder390.bc, 553 of 757
+623/XMLEBCDICTranscoder390.bc: 0
+Compiling file 623/XalanDOMStringHashTable.bc, 554 of 757
+623/XalanDOMStringHashTable.bc: 1416
+Compiling file 623/XResultTreeFragAllocator.bc, 555 of 757
+623/XResultTreeFragAllocator.bc: 1915
+Compiling file 623/DOMParentNode.bc, 556 of 757
+623/DOMParentNode.bc: 428
+Compiling file 623/XMLIBM1140Transcoder.bc, 557 of 757
+623/XMLIBM1140Transcoder.bc: 0
+Compiling file 623/XMLASCIITranscoder390.bc, 558 of 757
+623/XMLASCIITranscoder390.bc: 10
+Compiling file 623/DOMChildNode.bc, 559 of 757
+623/DOMChildNode.bc: 6
+Compiling file 623/XalanFStreamOutputStream.bc, 560 of 757
+623/XalanFStreamOutputStream.bc: 671
+Compiling file 623/XercesNamedNodeMapWrapper.bc, 561 of 757
+623/XercesNamedNodeMapWrapper.bc: 26
+Compiling file 623/XSAnnotation.bc, 562 of 757
+623/XSAnnotation.bc: 120
+Compiling file 623/IC_Unique.bc, 563 of 757
+623/IC_Unique.bc: 0
+Compiling file 623/XercesTextBridge.bc, 564 of 757
+623/XercesTextBridge.bc: 0
+Compiling file 623/HPCCDefs.bc, 565 of 757
+623/HPCCDefs.bc: 0
+Compiling file 623/XercesDocumentTypeWrapper.bc, 566 of 757
+623/XercesDocumentTypeWrapper.bc: 71
+Compiling file 623/InMemMsgLoader.bc, 567 of 757
+623/InMemMsgLoader.bc: 137
+Compiling file 623/XSDLocator.bc, 568 of 757
+623/XSDLocator.bc: 7
+Compiling file 623/XalanDOMStringPool.bc, 569 of 757
+623/XalanDOMStringPool.bc: 471
+Compiling file 623/XSMultiValueFacet.bc, 570 of 757
+623/XSMultiValueFacet.bc: 250
+Compiling file 623/FunctionHasSameNodes.bc, 571 of 757
+623/FunctionHasSameNodes.bc: 15
+Compiling file 623/EntityImpl.bc, 572 of 757
+623/EntityImpl.bc: 44
+Compiling file 623/XalanNullOutputStream.bc, 573 of 757
+623/XalanNullOutputStream.bc: 0
+Compiling file 623/XalanDOMStringReusableAllocator.bc, 574 of 757
+623/XalanDOMStringReusableAllocator.bc: 1032
+Compiling file 623/Resettable.bc, 575 of 757
+623/Resettable.bc: 0
+Compiling file 623/IGXMLScanner.bc, 576 of 757
+623/IGXMLScanner.bc: 9393
+Compiling file 623/ElemApplyTemplates.bc, 577 of 757
+623/ElemApplyTemplates.bc: 79
+Compiling file 623/XercesNamedNodeMapBridge.bc, 578 of 757
+623/XercesNamedNodeMapBridge.bc: 0
+Compiling file 623/XMLEntityDecl.bc, 579 of 757
+623/XMLEntityDecl.bc: 307
+Compiling file 623/AttributesImpl.bc, 580 of 757
+623/AttributesImpl.bc: 2570
+Compiling file 623/XMLSchemaDescriptionImpl.bc, 581 of 757
+623/XMLSchemaDescriptionImpl.bc: 461
+Compiling file 623/NamedNodeMapAttributeList.bc, 582 of 757
+623/NamedNodeMapAttributeList.bc: 62
+Compiling file 623/DOMParser.bc, 583 of 757
+623/DOMParser.bc: 1162
+Compiling file 623/DOMServices.bc, 584 of 757
+623/DOMServices.bc: 2061
+Compiling file 623/ElemWhen.bc, 585 of 757
+623/ElemWhen.bc: 47
+Compiling file 623/XSObject.bc, 586 of 757
+623/XSObject.bc: 10
+Compiling file 623/XSLTInputSource.bc, 587 of 757
+623/XSLTInputSource.bc: 76
+Compiling file 623/DOMCDATASectionImpl.bc, 588 of 757
+623/DOMCDATASectionImpl.bc: 32
+Compiling file 623/ElemForwardCompatible.bc, 589 of 757
+623/ElemForwardCompatible.bc: 26
+Compiling file 623/Token.bc, 590 of 757
+623/Token.bc: 51
+Compiling file 623/KVStringPair.bc, 591 of 757
+623/KVStringPair.bc: 259
+Compiling file 623/FunctionSubstringBefore.bc, 592 of 757
+623/FunctionSubstringBefore.bc: 54
+Compiling file 623/NodeRefListBase.bc, 593 of 757
+623/NodeRefListBase.bc: 0
+Compiling file 623/BinInputStream.bc, 594 of 757
+623/BinInputStream.bc: 0
+Compiling file 623/CMUnaryOp.bc, 595 of 757
+623/CMUnaryOp.bc: 263
+Compiling file 623/XalanSourceTreeContentHandler.bc, 596 of 757
+623/XalanSourceTreeContentHandler.bc: 2509
+Compiling file 623/XalanElemValueOfAllocator.bc, 597 of 757
+623/XalanElemValueOfAllocator.bc: 563
+Compiling file 623/EncodingValidator.bc, 598 of 757
+623/EncodingValidator.bc: 213
+Compiling file 623/MixedContentModel.bc, 599 of 757
+623/MixedContentModel.bc: 1148
+Compiling file 623/XMLBigInteger.bc, 600 of 757
+623/XMLBigInteger.bc: 255
+Compiling file 623/XercesLiaisonXalanDOMStringPool.bc, 601 of 757
+623/XercesLiaisonXalanDOMStringPool.bc: 23
+Compiling file 623/XalanSourceTreeDocumentAllocator.bc, 602 of 757
+623/XalanSourceTreeDocumentAllocator.bc: 1915
+Compiling file 623/ListDatatypeValidator.bc, 603 of 757
+623/ListDatatypeValidator.bc: 277
+Compiling file 623/XercesDOMSupport.bc, 604 of 757
+623/XercesDOMSupport.bc: 0
+Compiling file 623/XSDErrorReporter.bc, 605 of 757
+623/XSDErrorReporter.bc: 30
+Compiling file 623/XalanDOMStringAllocator.bc, 606 of 757
+623/XalanDOMStringAllocator.bc: 732
+Compiling file 623/TraceListenerDefault.bc, 607 of 757
+623/TraceListenerDefault.bc: 577
+Compiling file 623/SAX2XMLFilterImpl.bc, 608 of 757
+623/SAX2XMLFilterImpl.bc: 114
+Compiling file 623/XMLScanner.bc, 609 of 757
+623/XMLScanner.bc: 6585
+Compiling file 623/XalanDocumentFragment.bc, 610 of 757
+623/XalanDocumentFragment.bc: 0
+Compiling file 623/XalanSourceTreeComment.bc, 611 of 757
+623/XalanSourceTreeComment.bc: 442
+Compiling file 623/XalanNodeListDummy.bc, 612 of 757
+623/XalanNodeListDummy.bc: 0
+Compiling file 623/XStringCachedAllocator.bc, 613 of 757
+623/XStringCachedAllocator.bc: 1915
+Compiling file 623/XalanElemCallTemplateAllocator.bc, 614 of 757
+623/XalanElemCallTemplateAllocator.bc: 563
+Compiling file 623/XMLInitializer.bc, 615 of 757
+623/XMLInitializer.bc: 0
+Compiling file 623/XercesProcessingInstructionWrapper.bc, 616 of 757
+623/XercesProcessingInstructionWrapper.bc: 55
+Compiling file 623/DocumentTypeImpl.bc, 617 of 757
+623/DocumentTypeImpl.bc: 101
+Compiling file 623/XalanElement.bc, 618 of 757
+623/XalanElement.bc: 0
+Compiling file 623/XalanOutputStream.bc, 619 of 757
+623/XalanOutputStream.bc: 1867
+Compiling file 623/IC_Selector.bc, 620 of 757
+623/IC_Selector.bc: 98
+Compiling file 623/SchemaGrammar.bc, 621 of 757
+623/SchemaGrammar.bc: 1800
+Compiling file 623/StylesheetRoot.bc, 622 of 757
+623/StylesheetRoot.bc: 8527
+Compiling file 623/DOMEntityReferenceImpl.bc, 623 of 757
+623/DOMEntityReferenceImpl.bc: 19
+Compiling file 623/XalanTransformerOutputStream.bc, 624 of 757
+623/XalanTransformerOutputStream.bc: 29
+Compiling file 623/XercesDOMImplementationWrapper.bc, 625 of 757
+623/XercesDOMImplementationWrapper.bc: 32
+Compiling file 623/XMLAttr.bc, 626 of 757
+623/XMLAttr.bc: 245
+Compiling file 623/DOMLocatorImpl.bc, 627 of 757
+623/DOMLocatorImpl.bc: 18
+Compiling file 623/SunCCDefs.bc, 628 of 757
+623/SunCCDefs.bc: 0
+Compiling file 623/FunctionDocument.bc, 629 of 757
+623/FunctionDocument.bc: 950
+Compiling file 623/CharToken.bc, 630 of 757
+623/CharToken.bc: 1
+Compiling file 623/Base64.bc, 631 of 757
+623/Base64.bc: 2490
+Compiling file 623/XalanNumberingResourceBundle.bc, 632 of 757
+623/XalanNumberingResourceBundle.bc: 4771
+Compiling file 623/ElemAttribute.bc, 633 of 757
+623/ElemAttribute.bc: 1703
+Compiling file 623/XalanSourceTreeCommentAllocator.bc, 634 of 757
+623/XalanSourceTreeCommentAllocator.bc: 563
+Compiling file 623/XMLGrammarDescription.bc, 635 of 757
+623/XMLGrammarDescription.bc: 1
+Compiling file 623/TreeWalker.bc, 636 of 757
+623/TreeWalker.bc: 0
+Compiling file 623/XalanCharacterData.bc, 637 of 757
+623/XalanCharacterData.bc: 0
+Compiling file 623/XMLContentModel.bc, 638 of 757
+623/XMLContentModel.bc: 0
+Compiling file 623/DOMNodeVector.bc, 639 of 757
+623/DOMNodeVector.bc: 77
+Compiling file 623/XercesEntityBridge.bc, 640 of 757
+623/XercesEntityBridge.bc: 0
+Compiling file 623/XalanXMLSerializerBase.bc, 641 of 757
+623/XalanXMLSerializerBase.bc: 1452
+Compiling file 623/DOM_Text.bc, 642 of 757
+623/DOM_Text.bc: 2
+Compiling file 623/ElemCallTemplate.bc, 643 of 757
+623/ElemCallTemplate.bc: 62
+Compiling file 623/XMLElementDecl.bc, 644 of 757
+623/XMLElementDecl.bc: 25
+Compiling file 623/FunctionSystemProperty.bc, 645 of 757
+623/FunctionSystemProperty.bc: 208
+Compiling file 623/XSSimpleTypeDefinition.bc, 646 of 757
+623/XSSimpleTypeDefinition.bc: 411
+Compiling file 623/PlatformSupportInit.bc, 647 of 757
+623/PlatformSupportInit.bc: 0
+Compiling file 623/XalanAVTPartSimpleAllocator.bc, 648 of 757
+623/XalanAVTPartSimpleAllocator.bc: 563
+Compiling file 623/XalanElemApplyTemplatesAllocator.bc, 649 of 757
+623/XalanElemApplyTemplatesAllocator.bc: 563
+Compiling file 623/StylesheetExecutionContext.bc, 650 of 757
+623/StylesheetExecutionContext.bc: 0
+Compiling file 623/XalanEncodingPropertyCache.bc, 651 of 757
+623/XalanEncodingPropertyCache.bc: 13
+Compiling file 623/StylesheetExecutionContextDefault.bc, 652 of 757
+623/StylesheetExecutionContextDefault.bc: 20777
+Compiling file 623/GeneralAttributeCheck.bc, 653 of 757
+623/GeneralAttributeCheck.bc: 2449
+Compiling file 623/KeyTable.bc, 654 of 757
+623/KeyTable.bc: 5882
+Compiling file 623/XalanSourceTreeTextIWSAllocator.bc, 655 of 757
+623/XalanSourceTreeTextIWSAllocator.bc: 563
+Compiling file 623/XercesTextWrapper.bc, 656 of 757
+623/XercesTextWrapper.bc: 30
+Compiling file 623/ExtensionFunctionHandler.bc, 657 of 757
+623/ExtensionFunctionHandler.bc: 3746
+Compiling file 623/XMLSupportInit.bc, 658 of 757
+623/XMLSupportInit.bc: 0
+Compiling file 623/FunctionUnparsedEntityURI.bc, 659 of 757
+623/FunctionUnparsedEntityURI.bc: 8
+Compiling file 623/ElemUse.bc, 660 of 757
+623/ElemUse.bc: 126
+Compiling file 623/DOMRangeException.bc, 661 of 757
+623/DOMRangeException.bc: 4
+Compiling file 623/XSIDCDefinition.bc, 662 of 757
+623/XSIDCDefinition.bc: 275
+Compiling file 623/ProblemListener.bc, 663 of 757
+623/ProblemListener.bc: 0
+Compiling file 623/DOM_CDATASection.bc, 664 of 757
+623/DOM_CDATASection.bc: 0
+Compiling file 623/XercesXPath.bc, 665 of 757
+623/XercesXPath.bc: 2817
+Compiling file 623/XalanNamespacesStack.bc, 666 of 757
+623/XalanNamespacesStack.bc: 6913
+Compiling file 623/SAXParseException.bc, 667 of 757
+623/SAXParseException.bc: 285
+Compiling file 623/SchemaAttDefList.bc, 668 of 757
+623/SchemaAttDefList.bc: 646
+Compiling file 623/SAX2XMLReaderImpl.bc, 669 of 757
+623/SAX2XMLReaderImpl.bc: 2248
+Compiling file 623/ElemExtensionCall.bc, 670 of 757
+623/ElemExtensionCall.bc: 34
+Compiling file 623/NamedNodeMapImpl.bc, 671 of 757
+623/NamedNodeMapImpl.bc: 301
+Compiling file 623/XalanDocumentPrefixResolver.bc, 672 of 757
+623/XalanDocumentPrefixResolver.bc: 3533
+Compiling file 623/XalanSourceTreeElementANS.bc, 673 of 757
+623/XalanSourceTreeElementANS.bc: 20
+Compiling file 623/ElemValueOf.bc, 674 of 757
+623/ElemValueOf.bc: 209
+Compiling file 623/XalanProcessingInstruction.bc, 675 of 757
+623/XalanProcessingInstruction.bc: 0
+Compiling file 623/XalanReferenceCountedObject.bc, 676 of 757
+623/XalanReferenceCountedObject.bc: 3
+Compiling file 623/ElementImpl.bc, 677 of 757
+623/ElementImpl.bc: 171
+Compiling file 623/XNumber.bc, 678 of 757
+623/XNumber.bc: 73
+Compiling file 623/NOTATIONDatatypeValidator.bc, 679 of 757
+623/NOTATIONDatatypeValidator.bc: 113
+Compiling file 623/XercesAttrWrapper.bc, 680 of 757
+623/XercesAttrWrapper.bc: 33
+Compiling file 623/BinMemOutputStream.bc, 681 of 757
+623/BinMemOutputStream.bc: 61
+Compiling file 623/ElemEmpty.bc, 682 of 757
+623/ElemEmpty.bc: 41
+Compiling file 623/XalanXMLFileReporter.bc, 683 of 757
+623/XalanXMLFileReporter.bc: 5588
+Compiling file 623/HeaderDummy.bc, 684 of 757
+623/HeaderDummy.bc: 0
+Compiling file 623/XTemplateSerializer.bc, 685 of 757
+623/XTemplateSerializer.bc: 10941
+Compiling file 623/XSLTEngineImpl.bc, 686 of 757
+623/XSLTEngineImpl.bc: 8611
+Compiling file 623/DOMRangeImpl.bc, 687 of 757
+623/DOMRangeImpl.bc: 1545
+Compiling file 623/XalanUTF8Writer.bc, 688 of 757
+623/XalanUTF8Writer.bc: 79
+Compiling file 623/XercesEntityReferenceWrapper.bc, 689 of 757
+623/XercesEntityReferenceWrapper.bc: 60
+Compiling file 623/XalanDOMException.bc, 690 of 757
+623/XalanDOMException.bc: 3
+Compiling file 623/ElemWithParam.bc, 691 of 757
+623/ElemWithParam.bc: 189
+Compiling file 623/ElemVariable.bc, 692 of 757
+623/ElemVariable.bc: 702
+Compiling file 623/XalanSourceTreeDocument.bc, 693 of 757
+623/XalanSourceTreeDocument.bc: 8798
+Compiling file 623/IC_KeyRef.bc, 694 of 757
+623/IC_KeyRef.bc: 4
+Compiling file 623/DayDatatypeValidator.bc, 695 of 757
+623/DayDatatypeValidator.bc: 4
+Compiling file 623/XPathFactoryBlock.bc, 696 of 757
+623/XPathFactoryBlock.bc: 92
+Compiling file 623/NodeListImpl.bc, 697 of 757
+623/NodeListImpl.bc: 0
+Compiling file 623/DOM_DOMImplementation.bc, 698 of 757
+623/DOM_DOMImplementation.bc: 31
+Compiling file 623/ASCIIRangeFactory.bc, 699 of 757
+623/ASCIIRangeFactory.bc: 5
+Compiling file 623/FunctionKey.bc, 700 of 757
+623/FunctionKey.bc: 248
+Compiling file 623/XalanElemAttributeAllocator.bc, 701 of 757
+623/XalanElemAttributeAllocator.bc: 563
+Compiling file 623/InputSource.bc, 702 of 757
+623/InputSource.bc: 121
+Compiling file 623/Win32PlatformUtils.bc, 703 of 757
+623/Win32PlatformUtils.bc: 0
+Compiling file 623/FunctionIntersection.bc, 704 of 757
+623/FunctionIntersection.bc: 96
+Compiling file 623/XPathEnvSupportDefault.bc, 705 of 757
+623/XPathEnvSupportDefault.bc: 12651
+Compiling file 623/XPathMatcher.bc, 706 of 757
+623/XPathMatcher.bc: 1536
+Compiling file 623/XercesDOM_NodeHack.bc, 707 of 757
+623/XercesDOM_NodeHack.bc: 0
+Compiling file 623/DomMemDebug.bc, 708 of 757
+623/DomMemDebug.bc: 341
+Compiling file 623/ModifierToken.bc, 709 of 757
+623/ModifierToken.bc: 6
+Compiling file 623/DOMStringPool.bc, 710 of 757
+623/DOMStringPool.bc: 90
+Compiling file 623/AttrNSImpl.bc, 711 of 757
+623/AttrNSImpl.bc: 148
+Compiling file 623/XMLUCSTranscoder.bc, 712 of 757
+623/XMLUCSTranscoder.bc: 19
+Compiling file 623/XPathFunctionTable.bc, 713 of 757
+623/XPathFunctionTable.bc: 134
+Compiling file 623/XalanTransformerProblemListener.bc, 714 of 757
+623/XalanTransformerProblemListener.bc: 42
+Compiling file 623/XalanNotation.bc, 715 of 757
+623/XalanNotation.bc: 0
+Compiling file 623/XPathSymbols.bc, 716 of 757
+623/XPathSymbols.bc: 0
+Compiling file 623/ElementDefinitionImpl.bc, 717 of 757
+623/ElementDefinitionImpl.bc: 6
+Compiling file 623/XStringCached.bc, 718 of 757
+623/XStringCached.bc: 620
+Compiling file 623/ElemParam.bc, 719 of 757
+623/ElemParam.bc: 13
+Compiling file 623/XalanCompiledStylesheetDefault.bc, 720 of 757
+623/XalanCompiledStylesheetDefault.bc: 108
+Compiling file 623/ElemLiteralResult.bc, 721 of 757
+623/ElemLiteralResult.bc: 278
+Compiling file 623/XalanEXSLTDynamic.bc, 722 of 757
+623/XalanEXSLTDynamic.bc: 23
+Compiling file 623/XalanParsedURI.bc, 723 of 757
+623/XalanParsedURI.bc: 1055
+Compiling file 623/ProcessingInstructionImpl.bc, 724 of 757
+623/ProcessingInstructionImpl.bc: 27
+Compiling file 623/XalanDOMImplementation.bc, 725 of 757
+623/XalanDOMImplementation.bc: 0
+Compiling file 623/XML88591Transcoder.bc, 726 of 757
+623/XML88591Transcoder.bc: 14
+Compiling file 623/Match.bc, 727 of 757
+623/Match.bc: 109
+Compiling file 623/XObjectResultTreeFragProxyText.bc, 728 of 757
+623/XObjectResultTreeFragProxyText.bc: 423
+Compiling file 623/XercesDOMWalker.bc, 729 of 757
+623/XercesDOMWalker.bc: 0
+Compiling file 623/NameDatatypeValidator.bc, 730 of 757
+623/NameDatatypeValidator.bc: 0
+Compiling file 623/XMLRegisterCleanup.bc, 731 of 757
+623/XMLRegisterCleanup.bc: 28
+Compiling file 623/XercesTextBridgeAllocator.bc, 732 of 757
+623/XercesTextBridgeAllocator.bc: 0
+Compiling file 623/BinOutputStream.bc, 733 of 757
+623/BinOutputStream.bc: 0
+Compiling file 623/XMLString.bc, 734 of 757
+623/XMLString.bc: 991
+Compiling file 623/DOMAttrNSImpl.bc, 735 of 757
+623/DOMAttrNSImpl.bc: 147
+Compiling file 623/VariablesStack.bc, 736 of 757
+623/VariablesStack.bc: 2120
+Compiling file 623/XMLUni.bc, 737 of 757
+623/XMLUni.bc: 0
+Compiling file 623/XalanSpaceNodeTester.bc, 738 of 757
+623/XalanSpaceNodeTester.bc: 8
+Compiling file 623/XercesWrapperNavigatorAllocator.bc, 739 of 757
+623/XercesWrapperNavigatorAllocator.bc: 563
+Compiling file 623/DOM_DOMException.bc, 740 of 757
+623/DOM_DOMException.bc: 0
+Compiling file 623/XPathAllocator.bc, 741 of 757
+623/XPathAllocator.bc: 556
+Compiling file 623/XSLTInit.bc, 742 of 757
+623/XSLTInit.bc: 16
+Compiling file 623/Base64BinaryDatatypeValidator.bc, 743 of 757
+623/Base64BinaryDatatypeValidator.bc: 8
+Compiling file 623/XMLUniCharacter.bc, 744 of 757
+623/XMLUniCharacter.bc: 0
+Compiling file 623/DOMDocumentFragmentImpl.bc, 745 of 757
+623/DOMDocumentFragmentImpl.bc: 8
+Compiling file 623/XMLUTF16Transcoder.bc, 746 of 757
+623/XMLUTF16Transcoder.bc: 3
+Compiling file 623/FunctionEvaluate.bc, 747 of 757
+623/FunctionEvaluate.bc: 31
+Compiling file 623/XalanSourceTreeInit.bc, 748 of 757
+623/XalanSourceTreeInit.bc: 0
+Compiling file 623/NCNameDatatypeValidator.bc, 749 of 757
+623/NCNameDatatypeValidator.bc: 0
+Compiling file 623/CSetDefs.bc, 750 of 757
+623/CSetDefs.bc: 0
+Compiling file 623/HashPtr.bc, 751 of 757
+623/HashPtr.bc: 0
+Compiling file 623/DOMElementImpl.bc, 752 of 757
+623/DOMElementImpl.bc: 116
+Compiling file 623/XSParticle.bc, 753 of 757
+623/XSParticle.bc: 21
+Compiling file 623/XSAttributeUse.bc, 754 of 757
+623/XSAttributeUse.bc: 13
+Compiling file 623/SAX2Handler.bc, 755 of 757
+623/SAX2Handler.bc: 311
+Compiling file 623/XercesDOMParsedSource.bc, 756 of 757
+623/XercesDOMParsedSource.bc: 98
+Relaxation 0
+Time taken:  94.46277022361755
+Time taken:  94.65842056274414
+Time taken:  94.73347020149231
+Time taken:  94.49228429794312
+Time taken:  94.88114643096924
+Relaxation 1
+Time taken:  93.79674196243286
+Time taken:  93.52365636825562
+Time taken:  93.98611497879028
+Time taken:  93.52914071083069
+Time taken:  93.67108798027039
+Relaxation 2
+Time taken:  94.81309509277344
+Time taken:  94.81449437141418
+Time taken:  94.35920071601868
+Time taken:  94.50984692573547
+Time taken:  94.40198540687561
+Relaxation 3
+Time taken:  94.83020544052124
+Time taken:  94.2972424030304
+Time taken:  94.27274322509766
+Time taken:  94.51435947418213
+Time taken:  94.31405138969421
+Relaxation 4
+Time taken:  93.64357829093933
+Time taken:  93.74274110794067
+Time taken:  94.29062342643738
+Time taken:  94.96634721755981
+Time taken:  93.77835249900818
+Relaxation 5
+Time taken:  93.75225567817688
+Time taken:  93.57047772407532
+Time taken:  94.09210395812988
+Time taken:  94.10715222358704
+Time taken:  93.8281319141388
+Relaxation 6
+Time taken:  93.80467295646667
+Time taken:  93.91468000411987
+Time taken:  93.89333987236023
+Time taken:  93.87062239646912
+Time taken:  94.35456538200378
+Relaxation 7
+Time taken:  94.17659115791321
+Time taken:  94.32829856872559
+Time taken:  93.89330339431763
+Time taken:  94.07374835014343
+Time taken:  94.41833519935608
+Relaxation 8
+Time taken:  94.30498743057251
+Time taken:  94.12715673446655
+Time taken:  94.36167526245117
+Time taken:  94.18693828582764
+Time taken:  94.69265866279602
+Relaxation 9
+Time taken:  94.30434894561768
+Time taken:  93.821524143219
+Time taken:  93.73166728019714
+Time taken:  93.72975444793701
+Time taken:  93.89788603782654
+Relaxation 10
+Time taken:  94.27504420280457
+Time taken:  93.91570472717285
+Time taken:  94.41268181800842
+Time taken:  94.15101432800293
+Time taken:  93.96656894683838
+Relaxation 11
+Time taken:  93.43327593803406
+Time taken:  93.74925804138184
+Time taken:  93.52915143966675
+Time taken:  93.31661915779114
+Time taken:  93.88502669334412
+Relaxation 12
+Time taken:  93.84541368484497
+Time taken:  93.4655601978302
+Time taken:  93.8374195098877
+Time taken:  93.50184869766235
+Time taken:  93.57198238372803
+Relaxation 13
+Time taken:  94.07007074356079
+Time taken:  94.20635104179382
+Time taken:  94.25110626220703
+Time taken:  94.04057312011719
+Time taken:  93.77201223373413
+Relaxation 14
+Time taken:  94.36713886260986
+Time taken:  93.67847347259521
+Time taken:  94.53673481941223
+Time taken:  95.72395467758179
+Time taken:  94.46595287322998
+Relaxation 15
+Time taken:  93.85292959213257
+Time taken:  95.28282260894775
+Time taken:  94.70596814155579
+Time taken:  94.9439206123352
+Time taken:  94.22611355781555
+Relaxation 16
+Time taken:  93.24149107933044
+Time taken:  93.59092020988464
+Time taken:  93.61219954490662
+Time taken:  93.38264989852905
+Time taken:  94.04385685920715
+Relaxation 17
+Time taken:  94.49892854690552
+Time taken:  93.56245827674866
+Time taken:  93.77257227897644
+Time taken:  94.11442875862122
+Time taken:  93.50614380836487
+Relaxation 18
+Time taken:  93.532390832901
+Time taken:  93.8878562450409
+Time taken:  93.8612744808197
+Time taken:  93.76908874511719
+Time taken:  93.32183027267456
+Relaxation 19
+Time taken:  93.5781421661377
+Time taken:  93.85904312133789
+Time taken:  94.77690267562866
+Time taken:  93.4999942779541
+Time taken:  93.9077467918396
+Relaxation 20
+Time taken:  93.90295076370239
+Time taken:  94.0836877822876
+Time taken:  93.5694591999054
+Time taken:  93.98914361000061
+Time taken:  94.25342583656311
+Relaxation 21
+Time taken:  94.0558271408081
+Time taken:  94.26862263679504
+Time taken:  94.21139192581177
+Time taken:  93.32610940933228
+Time taken:  94.69154596328735
+Relaxation 22
+Time taken:  94.10889172554016
+Time taken:  94.69910001754761
+Time taken:  94.08409476280212
+Time taken:  94.52174639701843
+Time taken:  94.24687790870667
+Relaxation 23
+Time taken:  94.12747859954834
+Time taken:  93.95862054824829
+Time taken:  94.20062136650085
+Time taken:  93.86909580230713
+Time taken:  94.47357249259949
+Relaxation 24
+Time taken:  93.76694917678833
+Time taken:  93.9203269481659
+Time taken:  93.9009599685669
+Time taken:  93.64766263961792
+Time taken:  93.97974491119385
+Relaxation 25
+Time taken:  94.22229743003845
+Time taken:  94.14445471763611
+Time taken:  94.34036779403687
+Time taken:  94.27385830879211
+Time taken:  94.17510509490967
+Relaxation 26
+Time taken:  94.39639711380005
+Time taken:  94.42197132110596
+Time taken:  94.05170130729675
+Time taken:  94.39650392532349
+Time taken:  94.26852893829346
+Relaxation 27
+Time taken:  93.56230783462524
+Time taken:  93.90832877159119
+Time taken:  93.69497561454773
+Time taken:  93.61205577850342
+Time taken:  93.93993735313416
+Relaxation 28
+Time taken:  94.35554623603821
+Time taken:  95.6063289642334
+Time taken:  93.98676061630249
+Time taken:  95.05833005905151
+Time taken:  94.35334134101868
+Relaxation 29
+Time taken:  93.69872212409973
+Time taken:  93.65574860572815
+Time taken:  93.43486428260803
+Time taken:  93.67946577072144
+Time taken:  93.21127367019653
+Relaxation 30
+Time taken:  93.65243792533875
+Time taken:  93.90748643875122
+Time taken:  93.41542720794678
+Time taken:  93.93222260475159
+Time taken:  93.48666000366211
+Relaxation 31
+Time taken:  93.90337061882019
+Time taken:  93.26203298568726
+Time taken:  93.61670732498169
+Time taken:  93.60395526885986
+Time taken:  93.56534576416016
+Relaxation 32
+Time taken:  93.34293007850647
+Time taken:  93.05479025840759
+Time taken:  93.70476198196411
+Time taken:  93.22956538200378
+Time taken:  93.5921037197113
+Relaxation 33
+Time taken:  93.67941784858704
+Time taken:  93.37093496322632
+Time taken:  93.87975692749023
+Time taken:  93.27593636512756
+Time taken:  93.52976417541504
+Relaxation 34
+Time taken:  95.81482362747192
+Time taken:  96.21269702911377
+Time taken:  95.68348407745361
+Time taken:  96.17588567733765
+Time taken:  95.31463289260864
+Relaxation 35
+Time taken:  94.12889957427979
+Time taken:  93.69080567359924
+Time taken:  93.5125162601471
+Time taken:  93.01732730865479
+Time taken:  93.37916040420532
+Relaxation 36
+Time taken:  94.3412733078003
+Time taken:  94.37725472450256
+Time taken:  93.97390246391296
+Time taken:  94.37671732902527
+Time taken:  94.25139427185059
+Relaxation 37
+Time taken:  94.524178981781
+Time taken:  94.5193133354187
+Time taken:  94.83893966674805
+Time taken:  94.75378084182739
+Time taken:  94.5396580696106
+Relaxation 38
+Time taken:  93.77183151245117
+Time taken:  93.47426676750183
+Time taken:  93.8561658859253
+Time taken:  93.7757887840271
+Time taken:  93.82163572311401
+Relaxation 39
+Time taken:  93.5989191532135
+Time taken:  93.65625548362732
+Time taken:  93.33614325523376
+Time taken:  93.27672863006592
+Time taken:  93.59544324874878
+Relaxation 40
+Time taken:  94.25248622894287
+Time taken:  93.96639013290405
+Time taken:  93.84369397163391
+Time taken:  94.75519680976868
+Time taken:  93.82772922515869
+Relaxation 41
+Time taken:  93.99613904953003
+Time taken:  95.1414144039154
+Time taken:  94.77151203155518
+Time taken:  94.98419237136841
+Time taken:  94.88231086730957
+Relaxation 42
+Time taken:  94.21704602241516
+Time taken:  94.0879557132721
+Time taken:  93.91616296768188
+Time taken:  93.88132762908936
+Time taken:  93.69739508628845
+Relaxation 43
+Time taken:  93.68478870391846
+Time taken:  93.57624220848083
+Time taken:  93.67286467552185
+Time taken:  93.25394177436829
+Time taken:  93.75558638572693
+Relaxation 44
+Time taken:  93.32903838157654
+Time taken:  93.60756134986877
+Time taken:  93.46890783309937
+Time taken:  93.06526494026184
+Time taken:  94.0399067401886
+Relaxation 45
+Time taken:  93.42712664604187
+Time taken:  93.47454237937927
+Time taken:  93.67737293243408
+Time taken:  93.4556839466095
+Time taken:  93.7619035243988
+Relaxation 46
+Time taken:  94.55433559417725
+Time taken:  94.11401319503784
+Time taken:  94.37301564216614
+Time taken:  94.53503251075745
+Time taken:  93.93069410324097
+Relaxation 47
+Time taken:  94.3735568523407
+Time taken:  94.56990599632263
+Time taken:  94.50098991394043
+Time taken:  94.74580216407776
+Time taken:  94.42192673683167
+Relaxation 48
+Time taken:  93.72912931442261
+Time taken:  93.63332891464233
+Time taken:  94.05294227600098
+Time taken:  93.23498558998108
+Time taken:  93.87024426460266
+Relaxation 49
+Time taken:  93.7828917503357
+Time taken:  93.2558012008667
+Time taken:  93.0379581451416
+Time taken:  93.59605622291565
+Time taken:  93.34959530830383
+Relaxation 50
+Time taken:  94.30879259109497
+Time taken:  94.5106999874115
+Time taken:  94.48202610015869
+Time taken:  93.88530540466309
+Time taken:  94.41147232055664
+Relaxation 51
+Time taken:  93.8703989982605
+Time taken:  93.53160047531128
+Time taken:  93.86290884017944
+Time taken:  94.70726013183594
+Time taken:  94.00507473945618
+Relaxation 52
+Time taken:  93.67853450775146
+Time taken:  93.18735790252686
+Time taken:  93.42387628555298
+Time taken:  93.3017225265503
+Time taken:  93.41404914855957
+Relaxation 53
+Time taken:  93.5275948047638
+Time taken:  93.53985452651978
+Time taken:  93.37323665618896
+Time taken:  93.61541700363159
+Time taken:  93.28665733337402
+Relaxation 54
+Time taken:  93.40499138832092
+Time taken:  93.23938369750977
+Time taken:  92.93898844718933
+Time taken:  92.80527591705322
+Time taken:  93.60817623138428
+Relaxation 55
+Time taken:  93.2274649143219
+Time taken:  93.51303458213806
+Time taken:  93.0850887298584
+Time taken:  93.76874494552612
+Time taken:  93.47426319122314
+Relaxation 56
+Time taken:  93.2430191040039
+Time taken:  94.01177477836609
+Time taken:  93.94128966331482
+Time taken:  94.32094883918762
+Time taken:  93.68351817131042
+Relaxation 57
+Time taken:  93.59702110290527
+Time taken:  93.66410732269287
+Time taken:  93.5254135131836
+Time taken:  93.26891756057739
+Time taken:  93.93912935256958
+Relaxation 58
+Time taken:  94.5777108669281
+Time taken:  93.3925256729126
+Time taken:  93.64286255836487
+Time taken:  93.83561253547668
+Time taken:  93.58777356147766
+Relaxation 59
+Time taken:  93.92038178443909
+Time taken:  93.6428370475769
+Time taken:  93.48749423027039
+Time taken:  93.37292385101318
+Time taken:  93.17570877075195
+Relaxation 60
+Time taken:  93.3175482749939
+Time taken:  93.29899954795837
+Time taken:  93.66386270523071
+Time taken:  93.77867674827576
+Time taken:  93.34045171737671
+Relaxation 61
+Time taken:  94.11272311210632
+Time taken:  94.48941254615784
+Time taken:  94.15835309028625
+Time taken:  94.08524441719055
+Time taken:  94.73176789283752
+Relaxation 62
+Time taken:  94.65339374542236
+Time taken:  94.36945867538452
+Time taken:  94.62270426750183
+Time taken:  93.81977701187134
+Time taken:  94.37268209457397
+Relaxation 63
+Time taken:  94.22922015190125
+Time taken:  93.8901629447937
+Time taken:  94.01661038398743
+Time taken:  93.87518453598022
+Time taken:  93.53321146965027
+Relaxation 64
+Time taken:  94.25326585769653
+Time taken:  94.0446879863739
+Time taken:  94.1591248512268
+Time taken:  93.86467027664185
+Time taken:  94.57326889038086
+Relaxation 65
+Time taken:  94.01495146751404
+Time taken:  94.04341793060303
+Time taken:  93.51824617385864
+Time taken:  94.07561898231506
+Time taken:  93.92999172210693
+Relaxation 66
+Time taken:  93.53323101997375
+Time taken:  93.67956471443176
+Time taken:  93.91593408584595
+Time taken:  93.76965856552124
+Time taken:  93.61609601974487
+Relaxation 67
+Time taken:  93.98591423034668
+Time taken:  93.17859387397766
+Time taken:  94.06727480888367
+Time taken:  93.56408214569092
+Time taken:  93.51393032073975
+Relaxation 68
+Time taken:  93.39140462875366
+Time taken:  93.11160182952881
+Time taken:  93.76978158950806
+Time taken:  93.38031959533691
+Time taken:  93.23939824104309
+Relaxation 69
+Time taken:  93.7894721031189
+Time taken:  93.3007447719574
+Time taken:  93.64195656776428
+Time taken:  92.92225074768066
+Time taken:  93.68463063240051
+Relaxation 70
+Time taken:  94.1337947845459
+Time taken:  93.91327786445618
+Time taken:  93.89930939674377
+Time taken:  94.28568363189697
+Time taken:  94.06593990325928
+Relaxation 71
+Time taken:  94.83336234092712
+Time taken:  93.59492659568787
+Time taken:  93.3883490562439
+Time taken:  93.32885956764221
+Time taken:  93.08363151550293
+Relaxation 72
+Time taken:  93.5516209602356
+Time taken:  93.70967864990234
+Time taken:  93.79454731941223
+Time taken:  93.49266815185547
+Time taken:  93.46290993690491
+Relaxation 73
+Time taken:  93.31487441062927
+Time taken:  93.95595192909241
+Time taken:  93.40798282623291
+Time taken:  93.02934312820435
+Time taken:  93.64731955528259
+Relaxation 74
+Time taken:  93.91887211799622
+Time taken:  93.92945671081543
+Time taken:  94.081289768219
+Time taken:  94.0130922794342
+Time taken:  94.16127181053162
+Relaxation 75
+Time taken:  93.97355103492737
+Time taken:  94.36317372322083
+Time taken:  94.0388605594635
+Time taken:  93.5096344947815
+Time taken:  94.1336715221405
+Relaxation 76
+Time taken:  93.51766037940979
+Time taken:  92.6076066493988
+Time taken:  93.64012575149536
+Time taken:  93.08761072158813
+Time taken:  93.30123567581177
+Relaxation 77
+Time taken:  93.02827453613281
+Time taken:  93.41156387329102
+Time taken:  93.24916219711304
+Time taken:  93.1435809135437
+Time taken:  93.56758189201355
+Relaxation 78
+Time taken:  94.95305275917053
+Time taken:  94.71588563919067
+Time taken:  95.3656075000763
+Time taken:  94.91712427139282
+Time taken:  95.21670532226562
+Relaxation 79
+Time taken:  93.74987483024597
+Time taken:  93.62486290931702
+Time taken:  93.92169308662415
+Time taken:  93.40322804450989
+Time taken:  93.64472007751465
+Relaxation 80
+Time taken:  93.92912340164185
+Time taken:  93.78442811965942
+Time taken:  94.23272275924683
+Time taken:  93.46819615364075
+Time taken:  93.73431539535522
+Relaxation 81
+Time taken:  93.38316750526428
+Time taken:  93.81933617591858
+Time taken:  93.48504519462585
+Time taken:  93.7262327671051
+Time taken:  93.06881093978882
+Relaxation 82
+Time taken:  93.97709918022156
+Time taken:  94.32192611694336
+Time taken:  93.83357548713684
+Time taken:  93.79345870018005
+Time taken:  94.32532215118408
+Relaxation 83
+Time taken:  93.84605264663696
+Time taken:  94.20626664161682
+Time taken:  93.5664701461792
+Time taken:  93.88894510269165
+Time taken:  93.75333738327026
+Relaxation 84
+Time taken:  93.1624825000763
+Time taken:  93.2061505317688
+Time taken:  93.56958937644958
+Time taken:  93.29408359527588
+Time taken:  93.0325620174408
+Relaxation 85
+Time taken:  94.16353464126587
+Time taken:  94.11799216270447
+Time taken:  93.63859176635742
+Time taken:  93.59391808509827
+Time taken:  94.21534180641174
+Relaxation 86
+Time taken:  94.45306968688965
+Time taken:  94.24985790252686
+Time taken:  94.28796601295471
+Time taken:  93.92607402801514
+Time taken:  94.21229147911072
+Relaxation 87
+Time taken:  94.09081840515137
+Time taken:  93.69988775253296
+Time taken:  95.465496301651
+Time taken:  93.80238485336304
+Time taken:  93.9081859588623
+Relaxation 88
+Time taken:  93.6449019908905
+Time taken:  93.20578145980835
+Time taken:  93.12314581871033
+Time taken:  93.4927544593811
+Time taken:  93.19290018081665
+Relaxation 89
+Time taken:  94.16282248497009
+Time taken:  94.65269589424133
+Time taken:  93.96205759048462
+Time taken:  94.12707757949829
+Time taken:  94.38535785675049
+Relaxation 90
+Time taken:  94.51781392097473
+Time taken:  94.55310082435608
+Time taken:  94.64546465873718
+Time taken:  94.66200613975525
+Time taken:  94.0042953491211
+Relaxation 91
+Time taken:  93.37208867073059
+Time taken:  94.80391359329224
+Time taken:  92.85615944862366
+Time taken:  93.77964162826538
+Time taken:  93.35339856147766
+Relaxation 92
+Time taken:  93.67157459259033
+Time taken:  92.92516040802002
+Time taken:  93.82249045372009
+Time taken:  93.18743896484375
+Time taken:  93.39063739776611
+Relaxation 93
+Time taken:  93.90190267562866
+Time taken:  93.81137204170227
+Time taken:  93.620769739151
+Time taken:  93.39049243927002
+Time taken:  94.85711193084717
+Relaxation 94
+Time taken:  94.31641912460327
+Time taken:  94.53369903564453
+Time taken:  94.7860779762268
+Time taken:  94.08942675590515
+Time taken:  95.0875871181488
+Relaxation 95
+Time taken:  93.46323418617249
+Time taken:  93.0051109790802
+Time taken:  93.5147385597229
+Time taken:  93.04094099998474
+Time taken:  93.3655617237091
+Relaxation 96
+Time taken:  94.08441543579102
+Time taken:  93.5125527381897
+Time taken:  93.64561343193054
+Time taken:  93.8561840057373
+Time taken:  93.34948062896729
+Relaxation 97
+Time taken:  93.58434963226318
+Time taken:  93.25980806350708
+Time taken:  93.69538521766663
+Time taken:  93.33464336395264
+Time taken:  93.56891822814941
+Relaxation 98
+Time taken:  94.3665657043457
+Time taken:  94.75778913497925
+Time taken:  94.18154501914978
+Time taken:  95.73849487304688
+Time taken:  95.73063659667969
+Relaxation 99
+Time taken:  93.16396522521973
+Time taken:  93.30011630058289
+Time taken:  94.15499305725098
+Time taken:  93.39331483840942
+Time taken:  93.32506132125854
