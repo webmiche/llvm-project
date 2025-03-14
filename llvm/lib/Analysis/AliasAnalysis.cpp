@@ -42,6 +42,7 @@
 #include "llvm/IR/Instructions.h"
 #include "llvm/IR/Type.h"
 #include "llvm/IR/Value.h"
+#include "llvm/IR/ValueHandle.h"
 #include "llvm/InitializePasses.h"
 #include "llvm/Pass.h"
 #include "llvm/Support/AtomicOrdering.h"
@@ -49,15 +50,18 @@
 #include "llvm/Support/CommandLine.h"
 #include <algorithm>
 #include <cassert>
+#include <fstream>
 #include <functional>
 #include <iterator>
+#include <map>
+#include <sstream>
 
 #define DEBUG_TYPE "aa"
 
 using namespace llvm;
 
-STATISTIC(NumNoAlias,   "Number of NoAlias results");
-STATISTIC(NumMayAlias,  "Number of MayAlias results");
+STATISTIC(NumNoAlias, "Number of NoAlias results");
+STATISTIC(NumMayAlias, "Number of MayAlias results");
 STATISTIC(NumMustAlias, "Number of MustAlias results");
 
 namespace llvm {
@@ -72,6 +76,55 @@ static cl::opt<bool> EnableAATrace("aa-trace", cl::Hidden, cl::init(false));
 #else
 static const bool EnableAATrace = false;
 #endif
+
+enum class AARelaxMode { Precise, All, Must, Partial, No };
+
+static cl::opt<AARelaxMode> AARelaxation(
+    "aa-relaxation", cl::Hidden, cl::init(AARelaxMode::Precise),
+    cl::desc("Relax the results of alias analysis"),
+    cl::values(clEnumValN(AARelaxMode::Precise, "precise", "No relaxation"),
+               clEnumValN(AARelaxMode::All, "all", "Relax all results"),
+               clEnumValN(AARelaxMode::Partial, "partial",
+                          "Relax partial-alias results"),
+               clEnumValN(AARelaxMode::Must, "must",
+                          "Relax must-alias results"),
+               clEnumValN(AARelaxMode::No, "no", "Relax no alias results")));
+
+namespace {
+AliasResult relaxAliasResult(AliasResult Result) {
+
+  if (Result == AliasResult::MayAlias)
+    // We can't relax MayAlias
+    return Result;
+
+  switch (AARelaxation) {
+  case AARelaxMode::Precise:
+    // We don't want to relax
+    return Result;
+  case AARelaxMode::All:
+    // We relax everything
+    return AliasResult::MayAlias;
+  case AARelaxMode::Must:
+    // We only relax MustAlias
+    if (Result == AliasResult::MustAlias)
+      return AliasResult::MayAlias;
+    break;
+  case AARelaxMode::Partial:
+    // We only relax PartialAlias
+    if (Result == AliasResult::PartialAlias)
+      return AliasResult::MayAlias;
+    break;
+  case AARelaxMode::No:
+    // We only relax NoAlias
+    if (Result == AliasResult::NoAlias)
+      return AliasResult::MayAlias;
+    break;
+  }
+
+  return Result;
+}
+
+} // namespace
 
 AAResults::AAResults(AAResults &&Arg)
     : TLI(Arg.TLI), AAs(std::move(Arg.AAs)), AADeps(std::move(Arg.AADeps)) {}
@@ -108,6 +161,225 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
   return alias(LocA, LocB, AAQIP, nullptr);
 }
 
+struct PtrPair {
+  const Value *Ptr1;
+  const Value *Ptr2;
+  PtrPair(const Value *Ptr1, const Value *Ptr2) : Ptr1(Ptr1), Ptr2(Ptr2) {}
+  bool operator==(const PtrPair &Other) const {
+    return std::tie(Ptr1, Ptr2) == std::tie(Other.Ptr1, Other.Ptr2);
+  }
+  bool operator<(const PtrPair &Other) const {
+    return std::tie(Ptr1, Ptr2) < std::tie(Other.Ptr1, Other.Ptr2);
+  }
+};
+
+enum class AARelax {
+  Relax,
+  NoRelax,
+};
+
+class AADecisionCache {
+private:
+  // Query cache. If the entry is true, return default.
+  std::map<struct PtrPair, AARelax> DecisionCache;
+  // Map Value pointers to WeakVH pointers
+  std::map<const Value *, WeakVH> ValueToWeakVH;
+
+public:
+  AADecisionCache() = default;
+
+  // For a given Pointer, find the pointer to its WeakVH and write it to vh. If
+  // it does not exist yet, create it. If it is valid, use the existing one. If
+  // it is invalid (i.e. there used to be another value where ptr is now),
+  // invalidate the cache and create a new one.
+  WeakVH findWeakVH(const Value *const Ptr) {
+    WeakVH VH;
+
+    // find or create the weakvh
+    if (ValueToWeakVH.find(Ptr) != ValueToWeakVH.end()) {
+      VH = ValueToWeakVH[Ptr];
+    } else {
+      VH = WeakVH(const_cast<Value *>(Ptr));
+      ValueToWeakVH[Ptr] = VH;
+    }
+
+    // if the weakvh is invalid, invalidate the cache and create a new one
+    if (!VH) {
+      // invalidate cache
+      for (auto Itr = DecisionCache.begin(); Itr != DecisionCache.end();) {
+        if (Itr->first.Ptr1 == Ptr || Itr->first.Ptr2 == Ptr) {
+          Itr = DecisionCache.erase(Itr);
+        } else {
+          ++Itr;
+        }
+      }
+      VH = WeakVH(const_cast<Value *>(Ptr));
+      ValueToWeakVH[Ptr] = VH;
+    }
+    return VH;
+  }
+
+  bool isPairCached(PtrPair &Pr) {
+    return DecisionCache.find(Pr) != DecisionCache.end();
+  }
+
+  AliasResult updateCacheAndReturn(PtrPair &Pr, AARelax Decision,
+                                   AliasResult Result) {
+    DecisionCache[Pr] = Decision;
+    return Result;
+  }
+
+  bool isPairRelaxed(PtrPair &Pr) {
+    return DecisionCache[Pr] == AARelax::Relax;
+  }
+};
+
+static AADecisionCache AACache;
+
+static cl::opt<std::string> AliasResultFile("arfile", cl::init(""));
+STATISTIC(NumberOfAACacheHits, "Number of AA cache hits");
+STATISTIC(NumberOfAAQueries, "Number of AA queries");
+
+// Encodes the sequence of AA results to relax. The sequence is encoded as a
+// sequence of numbers delimited by a "-". The first number n encodes how many
+// numbers will follow. The next n numbers encode indices of AA queries to
+// relax.
+static cl::opt<std::string> CmdLineAASequence("aasequence", cl::init(""));
+
+class AAInstrumentation {
+
+private:
+  // The array of indices to be relaxed.
+  std::vector<uint64_t> Sequence;
+  size_t CurrIndex = 0;
+
+public:
+  AAInstrumentation(std::string &AASequenceString) {
+    if (AASequenceString == "") {
+      return;
+    }
+
+    Sequence = parseString(AASequenceString);
+  };
+
+  std::vector<uint64_t> parseString(std::string &SequenceString) {
+    uint64_t Len = stoi(SequenceString.substr(0, SequenceString.find("-")));
+    std::vector<uint64_t> Result;
+    if (Len == 0) {
+      return Result;
+    }
+    std::string Item;
+    Result.reserve(Len);
+
+    std::string CurrSeq = SequenceString.substr(SequenceString.find("-") + 1);
+    std::stringstream SS(CurrSeq);
+    while (std::getline(SS, Item, '-')) {
+      Result.push_back(stoi(Item));
+    }
+    std::sort(Result.begin(), Result.end());
+    return Result;
+  }
+
+  bool isAAIndexToRelax(uint64_t Index) {
+    if (Sequence.size() > 0 && Sequence.size() > CurrIndex &&
+        Sequence[CurrIndex] == Index) {
+      CurrIndex++;
+      return true;
+    }
+    return false;
+  }
+};
+
+AAInstrumentation *getAAInstrumentation() {
+  std::string AAString;
+  if (AliasResultFile != "") {
+    std::ifstream F(AliasResultFile);
+    if (F) {
+      std::ostringstream SS;
+      SS << F.rdbuf();
+      AAString = SS.str();
+    } else {
+      assert("Could not open file" && false);
+    }
+  } else {
+    AAString = CmdLineAASequence;
+  }
+  static AAInstrumentation AARelaxation(AAString);
+  return &AARelaxation;
+}
+
+STATISTIC(NumberOfRelaxationCandidates,
+          "Number of queries that are not cached and not MayAlias. Therefore, "
+          "these are candidates to be relaxed.");
+
+// Count the number of AA queries that have occured so far.
+static int CurrAAIndex = 0;
+
+static cl::opt<bool> EnableOverallAATrace("aa-trace-overall", cl::Hidden,
+                                          cl::init(false));
+static cl::opt<bool> EnableAACandidateTrace("aa-candidate-trace", cl::Hidden,
+                                            cl::init(false));
+static cl::opt<bool> EnableAARelaxationTrace("aa-relaxation-trace", cl::Hidden,
+                                             cl::init(false));
+
+AliasResult relaxSpecificAliasResult(const llvm::Value *Ptr1,
+                                     const llvm::Value *Ptr2,
+                                     AliasResult Result, AAQueryInfo &AAQI) {
+  if (Result == AliasResult::MayAlias) {
+    if (EnableAACandidateTrace) {
+      for (unsigned I = 0; I < AAQI.Depth; ++I)
+        dbgs() << "  ";
+      dbgs() << Result << "\n";
+      dbgs().flush();
+    }
+    return Result;
+  }
+
+  auto *AAInstrumentation = getAAInstrumentation();
+
+  WeakVH VH1 = AACache.findWeakVH(Ptr1);
+  WeakVH VH2 = AACache.findWeakVH(Ptr2);
+
+  NumberOfAAQueries++;
+
+  PtrPair Pr(VH1, VH2);
+  if (AACache.isPairCached(Pr)) {
+    NumberOfAACacheHits++;
+    if (AACache.isPairRelaxed(Pr)) {
+      if (EnableAARelaxationTrace) {
+        dbgs() << "Cache: Relaxing " << Result << "\n";
+        dbgs().flush();
+      }
+      return AliasResult::MayAlias;
+    }
+    return Result;
+  }
+
+  NumberOfRelaxationCandidates++;
+
+  if (EnableAACandidateTrace) {
+    for (unsigned I = 0; I < AAQI.Depth; ++I)
+      dbgs() << "  ";
+    dbgs() << Result << "\n";
+    dbgs().flush();
+  }
+
+  if (AAInstrumentation->isAAIndexToRelax(CurrAAIndex)) {
+    CurrAAIndex++;
+    if (EnableAARelaxationTrace) {
+      dbgs() << "Relaxing " << Result << "\n";
+      dbgs().flush();
+    }
+    return AACache.updateCacheAndReturn(Pr, AARelax::Relax,
+                                        AliasResult::MayAlias);
+  }
+  CurrAAIndex++;
+  return AACache.updateCacheAndReturn(Pr, AARelax::NoRelax, Result);
+}
+
+static cl::opt<bool> InstrumentAARecursively("instrument-aa-recursively",
+                                             cl::init(false));
+
 AliasResult AAResults::alias(const MemoryLocation &LocA,
                              const MemoryLocation &LocB, AAQueryInfo &AAQI,
                              const Instruction *CtxI) {
@@ -116,8 +388,8 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
   if (EnableAATrace) {
     for (unsigned I = 0; I < AAQI.Depth; ++I)
       dbgs() << "  ";
-    dbgs() << "Start " << *LocA.Ptr << " @ " << LocA.Size << ", "
-           << *LocB.Ptr << " @ " << LocB.Size << "\n";
+    dbgs() << "Start " << *LocA.Ptr << " @ " << LocA.Size << ", " << *LocB.Ptr
+           << " @ " << LocB.Size << "\n";
   }
 
   AAQI.Depth++;
@@ -128,13 +400,25 @@ AliasResult AAResults::alias(const MemoryLocation &LocA,
   }
   AAQI.Depth--;
 
+  if (((AliasResultFile != "") || (CmdLineAASequence != "")) &&
+      ((AAQI.Depth == 0) || InstrumentAARecursively)) {
+    Result = relaxSpecificAliasResult(LocA.Ptr, LocB.Ptr, Result, AAQI);
+  }
+
+  if (EnableOverallAATrace) {
+    for (unsigned I = 0; I < AAQI.Depth; ++I)
+      dbgs() << "  ";
+    dbgs() << Result << "\n";
+  }
+
   if (EnableAATrace) {
     for (unsigned I = 0; I < AAQI.Depth; ++I)
       dbgs() << "  ";
-    dbgs() << "End " << *LocA.Ptr << " @ " << LocA.Size << ", "
-           << *LocB.Ptr << " @ " << LocB.Size << " = " << Result << "\n";
+    dbgs() << "End " << *LocA.Ptr << " @ " << LocA.Size << ", " << *LocB.Ptr
+           << " @ " << LocB.Size << " = " << Result << "\n";
   }
 
+  Result = relaxAliasResult(Result);
   if (AAQI.Depth == 0) {
     if (Result == AliasResult::NoAlias)
       ++NumNoAlias;
@@ -584,7 +868,8 @@ ModRefInfo AAResults::getModRefInfo(const AtomicCmpXchgInst *CX,
 ModRefInfo AAResults::getModRefInfo(const AtomicRMWInst *RMW,
                                     const MemoryLocation &Loc,
                                     AAQueryInfo &AAQI) {
-  // Acquire/Release atomicrmw has properties that matter for arbitrary addresses.
+  // Acquire/Release atomicrmw has properties that matter for arbitrary
+  // addresses.
   if (isStrongerThanMonotonic(RMW->getOrdering()))
     return ModRefInfo::ModRef;
 
@@ -646,8 +931,7 @@ ModRefInfo AAResults::getModRefInfo(const Instruction *I,
 /// with a smarter AA in place, this test is just wasting compile time.
 ModRefInfo AAResults::callCapturesBefore(const Instruction *I,
                                          const MemoryLocation &MemLoc,
-                                         DominatorTree *DT,
-                                         AAQueryInfo &AAQI) {
+                                         DominatorTree *DT, AAQueryInfo &AAQI) {
   if (!DT)
     return ModRefInfo::ModRef;
 
@@ -718,7 +1002,7 @@ bool AAResults::canInstructionRangeModRef(const Instruction &I1,
          "Instructions not in same basic block!");
   BasicBlock::const_iterator I = I1.getIterator();
   BasicBlock::const_iterator E = I2.getIterator();
-  ++E;  // Convert from inclusive to exclusive range.
+  ++E; // Convert from inclusive to exclusive range.
 
   for (; I != E; ++I) // Check every instruction in range
     if (isModOrRefSet(getModRefInfo(&*I, Loc) & Mode))

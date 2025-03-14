@@ -46,6 +46,7 @@
 #include "llvm/IR/Module.h"
 #include "llvm/IR/PassInstrumentation.h"
 #include "llvm/IR/PassManagerInternal.h"
+#include "llvm/Support/CommandLine.h"
 #include "llvm/Support/TimeProfiler.h"
 #include "llvm/Support/TypeName.h"
 #include <cassert>
@@ -451,6 +452,8 @@ getAnalysisResult(AnalysisManager<IRUnitT, AnalysisArgTs...> &AM, IRUnitT &IR,
 // header.
 class PassInstrumentationAnalysis;
 
+bool printPassNames();
+
 /// Manages a sequence of passes over a particular unit of IR.
 ///
 /// A pass manager contains a sequence of passes to run over a particular unit
@@ -514,7 +517,13 @@ public:
       if (!PI.runBeforePass<IRUnitT>(*Pass, IR))
         continue;
 
+      if (printPassNames()) {
+        llvm::dbgs() << "*** Start Pass: " << Pass->name() << " ***\n";
+      }
       PreservedAnalyses PassPA = Pass->run(IR, AM, ExtraArgs...);
+      if (printPassNames()) {
+        llvm::dbgs() << "*** End Pass: " << Pass->name() << " ***\n";
+      }
 
       // Update the analysis manager as each pass runs and potentially
       // invalidates analyses.
