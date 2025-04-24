@@ -10,9 +10,9 @@ PreservedAnalyses
 CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
 
   CFFunctionAnalysisInfo CalledFunctions = AM.getResult<CFFunctionAnalysis>(M);
-  LLVM_DEBUG(
-      for (auto &F
-           : CalledFunctions) { dbgs() << "Called function: " << F << "\n"; });
+  LLVM_DEBUG(for (auto &F : CalledFunctions) {
+    dbgs() << "Called function: " << F << "\n";
+  });
   int permissions_created = 0;
   Value *WritePermission = nullptr;
   Value *FileName = nullptr;
@@ -42,7 +42,26 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
         << "\n";
     out.close();
 
-    std::string outputString = F.getName().str() + " %lld\n";
+    std::string functionName = F.getName().str();
+    std::string function_map_file = "function_map.txt";
+    // check if the file exists
+    std::ifstream f(function_map_file);
+    if (f.good()) {
+      // file exists
+      out << "Mapping function " << functionName;
+      std::string line;
+      while (std::getline(f, line)) {
+        // if the line starts with the function name
+        if (line.find(functionName) == 0) {
+          // split the line by spaces
+          functionName = line.substr(line.find(" ") + 1);
+        }
+      }
+      f.close();
+      out << "to" << functionName << "\n";
+    }
+
+    std::string outputString = functionName + " %lld\n";
     StringRef funcFormatStr = StringRef(outputString);
     std::string fileName = "function_trace.txt";
     StringRef funcFileName = StringRef(fileName);
