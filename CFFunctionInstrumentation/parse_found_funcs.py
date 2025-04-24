@@ -192,4 +192,4 @@ if __name__ == '__main__':
 
     funcs_per_module = get_stored_funcs_dict(filename)
 
-    prepare_called_funcs_all(funcs_per_module)
+    prepare_called_funcs_only_analysis(funcs_per_module)
