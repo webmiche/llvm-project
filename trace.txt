@@ -1,454 +1,618 @@
-Running benchmark 600 with passes
-Iteration 1
-No configuration text or files found! Please check your setup.
-
-real	1m32.387s
-user	1m32.277s
-sys	0m0.110s
-Iteration 2
-No configuration text or files found! Please check your setup.
-
-real	1m31.870s
-user	1m31.727s
-sys	0m0.141s
-Iteration 3
-No configuration text or files found! Please check your setup.
-
-real	1m38.512s
-user	1m38.361s
-sys	0m0.144s
-Iteration 4
-No configuration text or files found! Please check your setup.
-
-real	1m25.585s
-user	1m25.475s
-sys	0m0.108s
-Iteration 5
-No configuration text or files found! Please check your setup.
-
-real	1m29.900s
-user	1m29.784s
-sys	0m0.114s
-Running benchmark 600 without passes
-Iteration 1
-No configuration text or files found! Please check your setup.
-
-real	1m33.361s
-user	1m33.211s
-sys	0m0.130s
-Iteration 2
-No configuration text or files found! Please check your setup.
-
-real	1m38.200s
-user	1m38.072s
-sys	0m0.120s
-Iteration 3
-No configuration text or files found! Please check your setup.
-
-real	1m33.227s
-user	1m33.103s
-sys	0m0.119s
-Iteration 4
-No configuration text or files found! Please check your setup.
-
-real	1m47.106s
-user	1m46.949s
-sys	0m0.147s
-Iteration 5
-No configuration text or files found! Please check your setup.
-
-real	1m47.259s
-user	1m47.109s
-sys	0m0.138s
-Benchmark 600 completed
-Running benchmark 605 with passes
+Running benchmark 605 with O1
 Iteration 1
 
-real	6m2.115s
-user	5m59.609s
-sys	0m2.494s
+real	5m35.664s
+user	5m33.279s
+sys	0m2.373s
 Iteration 2
 
-real	6m2.318s
-user	5m59.754s
-sys	0m2.542s
+real	5m35.599s
+user	5m33.245s
+sys	0m2.342s
 Iteration 3
 
-real	6m2.051s
-user	5m59.560s
-sys	0m2.474s
+real	5m35.498s
+user	5m33.151s
+sys	0m2.332s
 Iteration 4
 
-real	6m3.463s
-user	6m0.871s
-sys	0m2.554s
+real	5m35.883s
+user	5m33.522s
+sys	0m2.349s
 Iteration 5
 
-real	6m6.032s
-user	6m3.362s
-sys	0m2.633s
-Running benchmark 605 without passes
+real	5m35.932s
+user	5m33.554s
+sys	0m2.363s
+Iteration 6
+
+real	5m43.064s
+user	5m40.660s
+sys	0m2.387s
+Iteration 7
+
+real	5m35.307s
+user	5m32.928s
+sys	0m2.363s
+Iteration 8
+
+real	5m35.305s
+user	5m32.982s
+sys	0m2.304s
+Iteration 9
+
+real	5m35.373s
+user	5m33.014s
+sys	0m2.340s
+Iteration 10
+
+real	5m35.469s
+user	5m33.113s
+sys	0m2.336s
+Iteration 11
+
+real	5m35.414s
+user	5m33.103s
+sys	0m2.292s
+Iteration 12
+
+real	5m35.257s
+user	5m32.882s
+sys	0m2.357s
+Iteration 13
+
+real	5m35.730s
+user	5m33.402s
+sys	0m2.318s
+Iteration 14
+
+real	5m35.769s
+user	5m33.458s
+sys	0m2.295s
+Iteration 15
+
+real	5m35.970s
+user	5m33.661s
+sys	0m2.295s
+Iteration 16
+./run.sh: line 3: 176864 Segmentation fault      "$1" inp.in
+
+real	4m2.764s
+user	4m1.768s
+sys	0m0.983s
+Iteration 17
+
+real	5m44.151s
+user	5m41.799s
+sys	0m2.333s
+Iteration 18
+
+real	5m35.952s
+user	5m33.567s
+sys	0m2.367s
+Iteration 19
+./run.sh: line 3: 191019 Segmentation fault      "$1" inp.in
+
+real	3m2.121s
+user	3m1.201s
+sys	0m0.915s
+Iteration 20
+
+real	5m35.968s
+user	5m33.604s
+sys	0m2.347s
+Iteration 21
+
+real	5m35.922s
+user	5m33.547s
+sys	0m2.360s
+Iteration 22
+
+real	5m37.161s
+user	5m34.859s
+sys	0m2.285s
+Iteration 23
+./run.sh: line 3: 191851 Segmentation fault      "$1" inp.in
+
+real	0m17.939s
+user	0m17.931s
+sys	0m0.008s
+Iteration 24
+
+real	5m35.522s
+user	5m33.063s
+sys	0m2.444s
+Iteration 25
+
+real	5m36.105s
+user	5m33.746s
+sys	0m2.342s
+Iteration 26
+
+real	5m36.000s
+user	5m33.614s
+sys	0m2.369s
+Iteration 27
+
+real	5m35.462s
+user	5m33.116s
+sys	0m2.333s
+Iteration 28
+
+real	5m35.590s
+user	5m33.250s
+sys	0m2.322s
+Iteration 29
+
+real	5m45.078s
+user	5m42.714s
+sys	0m2.349s
+Iteration 30
+
+real	5m35.499s
+user	5m33.110s
+sys	0m2.376s
+Iteration 31
+./run.sh: line 3: 206270 Segmentation fault      "$1" inp.in
+
+real	0m12.981s
+user	0m12.974s
+sys	0m0.007s
+Iteration 32
+
+real	5m35.937s
+user	5m33.528s
+sys	0m2.393s
+Iteration 33
+
+real	5m36.507s
+user	5m34.184s
+sys	0m2.308s
+Iteration 34
+
+real	5m36.472s
+user	5m34.096s
+sys	0m2.355s
+Iteration 35
+
+real	5m36.064s
+user	5m33.704s
+sys	0m2.341s
+Iteration 36
+
+real	5m36.297s
+user	5m33.964s
+sys	0m2.315s
+Iteration 37
+
+real	5m36.272s
+user	5m33.965s
+sys	0m2.288s
+Iteration 38
+
+real	5m36.293s
+user	5m33.925s
+sys	0m2.354s
+Iteration 39
+
+real	5m35.681s
+user	5m33.272s
+sys	0m2.389s
+Iteration 40
+
+real	5m35.511s
+user	5m33.121s
+sys	0m2.371s
+Iteration 41
+
+real	5m46.690s
+user	5m44.272s
+sys	0m2.405s
+Iteration 42
+
+real	5m35.514s
+user	5m33.130s
+sys	0m2.367s
+Iteration 43
+
+real	5m35.990s
+user	5m33.651s
+sys	0m2.323s
+Iteration 44
+
+real	5m36.113s
+user	5m33.765s
+sys	0m2.323s
+Iteration 45
+
+real	5m36.009s
+user	5m33.685s
+sys	0m2.300s
+Iteration 46
+
+real	5m36.095s
+user	5m33.714s
+sys	0m2.358s
+Iteration 47
+
+real	5m36.087s
+user	5m33.740s
+sys	0m2.326s
+Iteration 48
+
+real	5m36.047s
+user	5m33.717s
+sys	0m2.310s
+Iteration 49
+
+real	5m36.219s
+user	5m33.862s
+sys	0m2.331s
+Iteration 50
+
+real	5m35.903s
+user	5m33.536s
+sys	0m2.343s
+Iteration 51
+
+real	5m35.878s
+user	5m33.544s
+sys	0m2.313s
+Iteration 52
+
+real	5m45.719s
+user	5m43.260s
+sys	0m2.438s
+Iteration 53
+
+real	5m35.909s
+user	5m33.496s
+sys	0m2.395s
+Iteration 54
+
+real	5m35.597s
+user	5m33.168s
+sys	0m2.416s
+Iteration 55
+
+real	5m35.450s
+user	5m33.083s
+sys	0m2.354s
+Iteration 56
+
+real	5m35.497s
+user	5m33.124s
+sys	0m2.359s
+Iteration 57
+
+real	5m35.539s
+user	5m33.166s
+sys	0m2.353s
+Iteration 58
+
+real	5m35.971s
+user	5m33.592s
+sys	0m2.362s
+Iteration 59
+
+real	5m35.685s
+user	5m33.306s
+sys	0m2.362s
+Iteration 60
+
+real	5m35.654s
+user	5m33.286s
+sys	0m2.347s
+Iteration 61
+
+real	5m35.652s
+user	5m33.252s
+sys	0m2.381s
+Iteration 62
+
+real	5m49.891s
+user	5m47.450s
+sys	0m2.423s
+Iteration 63
+
+real	5m36.768s
+user	5m34.302s
+sys	0m2.441s
+Iteration 64
+
+real	5m36.794s
+user	5m34.426s
+sys	0m2.353s
+Iteration 65
+
+real	5m36.054s
+user	5m33.719s
+sys	0m2.312s
+Iteration 66
+
+real	5m36.038s
+user	5m33.681s
+sys	0m2.341s
+Iteration 67
+
+real	5m35.624s
+user	5m33.242s
+sys	0m2.357s
+Iteration 68
+
+real	5m36.095s
+user	5m33.741s
+sys	0m2.338s
+Iteration 69
+
+real	5m35.935s
+user	5m33.564s
+sys	0m2.352s
+Iteration 70
+
+real	5m35.861s
+user	5m33.464s
+sys	0m2.382s
+Iteration 71
+
+real	5m35.769s
+user	5m33.444s
+sys	0m2.304s
+Iteration 72
+
+real	5m35.823s
+user	5m33.476s
+sys	0m2.333s
+Iteration 73
+
+real	5m46.123s
+user	5m43.711s
+sys	0m2.397s
+Iteration 74
+
+real	5m35.631s
+user	5m33.247s
+sys	0m2.371s
+Iteration 75
+
+real	5m35.883s
+user	5m33.444s
+sys	0m2.422s
+Iteration 76
+
+real	5m35.673s
+user	5m33.282s
+sys	0m2.375s
+Iteration 77
+
+real	5m36.467s
+user	5m34.150s
+sys	0m2.306s
+Iteration 78
+
+real	5m35.637s
+user	5m33.231s
+sys	0m2.389s
+Iteration 79
+
+real	5m35.865s
+user	5m33.441s
+sys	0m2.409s
+Iteration 80
+
+real	5m35.689s
+user	5m33.320s
+sys	0m2.358s
+Iteration 81
+
+real	5m35.542s
+user	5m33.222s
+sys	0m2.305s
+Iteration 82
+
+real	5m35.497s
+user	5m33.141s
+sys	0m2.339s
+Iteration 83
+
+real	5m35.951s
+user	5m33.549s
+sys	0m2.382s
+Iteration 84
+
+real	5m45.305s
+user	5m42.929s
+sys	0m2.360s
+Iteration 85
+
+real	5m35.870s
+user	5m33.511s
+sys	0m2.344s
+Iteration 86
+
+real	5m35.712s
+user	5m33.345s
+sys	0m2.350s
+Iteration 87
+
+real	5m35.655s
+user	5m33.278s
+sys	0m2.359s
+Iteration 88
+
+real	5m36.080s
+user	5m33.675s
+sys	0m2.392s
+Iteration 89
+
+real	5m35.571s
+user	5m33.227s
+sys	0m2.326s
+Iteration 90
+
+real	5m35.589s
+user	5m33.268s
+sys	0m2.303s
+Iteration 91
+
+real	5m31.848s
+user	5m29.369s
+sys	0m2.461s
+Iteration 92
+
+real	5m35.639s
+user	5m33.300s
+sys	0m2.320s
+Iteration 93
+
+real	5m35.449s
+user	5m33.096s
+sys	0m2.333s
+Iteration 94
+
+real	5m38.786s
+user	5m36.346s
+sys	0m2.422s
+Iteration 95
+
+real	5m44.072s
+user	5m41.594s
+sys	0m2.461s
+Iteration 96
+
+real	5m36.108s
+user	5m33.714s
+sys	0m2.374s
+Iteration 97
+
+real	5m35.846s
+user	5m33.546s
+sys	0m2.286s
+Iteration 98
+
+real	5m36.271s
+user	5m33.863s
+sys	0m2.386s
+Iteration 99
+
+real	5m35.742s
+user	5m33.385s
+sys	0m2.340s
+Iteration 100
+
+real	5m35.724s
+user	5m33.318s
+sys	0m2.389s
+Running benchmark 605 with O2
 Iteration 1
+./run.sh: line 3: 293443 Segmentation fault      "$1" inp.in
 
-real	5m45.170s
-user	5m42.455s
-sys	0m2.689s
+real	0m49.840s
+user	0m49.060s
+sys	0m0.779s
 Iteration 2
 
-real	5m45.267s
-user	5m42.653s
-sys	0m2.596s
+real	6m4.059s
+user	6m1.643s
+sys	0m2.399s
 Iteration 3
 
-real	5m37.624s
-user	5m34.954s
-sys	0m2.653s
+real	6m4.093s
+user	6m1.669s
+sys	0m2.404s
 Iteration 4
 
-real	5m37.682s
-user	5m35.152s
-sys	0m2.516s
+real	6m4.156s
+user	6m1.779s
+sys	0m2.358s
 Iteration 5
 
-real	5m38.127s
-user	5m35.610s
-sys	0m2.504s
-Benchmark 605 completed
-Running benchmark 619 with passes
-Iteration 1
+real	6m8.036s
+user	6m5.712s
+sys	0m2.303s
+Iteration 6
 
-real	7m38.629s
-user	7m37.931s
-sys	0m0.677s
-Iteration 2
+real	6m14.397s
+user	6m11.945s
+sys	0m2.429s
+Iteration 7
 
-real	7m29.549s
-user	7m28.861s
-sys	0m0.671s
-Iteration 3
+real	6m5.394s
+user	6m3.047s
+sys	0m2.324s
+Iteration 8
 
-real	8m22.114s
-user	8m21.407s
-sys	0m0.668s
-Iteration 4
+real	6m5.327s
+user	6m2.992s
+sys	0m2.312s
+Iteration 9
 
-real	7m32.420s
-user	7m31.744s
-sys	0m0.663s
-Iteration 5
+real	6m5.363s
+user	6m3.018s
+sys	0m2.323s
+Iteration 10
 
-real	7m40.756s
-user	7m40.066s
-sys	0m0.678s
-Running benchmark 619 without passes
-Iteration 1
+real	6m4.073s
+user	6m1.657s
+sys	0m2.402s
+Iteration 11
 
-real	9m32.771s
-user	9m32.064s
-sys	0m0.677s
-Iteration 2
+real	6m4.022s
+user	6m1.667s
+sys	0m2.339s
+Iteration 12
 
-real	8m41.911s
-user	8m41.224s
-sys	0m0.675s
-Iteration 3
+real	6m4.103s
+user	6m1.730s
+sys	0m2.350s
+Iteration 13
 
-real	9m32.255s
-user	9m31.539s
-sys	0m0.695s
-Iteration 4
+real	6m5.817s
+user	6m3.439s
+sys	0m2.358s
+Iteration 14
 
-real	9m32.154s
-user	9m31.455s
-sys	0m0.675s
-Iteration 5
+real	6m5.344s
+user	6m2.939s
+sys	0m2.384s
+Iteration 15
 
-real	8m19.731s
-user	8m19.034s
-sys	0m0.686s
-Benchmark 619 completed
-Running benchmark 631 with passes
-Iteration 1
+real	6m5.338s
+user	6m2.970s
+sys	0m2.347s
+Iteration 16
 
-real	3m15.070s
-user	3m13.472s
-sys	0m1.594s
-Iteration 2
+real	6m15.210s
+user	6m12.807s
+sys	0m2.386s
+Iteration 17
 
-real	3m15.006s
-user	3m13.405s
-sys	0m1.598s
-Iteration 3
+real	6m3.982s
+user	6m1.608s
+sys	0m2.356s
+Iteration 18
 
-real	3m15.039s
-user	3m13.439s
-sys	0m1.596s
-Iteration 4
+real	6m4.188s
+user	6m1.851s
+sys	0m2.319s
+Iteration 19
 
-real	3m43.876s
-user	3m42.276s
-sys	0m1.595s
-Iteration 5
+real	6m5.206s
+user	6m2.820s
+sys	0m2.366s
+Iteration 20
 
-real	3m44.029s
-user	3m42.443s
-sys	0m1.581s
-Running benchmark 631 without passes
-Iteration 1
+real	6m5.619s
+user	6m3.328s
+sys	0m2.271s
+Iteration 21
 
-real	3m42.317s
-user	3m40.714s
-sys	0m1.598s
-Iteration 2
+real	6m4.204s
+user	6m1.814s
+sys	0m2.369s
+Iteration 22
 
-real	3m28.781s
-user	3m27.199s
-sys	0m1.579s
-Iteration 3
-
-real	3m13.047s
-user	3m11.468s
-sys	0m1.577s
-Iteration 4
-
-real	3m13.171s
-user	3m11.594s
-sys	0m1.575s
-Iteration 5
-
-real	3m33.894s
-user	3m32.303s
-sys	0m1.587s
-Benchmark 631 completed
-Running benchmark 638 with passes
-Iteration 1
-
-real	44m3.618s
-user	43m58.354s
-sys	0m5.227s
-Iteration 2
-
-real	38m4.823s
-user	37m59.688s
-sys	0m5.116s
-Iteration 3
-
-real	37m57.304s
-user	37m52.311s
-sys	0m4.971s
-Iteration 4
-
-real	37m58.083s
-user	37m53.055s
-sys	0m5.015s
-Iteration 5
-
-real	38m48.038s
-user	38m42.777s
-sys	0m5.241s
-Running benchmark 638 without passes
-Iteration 1
-
-real	57m11.218s
-user	57m6.263s
-sys	0m4.938s
-Iteration 2
-
-real	60m26.086s
-user	60m20.734s
-sys	0m5.319s
-Iteration 3
-
-real	62m48.993s
-user	62m43.596s
-sys	0m5.377s
-Iteration 4
-
-real	65m56.553s
-user	65m51.286s
-sys	0m5.232s
-Iteration 5
-
-real	65m33.825s
-user	65m28.656s
-sys	0m5.138s
-Benchmark 638 completed
-Running benchmark 641 with passes
-Iteration 1
-
-real	3m32.296s
-user	3m32.273s
-sys	0m0.023s
-Iteration 2
-
-real	3m32.302s
-user	3m32.281s
-sys	0m0.021s
-Iteration 3
-
-real	3m39.672s
-user	3m39.651s
-sys	0m0.020s
-Iteration 4
-
-real	3m32.436s
-user	3m32.411s
-sys	0m0.026s
-Iteration 5
-
-real	3m32.291s
-user	3m32.274s
-sys	0m0.017s
-Running benchmark 641 without passes
-Iteration 1
-
-real	3m59.530s
-user	3m59.512s
-sys	0m0.018s
-Iteration 2
-
-real	3m59.380s
-user	3m59.357s
-sys	0m0.023s
-Iteration 3
-
-real	3m59.805s
-user	3m59.777s
-sys	0m0.029s
-Iteration 4
-
-real	4m0.342s
-user	4m0.323s
-sys	0m0.019s
-Iteration 5
-
-real	3m59.614s
-user	3m59.592s
-sys	0m0.023s
-Benchmark 641 completed
-Running benchmark 644 with passes
-Iteration 1
-
-real	12m51.428s
-user	12m51.246s
-sys	0m0.161s
-Iteration 2
-
-real	12m51.560s
-user	12m51.393s
-sys	0m0.153s
-Iteration 3
-
-real	13m6.445s
-user	13m6.283s
-sys	0m0.148s
-Iteration 4
-
-real	12m51.611s
-user	12m51.463s
-sys	0m0.134s
-Iteration 5
-
-real	12m52.136s
-user	12m51.989s
-sys	0m0.133s
-Running benchmark 644 without passes
-Iteration 1
-
-real	13m21.017s
-user	13m20.863s
-sys	0m0.142s
-Iteration 2
-
-real	13m20.250s
-user	13m20.099s
-sys	0m0.138s
-Iteration 3
-
-real	13m22.044s
-user	13m21.899s
-sys	0m0.130s
-Iteration 4
-
-real	15m43.278s
-user	15m43.114s
-sys	0m0.146s
-Iteration 5
-
-real	13m17.032s
-user	13m16.873s
-sys	0m0.150s
-Benchmark 644 completed
-Running benchmark 657 with passes
-Iteration 1
-Compressed data 1036078272 bytes in length
-Compressed data 539938872 bytes in length
-
-real	23m37.200s
-user	23m30.588s
-sys	0m6.533s
-Iteration 2
-Compressed data 1036078272 bytes in length
-Compressed data 539938872 bytes in length
-
-real	23m17.549s
-user	23m11.034s
-sys	0m6.488s
-Iteration 3
-Compressed data 1036078272 bytes in length
-Compressed data 539938872 bytes in length
-
-real	23m16.455s
-user	23m9.946s
-sys	0m6.470s
-Iteration 4
-Compressed data 1036078272 bytes in length
-Compressed data 539938872 bytes in length
-
-real	24m36.458s
-user	24m29.827s
-sys	0m6.596s
-Iteration 5
-Compressed data 1036078272 bytes in length
-Compressed data 539938872 bytes in length
-
-real	23m25.856s
-user	23m19.241s
-sys	0m6.574s
-Running benchmark 657 without passes
-Iteration 1
-Compressed data 1036078272 bytes in length
-Compressed data 539938872 bytes in length
-
-real	24m27.096s
-user	24m20.517s
-sys	0m6.536s
-Iteration 2
-Compressed data 1036078272 bytes in length
-Compressed data 539938872 bytes in length
-
-real	24m15.570s
-user	24m8.925s
-sys	0m6.587s
-Iteration 3
-Compressed data 1036078272 bytes in length
-Compressed data 539938872 bytes in length
-
-real	25m42.060s
-user	25m35.183s
-sys	0m6.817s
-Iteration 4
-Compressed data 1036078272 bytes in length
-Compressed data 539938872 bytes in length
-
-real	24m14.969s
-user	24m8.343s
-sys	0m6.592s
-Iteration 5
-Compressed data 1036078272 bytes in length
-Compressed data 539938872 bytes in length
-
-real	24m14.514s
-user	24m7.850s
-sys	0m6.621s
-Benchmark 657 completed
+real	6m3.926s
+user	6m1.520s
+sys	0m2.389s
+Iteration 23

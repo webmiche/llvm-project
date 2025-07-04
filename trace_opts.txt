@@ -1,0 +1,631 @@
+Running benchmark 600 with O1
+Iteration 1
+No configuration text or files found! Please check your setup.
+
+real	1m40.321s
+user	1m40.157s
+sys	0m0.162s
+Iteration 2
+No configuration text or files found! Please check your setup.
+
+real	1m44.613s
+user	1m44.474s
+sys	0m0.137s
+Iteration 3
+No configuration text or files found! Please check your setup.
+
+real	1m37.006s
+user	1m36.878s
+sys	0m0.126s
+Iteration 4
+No configuration text or files found! Please check your setup.
+
+real	1m35.423s
+user	1m35.310s
+sys	0m0.111s
+
+Running benchmark 600 with O2
+Iteration 1
+No configuration text or files found! Please check your setup.
+
+real	1m27.453s
+user	1m27.324s
+sys	0m0.127s
+Iteration 2
+No configuration text or files found! Please check your setup.
+
+real	1m41.136s
+user	1m40.999s
+sys	0m0.134s
+Iteration 3
+No configuration text or files found! Please check your setup.
+
+real	1m32.054s
+user	1m31.919s
+sys	0m0.133s
+Iteration 4
+No configuration text or files found! Please check your setup.
+
+real	1m25.703s
+user	1m25.571s
+sys	0m0.130s
+Iteration 5
+No configuration text or files found! Please check your setup.
+
+real	1m31.983s
+user	1m31.852s
+sys	0m0.130s
+Running benchmark 600 with O3
+Iteration 1
+No configuration text or files found! Please check your setup.
+
+real	1m25.514s
+user	1m25.374s
+sys	0m0.137s
+
+Iteration 3
+No configuration text or files found! Please check your setup.
+
+real	1m23.621s
+user	1m23.507s
+sys	0m0.111s
+
+Iteration 5
+No configuration text or files found! Please check your setup.
+
+real	1m29.959s
+user	1m29.856s
+sys	0m0.101s
+Running benchmark 605 with O1
+Iteration 1
+
+real	5m44.614s
+user	5m42.050s
+sys	0m2.551s
+Iteration 2
+
+real	5m36.623s
+user	5m34.101s
+sys	0m2.500s
+Iteration 3
+
+real	5m36.876s
+user	5m34.334s
+sys	0m2.522s
+
+Iteration 5
+
+real	5m36.538s
+user	5m34.035s
+sys	0m2.485s
+Running benchmark 605 with O2
+Iteration 1
+
+real	6m12.636s
+user	6m9.912s
+sys	0m2.707s
+Iteration 2
+
+real	6m5.149s
+user	6m2.644s
+sys	0m2.482s
+Iteration 3
+
+real	6m13.779s
+user	6m11.002s
+sys	0m2.763s
+Iteration 4
+
+real	6m12.317s
+user	6m9.640s
+sys	0m2.663s
+Iteration 5
+
+real	6m5.428s
+user	6m2.930s
+sys	0m2.478s
+Running benchmark 605 with O3
+Iteration 1
+
+real	6m10.177s
+user	6m7.412s
+sys	0m2.753s
+Iteration 2
+
+real	6m10.030s
+user	6m7.316s
+sys	0m2.698s
+Iteration 3
+
+real	6m1.804s
+user	5m59.261s
+sys	0m2.523s
+Iteration 4
+
+real	6m11.553s
+user	6m8.947s
+sys	0m2.587s
+Iteration 5
+
+real	6m5.007s
+user	6m2.438s
+sys	0m2.558s
+Running benchmark 619 with O1
+Iteration 1
+
+real	8m8.862s
+user	8m8.187s
+sys	0m0.663s
+Iteration 2
+
+real	7m35.076s
+user	7m34.381s
+sys	0m0.680s
+Iteration 3
+
+real	7m50.608s
+user	7m49.939s
+sys	0m0.655s
+Iteration 4
+
+real	7m30.991s
+user	7m30.292s
+sys	0m0.685s
+Iteration 5
+
+real	7m31.018s
+user	7m30.329s
+sys	0m0.672s
+Running benchmark 619 with O2
+Iteration 1
+
+real	7m31.550s
+user	7m30.869s
+sys	0m0.665s
+Iteration 2
+
+real	7m45.485s
+user	7m44.802s
+sys	0m0.663s
+Iteration 3
+
+real	8m24.033s
+user	8m23.344s
+sys	0m0.677s
+Iteration 4
+
+real	7m29.637s
+user	7m28.959s
+sys	0m0.662s
+Iteration 5
+
+real	7m29.659s
+user	7m28.973s
+sys	0m0.669s
+Running benchmark 619 with O3
+Iteration 1
+
+real	7m30.714s
+user	7m30.013s
+sys	0m0.685s
+Iteration 2
+
+real	7m30.550s
+user	7m29.852s
+sys	0m0.681s
+Iteration 3
+
+real	7m29.106s
+user	7m28.413s
+sys	0m0.675s
+Iteration 4
+
+real	8m27.109s
+user	8m26.395s
+sys	0m0.703s
+Iteration 5
+
+real	8m33.838s
+user	8m33.156s
+sys	0m0.674s
+Running benchmark 631 with O1
+Iteration 1
+
+real	3m42.240s
+user	3m40.648s
+sys	0m1.589s
+Iteration 2
+
+real	3m42.401s
+user	3m40.810s
+sys	0m1.587s
+Iteration 3
+
+real	3m42.441s
+user	3m40.851s
+sys	0m1.585s
+Iteration 4
+
+real	3m42.318s
+user	3m40.748s
+sys	0m1.565s
+Iteration 5
+
+real	3m44.280s
+user	3m42.693s
+sys	0m1.583s
+Running benchmark 631 with O2
+Iteration 1
+
+real	3m43.909s
+user	3m42.319s
+sys	0m1.586s
+Iteration 2
+
+real	3m14.854s
+user	3m13.262s
+sys	0m1.586s
+Iteration 3
+
+real	3m14.881s
+user	3m13.281s
+sys	0m1.594s
+Iteration 4
+
+real	3m14.817s
+user	3m13.226s
+sys	0m1.585s
+Iteration 5
+
+real	3m14.871s
+user	3m13.274s
+sys	0m1.591s
+Running benchmark 631 with O3
+Iteration 1
+
+real	3m14.580s
+user	3m13.004s
+sys	0m1.569s
+Iteration 2
+
+real	3m43.587s
+user	3m41.994s
+sys	0m1.590s
+Iteration 3
+
+real	3m43.558s
+user	3m41.969s
+sys	0m1.585s
+Iteration 4
+
+real	3m14.694s
+user	3m13.108s
+sys	0m1.580s
+Iteration 5
+
+real	3m44.061s
+user	3m42.468s
+sys	0m1.589s
+Running benchmark 638 with O1
+Iteration 1
+
+real	48m49.773s
+user	48m44.562s
+sys	0m5.169s
+Iteration 2
+
+real	48m41.202s
+user	48m36.288s
+sys	0m4.872s
+Iteration 3
+
+real	54m10.270s
+user	54m5.277s
+sys	0m4.959s
+Iteration 4
+
+real	58m1.017s
+user	57m55.574s
+sys	0m5.417s
+Iteration 5
+
+real	49m1.287s
+user	48m56.323s
+sys	0m4.931s
+Running benchmark 638 with O2
+Iteration 1
+
+real	38m29.997s
+user	38m25.056s
+sys	0m4.911s
+Iteration 2
+
+real	38m35.844s
+user	38m30.846s
+sys	0m4.963s
+Iteration 3
+
+real	38m41.743s
+user	38m36.852s
+sys	0m4.857s
+Iteration 4
+
+real	38m35.558s
+user	38m30.719s
+sys	0m4.810s
+Iteration 5
+
+real	38m49.209s
+user	38m44.263s
+sys	0m4.921s
+Running benchmark 638 with O3
+Iteration 1
+
+real	37m55.265s
+user	37m50.371s
+sys	0m4.862s
+Iteration 2
+
+real	37m46.839s
+user	37m41.922s
+sys	0m4.891s
+Iteration 3
+
+real	37m58.652s
+user	37m53.785s
+sys	0m4.851s
+Iteration 4
+
+real	37m45.909s
+user	37m41.045s
+sys	0m4.834s
+Iteration 5
+
+real	37m51.883s
+user	37m46.964s
+sys	0m4.897s
+Running benchmark 641 with O1
+Iteration 1
+
+real	3m58.003s
+user	3m57.975s
+sys	0m0.024s
+Iteration 2
+
+real	3m58.192s
+user	3m58.172s
+sys	0m0.020s
+Iteration 3
+
+real	3m59.015s
+user	3m58.996s
+sys	0m0.019s
+Iteration 4
+
+real	3m59.281s
+user	3m59.253s
+sys	0m0.028s
+Iteration 5
+
+real	4m1.807s
+user	4m1.783s
+sys	0m0.022s
+Running benchmark 641 with O2
+Iteration 1
+
+real	3m43.709s
+user	3m43.684s
+sys	0m0.025s
+Iteration 2
+
+real	3m40.158s
+user	3m40.133s
+sys	0m0.025s
+Iteration 3
+
+real	3m40.434s
+user	3m40.409s
+sys	0m0.025s
+Iteration 4
+
+real	3m40.411s
+user	3m40.392s
+sys	0m0.018s
+Iteration 5
+
+real	3m40.529s
+user	3m40.512s
+sys	0m0.016s
+Running benchmark 641 with O3
+Iteration 1
+
+real	3m32.391s
+user	3m32.364s
+sys	0m0.025s
+Iteration 2
+
+real	3m33.075s
+user	3m33.046s
+sys	0m0.030s
+Iteration 3
+
+real	3m33.539s
+user	3m33.517s
+sys	0m0.023s
+Iteration 4
+
+real	3m32.837s
+user	3m32.815s
+sys	0m0.022s
+Iteration 5
+
+real	3m33.065s
+user	3m33.043s
+sys	0m0.022s
+Running benchmark 644 with O1
+Iteration 1
+
+real	13m19.979s
+user	13m19.846s
+sys	0m0.124s
+Iteration 2
+
+real	13m25.232s
+user	13m25.087s
+sys	0m0.137s
+Iteration 3
+
+real	13m21.078s
+user	13m20.921s
+sys	0m0.147s
+Iteration 4
+
+real	13m19.264s
+user	13m19.136s
+sys	0m0.115s
+Iteration 5
+
+real	13m19.775s
+user	13m19.611s
+sys	0m0.152s
+Running benchmark 644 with O2
+Iteration 1
+
+real	12m48.988s
+user	12m48.841s
+sys	0m0.136s
+Iteration 2
+
+real	12m53.526s
+user	12m53.375s
+sys	0m0.139s
+Iteration 3
+
+real	12m46.854s
+user	12m46.707s
+sys	0m0.132s
+Iteration 4
+
+real	12m47.200s
+user	12m47.073s
+sys	0m0.111s
+Iteration 5
+
+real	12m53.499s
+user	12m53.341s
+sys	0m0.150s
+Running benchmark 644 with O3
+Iteration 1
+
+real	12m53.517s
+user	12m53.388s
+sys	0m0.119s
+Iteration 2
+
+real	12m58.286s
+user	12m58.131s
+sys	0m0.146s
+Iteration 3
+
+real	12m47.206s
+user	12m47.055s
+sys	0m0.137s
+Iteration 4
+
+real	12m53.369s
+user	12m53.235s
+sys	0m0.129s
+Iteration 5
+
+real	12m46.887s
+user	12m46.719s
+sys	0m0.152s
+Running benchmark 657 with O1
+Iteration 1
+Compressed data 1036078272 bytes in length
+Compressed data 539938872 bytes in length
+
+real	24m7.904s
+user	24m1.376s
+sys	0m6.474s
+Iteration 2
+Compressed data 1036078272 bytes in length
+Compressed data 539938872 bytes in length
+
+real	23m50.979s
+user	23m44.486s
+sys	0m6.438s
+Iteration 3
+Compressed data 1036078272 bytes in length
+Compressed data 539938872 bytes in length
+
+real	24m12.113s
+user	24m5.638s
+sys	0m6.455s
+Iteration 4
+Compressed data 1036078272 bytes in length
+Compressed data 539938872 bytes in length
+
+real	23m53.227s
+user	23m46.765s
+sys	0m6.427s
+Iteration 5
+Compressed data 1036078272 bytes in length
+Compressed data 539938872 bytes in length
+
+real	23m52.444s
+user	23m46.011s
+sys	0m6.393s
+Running benchmark 657 with O2
+Iteration 1
+Compressed data 1036078272 bytes in length
+Compressed data 539938872 bytes in length
+
+real	23m30.974s
+user	23m24.476s
+sys	0m6.456s
+Iteration 2
+Compressed data 1036078272 bytes in length
+Compressed data 539938872 bytes in length
+
+real	23m13.755s
+user	23m7.261s
+sys	0m6.446s
+Iteration 3
+Compressed data 1036078272 bytes in length
+Compressed data 539938872 bytes in length
+
+real	23m35.249s
+user	23m28.724s
+sys	0m6.483s
+Iteration 4
+Compressed data 1036078272 bytes in length
+Compressed data 539938872 bytes in length
+
+real	23m16.449s
+user	23m9.949s
+sys	0m6.445s
+Iteration 5
+Compressed data 1036078272 bytes in length
+Compressed data 539938872 bytes in length
+
+real	23m18.663s
+user	23m12.182s
+sys	0m6.458s
+Running benchmark 657 with O3
+Iteration 1
+Compressed data 1036078272 bytes in length
+Compressed data 539938872 bytes in length
+
+real	23m36.996s
+user	23m30.466s
+sys	0m6.494s
+Iteration 2
+Compressed data 1036078272 bytes in length
+Compressed data 539938872 bytes in length
+
+real	23m15.895s
+user	23m9.342s
+sys	0m6.517s
+Iteration 3
+Compressed data 1036078272 bytes in length

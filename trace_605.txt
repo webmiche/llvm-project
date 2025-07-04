@@ -1,0 +1,68 @@
+Running benchmark 605 with O1
+Iteration 1
+
+real	5m43.547s
+user	5m41.111s
+sys	0m2.426s
+Iteration 2
+
+real	5m35.500s
+user	5m33.111s
+sys	0m2.380s
+Iteration 3
+
+real	5m35.499s
+user	5m33.139s
+sys	0m2.351s
+Iteration 4
+
+real	5m35.477s
+user	5m33.142s
+sys	0m2.325s
+Iteration 5
+
+real	5m43.640s
+user	5m41.314s
+sys	0m2.316s
+Iteration 6
+./run.sh: line 3: 22883 Segmentation fault      "$1" inp.in
+
+real	1m7.029s
+user	1m6.246s
+sys	0m0.782s
+Iteration 7
+
+real	5m35.541s
+user	5m33.248s
+sys	0m2.281s
+Iteration 8
+
+real	5m51.766s
+user	5m49.340s
+sys	0m2.415s
+Iteration 9
+
+real	5m35.775s
+user	5m33.385s
+sys	0m2.369s
+Iteration 10
+
+real	5m35.696s
+user	5m33.399s
+sys	0m2.285s
+Iteration 11
+
+real	5m35.648s
+user	5m33.323s
+sys	0m2.311s
+Iteration 12
+
+real	5m40.759s
+user	5m38.369s
+sys	0m2.381s
+Iteration 13
+
+real	5m43.346s
+user	5m41.001s
+sys	0m2.337s
+Iteration 14
