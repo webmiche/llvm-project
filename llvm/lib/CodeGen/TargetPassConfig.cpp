@@ -1352,6 +1352,32 @@ static void initializeDefaultRegisterAllocatorOnce() {
     RegisterRegAlloc::setDefault(RegAlloc);
 }
 
+enum class RegAllocChoice {
+  NoRegAlloc,
+  BasicRegAlloc,
+  FastRegAlloc,
+  GreedyRegAlloc,
+  PBQPRegAlloc
+};
+// add a cli option to select either the NoRegAlloc, the BasicRegAlloc, the
+// FastRegAlloc, the GreedyRegAlloc, or the PBQPRegAlloc Allocator
+static cl::opt<RegAllocChoice>
+    RegAllocChoice("regalloc-choice",
+                   cl::desc("Choose the register allocator to use"),
+                   cl::init(RegAllocChoice::GreedyRegAlloc),
+                   cl::values(
+                       clEnumValN(RegAllocChoice::NoRegAlloc, "NoAlloc",
+                                  "No register allocation"),
+                       clEnumValN(RegAllocChoice::BasicRegAlloc, "BasicAlloc",
+                                  "Basic register allocation"),
+                       clEnumValN(RegAllocChoice::FastRegAlloc, "FastAlloc",
+                                  "Fast register allocation"),
+                       clEnumValN(RegAllocChoice::GreedyRegAlloc, "GreedyAlloc",
+                                  "Greedy register allocation"),
+                       clEnumValN(RegAllocChoice::PBQPRegAlloc, "PBQPAlloc",
+                                  "PBQP register allocation")));
+
+
 /// Instantiate the default register allocator pass for this target for either
 /// the optimized or unoptimized allocation path. This will be added to the pass
 /// manager by addFastRegAlloc in the unoptimized case or addOptimizedRegAlloc
@@ -1361,6 +1387,18 @@ static void initializeDefaultRegisterAllocatorOnce() {
 /// allocation may still override this for per-target regalloc
 /// selection. But -regalloc=... always takes precedence.
 FunctionPass *TargetPassConfig::createTargetRegisterAllocator(bool Optimized) {
+  switch (RegAllocChoice) {
+  case RegAllocChoice::NoRegAlloc:
+    return createNoRegRegisterAllocator();
+  case RegAllocChoice::BasicRegAlloc:
+    return createBasicRegisterAllocator();
+  case RegAllocChoice::FastRegAlloc:
+    return createFastRegisterAllocator();
+  case RegAllocChoice::GreedyRegAlloc:
+    return createGreedyRegisterAllocator();
+  case RegAllocChoice::PBQPRegAlloc:
+    return createDefaultPBQPRegisterAllocator();
+  }
   if (Optimized)
     return createGreedyRegisterAllocator();
   else
