@@ -28,6 +28,8 @@ STATISTIC(NumDCEDeleted,        "Number of instructions deleted by DCE");
 STATISTIC(NumDCEFoldedLoads,    "Number of single use loads folded after DCE");
 STATISTIC(NumFracRanges,        "Number of live ranges fractured by DCE");
 STATISTIC(NumReMaterialization, "Number of instructions rematerialized");
+STATISTIC(NumParentUnspillableLREdit,
+          "Number of unspillable virtual registers due to unspillable parents in LREdit");
 
 void LiveRangeEdit::Delegate::anchor() { }
 
@@ -38,8 +40,10 @@ LiveInterval &LiveRangeEdit::createEmptyIntervalFrom(Register OldReg,
     VRM->setIsSplitFromReg(VReg, VRM->getOriginal(OldReg));
 
   LiveInterval &LI = LIS.createEmptyInterval(VReg);
-  if (Parent && !Parent->isSpillable())
+  if (Parent && !Parent->isSpillable()) {
     LI.markNotSpillable();
+    ++NumParentUnspillableLREdit;
+  }
   if (createSubRanges) {
     // Create empty subranges if the OldReg's interval has them. Do not create
     // the main range here---it will be constructed later after the subranges
@@ -63,8 +67,10 @@ Register LiveRangeEdit::createFrom(Register OldReg) {
   // the case. Generally speaking we just want to annotate the
   // LiveInterval when it gets created but we cannot do that at
   // the moment.
-  if (Parent && !Parent->isSpillable())
+  if (Parent && !Parent->isSpillable()) {
+    ++NumParentUnspillableLREdit;
     LIS.getInterval(VReg).markNotSpillable();
+  }
   return VReg;
 }
 

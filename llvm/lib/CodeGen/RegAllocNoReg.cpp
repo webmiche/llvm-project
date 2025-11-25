@@ -15,6 +15,7 @@
 #include "RegAllocBase.h"
 #include "llvm/Analysis/AliasAnalysis.h"
 #include "llvm/Analysis/ProfileSummaryInfo.h"
+#include "llvm/ADT/Statistic.h"
 #include "llvm/CodeGen/CalcSpillWeights.h"
 #include "llvm/CodeGen/LiveDebugVariables.h"
 #include "llvm/CodeGen/LiveIntervals.h"
@@ -38,6 +39,8 @@
 using namespace llvm;
 
 #define DEBUG_TYPE "regalloc"
+
+STATISTIC(NumUnspillable, "Number of unspillable virtual registers encountered");
 
 static RegisterRegAlloc NoRegAlloc("noreg", "no register allocator",
                                       createNoRegRegisterAllocator);
@@ -213,6 +216,7 @@ MCRegister RANoReg::selectOrSplit(const LiveInterval &VirtReg,
 
   LLVM_DEBUG(dbgs() << "cannot spill: " << VirtReg << '\n');
   // we allocate this register
+  ++NumUnspillable;
 
   auto Order = AllocationOrder::create(VirtReg.reg(), *VRM, RegClassInfo, Matrix);
   for (MCRegister PhysReg : Order) {

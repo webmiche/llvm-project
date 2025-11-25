@@ -8,6 +8,7 @@
 
 #include "llvm/CodeGen/CalcSpillWeights.h"
 #include "llvm/ADT/SmallPtrSet.h"
+#include "llvm/ADT/Statistic.h"
 #include "llvm/CodeGen/LiveInterval.h"
 #include "llvm/CodeGen/LiveIntervals.h"
 #include "llvm/CodeGen/MachineFunction.h"
@@ -29,6 +30,13 @@
 using namespace llvm;
 
 #define DEBUG_TYPE "calcspillweights"
+
+STATISTIC(NumBackendUnspillable,
+          "Number of virtual registers unspillable due to backend constraints");
+STATISTIC(NumSmallLiveRangeUnspillable,
+          "Number of virtual registers unspillable due to small live ranges");
+STATISTIC(NumParentUnspillableCalcSpillWeights,
+          "Number of virtual registers unspillable due to unspillable parents in CalcSpillWeights");
 
 void VirtRegAuxInfo::calculateSpillWeightsAndHints() {
   LLVM_DEBUG(dbgs() << "********** Compute Spill Weights **********\n"
@@ -176,8 +184,10 @@ float VirtRegAuxInfo::weightCalcHelper(LiveInterval &LI, SlotIndex *Start,
     // li comes from a split of OrigInt. If OrigInt was marked
     // as not spillable, make sure the new interval is marked
     // as not spillable as well.
-    if (!OrigInt.isSpillable())
+    if (!OrigInt.isSpillable()) {
       LI.markNotSpillable();
+      ++NumParentUnspillableCalcSpillWeights;
+    }
   }
 
   // Don't recompute spill weight for an unspillable register.
@@ -255,6 +265,7 @@ float VirtRegAuxInfo::weightCalcHelper(LiveInterval &LI, SlotIndex *Start,
     if (TII.isUnspillableTerminator(MI) &&
         MI->definesRegister(LI.reg(), /*TRI=*/nullptr)) {
       LI.markNotSpillable();
+      ++NumBackendUnspillable;
       return -1.0f;
     }
 
@@ -325,6 +336,7 @@ float VirtRegAuxInfo::weightCalcHelper(LiveInterval &LI, SlotIndex *Start,
       !LI.isLiveAtIndexes(LIS.getRegMaskSlots()) &&
       !isLiveAtStatepointVarArg(LI) && !canMemFoldInlineAsm(LI, MRI)) {
     LI.markNotSpillable();
+    ++NumSmallLiveRangeUnspillable;
     return -1.0;
   }
 

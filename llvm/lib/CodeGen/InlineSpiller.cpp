@@ -20,6 +20,7 @@
 #include "llvm/ADT/SmallPtrSet.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/ADT/Statistic.h"
+#include "llvm/ADT/APInt.h"
 #include "llvm/CodeGen/LiveInterval.h"
 #include "llvm/CodeGen/LiveIntervals.h"
 #include "llvm/CodeGen/LiveRangeEdit.h"
@@ -68,6 +69,7 @@ STATISTIC(NumReloadsRemoved,  "Number of reloads removed");
 STATISTIC(NumFolded,          "Number of folded stack accesses");
 STATISTIC(NumFoldedLoads,     "Number of folded loads");
 STATISTIC(NumRemats,          "Number of rematerialized defs for spilling");
+STATISTIC(SpillWeight,        "Total weight of spilled live ranges (bitcast from double)");
 
 static cl::opt<bool>
 RestrictStatepointRemat("restrict-statepoint-remat",
@@ -1282,6 +1284,8 @@ void InlineSpiller::spillAll() {
     Edit->eraseVirtReg(Reg);
 }
 
+float SpillWeightFloat = 0;
+
 void InlineSpiller::spill(LiveRangeEdit &edit) {
   ++NumSpilledRanges;
   Edit = &edit;
@@ -1291,6 +1295,9 @@ void InlineSpiller::spill(LiveRangeEdit &edit) {
   Original = VRM.getOriginal(edit.getReg());
   StackSlot = VRM.getStackSlot(Original);
   StackInt = nullptr;
+
+  SpillWeightFloat += edit.getParent().weight();
+  SpillWeight = llvm::bit_cast<uint64_t>((double)SpillWeightFloat);
 
   LLVM_DEBUG(dbgs() << "Inline spilling "
                     << TRI.getRegClassName(MRI.getRegClass(edit.getReg()))
