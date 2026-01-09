@@ -16,6 +16,7 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
   int permissions_created = 0;
   Value *WritePermission = nullptr;
   Value *FileName = nullptr;
+  Value *InstrFlag = nullptr;
   for (auto &F : M) {
     if (F.isDeclaration()) {
       continue;
@@ -63,8 +64,10 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
 
     std::string outputString = functionName + " %lld\n";
     StringRef funcFormatStr = StringRef(outputString);
-    std::string fileName = "function_trace.txt";
+    std::string fileName = "function_trace_%d.txt";
     StringRef funcFileName = StringRef(fileName);
+    std::string instrumentationFlag = "instrument_flag.txt";
+    StringRef instrFlag = StringRef(instrumentationFlag);
     // for all return instructions, print the return value to a file with the
     // name of the function
 
@@ -102,6 +105,7 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
             permissions_created = 1;
             FileName = OrigBuilder.CreateGlobalStringPtr(funcFileName);
             WritePermission = OrigBuilder.CreateGlobalStringPtr("a");
+            InstrFlag = OrigBuilder.CreateGlobalStringPtr(instrFlag);
           }
 
           // split at return
@@ -116,7 +120,7 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
           IRBuilder<> AccessBuilder(AccessBB);
           // insert call to access function with filename and 0
           Value *status = AccessBuilder.CreateCall(
-              AccessFunc, {FileName, AccessBuilder.getInt32(0)});
+              AccessFunc, {InstrFlag, AccessBuilder.getInt32(0)});
 
           Value *Cmp = AccessBuilder.CreateICmpEQ(
               status,
@@ -144,8 +148,38 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
                                           PointerType::get(M.getContext(), 0)},
                                          false));
 
+          // get_pid function
+
+          FunctionCallee get_pid_Func = M.getOrInsertFunction(
+              "getpid",
+              FunctionType::get(IntegerType::getInt32Ty(M.getContext()), {},
+                                false));
+
+          // snprintf to create the filename with pid
+          FunctionCallee snprintf_Func = M.getOrInsertFunction(
+              "snprintf",
+              FunctionType::get(IntegerType::getInt32Ty(M.getContext()),
+                                {PointerType::get(M.getContext(), 0),
+                                 IntegerType::getInt32Ty(M.getContext()),
+                                 PointerType::get(M.getContext(), 0),
+                                 IntegerType::getInt32Ty(M.getContext())},
+                                false));
+
+          // allocate space for the filename
+          Value *FileNameBuffer = PrintBuilder.CreateAlloca(
+              ArrayType::get(IntegerType::getInt8Ty(M.getContext()), 50), nullptr, "filename_buffer");
+
+          Value *pid = PrintBuilder.CreateCall(get_pid_Func, {});
+
+          PrintBuilder.CreateCall(
+              snprintf_Func,
+              {FileNameBuffer,
+               PrintBuilder.getInt32(50),
+               PrintBuilder.CreateGlobalStringPtr(funcFileName),
+               pid});
+
           Value *write_fptr =
-              PrintBuilder.CreateCall(OpenFunc, {FileName, WritePermission});
+              PrintBuilder.CreateCall(OpenFunc, {FileNameBuffer, WritePermission});
           PrintBuilder.CreateCall(PrintFunc,
                                   {write_fptr, formatStrPtr, retVal});
 
