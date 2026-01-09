@@ -111,31 +111,41 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
           // split at return
           BasicBlock *ReturnBB = BB.splitBasicBlock(RI, "return", false);
 
+          BasicBlock *NoFileBB =
+              BasicBlock::Create(M.getContext(), "no_file", &F);
+
+          BasicBlock *InitBB =
+              BasicBlock::Create(M.getContext(), "init", &F);
+
           BasicBlock *AccessBB =
               BasicBlock::Create(M.getContext(), "access_check", &F);
+
+          BasicBlock *AccessFailBB =
+              BasicBlock::Create(M.getContext(), "access_fail", &F);
+
+          BasicBlock *CheckValueBB =
+              BasicBlock::Create(M.getContext(), "check_value", &F);
+
           BasicBlock *PrintBB = BasicBlock::Create(M.getContext(), "print", &F);
 
           LLVM_DEBUG(dbgs() << "Created BBs\n");
+          IRBuilder<> NoFileBuilder(NoFileBB);
 
-          IRBuilder<> AccessBuilder(AccessBB);
-          // insert call to access function with filename and 0
-          Value *status = AccessBuilder.CreateCall(
-              AccessFunc, {InstrFlag, AccessBuilder.getInt32(0)});
+          std::string isInitializedVarName =
+              "is_initialized_" + F.getName().str();
+          GlobalVariable *isInitializedVar = M.getGlobalVariable(isInitializedVarName);
+          if (!isInitializedVar) {
+            isInitializedVar = new GlobalVariable(
+                M, IntegerType::getInt32Ty(M.getContext()), false, GlobalValue::InternalLinkage,
+                ConstantInt::get(IntegerType::getInt32Ty(M.getContext()), 0), isInitializedVarName);
+          }
 
-          Value *Cmp = AccessBuilder.CreateICmpEQ(
-              status,
-              ConstantInt::get(IntegerType::getInt32Ty(M.getContext()), 0));
-          AccessBuilder.CreateCondBr(Cmp, PrintBB, ReturnBB);
-
-          LLVM_DEBUG(dbgs() << "Created access BB\n");
-
-          IRBuilder<> PrintBuilder(PrintBB);
           FunctionCallee PrintFunc = M.getOrInsertFunction(
               "fprintf",
               FunctionType::get(Type::getVoidTy(M.getContext()),
                                 PointerType::get(M.getContext(), 0), true));
           Value *formatStrPtr =
-              PrintBuilder.CreateGlobalStringPtr(funcFormatStr);
+              NoFileBuilder.CreateGlobalStringPtr(funcFormatStr);
           // if the file pointer is null, return
           FunctionCallee CloseFunc = M.getOrInsertFunction(
               "fclose",
@@ -165,18 +175,83 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
                                  IntegerType::getInt32Ty(M.getContext())},
                                 false));
 
+
+
+
           // allocate space for the filename
-          Value *FileNameBuffer = PrintBuilder.CreateAlloca(
+          Value *FileNameBuffer = NoFileBuilder.CreateAlloca(
               ArrayType::get(IntegerType::getInt8Ty(M.getContext()), 50), nullptr, "filename_buffer");
+          Value *pid = NoFileBuilder.CreateCall(get_pid_Func, {});
 
-          Value *pid = PrintBuilder.CreateCall(get_pid_Func, {});
-
-          PrintBuilder.CreateCall(
+          NoFileBuilder.CreateCall(
               snprintf_Func,
               {FileNameBuffer,
-               PrintBuilder.getInt32(50),
-               PrintBuilder.CreateGlobalStringPtr(funcFileName),
+               NoFileBuilder.getInt32(50),
+               NoFileBuilder.CreateGlobalStringPtr(funcFileName),
                pid});
+
+          // check if initialized is -1, if so, return
+          Value *LoadedNoFileIsInitialized =
+              NoFileBuilder.CreateLoad(IntegerType::getInt32Ty(M.getContext()), isInitializedVar);
+
+          Value *NoFileCmp = NoFileBuilder.CreateICmpEQ(
+              LoadedNoFileIsInitialized,
+              ConstantInt::get(IntegerType::getInt32Ty(M.getContext()), -1));
+          NoFileBuilder.CreateCondBr(NoFileCmp, ReturnBB, InitBB);
+
+          // check if initialized
+          IRBuilder<> InitBuilder(InitBB);
+
+          // check if initialized is 1, if so, go to check value, otherwise access
+
+          Value *InitCmp = InitBuilder.CreateICmpEQ(
+              LoadedNoFileIsInitialized,
+              ConstantInt::get(IntegerType::getInt32Ty(M.getContext()), 0));
+          InitBuilder.CreateCondBr(InitCmp, AccessBB, CheckValueBB);
+
+          IRBuilder<> AccessBuilder(AccessBB);
+          // insert call to access function with filename and 0
+          Value *status = AccessBuilder.CreateCall(
+              AccessFunc, {InstrFlag, AccessBuilder.getInt32(0)});
+
+          Value *Cmp = AccessBuilder.CreateICmpEQ(
+              status,
+              ConstantInt::get(IntegerType::getInt32Ty(M.getContext()), 0));
+          AccessBuilder.CreateCondBr(Cmp, PrintBB, AccessFailBB);
+
+          IRBuilder<> AccessFailBuilder(AccessFailBB);
+          // set initialized to -1
+          AccessFailBuilder.CreateStore(
+              ConstantInt::get(IntegerType::getInt32Ty(M.getContext()), -1), isInitializedVar);
+          AccessFailBuilder.CreateBr(ReturnBB);
+
+          LLVM_DEBUG(dbgs() << "Created access BB\n");
+
+          IRBuilder<> CheckValueBuilder(CheckValueBB);
+          // set initialized to 1
+
+
+          // insert a global variable that holds the previous value
+          // if the previous value is the same as the current value, do not print
+          std::string var_name = "prev_ret_val_" + F.getName().str();
+          GlobalVariable *PrevValue = M.getGlobalVariable(var_name);
+          if (!PrevValue) {
+            PrevValue = new GlobalVariable(
+                M, retVal->getType(), false, GlobalValue::InternalLinkage,
+                ConstantInt::get(retVal->getType(), -500), var_name);
+          }
+
+          Value *LoadedPrevValue =
+              CheckValueBuilder.CreateLoad(retVal->getType(), PrevValue);
+
+          Value *ValueCmp = CheckValueBuilder.CreateICmpNE(retVal, LoadedPrevValue);
+          CheckValueBuilder.CreateCondBr(ValueCmp, PrintBB, ReturnBB);
+
+          IRBuilder<> PrintBuilder(PrintBB);
+          PrintBuilder.CreateStore(
+              ConstantInt::get(IntegerType::getInt32Ty(M.getContext()), 1), isInitializedVar);
+          // store the current value as previous value
+          PrintBuilder.CreateStore(retVal, PrevValue);
 
           Value *write_fptr =
               PrintBuilder.CreateCall(OpenFunc, {FileNameBuffer, WritePermission});
@@ -188,7 +263,7 @@ CFFunctionInstrumentationPass::run(Module &M, ModuleAnalysisManager &AM) {
           PrintBuilder.CreateCall(CloseFunc, write_fptr);
           PrintBuilder.CreateBr(ReturnBB);
 
-          BB.getTerminator()->setSuccessor(0, AccessBB);
+          BB.getTerminator()->setSuccessor(0, NoFileBB);
 
           // place new BBs in the correct order
           ReturnBB->moveAfter(PrintBB);
