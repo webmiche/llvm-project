@@ -78,6 +78,7 @@ using namespace llvm;
 STATISTIC(NumGlobalSplits, "Number of split global live ranges");
 STATISTIC(NumLocalSplits,  "Number of split local live ranges");
 STATISTIC(NumEvicted,      "Number of interferences evicted");
+STATISTIC(NumForcedSpills,  "Number of forced spills");
 
 static cl::opt<SplitEditor::ComplementSpillMode> SplitSpillMode(
     "split-spill-mode", cl::Hidden,
@@ -142,6 +143,21 @@ static cl::opt<unsigned> SplitThresholdForRegWithHint(
     cl::desc("The threshold for splitting a virtual register with a hint, in "
              "percentage"),
     cl::init(75), cl::Hidden);
+
+static cl::opt<std::string> RegAllocSingleFunc("regalloc-single-func",
+                                               cl::Hidden,
+                                               cl::init(""),
+                                               cl::desc("Run the register "
+                                                        "allocator only on "
+                                                        "this function"));
+static cl::list<unsigned> ForceSpill("force-spill", cl::CommaSeparated,
+                                     cl::desc("List of virtual registers to "
+                                              "force spill"),
+                                     cl::Hidden);
+static cl::list<std::string> ForceSpillFuncs(
+    "force-spill-funcs", cl::CommaSeparated,
+    cl::desc("List of functions to force spill respective virtual registers"),
+    cl::Hidden);
 
 static RegisterRegAlloc greedyRegAlloc("greedy", "greedy register allocator",
                                        createGreedyRegisterAllocator);
@@ -2428,6 +2444,19 @@ MCRegister RAGreedy::selectOrSplitImpl(const LiveInterval &VirtReg,
   // First try assigning a free register.
   auto Order =
       AllocationOrder::create(VirtReg.reg(), *VRM, RegClassInfo, Matrix);
+
+  LiveRangeStage Stage;
+
+  // Find the starting index for this function in ForceSpillFuncs.
+  int startidx = std::find(ForceSpillFuncs.begin(), ForceSpillFuncs.end(), MF->getName().str()) - ForceSpillFuncs.begin();
+  // Starting from startidx, find the index of VirtReg in ForceSpill.
+  int idx = std::find(ForceSpill.begin() + startidx, ForceSpill.end(), Register::virtReg2Index(VirtReg.reg())) - ForceSpill.begin();
+  // If found, and either there is only one function in ForceSpillFuncs
+  // or the function at idx matches the current function, force spill.
+  if (idx < ForceSpill.size() && ((ForceSpillFuncs.size() <= 1 && startidx == 0) || (ForceSpillFuncs.size() > 1 && ForceSpillFuncs[idx] == MF->getName().str()))) {
+    goto SPILL;
+  }
+
   if (MCRegister PhysReg =
           tryAssign(VirtReg, Order, NewVRegs, FixedRegisters)) {
     // When NewVRegs is not empty, we may have made decisions such as evicting
@@ -2448,7 +2477,7 @@ MCRegister RAGreedy::selectOrSplitImpl(const LiveInterval &VirtReg,
   if (!NewVRegs.empty())
     return 0;
 
-  LiveRangeStage Stage = ExtraInfo->getStage(VirtReg);
+  Stage = ExtraInfo->getStage(VirtReg);
   LLVM_DEBUG(dbgs() << StageName[Stage] << " Cascade "
                     << ExtraInfo->getCascade(VirtReg.reg()) << '\n');
 
@@ -2497,6 +2526,7 @@ MCRegister RAGreedy::selectOrSplitImpl(const LiveInterval &VirtReg,
                                    RecolorStack, Depth);
   }
 
+SPILL:
   // Finally spill VirtReg itself.
   if ((EnableDeferredSpilling ||
        TRI->shouldUseDeferredSpillingForVirtReg(*MF, VirtReg)) &&
@@ -2721,6 +2751,10 @@ bool RAGreedy::hasVirtRegAlloc() {
 }
 
 bool RAGreedy::runOnMachineFunction(MachineFunction &mf) {
+  if (RegAllocSingleFunc != "" && RegAllocSingleFunc != mf.getName().str()) {
+    return true;
+  }
+
   LLVM_DEBUG(dbgs() << "********** GREEDY REGISTER ALLOCATION **********\n"
                     << "********** Function: " << mf.getName() << '\n');
 

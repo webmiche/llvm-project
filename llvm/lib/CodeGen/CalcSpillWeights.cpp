@@ -31,6 +31,17 @@ using namespace llvm;
 
 #define DEBUG_TYPE "calcspillweights"
 
+static cl::list<unsigned> ForceNoSpill("force-no-spill", cl::CommaSeparated,
+                                       cl::desc("List of virtual registers to "
+                                                "mark unspillable"),
+                                       cl::Hidden);
+static cl::list<std::string> ForceNoSpillFuncs("force-no-spill-funcs",
+                                                cl::CommaSeparated,
+                                                cl::desc("List of functions to "
+                                                         "mark respective virtual "
+                                                         "registers unspillable"),
+                                                cl::Hidden);
+
 STATISTIC(NumBackendUnspillable,
           "Number of virtual registers unspillable due to backend constraints");
 STATISTIC(NumSmallLiveRangeUnspillable,
@@ -152,6 +163,16 @@ void VirtRegAuxInfo::calculateSpillWeightAndHint(LiveInterval &LI) {
   if (Weight < 0)
     return;
   LI.setWeight(Weight);
+  // Find the start index for this function in ForceNoSpillFuncs
+  int startidx = std::find(ForceNoSpillFuncs.begin(), ForceNoSpillFuncs.end(), MF.getName().str()) - ForceNoSpillFuncs.begin();
+  // Starting from said index, looks for the index of the current register in ForceNoSpill
+  int idx = std::find(ForceNoSpill.begin() + startidx, ForceNoSpill.end(), Register::virtReg2Index(LI.reg())) - ForceNoSpill.begin();
+  // If there is only one function in ForceNoSpillFuncs, or if there are multiple functions and the current function matches,
+  // and if the current register is found in ForceNoSpill, mark it unspillable
+  if (idx < ForceNoSpill.size() && ((ForceNoSpillFuncs.size() <= 1 && startidx == 0) || (ForceNoSpillFuncs.size() > 1 && ForceNoSpillFuncs[startidx] == MF.getName().str()))) {
+    LLVM_DEBUG(dbgs() << "Marking vreg " << LI.reg() << " unspillable due to command line option\n");
+    LI.markNotSpillable();
+  }
 }
 
 static bool canMemFoldInlineAsm(LiveInterval &LI,

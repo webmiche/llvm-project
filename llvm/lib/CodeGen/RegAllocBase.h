@@ -140,8 +140,13 @@ public:
   /// VerifyEnabled - True when -verify-regalloc is given.
   static bool VerifyEnabled;
 
+  static bool PrintVRegs;
+  static cl::list<unsigned> IgnoreRegs;
+
 private:
   void seedLiveRegs();
+
+  void emitIntfGraph();
 };
 
 } // end namespace llvm

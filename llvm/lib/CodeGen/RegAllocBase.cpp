@@ -33,6 +33,10 @@
 #include "llvm/Support/raw_ostream.h"
 #include <cassert>
 
+#include <chrono>
+#include <thread>
+#include <iostream>
+
 using namespace llvm;
 
 #define DEBUG_TYPE "regalloc"
@@ -45,9 +49,19 @@ static cl::opt<bool, true>
     VerifyRegAlloc("verify-regalloc", cl::location(RegAllocBase::VerifyEnabled),
                    cl::Hidden, cl::desc("Verify during register allocation"));
 
+enum IntfGraphFormat {
+  none, dot, simple
+};
+static cl::opt<IntfGraphFormat> EmitIntfGraph("emit-intf-graph", cl::values(
+  clEnumVal(none, "no intf graph"), clEnumVal(dot, ".dot file"), clEnumVal(simple, ".txt file with edge pairs")
+));
+static cl::opt<bool, true> PrintVirtualRegisters("print-vregs", cl::location(RegAllocBase::PrintVRegs));
+
 const char RegAllocBase::TimerGroupName[] = "regalloc";
 const char RegAllocBase::TimerGroupDescription[] = "Register Allocation";
 bool RegAllocBase::VerifyEnabled = false;
+bool RegAllocBase::PrintVRegs = false;
+cl::list<unsigned> RegAllocBase::IgnoreRegs("ignore-regs", cl::CommaSeparated);
 
 //===----------------------------------------------------------------------===//
 //                         RegAllocBase Implementation
@@ -77,13 +91,61 @@ void RegAllocBase::seedLiveRegs() {
     Register Reg = Register::index2VirtReg(i);
     if (MRI->reg_nodbg_empty(Reg))
       continue;
-    enqueue(&LIS->getInterval(Reg));
+    if (std::find(IgnoreRegs.begin(), IgnoreRegs.end(), Register::virtReg2Index(Reg)) == IgnoreRegs.end()) {
+      if (PrintVRegs) outs() << Register::virtReg2Index(Reg) << ",";
+      enqueue(&LIS->getInterval(Reg));
+    }
+  }
+}
+
+void RegAllocBase::emitIntfGraph() {
+  std::string Filename = ((MRI->getMF()).getName() + (EmitIntfGraph == dot ? ".dot" : ".txt")).str();
+
+  outs() << (MRI->getMF()).getName() << "\n";
+  std::string output;
+
+  if (EmitIntfGraph == dot) {
+    output += "graph {\n\toutputorder=edgesfirst;\n\toverlap_scaling=10;\n\n";
+  } else {
+    output += "Number of virtual registers: " + std::to_string(MRI->getNumVirtRegs()) + "\n";
+  }
+
+  for (unsigned i = 0, e = MRI->getNumVirtRegs(); i != e; ++i) {
+    Register Reg = Register::index2VirtReg(i);
+    if (MRI->reg_nodbg_empty(Reg) || std::find(IgnoreRegs.begin(), IgnoreRegs.end(), Register::virtReg2Index(Reg)) != IgnoreRegs.end())
+      continue;
+
+    if (EmitIntfGraph == dot) output += "\tNode" + std::to_string(Register::virtReg2Index(Reg)) + " [label=\"" + std::to_string(Register::virtReg2Index(Reg)) + "\", shape=box, style=filled, color=blue];\n";
+    for (unsigned j = 0; j != i; ++j) {
+      Register Reg1 = Register::index2VirtReg(j);
+      if (MRI->reg_nodbg_empty(Reg1) || std::find(IgnoreRegs.begin(), IgnoreRegs.end(), Register::virtReg2Index(Reg1)) != IgnoreRegs.end())
+        continue;
+      if ((LIS->getInterval(Reg)).overlaps(LIS->getInterval(Reg1))) {
+        if (EmitIntfGraph == dot) output += "\tNode" + std::to_string(Register::virtReg2Index(Reg)) + " -- Node" + std::to_string(Register::virtReg2Index(Reg1)) + ";\n";
+        else output += std::to_string(Register::virtReg2Index(Reg)) + " " + std::to_string(Register::virtReg2Index(Reg1)) + "\n";
+      }
+    }
+  }
+  if (EmitIntfGraph == dot) {
+    output += "}\n";
+    std::error_code EC;
+    raw_fd_ostream file(Filename, EC);
+    assert(EC.value() == 0 && "Couldn't create file");
+    file << output;
+    file.close();
+  }
+  else {
+    output += "-1\n";
+    outs() << output;
   }
 }
 
 // Top-level driver to manage the queue of unassigned VirtRegs and call the
 // selectOrSplit implementation.
 void RegAllocBase::allocatePhysRegs() {
+  if (EmitIntfGraph != none)
+    emitIntfGraph();
+
   seedLiveRegs();
 
   // Continue assigning vregs one at a time to available physical registers.
