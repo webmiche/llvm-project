@@ -76,6 +76,13 @@ RestrictStatepointRemat("restrict-statepoint-remat",
                        cl::init(false), cl::Hidden,
                        cl::desc("Restrict remat for statepoint operands"));
 
+static cl::list<unsigned> TrackRegs("track-regs",
+                                    cl::CommaSeparated,
+                                    cl::desc("List of virtual registers to track"));
+static cl::opt<bool> OutputSpilledRegs("output-spilled-regs",
+                                  cl::init(false), cl::Hidden,
+                                  cl::desc("Output the list of spilled virtual registers"));
+
 namespace {
 class HoistSpillHelper : private LiveRangeEdit::Delegate {
   MachineFunction &MF;
@@ -1287,7 +1294,11 @@ void InlineSpiller::spillAll() {
 float SpillWeightFloat = 0;
 
 void InlineSpiller::spill(LiveRangeEdit &edit) {
-  ++NumSpilledRanges;
+  // If no track registers are specified (i.e., everything is tracked), or if the
+  // register being spilled is in the tracked set, count this spill.
+  if (TrackRegs.empty() || std::find(TrackRegs.begin(), TrackRegs.end(),Register::virtReg2Index(edit.getReg())) != TrackRegs.end()) {
+    ++NumSpilledRanges;
+  }
   Edit = &edit;
   assert(!Register::isStackSlot(edit.getReg()) &&
          "Trying to spill a stack slot.");
@@ -1295,6 +1306,11 @@ void InlineSpiller::spill(LiveRangeEdit &edit) {
   Original = VRM.getOriginal(edit.getReg());
   StackSlot = VRM.getStackSlot(Original);
   StackInt = nullptr;
+
+  if (OutputSpilledRegs) {
+    dbgs() << "spilled " << Register::virtReg2Index(edit.getReg()) << "weight " << edit.getParent().weight() << " original "
+           << Register::virtReg2Index(Original) << "\n";
+  }
 
   SpillWeightFloat += edit.getParent().weight();
   SpillWeight = llvm::bit_cast<uint64_t>((double)SpillWeightFloat);
