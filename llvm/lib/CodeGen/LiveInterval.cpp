@@ -388,6 +388,10 @@ VNInfo *LiveRange::createDeadDef(VNInfo *VNI) {
 //
 bool LiveRange::overlapsFrom(const LiveRange& other,
                              const_iterator StartPos) const {
+  // Quick exit: if either is empty, there is no overlap.
+  if (empty() || other.empty()) {
+    return false;
+  }
   assert(!empty() && "empty range");
   const_iterator i = begin();
   const_iterator ie = end();
