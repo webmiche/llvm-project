@@ -23,7 +23,7 @@
 
 using namespace llvm;
 
-#define DEBUG_TYPE "regalloc"
+#define DEBUG_TYPE "regalloc-order"
 
 // Compare VirtRegMap::getRegAllocPref().
 AllocationOrder AllocationOrder::create(unsigned VirtReg, const VirtRegMap &VRM,

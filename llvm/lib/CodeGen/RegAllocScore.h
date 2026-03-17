@@ -16,6 +16,7 @@
 #define LLVM_CODEGEN_REGALLOCSCORE_H_
 
 #include "llvm/ADT/STLFunctionalExtras.h"
+#include "llvm/Support/Debug.h"
 
 namespace llvm {
 

@@ -54,7 +54,7 @@ cl::opt<unsigned> EvictInterferenceCutoff(
     cl::init(10));
 }
 
-#define DEBUG_TYPE "regalloc"
+#define DEBUG_TYPE "regalloc-advisor"
 #ifdef LLVM_HAVE_TF_AOT_REGALLOCEVICTMODEL
 #define LLVM_HAVE_TF_AOT
 #endif

@@ -31,6 +31,10 @@ using namespace llvm;
 
 #define DEBUG_TYPE "calcspillweights"
 
+static cl::opt<bool> RandomWeight("random-spill-weight", cl::Hidden,
+                                  cl::init(false),
+                                  cl::desc("Use random spill weights"));
+
 void VirtRegAuxInfo::calculateSpillWeightsAndHints() {
   LLVM_DEBUG(dbgs() << "********** Compute Spill Weights **********\n"
                     << "********** Function: " << MF.getName() << '\n');
@@ -132,11 +136,11 @@ bool VirtRegAuxInfo::isRematerializable(const LiveInterval &LI,
 bool VirtRegAuxInfo::isLiveAtStatepointVarArg(LiveInterval &LI) {
   return any_of(VRM.getRegInfo().reg_operands(LI.reg()),
                 [](MachineOperand &MO) {
-    MachineInstr *MI = MO.getParent();
-    if (MI->getOpcode() != TargetOpcode::STATEPOINT)
-      return false;
-    return StatepointOpers(MI).getVarIdx() <= MO.getOperandNo();
-  });
+                  MachineInstr *MI = MO.getParent();
+                  if (MI->getOpcode() != TargetOpcode::STATEPOINT)
+                    return false;
+                  return StatepointOpers(MI).getVarIdx() <= MO.getOperandNo();
+                });
 }
 
 void VirtRegAuxInfo::calculateSpillWeightAndHint(LiveInterval &LI) {
@@ -144,6 +148,7 @@ void VirtRegAuxInfo::calculateSpillWeightAndHint(LiveInterval &LI) {
   // Check if unspillable.
   if (Weight < 0)
     return;
+  Weight = RandomWeight ? rand() : Weight;
   LI.setWeight(Weight);
 }
 

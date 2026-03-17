@@ -58,22 +58,22 @@
 
 using namespace llvm;
 
-#define DEBUG_TYPE "regalloc"
+#define DEBUG_TYPE "regalloc-inline-spiller"
 
-STATISTIC(NumSpilledRanges,   "Number of spilled live ranges");
-STATISTIC(NumSnippets,        "Number of spilled snippets");
-STATISTIC(NumSpills,          "Number of spills inserted");
-STATISTIC(NumSpillsRemoved,   "Number of spills removed");
-STATISTIC(NumReloads,         "Number of reloads inserted");
-STATISTIC(NumReloadsRemoved,  "Number of reloads removed");
-STATISTIC(NumFolded,          "Number of folded stack accesses");
-STATISTIC(NumFoldedLoads,     "Number of folded loads");
-STATISTIC(NumRemats,          "Number of rematerialized defs for spilling");
+STATISTIC(NumSpilledRanges, "Number of spilled live ranges");
+STATISTIC(NumSnippets, "Number of spilled snippets");
+STATISTIC(NumSpills, "Number of spills inserted");
+STATISTIC(NumSpillsRemoved, "Number of spills removed");
+STATISTIC(NumReloads, "Number of reloads inserted");
+STATISTIC(NumReloadsRemoved, "Number of reloads removed");
+STATISTIC(NumFolded, "Number of folded stack accesses");
+STATISTIC(NumFoldedLoads, "Number of folded loads");
+STATISTIC(NumRemats, "Number of rematerialized defs for spilling");
 
 static cl::opt<bool>
-RestrictStatepointRemat("restrict-statepoint-remat",
-                       cl::init(false), cl::Hidden,
-                       cl::desc("Restrict remat for statepoint operands"));
+    RestrictStatepointRemat("restrict-statepoint-remat", cl::init(false),
+                            cl::Hidden,
+                            cl::desc("Restrict remat for statepoint operands"));
 
 namespace {
 
@@ -170,13 +170,13 @@ class InlineSpiller : public Spiller {
   // All COPY instructions to/from snippets.
   // They are ignored since both operands refer to the same stack slot.
   // For bundled copies, this will only include the first header copy.
-  SmallPtrSet<MachineInstr*, 8> SnippetCopies;
+  SmallPtrSet<MachineInstr *, 8> SnippetCopies;
 
   // Values that failed to remat at some point.
-  SmallPtrSet<VNInfo*, 8> UsedValues;
+  SmallPtrSet<VNInfo *, 8> UsedValues;
 
   // Dead defs generated during spilling.
-  SmallVector<MachineInstr*, 8> DeadDefs;
+  SmallVector<MachineInstr *, 8> DeadDefs;
 
   // Object records spills information and does the hoisting.
   HoistSpillHelper HSpiller;
@@ -211,7 +211,7 @@ private:
   bool hoistSpillInsideBB(LiveInterval &SpillLI, MachineInstr &CopyMI);
   void eliminateRedundantSpills(LiveInterval &LI, VNInfo *VNI);
 
-  void markValueUsed(LiveInterval*, VNInfo*);
+  void markValueUsed(LiveInterval *, VNInfo *);
   bool canGuaranteeAssignmentAfterRemat(Register VReg, MachineInstr &MI);
   bool reMaterializeFor(LiveInterval &, MachineInstr &MI);
   void reMaterializeAll();
@@ -493,7 +493,7 @@ bool InlineSpiller::hoistSpillInsideBB(LiveInterval &SpillLI,
 /// redundant spills of this value in SLI.reg and sibling copies.
 void InlineSpiller::eliminateRedundantSpills(LiveInterval &SLI, VNInfo *VNI) {
   assert(VNI && "Missing value");
-  SmallVector<std::pair<LiveInterval*, VNInfo*>, 8> WorkList;
+  SmallVector<std::pair<LiveInterval *, VNInfo *>, 8> WorkList;
   WorkList.push_back(std::make_pair(&SLI, VNI));
   assert(StackInt && "No stack slot assigned yet.");
 
@@ -556,7 +556,7 @@ void InlineSpiller::eliminateRedundantSpills(LiveInterval &SLI, VNInfo *VNI) {
 /// markValueUsed - Remember that VNI failed to rematerialize, so its defining
 /// instruction cannot be eliminated. See through snippet copies
 void InlineSpiller::markValueUsed(LiveInterval *LI, VNInfo *VNI) {
-  SmallVector<std::pair<LiveInterval*, VNInfo*>, 8> WorkList;
+  SmallVector<std::pair<LiveInterval *, VNInfo *>, 8> WorkList;
   WorkList.push_back(std::make_pair(LI, VNI));
   do {
     std::tie(LI, VNI) = WorkList.pop_back_val();
@@ -664,8 +664,7 @@ bool InlineSpiller::reMaterializeFor(LiveInterval &VirtReg, MachineInstr &MI) {
 
   // Before rematerializing into a register for a single instruction, try to
   // fold a load into the instruction. That avoids allocating a new register.
-  if (RM.OrigMI->canFoldAsLoad() &&
-      foldMemoryOperand(Ops, RM.OrigMI)) {
+  if (RM.OrigMI->canFoldAsLoad() && foldMemoryOperand(Ops, RM.OrigMI)) {
     Edit->markRematerialized(RM.ParentVNI);
     ++NumFoldedLoads;
     return true;
@@ -727,7 +726,7 @@ void InlineSpiller::reMaterializeAll() {
         continue;
 
       assert(!MI.isDebugInstr() && "Did not expect to find a use in debug "
-             "instruction that isn't a DBG_VALUE");
+                                   "instruction that isn't a DBG_VALUE");
 
       anyRemat |= reMaterializeFor(LI, MI);
     }
@@ -885,9 +884,8 @@ static void dumpMachineInstrRangeWithSlotIndex(MachineBasicBlock::iterator B,
 /// @param Ops    Operand indices from AnalyzeVirtRegInBundle().
 /// @param LoadMI Load instruction to use instead of stack slot when non-null.
 /// @return       True on success.
-bool InlineSpiller::
-foldMemoryOperand(ArrayRef<std::pair<MachineInstr *, unsigned>> Ops,
-                  MachineInstr *LoadMI) {
+bool InlineSpiller::foldMemoryOperand(
+    ArrayRef<std::pair<MachineInstr *, unsigned>> Ops, MachineInstr *LoadMI) {
   if (Ops.empty())
     return false;
   // Don't attempt folding in bundles.
@@ -949,7 +947,7 @@ foldMemoryOperand(ArrayRef<std::pair<MachineInstr *, unsigned>> Ops,
 
   MachineInstrSpan MIS(MI, MI->getParent());
 
-  SmallVector<std::pair<unsigned, unsigned> > TiedOps;
+  SmallVector<std::pair<unsigned, unsigned>> TiedOps;
   if (UntieRegs)
     for (unsigned Idx : FoldOps) {
       MachineOperand &MO = MI->getOperand(Idx);
@@ -1011,13 +1009,14 @@ foldMemoryOperand(ArrayRef<std::pair<MachineInstr *, unsigned>> Ops,
   // substituted / preserved with more analysis.
   if (MI->peekDebugInstrNum() && Ops[0].second == 0) {
     // Helper lambda.
-    auto MakeSubstitution = [this,FoldMI,MI,&Ops]() {
+    auto MakeSubstitution = [this, FoldMI, MI, &Ops]() {
       // Substitute old operand zero to the new instructions memory operand.
       unsigned OldOperandNum = Ops[0].second;
       unsigned NewNum = FoldMI->getDebugInstrNum();
       unsigned OldNum = MI->getDebugInstrNum();
-      MF.makeDebugValueSubstitution({OldNum, OldOperandNum},
-                         {NewNum, MachineFunction::DebugOperandMemNumber});
+      MF.makeDebugValueSubstitution(
+          {OldNum, OldOperandNum},
+          {NewNum, MachineFunction::DebugOperandMemNumber});
     };
 
     const MachineOperand &Op0 = MI->getOperand(Ops[0].second);
@@ -1072,8 +1071,7 @@ foldMemoryOperand(ArrayRef<std::pair<MachineInstr *, unsigned>> Ops,
   return true;
 }
 
-void InlineSpiller::insertReload(Register NewVReg,
-                                 SlotIndex Idx,
+void InlineSpiller::insertReload(Register NewVReg, SlotIndex Idx,
                                  MachineBasicBlock::iterator MI) {
   MachineBasicBlock &MBB = *MI->getParent();
 
@@ -1103,7 +1101,7 @@ static bool isRealSpill(const MachineInstr &Def) {
 
 /// insertSpill - Insert a spill of NewVReg after MI.
 void InlineSpiller::insertSpill(Register NewVReg, bool isKill,
-                                 MachineBasicBlock::iterator MI) {
+                                MachineBasicBlock::iterator MI) {
   // Spill are not terminators, so inserting spills after terminators will
   // violate invariants in MachineVerifier.
   assert(!MI->isTerminator() && "Inserting a spill after a terminator");
@@ -1157,7 +1155,7 @@ void InlineSpiller::spillAroundUses(Register Reg) {
     }
 
     assert(!MI.isDebugInstr() && "Did not expect to find a use in debug "
-           "instruction that isn't a DBG_VALUE");
+                                 "instruction that isn't a DBG_VALUE");
 
     // Ignore copies to/from snippets. We'll delete them.
     if (SnippetCopies.count(&MI))
@@ -1168,7 +1166,7 @@ void InlineSpiller::spillAroundUses(Register Reg) {
       continue;
 
     // Analyze instruction.
-    SmallVector<std::pair<MachineInstr*, unsigned>, 8> Ops;
+    SmallVector<std::pair<MachineInstr *, unsigned>, 8> Ops;
     VirtRegInfo RI = AnalyzeVirtRegInBundle(MI, Reg, &Ops);
 
     // Find the slot index where this instruction reads and writes OldLI.
@@ -1555,7 +1553,7 @@ void HoistSpillHelper::runHoistSpills(
     }
 
     SmallPtrSet<MachineDomTreeNode *, 16> &SpillsInSubTree =
-          SpillsInSubTreeMap[*RIt].first;
+        SpillsInSubTreeMap[*RIt].first;
     BlockFrequency &SubTreeCost = SpillsInSubTreeMap[*RIt].second;
     // No spills in subtree, simply continue.
     if (SpillsInSubTree.empty())

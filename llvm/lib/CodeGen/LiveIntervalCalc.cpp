@@ -24,7 +24,7 @@
 
 using namespace llvm;
 
-#define DEBUG_TYPE "regalloc"
+#define DEBUG_TYPE "regalloc-lic"
 
 // Reserve an address that indicates a value that is known to be "undef".
 static VNInfo UndefVNI(0xbad, SlotIndex());

@@ -25,7 +25,9 @@ class RegAllocFastPass : public PassInfoMixin<RegAllocFastPass> {
 
 public:
   RegAllocFastPass(RegAllocFastPassOptions Opts = RegAllocFastPassOptions())
-      : Opts(Opts) {}
+      : Opts(Opts) {
+    llvm::dbgs() << "RegAllocFastPass\n";
+  }
 
   MachineFunctionProperties getRequiredProperties() {
     return MachineFunctionProperties().set(

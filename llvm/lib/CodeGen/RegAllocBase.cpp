@@ -34,7 +34,7 @@
 
 using namespace llvm;
 
-#define DEBUG_TYPE "regalloc"
+#define DEBUG_TYPE "regalloc-base"
 
 STATISTIC(NumNewQueued, "Number of new live ranges queued");
 
