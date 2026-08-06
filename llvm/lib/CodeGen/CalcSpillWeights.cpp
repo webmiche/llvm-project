@@ -163,15 +163,16 @@ void VirtRegAuxInfo::calculateSpillWeightAndHint(LiveInterval &LI) {
   if (Weight < 0)
     return;
   LI.setWeight(Weight);
-  // Find the start index for this function in ForceNoSpillFuncs
-  int startidx = std::find(ForceNoSpillFuncs.begin(), ForceNoSpillFuncs.end(), MF.getName().str()) - ForceNoSpillFuncs.begin();
-  // Starting from said index, looks for the index of the current register in ForceNoSpill
-  int idx = std::find(ForceNoSpill.begin() + startidx, ForceNoSpill.end(), Register::virtReg2Index(LI.reg())) - ForceNoSpill.begin();
-  // If there is only one function in ForceNoSpillFuncs, or if there are multiple functions and the current function matches,
-  // and if the current register is found in ForceNoSpill, mark it unspillable
-  if (idx < ForceNoSpill.size() && ((ForceNoSpillFuncs.size() <= 1 && startidx == 0) || (ForceNoSpillFuncs.size() > 1 && ForceNoSpillFuncs[startidx] == MF.getName().str()))) {
-    LLVM_DEBUG(dbgs() << "Marking vreg " << LI.reg() << " unspillable due to command line option\n");
-    LI.markNotSpillable();
+
+  assert(ForceNoSpill.size() == ForceNoSpillFuncs.size());
+  uint64_t idx = 0;
+  while(idx < ForceNoSpill.size()) {
+    if (ForceNoSpill[idx] == Register::virtReg2Index(LI.reg()) && ForceNoSpillFuncs[idx] == MF.getName()) {
+      LLVM_DEBUG(dbgs() << "Marking vreg " << LI.reg() << " unspillable due to command line option\n");
+      LI.markNotSpillable();
+      return;
+    }
+    idx++;
   }
 }
 

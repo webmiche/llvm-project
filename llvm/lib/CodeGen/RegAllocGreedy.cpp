@@ -2447,13 +2447,17 @@ MCRegister RAGreedy::selectOrSplitImpl(const LiveInterval &VirtReg,
 
   LiveRangeStage Stage;
 
-  // Find the starting index for this function in ForceSpillFuncs.
-  int startidx = std::find(ForceSpillFuncs.begin(), ForceSpillFuncs.end(), MF->getName().str()) - ForceSpillFuncs.begin();
-  // Starting from startidx, find the index of VirtReg in ForceSpill.
-  int idx = std::find(ForceSpill.begin() + startidx, ForceSpill.end(), Register::virtReg2Index(VirtReg.reg())) - ForceSpill.begin();
-  // If found, and either there is only one function in ForceSpillFuncs
-  // or the function at idx matches the current function, force spill.
-  if (idx < ForceSpill.size() && ((ForceSpillFuncs.size() <= 1 && startidx == 0) || (ForceSpillFuncs.size() > 1 && ForceSpillFuncs[idx] == MF->getName().str()))) {
+  // loop over ForceSpillFuncs and ForceSpill to see if we need to
+  // force spill this VirtReg in this function.
+  assert(ForceSpill.size() == ForceSpillFuncs.size());
+  uint64_t ind = 0;
+  while(ind < ForceSpill.size()) {
+    if (Register::virtReg2Index(VirtReg.reg()) == ForceSpill[ind] &&
+        (ForceSpillFuncs[ind] == MF->getName().str()))
+      break;
+    ind++;
+  }
+  if (ind < ForceSpill.size()) {
     goto SPILL;
   }
 

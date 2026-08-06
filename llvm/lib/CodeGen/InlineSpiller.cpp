@@ -1308,7 +1308,7 @@ void InlineSpiller::spill(LiveRangeEdit &edit) {
   StackInt = nullptr;
 
   if (OutputSpilledRegs) {
-    dbgs() << "spilled " << Register::virtReg2Index(edit.getReg()) << "weight " << edit.getParent().weight() << " original "
+    dbgs() << "spilled " << Register::virtReg2Index(edit.getReg()) << " weight " << edit.getParent().weight() << " original "
            << Register::virtReg2Index(Original) << "\n";
   }
 
